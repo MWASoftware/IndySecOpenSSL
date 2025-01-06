@@ -1,7 +1,7 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{34520D67-BF4C-4506-884B-E99D31A6159A}</ProjectGuid>
-        <MainSource>IndyOpenSSL290.dpk</MainSource>
+        <MainSource>IndyTLSOpenSSL290.dpk</MainSource>
         <ProjectVersion>18.1</ProjectVersion>
         <FrameworkType>None</FrameworkType>
         <Base>True</Base>
@@ -36,7 +36,7 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
         <GenDll>true</GenDll>
-        <SanitizedProjectName>IndyOpenSSL290</SanitizedProjectName>
+        <SanitizedProjectName>IndyTLSOpenSSL290</SanitizedProjectName>
         <DCC_CBuilderOutput>All</DCC_CBuilderOutput>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
         <GenPackage>true</GenPackage>
@@ -103,7 +103,7 @@
         <BorlandProject>
             <Delphi.Personality>
                 <Source>
-                    <Source Name="MainSource">IndyOpenSSL290.dpk</Source>
+                    <Source Name="MainSource">IndyTLSOpenSSL290.dpk</Source>
                 </Source>
                 <Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dclIndyCore240.bpl">Indy 10 Core Design Time</Excluded_Packages>
