@@ -5,7 +5,7 @@ This fork is the basis of a change request to the original repo and should be ig
 
 It is split off from the main Indy library so it can be updated independantly to the latest version of OpenSSL.
 
-It should be usable as an additional package/dropin to Indy, as long as it remains compatible with Indy's SSLIOHandler and IdFIPS interfaces.
+It should be usable as an additional package/dropin to Indy (branch 10.7), as long as it remains compatible with Indy's SSLIOHandler and IdFIPS interfaces.
 
 About this Pull Request
 -----------------------
