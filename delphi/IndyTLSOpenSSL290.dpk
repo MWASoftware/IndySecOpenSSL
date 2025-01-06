@@ -37,9 +37,9 @@ requires
   IndyProtocols290;
 
 contains
-  IdResourceStringsOpenSSL in 'IdResourceStringsOpenSSL.pas',
-  IdNTLMOpenSSL in 'IdNTLMOpenSSL.pas',
-  IdSSLOpenSSL in 'IdSSLOpenSSL.pas',
-  IdSSLOpenSSLFIPS in 'IdSSLOpenSSLFIPS.pas';
+  IdResourceStringsOpenSSL in '..\src\IdResourceStringsOpenSSL.pas',
+  IdNTLMOpenSSL in '..\src\IdNTLMOpenSSL.pas',
+  IdSSLOpenSSL in '..\src\IdSSLOpenSSL.pas',
+  IdSSLOpenSSLFIPS in '..\src\IdSSLOpenSSLFIPS.pas';
 
 end.

@@ -80,11 +80,13 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="rtl.dcp"/>
+        <DCCReference Include="IndySystem290.dcp"/>
+        <DCCReference Include="IndyCore290.dcp"/>
         <DCCReference Include="IndyProtocols290.dcp"/>
-        <DCCReference Include="IdNTLMOpenSSL.pas"/>
-        <DCCReference Include="IdResourceStringsOpenSSL.pas"/>
-        <DCCReference Include="IdSSLOpenSSL.pas"/>
-        <DCCReference Include="IdSSLOpenSSLFIPS.pas"/>
+        <DCCReference Include="..\src\IdResourceStringsOpenSSL.pas"/>
+        <DCCReference Include="..\src\IdNTLMOpenSSL.pas"/>
+        <DCCReference Include="..\src\IdSSLOpenSSL.pas"/>
+        <DCCReference Include="..\src\IdSSLOpenSSLFIPS.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
