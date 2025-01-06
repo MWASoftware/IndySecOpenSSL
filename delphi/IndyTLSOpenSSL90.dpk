@@ -31,6 +31,6 @@ contains
   IdResourceStringsOpenSSL in 'IdResourceStringsOpenSSL.pas',
   IdNTLMOpenSSL in 'IdNTLMOpenSSL.pas',
   IdSSLOpenSSL in 'IdSSLOpenSSL.pas',
-  IdSSLOpenSSLHeaders in 'IdSSLOpenSSLHeaders.pas';
+  IdSSLOpenSSLFIPS in 'IdSSLOpenSSLFIPS.pas';
 
 end.
