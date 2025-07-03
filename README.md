@@ -15,4 +15,4 @@ Not sure at this time whether this project will stay as an independant repo, or 
 This project is dual-licensed under the terms of the Indy Modified BSD License and Indy MPL License.
 You can choose between one of them if you use this work.
 
-`SPDX-License-Identifier: LicenseRef-IndyBSD OR MPL-1.1`
+SPDX-License-Identifier: LicenseRef-IndyBSD OR MPL-1.1
