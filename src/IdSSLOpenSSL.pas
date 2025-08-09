@@ -183,6 +183,9 @@
   Fixed for Indy 10
 
   Rev 1.0    11/13/2002 08:01:24 AM  JPMugaas
+  * 
+  * 1/8/2025 Updated by TWhyman (mwasoftware) to support OpenSSL 3.x and later
+  * 8/4/2025 Updated by TWhyman to avoid SSL_read handing due to non-application data
 }
 unit IdSSLOpenSSL;
 {
@@ -2912,13 +2915,29 @@ begin
 end;
 
 function TIdSSLIOHandlerSocketOpenSSL.Readable(AMSec: Integer = IdTimeoutDefault): Boolean;
-begin
-  if not fPassThrough then
-  begin
-    Result := (fSSLSocket <> nil) and (ssl_pending(fSSLSocket.fSSL) > 0);
-    if Result then Exit;
-  end;
-  Result := inherited Readable(AMSec);
+var buf : byte;
+    Lr: integer;
+ begin
+  repeat
+    {Wait for data ready - or timer expiry}
+    Result := inherited Readable(AMSec);
+    {If the inherited Readable returns false then we have a timeout.
+     Otherwise data is present but could be application or non-application data}
+    if not Result then
+      Exit;
+
+    if not fPassThrough and (fSSLSocket <> nil) then
+    begin
+      {Confirm that there is application data to be read.}
+      Lr := SSL_peek(fSSLSocket.fSSL, @buf, 1);
+      {Return true if application data pending, or if it looks like we have disconnected}
+      Result := (Lr > 0);
+      if not Result and
+        (SSL_get_error(fSSLSocket.fSSL,Lr) = SSL_ERROR_ZERO_RETURN) and
+        (SSL_get_shutdown(fSSLSocket.fSSL) = SSL_RECEIVED_SHUTDOWN) then
+        Result := true;
+    end;
+  until Result;
 end;
 
 procedure TIdSSLIOHandlerSocketOpenSSL.SetPassThrough(const Value: Boolean);
@@ -3480,7 +3499,8 @@ begin
       end;
   end;
 
-  SSL_CTX_set_mode(fContext, SSL_MODE_AUTO_RETRY);
+//  SSL_CTX_set_mode(fContext, SSL_MODE_AUTO_RETRY);
+  SSL_CTX_clear_mode(fContext, SSL_MODE_AUTO_RETRY);
   // assign a password lookup routine
 //  if PasswordRoutineOn then begin
     SSL_CTX_set_default_passwd_cb(fContext, @PasswordCallback);
