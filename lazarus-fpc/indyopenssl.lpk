@@ -10,6 +10,7 @@
         <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
       </SearchPaths>
       <Other>
+        <CustomOptions Value="-Ur"/>
         <OtherDefines Count="3">
           <Define0 Value="OPENSSL_USE_STATIC_LIBRARY"/>
           <Define1 Value="OPENSSL_USE_SHARED_LIBRARY"/>
@@ -34,10 +35,30 @@
         <Filename Value="../src/IdSSLOpenSSLFIPS.pas"/>
         <UnitName Value="IdSSLOpenSSLFIPS"/>
       </Item>
+      <Item>
+        <Filename Value="../src/IdSSLOpenSSLOptions.pas"/>
+        <UnitName Value="IdSSLOpenSSLOptions"/>
+      </Item>
+      <Item>
+        <Filename Value="../src/IdSSLOpenSSLSocket.pas"/>
+        <UnitName Value="IdSSLOpenSSLSocket"/>
+      </Item>
+      <Item>
+        <Filename Value="../src/IdSSLOpenSSLUtils.pas"/>
+        <UnitName Value="IdSSLOpenSSLUtils"/>
+      </Item>
+      <Item>
+        <Filename Value="../src/IdSSLOpenSSLX509.pas"/>
+        <UnitName Value="IdSSLOpenSSLX509"/>
+      </Item>
+      <Item>
+        <Filename Value="../src/IdSSLwincrypt.pas"/>
+        <UnitName Value="IdSSLwincrypt"/>
+      </Item>
     </Files>
     <RequiredPkgs>
       <Item>
-        <PackageName Value="indyprotocols"/>
+        <PackageName Value="indylaz"/>
       </Item>
       <Item>
         <PackageName Value="FCL"/>
