@@ -29,10 +29,10 @@ interface
 
 uses
   Classes, SysUtils, {$IFDEF FPC}CustApp,{$ENDIF}IdIOHandler, IdHTTP,
-  IdSSL, IdSSLOpenSSL;
+  IdSSL, IdSSLOpenSSL, IdSSLOpenSSLX509;
 
 const
-  remoteSource = 'https://www.mwasoftware.co.uk/openssltest.txt';
+  remoteSource = 'https://test.mwasoftware.co.uk/openssltest.txt';
   sGetException = 'Error: Status = %d returned when GETting %s';
   rcAccept = 'Application/txt';
   {$if not declared(DirectorySeparator)}
@@ -82,6 +82,7 @@ type
     function CertificateType(Certificate: TIdX509): string;
     function ClientVerifyPeer(Certificate: TIdX509; AOk: Boolean; ADepth, AError: Integer): Boolean;
     procedure ShowCertificate(Certificate : TIdX509);
+    procedure HandleStatusInfo(const AMsg: String);
   protected
     procedure DoRun; override;
   public
@@ -102,7 +103,7 @@ type
 
 implementation
 
-uses IdSSLOpenSSLAPI;
+uses IdSSLOpenSSLAPI, IdSSLOpenSSLOptions, IdSSLOpenSSLSocket;
 
 {$IFDEF LOCAL_TCUSTOMAPP}
 function TCustomApplication.Exename: string;
@@ -207,6 +208,7 @@ begin
   else
     IOHandler.SSLOptions.VerifyMode := [];
   IOHandler.OnVerifyPeer := ClientVerifyPeer;
+  IOHandler.OnStatusInfo := HandleStatusInfo;
   FSSLHandler := IOHandler;
   Result := IOHandler;
 end;
@@ -284,6 +286,11 @@ begin
   writeln('Not Before: ',DateTimeToStr(Certificate.notBefore));
   writeln('Not After: ',DateTimeToStr(Certificate.notAfter));
   writeln;
+end;
+
+procedure TBasicHttpsClient.HandleStatusInfo(const AMsg: String);
+begin
+  writeln('Status Info: ',AMsg);
 end;
 
 procedure TBasicHttpsClient.DoRun;

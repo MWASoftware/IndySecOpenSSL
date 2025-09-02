@@ -23,7 +23,8 @@ interface
 uses
   Classes, SysUtils, {$IFDEF FPC}CustApp,{$ENDIF}IdIOHandler, IdHTTP,
   IdSSL, IdSSLOpenSSL,  IdHeaderList, IdContext,
-  IdCustomHTTPServer, IdHTTPServer, IdServerIOHandler, IdGlobal;
+  IdCustomHTTPServer, IdHTTPServer, IdServerIOHandler, IdGlobal,
+  IdSSLOpenSSLX509;
 
 const
   SSLServerPort = 8080;
@@ -77,6 +78,7 @@ type
     function IsDirectoryEmpty(Path: string): boolean;
     procedure HandleCommandGet(AContext: TIdContext;
       ARequestInfo: TIdHTTPRequestInfo; AResponseInfo: TIdHTTPResponseInfo);
+    procedure HandleStatusInfo(const AMsg: String);
     procedure GetMyPassword(var Password: String);
     procedure QuerySSLPort(APort: TIdPort; var VUseSSL: Boolean);
     function CertificateType(Certificate: TIdX509): string;
@@ -103,7 +105,7 @@ type
 
 implementation
 
-uses IdSSLOpenSSLAPI;
+uses IdSSLOpenSSLAPI, IdSSLOpenSSLOptions;
 
 {$IFDEF LOCAL_TCUSTOMAPP}
 function TCustomApplication.Exename: string;
@@ -217,9 +219,12 @@ begin
   IOHandler.SSLOptions.RootCertFile := MyRootCertFile;
   IOHandler.SSLOptions.CertFile := MyCertFile;
   IOHandler.SSLOptions.KeyFile := MyKeyFile;
+  {$IFDEF LEGACY_VERSION}
   IOHandler.SSLOptions.Method := sslvTLSv1_2;
+  {$ENDIF}
   IOHandler.OnGetPassword := GetMyPassword;
   IOHandler.OnVerifyPeer := ServerVerifyPeer;
+  IOHandler.OnStatusInfo := HandleStatusInfo;
   if FClientVerification then
   begin
     IOHandler.SSLOptions.VerifyMode := [sslvrfPeer,sslvrfFailIfNoPeerCert];
@@ -255,6 +260,11 @@ begin
   AResponseInfo.CharSet := 'UTF-8';
   AResponseInfo.CloseConnection := true;
   AResponseInfo.ContentStream.Position := 0;
+end;
+
+procedure TOpenSSLServerTest.HandleStatusInfo(const AMsg: String);
+begin
+  writeln('Server Status Info: ',AMsg);
 end;
 
 procedure TOpenSSLServerTest.GetMyPassword(var Password : String);
@@ -326,8 +336,6 @@ procedure TOpenSSLServerTest.DoRun;
       writeln('LibCrypto: ',GetIOpenSSLDDL.GetLibCryptoFilePath);
       writeln('LibSSL: ',GetIOpenSSLDDL.GetLibSSLFilePath);
     end;
-    if not LoadOpenSSLLibrary then
-      raise Exception.Create('OpenSSL Library Failed to load');
 
     if GetIOpenSSLDDL <> nil then
     with GetIOpenSSLDDL.GetFailedToLoadList do
