@@ -1380,10 +1380,12 @@ files generated for C++. }
 {$EXTERNALSYM TLS_method}
 {$EXTERNALSYM TLS_server_method}
 {$EXTERNALSYM TLS_client_method}
+{$EXTERNALSYM SSL_do_handshake}
 {$EXTERNALSYM SSL_key_update}
 {$EXTERNALSYM SSL_get_key_update_type}
 {$EXTERNALSYM SSL_renegotiate}
 {$EXTERNALSYM SSL_renegotiate_abbreviated}
+{$EXTERNALSYM SSL_new_session_ticket}
 {$EXTERNALSYM SSL_shutdown}
 {$EXTERNALSYM SSL_CTX_set_post_handshake_auth}
 {$EXTERNALSYM SSL_set_post_handshake_auth}
@@ -1767,10 +1769,12 @@ function SSL_CTX_set_ssl_version(ctx: PSSL_CTX; const meth: PSSL_METHOD): TOpenS
 function TLS_method: PSSL_METHOD; cdecl; external CLibSSL;
 function TLS_server_method: PSSL_METHOD; cdecl; external CLibSSL;
 function TLS_client_method: PSSL_METHOD; cdecl; external CLibSSL;
+function SSL_do_handshake(s: PSSL): TOpenSSL_C_INT; cdecl; external CLibSSL;
 function SSL_key_update(s: PSSL; updatetype: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibSSL;
 function SSL_get_key_update_type(const s: PSSL): TOpenSSL_C_INT; cdecl; external CLibSSL;
 function SSL_renegotiate(s: PSSL): TOpenSSL_C_INT; cdecl; external CLibSSL;
 function SSL_renegotiate_abbreviated(s: PSSL): TOpenSSL_C_INT; cdecl; external CLibSSL;
+function SSL_new_session_ticket(s: PSSL): TOpenSSL_C_INT; cdecl; external CLibSSL;
 function SSL_shutdown(s: PSSL): TOpenSSL_C_INT; cdecl; external CLibSSL;
 procedure SSL_CTX_set_post_handshake_auth(ctx: PSSL_CTX; val: TOpenSSL_C_INT); cdecl; external CLibSSL;
 procedure SSL_set_post_handshake_auth(s: PSSL; val: TOpenSSL_C_INT); cdecl; external CLibSSL;
@@ -2320,10 +2324,12 @@ function Load_SSL_CTX_set_ssl_version(ctx: PSSL_CTX; const meth: PSSL_METHOD): T
 function Load_TLS_method: PSSL_METHOD; cdecl;
 function Load_TLS_server_method: PSSL_METHOD; cdecl;
 function Load_TLS_client_method: PSSL_METHOD; cdecl;
+function Load_SSL_do_handshake(s: PSSL): TOpenSSL_C_INT; cdecl;
 function Load_SSL_key_update(s: PSSL; updatetype: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
 function Load_SSL_get_key_update_type(const s: PSSL): TOpenSSL_C_INT; cdecl;
 function Load_SSL_renegotiate(s: PSSL): TOpenSSL_C_INT; cdecl;
 function Load_SSL_renegotiate_abbreviated(s: PSSL): TOpenSSL_C_INT; cdecl;
+function Load_SSL_new_session_ticket(s: PSSL): TOpenSSL_C_INT; cdecl;
 function Load_SSL_shutdown(s: PSSL): TOpenSSL_C_INT; cdecl;
 procedure Load_SSL_CTX_set_post_handshake_auth(ctx: PSSL_CTX; val: TOpenSSL_C_INT); cdecl;
 procedure Load_SSL_set_post_handshake_auth(s: PSSL; val: TOpenSSL_C_INT); cdecl;
@@ -2710,10 +2716,12 @@ var
   TLS_method: function : PSSL_METHOD; cdecl = Load_TLS_method;
   TLS_server_method: function : PSSL_METHOD; cdecl = Load_TLS_server_method;
   TLS_client_method: function : PSSL_METHOD; cdecl = Load_TLS_client_method;
+  SSL_do_handshake: function (s: PSSL): TOpenSSL_C_INT; cdecl = Load_SSL_do_handshake;
   SSL_key_update: function (s: PSSL; updatetype: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_SSL_key_update;
   SSL_get_key_update_type: function (const s: PSSL): TOpenSSL_C_INT; cdecl = Load_SSL_get_key_update_type;
   SSL_renegotiate: function (s: PSSL): TOpenSSL_C_INT; cdecl = Load_SSL_renegotiate;
   SSL_renegotiate_abbreviated: function (s: PSSL): TOpenSSL_C_INT; cdecl = Load_SSL_renegotiate_abbreviated;
+  SSL_new_session_ticket: function (s: PSSL): TOpenSSL_C_INT; cdecl = Load_SSL_new_session_ticket;
   SSL_shutdown: function (s: PSSL): TOpenSSL_C_INT; cdecl = Load_SSL_shutdown;
   SSL_CTX_set_post_handshake_auth: procedure (ctx: PSSL_CTX; val: TOpenSSL_C_INT); cdecl = Load_SSL_CTX_set_post_handshake_auth;
   SSL_set_post_handshake_auth: procedure (s: PSSL; val: TOpenSSL_C_INT); cdecl = Load_SSL_set_post_handshake_auth;
@@ -3103,6 +3111,7 @@ const
   TLS_client_method_introduced = ((((((byte(1) shl 8) or byte(1)) shl 8) or byte(0)) shl 8) or byte(0)) shl 4; {introduced 1.1.0}
   SSL_key_update_introduced = ((((((byte(1) shl 8) or byte(1)) shl 8) or byte(0)) shl 8) or byte(0)) shl 4; {introduced 1.1.0}
   SSL_get_key_update_type_introduced = ((((((byte(1) shl 8) or byte(1)) shl 8) or byte(0)) shl 8) or byte(0)) shl 4; {introduced 1.1.0}
+  SSL_new_session_ticket_introduced = ((((((byte(3) shl 8) or byte(0)) shl 8) or byte(0)) shl 8) or byte(0)) shl 4; {introduced 3.0.0}
   SSL_CTX_set_post_handshake_auth_introduced = ((((((byte(1) shl 8) or byte(1)) shl 8) or byte(0)) shl 8) or byte(0)) shl 4; {introduced 1.1.0}
   SSL_set_post_handshake_auth_introduced = ((((((byte(1) shl 8) or byte(1)) shl 8) or byte(0)) shl 8) or byte(0)) shl 4; {introduced 1.1.0}
   SSL_verify_client_post_handshake_introduced = ((((((byte(1) shl 8) or byte(1)) shl 8) or byte(0)) shl 8) or byte(0)) shl 4; {introduced 1.1.0}
@@ -5173,6 +5182,14 @@ function COMPAT_SSL_CTX_use_certificate_chain_file(ctx: PSSL_CTX; const file_: P
 
 begin
   Result := SSL_CTX_use_certificate_file(ctx, file_, SSL_FILETYPE_PEM);
+end;
+
+
+
+function COMPAT_SSL_new_session_ticket(s: PSSL): TOpenSSL_C_INT; cdecl;
+
+begin
+// no op
 end;
 
 
@@ -7881,6 +7898,14 @@ begin
   Result := TLS_client_method();
 end;
 
+function Load_SSL_do_handshake(s: PSSL): TOpenSSL_C_INT; cdecl;
+begin
+  SSL_do_handshake := LoadLibSSLFunction('SSL_do_handshake');
+  if not assigned(SSL_do_handshake) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('SSL_do_handshake');
+  Result := SSL_do_handshake(s);
+end;
+
 function Load_SSL_key_update(s: PSSL; updatetype: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
 begin
   SSL_key_update := LoadLibSSLFunction('SSL_key_update');
@@ -7911,6 +7936,18 @@ begin
   if not assigned(SSL_renegotiate_abbreviated) then
     EOpenSSLAPIFunctionNotPresent.RaiseException('SSL_renegotiate_abbreviated');
   Result := SSL_renegotiate_abbreviated(s);
+end;
+
+function Load_SSL_new_session_ticket(s: PSSL): TOpenSSL_C_INT; cdecl;
+begin
+  SSL_new_session_ticket := LoadLibSSLFunction('SSL_new_session_ticket');
+  if not assigned(SSL_new_session_ticket) then
+{$IFNDEF OPENSSL_NO_LEGACY_SUPPORT}
+    SSL_new_session_ticket := @COMPAT_SSL_new_session_ticket;
+{$ELSE}
+    EOpenSSLAPIFunctionNotPresent.RaiseException('SSL_new_session_ticket');
+{$ENDIF} { End of OPENSSL_NO_LEGACY_SUPPORT}
+  Result := SSL_new_session_ticket(s);
 end;
 
 function Load_SSL_shutdown(s: PSSL): TOpenSSL_C_INT; cdecl;
@@ -9386,10 +9423,12 @@ begin
   TLS_method := Load_TLS_method;
   TLS_server_method := Load_TLS_server_method;
   TLS_client_method := Load_TLS_client_method;
+  SSL_do_handshake := Load_SSL_do_handshake;
   SSL_key_update := Load_SSL_key_update;
   SSL_get_key_update_type := Load_SSL_get_key_update_type;
   SSL_renegotiate := Load_SSL_renegotiate;
   SSL_renegotiate_abbreviated := Load_SSL_renegotiate_abbreviated;
+  SSL_new_session_ticket := Load_SSL_new_session_ticket;
   SSL_shutdown := Load_SSL_shutdown;
   SSL_CTX_set_post_handshake_auth := Load_SSL_CTX_set_post_handshake_auth;
   SSL_set_post_handshake_auth := Load_SSL_set_post_handshake_auth;

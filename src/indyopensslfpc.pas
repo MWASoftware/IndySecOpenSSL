@@ -9,7 +9,8 @@ interface
 
 uses
   IdNTLMOpenSSL, IdResourceStringsOpenSSL, IdSSLOpenSSL, IdSSLOpenSSLFIPS,
-  IdOpenSSLHeaders_AllHeaders;
+  IdOpenSSLHeaders_AllHeaders, IdSSLOpenSSLOptions, IdSSLOpenSSLX509, IdSSLOpenSSLutils, 
+  IdSSLOpenSSLSocket, IdSSLwincrypt;
 
 implementation
 
