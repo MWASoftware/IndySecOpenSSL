@@ -87,6 +87,11 @@
         <DCCReference Include="..\src\IdNTLMOpenSSL.pas"/>
         <DCCReference Include="..\src\IdSSLOpenSSL.pas"/>
         <DCCReference Include="..\src\IdSSLOpenSSLFIPS.pas"/>
+        <DCCReference Include="..\src\IdSSLOpenSSLOptions.pas"/>
+        <DCCReference Include="..\src\IdSSLOpenSSLSocket.pas"/>
+        <DCCReference Include="..\src\IdSSLOpenSSLUtils.pas"/>
+        <DCCReference Include="..\src\IdSSLOpenSSLX509.pas"/>
+        <DCCReference Include="..\src\IdSSLwincrypt.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
