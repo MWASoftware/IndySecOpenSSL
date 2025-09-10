@@ -981,7 +981,9 @@
   // provided it does not already define its own ENDIAN values by then...
   {$DEFINE ENDIAN_LITTLE}
   {$IFNDEF VCL_6_OR_ABOVE}
+    {$IFNDEF POSIX}
     {$DEFINE MSWINDOWS}
+    {$ENDIF}
   {$ENDIF}
   {$IFDEF MSWINDOWS}
     {$DEFINE WINDOWS}
