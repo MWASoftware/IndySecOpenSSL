@@ -39,7 +39,7 @@ uses
   IdOpenSSLHeaders_ossl_typ,
   IdOpenSSLHeaders_evp,
   IdOpenSSLHeaders_provider,
-  {$IFDEF VCL_XE3_OR_ABOVE}System.Types{$ELSE}Types{$ENDIF};
+  Types;
 
 {$MINENUMSIZE 4}
 
@@ -554,7 +554,7 @@ const
 implementation
 
 uses SyncObjs,  Sysutils
-     {$IFNDEF FPC}, Windows{$ENDIF},
+     {$IFDEF WINDOWS}, Windows{$ENDIF},
 Classes,
      IdSSLOpenSSLExceptionHandlers,
      IdSSLOpenSSLResourceStrings;

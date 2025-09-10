@@ -27,8 +27,7 @@ unit IdOpenSSLHeaders_core;
 interface
 
 uses
-  IdSSLOpenSSLAPI
-  {$IFDEF VCL_XE3_OR_ABOVE},System.Types{$ELSE},Types{$ENDIF};
+  IdSSLOpenSSLAPI,Types;
 
 
 {
