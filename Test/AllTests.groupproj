@@ -4,7 +4,7 @@
     </PropertyGroup>
     <ItemGroup>
         <Projects Include="openssl-client\delphi_openssl_client.dproj">
-            <Dependencies/>
+            <Dependencies>..\delphi\IndyTLSOpenSSL290.dproj</Dependencies>
         </Projects>
         <Projects Include="openssl-server\delphi_openssl_server.dproj">
             <Dependencies/>
@@ -20,13 +20,13 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="delphi_openssl_client">
+    <Target Name="delphi_openssl_client" DependsOnTargets="IndyTLSOpenSSL290">
         <MSBuild Projects="openssl-client\delphi_openssl_client.dproj"/>
     </Target>
-    <Target Name="delphi_openssl_client:Clean">
+    <Target Name="delphi_openssl_client:Clean" DependsOnTargets="IndyTLSOpenSSL290:Clean">
         <MSBuild Projects="openssl-client\delphi_openssl_client.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="delphi_openssl_client:Make">
+    <Target Name="delphi_openssl_client:Make" DependsOnTargets="IndyTLSOpenSSL290:Make">
         <MSBuild Projects="openssl-client\delphi_openssl_client.dproj" Targets="Make"/>
     </Target>
     <Target Name="delphi_openssl_server">

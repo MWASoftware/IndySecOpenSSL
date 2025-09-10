@@ -61,12 +61,13 @@
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <Debugger_CWD>C:\Users\A User\projects\IndyTLS-OpenSSL\Test\openssl-server</Debugger_CWD>
         <Debugger_DebugSourcePath>C:\Users\A User\projects\Indy\Lib\OpenSSL\opensslHdrs\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
         <UsePackages>true</UsePackages>
         <DCC_ExeOutput>.</DCC_ExeOutput>
         <DCC_DcuOutput>$(Platform)\$(Config)</DCC_DcuOutput>
-        <DCC_UsePackage>IndySystem290;IndyCore290;IndyProtocols290;IndyTLSOpenSSL;$(DCC_UsePackage)</DCC_UsePackage>
-        <Debugger_HostApplication>C:\Users\A User\projects\Indy\test\openssl\openssl-client\Win32\Debug\Project1.exe</Debugger_HostApplication>
+        <DCC_UsePackage>IndySystem290;IndyCore290;IndyProtocols290;IndyTLSOpenSSL290;$(DCC_UsePackage)</DCC_UsePackage>
+        <Debugger_HostApplication>C:\Users\A User\projects\IndyTLS-OpenSSL\Test\openssl-server\delphi_openssl_server.exe</Debugger_HostApplication>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Manifest_File>(None)</Manifest_File>
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
