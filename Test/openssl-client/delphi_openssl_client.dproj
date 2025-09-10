@@ -65,7 +65,7 @@
         <UsePackages>true</UsePackages>
         <DCC_ExeOutput>.</DCC_ExeOutput>
         <DCC_DcuOutput>$(Platform)\$(Config)</DCC_DcuOutput>
-        <DCC_UsePackage>IndySystem290;IndyCore290;IndyProtocols290;IndyOpenSSL290;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>IndySystem290;IndyCore290;IndyProtocols290;IndyTLSOpenSSL;$(DCC_UsePackage)</DCC_UsePackage>
         <Debugger_HostApplication>C:\Users\A User\projects\Indy\test\openssl\openssl-client\Win32\Debug\Project1.exe</Debugger_HostApplication>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Manifest_File>(None)</Manifest_File>
