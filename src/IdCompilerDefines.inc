@@ -16,7 +16,8 @@
 {.$IFDEF IdIPv6} // use IPv6 by default
 
 {$DEFINE INDY100}
-{$DEFINE 10_6_2}  //so developers can IFDEF for this specific version
+{$DEFINE 10_7_0}    //so developers can IFDEF for this product version
+{$DEFINE 10_7_0_0}  //so developers can IFDEF for this specific version
 
 // When generating C++Builder output files, certain workarounds to compiler
 // problems need to be enabled! When invoking DCC on the command-line, use
@@ -36,8 +37,11 @@
 
 // $DEFINE the following if the global objects in the IdStack and IdThread
 // units should be freed on finalization
-{.$DEFINE FREE_ON_FINAL}
+{$IFDEF FPC}
+{$DEFINE FREE_ON_FINAL}
+{$ELSE}
 {$UNDEF FREE_ON_FINAL}
+{$ENDIF}
 
 // Make sure the following is $DEFINE'd only for suitable environments
 // as specified further below.  This works in conjunction with the
@@ -440,6 +444,30 @@
     {$ENDIF}
   {$ENDIF}
 
+  //Delphi & CBuilder 12.0 Athens (Yukon)
+  {$IFDEF VER360}
+    {$DEFINE VCL_12}
+    {$IFDEF CBUILDER}
+      {$DEFINE CBUILDER_12}
+    {$ELSE}
+      {$DEFINE DELPHI_12}
+    {$ENDIF}
+  {$ENDIF}
+
+  //Delphi & CBuilder 13.0+ (?)
+  {$IFDEF CONDITIONALEXPRESSIONS}
+    {$IF CompilerVersion >= 37}
+      {$MESSAGE WARN 'Unknown compiler version detected! Assuming >= 13.x '}
+      {$DEFINE VCL_UNKNOWN_VERSION}
+      {$DEFINE VCL_13}
+      {$IFDEF CBUILDER}
+        {$DEFINE CBUILDER_13}
+      {$ELSE}
+        {$DEFINE DELPHI_13}
+      {$ENDIF}
+    {$IFEND}
+  {$ENDIF}
+
   // Kylix
   //
   //Important:  Don't use CompilerVersion here as IF's are evaluated before
@@ -526,11 +554,6 @@
   // {$MODE DelphiUnicode} anyway, and then deal with any RTL function issues
   // on an as-needed basis...
   {$MODE Delphi}
-  {$IFDEF FPC_2_7_1_OR_ABOVE}
-    {.$MODE DelphiUnicode}
-    {.$MODESWITCH UnicodeStrings}
-    {.$CODEPAGE UTF8} // needed for Unicode string literals to work properly
-  {$ENDIF}
   //note that we may need further defines for widget types depending on
   //what we do and what platforms we support in FPC.
   //I'll let Marco think about that one.
@@ -729,6 +752,9 @@
 
   {.$IFDEF FPC_2_7_1_OR_ABOVE}
     // support for RawByteString and UnicodeString
+    {.$MODE DelphiUnicode}
+    {.$MODESWITCH UnicodeStrings}
+    {.$CODEPAGE UTF8} // needed for Unicode string literals to work properly
     {.$DEFINE VCL_2009}
     {.$DEFINE DELPHI_2009}
   {.$ELSE}
@@ -739,8 +765,24 @@
 
 // end FPC
 
-{$IFDEF VCL_11}
+{$IFDEF VCL_13}
+  {$DEFINE VCL_13_OR_ABOVE}
+{$ENDIF}
+
+{$IFDEF VCL_13_OR_ABOVE}
+  {$DEFINE VCL_12_OR_ABOVE}
+{$ELSE}
+  {$IFDEF VCL_12}
+    {$DEFINE VCL_12_OR_ABOVE}
+  {$ENDIF}
+{$ENDIF}
+
+{$IFDEF VCL_12_OR_ABOVE}
   {$DEFINE VCL_11_OR_ABOVE}
+{$ELSE}
+  {$IFDEF VCL_11}
+    {$DEFINE VCL_11_OR_ABOVE}
+  {$ENDIF}
 {$ENDIF}
 
 {$IFDEF VCL_11_OR_ABOVE}
@@ -982,7 +1024,7 @@
   {$DEFINE ENDIAN_LITTLE}
   {$IFNDEF VCL_6_OR_ABOVE}
     {$IFNDEF POSIX}
-    {$DEFINE MSWINDOWS}
+      {$DEFINE MSWINDOWS}
     {$ENDIF}
   {$ENDIF}
   {$IFDEF MSWINDOWS}
@@ -1064,6 +1106,7 @@
   {$ENDIF}
   {$DEFINE HAS_GetObjectProp}
   {$DEFINE HAS_TObjectList}
+  {$DEFINE HAS_StrToInt64Def}
 {$ENDIF}
 
 {$IFDEF VCL_6_OR_ABOVE}
@@ -1115,6 +1158,10 @@
     {$DEFINE HAS_NAMED_THREADS}
     {$DEFINE HAS_TStrings_NameValueSeparator}
     {$DEFINE HAS_TStrings_ValueFromIndex}
+    // Note: there is a ZLib unit available, but it doesn't have everything
+    // that is available in the System.ZLib unit in Delphi XE2+, so we are
+    // not going to use this ZLib unit yet...
+    {.$DEFINE HAS_UNIT_ZLib}
   {$ENDIF}
   {$DEFINE HAS_TFormatSettings}
   {$DEFINE HAS_PosEx}
@@ -1134,7 +1181,13 @@
   {$ENDIF}
 {$ENDIF}
 
-{$IFNDEF VCL_2005_OR_ABOVE}
+{$IFDEF VCL_2005_OR_ABOVE}
+  {$IFDEF DCC}
+    // class helpers were first introduced in D2005, but were buggy and not
+    // officially supported until D2006...
+    {.$DEFINE HAS_CLASS_HELPER}
+  {$ENDIF}
+{$ELSE}
   {$IFDEF DCC}
     // InterlockedCompareExchange() was declared in the Windows unit using Pointer
     // parameters until Delphi 2005, when it was switched to Longint parameters
@@ -1146,6 +1199,8 @@
 {$IFDEF VCL_2006_OR_ABOVE}
   {$DEFINE USE_INLINE}
   {$DEFINE HAS_2PARAM_FileAge}
+  {$DEFINE HAS_TStrings_LineBreak} // TODO: when was LineBreak introduced?
+  {$DEFINE HAS_CLASS_HELPER}
   {$IFDEF WINDOWS}
     // System.RegisterExpectedMemoryLeak() is only available on Windows at this time
     {$DEFINE HAS_System_RegisterExpectedMemoryLeak}
@@ -1166,7 +1221,6 @@
   // Native(U)Int exist but are buggy, so do not use them yet
   {.$DEFINE HAS_NativeInt}
   {.$DEFINE HAS_NativeUInt}
-  {$DEFINE HAS_StrToInt64Def}
   {$DEFINE HAS_DWORD_PTR}
   {$DEFINE HAS_ULONG_PTR}
   {$DEFINE HAS_ULONGLONG}
@@ -1205,6 +1259,7 @@
   {$DEFINE HAS_UInt16}
   {$DEFINE HAS_Int32}
   {$DEFINE HAS_UInt32}
+  {$DEFINE HAS_UIntToStr}
   // UInt64 is now emitted as unsigned __int64 in HPP files
   {$IFDEF CBUILDER}
     {$UNDEF BROKEN_UINT64_HPPEMIT}
@@ -1263,6 +1318,7 @@
   {$DEFINE HAS_ComponentPlatformsAttribute_OSX32}
   {$DEFINE HAS_System_ReturnAddress}
   {$DEFINE HAS_DIRECTIVE_WARN_DEFAULT}
+  {$DEFINE HAS_UNIT_System_ZLib}
 {$ENDIF}
 
 {$IFDEF VCL_XE3_OR_ABOVE}
@@ -1456,6 +1512,7 @@
   {$ENDIF}
   {$DEFINE HAS_UNIT_ctypes}
   {$DEFINE HAS_sLineBreak}
+  {$DEFINE HAS_TStrings_LineBreak} // TODO: when was LineBreak introduced?
   {$IFDEF FPC_HAS_UNICODESTRING}
     {$DEFINE HAS_UnicodeString}
   {$ELSE}
@@ -1475,6 +1532,7 @@
   {$IFDEF FPC_2_6_0_OR_ABOVE}
     {$DEFINE HAS_NativeInt}
     {$DEFINE HAS_NativeUInt}
+    {$DEFINE HAS_CLASS_HELPER}
   {$ENDIF}
   {$IFDEF FPC_2_6_2_OR_ABOVE}
     {$DEFINE HAS_Int8}
@@ -1505,6 +1563,7 @@
   {$IFDEF FPC_3_1_1_OR_ABOVE}
     {$DEFINE HAS_STATIC_TThread_ForceQueue} // requires rev 37359+
     {$DEFINE HAS_PRawByteString}
+    {$DEFINE HAS_UIntToStr} // requires rev 40529+
   {$ENDIF}
 {$ENDIF}
 
@@ -1599,7 +1658,7 @@
 {$IFDEF WIN32_OR_WIN64}
   {$DEFINE USE_ZLIB_UNIT}
   {$IFNDEF DCC_NEXTGEN}
-    {$DEFINE USE_OPENSSL} // !!!·MOVED·HERE·BY·EMBT
+    {$DEFINE USE_OPENSSL} // !!! MOVED HERE BY EMBT
     {$DEFINE USE_SSPI}
     {$IFDEF STRING_IS_UNICODE}
       {$DEFINE SSPI_UNICODE}
@@ -1627,7 +1686,7 @@
 {$IFDEF UNIX}
   {$DEFINE USE_OPENSSL}
   {$DEFINE USE_ZLIB_UNIT}
-  {$DEFINE HAS_getifaddrs}  
+  {$DEFINE HAS_getifaddrs}
 {$ENDIF}
 
 {$IFDEF MACOS}
@@ -1663,6 +1722,10 @@
 
 {$IFDEF FREEBSD}
   {$DEFINE HAS_getifaddrs}
+{$ENDIF}
+
+{$IFDEF ANDROID}
+  {$UNDEF HAS_getifaddrs}
 {$ENDIF}
 
 {$IFDEF FPC_REQUIRES_PROPER_ALIGNMENT}
