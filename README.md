@@ -1,4 +1,5 @@
 # Indy TLS for OpenSSL
+
 This project implements TLS and Hash functionalities for Indy using OpenSSL as the backend library.
 
 This fork is the basis of a change request to the original repo and should be ignored by most users.
@@ -125,7 +126,17 @@ Usage: fpc_openssl_client [-h] [-n] [-l <cacerts dir>] [-L] [OpenSSL lib dir]
 
 
 
+Upstream README.MD
+=================
 
+Once this project is stable, the corresponding files will be removed from Indy's main Protocols package, the USE_OPENSSL conditional will be removed from Indy's source files, etc.  This requires Indy 10.7 or later, otherwise it will conflict with the OpenSSL files thaat are present in older Indy versions.
 
+Not sure at this time whether this project will stay as an independant repo, or if it will eventually be merged back into the main Indy repo as a sub-folder.  But either way, this project will stay as a separate package moving forward.
 
+## License
+
+This project is dual-licensed under the terms of the Indy Modified BSD License and Indy MPL License.
+You can choose between one of them if you use this work.
+
+SPDX-License-Identifier: LicenseRef-IndyBSD OR MPL-1.1
 
