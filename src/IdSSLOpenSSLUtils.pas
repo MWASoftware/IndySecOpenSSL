@@ -141,7 +141,6 @@ end;
 
 // Note that I define UTCtime as  PASN1_STRING
 function UTCTime2DateTime(UTCtime: PASN1_UTCTIME): TDateTime;
-{$IFDEF USE_INLINE} inline; {$ENDIF}
 var
   year: Word;
   month: Word;

@@ -239,7 +239,7 @@ function TOpenSSLServerTest.IsDirectoryEmpty(Path: string): boolean;
 var Rslt: TSearchRec;
 begin
   Result := true;
-  if FindFirst(Path + DirectorySeparator + '*',faNormal or faSymLink,Rslt) = 0 then
+  if FindFirst(Path + DirectorySeparator + '*',faNormal {$IFDEF POSIX}or faSymLink{$ENDIF},Rslt) = 0 then
   begin
     Result := false;
     FindClose(Rslt);
