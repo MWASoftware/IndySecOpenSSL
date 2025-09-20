@@ -582,7 +582,8 @@ end;
 
 procedure TOpenSSLDynamicLibProvider.SetSSLLibVersions(AValue : string);
 begin
-  UnLoad;
+  if FSSLLibVersions <> AValue then
+    UnLoad;
   FSSLLibVersions := AValue;
 end;
 
@@ -593,7 +594,8 @@ end;
 
 procedure TOpenSSLDynamicLibProvider.SetSSLBaseLibName(AValue: string);
 begin
-  UnLoad;
+  if FSSLBaseLibName <> AValue then
+    UnLoad;
   FSSLBaseLibName := AValue;
 end;
 
@@ -604,7 +606,8 @@ end;
 
 procedure TOpenSSLDynamicLibProvider.SetCryptoBaseLibName(AValue: string);
 begin
-  UnLoad;
+  if FCryptoBaseLibName <> AValue then
+    UnLoad;
   FCryptoBaseLibName := AValue;
 end;
 
@@ -616,6 +619,8 @@ end;
 procedure TOpenSSLDynamicLibProvider.SetAllowLegacyLibsFallback(AValue: boolean
   );
 begin
+  if FAllowLegacyLibsFallback <> AValue then
+    Unload;
   FAllowLegacyLibsFallback := AValue;
 end;
 

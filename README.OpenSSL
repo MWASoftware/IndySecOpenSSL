@@ -1,7 +1,4 @@
-This "proposed update" to IndySockets/Indy adds support for OpenSSL 3.0 and 
-later to Indy. Both Delphi and Lazarus/fpc are fully supported by this source code tree. 
-
-This provides a new (optional) OpenSSL package separate from Indy's "protocols" package 
+This package provides a new (optional) OpenSSL package separate from Indy's "protocols" package 
 and adds support for OpenSSL 3.0 and later. Both Delphi and Lazarus/fpc are fully 
 supported by this source code tree. 
 
@@ -17,6 +14,7 @@ behalf. If the call fails to load then it is replaced by a compatibility functio
 then an exception is raised. If an API function is allowed to be nil (as set in the template), then the function
 is loaded at library load time.
 
+These updated package is dependent on Indy 10.7.
 
 The updated package has been tested under the following scenarios:
 
@@ -43,56 +41,38 @@ API calls may be used.
 Delphi Builds
 =============
 
-All Protocols/IndyProtocolsnnn.dpk and dproj files have been edited to remove references to the moved files.
-However only Protocols/IndyProtocols290 has been tested (with Delphi Berlin edition).
-
 New Packages:
 
-IndyOpenSSL290 and
-dclIndyOpenSSL290 (design time only)
+IndyTLSOpenSSL290 and
+dclIndyTLOSpenSSL290 (design time only)
 
-may be found in Lib\OpenSSL\.
+may be found in the Delphi directory.
 
-These are dependent on IndyProtocols290 and dclIndyProtocols290,IndyOpenSSLLegacy290  respectively.
+To use OpenSSL in a given project, the IndyOpenSSL290 package must now be included in the list of required run time packages.
 
-To use OpenSSL in a given project, the IndyOpenSSL290 package must now be included.
-
-Lib\Indy290.groupproj has been updated to include the new packages in the project group.
-
-icons\makedcr.bat has been updated to generate a .dcr package for the OpenSSL packages.
 
 Lazarus/FPC Builds
 ==================
 
 All lazarus packages may be found in the "lazarus-fpc/" top level folder. These are:
 
-indysystem.lpk
-indycore.lpk
-indyprotocols.lpk
-indyopenssl.lpk
+IndyTLSOpenSSL.lpk
 
 and the design time only packages
 
-indylaz.lpk
-indylaz_indyopenssl
+indylaz_openssl
 
 In order to install this proposed update for Lazarus (Windows and Linux), Open first 
-that package indylaz.lpk and click on install. Then Open the package indylaz_openssl.lpk and 
-click on install. The Indy Library should now be available for use.
+that package indylaz_openssl.lpk and click on install. The Indy TLS Library should now be available for use.
 
-You can also use fpcmake to create a makefile for building the full package. Run
-
-fpcmake -r
-
-in the package's root directiory.
 
 Test Programs
 =============
 
 Two test programs are available with variants for Delphi and Lazarus. These may be found in:
 
-1. Test/OpenSSL/openssl-client and
-2. Test/OpenSSL/openssl-server.
+1. Test/openssl-client and
+2. Test/openssl-server.
 
 openssl-client uses an HTTP Client to issue an http Get on an https target and returns 
 the result. The server certificate is also verified.
@@ -105,7 +85,7 @@ directories.
 
 Note that for Delphi, a convenience project group is provided:
 
-Test\OpenSSL\OpenSSLTests.groupprog
+Test\AllTests.groupprog
 
 These build both test programs and their supporting packages as a single project group. You do
 not have to install the design time packages in order to use the test programs.
