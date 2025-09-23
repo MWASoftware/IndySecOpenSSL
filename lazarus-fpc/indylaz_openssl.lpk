@@ -3,7 +3,7 @@
   <Package Version="5">
     <Name Value="indylaz_openssl"/>
     <Type Value="DesignTime"/>
-    <Author Value="Chad Z. Hower (Kudzu) and the Indy Pit Crew - http://www.indyproject.org"/>
+    <Author Value="Tony Whyman - MWA Software"/>
     <CompilerOptions>
       <Version Value="11"/>
       <SearchPaths>
@@ -13,7 +13,7 @@
     </CompilerOptions>
     <Description Value="Indy - Internet Direct
 
-Indy is a well-known internet component suite for Delphi, C++Builder, and Free Pascal providing both low-level support (TCP, UDP, raw sockets) and over a 120 higher level protocols (SMTP, POP3, NNT, HTTP, FTP) for building both client and server applications."/>
+Indy is a well-known internet component suite for Delphi, C++Builder, and Free Pascal providing both low-level support (TCP, UDP, raw sockets) and over a 120 higher level protocols (SMTP, POP3, NNT, HTTP, FTP) for building both client and server applications. This package is an add-on for Indy providing OpenSSL 3.x support."/>
     <License Value="Duel License
 
 MPL 

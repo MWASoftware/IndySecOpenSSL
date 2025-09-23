@@ -8,13 +8,13 @@ unit indylaz_openssl;
 interface
 
 uses
-  IdRegisterSSL, LazarusPackageIntf;
+  IdSecRegisterSSL, LazarusPackageIntf;
 
 implementation
 
 procedure Register;
 begin
-  RegisterUnit('IdRegisterSSL' , @IdRegisterSSL.Register);
+  RegisterUnit('IdSecRegisterSSL' , @IdSecRegisterSSL.Register);
 end;
 
 initialization

@@ -1,0 +1,47 @@
+package IndySecOpenSSL;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION OFF}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES ON}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE DEBUG}
+{$ENDIF IMPLICITBUILDING}
+{$IMPLICITBUILD ON}
+
+requires
+  rtl,
+  IndySystem290,
+  IndyCore290,
+  IndyProtocols290;
+
+contains
+  IdSecResourceStringsOpenSSL in '..\src\IdSecResourceStringsOpenSSL.pas',
+  IdSecNTLMOpenSSL in '..\src\IdSecNTLMOpenSSL.pas',
+  IdSecOpenSSL in '..\src\IdSecOpenSSL.pas',
+  IdSecOpenSSLFIPS in '..\src\IdSecOpenSSLFIPS.pas',
+  IdSecOpenSSLOptions in '..\src\IdSecOpenSSLOptions.pas',
+  IdSecOpenSSLSocket in '..\src\IdSecOpenSSLSocket.pas',
+  IdSecOpenSSLUtils in '..\src\IdSecOpenSSLUtils.pas',
+  IdSecOpenSSLX509 in '..\src\IdSecOpenSSLX509.pas',
+  IdSecwincrypt in '..\src\IdSecwincrypt.pas';
+
+end.

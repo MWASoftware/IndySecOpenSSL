@@ -67,7 +67,7 @@ type
 
   TOpenSSLServerTest = class(TCustomApplication)
   private
-    FSSLHandler: TIdSSLIOHandlerSocketOpenSSL;
+    FSSLHandler: TIdSecIOHandlerSocketOpenSSL;
     FServer: TIdHTTPServer;
     FClientVerification: boolean;
     FPromptOnExit: boolean;
@@ -105,7 +105,7 @@ type
 
 implementation
 
-uses IdSSLOpenSSLAPI, IdSSLOpenSSLOptions;
+uses IdSecOpenSSLAPI, IdSecOpenSSLOptions;
 
 {$IFDEF LOCAL_TCUSTOMAPP}
 function TCustomApplication.Exename: string;
@@ -187,9 +187,9 @@ end;
 
 function TOpenSSLServerTest.GetSSLClientHandler(AOwner: TComponent
   ): TIdIOHandler;
-var IOHandler: TIdSSLIOHandlerSocketOpenSSL;
+var IOHandler: TIdSecIOHandlerSocketOpenSSL;
 begin
-  IOHandler := TIdSSLIOHandlerSocketOpenSSL.Create(AOwner);
+  IOHandler := TIdSecIOHandlerSocketOpenSSL.Create(AOwner);
   IOHandler.SSLOptions.Mode:= sslmClient;
   {$IFDEF LEGACY_VERSION}
   IOHandler.SSLOptions.Method := sslvTLSv1_2;
@@ -212,9 +212,9 @@ end;
 
 function TOpenSSLServerTest.GetSSLServerHandler(AOwner : TComponent
   ) : TIdServerIOHandler;
-var IOHandler: TIdServerIOHandlerSSLOpenSSL;
+var IOHandler: TIdSecServerIOHandlerSSLOpenSSL;
 begin
-  IOHandler := TIdServerIOHandlerSSLOpenSSL.Create(AOwner);
+  IOHandler := TIdSecServerIOHandlerSSLOpenSSL.Create(AOwner);
   IOHandler.SSLOptions.Mode:= sslmServer;
   IOHandler.SSLOptions.RootCertFile := MyRootCertFile;
   IOHandler.SSLOptions.CertFile := MyCertFile;

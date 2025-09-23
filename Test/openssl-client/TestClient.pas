@@ -29,7 +29,7 @@ interface
 
 uses
   Classes, SysUtils, {$IFDEF FPC}CustApp,{$ENDIF}IdIOHandler, IdHTTP,
-  IdSSL, IdSSLOpenSSL, IdSSLOpenSSLX509;
+  IdSSL, IdSecOpenSSL, IdSecOpenSSLX509;
 
 const
   remoteSource = 'https://test.mwasoftware.co.uk/openssltest.txt';
@@ -68,7 +68,7 @@ type
 
   TBasicHttpsClient = class(TCustomApplication)
   private
-    FSSLHandler: TIdSSLIOHandlerSocketOpenSSL;
+    FSSLHandler: TIdSecIOHandlerSocketOpenSSL;
     FNoVerification: boolean;
     FVerifyDirs: string;
     FPromptOnExit: boolean;
@@ -103,7 +103,7 @@ type
 
 implementation
 
-uses IdSSLOpenSSLAPI, IdSSLOpenSSLOptions, IdSSLOpenSSLSocket;
+uses IdSecOpenSSLAPI, IdSecOpenSSLOptions, IdSecOpenSSLSocket;
 
 {$IFDEF LOCAL_TCUSTOMAPP}
 function TCustomApplication.Exename: string;
@@ -184,9 +184,9 @@ begin
 end;
 
 function TBasicHttpsClient.GetSSLHandler(AOwner: TComponent): TIdIOHandler;
-var IOHandler: TIdSSLIOHandlerSocketOpenSSL;
+var IOHandler: TIdSecIOHandlerSocketOpenSSL;
 begin
-  IOHandler := TIdSSLIOHandlerSocketOpenSSL.Create(AOwner);
+  IOHandler := TIdSecIOHandlerSocketOpenSSL.Create(AOwner);
   IOHandler.SSLOptions.Mode:= sslmClient;
   {$IFDEF LEGACYVERSION}
   IOHandler.SSLOptions.Method := sslvTLSv1_2;
