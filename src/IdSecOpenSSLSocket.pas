@@ -45,9 +45,9 @@ uses
   IdStackConsts,
   IdSecOpenSSLX509,
   IdSecOpenSSLExceptionHandlers,
-  IdOpenSSLHeaders_ssl,
+  IdSecOpenSSLHeaders_ssl,
   IdSecOpenSSLOptions,
-  IdOpenSSLHeaders_ossl_typ
+  IdSecOpenSSLHeaders_ossl_typ
   ;
 
 {$I IdCompilerDefines.inc}
@@ -131,7 +131,7 @@ type
     procedure InitContext(CtxMode: TIdSecCtxMode);
     constructor Create; overload;
   public
-    constructor Create(aParent: TObject; SSLOptions: TIdSecOptions; CtxMode: TIdSSLCtxMode;
+    constructor Create(aParent: TObject; SSLOptions: TIdSecOptions; CtxMode: TIdSecCtxMode;
       aVerifyOn, aStatusInfoOn: boolean); overload;
     destructor Destroy; override;
     function Clone : TIdSecContext;
@@ -221,12 +221,12 @@ uses
   IdSecOpenSSLAPI,
   IdSecOpenSSL,
   IdResourceStringsProtocols,
-  IdResourceStringsOpenSSL,
-  IdOpenSSLHeaders_x509,
-  IdOpenSSLHeaders_ssl3,
-  IdOpenSSLHeaders_tls1,
-  IdOpenSSLHeaders_x509_vfy,
-  IdOpenSSLHeaders_err
+  IdSecResourceStringsOpenSSL,
+  IdSecOpenSSLHeaders_x509,
+  IdSecOpenSSLHeaders_ssl3,
+  IdSecOpenSSLHeaders_tls1,
+  IdSecOpenSSLHeaders_x509_vfy,
+  IdSecOpenSSLHeaders_err
 ;
 
 var
@@ -283,7 +283,7 @@ end;
 
 procedure InfoCallback(const sslSocket: PSSL; where, ret: TIdC_INT); cdecl;
 var
-  IdSecSocket: TIdSSLSocket;
+  IdSecSocket: TIdSecSocket;
   StatusStr : String;
   LErr : Integer;
   LHelper: IIdSecOpenSSLCallbackHelper;
@@ -300,7 +300,7 @@ JPM.
   try
     LockInfoCB.Enter;
     try
-      IdSecSocket := TIdSSLSocket(SSL_get_app_data(sslSocket));
+      IdSecSocket := TIdSecSocket(SSL_get_app_data(sslSocket));
       LHelper := IdSecSocket.GetCallbackHelper;
       if LHelper <> nil then
       begin
@@ -321,7 +321,7 @@ var
   hcert: PX509;
   Certificate: TIdX509;
   hSSL: PSSL;
-  IdSecSocket: TIdSSLSocket;
+  IdSecSocket: TIdSecSocket;
   // str: String;
   VerifiedOK: Boolean;
   Depth: Integer;
@@ -341,7 +341,7 @@ begin
       hcert := X509_STORE_CTX_get_current_cert(ctx);
       Certificate := TIdX509.Create(hcert, False); // the certificate is owned by the store
       try
-        IdSecSocket := TIdSSLSocket(SSL_get_app_data(hSSL));
+        IdSecSocket := TIdSecSocket(SSL_get_app_data(hSSL));
         Error := X509_STORE_CTX_get_error(ctx);
         Depth := X509_STORE_CTX_get_error_depth(ctx);
         if not ((Ok > 0) and (IdSecSocket.SSLContext.VerifyDepth >= Depth)) then begin
@@ -389,7 +389,7 @@ var
   {$IFDEF STRING_IS_UNICODE}
   LPassword: TIdBytes;
   {$ENDIF}
-  IdSecContext: TIdSSLContext;
+  IdSecContext: TIdSecContext;
   LErr : Integer;
   LHelper: IIdSecOpenSSLCallbackHelper;
 begin
@@ -400,7 +400,7 @@ begin
     LockPassCB.Enter;
     try
       Password := '';    {Do not Localize}
-      IdSecContext := TIdSSLContext(userdata);
+      IdSecContext := TIdSecContext(userdata);
       LHelper := IdSecContext.GetCallbackHelper;
       if LHelper <> nil then
       begin
@@ -437,9 +437,9 @@ const
   RSA: PRSA = nil;
 var
   SSLSocket: TSSLWSocket;
-  IdSecSocket: TIdSSLSocket;
+  IdSecSocket: TIdSecSocket;
 begin
-  IdSecSocket := TIdSSLSocket(IdSslGetAppData(sslSocket));
+  IdSecSocket := TIdSecSocket(IdSslGetAppData(sslSocket));
 
   if Assigned(IdSecSocket) then begin
     IdSecSocket.TriggerSSLRSACallback(KeyLength);
@@ -470,7 +470,7 @@ end;
 ///////////////////////////////////////////////////////////////
 //  TIdSecCipher
 ///////////////////////////////////////////////////////////////
-constructor TIdSecCipher.Create(AOwner: TIdSSLSocket);
+constructor TIdSecCipher.Create(AOwner: TIdSecSocket);
 begin
   inherited Create;
   FSSLSocket := AOwner;
@@ -514,7 +514,7 @@ begin
   fUseSystemRootCertificateStore := true;
 end;
 
-constructor TIdSecContext.Create(aParent: TObject; SSLOptions: TIdSSLOptions;
+constructor TIdSecContext.Create(aParent: TObject; SSLOptions: TIdSecOptions;
   CtxMode: TIdSecCtxMode; aVerifyOn, aStatusInfoOn: boolean);
 begin
   Create;
@@ -595,7 +595,7 @@ begin
   end;
 end;
 
-procedure TIdSecContext.InitContext(CtxMode: TIdSSLCtxMode);
+procedure TIdSecContext.InitContext(CtxMode: TIdSecCtxMode);
 const
   SSLProtoVersion: array[TIdSecVersion] of TIdC_LONG = (0,0,0,
                          SSL3_VERSION,    {sslvSSLv3}
@@ -798,7 +798,7 @@ begin
   // TODO: provide an event so users can apply their own settings as needed...
 end;
 
-procedure TIdSecContext.SetVerifyMode(Mode: TIdSSLVerifyModeSet; CheckRoutine: Boolean);
+procedure TIdSecContext.SetVerifyMode(Mode: TIdSecVerifyModeSet; CheckRoutine: Boolean);
 var
   Func: TSSL_CTX_set_verify_callback;
 begin
@@ -814,7 +814,7 @@ begin
   end;
 end;
 
-function TIdSecContext.GetVerifyMode: TIdSSLVerifyModeSet;
+function TIdSecContext.GetVerifyMode: TIdSecVerifyModeSet;
 begin
   Result := fVerifyMode;
 end;
@@ -910,7 +910,7 @@ begin
   Result := fParent = aObject;
 end;
 
-function TIdSecContext.GetCallbackHelper: IIdSSLOpenSSLCallbackHelper;
+function TIdSecContext.GetCallbackHelper: IIdSecOpenSSLCallbackHelper;
 begin
   Result := nil;
   if fParent <> nil then
@@ -919,7 +919,7 @@ end;
 
 //////////////////////////////////////////////////////////////
 
-function TIdSecContext.Clone: TIdSSLContext;
+function TIdSecContext.Clone: TIdSecContext;
 begin
   Result := TIdSecContext.Create;
   Result.StatusInfoOn := StatusInfoOn;
@@ -1321,7 +1321,7 @@ begin
   until False;
 end;
 
-function TIdSecSocket.GetProtocolVersion: TIdSSLVersion;
+function TIdSecSocket.GetProtocolVersion: TIdSecVersion;
 begin
   if fSession = nil then
     Result := sslUnknown
@@ -1362,12 +1362,12 @@ begin
   end;
 end;
 
-procedure TIdSecSocket.SetSessionID(source: TIdSSLSocket);
+procedure TIdSecSocket.SetSessionID(source: TIdSecSocket);
 begin
   SSL_copy_session_id(fSSL, source.fSSL);
 end;
 
-procedure TIdSecSocket.SetSSLContext(AValue: TIdSSLContext);
+procedure TIdSecSocket.SetSSLContext(AValue: TIdSecContext);
 begin
   if fSSLContext = AValue then Exit;
   Assert(fSSLContext=nil);
@@ -1387,7 +1387,7 @@ begin
   Result := fPeerCert;
 end;
 
-function TIdSecSocket.GetSSLCipher: TIdSSLCipher;
+function TIdSecSocket.GetSSLCipher: TIdSecCipher;
 begin
   if (fSSLCipher = nil) and (fSSL<>nil) then begin
     fSSLCipher := TIdSecCipher.Create(Self);
@@ -1395,7 +1395,7 @@ begin
   Result := fSSLCipher;
 end;
 
-function TIdSecSocket.GetSessionID: TIdSSLByteArray;
+function TIdSecSocket.GetSessionID: TIdSecByteArray;
 var
   pSession: PSSL_SESSION;
 begin
@@ -1439,7 +1439,7 @@ begin
 }
 end;
 
-function TIdSecSocket.GetCallbackHelper: IIdSSLOpenSSLCallbackHelper;
+function TIdSecSocket.GetCallbackHelper: IIdSecOpenSSLCallbackHelper;
 begin
   Result := nil;
   if fParent <> nil then

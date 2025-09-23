@@ -52,11 +52,11 @@ type
   TIdSecVersion = (sslUnknown,sslvSSLv2, sslvSSLv23, sslvSSLv3, sslvTLSv1,sslvTLSv1_1,
                     sslvTLSv1_2, sslvTLSv1_3);
                     {This list must be identical to TOpenSSL_Version as defined in IdOpenSSLHeaders_ssl}
-  TIdSecVersions = set of TIdSSLVersion;
+  TIdSecVersions = set of TIdSecVersion;
   TIdSecMode = (sslmUnassigned, sslmClient, sslmServer, sslmBoth);
   TIdSecCtxMode = (sslCtxClient, sslCtxServer);
   TIdSecVerifyMode = (sslvrfPeer, sslvrfFailIfNoPeerCert, sslvrfClientOnce);
-  TIdSecVerifyModeSet = set of TIdSSLVerifyMode;
+  TIdSecVerifyModeSet = set of TIdSecVerifyMode;
 
 const
   DEF_SSLVERSION = sslvTLSv1_2;
@@ -110,7 +110,7 @@ type
 implementation
 
 uses
-  IdOpenSSLHeaders_ssl
+  IdSecOpenSSLHeaders_ssl
   ;
 
 //////////////////////////////////////////////////////
@@ -125,7 +125,7 @@ begin
   fUseSystemRootCertificateStore := true;
 end;
 
-procedure TIdSecOptions.SetMethod(const AValue: TIdSSLVersion);
+procedure TIdSecOptions.SetMethod(const AValue: TIdSecVersion);
 begin
   fMethod := AValue;
   if AValue = sslvSSLv23 then begin
@@ -135,7 +135,7 @@ begin
   end;
 end;
 
-procedure TIdSecOptions.SetSSLVersions(const AValue: TIdSSLVersions);
+procedure TIdSecOptions.SetSSLVersions(const AValue: TIdSecVersions);
 begin
   fSSLVersions := AValue;
   if fSSLVersions = [sslvSSLv2] then begin

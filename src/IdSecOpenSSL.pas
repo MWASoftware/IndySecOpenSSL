@@ -269,12 +269,12 @@ uses
   IdGlobalProtocols,
   IdThread,
   IdIOHandlerSocket,
-  IdSec,
+  IdSSL,
   IdYarn,
   IdSecOpenSSLSocket,
   IdSecOpenSSLX509,
   IdSecOpenSSLExceptionHandlers,
-  IdOpenSSLHeaders_ssl,
+  IdSecOpenSSLHeaders_ssl,
   IdSecOpenSSLOptions,
   IdSecOpenSSLFIPS {Ensure FIPS functions initialised};
 
@@ -297,7 +297,7 @@ type
 
   { TIdSecIOHandlerSocketOpenSSL }
 
-  TIdSecIOHandlerSocketOpenSSL = class(TIdSSLIOHandlerSocketBase, IIdSSLOpenSSLCallbackHelper)
+  TIdSecIOHandlerSocketOpenSSL = class(TIdSSLIOHandlerSocketBase, IIdSecOpenSSLCallbackHelper)
   protected
     fSSLContext: TIdSecContext;
     fxSSLOptions: TIdSecOptions;
@@ -342,7 +342,7 @@ type
   public
     destructor Destroy; override;
     // TODO: add an AOwner parameter
-    function Clone :  TIdSecIOHandlerSocketBase; override;
+    function Clone :  TIdSSLIOHandlerSocketBase; override;
     procedure StartSSL; override;
     procedure AfterAccept; override;
     procedure Close; override;
@@ -360,9 +360,9 @@ type
     property OnVerifyPeer: TVerifyPeerEvent read fOnVerifyPeer write fOnVerifyPeer;
   end;
 
-  { TIdServerIOHandlerSSLOpenSSL }
+  { TIdSecServerIOHandlerSSLOpenSSL }
 
-  TIdServerIOHandlerSSLOpenSSL = class(TIdServerIOHandlerSSLBase, IIdSecOpenSSLCallbackHelper)
+  TIdSecServerIOHandlerSSLOpenSSL = class(TIdServerIOHandlerSSLBase, IIdSecOpenSSLCallbackHelper)
   protected
     fxSSLOptions: TIdSecOptions;
     fSSLContext: TIdSecContext;
@@ -399,10 +399,10 @@ type
       AYarn: TIdYarn): TIdIOHandler; override;
 //    function Accept(ASocket: TIdSocketHandle; AThread: TIdThread) : TIdIOHandler;  override;
     destructor Destroy; override;
-    function MakeClientIOHandler : TIdSecIOHandlerSocketBase; override;
+    function MakeClientIOHandler : TIdSSLIOHandlerSocketBase; override;
     //
-    function MakeFTPSvrPort : TIdSecIOHandlerSocketBase; override;
-    function MakeFTPSvrPasv : TIdSecIOHandlerSocketBase; override;
+    function MakeFTPSvrPort : TIdSSLIOHandlerSocketBase; override;
+    function MakeFTPSvrPasv : TIdSSLIOHandlerSocketBase; override;
     //
     property SSLContext: TIdSecContext read fSSLContext;
   published
@@ -447,7 +447,7 @@ uses
   Posix.Unistd,
   {$ENDIF}
   IdFIPS,
-  IdResourceStringsOpenSSL,
+  IdSecResourceStringsOpenSSL,
   IdStack,
   IdCustomTransparentProxy,
   IdURI,
@@ -470,7 +470,7 @@ type
   // RLebeau 1/24/2019: defining this as a private implementation for now to
   // avoid a change in the public interface above.  This should be rolled into
   // the public interface at some point...
-  TIdSecOptions_Internal = class(TIdSSLOptions)
+  TIdSecOptions_Internal = class(TIdSecOptions)
   public
     {$IFDEF USE_OBJECT_ARC}[Weak]{$ENDIF} Parent: TObject;
   end;
@@ -509,25 +509,25 @@ end;
 
 
 ///////////////////////////////////////////////////////
-//   TIdServerIOHandlerSSLOpenSSL
+//   TIdSecServerIOHandlerSSLOpenSSL
 ///////////////////////////////////////////////////////
 
-{ TIdServerIOHandlerSSLOpenSSL }
+{ TIdSecServerIOHandlerSSLOpenSSL }
 
-procedure TIdServerIOHandlerSSLOpenSSL.InitComponent;
+procedure TIdSecServerIOHandlerSSLOpenSSL.InitComponent;
 begin
   inherited InitComponent;
   fxSSLOptions := TIdSecOptions_Internal.Create;
   TIdSecOptions_Internal(fxSSLOptions).Parent := Self;
 end;
 
-destructor TIdServerIOHandlerSSLOpenSSL.Destroy;
+destructor TIdSecServerIOHandlerSSLOpenSSL.Destroy;
 begin
   FreeAndNil(fxSSLOptions);
   inherited Destroy;
 end;
 
-procedure TIdServerIOHandlerSSLOpenSSL.Init;
+procedure TIdSecServerIOHandlerSSLOpenSSL.Init;
 //see also TIdSecIOHandlerSocketOpenSSL.Init
 begin
   //ensure Init isn't called twice
@@ -536,7 +536,7 @@ begin
                            Assigned(fOnStatusInfo) or Assigned(FOnStatusInfoEx));
 end;
 
-function TIdServerIOHandlerSSLOpenSSL.Accept(ASocket: TIdSocketHandle;
+function TIdSecServerIOHandlerSSLOpenSSL.Accept(ASocket: TIdSocketHandle;
   // This is a thread and not a yarn. Its the listener thread.
   AListenerThread: TIdThread; AYarn: TIdYarn ): TIdIOHandler;
 var
@@ -592,14 +592,14 @@ begin
   end;
 end;
 
-procedure TIdServerIOHandlerSSLOpenSSL.DoStatusInfo(const AMsg: String);
+procedure TIdSecServerIOHandlerSSLOpenSSL.DoStatusInfo(const AMsg: String);
 begin
   if Assigned(fOnStatusInfo) then begin
     fOnStatusInfo(AMsg);
   end;
 end;
 
-procedure TIdServerIOHandlerSSLOpenSSL.DoStatusInfoEx(
+procedure TIdSecServerIOHandlerSSLOpenSSL.DoStatusInfoEx(
   const aSSLSocket: TIdSecSocket; const AWhere, Aret: TIdC_INT;
   const AWhereStr, ARetStr: String);
 begin
@@ -608,14 +608,14 @@ begin
   end;
 end;
 
-procedure TIdServerIOHandlerSSLOpenSSL.DoGetPassword(var Password: String);
+procedure TIdSecServerIOHandlerSSLOpenSSL.DoGetPassword(var Password: String);
 begin
   if Assigned(fOnGetPassword) then  begin
     fOnGetPassword(Password);
   end;
 end;
 
-procedure TIdServerIOHandlerSSLOpenSSL.DoGetPasswordEx(
+procedure TIdSecServerIOHandlerSSLOpenSSL.DoGetPasswordEx(
   var VPassword: String; const AIsWrite: Boolean);
 begin
   if Assigned(fOnGetPasswordEx) then begin
@@ -623,7 +623,7 @@ begin
   end;
 end;
 
-function TIdServerIOHandlerSSLOpenSSL.DoVerifyPeer(Certificate: TIdX509;
+function TIdSecServerIOHandlerSSLOpenSSL.DoVerifyPeer(Certificate: TIdX509;
   AOk: Boolean; ADepth, AError: Integer): Boolean;
 begin
   Result := True;
@@ -632,7 +632,7 @@ begin
   end;
 end;
 
-function TIdServerIOHandlerSSLOpenSSL.MakeFTPSvrPort : TIdSecIOHandlerSocketBase;
+function TIdSecServerIOHandlerSSLOpenSSL.MakeFTPSvrPort : TIdSSLIOHandlerSocketBase;
 var
   LIO : TIdSecIOHandlerSocketOpenSSL;
 begin
@@ -652,13 +652,13 @@ begin
   Result := LIO;
 end;
 
-procedure TIdServerIOHandlerSSLOpenSSL.Shutdown;
+procedure TIdSecServerIOHandlerSSLOpenSSL.Shutdown;
 begin
   FreeAndNil(fSSLContext);
   inherited Shutdown;
 end;
 
-function TIdServerIOHandlerSSLOpenSSL.MakeFTPSvrPasv : TIdSecIOHandlerSocketBase;
+function TIdSecServerIOHandlerSSLOpenSSL.MakeFTPSvrPasv : TIdSSLIOHandlerSocketBase;
 var
   LIO : TIdSecIOHandlerSocketOpenSSL;
 begin
@@ -680,7 +680,7 @@ end;
 
 { IIdSecOpenSSLCallbackHelper }
 
-function TIdServerIOHandlerSSLOpenSSL.GetPassword(const AIsWrite : Boolean): string;
+function TIdSecServerIOHandlerSSLOpenSSL.GetPassword(const AIsWrite : Boolean): string;
 begin
   DoGetPasswordEx(Result, AIsWrite);
   if Result = '' then begin
@@ -688,12 +688,12 @@ begin
   end;
 end;
 
-function TIdServerIOHandlerSSLOpenSSL.GetSSLSocket: TIdSecSocket;
+function TIdSecServerIOHandlerSSLOpenSSL.GetSSLSocket: TIdSecSocket;
 begin
   Result := nil;
 end;
 
-procedure TIdServerIOHandlerSSLOpenSSL.StatusInfo(
+procedure TIdSecServerIOHandlerSSLOpenSSL.StatusInfo(
   const aSSLSocket: TIdSecSocket; AWhere, ARet: TIdC_INT;
   const AStatusStr: string);
 var
@@ -706,12 +706,12 @@ begin
   end;
 end;
 
-procedure TIdServerIOHandlerSSLOpenSSL.StatusInfo(const AStatusStr: string);
+procedure TIdSecServerIOHandlerSSLOpenSSL.StatusInfo(const AStatusStr: string);
 begin
   DoStatusInfo(AStatusStr);
 end;
 
-function TIdServerIOHandlerSSLOpenSSL.VerifyPeer(ACertificate: TIdX509;
+function TIdSecServerIOHandlerSSLOpenSSL.VerifyPeer(ACertificate: TIdX509;
   AOk: Boolean; ADepth, AError: Integer): Boolean;
 begin
   Result := DoVerifyPeer(ACertificate, AOk, ADepth, AError);
@@ -721,7 +721,7 @@ end;
 //   TIdSecIOHandlerSocketOpenSSL
 ///////////////////////////////////////////////////////
 
-function TIdServerIOHandlerSSLOpenSSL.MakeClientIOHandler: TIdSecIOHandlerSocketBase;
+function TIdSecServerIOHandlerSSLOpenSSL.MakeClientIOHandler: TIdSSLIOHandlerSocketBase;
 var
   LIO : TIdSecIOHandlerSocketOpenSSL;
 begin
@@ -908,7 +908,7 @@ begin
 end;
 
 procedure TIdSecIOHandlerSocketOpenSSL.Init;
-//see also TIdServerIOHandlerSSLOpenSSL.Init
+//see also TIdSecServerIOHandlerSSLOpenSSL.Init
 begin
   if not Assigned(fSSLContext) then
     fSSLContext := TIdSecContext.Create(self,SSLOptions,sslCtxClient,Assigned(OnVerifyPeer),
@@ -964,7 +964,7 @@ var
   LMode: TIdSecMode;
   LHost: string;
 
-  // TODO: move the following to TIdSecIOHandlerSocketBase...
+  // TODO: move the following to TIdSSLIOHandlerSocketBase...
 
   function GetURIHost: string;
   var
@@ -1067,7 +1067,7 @@ begin
   fPassThrough := False;
 end;
 
-procedure TIdSecIOHandlerSocketOpenSSL.DoBeforeConnect(ASender: TIdSSLIOHandlerSocketOpenSSL);
+procedure TIdSecIOHandlerSocketOpenSSL.DoBeforeConnect(ASender: TIdSecIOHandlerSocketOpenSSL);
 begin
   if Assigned(OnBeforeConnect) then begin
     OnBeforeConnect(Self);
@@ -1134,7 +1134,7 @@ begin
   end;
 end;
 
-function TIdSecIOHandlerSocketOpenSSL.GetSSLSocket: TIdSSLSocket;
+function TIdSecIOHandlerSocketOpenSSL.GetSSLSocket: TIdSecSocket;
 begin
   Result := fSSLSocket;
 end;
@@ -1176,7 +1176,7 @@ initialization
     'http://www.indyproject.org/'#10#13 +                                 {do not localize}
     'Original Author - Gregor Ibic',                                      {do not localize}
     TIdSecIOHandlerSocketOpenSSL,
-    TIdServerIOHandlerSSLOpenSSL);
+    TIdSecServerIOHandlerSSLOpenSSL);
   {$I IdSymbolDeprecatedOn.inc}
 
   TIdSecIOHandlerSocketOpenSSL.RegisterIOHandler;

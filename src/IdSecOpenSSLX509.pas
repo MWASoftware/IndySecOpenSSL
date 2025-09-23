@@ -47,9 +47,9 @@ uses
   SysUtils,
   IdCTypes,
   IdGlobal,
-  IdOpenSSLHeaders_ssl,
-  IdOpenSSLHeaders_ossl_typ,
-  IdOpenSSLHeaders_x509,
+  IdSecOpenSSLHeaders_ssl,
+  IdSecOpenSSLHeaders_ossl_typ,
+  IdSecOpenSSLHeaders_x509,
   IdSecOpenSSLUtils
 ;
 
@@ -194,16 +194,16 @@ uses
   IdStack,
   IdFIPS,
   IdSecOpenSSL,
-  IdOpenSSLHeaders_x509_vfy,
-  IdOpenSSLHeaders_pkcs12,
-  IdOpenSSLHeaders_evp,
-  IdOpenSSLHeaders_objects,
-  IdOpenSSLHeaders_err,
-  IdOpenSSLHeaders_sslerr,
-  IdOpenSSLHeaders_stack,
-  IdOpenSSLHeaders_dh,
-  IdOpenSSLHeaders_pem,
-  IdOpenSSLHeaders_bio
+  IdSecOpenSSLHeaders_x509_vfy,
+  IdSecOpenSSLHeaders_pkcs12,
+  IdSecOpenSSLHeaders_evp,
+  IdSecOpenSSLHeaders_objects,
+  IdSecOpenSSLHeaders_err,
+  IdSecOpenSSLHeaders_sslerr,
+  IdSecOpenSSLHeaders_stack,
+  IdSecOpenSSLHeaders_dh,
+  IdSecOpenSSLHeaders_pem,
+  IdSecOpenSSLHeaders_bio
   ;
 
 

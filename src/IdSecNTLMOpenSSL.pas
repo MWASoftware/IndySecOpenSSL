@@ -7,14 +7,14 @@
    (c) 1993-2024, Chad Z. Hower and the Indy Pit Crew. All rights reserved.
 }
 
-unit IdNTLMOpenSSL;
+unit IdSecNTLMOpenSSL;
 
 interface
 
 implementation
 
 uses
-  IdGlobal, IdFIPS, IdSSLOpenSSLAPI, IdHashMessageDigest, IdOpenSSLHeaders_des,
+  IdGlobal, IdFIPS, IdSecOpenSSLAPI, IdHashMessageDigest, IdSecOpenSSLHeaders_des,
   SysUtils;
 
 {$I IdCompilerDefines.inc}

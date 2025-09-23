@@ -1,4 +1,4 @@
-LazarusResources.Add('TIdSecServerIOHandlerOpenSSL','XPM',[
+LazarusResources.Add('TIdSecServerIOHandlerSSLOpenSSL','XPM',[
   '/* XPM */'#13#10'static char *Pixmap[] = {'#13#10'"24 24 16 2",'#13#10'"00 c'
   +' black",'#13#10'"01 c #800000",'#13#10'"02 c #008000",'#13#10'"03 c #808000'
   +'",'#13#10'"04 c #000080",'#13#10'"05 c none",'#13#10'"06 c #008080",'#13#10

@@ -48,11 +48,11 @@ uses
   IdCTypes,
   IdFIPS,
   IdSecOpenSSLAPI,
-  IdResourceStringsOpenSSL,
-  IdOpenSSLHeaders_evp,
-  IdOpenSSLHeaders_crypto,
-  IdOpenSSLHeaders_hmac,
-  IdOpenSSLHeaders_ossl_typ;
+  IdSecResourceStringsOpenSSL,
+  IdSecOpenSSLHeaders_evp,
+  IdSecOpenSSLHeaders_crypto,
+  IdSecOpenSSLHeaders_hmac,
+  IdSecOpenSSLHeaders_ossl_typ;
 
 function FIPS_mode_set(onoff : TIdC_INT) : TIdC_INT;  {$IFDEF INLINE}inline;{$ENDIF}
 begin

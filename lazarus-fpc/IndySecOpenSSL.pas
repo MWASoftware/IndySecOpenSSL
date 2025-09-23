@@ -8,9 +8,9 @@ unit IndySecOpenSSL;
 interface
 
 uses
-  IdSecNTLMOpenSSL, IdSecResourceStringsOpenSSL, IdSecOpenSSL, IdSSLOpenSSLFIPS, 
-  IdSecOpenSSLOptions, IdSecOpenSSLSocket, IdSecOpenSSLUtils, 
-  IdSecOpenSSLX509, IdSecwincrypt;
+  IdSecNTLMOpenSSL, IdSecResourceStringsOpenSSL, IdSecOpenSSL, 
+  IdSecOpenSSLFIPS, IdSecOpenSSLOptions, IdSecOpenSSLSocket, 
+  IdSecOpenSSLUtils, IdSecOpenSSLX509, IdSecwincrypt;
 
 implementation
 

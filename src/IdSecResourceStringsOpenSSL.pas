@@ -23,7 +23,7 @@
 {                               Here could be your name                        }
 {                                                                              }
 {******************************************************************************}
-unit IdResourceStringsOpenSSL;
+unit IdSecResourceStringsOpenSSL;
 
 interface
 

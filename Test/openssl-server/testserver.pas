@@ -22,9 +22,9 @@ interface
 
 uses
   Classes, SysUtils, {$IFDEF FPC}CustApp,{$ENDIF}IdIOHandler, IdHTTP,
-  IdSSL, IdSSLOpenSSL,  IdHeaderList, IdContext,
+  IdSSL, IdSecOpenSSL,  IdHeaderList, IdContext,
   IdCustomHTTPServer, IdHTTPServer, IdServerIOHandler, IdGlobal,
-  IdSSLOpenSSLX509;
+  IdSecOpenSSLX509;
 
 const
   SSLServerPort = 8080;

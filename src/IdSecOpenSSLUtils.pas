@@ -48,8 +48,8 @@ uses
   SysUtils,
   IdCTypes,
   IdGlobal,
-  IdOpenSSLHeaders_evp,
-  IdOpenSSLHeaders_ossl_typ
+  IdSecOpenSSLHeaders_evp,
+  IdSecOpenSSLHeaders_ossl_typ
 ;
 
 type
