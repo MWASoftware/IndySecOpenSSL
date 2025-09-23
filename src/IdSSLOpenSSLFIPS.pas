@@ -47,6 +47,7 @@ uses
   IdGlobal,
   IdCTypes,
   IdFIPS,
+  IdSSLOpenSSLAPI,
   IdResourceStringsOpenSSL,
   IdOpenSSLHeaders_evp,
   IdOpenSSLHeaders_crypto,
