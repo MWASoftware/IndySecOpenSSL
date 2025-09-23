@@ -6,7 +6,7 @@
         <FrameworkType>None</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Release</Config>
-        <Platform Condition="'$(Platform)'==''">Win64</Platform>
+        <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>3</TargetedPlatforms>
         <AppType>Package</AppType>
         <ProjectName Condition="'$(ProjectName)'==''">IndySecOpenSSL</ProjectName>
@@ -75,7 +75,7 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
         <GenDll>true</GenDll>
-        <SanitizedProjectName>IndyTLSOpenSSL290</SanitizedProjectName>
+        <SanitizedProjectName>IndySecOpenSSL</SanitizedProjectName>
         <DCC_CBuilderOutput>All</DCC_CBuilderOutput>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
         <GenPackage>true</GenPackage>
@@ -162,7 +162,7 @@
         <DCCReference Include="IndyCore290.dcp"/>
         <DCCReference Include="IndyProtocols290.dcp"/>
         <DCCReference Include="..\src\IdSecResourceStringsOpenSSL.pas"/>
-        <DCCReference Include="..\src\IdNTLMOpenSSL.pas"/>
+        <DCCReference Include="..\src\IdSecNTLMOpenSSL.pas"/>
         <DCCReference Include="..\src\IdSecOpenSSL.pas"/>
         <DCCReference Include="..\src\IdSecOpenSSLFIPS.pas"/>
         <DCCReference Include="..\src\IdSecOpenSSLOptions.pas"/>
@@ -188,7 +188,7 @@
         <BorlandProject>
             <Delphi.Personality>
                 <Source>
-                    <Source Name="MainSource">IndySecOpenSSL290.dpk</Source>
+                    <Source Name="MainSource">IndySecOpenSSL.dpk</Source>
                 </Source>
                 <Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k290.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>

@@ -3,13 +3,13 @@
         <ProjectGuid>{7FF639E9-73F0-4139-BA19-816A6C3F32D8}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="openssl-client\delphi_openssl_client.dproj">
-            <Dependencies>..\delphi\IndySecOpenSSL.dproj</Dependencies>
-        </Projects>
-        <Projects Include="openssl-server\delphi_openssl_server.dproj">
+        <Projects Include="..\delphi\IndySecOpenSSL.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="..\delphi\IndySecOpenSSL.dproj">
+        <Projects Include="openssl-client\delphi_openssl_client.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="openssl-server\delphi_openssl_server.dproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -20,13 +20,22 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="delphi_openssl_client" DependsOnTargets="IndySecOpenSSL">
+    <Target Name="IndySecOpenSSL">
+        <MSBuild Projects="..\delphi\IndySecOpenSSL.dproj"/>
+    </Target>
+    <Target Name="IndySecOpenSSL:Clean">
+        <MSBuild Projects="..\delphi\IndySecOpenSSL.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="IndySecOpenSSL:Make">
+        <MSBuild Projects="..\delphi\IndySecOpenSSL.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="delphi_openssl_client">
         <MSBuild Projects="openssl-client\delphi_openssl_client.dproj"/>
     </Target>
-    <Target Name="delphi_openssl_client:Clean" DependsOnTargets="IndySecOpenSSL:Clean">
+    <Target Name="delphi_openssl_client:Clean">
         <MSBuild Projects="openssl-client\delphi_openssl_client.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="delphi_openssl_client:Make" DependsOnTargets="IndySecOpenSSL:Make">
+    <Target Name="delphi_openssl_client:Make">
         <MSBuild Projects="openssl-client\delphi_openssl_client.dproj" Targets="Make"/>
     </Target>
     <Target Name="delphi_openssl_server">
@@ -38,23 +47,14 @@
     <Target Name="delphi_openssl_server:Make">
         <MSBuild Projects="openssl-server\delphi_openssl_server.dproj" Targets="Make"/>
     </Target>
-    <Target Name="IndySecOpenSSL">
-        <MSBuild Projects="..\delphi\IndySecOpenSSL.dproj"/>
-    </Target>
-    <Target Name="IndySecOpenSSL:Clean">
-        <MSBuild Projects="..\delphi\IndySecOpenSSL.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="IndySecOpenSSL:Make">
-        <MSBuild Projects="..\delphi\IndySecOpenSSL.dproj" Targets="Make"/>
-    </Target>
     <Target Name="Build">
-        <CallTarget Targets="delphi_openssl_client;delphi_openssl_server;IndySecOpenSSL"/>
+        <CallTarget Targets="IndySecOpenSSL;delphi_openssl_client;delphi_openssl_server"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="delphi_openssl_client:Clean;delphi_openssl_server:Clean;IndySecOpenSSL:Clean"/>
+        <CallTarget Targets="IndySecOpenSSL:Clean;delphi_openssl_client:Clean;delphi_openssl_server:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="delphi_openssl_client:Make;delphi_openssl_server:Make;IndySecOpenSSL:Make"/>
+        <CallTarget Targets="IndySecOpenSSL:Make;delphi_openssl_client:Make;delphi_openssl_server:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
