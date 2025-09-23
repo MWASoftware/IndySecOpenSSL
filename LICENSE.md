@@ -1,6 +1,6 @@
 # Dual Licensed
 
-Indy is dual licensed. You can review which license better suits your needs, and use that license. You can even change your mind later if you have previously chosen one.
+IndySec is dual licensed. You can review which license better suits your needs, and use that license. You can even change your mind later if you have previously chosen one.
 
 ## Licenses
 
