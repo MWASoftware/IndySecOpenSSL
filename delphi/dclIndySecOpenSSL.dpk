@@ -1,4 +1,4 @@
-package dclIndyTLSOpenSSL290;
+package dclIndySecOpenSSL;
 
 {$R *.res}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
@@ -25,16 +25,16 @@ package dclIndyTLSOpenSSL290;
 {$IMAGEBASE $400000}
 {$DEFINE DEBUG}
 {$ENDIF IMPLICITBUILDING}
-{$DESCRIPTION 'Indy 10 TLS Design Time - OpenSSL'}
+{$DESCRIPTION 'IndySec Design Time - OpenSSL'}
 {$DESIGNONLY}
 {$IMPLICITBUILD OFF}
 
 requires
   designide,
-  IndyTLSOpenSSL290,
-  dclIndyCore290;
+  dclIndyCore290,
+  IndySecOpenSSL;
 
 contains
-  IdRegisterOpenSSL in 'IdRegisterOpenSSL.pas';
+  IdSecRegisterSSL in '..\src\IdSecRegisterSSL.pas';
 
 end.
