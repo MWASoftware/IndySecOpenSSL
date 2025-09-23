@@ -52,7 +52,7 @@ uses
   IdDsnResourceStrings,     // for RSProt in dclIndyProtocols package
   LResources,
   {$ENDIF}
-  IdSSLOpenSSL;
+  IdSecOpenSSL;
 
 {$IFNDEF FPC}
   {$R IdSecRegisterOpenSSL.dcr}
