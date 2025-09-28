@@ -6,7 +6,7 @@
         <MainSource>delphi_openssl_client.dpr</MainSource>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
-        <Platform Condition="'$(Platform)'==''">Win64</Platform>
+        <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>3</TargetedPlatforms>
         <AppType>Console</AppType>
         <ProjectName Condition="'$(ProjectName)'==''">delphi_openssl_client</ProjectName>
@@ -103,6 +103,8 @@
         <Manifest_File>(None)</Manifest_File>
         <AppDPIAwarenessMode>none</AppDPIAwarenessMode>
         <DCC_ExeOutput>.</DCC_ExeOutput>
+        <Debugger_HostApplication>C:\Users\tony\SoftwareDev\IndySec\examples\openssl-client\delphi_openssl_client.exe</Debugger_HostApplication>
+        <Debugger_CWD>C:\Users\tony\SoftwareDev\IndySec\examples\openssl-client</Debugger_CWD>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
@@ -115,6 +117,9 @@
         <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
         <AppDPIAwarenessMode>none</AppDPIAwarenessMode>
         <DCC_UsePackage>IndySecOpenSSL;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_ExeOutput>.</DCC_ExeOutput>
+        <Debugger_HostApplication>C:\Users\tony\SoftwareDev\IndySec\examples\openssl-client\delphi_openssl_client.exe</Debugger_HostApplication>
+        <Debugger_CWD>C:\Users\tony\SoftwareDev\IndySec\examples\openssl-client</Debugger_CWD>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
@@ -148,6 +153,7 @@
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <Debugger_HostApplication>C:\Users\tony\SoftwareDev\IndySec\Test\openssl-client\delphi_openssl_client.exe</Debugger_HostApplication>
         <Debugger_CWD>C:\Users\tony\SoftwareDev\IndySec\Test\openssl-client</Debugger_CWD>
+        <DCC_ExeOutput>.</DCC_ExeOutput>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
