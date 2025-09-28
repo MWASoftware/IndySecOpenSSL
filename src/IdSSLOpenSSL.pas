@@ -838,7 +838,7 @@ function TIdSSLIOHandlerSocketOpenSSL.Readable(AMSec: Integer = IdTimeoutDefault
       Exit;
 
     if not fPassThrough and (fSSLSocket <> nil) then
-      Result := fSSLSocket.Readable;
+    Result := fSSLSocket.Readable in [sslDataAvailable,sslUnRecoverableError,sslEOF];
   until Result;
 end;
 

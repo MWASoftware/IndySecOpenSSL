@@ -69,6 +69,8 @@ type
     Data: PByte;
   end;
 
+  TIdSSLReadStatus = (sslDataAvailable, sslNoData, sslEOF, sslUnrecoverableError);
+
   TIdSSLSocket = class;
 
   // TIdSSLIOHandlerSocketOpenSSL and TIdServerIOHandlerSSLOpenSSL have some common
@@ -191,7 +193,7 @@ type
     function GetSessionIDAsString:String;
     procedure SetCipherList(CipherList: String);
     function GetCallbackHelper: IIdSSLOpenSSLCallbackHelper;
-    function Readable: Boolean;
+    function Readable: TIdSSLReadStatus;
     procedure DoShutdown;
     function GetSSL: PSSL;
     function GetSSLError(retCode: Integer): Integer;
@@ -1444,18 +1446,35 @@ begin
     fParent.GetInterface(IIdSSLOpenSSLCallbackHelper,Result);
 end;
 
-function TIdSSLSocket.Readable: Boolean;
+function TIdSSLSocket.Readable: TIdSSLReadStatus;
 var buf : byte;
     Lr: integer;
 begin
+  Result := sslNoData;
   {Confirm that there is application data to be read.}
   Lr := SSL_peek(fSSL, @buf, 1);
-  {Return true if application data pending, or if it looks like we have disconnected}
-  Result := (Lr > 0);
-  if not Result and
-    (SSL_get_error(fSSL,Lr) = SSL_ERROR_ZERO_RETURN) and
-    (SSL_get_shutdown(fSSL) = SSL_RECEIVED_SHUTDOWN) then
-    Result := true;
+  {Return sslDataAvailable if application data pending, or if it looks like we have disconnected,
+          sslUnrecoverableError if error state indicates thus,
+          sslEOF if the connection has been shutdown, or
+          sslNoData otherwise => try again later}
+  if Lr > 0 then
+    Result := sslDataAvailable
+  else
+  begin
+    case SSL_get_error(fSSL,Lr) of
+      SSL_ERROR_SSL, SSL_ERROR_SYSCALL:
+          if SSL_get_shutdown(fSSL) = SSL_RECEIVED_SHUTDOWN then
+            Result := sslEOF
+          else
+            Result := sslUnrecoverableError;
+
+      SSL_ERROR_ZERO_RETURN:
+          if SSL_get_shutdown(fSSL) = SSL_RECEIVED_SHUTDOWN then
+            Result := sslEOF;
+
+      {anything else return the function default - sslNoData (yet)}
+    end;
+  end;
 end;
 
 procedure TIdSSLSocket.DoShutdown;
