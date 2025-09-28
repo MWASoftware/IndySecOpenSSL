@@ -518,6 +518,7 @@ procedure TIdSecServerIOHandlerSSLOpenSSL.InitComponent;
 begin
   inherited InitComponent;
   fxSSLOptions := TIdSecOptions_Internal.Create;
+  fzSSLOptions.Mode := sslmServer;
   TIdSecOptions_Internal(fxSSLOptions).Parent := Self;
 end;
 
@@ -750,6 +751,7 @@ begin
   inherited InitComponent;
   IsPeer := False;
   fxSSLOptions := TIdSecOptions_Internal.Create;
+  fxSSLOptions.Mode := sslmClient;
   TIdSecOptions_Internal(fxSSLOptions).Parent := Self;
   fSSLLayerClosed := True;
   fSSLContext := nil;
