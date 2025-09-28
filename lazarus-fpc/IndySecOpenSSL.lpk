@@ -73,6 +73,10 @@ THIS SOFTWARE IS PROVIDED BY Chad Z. Hower (Kudzu) and the Indy Pit Crew &amp;am
         <Filename Value="../src/IdSecwincrypt.pas"/>
         <UnitName Value="IdSecwincrypt"/>
       </Item>
+      <Item>
+        <Filename Value="/usr/share/applications/mate-terminal.desktop"/>
+        <Type Value="Text"/>
+      </Item>
     </Files>
     <RequiredPkgs>
       <Item>

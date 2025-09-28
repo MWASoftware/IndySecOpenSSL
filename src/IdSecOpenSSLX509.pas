@@ -735,6 +735,13 @@ end;
   filenames.   Most of this section of code is based on code in the OpenSSL .DLL
   which is copyrighted by the OpenSSL developers.  Some of it is translated into
   Pascal and made some modifications so that it will handle Unicode filenames.
+
+  Note. In more recent implementations, it is possible to coerce Unicode file names
+  to UTF8 AnsiStrings. However, when a unicode filename includes characters outside
+  of the ANSI character set, there is then a reliance on local transliteration
+  correctly transliterating all characters. Given these functions exist and they
+  are believed to robust, it is simpler to use them whenever the default string type
+  is unicode.
 }
 
 {$IFDEF STRING_IS_UNICODE} {UCS-2 implied}
