@@ -31,7 +31,7 @@ begin
   TIdSecIOHandlerSocketOpenSSL
   ]);
   {$ELSE}
-  RegisterComponents(RSRegIndyIOHandlers, [
+  RegisterComponents(RSRegIndyIOHandlers+RSSec, [
   TIdSecServerIOHandlerSSLOpenSSL,
   TIdSecIOHandlerSocketOpenSSL
   ]);
