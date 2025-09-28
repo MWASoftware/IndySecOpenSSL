@@ -118,6 +118,7 @@ type
 //    fVerifyFile: String;
     fVerifyDirs: String;
     fCipherList: String;
+    fTLS1_3_CipherList: string;
     fContext: PSSL_CTX;
     fStatusInfoOn: Boolean;
 //    fPasswordRoutineOn: Boolean;
@@ -151,6 +152,7 @@ type
     property RootCertFile: String read fsRootCertFile write fsRootCertFile;
     property CertFile: String read fsCertFile write fsCertFile;
     property CipherList: String read fCipherList write fCipherList;
+    property TLS1_3_CipherList: string read fTLS1_3_CipherList write fTLS1_3_CipherList;
     property KeyFile: String read fsKeyFile write fsKeyFile;
     property DHParamsFile: String read fsDHParamsFile write fsDHParamsFile;
 //    property VerifyMode: TIdSecVerifyModeSet read GetVerifyMode write SetVerifyMode;
@@ -529,6 +531,7 @@ begin
   fUseSystemRootCertificateStore := SSLOptions.UseSystemRootCertificateStore;
   fVerifyDirs := SSLOptions.VerifyDirs;
   fCipherList := SSLOptions.CipherList;
+  fTLS1_3_CipherList := SSLOptions.TLS1_3_CipherList;
   VerifyOn := aVerifyOn;
   StatusInfoOn := aStatusInfoOn;
   //PasswordRoutineOn := Assigned(fOnGetPassword);
@@ -777,6 +780,26 @@ begin
     );
     *)
     error := 1;
+  end;
+  if error <= 0 then begin
+    // TODO: should this be using EIdOSSLSettingCipherError.RaiseException() instead?
+    raise EIdOSSLSettingCipherError.Create(RSSSLSettingCipherError);
+  end;
+  if fTLS1_3_CipherList <> '' then
+  begin
+    SSL_CTX_set_ciphersuites(fContext,
+    {$IFDEF USE_MARSHALLED_PTRS}
+    M.AsAnsi(fTLS1_3_CipherList).ToPointer
+    {$ELSE}
+    PAnsiChar(
+      {$IFDEF STRING_IS_ANSI}
+      fTLS1_3_CipherList
+      {$ELSE}
+      AnsiString(fTLS1_3_CipherList) // explicit cast to Ansi
+      {$ENDIF}
+    )
+    {$ENDIF}
+  );
   end;
   if error <= 0 then begin
     // TODO: should this be using EIdOSSLSettingCipherError.RaiseException() instead?

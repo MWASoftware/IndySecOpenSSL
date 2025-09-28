@@ -69,6 +69,7 @@ type
 
   TIdSecOptions = class(TPersistent)
   private
+    fTLS1_3_CipherList: string;
     fUseSystemRootCertificateStore : boolean;
   protected
     fsRootCertFile,
@@ -105,6 +106,7 @@ type
     property VerifyDirs: String read fVerifyDirs write fVerifyDirs;
     property UseSystemRootCertificateStore: boolean read fUseSystemRootCertificateStore write fUseSystemRootCertificateStore default true;
     property CipherList: String read fCipherList write fCipherList;
+    property TLS1_3_CipherList: string read fTLS1_3_CipherList write fTLS1_3_CipherList;
   end;
 
 implementation
@@ -188,6 +190,7 @@ begin
     LDest.fUseSystemRootCertificateStore := fUseSystemRootCertificateStore;
     LDest.VerifyDirs := VerifyDirs;
     LDest.CipherList := CipherList;
+    LDest.TLS1_3_CipherList := TLS1_3_CipherList;
   end else begin
     inherited AssignTo(Destination);
   end;
