@@ -717,14 +717,12 @@ begin
     SSL_CTX_set_default_passwd_cb_userdata(fContext, Self);
 //  end;
 
+  {$IFDEF USE_WINDOWS_CERT_STORE}
   if fUseSystemRootCertificateStore then
-  begin
-    {$IFDEF USE_WINDOWS_CERT_STORE}
-    LoadWindowsCertStore;
-    {$ELSE}
-    SSL_CTX_set_default_verify_paths(fContext);
-    {$ENDIF}
-  end;
+    LoadWindowsCertStore
+  else
+  {$ENDIF}
+  SSL_CTX_set_default_verify_paths(fContext);
   // load key and certificate files
   if (RootCertFile <> '') or (VerifyDirs <> '') then begin    {Do not Localize}
     if not LoadRootCert then begin
