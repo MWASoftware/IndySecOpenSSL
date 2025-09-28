@@ -518,7 +518,7 @@ procedure TIdSecServerIOHandlerSSLOpenSSL.InitComponent;
 begin
   inherited InitComponent;
   fxSSLOptions := TIdSecOptions_Internal.Create;
-  fzSSLOptions.Mode := sslmServer;
+  fxSSLOptions.Mode := sslmServer;
   TIdSecOptions_Internal(fxSSLOptions).Parent := Self;
 end;
 
