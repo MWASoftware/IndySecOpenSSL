@@ -86,7 +86,6 @@ type
     fCipherList: String;
     procedure AssignTo(Destination: TPersistent); override;
     procedure SetSSLVersions(const AValue : TIdSecVersions);
-    procedure SetMethod(const AValue : TIdSecVersion);
   public
     constructor Create;
     // procedure Assign(ASource: TPersistent); override;
@@ -95,7 +94,7 @@ type
     property CertFile: String read fsCertFile write fsCertFile;
     property KeyFile: String read fsKeyFile write fsKeyFile;
     property DHParamsFile: String read fsDHParamsFile write fsDHParamsFile;
-    property Method: TIdSecVersion read fMethod write SetMethod default DEF_SSLVERSION; {ignored with OpenSSL 1.1.0 or later}
+    property Method: TIdSecVersion read fMethod write fMethod default DEF_SSLVERSION; {ignored with OpenSSL 1.1.0 or later}
     property SSLVersions : TIdSecVersions read fSSLVersions
                                           write SetSSLVersions
                                           default DEF_SSLVERSIONS;  {SSLVersions is only used to determine min version with OpenSSL 1.1.0 or later}
@@ -127,19 +126,13 @@ begin
   fUseSystemRootCertificateStore := true;
 end;
 
-procedure TIdSecOptions.SetMethod(const AValue: TIdSecVersion);
-begin
-  fMethod := AValue;
-  if AValue = sslvSSLv23 then begin
-    fSSLVersions := [sslvSSLv2,sslvSSLv3,sslvTLSv1,sslvTLSv1_1,sslvTLSv1_2];
-  end else begin
-    fSSLVersions := [AValue];
-  end;
-end;
-
 procedure TIdSecOptions.SetSSLVersions(const AValue: TIdSecVersions);
 begin
   fSSLVersions := AValue;
+  Exit;
+  if (GetOwner <> nil) and (GetOwner is TComponent) and
+    (csLoading in TComponent(GetOwner).ComponentState) then Exit;
+
   if fSSLVersions = [sslvSSLv2] then begin
     fMethod := sslvSSLv2;
   end

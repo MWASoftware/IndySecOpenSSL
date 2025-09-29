@@ -67,7 +67,6 @@ begin
   inherited RequiresUnits(Proc);
   //for new callback event
   Proc('IdCTypes'); {Do not localize}
-  Proc('IdSSLOpenSSLHeaders'); {Do not localize}
 end;
 
 {$ENDIF}
@@ -75,7 +74,7 @@ end;
 procedure Register;
 begin
   RegisterComponents(RSRegIndyIOHandlers{$IFDEF FPC}+RSProt{$ENDIF}, [
-    TIdServerIOHandlerSSLOpenSSL,
+    TIdSecServerIOHandlerSSLOpenSSL,
     TIdSSLIOHandlerSocketOpenSSL
   ]);
 
