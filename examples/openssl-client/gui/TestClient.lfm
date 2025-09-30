@@ -1,0 +1,72 @@
+object Form1: TForm1
+  Left = 102
+  Height = 441
+  Top = 313
+  Width = 624
+  Caption = 'https client example'
+  ClientHeight = 441
+  ClientWidth = 624
+  Color = clBtnFace
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  LCLVersion = '4.2.0.0'
+  OnCloseQuery = FormCloseQuery
+  OnShow = FormShow
+  object Memo1: TMemo
+    Left = 8
+    Height = 377
+    Top = 25
+    Width = 585
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    Lines.Strings = (
+      'Memo1'
+    )
+    ReadOnly = True
+    ScrollBars = ssVertical
+    TabOrder = 0
+  end
+  object Button1: TButton
+    Left = 272
+    Height = 25
+    Top = 408
+    Width = 75
+    Anchors = [akTop, akLeft, akRight]
+    Caption = 'Close'
+    ModalResult = 8
+    TabOrder = 1
+    OnClick = Button1Click
+  end
+  object IdHTTP1: TIdHTTP
+    IOHandler = IdSecIOHandlerSocketOpenSSL1
+    HandleRedirects = True
+    ProxyParams.BasicAuthentication = False
+    ProxyParams.ProxyPort = 0
+    Request.ContentLength = -1
+    Request.ContentRangeEnd = -1
+    Request.ContentRangeStart = -1
+    Request.ContentRangeInstanceLength = -1
+    Request.Accept = 'Application/txt'
+    Request.BasicAuthentication = False
+    Request.UserAgent = 'Mozilla/3.0 (compatible; Indy Library)'
+    Request.Ranges.Units = 'bytes'
+    Request.Ranges = <>
+    HTTPOptions = [hoKeepOrigProtocol, hoNoProtocolErrorException, hoWantProtocolErrorContent]
+    Left = 80
+    Top = 40
+  end
+  object IdSecIOHandlerSocketOpenSSL1: TIdSecIOHandlerSocketOpenSSL
+    MaxLineAction = maException
+    Port = 0
+    DefaultPort = 0
+    SSLOptions.Method = sslvTLSv1_3
+    SSLOptions.SSLVersions = [sslvTLSv1_3]
+    SSLOptions.Mode = sslmClient
+    SSLOptions.VerifyMode = []
+    SSLOptions.VerifyDepth = 100
+    OnStatusInfo = IdSecIOHandlerSocketOpenSSL1StatusInfo
+    OnVerifyPeer = IdSecIOHandlerSocketOpenSSL1VerifyPeer
+    Left = 80
+    Top = 112
+  end
+end

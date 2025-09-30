@@ -1,12 +1,21 @@
 unit TestClient;
 
+{$IFDEF FPC}
+{$MODE Delphi}
+{$ENDIF}
+
 interface
 
 uses
+  {$IFDEF FPC}
+  Classes, Windows, Forms, Sysutils, StdCtrls,
+  {$ELSE}
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, IdIOHandler, IdIOHandlerSocket,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
+  {$ENDIF}
+  IdIOHandler, IdIOHandlerSocket,
   IdIOHandlerStack, IdSSL, IdSecOpenSSL, IdBaseComponent, IdComponent,
-  IdTCPConnection, IdTCPClient, IdHTTP, Vcl.StdCtrls, IdSecOpenSSLX509;
+  IdTCPConnection, IdTCPClient, IdHTTP,  IdSecOpenSSLX509;
 
 const
   WM_DOTEST = WM_USER;
@@ -45,7 +54,11 @@ implementation
 
 uses IdSecOpenSSLOptions;
 
+{$IFDEF FPC}
+{$R *.lfm}
+{$ELSE}
 {$R *.dfm}
+{$ENDIF}
 
 type
    TResponseTextBuffer = class(TMemoryStream)
