@@ -128,7 +128,7 @@ type
     fSessionId: Integer;
     fCtxMode: TIdSecCtxMode;
     procedure DestroyContext;
-    function SetSSLMethod: PSSL_METHOD;
+    function GetSSLMethod: PSSL_METHOD;
     procedure SetVerifyMode(Mode: TIdSecVerifyModeSet; CheckRoutine: Boolean);
     function GetVerifyMode: TIdSecVerifyModeSet;
     procedure InitContext(CtxMode: TIdSecCtxMode);
@@ -609,7 +609,6 @@ const
                          TLS1_2_VERSION,  {sslvTLSv1_2}
                          TLS1_3_VERSION); {sslvTLSv1_3}
 var
-  SSLMethod: PSSL_METHOD;
   error: TIdC_INT;
   v: TIdSecVersion;
 //  pCAname: PSTACK_X509_NAME;
@@ -627,14 +626,13 @@ begin
     end
   end;
   // get SSL method function (SSL2, SSL23, SSL3, TLS)
-  SSLMethod := SetSSLMethod;
-  // create new SSL context
-  fContext := SSL_CTX_new(SSLMethod);
+  // and create new SSL context
+  fContext := SSL_CTX_new(GetSSLMethod);
   if fContext = nil then begin
     EIdOSSLCreatingContextError.RaiseException(RSSSLCreatingContextError);
   end;
 
-  //set SSL Versions we will use
+  //set min and max SSL Versions we will aloow
   if HasTLS_method then
   begin
     if SSLVersions <> [] then
@@ -856,7 +854,7 @@ begin
 end;
 }
 
-function TIdSecContext.SetSSLMethod: PSSL_METHOD;
+function TIdSecContext.GetSSLMethod: PSSL_METHOD;
 begin
   Result := nil;
   if fMode = sslmUnassigned then begin

@@ -85,7 +85,6 @@ type
     fVerifyDirs: String;
     fCipherList: String;
     procedure AssignTo(Destination: TPersistent); override;
-    procedure SetSSLVersions(const AValue : TIdSecVersions);
   public
     constructor Create;
     // procedure Assign(ASource: TPersistent); override;
@@ -96,7 +95,7 @@ type
     property DHParamsFile: String read fsDHParamsFile write fsDHParamsFile;
     property Method: TIdSecVersion read fMethod write fMethod default DEF_SSLVERSION; {ignored with OpenSSL 1.1.0 or later}
     property SSLVersions : TIdSecVersions read fSSLVersions
-                                          write SetSSLVersions
+                                          write fSSLVersions
                                           default DEF_SSLVERSIONS;  {SSLVersions is only used to determine min version with OpenSSL 1.1.0 or later}
     property Mode: TIdSecMode read fMode write fMode;
     property VerifyMode: TIdSecVerifyModeSet read fVerifyMode write fVerifyMode;
@@ -124,45 +123,6 @@ begin
   fMethod := DEF_SSLVERSION;
   fSSLVersions := DEF_SSLVERSIONS;
   fUseSystemRootCertificateStore := true;
-end;
-
-procedure TIdSecOptions.SetSSLVersions(const AValue: TIdSecVersions);
-begin
-  fSSLVersions := AValue;
-  Exit;
-  if (GetOwner <> nil) and (GetOwner is TComponent) and
-    (csLoading in TComponent(GetOwner).ComponentState) then Exit;
-
-  if fSSLVersions = [sslvSSLv2] then begin
-    fMethod := sslvSSLv2;
-  end
-  else if fSSLVersions = [sslvSSLv3] then begin
-    fMethod := sslvSSLv3;
-  end
-  else if fSSLVersions = [sslvTLSv1] then begin
-    fMethod := sslvTLSv1;
-  end
-  else if fSSLVersions = [sslvTLSv1_1 ] then begin
-    fMethod := sslvTLSv1_1;
-  end
-  else if fSSLVersions = [sslvTLSv1_2 ] then begin
-    fMethod := sslvTLSv1_2;
-  end
-  else if fSSLVersions = [sslvTLSv1_3 ] then begin
-    if HasTLS_method  then
-      fMethod := sslvTLSv1_3
-    else
-      fMethod := sslvTLSv1_2;
-  end
-  else begin
-    fMethod := sslvSSLv23;
-    if sslvSSLv23 in fSSLVersions then begin
-      Exclude(fSSLVersions, sslvSSLv23);
-      if fSSLVersions = [] then begin
-        fSSLVersions := [sslvSSLv2,sslvSSLv3,sslvTLSv1,sslvTLSv1_1,sslvTLSv1_2];
-      end;
-    end;
-  end;
 end;
 
 procedure TIdSecOptions.AssignTo(Destination: TPersistent);
