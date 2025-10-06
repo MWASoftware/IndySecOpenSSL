@@ -119,6 +119,14 @@ const
   {$ENDIF}
 {$ifend}
 
+{$if not declared(DirectorySeparator)}
+  {$IFDEF POSIX}
+  const DirectorySeparator = '/';
+  {$ELSE}
+  DirectorySeparator = '\';
+  {$ENDIF}
+{$ifend}
+
 type
   {$IFDEF FPC}
   TOpenSSL_C_LONG  = cLong;
