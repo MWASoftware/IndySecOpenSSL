@@ -8,15 +8,14 @@ interface
 
 uses
   {$IFDEF FPC}
-  Classes, SysUtils,{$IFDEF WINDOWS}Windows, {$ENDIF} StdCtrls, Forms,
+  Classes, SysUtils,{$IFDEF WINDOWS}Windows, {$ENDIF} StdCtrls, Forms, SyncObjs,
   {$ELSE}
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, System.SyncObjs,
   {$ENDIF}
-  IdIOHandler, IdIOHandlerSocket, IdIOHandlerStack, IdSSL, IdSecOpenSSL, IdTCPConnection,
-  IdTCPClient, IdHTTP, IdServerIOHandler, IdBaseComponent, IdComponent,
+  IdIOHandler, IdIOHandlerStack, IdSSL, IdSecOpenSSL, IdHTTP, IdComponent,
   IdCustomTCPServer, IdCustomHTTPServer, IdHTTPServer, IdSecOpenSSLX509,
-  IdContext, IdGlobal, IdSecOpenSSLSocket, IdCTypes, IdSecOpenSSLAPI;
+  IdContext, IdGlobal, IdSecOpenSSLSocket,  IdSecOpenSSLAPI;
 
 {$IFNDEF FPC}
   const
@@ -51,6 +50,7 @@ type
     { Private declarations }
     FClosing: boolean;
     FServerMsgQueue: TStrings;
+    FServerMsgLock: TCriticalSection;
     procedure CheckServerMsgs;
     procedure Add2LogFromServer(AMsg: String);
     procedure DoTest;
@@ -121,11 +121,13 @@ constructor TForm1.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
   FServerMsgQueue := TStringList.Create;
+  FServerMsgLock := TCriticalSection.Create;
 end;
 
 destructor TForm1.Destroy;
 begin
   if assigned(FServerMsgQueue) then FServerMsgQueue.Free;
+  if assigned(FServerMsgLock) then FServerMsgLock.Free;
   inherited Destroy;
 end;
 
@@ -222,15 +224,25 @@ procedure TForm1.CheckServerMsgs;
 begin
   if FServerMsgQueue <> nil then
   begin
-    if FServerMsgQueue.Count > 0 then
-      Memo1.Lines.AddStrings(FServerMsgQueue);
-    FServerMsgQueue.Clear;
+    FServerMsgLock.Enter;
+    try
+      if FServerMsgQueue.Count > 0 then
+        Memo1.Lines.AddStrings(FServerMsgQueue);
+      FServerMsgQueue.Clear;
+    finally
+      FServerMsgLock.Leave;
+    end;
   end;
 end;
 
 procedure TForm1.Add2LogFromServer(AMsg: String);
 begin
-  FServerMsgQueue.Add(AMsg);
+  FServerMsgLock.Enter;
+  try
+    FServerMsgQueue.Add(AMsg);
+  finally
+    FServerMsgLock.Leave;
+  end;
 end;
 
 function TForm1.SSLServerHandlerVerifyPeer(Certificate: TIdX509;

@@ -5,7 +5,7 @@ unit IdSecRegisterSSL;
 interface
 
 uses
-  Classes , SysUtils, IdDsnCoreResourceStrings ,
+  Classes , SysUtils,
   {$IFDEF FPC}
   LResources,
   {$ENDIF}
@@ -17,7 +17,7 @@ implementation
 
 resourcestring
 
-  RSSec = ' - Security';
+  RSSec = 'IndySec';
 
 {$IFNDEF FPC}
 {$R IdSecRegisterOpenSSL.dcr}
@@ -26,12 +26,12 @@ resourcestring
 procedure Register;
 begin
   {$IFDEF FPC}
-  RegisterComponents(RSRegIndyIOHandlers+RSSec, [
+  RegisterComponents(RSSec, [
   TIdSecServerIOHandlerSSLOpenSSL,
   TIdSecIOHandlerSocketOpenSSL
   ]);
   {$ELSE}
-  RegisterComponents(RSRegIndyIOHandlers+RSSec, [
+  RegisterComponents(RSSec, [
   TIdSecServerIOHandlerSSLOpenSSL,
   TIdSecIOHandlerSocketOpenSSL
   ]);
