@@ -1,11 +1,19 @@
 unit TestServer;
 
+{$IFDEF FPC}
+{$MODE Delphi}
+{$ENDIF}
+
 interface
 
 uses
+  {$IFDEF FPC}
+  Classes, SysUtils,{$IFDEF WINDOWS}Windows, {$ENDIF} StdCtrls, Forms,
+  {$ELSE}
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, IdIOHandler,
-  IdIOHandlerSocket, IdIOHandlerStack, IdSSL, IdSecOpenSSL, IdTCPConnection,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
+  {$ENDIF}
+  IdIOHandler, IdIOHandlerSocket, IdIOHandlerStack, IdSSL, IdSecOpenSSL, IdTCPConnection,
   IdTCPClient, IdHTTP, IdServerIOHandler, IdBaseComponent, IdComponent,
   IdCustomTCPServer, IdCustomHTTPServer, IdHTTPServer, IdSecOpenSSLX509,
   IdContext, IdGlobal;
@@ -50,7 +58,11 @@ var
 
 implementation
 
+{$IFDEF FPC}
+{$R *.lfm}
+{$ELSE}
 {$R *.dfm}
+{$ENDIF}
 
 uses IdSecOpenSSLOptions, IdSecOpenSSLAPI;
 
@@ -78,7 +90,7 @@ const
   MyRootCertFile = RootCertificatesDir + DirectorySeparator + 'ca.pem';
   MyCertFile = CertsDir + DirectorySeparator+ 'myserver.pem';
   MyKeyFile = CertsDir + DirectorySeparator + 'myserverkey.pem';
-  MyClientCertPackage =CertsDir + DirectorySeparator + 'myclient.p12';
+  MyClientCertPackage = CertsDir + DirectorySeparator + 'myclient.p12';
 
 
 type
@@ -211,6 +223,8 @@ begin
   end;
   IdHTTPServer1.Active := true;
   Sleep(1000); {let server get going}
+  Memo1.Lines.Add('Getting '+remoteSource+' with verification');
+  Memo1.Lines.Add('');
   DoTest;
   IdHTTPServer1.Active := false;
   IdSecIOHandlerSocketOpenSSL1.Close;
@@ -224,10 +238,14 @@ begin
   with IdSecServerIOHandlerSSLOpenSSL1 do
   begin
     SSLOptions.VerifyMode := [sslvrfPeer,sslvrfFailIfNoPeerCert];
-    SSLOptions.VerifyDirs := '..\cacerts';
+    SSLOptions.VerifyDirs := RootCertificatesDir;
+    SSLOptions.VerifyDepth := 100;
+    SSLOptions.UseSystemRootCertificateStore := false;
   end;
   IdHTTPServer1.Active := true;
   Sleep(1000); {let server get going}
+  Memo1.Lines.Add('Getting '+remoteSource+' with verification and client verification');
+  Memo1.Lines.Add('');
   DoTest;
   IdHTTPServer1.Active := false;
   IdSecIOHandlerSocketOpenSSL1.Close;
