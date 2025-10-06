@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = -7
+  Left = 1040
   Height = 441
-  Top = 150
+  Top = 294
   Width = 624
   Caption = 'Example OpenSSL Server'
   ClientHeight = 441
@@ -22,6 +22,7 @@ object Form1: TForm1
     Lines.Strings = (
       'Memo1'
     )
+    ScrollBars = ssAutoVertical
     TabOrder = 0
   end
   object Button1: TButton
@@ -37,26 +38,27 @@ object Form1: TForm1
   object IdHTTPServer1: TIdHTTPServer
     Bindings = <>
     DefaultPort = 8080
-    IOHandler = IdSecServerIOHandlerSSLOpenSSL1
+    IOHandler = SSLServerHandler
     OnQuerySSLPort = IdHTTPServer1QuerySSLPort
     OnCommandGet = IdHTTPServer1CommandGet
     Left = 96
     Top = 72
   end
-  object IdSecServerIOHandlerSSLOpenSSL1: TIdSecServerIOHandlerSSLOpenSSL
+  object SSLServerHandler: TIdSecServerIOHandlerSSLOpenSSL
     SSLOptions.KeyFile = '../certs/myserverkey.pem'
     SSLOptions.Method = sslvTLSv1_3
+    SSLOptions.SSLVersions = [sslvTLSv1_3]
     SSLOptions.Mode = sslmServer
     SSLOptions.VerifyMode = []
     SSLOptions.VerifyDepth = 0
-    OnStatusInfo = IdSecServerIOHandlerSSLOpenSSL1StatusInfo
-    OnGetPassword = IdSecIOHandlerSocketOpenSSL1GetPassword
-    OnVerifyPeer = IdSecServerIOHandlerSSLOpenSSL1VerifyPeer
+    OnStatusInfo = SSLServerHandlerStatusInfo
+    OnGetPassword = SSLClientHandlerGetPassword
+    OnVerifyPeer = SSLServerHandlerVerifyPeer
     Left = 96
     Top = 160
   end
   object IdHTTP1: TIdHTTP
-    IOHandler = IdSecIOHandlerSocketOpenSSL1
+    IOHandler = SSLClientHandler
     HandleRedirects = True
     ProxyParams.BasicAuthentication = False
     ProxyParams.ProxyPort = 0
@@ -75,18 +77,19 @@ object Form1: TForm1
     Left = 344
     Top = 80
   end
-  object IdSecIOHandlerSocketOpenSSL1: TIdSecIOHandlerSocketOpenSSL
+  object SSLClientHandler: TIdSecIOHandlerSocketOpenSSL
     MaxLineAction = maException
     Port = 0
     DefaultPort = 0
     SSLOptions.Method = sslvTLSv1_3
+    SSLOptions.SSLVersions = [sslvTLSv1_3]
     SSLOptions.Mode = sslmClient
     SSLOptions.VerifyMode = [sslvrfPeer, sslvrfFailIfNoPeerCert]
     SSLOptions.VerifyDepth = 100
     SSLOptions.VerifyDirs = '..\cacerts'
     SSLOptions.UseSystemRootCertificateStore = False
-    OnGetPassword = IdSecIOHandlerSocketOpenSSL1GetPassword
-    OnVerifyPeer = IdSecIOHandlerSocketOpenSSL1VerifyPeer
+    OnGetPassword = SSLClientHandlerGetPassword
+    OnVerifyPeer = SSLClientHandlerVerifyPeer
     Left = 344
     Top = 168
   end

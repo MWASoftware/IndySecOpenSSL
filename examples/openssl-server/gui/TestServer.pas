@@ -16,37 +16,45 @@ uses
   IdIOHandler, IdIOHandlerSocket, IdIOHandlerStack, IdSSL, IdSecOpenSSL, IdTCPConnection,
   IdTCPClient, IdHTTP, IdServerIOHandler, IdBaseComponent, IdComponent,
   IdCustomTCPServer, IdCustomHTTPServer, IdHTTPServer, IdSecOpenSSLX509,
-  IdContext, IdGlobal;
+  IdContext, IdGlobal, IdSecOpenSSLSocket, IdCTypes;
 
+{$IFNDEF FPC}
   const
     WM_DOTEST = WM_USER;
-
+{$ENDIF}
 
 type
+
+  { TForm1 }
+
   TForm1 = class(TForm)
     Memo1: TMemo;
     Button1: TButton;
     IdHTTPServer1: TIdHTTPServer;
-    IdSecServerIOHandlerSSLOpenSSL1: TIdSecServerIOHandlerSSLOpenSSL;
+    SSLServerHandler: TIdSecServerIOHandlerSSLOpenSSL;
     IdHTTP1: TIdHTTP;
-    IdSecIOHandlerSocketOpenSSL1: TIdSecIOHandlerSocketOpenSSL;
+    SSLClientHandler: TIdSecIOHandlerSocketOpenSSL;
     procedure Button1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
-    procedure IdSecIOHandlerSocketOpenSSL1GetPassword(var Password: string);
-    function IdSecIOHandlerSocketOpenSSL1VerifyPeer(Certificate: TIdX509;
+    procedure SSLClientHandlerGetPassword(var Password: string);
+    function SSLClientHandlerVerifyPeer(Certificate: TIdX509;
       AOk: Boolean; ADepth, AError: Integer): Boolean;
     procedure IdHTTPServer1QuerySSLPort(APort: TIdPort; var VUseSSL: Boolean);
     procedure IdHTTPServer1CommandGet(AContext: TIdContext;
       ARequestInfo: TIdHTTPRequestInfo; AResponseInfo: TIdHTTPResponseInfo);
-    function IdSecServerIOHandlerSSLOpenSSL1VerifyPeer(Certificate: TIdX509;
+    function SSLServerHandlerVerifyPeer(Certificate: TIdX509;
       AOk: Boolean; ADepth, AError: Integer): Boolean;
-    procedure IdSecServerIOHandlerSSLOpenSSL1StatusInfo(const AMsg: string);
+    procedure SSLServerHandlerStatusInfo(const AMsg: string);
   private
     { Private declarations }
     FClosing: boolean;
     procedure DoTest;
+    {$IFDEF FPC}
+    procedure OnDoTest(Data: PtrInt);
+    {$ELSE}
     procedure OnDoTest(var Msg:TMessage); message WM_DOTEST;
+    {$ENDIF}
     procedure ShowCertificate(Certificate : TIdX509);
     function CertificateType(Certificate: TIdX509): string;
   public
@@ -121,8 +129,6 @@ begin
   ResponseStream := TResponseTextBuffer.Create;
   try
     IdHTTP1.Get(remoteSource,ResponseStream);
-    Memo1.Lines.Add('Using SSL/TLS Version ' + IdSecIOHandlerSocketOpenSSL1.SSLSocket.SSLProtocolVersionStr+ ' with cipher '+
-                                           IdSecIOHandlerSocketOpenSSL1.SSLSocket.Cipher.Name);
     if IdHTTP1.ResponseCode = 200 then
     begin
       Memo1.Lines.Add('Remote Source returned:');
@@ -145,7 +151,11 @@ end;
 procedure TForm1.FormShow(Sender: TObject);
 begin
   Memo1.Lines.Clear;
+  {$IFDEF FPC}
+  Application.QueueAsyncCall(OnDoTest,0);
+  {$ELSE}
   PostMessage(self.Handle,WM_DOTEST,0,0);
+  {$ENDIF}
 end;
 
 procedure TForm1.IdHTTPServer1CommandGet(AContext: TIdContext;
@@ -170,12 +180,12 @@ begin
   VUseSSL := (APort = 8080);
 end;
 
-procedure TForm1.IdSecIOHandlerSocketOpenSSL1GetPassword(var Password: string);
+procedure TForm1.SSLClientHandlerGetPassword(var Password: string);
 begin
   Password := myPassword;
 end;
 
-function TForm1.IdSecIOHandlerSocketOpenSSL1VerifyPeer(Certificate: TIdX509;
+function TForm1.SSLClientHandlerVerifyPeer(Certificate: TIdX509;
   AOk: Boolean; ADepth, AError: Integer): Boolean;
 begin
   Memo1.Lines.Add('');
@@ -188,12 +198,12 @@ begin
   Result := AOK;
 end;
 
-procedure TForm1.IdSecServerIOHandlerSSLOpenSSL1StatusInfo(const AMsg: string);
+procedure TForm1.SSLServerHandlerStatusInfo(const AMsg: string);
 begin
   Memo1.Lines.Add('Server Status Info: '+AMsg);
 end;
 
-function TForm1.IdSecServerIOHandlerSSLOpenSSL1VerifyPeer(Certificate: TIdX509;
+function TForm1.SSLServerHandlerVerifyPeer(Certificate: TIdX509;
   AOk: Boolean; ADepth, AError: Integer): Boolean;
 begin
   Memo1.Lines.Add('');
@@ -204,10 +214,13 @@ begin
    Memo1.Lines.Add(CertificateType(Certificate)+' Certificate verification failed');
   ShowCertificate(certificate);
   Result := AOK;
-  Application.ProcessMessages;
 end;
 
-procedure TForm1.OnDoTest(var Msg: TMessage);
+{$IFDEF FPC}
+procedure TForm1.OnDoTest(Data: PtrInt);
+{$ELSE}
+procedure TForm1.OnDoTest(var Msg:TMessage);
+{$ENDIF}
 begin
   Memo1.Lines.Add('Using '+OpenSSLVersion);
   if GetIOpenSSLDDL <> nil then
@@ -215,7 +228,14 @@ begin
       Memo1.Lines.Add('LibCrypto: '+GetIOpenSSLDDL.GetLibCryptoFilePath);
       Memo1.Lines.Add('LibSSL: '+GetIOpenSSLDDL.GetLibSSLFilePath);
     end;
-  with IdSecServerIOHandlerSSLOpenSSL1 do
+  Memo1.Lines.Add('Working Directory = ' + GetCurrentDir);
+  with SSLClientHandler do
+  begin
+    SSLOptions.VerifyDirs := RootCertificatesDir;
+    SSLOptions.VerifyDepth := 100;
+    SSLOptions.UseSystemRootCertificateStore := false;
+  end;
+  with SSLServerHandler do
   begin
     SSLOptions.RootCertFile := MyRootCertFile;
     SSLOptions.CertFile := MyCertFile;
@@ -227,15 +247,15 @@ begin
   Memo1.Lines.Add('');
   DoTest;
   IdHTTPServer1.Active := false;
-  IdSecIOHandlerSocketOpenSSL1.Close;
+  SSLClientHandler.Close;
 
   {Update SSL Options for client verification}
-  with IdSecIOHandlerSocketOpenSSL1 do
+  with SSLClientHandler do
   begin
     SSLOptions.CertFile := MyClientCertPackage;
     SSLOptions.KeyFile := MyClientCertPackage;
   end;
-  with IdSecServerIOHandlerSSLOpenSSL1 do
+  with SSLServerHandler do
   begin
     SSLOptions.VerifyMode := [sslvrfPeer,sslvrfFailIfNoPeerCert];
     SSLOptions.VerifyDirs := RootCertificatesDir;
@@ -248,7 +268,7 @@ begin
   Memo1.Lines.Add('');
   DoTest;
   IdHTTPServer1.Active := false;
-  IdSecIOHandlerSocketOpenSSL1.Close;
+  SSLClientHandler.Close;
 end;
 
 procedure TForm1.ShowCertificate(Certificate: TIdX509);
@@ -260,7 +280,6 @@ begin
   Memo1.Lines.Add('Not Before: '+DateTimeToStr(Certificate.notBefore));
   Memo1.Lines.Add('Not After: '+DateTimeToStr(Certificate.notAfter));
   Memo1.Lines.Add('');
-  Application.ProcessMessages;
 end;
 
 { TResponseTextBuffer }
