@@ -9,6 +9,15 @@
         <Projects Include="openssl-client\cli\delphi_openssl_client.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="openssl-client\gui\delphi_openssl_gui_client.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="openssl-server\cli\delphi_openssl_server.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="openssl-server\gui\delphi_openssl_gui_server.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -35,14 +44,41 @@
     <Target Name="delphi_openssl_client:Make">
         <MSBuild Projects="openssl-client\cli\delphi_openssl_client.dproj" Targets="Make"/>
     </Target>
+    <Target Name="delphi_openssl_gui_client">
+        <MSBuild Projects="openssl-client\gui\delphi_openssl_gui_client.dproj"/>
+    </Target>
+    <Target Name="delphi_openssl_gui_client:Clean">
+        <MSBuild Projects="openssl-client\gui\delphi_openssl_gui_client.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="delphi_openssl_gui_client:Make">
+        <MSBuild Projects="openssl-client\gui\delphi_openssl_gui_client.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="delphi_openssl_server">
+        <MSBuild Projects="openssl-server\cli\delphi_openssl_server.dproj"/>
+    </Target>
+    <Target Name="delphi_openssl_server:Clean">
+        <MSBuild Projects="openssl-server\cli\delphi_openssl_server.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="delphi_openssl_server:Make">
+        <MSBuild Projects="openssl-server\cli\delphi_openssl_server.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="delphi_openssl_gui_server">
+        <MSBuild Projects="openssl-server\gui\delphi_openssl_gui_server.dproj"/>
+    </Target>
+    <Target Name="delphi_openssl_gui_server:Clean">
+        <MSBuild Projects="openssl-server\gui\delphi_openssl_gui_server.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="delphi_openssl_gui_server:Make">
+        <MSBuild Projects="openssl-server\gui\delphi_openssl_gui_server.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="IndySecOpenSSL;delphi_openssl_client"/>
+        <CallTarget Targets="IndySecOpenSSL;delphi_openssl_client;delphi_openssl_gui_client;delphi_openssl_server;delphi_openssl_gui_server"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="IndySecOpenSSL:Clean;delphi_openssl_client:Clean"/>
+        <CallTarget Targets="IndySecOpenSSL:Clean;delphi_openssl_client:Clean;delphi_openssl_gui_client:Clean;delphi_openssl_server:Clean;delphi_openssl_gui_server:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="IndySecOpenSSL:Make;delphi_openssl_client:Make"/>
+        <CallTarget Targets="IndySecOpenSSL:Make;delphi_openssl_client:Make;delphi_openssl_gui_client:Make;delphi_openssl_server:Make;delphi_openssl_gui_server:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
