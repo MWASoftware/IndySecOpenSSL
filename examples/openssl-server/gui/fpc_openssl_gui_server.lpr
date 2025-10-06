@@ -1,4 +1,4 @@
-program fpc_openssl_server;
+program fpc_openssl_gui_server;
 
 uses
   {$IFDEF UNIX}
