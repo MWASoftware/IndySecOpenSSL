@@ -163,10 +163,8 @@ begin
     ResponseStream := TResponseTextBuffer.Create;
     try
       httpClient.Get(remoteSource,ResponseStream);
-      {$IFNDEF LEGACYVERSION}
       if assigned (FSSLHandler.SSLSocket) then
         writeln('Using SSL/TLS Version ' + FSSLHandler.SSLSocket.SSLProtocolVersionStr, ' with cipher ',FSSLHandler.SSLSocket.Cipher.Name);
-      {$ENDIF}
       Result := httpClient.ResponseCode;
       if Result = 200 then
       begin
@@ -188,9 +186,6 @@ var IOHandler: TIdSecIOHandlerSocketOpenSSL;
 begin
   IOHandler := TIdSecIOHandlerSocketOpenSSL.Create(AOwner);
   IOHandler.SSLOptions.Mode:= sslmClient;
-  {$IFDEF LEGACYVERSION}
-  IOHandler.SSLOptions.Method := sslvTLSv1_2;
-  {$ENDIF}
   {Linux: VerifyDirs set up to defaults
    Windows: Default cert store copied into OpenSSL X509 store}
   if not FNoVerification then

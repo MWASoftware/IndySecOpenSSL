@@ -8,7 +8,7 @@ interface
 
 uses
   {$IFDEF FPC}
-  Classes, Windows, Forms, Sysutils, StdCtrls,
+  Classes, {$IFDEF WINDOWS}Windows, {$ENDIF}Forms, Sysutils, StdCtrls,
   {$ELSE}
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
@@ -17,8 +17,10 @@ uses
   IdIOHandlerStack, IdSSL, IdSecOpenSSL, IdBaseComponent, IdComponent,
   IdTCPConnection, IdTCPClient, IdHTTP,  IdSecOpenSSLX509;
 
+{$IFNDEF FPC}
 const
   WM_DOTEST = WM_USER;
+{$ENDIF}
 
 const
   remoteSource = 'https://test.mwasoftware.co.uk/openssltest.txt';
@@ -40,7 +42,11 @@ type
     { Private declarations }
     FClosing: boolean;
     procedure ShowCertificate(Certificate : TIdX509);
+    {$IFDEF FPC}
+    procedure OnDoTest(Data: PtrInt);
+    {$ELSE}
     procedure OnDoTest(var Msg:TMessage); message WM_DOTEST;
+    {$ENDIF}
     function CertificateType(Certificate: TIdX509): string;
     procedure GetResponse;
   public
@@ -52,7 +58,7 @@ var
 
 implementation
 
-uses IdSecOpenSSLOptions;
+uses IdSecOpenSSLOptions, IdSecOpenSSLAPI;
 
 {$IFDEF FPC}
 {$R *.lfm}
@@ -91,7 +97,11 @@ end;
 procedure TForm1.FormShow(Sender: TObject);
 begin
   Memo1.Lines.Clear;
+  {$IFDEF FPC}
+  Application.QueueAsyncCall(OnDoTest,0);
+  {$ELSE}
   PostMessage(self.Handle,WM_DOTEST,0,0);
+  {$ENDIF}
 end;
 
 procedure TForm1.GetResponse;
@@ -136,8 +146,19 @@ begin
   Result := AOK;
 end;
 
+{$IFDEF FPC}
+procedure TForm1.OnDoTest(Data: PtrInt);
+{$ELSE}
 procedure TForm1.OnDoTest(var Msg: TMessage);
+{$ENDIF}
 begin
+  Memo1.Lines.Add('Using '+OpenSSLVersion);
+  if GetIOpenSSLDDL <> nil then
+    begin
+      Memo1.Lines.Add('LibCrypto: '+GetIOpenSSLDDL.GetLibCryptoFilePath);
+      Memo1.Lines.Add('LibSSL: '+GetIOpenSSLDDL.GetLibSSLFilePath);
+    end;
+  Memo1.Lines.Add('Working Directory = ' + GetCurrentDir);
 
   Memo1.Lines.Add('Getting '+remoteSource+' with no verification');
 
