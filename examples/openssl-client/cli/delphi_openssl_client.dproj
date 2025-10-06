@@ -71,7 +71,7 @@
     <PropertyGroup Condition="'$(Base)'!=''">
         <SanitizedProjectName>delphi_openssl_client</SanitizedProjectName>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
-        <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
+        <DCC_DcuOutput>.</DCC_DcuOutput>
         <DCC_ExeOutput>.\$(Platform)\$(Config)</DCC_ExeOutput>
         <DCC_E>false</DCC_E>
         <DCC_N>false</DCC_N>
@@ -79,6 +79,9 @@
         <DCC_F>false</DCC_F>
         <DCC_K>false</DCC_K>
         <Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
+        <DCC_UseMSBuildExternally>true</DCC_UseMSBuildExternally>
+        <VerInfo_Locale>2057</VerInfo_Locale>
+        <VerInfo_Keys>CompanyName=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Android)'!=''">
         <VerInfo_Keys>package=com.embarcadero.$(MSBuildProjectName);label=$(MSBuildProjectName);versionCode=1;versionName=1.0.0;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
@@ -95,7 +98,6 @@
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
         <DCC_ConsoleTarget>true</DCC_ConsoleTarget>
         <DCC_UsePackage>rtl;vcl;vclactnband;vcldsnap;vclx;bindcomp;tethering;svnui;appanalytics;dsnap;bindcompvcl;vclimg;vcltouch;VclSmp;vcldb;bindcompfmx;svn;bindengine;dbrtl;fmx;fmxdae;xmlrtl;fmxobj;vclwinx;fmxase</DCC_UsePackage>
         <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
@@ -138,7 +140,6 @@
         <Debugger_DebugSourcePath>C:\Users\A User\projects\Indy\Lib\OpenSSL\opensslHdrs\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
         <UsePackages>true</UsePackages>
         <DCC_ExeOutput>.</DCC_ExeOutput>
-        <DCC_DcuOutput>$(Platform)\$(Config)</DCC_DcuOutput>
         <DCC_UsePackage>IndySystem290;IndyCore290;IndyProtocols290;$(DCC_UsePackage)</DCC_UsePackage>
         <Debugger_HostApplication>C:\Users\tony\SoftwareDev\IndyTLS-OpenSSL\Test\openssl-server\delphi_openssl_server.exe</Debugger_HostApplication>
         <VerInfo_Locale>1033</VerInfo_Locale>

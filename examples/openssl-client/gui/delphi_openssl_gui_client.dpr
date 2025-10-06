@@ -1,4 +1,4 @@
-program delphi_openssl_client;
+program delphi_openssl_gui_client;
 
 uses
   Vcl.Forms,

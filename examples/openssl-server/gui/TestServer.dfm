@@ -24,6 +24,7 @@ object Form1: TForm1
     Anchors = [akLeft, akTop, akRight, akBottom]
     Lines.Strings = (
       'Memo1')
+    ScrollBars = ssVertical
     TabOrder = 0
   end
   object Button1: TButton
@@ -39,27 +40,27 @@ object Form1: TForm1
   object IdHTTPServer1: TIdHTTPServer
     Bindings = <>
     DefaultPort = 8080
-    IOHandler = IdSecServerIOHandlerSSLOpenSSL1
+    IOHandler = SSLServerHandler
     OnQuerySSLPort = IdHTTPServer1QuerySSLPort
     OnCommandGet = IdHTTPServer1CommandGet
     Left = 96
     Top = 72
   end
-  object IdSecServerIOHandlerSSLOpenSSL1: TIdSecServerIOHandlerSSLOpenSSL
+  object SSLServerHandler: TIdSecServerIOHandlerSSLOpenSSL
     SSLOptions.KeyFile = '../certs/myserverkey.pem'
     SSLOptions.Method = sslvTLSv1_3
     SSLOptions.Mode = sslmServer
     SSLOptions.VerifyMode = []
     SSLOptions.VerifyDepth = 0
     SSLOptions.UseSystemRootCertificateStore = False
-    OnStatusInfo = IdSecServerIOHandlerSSLOpenSSL1StatusInfo
-    OnGetPassword = IdSecIOHandlerSocketOpenSSL1GetPassword
-    OnVerifyPeer = IdSecServerIOHandlerSSLOpenSSL1VerifyPeer
+    OnStatusInfo = SSLServerHandlerStatusInfo
+    OnGetPassword = SSLClientHandlerGetPassword
+    OnVerifyPeer = SSLServerHandlerVerifyPeer
     Left = 96
     Top = 160
   end
   object IdHTTP1: TIdHTTP
-    IOHandler = IdSecIOHandlerSocketOpenSSL1
+    IOHandler = SSLCLientHandler
     ProxyParams.BasicAuthentication = False
     ProxyParams.ProxyPort = 0
     Request.CharSet = 'utf-8'
@@ -77,7 +78,7 @@ object Form1: TForm1
     Left = 344
     Top = 80
   end
-  object IdSecIOHandlerSocketOpenSSL1: TIdSecIOHandlerSocketOpenSSL
+  object SSLCLientHandler: TIdSecIOHandlerSocketOpenSSL
     MaxLineAction = maException
     Port = 0
     DefaultPort = 0
@@ -88,8 +89,9 @@ object Form1: TForm1
     SSLOptions.VerifyDepth = 100
     SSLOptions.VerifyDirs = '..\cacerts'
     SSLOptions.UseSystemRootCertificateStore = False
-    OnGetPassword = IdSecIOHandlerSocketOpenSSL1GetPassword
-    OnVerifyPeer = IdSecIOHandlerSocketOpenSSL1VerifyPeer
+    OnStatusInfo = SSLClientHandlerStatusInfo
+    OnGetPassword = SSLClientHandlerGetPassword
+    OnVerifyPeer = SSLClientHandlerVerifyPeer
     Left = 344
     Top = 168
   end

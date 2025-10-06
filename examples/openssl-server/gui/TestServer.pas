@@ -50,6 +50,9 @@ type
   private
     { Private declarations }
     FClosing: boolean;
+    FServerMsgQueue: TStrings;
+    procedure CheckServerMsgs;
+    procedure Add2LogFromServer(AMsg: String);
     procedure DoTest;
     {$IFDEF FPC}
     procedure OnDoTest(Data: PtrInt);
@@ -57,9 +60,12 @@ type
     procedure OnDoTest(var Msg:TMessage); message WM_DOTEST;
     {$ENDIF}
     procedure ShowCertificate(Certificate : TIdX509);
+    procedure ShowServerCertificate(Certificate : TIdX509);
     function CertificateType(Certificate: TIdX509): string;
   public
     { Public declarations }
+    constructor Create(AOwner: TComponent); override;
+    destructor Destroy; override;
   end;
 
 var
@@ -124,12 +130,25 @@ begin
     Result := 'Remote';
 end;
 
+constructor TForm1.Create(AOwner: TComponent);
+begin
+  inherited Create(AOwner);
+  FServerMsgQueue := TStringList.Create;
+end;
+
+destructor TForm1.Destroy;
+begin
+  if assigned(FServerMsgQueue) then FServerMsgQueue.Free;
+  inherited Destroy;
+end;
+
 procedure TForm1.DoTest;
 var ResponseStream: TResponseTextBuffer;
 begin
   ResponseStream := TResponseTextBuffer.Create;
   try
     IdHTTP1.Get(remoteSource,ResponseStream);
+    CheckServerMsgs;
     if IdHTTP1.ResponseCode = 200 then
     begin
       Memo1.Lines.Add('Remote Source returned:');
@@ -140,6 +159,7 @@ begin
   finally
     ResponseStream.Free;
   end;
+  CheckServerMsgs;
   Application.ProcessMessages;
 end;
 
@@ -189,6 +209,7 @@ end;
 procedure TForm1.SSLClientHandlerStatusInfo(const AMsg: String);
 begin
   Memo1.Lines.Add('Client Status Info: '+AMsg);
+  CheckServerMsgs;
 end;
 
 function TForm1.SSLClientHandlerVerifyPeer(Certificate: TIdX509;
@@ -201,24 +222,40 @@ begin
   else
    Memo1.Lines.Add(CertificateType(Certificate)+' Certificate verification failed');
   ShowCertificate(certificate);
+  CheckServerMsgs;
   Result := AOK;
 end;
 
 procedure TForm1.SSLServerHandlerStatusInfo(const AMsg: string);
 begin
-  Memo1.Lines.Add('Server Status Info: '+AMsg);
+  Add2LogFromServer('Server Status Info: '+AMsg);
+end;
+
+procedure TForm1.CheckServerMsgs;
+begin
+  if FServerMsgQueue <> nil then
+  begin
+    if FServerMsgQueue.Count > 0 then
+      Memo1.Lines.AddStrings(FServerMsgQueue);
+    FServerMsgQueue.Clear;
+  end;
+end;
+
+procedure TForm1.Add2LogFromServer(AMsg: String);
+begin
+  FServerMsgQueue.Add(AMsg);
 end;
 
 function TForm1.SSLServerHandlerVerifyPeer(Certificate: TIdX509;
   AOk: Boolean; ADepth, AError: Integer): Boolean;
 begin
-  Memo1.Lines.Add('');
-  Memo1.Lines.Add('Server Side Verification');
+  Add2LogFromServer('');
+  Add2LogFromServer('Server Side Verification');
   if AOK then
-   Memo1.Lines.Add(CertificateType(Certificate)+' Certificate verification succeeded')
+   Add2LogFromServer(CertificateType(Certificate)+' Certificate verification succeeded')
   else
-   Memo1.Lines.Add(CertificateType(Certificate)+' Certificate verification failed');
-  ShowCertificate(certificate);
+   Add2LogFromServer(CertificateType(Certificate)+' Certificate verification failed');
+  ShowServerCertificate(certificate);
   Result := AOK;
 end;
 
@@ -280,12 +317,23 @@ end;
 procedure TForm1.ShowCertificate(Certificate: TIdX509);
 begin
   Memo1.Lines.Add('');
-  Memo1.Lines.Add('X.509 Certificate Details');
+  Memo1.Lines.Add('X.509 Certificate Details (Client)');
   Memo1.Lines.Add('Subject: '+ Certificate.Subject.OneLine);
   Memo1.Lines.Add('Issuer: '+ Certificate.Issuer.OneLine);
   Memo1.Lines.Add('Not Before: '+DateTimeToStr(Certificate.notBefore));
   Memo1.Lines.Add('Not After: '+DateTimeToStr(Certificate.notAfter));
   Memo1.Lines.Add('');
+end;
+
+procedure TForm1.ShowServerCertificate(Certificate: TIdX509);
+begin
+  Add2LogFromServer('');
+  Add2LogFromServer('X.509 Certificate Details (Server)');
+  Add2LogFromServer('Subject: '+ Certificate.Subject.OneLine);
+  Add2LogFromServer('Issuer: '+ Certificate.Issuer.OneLine);
+  Add2LogFromServer('Not Before: '+DateTimeToStr(Certificate.notBefore));
+  Add2LogFromServer('Not After: '+DateTimeToStr(Certificate.notAfter));
+  Add2LogFromServer('');
 end;
 
 { TResponseTextBuffer }
