@@ -16,7 +16,7 @@ uses
   IdIOHandler, IdIOHandlerSocket, IdIOHandlerStack, IdSSL, IdSecOpenSSL, IdTCPConnection,
   IdTCPClient, IdHTTP, IdServerIOHandler, IdBaseComponent, IdComponent,
   IdCustomTCPServer, IdCustomHTTPServer, IdHTTPServer, IdSecOpenSSLX509,
-  IdContext, IdGlobal, IdSecOpenSSLSocket, IdCTypes;
+  IdContext, IdGlobal, IdSecOpenSSLSocket, IdCTypes, IdSecOpenSSLAPI;
 
 {$IFNDEF FPC}
   const
@@ -79,26 +79,13 @@ implementation
 {$R *.dfm}
 {$ENDIF}
 
-uses IdSecOpenSSLOptions, IdSecOpenSSLAPI;
+uses IdSecOpenSSLOptions;
 
 const
   myPassword = 'mypassword';
   remoteSource = 'https://localhost:8080/openssltest.txt';
   sGetException = 'Error: Status = %d returned when GETting %s';
-  {$if not declared(DirectorySeparator)}
-  {$IFDEF POSIX}
-  DirectorySeparator = '/';
-  {$ELSE}
-  DirectorySeparator = '\';
-  {$ENDIF}
-  {$ifend}
-  {$if not declared(LineEnding))}
-  {$IFDEF POSIX}
-  LineEnding = #$0A;
-  {$ELSE}
-  LineEnding = #$0D#$0A;
-  {$ENDIF}
-  {$ifend}
+  DefaultSSLDirs = '..' + DirectorySeparator + '..' + DirListDelimiter;
 
   RootCertificatesDir = '..' + DirectorySeparator + 'cacerts';
   CertsDir =  '..' + DirectorySeparator+ 'certs';
@@ -265,6 +252,9 @@ procedure TForm1.OnDoTest(Data: PtrInt);
 procedure TForm1.OnDoTest(var Msg:TMessage);
 {$ENDIF}
 begin
+  if GetIOpenSSLDDL <> nil then
+    GetIOpenSSLDDL.SetOpenSSLPath(DefaultSSLDirs);
+
   Memo1.Lines.Add('Using '+OpenSSLVersion);
   if GetIOpenSSLDDL <> nil then
     begin

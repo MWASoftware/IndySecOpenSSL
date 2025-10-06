@@ -29,15 +29,12 @@ interface
 
 uses
   Classes, SysUtils, {$IFDEF FPC}CustApp,{$ENDIF}IdIOHandler, IdHTTP,
-  IdSSL, IdSecOpenSSL, IdSecOpenSSLX509;
+  IdSSL, IdSecOpenSSL, IdSecOpenSSLX509, IdSecOpenSSLAPI;
 
 const
   remoteSource = 'https://test.mwasoftware.co.uk/openssltest.txt';
   sGetException = 'Error: Status = %d returned when GETting %s';
   rcAccept = 'Application/txt';
-  {$if not declared(DirectorySeparator)}
-  DirectorySeparator = '\';
-  {$ifend}
   {$IFDEF UNIX}
   SSLCertsDirs = '/etc/ssl/certs'      {Debian and friends}
                + ':/etc/pki/tls/certs' {Fedora/RHEL6}
@@ -46,6 +43,7 @@ const
                + ':/etc/pki/ca-trust'  {CENTOS/RHEL 7}
                + ':/var/ssl/certs'     {AIX}    ;
   {$ENDIF}
+  DefaultSSLDirs = '..' + DirectorySeparator + '..' + DirListDelimiter;
 
 
 type
@@ -103,7 +101,7 @@ type
 
 implementation
 
-uses IdSecOpenSSLAPI, IdSecOpenSSLOptions, IdSecOpenSSLSocket;
+uses IdSecOpenSSLOptions, IdSecOpenSSLSocket;
 
 {$IFDEF LOCAL_TCUSTOMAPP}
 function TCustomApplication.Exename: string;
@@ -362,7 +360,11 @@ begin
        {$ENDIF}
        else
        if DirectoryExists(ParamStr(i)) then
-          FOpenSSLLibDir := ParamStr(i)
+       begin
+         if IsDirectoryEmpty(ParamStr(i)) then
+           raise Exception.CreateFmt('Directory %s does not contain any files!',[ParamStr(i)]);
+         FOpenSSLLibDir := ParamStr(i)
+       end
        else
          raise Exception.CreateFmt('Unrecognised option - %s',[ParamStr(i)]);
        Inc(i);
@@ -370,13 +372,8 @@ begin
 
     if GetIOpenSSLDDL <> nil then
     begin
-      if (FOpenSSLLibDir = '') or not IsDirectoryEmpty(FOpenSSLLibDir) then
-      begin
-        GetIOpenSSLDDL.SetOpenSSLPath(FOpenSSLLibDir);
-        RunTest;
-      end
-      else
-        writeln('Directory ',FOpenSSLLibDir,' is empty!');
+      GetIOpenSSLDDL.SetOpenSSLPath(FOpenSSLLibDir);
+      RunTest;
     end
     else
       RunTest;
@@ -399,6 +396,7 @@ end;
 constructor TBasicHttpsClient.Create(TheOwner: TComponent);
 begin
   inherited Create(TheOwner);
+  FOpenSSLLibDir := DefaultSSLDirs;
 //  StopOnException:=True;
 end;
 

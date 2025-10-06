@@ -15,7 +15,7 @@ uses
   {$ENDIF}
   IdIOHandler, IdIOHandlerSocket,
   IdIOHandlerStack, IdSSL, IdSecOpenSSL, IdBaseComponent, IdComponent,
-  IdTCPConnection, IdTCPClient, IdHTTP,  IdSecOpenSSLX509;
+  IdTCPConnection, IdTCPClient, IdHTTP,  IdSecOpenSSLX509, IdSecOpenSSLAPI;
 
 {$IFNDEF FPC}
 const
@@ -25,6 +25,8 @@ const
 const
   remoteSource = 'https://test.mwasoftware.co.uk/openssltest.txt';
   sGetException = 'Error: Status = %d returned when GETting %s';
+
+  DefaultSSLDirs = '..' + DirectorySeparator + '..' + DirListDelimiter;
 
 type
   TForm1 = class(TForm)
@@ -58,7 +60,7 @@ var
 
 implementation
 
-uses IdSecOpenSSLOptions, IdSecOpenSSLAPI;
+uses IdSecOpenSSLOptions;
 
 {$IFDEF FPC}
 {$R *.lfm}
@@ -152,6 +154,7 @@ procedure TForm1.OnDoTest(Data: PtrInt);
 procedure TForm1.OnDoTest(var Msg: TMessage);
 {$ENDIF}
 begin
+  GetIOpenSSLDDL.SetOpenSSLPath(DefaultSSLDirs);
   Memo1.Lines.Add('Using '+OpenSSLVersion);
   if GetIOpenSSLDDL <> nil then
     begin

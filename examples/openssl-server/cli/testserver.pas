@@ -24,27 +24,14 @@ uses
   Classes, SysUtils, {$IFDEF FPC}CustApp,{$ENDIF}IdIOHandler, IdHTTP,
   IdSSL, IdSecOpenSSL,  IdHeaderList, IdContext,
   IdCustomHTTPServer, IdHTTPServer, IdServerIOHandler, IdGlobal,
-  IdSecOpenSSLX509;
+  IdSecOpenSSLX509, IdSecOpenSSLAPI;
 
 const
   SSLServerPort = 8080;
   remoteSource = 'https://localhost:8080/openssltest.txt';
   sGetException = 'Error: Status = %d returned when GETting %s';
   rcAccept = 'Application/txt';
-  {$if not declared(DirectorySeparator)}
-  {$IFDEF POSIX}
-  DirectorySeparator = '/';
-  {$ELSE}
-  DirectorySeparator = '\';
-  {$ENDIF}
-  {$ifend}
-  {$if not declared(LineEnding))}
-  {$IFDEF POSIX}
-  LineEnding = #$0A;
-  {$ELSE}
-  LineEnding = #$0D#$0A;
-  {$ENDIF}
-  {$ifend}
+  DefaultSSLDirs = '..' + DirectorySeparator + '..' + DirListDelimiter;
 
   {Certificates}
   myPassword = 'mypassword';
@@ -115,7 +102,7 @@ type
 
 implementation
 
-uses IdSecOpenSSLAPI, IdSecOpenSSLOptions;
+uses IdSecOpenSSLOptions;
 
 {$IFDEF LOCAL_TCUSTOMAPP}
 function TCustomApplication.Exename: string;
@@ -376,6 +363,7 @@ end;
 var i: integer;
 
 begin
+  FOpenSSLLibDir := DefaultSSLDirs;
   FPromptOnExit := true;
   try
     i := 1;
@@ -392,7 +380,11 @@ begin
         FPromptOnExit := false
       else
       if DirectoryExists(ParamStr(i)) then
-         FOpenSSLLibDir := ParamStr(i)
+      begin
+        if IsDirectoryEmpty(ParamStr(i)) then
+          raise Exception.CreateFmt('Directory %s does not contain any files!',[ParamStr(i)]);
+        FOpenSSLLibDir := ParamStr(i)
+      end
       else
         raise Exception.CreateFmt('Unrecognised option - %s',[ParamStr(i)]);
       Inc(i);
@@ -400,13 +392,8 @@ begin
 
     if GetIOpenSSLDDL <> nil then
      begin
-      if (FOpenSSLLibDir = '') or not IsDirectoryEmpty(FOpenSSLLibDir) then
-      begin
-        GetIOpenSSLDDL.SetOpenSSLPath(FOpenSSLLibDir);
-        RunTest;
-      end
-      else
-        writeln('Directory ',FOpenSSLLibDir,' is empty!');
+      GetIOpenSSLDDL.SetOpenSSLPath(FOpenSSLLibDir);
+      RunTest;
     end
     else
       RunTest;

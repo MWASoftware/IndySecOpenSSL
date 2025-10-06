@@ -103,8 +103,6 @@
         <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
         <Manifest_File>(None)</Manifest_File>
         <AppDPIAwarenessMode>none</AppDPIAwarenessMode>
-        <Debugger_HostApplication>C:\Users\tony\SoftwareDev\IndySec\examples\openssl-server\delphi_openssl_server.exe</Debugger_HostApplication>
-        <Debugger_CWD>C:\Users\tony\SoftwareDev\IndySec\examples\openssl-server</Debugger_CWD>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
@@ -117,8 +115,6 @@
         <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
         <DCC_UsePackage>IndySystem290;IndyCore290;IndyProtocols290;IndySecOpenSSL;$(DCC_UsePackage)</DCC_UsePackage>
         <AppDPIAwarenessMode>none</AppDPIAwarenessMode>
-        <Debugger_HostApplication>C:\Users\tony\SoftwareDev\IndySec\examples\openssl-server\delphi_openssl_server.exe</Debugger_HostApplication>
-        <Debugger_CWD>C:\Users\tony\SoftwareDev\IndySec\examples\openssl-server</Debugger_CWD>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
@@ -138,7 +134,6 @@
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
         <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
         <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
-        <Debugger_CWD>C:\Users\tony\SoftwareDev\IndySec\examples\openssl-server\cli</Debugger_CWD>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
@@ -159,8 +154,6 @@
         <VerInfo_Locale>1033</VerInfo_Locale>
         <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
         <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
-        <Debugger_DebugSourcePath>C:\Users\tony\SoftwareDev\IndySec\src\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
-        <Debugger_CWD>C:\Users\tony\SoftwareDev\IndySec\examples\openssl-server\cli</Debugger_CWD>
         <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
