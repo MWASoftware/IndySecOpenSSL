@@ -46,9 +46,7 @@ object Form1: TForm1
     Top = 72
   end
   object IdSecServerIOHandlerSSLOpenSSL1: TIdSecServerIOHandlerSSLOpenSSL
-    SSLOptions.RootCertFile = '..\cacerts\ca.pem'
-    SSLOptions.CertFile = '..\certs\myserver.pem'
-    SSLOptions.KeyFile = '..\certs\myserverkey.pem'
+    SSLOptions.KeyFile = '../certs/myserverkey.pem'
     SSLOptions.Method = sslvTLSv1_3
     SSLOptions.Mode = sslmServer
     SSLOptions.VerifyMode = []

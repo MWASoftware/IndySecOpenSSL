@@ -52,14 +52,33 @@ implementation
 
 {$R *.dfm}
 
-uses IdSecOpenSSLOptions;
+uses IdSecOpenSSLOptions, IdSecOpenSSLAPI;
 
 const
   myPassword = 'mypassword';
-  MyClientCertPackage = '..\certs\myclient.p12';
-  LineEnding = #$0D#$0A;
   remoteSource = 'https://localhost:8080/openssltest.txt';
   sGetException = 'Error: Status = %d returned when GETting %s';
+  {$if not declared(DirectorySeparator)}
+  {$IFDEF POSIX}
+  DirectorySeparator = '/';
+  {$ELSE}
+  DirectorySeparator = '\';
+  {$ENDIF}
+  {$ifend}
+  {$if not declared(LineEnding))}
+  {$IFDEF POSIX}
+  LineEnding = #$)A;
+  {$ELSE}
+  LineEnding = #$0D#$0A;
+  {$ENDIF}
+  {$ifend}
+
+  RootCertificatesDir = '..' + DirectorySeparator + 'cacerts';
+  CertsDir =  '..' + DirectorySeparator+ 'certs';
+  MyRootCertFile = RootCertificatesDir + DirectorySeparator + 'ca.pem';
+  MyCertFile = CertsDir + DirectorySeparator+ 'myserver.pem';
+  MyKeyFile = CertsDir + DirectorySeparator + 'myserverkey.pem';
+  MyClientCertPackage =CertsDir + DirectorySeparator + 'myclient.p12';
 
 
 type
@@ -102,6 +121,7 @@ begin
   finally
     ResponseStream.Free;
   end;
+  Application.ProcessMessages;
 end;
 
 procedure TForm1.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -172,11 +192,25 @@ begin
    Memo1.Lines.Add(CertificateType(Certificate)+' Certificate verification failed');
   ShowCertificate(certificate);
   Result := AOK;
+  Application.ProcessMessages;
 end;
 
 procedure TForm1.OnDoTest(var Msg: TMessage);
 begin
+  Memo1.Lines.Add('Using '+OpenSSLVersion);
+  if GetIOpenSSLDDL <> nil then
+    begin
+      Memo1.Lines.Add('LibCrypto: '+GetIOpenSSLDDL.GetLibCryptoFilePath);
+      Memo1.Lines.Add('LibSSL: '+GetIOpenSSLDDL.GetLibSSLFilePath);
+    end;
+  with IdSecServerIOHandlerSSLOpenSSL1 do
+  begin
+    SSLOptions.RootCertFile := MyRootCertFile;
+    SSLOptions.CertFile := MyCertFile;
+    SSLOptions.KeyFile := MyKeyFile;
+  end;
   IdHTTPServer1.Active := true;
+  Sleep(1000); {let server get going}
   DoTest;
   IdHTTPServer1.Active := false;
   IdSecIOHandlerSocketOpenSSL1.Close;
@@ -193,6 +227,7 @@ begin
     SSLOptions.VerifyDirs := '..\cacerts';
   end;
   IdHTTPServer1.Active := true;
+  Sleep(1000); {let server get going}
   DoTest;
   IdHTTPServer1.Active := false;
   IdSecIOHandlerSocketOpenSSL1.Close;
@@ -207,6 +242,7 @@ begin
   Memo1.Lines.Add('Not Before: '+DateTimeToStr(Certificate.notBefore));
   Memo1.Lines.Add('Not After: '+DateTimeToStr(Certificate.notAfter));
   Memo1.Lines.Add('');
+  Application.ProcessMessages;
 end;
 
 { TResponseTextBuffer }

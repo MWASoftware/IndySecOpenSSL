@@ -32,10 +32,18 @@ const
   sGetException = 'Error: Status = %d returned when GETting %s';
   rcAccept = 'Application/txt';
   {$if not declared(DirectorySeparator)}
+  {$IFDEF POSIX}
+  DirectorySeparator = '/';
+  {$ELSE}
   DirectorySeparator = '\';
+  {$ENDIF}
   {$ifend}
   {$if not declared(LineEnding))}
+  {$IFDEF POSIX}
+  LineEnding = #$)A;
+  {$ELSE}
   LineEnding = #$0D#$0A;
+  {$ENDIF}
   {$ifend}
 
   {Certificates}
