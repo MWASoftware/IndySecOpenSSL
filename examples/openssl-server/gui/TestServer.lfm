@@ -88,6 +88,7 @@ object Form1: TForm1
     SSLOptions.VerifyDepth = 100
     SSLOptions.VerifyDirs = '..\cacerts'
     SSLOptions.UseSystemRootCertificateStore = False
+    OnStatusInfo = SSLClientHandlerStatusInfo
     OnGetPassword = SSLClientHandlerGetPassword
     OnVerifyPeer = SSLClientHandlerVerifyPeer
     Left = 344

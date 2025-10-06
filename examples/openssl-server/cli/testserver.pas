@@ -40,7 +40,7 @@ const
   {$ifend}
   {$if not declared(LineEnding))}
   {$IFDEF POSIX}
-  LineEnding = #$)A;
+  LineEnding = #$0A;
   {$ELSE}
   LineEnding = #$0D#$0A;
   {$ENDIF}
@@ -48,11 +48,12 @@ const
 
   {Certificates}
   myPassword = 'mypassword';
-  MyRootCertFile = 'cacerts' + DirectorySeparator + 'ca.pem';
-  MyCertFile = 'certs' + DirectorySeparator+ 'myserver.pem';
-  MyKeyFile = 'certs' + DirectorySeparator + 'myserverkey.pem';
-  MyClientCertPackage = 'certs' + DirectorySeparator + 'myclient.p12';
-  RootCertificatesDir = 'cacerts';
+  RootCertificatesDir = '..' + DirectorySeparator + 'cacerts';
+  CertsDir =  '..' + DirectorySeparator+ 'certs';
+  MyRootCertFile = RootCertificatesDir + DirectorySeparator + 'ca.pem';
+  MyCertFile = CertsDir + DirectorySeparator+ 'myserver.pem';
+  MyKeyFile = CertsDir + DirectorySeparator + 'myserverkey.pem';
+  MyClientCertPackage = CertsDir + DirectorySeparator + 'myclient.p12';
 
 
 type
@@ -86,7 +87,8 @@ type
     function IsDirectoryEmpty(Path: string): boolean;
     procedure HandleCommandGet(AContext: TIdContext;
       ARequestInfo: TIdHTTPRequestInfo; AResponseInfo: TIdHTTPResponseInfo);
-    procedure HandleStatusInfo(const AMsg: String);
+    procedure HandleServerStatusInfo(const AMsg: String);
+    procedure HandleClientStatusInfo(const AMsg: String);
     procedure GetMyPassword(var Password: String);
     procedure QuerySSLPort(APort: TIdPort; var VUseSSL: Boolean);
     function CertificateType(Certificate: TIdX509): string;
@@ -173,10 +175,6 @@ begin
     ResponseStream := TResponseTextBuffer.Create;
     try
       httpClient.Get(remoteSource,ResponseStream);
-      {$IFNDEF LEGACY_VERSION}
-      if assigned (FSSLHandler.SSLSocket) then
-        writeln('Using SSL/TLS Version ' + FSSLHandler.SSLSocket.SSLProtocolVersionStr, ' with cipher ',FSSLHandler.SSLSocket.Cipher.Name);
-      {$ENDIF}
       Result := httpClient.ResponseCode;
       if Result = 200 then
       begin
@@ -199,16 +197,14 @@ var IOHandler: TIdSecIOHandlerSocketOpenSSL;
 begin
   IOHandler := TIdSecIOHandlerSocketOpenSSL.Create(AOwner);
   IOHandler.SSLOptions.Mode:= sslmClient;
-  {$IFDEF LEGACY_VERSION}
-  IOHandler.SSLOptions.Method := sslvTLSv1_2;
-  {$ENDIF}
   IOHandler.SSLOptions.VerifyMode := [sslvrfPeer,sslvrfFailIfNoPeerCert];
   IOHandler.SSLOptions.VerifyDepth := 100;
   IOHandler.SSLOptions.RootCertFile := MyRootCertFile;
   IOHandler.SSLOptions.UseSystemRootCertificateStore := false;
-  IOHandler.SSLOptions.VerifyDirs := GetCurrentDir + DirectorySeparator + RootCertificatesDir;
+  IOHandler.SSLOptions.VerifyDirs := RootCertificatesDir;
   IOHandler.OnVerifyPeer := ClientVerifyPeer;
   IOHandler.OnGetPassword := GetMyPassword;
+  IOHandler.OnStatusInfo:= HandleClientStatusInfo;
   if FClientVerification then
   begin
     IOHandler.SSLOptions.CertFile := MyClientCertPackage;
@@ -227,18 +223,15 @@ begin
   IOHandler.SSLOptions.RootCertFile := MyRootCertFile;
   IOHandler.SSLOptions.CertFile := MyCertFile;
   IOHandler.SSLOptions.KeyFile := MyKeyFile;
-  {$IFDEF LEGACY_VERSION}
-  IOHandler.SSLOptions.Method := sslvTLSv1_2;
-  {$ENDIF}
   IOHandler.OnGetPassword := GetMyPassword;
   IOHandler.OnVerifyPeer := ServerVerifyPeer;
-  IOHandler.OnStatusInfo := HandleStatusInfo;
+  IOHandler.OnStatusInfo := HandleServerStatusInfo;
   if FClientVerification then
   begin
     IOHandler.SSLOptions.VerifyMode := [sslvrfPeer,sslvrfFailIfNoPeerCert];
     IOHandler.SSLOptions.VerifyDepth := 100;
     IOHandler.SSLOptions.UseSystemRootCertificateStore := false;
-    IOHandler.SSLOptions.VerifyDirs := GetCurrentDir + DirectorySeparator + RootCertificatesDir;
+    IOHandler.SSLOptions.VerifyDirs := RootCertificatesDir;
   end;
   Result := IOHandler;
 end;
@@ -270,9 +263,14 @@ begin
   AResponseInfo.ContentStream.Position := 0;
 end;
 
-procedure TOpenSSLServerTest.HandleStatusInfo(const AMsg: String);
+procedure TOpenSSLServerTest.HandleServerStatusInfo(const AMsg: String);
 begin
   writeln('Server Status Info: ',AMsg);
+end;
+
+procedure TOpenSSLServerTest.HandleClientStatusInfo(const AMsg: String);
+begin
+  writeln('Client Status Info: ',AMsg);
 end;
 
 procedure TOpenSSLServerTest.GetMyPassword(var Password : String);

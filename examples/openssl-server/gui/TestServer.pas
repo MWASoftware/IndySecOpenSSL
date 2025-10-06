@@ -38,6 +38,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure SSLClientHandlerGetPassword(var Password: string);
+    procedure SSLClientHandlerStatusInfo(const AMsg: String);
     function SSLClientHandlerVerifyPeer(Certificate: TIdX509;
       AOk: Boolean; ADepth, AError: Integer): Boolean;
     procedure IdHTTPServer1QuerySSLPort(APort: TIdPort; var VUseSSL: Boolean);
@@ -87,7 +88,7 @@ const
   {$ifend}
   {$if not declared(LineEnding))}
   {$IFDEF POSIX}
-  LineEnding = #$)A;
+  LineEnding = #$0A;
   {$ELSE}
   LineEnding = #$0D#$0A;
   {$ENDIF}
@@ -183,6 +184,11 @@ end;
 procedure TForm1.SSLClientHandlerGetPassword(var Password: string);
 begin
   Password := myPassword;
+end;
+
+procedure TForm1.SSLClientHandlerStatusInfo(const AMsg: String);
+begin
+  Memo1.Lines.Add('Client Status Info: '+AMsg);
 end;
 
 function TForm1.SSLClientHandlerVerifyPeer(Certificate: TIdX509;
