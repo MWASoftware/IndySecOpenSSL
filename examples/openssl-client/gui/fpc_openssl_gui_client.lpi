@@ -5,7 +5,7 @@
     <PathDelim Value="\"/>
     <General>
       <SessionStorage Value="InProjectDir"/>
-      <Title Value="fpc_openssl_client"/>
+      <Title Value="fpc_openssl_gui_client"/>
       <UseAppBundle Value="False"/>
       <ResourceType Value="res"/>
     </General>
@@ -32,7 +32,7 @@
     </RequiredPackages>
     <Units>
       <Unit>
-        <Filename Value="fpc_openssl_client.lpr"/>
+        <Filename Value="fpc_openssl_gui_client.lpr"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
@@ -48,7 +48,7 @@
     <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="fpc_openssl_client"/>
+      <Filename Value="fpc_openssl_gui_client"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>

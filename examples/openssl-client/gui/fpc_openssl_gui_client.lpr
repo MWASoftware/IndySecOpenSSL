@@ -1,4 +1,4 @@
-program fpc_openssl_client;
+program fpc_openssl_gui_client;
 
 {$MODE Delphi}
 
