@@ -780,9 +780,9 @@ begin
   begin
     {$IFDEF OPENSSL_STATIC_LINK_MODEL}
     TOpenSSLStaticLibProvider.FOpenSSL := TOpenSSLStaticLibProvider.Create;
+    TOpenSSLStaticLibProvider.FOpenSSL.Init;
     {$ELSE}
     TOpenSSLStaticLibProvider.FOpenSSL := TOpenSSLDynamicLibProvider.Create;
-    TOpenSSLStaticLibProvider.FOpenSSL.Init;
     TOpenSSLDynamicLibProvider.FOpenSSLDDL := TOpenSSLDynamicLibProvider.FOpenSSL as IOpenSSLDLL;
     TOpenSSLDynamicLibProvider.FLibLoadList := TList.Create;
     TOpenSSLDynamicLibProvider.FUnLoadList := TList.Create;

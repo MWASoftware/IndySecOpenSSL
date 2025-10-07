@@ -154,7 +154,8 @@ procedure TForm1.OnDoTest(Data: PtrInt);
 procedure TForm1.OnDoTest(var Msg: TMessage);
 {$ENDIF}
 begin
-  GetIOpenSSLDDL.SetOpenSSLPath(DefaultSSLDirs);
+  if GetIOpenSSLDDL <> nil then
+    GetIOpenSSLDDL.SetOpenSSLPath(DefaultSSLDirs);
   Memo1.Lines.Add('Using '+OpenSSLVersion);
   if GetIOpenSSLDDL <> nil then
     begin
