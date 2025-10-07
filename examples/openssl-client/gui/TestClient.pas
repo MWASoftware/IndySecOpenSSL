@@ -159,17 +159,27 @@ begin
   Memo1.Lines.Add('Using '+OpenSSLVersion);
   if GetIOpenSSLDDL <> nil then
     begin
+      Memo1.Lines.Add('Link Model: Dynamic linking at run time');
       Memo1.Lines.Add('LibCrypto: '+GetIOpenSSLDDL.GetLibCryptoFilePath);
       Memo1.Lines.Add('LibSSL: '+GetIOpenSSLDDL.GetLibSSLFilePath);
-    end;
+    end
+  else
+  {$if declared(OpenSSL_Using_Shared_Library)}
+  Memo1.Lines.Add('Link Model: Static loading of a shared library');
+  {$else}
+  Memo1.Lines.Add('Link Model: Statically linked to a static library at link time');
+  {$ifend}
   Memo1.Lines.Add('Working Directory = ' + GetCurrentDir);
 
+  Memo1.Lines.Add('');
   Memo1.Lines.Add('Getting '+remoteSource+' with no verification');
+  Memo1.Lines.Add('');
 
   GetResponse;
 
   {Repeat with verification}
    Memo1.Lines.Add('Getting '+remoteSource+' with verification');
+   Memo1.Lines.Add('');
 
   (IdHTTP1.IOHandler as TIdSecIOHandlerSocketOpenSSL).SSLOptions.VerifyMode := [sslvrfPeer, sslvrfFailIfNoPeerCert];
   GetResponse;

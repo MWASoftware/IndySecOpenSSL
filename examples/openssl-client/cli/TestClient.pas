@@ -302,9 +302,19 @@ var i: integer;
     writeln('Using ',OpenSSLVersion, ', OpenSSLDir: ', OpenSSLDir);
     if GetIOpenSSLDDL <> nil then
     begin
+      writeln('Link Model: Dynamic linking at run time');
       writeln('LibCrypto: ',GetIOpenSSLDDL.GetLibCryptoFilePath);
       writeln('LibSSL: ',GetIOpenSSLDDL.GetLibSSLFilePath);
-    end;
+    end
+    else
+    {$if declared(OpenSSL_Using_Shared_Library)}
+    writeln('Link Model: Static loading of a shared library');
+    {$else}
+    writeln('Link Model: Statically linked to a static library at link time');
+    {$ifend}
+    writeln('Working Directory = ' + GetCurrentDir);
+    writeln;
+
     if not LoadOpenSSLLibrary then
       raise Exception.Create('OpenSSL Library Failed to load');
 
@@ -318,6 +328,7 @@ var i: integer;
     end;
 
     writeln('Getting ',remoteSource,' with no verification');
+    writeln;
     FNoVerification := true;
     DoTest;
     {$IFDEF DO_CERT_VERIFICATION}
