@@ -233,6 +233,7 @@ begin
     finally
       FServerMsgLock.Leave;
     end;
+    Application.ProcessMessages;
   end;
 end;
 

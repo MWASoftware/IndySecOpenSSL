@@ -10,9 +10,9 @@ object Form1: TForm1
   Font.Color = clWindowText
   Font.Height = -12
   Font.Name = 'Segoe UI'
+  LCLVersion = '4.2.0.0'
   OnCloseQuery = FormCloseQuery
   OnShow = FormShow
-  LCLVersion = '3.7.0.0'
   object Memo1: TMemo
     Left = 8
     Height = 377
