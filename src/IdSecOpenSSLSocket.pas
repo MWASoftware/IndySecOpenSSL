@@ -722,7 +722,7 @@ begin
 
   if fUseSystemRootCertificateStore then
   {$IFDEF USE_WINDOWS_CERT_STORE}
-    LoadWindowsCertStore
+    LoadWindowsCertStore;
   {$ELSE}
     SSL_CTX_set_default_verify_paths(fContext);
   {$ENDIF}
