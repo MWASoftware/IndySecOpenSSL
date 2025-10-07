@@ -782,6 +782,7 @@ begin
     TOpenSSLStaticLibProvider.FOpenSSL := TOpenSSLStaticLibProvider.Create;
     {$ELSE}
     TOpenSSLStaticLibProvider.FOpenSSL := TOpenSSLDynamicLibProvider.Create;
+    TOpenSSLStaticLibProvider.FOpenSSL.Init;
     TOpenSSLDynamicLibProvider.FOpenSSLDDL := TOpenSSLDynamicLibProvider.FOpenSSL as IOpenSSLDLL;
     TOpenSSLDynamicLibProvider.FLibLoadList := TList.Create;
     TOpenSSLDynamicLibProvider.FUnLoadList := TList.Create;

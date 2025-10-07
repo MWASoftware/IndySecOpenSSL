@@ -237,6 +237,7 @@ end;
 
 procedure TForm1.Add2LogFromServer(AMsg: String);
 begin
+  {Use a critical section to sync threads}
   FServerMsgLock.Enter;
   try
     FServerMsgQueue.Add(AMsg);
