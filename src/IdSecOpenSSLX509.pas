@@ -91,8 +91,8 @@ type
 
   TIdX509Fingerprints = class(TIdX509Info)
   protected
-    function GetMD5: TIdSecEVP_MD;
-    function GetMD5AsString:String;
+//    function GetMD5: TIdSecEVP_MD;
+//    function GetMD5AsString:String;
     function GetSHA1: TIdSecEVP_MD;
     function GetSHA1AsString:String;
     function GetSHA224 : TIdSecEVP_MD;
@@ -104,8 +104,8 @@ type
     function GetSHA512 : TIdSecEVP_MD;
     function GetSHA512AsString : String;
   public
-     property MD5 : TIdSecEVP_MD read GetMD5;
-     property MD5AsString : String read  GetMD5AsString;
+//     property MD5 : TIdSecEVP_MD read GetMD5;
+//     property MD5AsString : String read  GetMD5AsString;
      property SHA1 : TIdSecEVP_MD read GetSHA1;
      property SHA1AsString : String read  GetSHA1AsString;
 {IMPORTANT!!!
@@ -194,6 +194,7 @@ uses
   IdStack,
   IdFIPS,
   IdSecOpenSSL,
+  IdSecOpenSSLAPI,
   IdSecOpenSSLHeaders_x509_vfy,
   IdSecOpenSSLHeaders_pkcs12,
   IdSecOpenSSLHeaders_evp,
@@ -207,6 +208,18 @@ uses
   ;
 
 
+{SSLError is based on SSLErr which is no longer present in OpenSSL from 1.0.0 onwards}
+procedure SSLError(func: TOpenSSL_C_INT; reason: TOpenSSL_C_INT);
+begin
+  {$if declared(ERR_put_error)} //not defined when no compatibility functions allowed
+   ERR_put_error(ERR_LIB_SSL,func,reason,'',0)
+  {$else}
+  ERR_new;
+  ERR_set_debug('',0, '');
+  ERR_set_error(ERR_LIB_SSL,reason,'');
+  {$ifend}
+end;
+
 // TODO
 {
 function d2i_DHparams_bio(bp: PBIO; x: PPointer): PDH; inline;
@@ -219,8 +232,6 @@ end;
 // natively support PKCS12 certificates/keys, only PEM/ASN1, so load them
 // manually...
 
-
-
 {$IFNDEF OPENSSL_NO_BIO}
 procedure DumpCert(AOut: TStrings; AX509: PX509);
 var
@@ -232,7 +243,7 @@ begin
     if LMem <> nil then begin
       try
         X509_print(LMem, AX509);
-        LLen := BIO_get_mem_data(LMem, LBufPtr);
+        LLen := BIO_ctrl(LMem, BIO_CTRL_INFO, 0, LBufPtr);
         if (LLen > 0) and (LBufPtr <> nil) then begin
           AOut.Text := IndyTextEncoding_UTF8.GetString(
             {$IFNDEF VCL_6_OR_ABOVE}
@@ -284,7 +295,7 @@ begin
   if FX509Name = nil then begin
     FillChar(Result, SizeOf(Result), 0)
   end else begin
-    Result.C1 := X509_NAME_hash(FX509Name);
+    Result.C1 := X509_NAME_hash_ex(FX509Name,nil,nil,nil);
   end;
 end;
 
@@ -313,7 +324,7 @@ begin
 end;
 
 { TIdX509Fingerprints }
-
+{no longer supported
 function TIdX509Fingerprints.GetMD5: TIdSecEVP_MD;
 begin
   CheckMD5Permitted;
@@ -323,7 +334,7 @@ end;
 function TIdX509Fingerprints.GetMD5AsString: String;
 begin
   Result := MDAsString(MD5);
-end;
+end;}
 
 function TIdX509Fingerprints.GetSHA1: TIdSecEVP_MD;
 begin
@@ -600,7 +611,7 @@ begin
   except
     // Surpress exception here since it's going to be called by the OpenSSL .DLL
     // Follow the OpenSSL .DLL Error conventions.
-    SSLerr(SSL_F_SSL_CTX_USE_PRIVATEKEY_FILE, ERR_R_SYS_LIB);
+    SSLError(SSL_F_SSL_CTX_USE_PRIVATEKEY_FILE, ERR_R_SYS_LIB);
     LM.Free;
     Exit;
   end;
@@ -608,7 +619,7 @@ begin
   try
     B := BIO_new_mem_buf(LM.Memory, LM.Size);
     if not Assigned(B) then begin
-      SSLerr(SSL_F_SSL_CTX_USE_PRIVATEKEY_FILE, ERR_R_BUF_LIB);
+      SSLError(SSL_F_SSL_CTX_USE_PRIVATEKEY_FILE, ERR_R_BUF_LIB);
       Exit;
     end;
     try
@@ -625,13 +636,13 @@ begin
       end;
       P12 := d2i_PKCS12_bio(B, nil);
       if not Assigned(P12) then begin
-        SSLerr(SSL_F_SSL_CTX_USE_PRIVATEKEY_FILE, ERR_R_PKCS12_LIB);
+        SSLError(SSL_F_SSL_CTX_USE_PRIVATEKEY_FILE, ERR_R_PKCS12_LIB);
         Exit;
       end;
       try
         CertChain := nil;
         if PKCS12_parse(P12, LPasswordPtr, LKey, LCert, @CertChain) <> 1 then begin
-          SSLerr(SSL_F_SSL_CTX_USE_CERTIFICATE_FILE, ERR_R_PKCS12_LIB);
+          SSLError(SSL_F_SSL_CTX_USE_CERTIFICATE_FILE, ERR_R_PKCS12_LIB);
           Exit;
         end;
         try
@@ -673,7 +684,7 @@ begin
   except
     // Surpress exception here since it's going to be called by the OpenSSL .DLL
     // Follow the OpenSSL .DLL Error conventions.
-    SSLerr(SSL_F_SSL_CTX_USE_CERTIFICATE_FILE, ERR_R_SYS_LIB);
+    SSLError(SSL_F_SSL_CTX_USE_CERTIFICATE_FILE, ERR_R_SYS_LIB);
     LM.Free;
     Exit;
   end;
@@ -681,7 +692,7 @@ begin
   try
     B := BIO_new_mem_buf(LM.Memory, LM.Size);
     if not Assigned(B) then begin
-      SSLerr(SSL_F_SSL_CTX_USE_CERTIFICATE_FILE, ERR_R_BUF_LIB);
+      SSLError(SSL_F_SSL_CTX_USE_CERTIFICATE_FILE, ERR_R_BUF_LIB);
       Exit;
     end;
     try
@@ -699,13 +710,13 @@ begin
       P12 := d2i_PKCS12_bio(B, nil);
       if not Assigned(P12) then
       begin
-        SSLerr(SSL_F_SSL_CTX_USE_CERTIFICATE_FILE, ERR_R_PKCS12_LIB);
+        SSLError(SSL_F_SSL_CTX_USE_CERTIFICATE_FILE, ERR_R_PKCS12_LIB);
         Exit;
       end;
       try
         CertChain := nil;
         if PKCS12_parse(P12, LPasswordPtr, PKey, LCert, @CertChain) <> 1 then begin
-          SSLerr(SSL_F_SSL_CTX_USE_CERTIFICATE_FILE, ERR_R_PKCS12_LIB);
+          SSLError(SSL_F_SSL_CTX_USE_CERTIFICATE_FILE, ERR_R_PKCS12_LIB);
           Exit;
         end;
         try
@@ -985,7 +996,7 @@ begin
       except
         // Surpress exception here since it's going to be called by the OpenSSL .DLL
         // Follow the OpenSSL .DLL Error conventions.
-        SSLerr(SSL_F_SSL_LOAD_CLIENT_CA_FILE, ERR_R_SYS_LIB);
+        SSLError(SSL_F_SSL_LOAD_CLIENT_CA_FILE, ERR_R_SYS_LIB);
         LM.Free;
         Exit;
       end;
@@ -1002,7 +1013,7 @@ begin
                 if not Assigned(Result) then begin
                   Result := OPENSSL_sk_new_null;
                   if not Assigned(Result) then begin
-                    SSLerr(SSL_F_SSL_LOAD_CLIENT_CA_FILE, ERR_R_MALLOC_FAILURE);
+                    SSLError(SSL_F_SSL_LOAD_CLIENT_CA_FILE, ERR_R_MALLOC_FAILURE);
                     Failed := True;
                     Exit;
                   end;
@@ -1045,7 +1056,7 @@ begin
           end;
         end
         else begin
-          SSLerr(SSL_F_SSL_LOAD_CLIENT_CA_FILE, ERR_R_MALLOC_FAILURE);
+          SSLError(SSL_F_SSL_LOAD_CLIENT_CA_FILE, ERR_R_MALLOC_FAILURE);
         end;
       finally
         FreeAndNil(LM);
@@ -1055,7 +1066,7 @@ begin
     end;
   end
   else begin
-    SSLerr(SSL_F_SSL_LOAD_CLIENT_CA_FILE, ERR_R_MALLOC_FAILURE);
+    SSLError(SSL_F_SSL_LOAD_CLIENT_CA_FILE, ERR_R_MALLOC_FAILURE);
   end;
   if Assigned(Result) then begin
     ERR_clear_error;
@@ -1079,7 +1090,7 @@ begin
   except
     // Surpress exception here since it's going to be called by the OpenSSL .DLL
     // Follow the OpenSSL .DLL Error conventions.
-    SSLerr(SSL_F_SSL_CTX_USE_PRIVATEKEY_FILE, ERR_R_SYS_LIB);
+    SSLError(SSL_F_SSL_CTX_USE_PRIVATEKEY_FILE, ERR_R_SYS_LIB);
     LM.Free;
     Exit;
   end;
@@ -1087,7 +1098,7 @@ begin
   try
     B := BIO_new_mem_buf(LM.Memory, LM.Size);
     if not Assigned(B) then begin
-      SSLerr(SSL_F_SSL_CTX_USE_PRIVATEKEY_FILE, ERR_R_BUF_LIB);
+      SSLError(SSL_F_SSL_CTX_USE_PRIVATEKEY_FILE, ERR_R_BUF_LIB);
       Exit;
     end;
     try
@@ -1105,11 +1116,11 @@ begin
             LKey := d2i_PrivateKey_bio(B, nil);
           end;
       else
-        SSLerr(SSL_F_SSL_CTX_USE_PRIVATEKEY_FILE, SSL_R_BAD_SSL_FILETYPE);
+        SSLError(SSL_F_SSL_CTX_USE_PRIVATEKEY_FILE, SSL_R_BAD_SSL_FILETYPE);
         Exit;
       end;
       if not Assigned(LKey) then begin
-        SSLerr(SSL_F_SSL_CTX_USE_PRIVATEKEY_FILE, j);
+        SSLError(SSL_F_SSL_CTX_USE_PRIVATEKEY_FILE, j);
         Exit;
       end;
       Result := SSL_CTX_use_PrivateKey(ctx, LKey);
@@ -1139,7 +1150,7 @@ begin
   except
     // Surpress exception here since it's going to be called by the OpenSSL .DLL
     // Follow the OpenSSL .DLL Error conventions.
-    SSLerr(SSL_F_SSL_CTX_USE_CERTIFICATE_FILE, ERR_R_SYS_LIB);
+    SSLError(SSL_F_SSL_CTX_USE_CERTIFICATE_FILE, ERR_R_SYS_LIB);
     LM.Free;
     Exit;
   end;
@@ -1147,7 +1158,7 @@ begin
   try
     B := BIO_new_mem_buf(LM.Memory, LM.Size);
     if not Assigned(B) then begin
-      SSLerr(SSL_F_SSL_CTX_USE_CERTIFICATE_FILE, ERR_R_BUF_LIB);
+      SSLError(SSL_F_SSL_CTX_USE_CERTIFICATE_FILE, ERR_R_BUF_LIB);
       Exit;
     end;
     try
@@ -1164,12 +1175,12 @@ begin
               SSL_CTX_get_default_passwd_cb_userdata(ctx));
           end
         else begin
-          SSLerr(SSL_F_SSL_CTX_USE_CERTIFICATE_FILE, SSL_R_BAD_SSL_FILETYPE);
+          SSLError(SSL_F_SSL_CTX_USE_CERTIFICATE_FILE, SSL_R_BAD_SSL_FILETYPE);
           Exit;
         end;
       end;
       if not Assigned(LX) then begin
-        SSLerr(SSL_F_SSL_CTX_USE_CERTIFICATE_FILE, j);
+        SSLError(SSL_F_SSL_CTX_USE_CERTIFICATE_FILE, j);
         Exit;
       end;
       Result := SSL_CTX_use_certificate(ctx, LX);
@@ -1205,21 +1216,21 @@ begin
   except
     // Surpress exception here since it's going to be called by the OpenSSL .DLL
     // Follow the OpenSSL .DLL Error conventions.
-    SSLerr(SSL_F_SSL_CTX_USE_CERTIFICATE_CHAIN_FILE, ERR_R_SYS_LIB);
+    SSLError(SSL_F_SSL_CTX_USE_CERTIFICATE_CHAIN_FILE, ERR_R_SYS_LIB);
     LM.Free;
     Exit;
   end;
   try
     B := BIO_new_mem_buf(LM.Memory, LM.Size);
     if not Assigned(B) then begin
-      SSLerr(SSL_F_SSL_CTX_USE_CERTIFICATE_FILE, ERR_R_BUF_LIB);
+      SSLError(SSL_F_SSL_CTX_USE_CERTIFICATE_FILE, ERR_R_BUF_LIB);
       Exit;
     end;
     try
       LX := PEM_read_bio_X509_AUX(B, nil, SSL_CTX_get_default_passwd_cb(ctx),
                               SSL_CTX_get_default_passwd_cb_userdata(ctx));
       if (Lx = nil) then begin
-        SSLerr(SSL_F_SSL_CTX_USE_CERTIFICATE_CHAIN_FILE, ERR_R_PEM_LIB);
+        SSLError(SSL_F_SSL_CTX_USE_CERTIFICATE_CHAIN_FILE, ERR_R_PEM_LIB);
       end else begin
         Result := SSL_CTX_use_certificate(ctx, Lx);
         if (ERR_peek_error() <> 0) then begin
@@ -1331,7 +1342,7 @@ begin
   except
     // Surpress exception here since it's going to be called by the OpenSSL .DLL
     // Follow the OpenSSL .DLL Error conventions.
-    SSLerr(SSL_F_SSL3_CTRL, ERR_R_SYS_LIB);
+    SSLError(SSL_F_SSL3_CTRL, ERR_R_SYS_LIB);
     LM.Free;
     Exit;
   end;
@@ -1339,7 +1350,7 @@ begin
   try
     B := BIO_new_mem_buf(LM.Memory, LM.Size);
     if not Assigned(B) then begin
-      SSLerr(SSL_F_SSL3_CTRL, ERR_R_BUF_LIB);
+      SSLError(SSL_F_SSL3_CTRL, ERR_R_BUF_LIB);
       Exit;
     end;
     try
@@ -1359,15 +1370,15 @@ begin
               SSL_CTX_get_default_passwd_cb_userdata(ctx));
           end
         else begin
-          SSLerr(SSL_F_SSL3_CTRL, SSL_R_BAD_SSL_FILETYPE);
+          SSLError(SSL_F_SSL3_CTRL, SSL_R_BAD_SSL_FILETYPE);
           Exit;
         end;
       end;
       if not Assigned(LDH) then begin
-        SSLerr(SSL_F_SSL3_CTRL, j);
+        SSLError(SSL_F_SSL3_CTRL, j);
         Exit;
       end;
-      Result := SSL_CTX_set_tmp_dh(ctx, LDH);
+      Result := SSL_CTX_ctrl(ctx, SSL_CTRL_SET_TMP_DH, 0, LDH);
       DH_free(LDH);
     finally
       BIO_free(B);
@@ -1544,15 +1555,15 @@ begin
               SSL_CTX_get_default_passwd_cb_userdata(ctx));
           end
         else begin
-          SSLerr(SSL_F_SSL3_CTRL, SSL_R_BAD_SSL_FILETYPE);
+          SSLError(SSL_F_SSL3_CTRL, SSL_R_BAD_SSL_FILETYPE);
           Exit;
         end;
       end;
       if not Assigned(LDH) then begin
-        SSLerr(SSL_F_SSL3_CTRL, j);
+        SSLError(SSL_F_SSL3_CTRL, j);
         Exit;
       end;
-      Result := SSL_CTX_set_tmp_dh(ctx, LDH);
+      Result := SSL_CTX_ctrl(ctx, SSL_CTRL_SET_TMP_DH, 0, LDH);
       DH_free(LDH);
     finally
       BIO_free(B);
@@ -1649,15 +1660,15 @@ begin
               SSL_CTX_get_default_passwd_cb_userdata(ctx));
           end
         else begin
-          SSLerr(SSL_F_SSL3_CTRL, SSL_R_BAD_SSL_FILETYPE);
+          SSLError(SSL_F_SSL3_CTRL, SSL_R_BAD_SSL_FILETYPE);
           Exit;
         end;
       end;
       if not Assigned(LDH) then begin
-        SSLerr(SSL_F_SSL3_CTRL, j);
+        SSLError(SSL_F_SSL3_CTRL, j);
         Exit;
       end;
-      Result := SSL_CTX_set_tmp_dh(ctx, LDH);
+      Result := SSL_CTX_ctrl(ctx, SSL_CTRL_SET_TMP_DH, 0, LDH);
       DH_free(LDH);
     finally
       BIO_free(B);

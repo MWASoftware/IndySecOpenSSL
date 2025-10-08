@@ -304,7 +304,7 @@ JPM.
   try
     LockInfoCB.Enter;
     try
-      IdSecSocket := TIdSecSocket(SSL_get_app_data(sslSocket));
+      IdSecSocket := TIdSecSocket(SSL_get_ex_data(sslSocket,0));
       LHelper := IdSecSocket.GetCallbackHelper;
       if LHelper <> nil then
       begin
@@ -337,7 +337,7 @@ begin
   try
     VerifiedOK := True;
     try
-      hSSL := X509_STORE_CTX_get_app_data(ctx);
+      hSSL := X509_STORE_CTX_get_ex_data(ctx,SSL_get_ex_data_X509_STORE_CTX_idx());
       if hSSL = nil then begin
         Result := Ok;
         Exit;
@@ -345,7 +345,7 @@ begin
       hcert := X509_STORE_CTX_get_current_cert(ctx);
       Certificate := TIdX509.Create(hcert, False); // the certificate is owned by the store
       try
-        IdSecSocket := TIdSecSocket(SSL_get_app_data(hSSL));
+        IdSecSocket := TIdSecSocket(SSL_get_ex_data(hSSL,0));
         Error := X509_STORE_CTX_get_error(ctx);
         Depth := X509_STORE_CTX_get_error_depth(ctx);
         if not ((Ok > 0) and (IdSecSocket.SSLContext.VerifyDepth >= Depth)) then begin
@@ -713,7 +713,7 @@ begin
   end;
 
 //  SSL_CTX_set_mode(fContext, SSL_MODE_AUTO_RETRY);
-  SSL_CTX_clear_mode(fContext, SSL_MODE_AUTO_RETRY);
+  SSL_CTX_ctrl(fContext, SSL_CTRL_CLEAR_MODE, SSL_MODE_AUTO_RETRY, nil);
   // assign a password lookup routine
 //  if PasswordRoutineOn then begin
     SSL_CTX_set_default_passwd_cb(fContext, @PasswordCallback);
@@ -1169,7 +1169,7 @@ begin
   if fSSL = nil then begin
     raise EIdOSSLCreatingSessionError.Create(RSSSLCreatingSessionError);
   end;
-  error := SSL_set_app_data(fSSL, Self);
+  error := SSL_set_ex_data(fSSL, 0, Self);
   if error <= 0 then begin
     EIdOSSLDataBindingError.RaiseException(fSSL, error, RSSSLDataBindingError);
   end;
@@ -1221,7 +1221,7 @@ begin
   if fSSL = nil then begin
     raise EIdOSSLCreatingSessionError.Create(RSSSLCreatingSessionError);
   end;
-  error := SSL_set_app_data(fSSL, Self);
+  error := SSL_set_ex_data(fSSL, 0, Self);
   if error <= 0 then begin
     EIdOSSLDataBindingError.RaiseException(fSSL, error, RSSSLDataBindingError);
   end;
@@ -1241,7 +1241,7 @@ begin
   {$IFNDEF OPENSSL_NO_TLSEXT}
   {Delphi appears to need the extra AnsiString coerction. Otherwise, only the
    first character to the hostname is passed}
-  error := SSL_set_tlsext_host_name(fSSL, PIdAnsiChar(AnsiString(fHostName)));
+  error := SSL_ctrl(fSSL,  SSL_CTRL_SET_TLSEXT_HOSTNAME, TLSEXT_NAMETYPE_host_name, PIdAnsiChar(AnsiString(fHostName)));
   if error <= 0 then begin
     // RLebeau: for the time being, not raising an exception on error, as I don't
     // know which OpenSSL versions support this extension, and which error code(s)
@@ -1400,7 +1400,7 @@ var
   LX509: PX509;
 begin
   if fPeerCert = nil then begin
-    LX509 := SSL_get_peer_certificate(fSSL);
+    LX509 := SSL_get1_peer_certificate(fSSL);
     if LX509 <> nil then begin
       fPeerCert := TIdX509.Create(LX509, False);
     end;

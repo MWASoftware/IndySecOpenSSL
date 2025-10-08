@@ -11,7 +11,8 @@
         <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
       </SearchPaths>
       <Other>
-        <CustomOptions Value="-Ur"/>
+        <CustomOptions Value="-Ur
+-dOPENSSL_NO_LEGACY_SUPPORT"/>
         <OtherDefines Count="3">
           <Define0 Value="OPENSSL_USE_STATIC_LIBRARY"/>
           <Define1 Value="OPENSSL_USE_SHARED_LIBRARY"/>
