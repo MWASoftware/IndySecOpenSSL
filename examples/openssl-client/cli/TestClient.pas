@@ -278,6 +278,8 @@ begin
   writeln('Issuer: ', Certificate.Issuer.OneLine);
   writeln('Not Before: ',DateTimeToStr(Certificate.notBefore));
   writeln('Not After: ',DateTimeToStr(Certificate.notAfter));
+  writeln('Signature Type: ', Certificate.SigInfo.SigTypeAsString);
+  writeln('FingerPrint: ', Certificate.FingerprintAsString);
   writeln;
 end;
 

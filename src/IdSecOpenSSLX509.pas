@@ -91,8 +91,10 @@ type
 
   TIdX509Fingerprints = class(TIdX509Info)
   protected
-//    function GetMD5: TIdSecEVP_MD;
-//    function GetMD5AsString:String;
+    {$if declared(EVP_MD5)}
+    function GetMD5: TIdSecEVP_MD;
+    function GetMD5AsString:String;
+    {$ifend}
     function GetSHA1: TIdSecEVP_MD;
     function GetSHA1AsString:String;
     function GetSHA224 : TIdSecEVP_MD;
@@ -104,8 +106,10 @@ type
     function GetSHA512 : TIdSecEVP_MD;
     function GetSHA512AsString : String;
   public
-//     property MD5 : TIdSecEVP_MD read GetMD5;
-//     property MD5AsString : String read  GetMD5AsString;
+    {$if declared(EVP_MD5)}
+     property MD5 : TIdSecEVP_MD read GetMD5;
+     property MD5AsString : String read  GetMD5AsString;
+     {$ifend}
      property SHA1 : TIdSecEVP_MD read GetSHA1;
      property SHA1AsString : String read  GetSHA1AsString;
 {IMPORTANT!!!
@@ -204,7 +208,8 @@ uses
   IdSecOpenSSLHeaders_stack,
   IdSecOpenSSLHeaders_dh,
   IdSecOpenSSLHeaders_pem,
-  IdSecOpenSSLHeaders_bio
+  IdSecOpenSSLHeaders_bio,
+  IdSecOpenSSLHeaders_obj_mac
   ;
 
 
@@ -324,7 +329,7 @@ begin
 end;
 
 { TIdX509Fingerprints }
-{no longer supported
+{$if declared(EVP_MD5)}
 function TIdX509Fingerprints.GetMD5: TIdSecEVP_MD;
 begin
   CheckMD5Permitted;
@@ -334,7 +339,8 @@ end;
 function TIdX509Fingerprints.GetMD5AsString: String;
 begin
   Result := MDAsString(MD5);
-end;}
+end;
+{$ifend}
 
 function TIdX509Fingerprints.GetSHA1: TIdSecEVP_MD;
 begin
@@ -463,7 +469,7 @@ end;
 
 function TIdX509SigInfo.GetSigType: TIdC_INT;
 begin
-  Result := X509_get_signature_type(FX509);
+  Result := X509_get_signature_NID(FX509);
 end;
 
 function TIdX509SigInfo.GetSigTypeAsString: String;
@@ -562,7 +568,33 @@ end;
 
 function TIdX509.RFingerprint: TIdSecEVP_MD;
 begin
-  X509_digest(FX509, EVP_md5, PByte(@Result.MD), Result.Length);
+  case SigInfo.GetSigType of
+  {$if declared(EVP_md5)}
+  NID_md5WithRSAEncryption:
+    X509_digest(FX509, EVP_md5, PByte(@Result.MD), Result.Length);
+  {$ifend}
+  NID_sha1WithRSAEncryption,
+  NID_ecdsa_with_SHA1:
+    X509_digest(FX509, EVP_sha1, PByte(@Result.MD), Result.Length);
+  NID_sha256WithRSAEncryption,
+  NID_ecdsa_with_SHA256:
+    X509_digest(FX509, EVP_sha256, PByte(@Result.MD), Result.Length);
+  NID_sha384WithRSAEncryption,
+  NID_ecdsa_with_SHA384:
+    X509_digest(FX509, EVP_sha384, PByte(@Result.MD), Result.Length);
+  NID_sha512WithRSAEncryption:
+    X509_digest(FX509, EVP_sha512, PByte(@Result.MD), Result.Length);
+  NID_sha224WithRSAEncryption,
+  NID_ecdsa_with_SHA224:
+    X509_digest(FX509, EVP_sha224, PByte(@Result.MD), Result.Length);
+  NID_sha512_224WithRSAEncryption,
+  NID_ecdsa_with_SHA512:
+    X509_digest(FX509, EVP_sha512_224, PByte(@Result.MD), Result.Length);
+  NID_sha512_256WithRSAEncryption:
+    X509_digest(FX509, EVP_sha512_256, PByte(@Result.MD), Result.Length);
+  else
+    X509_digest(FX509, EVP_sha1, PByte(@Result.MD), Result.Length);
+  end;
 end;
 
 function TIdX509.RFingerprintAsString: String;
