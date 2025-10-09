@@ -159,9 +159,10 @@ begin
 end;
 
 initialization
+  {$if declared(IdFIPS.LoadNTLMLibrary)}
   IdFIPS.LoadNTLMLibrary := @LoadOpenSSL;
   IdFIPS.IsNTLMFuncsAvail := @IsNTLMFuncsAvail;
   IdFIPS.NTLMGetLmChallengeResponse := @SetupLanManagerPassword;
   IdFIPS.NTLMGetNtChallengeResponse := @CreateNTPassword;
-
+  {$ifend}
 end.

@@ -31,7 +31,6 @@ package dclIndySecOpenSSL;
 
 requires
   designide,
-  dclIndyCore290,
   IndySecOpenSSL;
 
 contains

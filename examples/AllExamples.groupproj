@@ -7,7 +7,7 @@
             <Dependencies/>
         </Projects>
         <Projects Include="openssl-client\cli\delphi_openssl_client.dproj">
-            <Dependencies/>
+            <Dependencies>..\delphi\IndySecOpenSSL.dproj</Dependencies>
         </Projects>
         <Projects Include="openssl-client\gui\delphi_openssl_gui_client.dproj">
             <Dependencies/>
@@ -35,13 +35,13 @@
     <Target Name="IndySecOpenSSL:Make">
         <MSBuild Projects="..\delphi\IndySecOpenSSL.dproj" Targets="Make"/>
     </Target>
-    <Target Name="delphi_openssl_client">
+    <Target Name="delphi_openssl_client" DependsOnTargets="IndySecOpenSSL">
         <MSBuild Projects="openssl-client\cli\delphi_openssl_client.dproj"/>
     </Target>
-    <Target Name="delphi_openssl_client:Clean">
+    <Target Name="delphi_openssl_client:Clean" DependsOnTargets="IndySecOpenSSL:Clean">
         <MSBuild Projects="openssl-client\cli\delphi_openssl_client.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="delphi_openssl_client:Make">
+    <Target Name="delphi_openssl_client:Make" DependsOnTargets="IndySecOpenSSL:Make">
         <MSBuild Projects="openssl-client\cli\delphi_openssl_client.dproj" Targets="Make"/>
     </Target>
     <Target Name="delphi_openssl_gui_client">

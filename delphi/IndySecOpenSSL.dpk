@@ -29,9 +29,9 @@ package IndySecOpenSSL;
 
 requires
   rtl,
-  IndySystem290,
-  IndyCore290,
-  IndyProtocols290;
+  IndySystem,
+  IndyCore,
+  IndyProtocols;
 
 contains
   IdSecResourceStringsOpenSSL in '..\src\IdSecResourceStringsOpenSSL.pas',
