@@ -91,10 +91,8 @@ type
 
   TIdX509Fingerprints = class(TIdX509Info)
   protected
-    {$if declared(EVP_MD5)}
     function GetMD5: TIdSecEVP_MD;
     function GetMD5AsString:String;
-    {$ifend}
     function GetSHA1: TIdSecEVP_MD;
     function GetSHA1AsString:String;
     function GetSHA224 : TIdSecEVP_MD;
@@ -106,10 +104,8 @@ type
     function GetSHA512 : TIdSecEVP_MD;
     function GetSHA512AsString : String;
   public
-    {$if declared(EVP_MD5)}
      property MD5 : TIdSecEVP_MD read GetMD5;
      property MD5AsString : String read  GetMD5AsString;
-     {$ifend}
      property SHA1 : TIdSecEVP_MD read GetSHA1;
      property SHA1AsString : String read  GetSHA1AsString;
 {IMPORTANT!!!
@@ -329,18 +325,17 @@ begin
 end;
 
 { TIdX509Fingerprints }
-{$if declared(EVP_MD5)}
 function TIdX509Fingerprints.GetMD5: TIdSecEVP_MD;
 begin
   CheckMD5Permitted;
-  X509_digest(FX509, EVP_md5, PByte(@Result.MD), Result.Length);
+  X509_digest(FX509, {$if declared(EVP_MD5)}EVP_md5 {$else} EVP_sha1{$ifend},
+  PByte(@Result.MD), Result.Length);
 end;
 
 function TIdX509Fingerprints.GetMD5AsString: String;
 begin
   Result := MDAsString(MD5);
 end;
-{$ifend}
 
 function TIdX509Fingerprints.GetSHA1: TIdSecEVP_MD;
 begin
