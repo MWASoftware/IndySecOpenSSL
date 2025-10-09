@@ -284,6 +284,13 @@ type
 const
   P12_FILETYPE = 3;
   MAX_SSL_PASSWORD_LENGTH = 128;
+  
+  {Version Numbers}
+  IdSec_Major = 1;
+  IdSec_Minor = 0;
+  IdSec_Release = 0;
+  IdSec_Version = '1.0.0';
+
 
 type
   TIdSecIOHandlerSocketOpenSSL = class;
