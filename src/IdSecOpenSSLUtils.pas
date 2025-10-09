@@ -50,6 +50,7 @@ uses
   IdGlobal,
   IdSecOpenSSLHeaders_evp,
   IdSecOpenSSLHeaders_ossl_typ
+  {$IFNDEF FPC}, System.DateUtils{$ENDIF}
 ;
 
 type
@@ -156,7 +157,11 @@ begin
     Result := EncodeDate(year, month, day) + EncodeTime(hour, min, sec, 0);
     AddMins(Result, tz_m);
     AddHrs(Result, tz_h);
+    {$if declared(UTCTimeToLocalTime)}
     Result := UTCTimeToLocalTime(Result);
+    {$ELSE}
+    Result := TTimeZone.Local.ToLocalTime(Result);
+    {$ifend}
   end;
 end;
 
