@@ -159,7 +159,9 @@ begin
 end;
 
 initialization
-  {$if declared(IdFIPS.LoadNTLMLibrary)}
+  {FIPS support is hard wired into 10.6 and uses the legacy OpenSSL units.
+   The following is only applicable to Indy 10.7}
+  {$if declared(LoadNTLMLibrary)}
   IdFIPS.LoadNTLMLibrary := @LoadOpenSSL;
   IdFIPS.IsNTLMFuncsAvail := @IsNTLMFuncsAvail;
   IdFIPS.NTLMGetLmChallengeResponse := @SetupLanManagerPassword;
