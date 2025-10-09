@@ -20,7 +20,7 @@ resourcestring
   RSSec = 'IndySec';
 
 {$IFNDEF FPC}
-{$R IdSecRegisterOpenSSL.dcr}
+{$R IdSecRegisterSSL.dcr}
 {$ENDIF}
 
 procedure Register;

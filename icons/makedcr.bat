@@ -1,2 +1,2 @@
-brcc32 IdSecOpenSSLRegister.rc -r -foIdSecRegisterOpenSSL.dcr
-copy IdSecRegisterOpenSSL.dcr ..\src\
+brcc32 IdSecOpenSSLRegister.rc -r -foIdSecRegisterSSL.dcr
+copy IdSecRegisterSSL.dcr ..\src\design

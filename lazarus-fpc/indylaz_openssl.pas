@@ -14,9 +14,9 @@ implementation
 
 procedure Register;
 begin
-  RegisterUnit('IdSecRegisterSSL' , @IdSecRegisterSSL.Register);
+  RegisterUnit('IdSecRegisterSSL', @IdSecRegisterSSL.Register);
 end;
 
 initialization
-  RegisterPackage('indylaz_openssl' , @Register);
+  RegisterPackage('indylaz_openssl', @Register);
 end.

@@ -35,6 +35,6 @@ requires
   IndySecOpenSSL;
 
 contains
-  IdSecRegisterSSL in '..\src\IdSecRegisterSSL.pas';
+  IdSecRegisterSSL in '..\src\design\IdSecRegisterSSL.pas';
 
 end.
