@@ -7,7 +7,7 @@
             <Dependencies/>
         </Projects>
         <Projects Include="dclIndySecOpenSSL.dproj">
-            <Dependencies/>
+            <Dependencies>IndySecOpenSSL.dproj</Dependencies>
         </Projects>
     </ItemGroup>
     <ProjectExtensions>
@@ -26,13 +26,13 @@
     <Target Name="IndySecOpenSSL:Make">
         <MSBuild Projects="IndySecOpenSSL.dproj" Targets="Make"/>
     </Target>
-    <Target Name="dclIndySecOpenSSL">
+    <Target Name="dclIndySecOpenSSL" DependsOnTargets="IndySecOpenSSL">
         <MSBuild Projects="dclIndySecOpenSSL.dproj"/>
     </Target>
-    <Target Name="dclIndySecOpenSSL:Clean">
+    <Target Name="dclIndySecOpenSSL:Clean" DependsOnTargets="IndySecOpenSSL:Clean">
         <MSBuild Projects="dclIndySecOpenSSL.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="dclIndySecOpenSSL:Make">
+    <Target Name="dclIndySecOpenSSL:Make" DependsOnTargets="IndySecOpenSSL:Make">
         <MSBuild Projects="dclIndySecOpenSSL.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
