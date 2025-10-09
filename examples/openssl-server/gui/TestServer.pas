@@ -271,18 +271,21 @@ begin
     GetIOpenSSLDDL.SetOpenSSLPath(DefaultSSLDirs);
 
   Memo1.Lines.Add('Using '+OpenSSLVersion);
+  case GetIOpenSSL.GetLinkModel of
+  lmDynamic:
+    Memo1.Lines.Add('Link Model: Dynamic linking at run time');
+  lmShared:
+    Memo1.Lines.Add('Link Model: Static loading of a shared library');
+  lmStatic:
+    Memo1.Lines.Add('Link Model: Statically linked to a static library at link time');
+  end;
+
   if GetIOpenSSLDDL <> nil then
     begin
-      Memo1.Lines.Add('Link Model: Dynamic linking at run time');
       Memo1.Lines.Add('LibCrypto: '+GetIOpenSSLDDL.GetLibCryptoFilePath);
       Memo1.Lines.Add('LibSSL: '+GetIOpenSSLDDL.GetLibSSLFilePath);
-    end
-  else
-  {$if declared(OpenSSL_Using_Shared_Library)}
-  Memo1.Lines.Add('Link Model: Static loading of a shared library');
-  {$else}
-  Memo1.Lines.Add('Link Model: Statically linked to a static library at link time');
-  {$ifend}
+    end;
+
   Memo1.Lines.Add('Working Directory = ' + GetCurrentDir);
   Memo1.Lines.Add('');
   with SSLClientHandler do

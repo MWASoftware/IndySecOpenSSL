@@ -275,11 +275,14 @@ TOpenSSL_C_SSIZET = TOpenSSL_C_INT64;
   POpenSSL_C_TM = ^TOpenSSL_C_TM;
   PPOpenSSL_C_TM = ^POpenSSL_C_TM;
 
+  TOpenSSL_LinkModel = (lmDynamic, lmShared, lmStatic);
+
   IOpenSSL = interface
   ['{aed66223-1700-4199-b1c5-8222648e8cd5}']
     function GetOpenSSLPath: string;
     function GetOpenSSLVersionStr: string;
     function GetOpenSSLVersion: TOpenSSL_C_ULONG;
+    function GetLinkModel: TOpenSSL_LinkModel;
     function Init: boolean;
   end;
 
@@ -340,6 +343,7 @@ type
   private
     class var FOpenSSL: IOpenSSL;
   private
+    FInitDone: boolean;
     FThreadLock: TCriticalSection;
     FOpenSSLPath: string;
   public
@@ -351,6 +355,7 @@ type
     function GetOpenSSLPath: string; virtual;
     function GetOpenSSLVersionStr: string; virtual;
     function GetOpenSSLVersion: TOpenSSL_C_ULONG; virtual;
+    function GetLinkModel: TOpenSSL_LinkModel; virtual;
     function Init: boolean; virtual;
   end;
 
@@ -382,6 +387,7 @@ type
     function GetOpenSSLPath: string; override;
     function GetOpenSSLVersionStr: string; override;
     function GetOpenSSLVersion: TOpenSSL_C_ULONG; override;
+    function GetLinkModel: TOpenSSL_LinkModel; override;
     function Init: boolean; override;
   public
     {IOpenSSLDLL}
@@ -465,25 +471,38 @@ begin
 end;
 {$ENDIF}
 
+function TOpenSSLStaticLibProvider.GetLinkModel: TOpenSSL_LinkModel;
+begin
+  {$IFDEF OPENSSL_USE_SHARED_LIBRARY}
+  Result := lmShared;
+  {$ELSE}
+  Result := lmStatic;
+  {$ENDIF}
+end;
+
 function TOpenSSLStaticLibProvider.Init: boolean;
 begin
-  Result := true;
-  FThreadLock.Acquire;
-  try
-    {$IFDEF OPENSSL_SET_MEMORY_FUNCS}
-        // has to be done before anything that uses memory
-        OpenSSLCryptoMallocInit;
-    {$ENDIF}
-    OPENSSL_init_ssl(OPENSSL_INIT_LOAD_SSL_STRINGS or OPENSSL_INIT_ADD_ALL_CIPHERS or
-                     OPENSSL_INIT_ADD_ALL_DIGESTS or OPENSSL_INIT_LOAD_CRYPTO_STRINGS or
-                     OPENSSL_INIT_LOAD_CONFIG or OPENSSL_INIT_ASYNC or
-                     OPENSSL_INIT_ENGINE_ALL_BUILTIN ,nil);
+  if not FInitDone then
+  begin
+    FThreadLock.Acquire;
+    try
+      {$IFDEF OPENSSL_SET_MEMORY_FUNCS}
+          // has to be done before anything that uses memory
+          OpenSSLCryptoMallocInit;
+      {$ENDIF}
+      OPENSSL_init_ssl(OPENSSL_INIT_LOAD_SSL_STRINGS or OPENSSL_INIT_ADD_ALL_CIPHERS or
+                       OPENSSL_INIT_ADD_ALL_DIGESTS or OPENSSL_INIT_LOAD_CRYPTO_STRINGS or
+                       OPENSSL_INIT_LOAD_CONFIG or OPENSSL_INIT_ASYNC or
+                       OPENSSL_INIT_ENGINE_ALL_BUILTIN ,nil);
 
-    if GetOpenSSLVersion < CRYPTO_set_locking_callback_removed then
-      SetLegacyCallbacks;
-  finally
-    FThreadLock.Release;
+      if GetOpenSSLVersion < CRYPTO_set_locking_callback_removed then
+        SetLegacyCallbacks;
+    finally
+      FThreadLock.Release;
+    end;
+    FInitDone := true;
   end;
+  Result := FInitDone;
 end;
 
 {$IFNDEF OPENSSL_STATIC_LINK_MODEL}
@@ -590,6 +609,11 @@ begin
   if not IsLoaded then
     Load;
   Result := inherited GetOpenSSLVersion;
+end;
+
+function TOpenSSLDynamicLibProvider.GetLinkModel: TOpenSSL_LinkModel;
+begin
+  Result := lmDynamic;
 end;
 
 function TOpenSSLDynamicLibProvider.Init : boolean;
