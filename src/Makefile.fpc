@@ -23,6 +23,6 @@ buildunit=indyopensslfpc
 
 [clean]
 files= \
-  ../../units/$(CPU_TARGET)-$(OS_TARGET)/IdResourceStringsOpenSSL.rsj \
-  ../../units/$(CPU_TARGET)-$(OS_TARGET)/IdSSLOpenSSLResourceStrings.rsj
+  ../../units/$(CPU_TARGET)-$(OS_TARGET)/IdSecResourceStringsOpenSSL.rsj \
+  ../../units/$(CPU_TARGET)-$(OS_TARGET)/IdSecOpenSSLResourceStrings.rsj
 

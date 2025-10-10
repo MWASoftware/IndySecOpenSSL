@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{11AC6867-2BDC-41BA-89AC-8874318859A0}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="IndySecOpenSSL.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="dclIndySecOpenSSL.dproj">
+            <Dependencies>IndySecOpenSSL.dproj</Dependencies>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="IndySecOpenSSL">
+        <MSBuild Projects="IndySecOpenSSL.dproj"/>
+    </Target>
+    <Target Name="IndySecOpenSSL:Clean">
+        <MSBuild Projects="IndySecOpenSSL.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="IndySecOpenSSL:Make">
+        <MSBuild Projects="IndySecOpenSSL.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="dclIndySecOpenSSL" DependsOnTargets="IndySecOpenSSL">
+        <MSBuild Projects="dclIndySecOpenSSL.dproj"/>
+    </Target>
+    <Target Name="dclIndySecOpenSSL:Clean" DependsOnTargets="IndySecOpenSSL:Clean">
+        <MSBuild Projects="dclIndySecOpenSSL.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dclIndySecOpenSSL:Make" DependsOnTargets="IndySecOpenSSL:Make">
+        <MSBuild Projects="dclIndySecOpenSSL.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="IndySecOpenSSL;dclIndySecOpenSSL"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="IndySecOpenSSL:Clean;dclIndySecOpenSSL:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="IndySecOpenSSL:Make;dclIndySecOpenSSL:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

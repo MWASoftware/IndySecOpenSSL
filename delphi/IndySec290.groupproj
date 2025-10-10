@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{6C6D8172-AE36-41BC-8095-A552690D8D4F}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="IndySecOpenSSL290.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="dclIndySecOpenSSL290.dproj">
+            <Dependencies>IndySecOpenSSL290.dproj</Dependencies>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="IndySecOpenSSL290">
+        <MSBuild Projects="IndySecOpenSSL290.dproj"/>
+    </Target>
+    <Target Name="IndySecOpenSSL290:Clean">
+        <MSBuild Projects="IndySecOpenSSL290.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="IndySecOpenSSL290:Make">
+        <MSBuild Projects="IndySecOpenSSL290.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="dclIndySecOpenSSL290" DependsOnTargets="IndySecOpenSSL290">
+        <MSBuild Projects="dclIndySecOpenSSL290.dproj"/>
+    </Target>
+    <Target Name="dclIndySecOpenSSL290:Clean" DependsOnTargets="IndySecOpenSSL290:Clean">
+        <MSBuild Projects="dclIndySecOpenSSL290.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dclIndySecOpenSSL290:Make" DependsOnTargets="IndySecOpenSSL290:Make">
+        <MSBuild Projects="dclIndySecOpenSSL290.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="IndySecOpenSSL290;dclIndySecOpenSSL290"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="IndySecOpenSSL290:Clean;dclIndySecOpenSSL290:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="IndySecOpenSSL290:Make;dclIndySecOpenSSL290:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

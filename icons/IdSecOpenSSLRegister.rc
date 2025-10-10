@@ -1,0 +1,3 @@
+TIdSecIOHandlerSocketOpenSSL           BITMAP "TIdSecIOHandlerSocketOpenSSL.bmp"
+TIdSecServerIOHandlerSSLOpenSSL        BITMAP "TIdSecServerIOHandlerOpenSSL.bmp"
+

@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <Package Version="5">
-    <Name Value="indylaz_openssl"/>
-    <Type Value="DesignTime"/>
+    <Name Value="IndySecOpenSSL"/>
     <Author Value="Tony Whyman - MWA Software"/>
     <CompilerOptions>
       <Version Value="11"/>
       <SearchPaths>
-        <OtherUnitFiles Value="../src;../src/design"/>
+        <IncludeFiles Value="../src;../src/opensslHdrs"/>
+        <OtherUnitFiles Value="../src;../src/opensslHdrs"/>
         <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
       </SearchPaths>
+      <Other>
+        <CustomOptions Value="-Ur"/>
+        <OtherDefines Count="3">
+          <Define0 Value="OPENSSL_USE_STATIC_LIBRARY"/>
+          <Define1 Value="OPENSSL_USE_SHARED_LIBRARY"/>
+          <Define2 Value="OPENSSL_NO_LEGACY_SUPPORT"/>
+        </OtherDefines>
+      </Other>
     </CompilerOptions>
     <Description Value="IndySec
 
@@ -27,23 +35,48 @@ Redistributions in binary form must reproduce the above copyright notice, this l
 No personal names or organizations names associated with the Indy project may be used to endorse or promote products derived from this software without specific prior written permission of the specific individual or organization. 
 
 THIS SOFTWARE IS PROVIDED BY Chad Z. Hower (Kudzu) and the Indy Pit Crew &amp;amp;quot;AS IS&apos;&apos; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."/>
-    <Version Major="1" Build="102"/>
+    <Version Major="1" Minor="0" Release = "0" Build="102" />
     <Files>
       <Item>
-        <Filename Value="../src/design/IdSecRegisterSSL.pas"/>
-        <HasRegisterProc Value="True"/>
-        <UnitName Value="IdSecRegisterSSL"/>
+        <Filename Value="../src/IdSecNTLMOpenSSL.pas"/>
+        <UnitName Value="IdSecNTLMOpenSSL"/>
+      </Item>
+      <Item>
+        <Filename Value="../src/IdSecResourceStringsOpenSSL.pas"/>
+        <UnitName Value="IdSecResourceStringsOpenSSL"/>
+      </Item>
+      <Item>
+        <Filename Value="../src/IdSecOpenSSL.pas"/>
+        <UnitName Value="IdSecOpenSSL"/>
+      </Item>
+      <Item>
+        <Filename Value="../src/IdSecOpenSSLFIPS.pas"/>
+        <UnitName Value="IdSecOpenSSLFIPS"/>
+      </Item>
+      <Item>
+        <Filename Value="../src/IdSecOpenSSLOptions.pas"/>
+        <UnitName Value="IdSecOpenSSLOptions"/>
+      </Item>
+      <Item>
+        <Filename Value="../src/IdSecOpenSSLSocket.pas"/>
+        <UnitName Value="IdSecOpenSSLSocket"/>
+      </Item>
+      <Item>
+        <Filename Value="../src/IdSecOpenSSLUtils.pas"/>
+        <UnitName Value="IdSecOpenSSLUtils"/>
+      </Item>
+      <Item>
+        <Filename Value="../src/IdSecOpenSSLX509.pas"/>
+        <UnitName Value="IdSecOpenSSLX509"/>
+      </Item>
+      <Item>
+        <Filename Value="../src/IdSecwincrypt.pas"/>
+        <UnitName Value="IdSecwincrypt"/>
       </Item>
     </Files>
     <RequiredPkgs>
       <Item>
-        <PackageName Value="IndySecOpenSSL"/>
-      </Item>
-      <Item>
         <PackageName Value="indylaz"/>
-      </Item>
-      <Item>
-        <PackageName Value="IDEIntf"/>
       </Item>
       <Item>
         <PackageName Value="FCL"/>

@@ -8,9 +8,9 @@ unit indyopensslfpc;
 interface
 
 uses
-  IdNTLMOpenSSL, IdResourceStringsOpenSSL, IdSSLOpenSSL, IdSSLOpenSSLFIPS,
-  IdOpenSSLHeaders_AllHeaders, IdSSLOpenSSLOptions, IdSSLOpenSSLX509, IdSSLOpenSSLutils, 
-  IdSSLOpenSSLSocket, IdSSLwincrypt;
+  IdSecNTLMOpenSSL, IdSecResourceStringsOpenSSL, IdSecOpenSSL, IdSecOpenSSLFIPS,
+  IdSecOpenSSLHeaders_AllHeaders, IdSecOpenSSLOptions, IdSecOpenSSLX509, IdSecOpenSSLutils, 
+  IdSecOpenSSLSocket, IdSecwincrypt;
 
 implementation
 
