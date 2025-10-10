@@ -21,7 +21,7 @@ of the OpenSSL shared libraries (DLLs) included in the User Guide.
 Indy itself is a well-known internet component suite for Delphi, C++Builder, and 
 Free Pascal providing both low-level support (TCP, UDP, raw sockets) and over a 120 
 higher level protocols (SMTP, POP3, NNT, HTTP, FTP) for building both client and server 
-applications. 
+applications. See https://github.com/IndySockets/Indy.
 
 However, at the time of writing, the current release of Indy (10.6.x), only supports 
 the obsolete OpenSSL 1.0.2 library. This release of OpenSSL no longer receives updates
