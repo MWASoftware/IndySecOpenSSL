@@ -87,7 +87,7 @@
         <DCC_K>false</DCC_K>
         <VerInfo_Locale>2057</VerInfo_Locale>
         <DCC_UnitSearchPath>..\src;..\src\opensslHdrs;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
-        <VerInfo_Keys>CompanyName=MWA Software;FileVersion=1.0.0.102;InternalName=;LegalCopyright=MWA Software 2025;LegalTrademarks=;OriginalFilename=;ProductVersion=1.0.0.102;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=MWA Software;FileVersion=1.0.0.57;InternalName=;LegalCopyright=MWA Software 2025;LegalTrademarks=;OriginalFilename=;ProductVersion=1.0.0.57;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
         <DCC_OutputNeverBuildDcps>true</DCC_OutputNeverBuildDcps>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Build>102</VerInfo_Build>
@@ -111,14 +111,14 @@
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
         <BT_BuildType>Debug</BT_BuildType>
-        <VerInfo_Keys>CompanyName=MWA Software;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.102;InternalName=;LegalCopyright=MWA Software 2025;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.102;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=MWA Software;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.57;InternalName=;LegalCopyright=MWA Software 2025;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.57;Comments=</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64x)'!=''">
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
         <BT_BuildType>Debug</BT_BuildType>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.102;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.102;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.57;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.57;Comments=</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
@@ -133,11 +133,11 @@
         <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
         <VerInfo_Build>0</VerInfo_Build>
-        <VerInfo_Keys>CompanyName=MWA Software;FileVersion=1.0.0.0;InternalName=;LegalCopyright=MWA Software 2025;LegalTrademarks=;OriginalFilename=;ProductVersion=1.0.0.102;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=MWA Software;FileVersion=1.0.0.57;InternalName=;LegalCopyright=MWA Software 2025;LegalTrademarks=;OriginalFilename=;ProductVersion=1.0.0.57;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=MWA Software;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.102;InternalName=;LegalCopyright=MWA Software 2025;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.102;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=MWA Software;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.57;InternalName=;LegalCopyright=MWA Software 2025;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.57;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
@@ -150,7 +150,7 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=MWA Software;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.102;InternalName=;LegalCopyright=MWA Software 2025;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.102;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=MWA Software;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.57;InternalName=;LegalCopyright=MWA Software 2025;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.57;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
