@@ -220,6 +220,11 @@ uses
   {$IFDEF USE_WINDOWS_CERT_STORE}
   IdSecwincrypt,
   {$ENDIF}
+  {$IFNDEF FPC}
+  {$IF CompilerVersion >= 37}
+  System.SyncObjs,
+  {$ifend}
+  {$ENDIF}
   IdThreadSafe,
   IdSecOpenSSLUtils,
   IdSecOpenSSLAPI,

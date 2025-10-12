@@ -37,6 +37,12 @@ uses
   {$ENDIF}
   , SysUtils;
 
+{$IFDEF OPENSSL_STATIC_LINK_MODEL}
+  {$IFDEF OPENSSL_USE_SHARED_LIBRARY}
+    {$MESSAGE Error. Static and Shared Link Models cannot be requested at the same time!}
+  {$ENDIF}
+{$ENDIF}
+
 const
   {$IFNDEF OPENSSL_STATIC_LINK_MODEL}
   OpenSSL_Using_Dynamic_Library_Load = true;
@@ -428,12 +434,12 @@ end;
 
 function TOpenSSLStaticLibProvider.GetOpenSSLPath : string;
 begin
-  Result := OpenSSL_version(OPENSSL_DIR);
+  Result := string(OpenSSL_version(OPENSSL_DIR));
 end;
 
 function TOpenSSLStaticLibProvider.GetOpenSSLVersionStr : string;
 begin
-  Result := OpenSSL_Version(OPENSSL_VERSION_CONST);
+  Result := string(OpenSSL_Version(OPENSSL_VERSION_CONST));
 end;
 
 function TOpenSSLStaticLibProvider.GetOpenSSLVersion : TOpenSSL_C_ULONG;
@@ -524,6 +530,7 @@ function TOpenSSLDynamicLibProvider.FindLibrary(LibName , LibVersions : string;
   var LibVersionsList: TStringList;
       i: integer;
   begin
+    Result := NilHandle;
     if SSLPath <> '' then
       SSLPath := IncludeTrailingPathDelimiter(SSLPath);
     if LibVersions <> '' then

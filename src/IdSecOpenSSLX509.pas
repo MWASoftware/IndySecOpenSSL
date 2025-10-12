@@ -240,6 +240,7 @@ var
   LLen : TIdC_INT;
   LBufPtr : PIdAnsiChar;
 begin
+    LBufPtr := nil;
     LMem := BIO_new(BIO_s_mem);
     if LMem <> nil then begin
       try
