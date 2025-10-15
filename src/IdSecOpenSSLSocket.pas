@@ -1297,7 +1297,7 @@ end;
 
 function TIdSecSocket.Recv(var ABuffer: TIdBytes): Integer;
 var
-  ret, err: Integer;
+  ret: Integer;
 begin
   repeat
     ret := SSL_read(fSSL, PByte(ABuffer), Length(ABuffer));
