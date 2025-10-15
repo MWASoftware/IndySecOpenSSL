@@ -391,6 +391,7 @@ type
     procedure DoGetPasswordEx(var VPassword: String; const AIsWrite : Boolean); virtual;
     function DoVerifyPeer(Certificate: TIdX509; AOk: Boolean; ADepth, AError: Integer): Boolean; virtual;
     procedure InitComponent; override;
+    procedure Notification(AComponent: TComponent; Operation: TOperation); override;
 
     { IIdSecOpenSSLCallbackHelper }
     function GetPassword(const AIsWrite : Boolean): string;
@@ -531,8 +532,18 @@ begin
   TIdSecOptions_Internal(fxSSLOptions).Parent := Self;
 end;
 
+procedure TIdSecServerIOHandlerSSLOpenSSL.Notification(AComponent: TComponent;
+  Operation: TOperation);
+begin
+  inherited Notification(AComponent, Operation);
+  if (AComponent = fIOHandler) and (Operation = opRemove) then
+    fIOHandler := nil;
+end;
+
 destructor TIdSecServerIOHandlerSSLOpenSSL.Destroy;
 begin
+  if assigned(fIOHandler) then
+    fIOHandler.RemoveFreeNotification(self);
   FreeAndNil(fxSSLOptions);
   inherited Destroy;
 end;
@@ -590,6 +601,7 @@ begin
           fIOHandler.AfterAccept;
 
           Result := fIOHandler;
+          fIOHandler.FreeNotification(self);
           Break;
         end;
       end;

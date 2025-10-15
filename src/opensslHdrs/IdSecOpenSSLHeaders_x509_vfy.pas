@@ -1906,11 +1906,7 @@ function Load_X509_STORE_CTX_get_ex_data(ctx: PX509_STORE_CTX; idx: TOpenSSL_C_I
 begin
   X509_STORE_CTX_get_ex_data := LoadLibCryptoFunction('X509_STORE_CTX_get_ex_data');
   if not assigned(X509_STORE_CTX_get_ex_data) then
-{$IFNDEF OPENSSL_NO_LEGACY_SUPPORT}
-    X509_STORE_CTX_get_ex_data := @COMPAT_X509_STORE_CTX_get_ex_data;
-{$ELSE}
     EOpenSSLAPIFunctionNotPresent.RaiseException('X509_STORE_CTX_get_ex_data');
-{$ENDIF} { End of OPENSSL_NO_LEGACY_SUPPORT}
   Result := X509_STORE_CTX_get_ex_data(ctx,idx);
 end;
 
