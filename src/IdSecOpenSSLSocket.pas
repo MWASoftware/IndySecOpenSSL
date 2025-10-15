@@ -1305,14 +1305,15 @@ begin
       Result := ret;
       Exit;
     end;
-    err := GetSSLError(ret);
-    if (err = SSL_ERROR_WANT_READ) or (err = SSL_ERROR_WANT_WRITE) then begin
-      Continue;
-    end;
-    if err = SSL_ERROR_ZERO_RETURN then begin
-      Result := 0;
-    end else begin
-      Result := ret;
+    case  GetSSLError(ret) of
+      SSL_ERROR_WANT_READ,
+      SSL_ERROR_WANT_WRITE:
+        Continue;
+
+      SSL_ERROR_ZERO_RETURN:
+        Result := 0;
+      else
+        Result := ret;
     end;
     Exit;
   until False;

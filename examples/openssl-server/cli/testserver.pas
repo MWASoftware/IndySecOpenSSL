@@ -358,7 +358,7 @@ procedure TOpenSSLServerTest.DoRun;
     try
       DoTest;
     except on E:Exception do
-      writeln(E.Message);
+      writeln('Client Test #1: ', E.Message);
     end;
     FClientVerification := true;
     FServer.Active := false;
@@ -369,7 +369,7 @@ procedure TOpenSSLServerTest.DoRun;
     try
       DoTest;
     except on E:Exception do
-      writeln(E.Message);
+      writeln('Client Test #2: ',E.Message);
     end;
 end;
 
@@ -434,6 +434,7 @@ begin
   FServer.OnQuerySSLPort := QuerySSLPort;
   FServer.DefaultPort := SSLServerPort;
   FServer.OnCommandGet := HandleCommandGet;
+  FServer.KeepAlive:= true
 end;
 
 destructor TOpenSSLServerTest.Destroy;
