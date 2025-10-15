@@ -454,19 +454,29 @@
     {$ENDIF}
   {$ENDIF}
 
-  //Delphi & CBuilder 13.0+ (?)
-  {$IFDEF CONDITIONALEXPRESSIONS}
-    {$IF CompilerVersion >= 37}
-      {$MESSAGE WARN 'Unknown compiler version detected! Assuming >= 13.x '}
-      {$DEFINE VCL_UNKNOWN_VERSION}
-      {$DEFINE VCL_13}
-      {$IFDEF CBUILDER}
-        {$DEFINE CBUILDER_13}
-      {$ELSE}
-        {$DEFINE DELPHI_13}
-      {$ENDIF}
-    {$IFEND}
+//Delphi & CBuilder 13.0 Florence
+{$IFDEF VER370}
+  {$DEFINE VCL_13}
+  {$IFDEF CBUILDER}
+    {$DEFINE CBUILDER_13}
+  {$ELSE}
+    {$DEFINE DELPHI_13}
   {$ENDIF}
+{$ENDIF}
+
+//Delphi & CBuilder 14.0+ (future releases)
+{$IFDEF CONDITIONALEXPRESSIONS}
+  {$IF CompilerVersion >= 38}
+    {$MESSAGE WARN 'Unknown compiler version detected! Assuming >= 14.x '}
+    {$DEFINE VCL_UNKNOWN_VERSION}
+    {$DEFINE VCL_14}
+    {$IFDEF CBUILDER}
+      {$DEFINE CBUILDER_14}
+    {$ELSE}
+      {$DEFINE DELPHI_14}
+    {$ENDIF}
+  {$IFEND}
+{$ENDIF}
 
   // Kylix
   //

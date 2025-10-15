@@ -59,7 +59,7 @@ type
   TIdSecVerifyModeSet = set of TIdSecVerifyMode;
 
 const
-  DEF_SSLVERSION = sslvTLSv1_2;
+  DEF_SSLVERSION = sslvTLSv1_3;
   DEF_SSLVERSIONS = [sslvTLSv1_2,sslvTLSv1_3];
   MAX_SSLVERSION = sslvTLSv1_3;
 

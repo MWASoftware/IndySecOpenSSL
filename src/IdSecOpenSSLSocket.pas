@@ -220,6 +220,11 @@ uses
   {$IFDEF USE_WINDOWS_CERT_STORE}
   IdSecwincrypt,
   {$ENDIF}
+  {$IFNDEF FPC}
+  {$IF CompilerVersion >= 37}
+  System.SyncObjs,
+  {$ifend}
+  {$ENDIF}
   IdThreadSafe,
   IdSecOpenSSLUtils,
   IdSecOpenSSLAPI,
@@ -1292,7 +1297,7 @@ end;
 
 function TIdSecSocket.Recv(var ABuffer: TIdBytes): Integer;
 var
-  ret, err: Integer;
+  ret: Integer;
 begin
   repeat
     ret := SSL_read(fSSL, PByte(ABuffer), Length(ABuffer));
@@ -1300,14 +1305,15 @@ begin
       Result := ret;
       Exit;
     end;
-    err := GetSSLError(ret);
-    if (err = SSL_ERROR_WANT_READ) or (err = SSL_ERROR_WANT_WRITE) then begin
-      Continue;
-    end;
-    if err = SSL_ERROR_ZERO_RETURN then begin
-      Result := 0;
-    end else begin
-      Result := ret;
+    case  GetSSLError(ret) of
+      SSL_ERROR_WANT_READ,
+      SSL_ERROR_WANT_WRITE:
+        Continue;
+
+      SSL_ERROR_ZERO_RETURN:
+        Result := 0;
+      else
+        Result := ret;
     end;
     Exit;
   until False;

@@ -373,6 +373,7 @@ type
   protected
     fxSSLOptions: TIdSecOptions;
     fSSLContext: TIdSecContext;
+    fIOHandler: TIdSecIOHandlerSocketOpenSSL;
     fOnStatusInfo: TCallbackEvent;
     FOnStatusInfoEx : TCallbackExEvent;
     fOnGetPassword: TPasswordEvent;
@@ -412,6 +413,7 @@ type
     function MakeFTPSvrPasv : TIdSSLIOHandlerSocketBase; override;
     //
     property SSLContext: TIdSecContext read fSSLContext;
+    property SSLSocket:  TIdSecSocket read GetSSLSocket;
   published
     property SSLOptions: TIdSecOptions read fxSSLOptions write fxSSLOptions;
     property OnStatusInfo: TCallbackEvent read fOnStatusInfo write fOnStatusInfo;
@@ -547,8 +549,6 @@ end;
 function TIdSecServerIOHandlerSSLOpenSSL.Accept(ASocket: TIdSocketHandle;
   // This is a thread and not a yarn. Its the listener thread.
   AListenerThread: TIdThread; AYarn: TIdYarn ): TIdIOHandler;
-var
-  LIO: TIdSecIOHandlerSocketOpenSSL;
 begin
   //using a custom scheduler, AYarn may be nil, so don't assert
   Assert(ASocket<>nil);
@@ -556,22 +556,22 @@ begin
   Assert(AListenerThread<>nil);
 
   Result := nil;
-  LIO := TIdSecIOHandlerSocketOpenSSL.Create(nil);
+  fIOHandler := TIdSecIOHandlerSocketOpenSSL.Create(nil);
   try
-    LIO.PassThrough := True;
-    LIO.Open;
+    fIOHandler.PassThrough := True;
+    fIOHandler.Open;
     while not AListenerThread.Stopped do begin
       if ASocket.Select(250) then begin
-        if (not AListenerThread.Stopped) and LIO.Binding.Accept(ASocket.Handle) then begin
+        if (not AListenerThread.Stopped) and fIOHandler.Binding.Accept(ASocket.Handle) then begin
           //we need to pass the SSLOptions for the socket from the server
           // TODO: wouldn't it be easier to just Assign() the server's SSLOptions
           // here? Do we really need to share ownership of it?
           // LIO.fxSSLOptions.Assign(fxSSLOptions);
-          FreeAndNil(LIO.fxSSLOptions);
-          LIO.IsPeer := True;
-          LIO.fxSSLOptions := fxSSLOptions;
-          LIO.fSSLSocket := TIdSecSocket.Create(Self);
-          LIO.fSSLContext := fSSLContext;
+          FreeAndNil(fIOHandler.fxSSLOptions);
+          fIOHandler.IsPeer := True;
+          fIOHandler.fxSSLOptions := fxSSLOptions;
+          fIOHandler.fSSLSocket := TIdSecSocket.Create(Self);
+          fIOHandler.fSSLContext := fSSLContext;
           // TODO: to enable server-side SNI, we need to:
           // - Set up an additional SSL_CTX for each different certificate;
           // - Add a servername callback to each SSL_CTX using SSL_CTX_set_tlsext_servername_callback();
@@ -587,16 +587,16 @@ begin
           // TIdSecIOHandlerSocketOpenSSL.AfterAccept().  If anything, all this will
           // really do is update the Binding's IPVersion.  But, calling this is consistent
           // with other server Accept() implementations, so we should do it here, too...
-          LIO.AfterAccept;
+          fIOHandler.AfterAccept;
 
-          Result := LIO;
-          LIO := nil;
+          Result := fIOHandler;
           Break;
         end;
       end;
     end;
-  finally
-    FreeAndNil(LIO);
+  except
+    FreeAndNil(fIOHandler);
+    raise;
   end;
 end;
 
@@ -698,7 +698,10 @@ end;
 
 function TIdSecServerIOHandlerSSLOpenSSL.GetSSLSocket: TIdSecSocket;
 begin
-  Result := nil;
+  if assigned(fIOHandler) then
+    Result := fIOHandler.SSLSocket
+  else
+    Result := nil;
 end;
 
 procedure TIdSecServerIOHandlerSSLOpenSSL.StatusInfo(
