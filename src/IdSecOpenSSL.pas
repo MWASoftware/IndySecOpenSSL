@@ -413,6 +413,7 @@ type
     function MakeFTPSvrPasv : TIdSSLIOHandlerSocketBase; override;
     //
     property SSLContext: TIdSecContext read fSSLContext;
+    property SSLSocket:  TIdSecSocket read GetSSLSocket;
   published
     property SSLOptions: TIdSecOptions read fxSSLOptions write fxSSLOptions;
     property OnStatusInfo: TCallbackEvent read fOnStatusInfo write fOnStatusInfo;
