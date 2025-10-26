@@ -104,10 +104,10 @@ const
   LegacyLibssl = 'ssleay32';
 
     {$IFDEF CPU64}
-    DefaultLibVersions = '-3-x64;-1-x64';
+    DefaultLibVersions = '-3-x64;-1_1-x64;-1-x64';
     {$ENDIF}
     {$IFDEF CPU32}
-    DefaultLibVersions = '-3;-1';
+    DefaultLibVersions = '-3;-1_1;-1';
     {$ENDIF}
   {$ENDIF}
 
