@@ -596,6 +596,12 @@ files generated for C++. }
 {$EXTERNALSYM EVP_MD_CTX_set_update_fn}
 {$EXTERNALSYM EVP_MD_CTX_set_pkey_ctx}
 {$EXTERNALSYM EVP_CIPHER_impl_ctx_size}
+//EVP_CIPHER_key_length
+{$EXTERNALSYM EVP_CIPHER_get_key_length}
+//EVP_CIPHER_get_key_length
+//EVP_CIPHER_iv_length
+{$EXTERNALSYM EVP_CIPHER_get_iv_length}
+//EVP_CIPHER_get_iv_length
 {$EXTERNALSYM EVP_CIPHER_CTX_cipher}
 {$EXTERNALSYM EVP_CIPHER_CTX_iv}
 {$EXTERNALSYM EVP_CIPHER_CTX_original_iv}
@@ -853,6 +859,7 @@ files generated for C++. }
 {$EXTERNALSYM EVP_PKEY_encrypt_old}
 {$EXTERNALSYM EVP_PKEY_type}
 {$EXTERNALSYM EVP_PKEY_get_base_id}
+{$EXTERNALSYM EVP_PKEY_get_bits}
 {$EXTERNALSYM EVP_PKEY_get_security_bits}
 {$EXTERNALSYM EVP_PKEY_get_size}
 {$EXTERNALSYM EVP_PKEY_set_type}
@@ -1629,6 +1636,10 @@ function Load_EVP_CIPHER_nid(const ctx: PEVP_MD_CTX): TOpenSSL_C_INT; cdecl;
 function Load_EVP_CIPHER_block_size(const cipher: PEVP_CIPHER): TOpenSSL_C_INT; cdecl;
 {$ENDIF} //of OPENSSL_NO_LEGACY_SUPPORT
 function Load_EVP_CIPHER_impl_ctx_size(const cipher: PEVP_CIPHER): TOpenSSL_C_INT; cdecl;
+
+function Load_EVP_CIPHER_get_key_length(const cipher: PEVP_CIPHER): TOpenSSL_C_INT; cdecl;
+function Load_EVP_CIPHER_get_iv_length(const cipher: PEVP_CIPHER): TOpenSSL_C_INT; cdecl;
+
 {$IFNDEF OPENSSL_NO_LEGACY_SUPPORT}
 function Load_EVP_CIPHER_key_length(const cipher: PEVP_CIPHER): TOpenSSL_C_INT; cdecl;
 function Load_EVP_CIPHER_iv_length(const cipher: PEVP_CIPHER): TOpenSSL_C_INT; cdecl;
@@ -1910,6 +1921,7 @@ function Load_EVP_PKEY_id(const pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
 function Load_EVP_PKEY_base_id(const pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
 {$ENDIF} //of OPENSSL_NO_LEGACY_SUPPORT
 function Load_EVP_PKEY_get_base_id(const pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
+function Load_EVP_PKEY_get_bits(const pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
 {$IFNDEF OPENSSL_NO_LEGACY_SUPPORT}
 function Load_EVP_PKEY_bits(const pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
 function Load_EVP_PKEY_security_bits(const pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
@@ -2158,6 +2170,10 @@ var
   EVP_MD_CTX_set_update_fn: procedure (ctx: PEVP_MD_CTX; update: EVP_MD_CTX_update); cdecl = Load_EVP_MD_CTX_set_update_fn;
   EVP_MD_CTX_set_pkey_ctx: procedure (ctx: PEVP_MD_CTX; pctx: PEVP_PKEY_CTX); cdecl = Load_EVP_MD_CTX_set_pkey_ctx;
   EVP_CIPHER_impl_ctx_size: function (const cipher: PEVP_CIPHER): TOpenSSL_C_INT; cdecl = Load_EVP_CIPHER_impl_ctx_size;
+
+  EVP_CIPHER_get_key_length: function (const cipher: PEVP_CIPHER): TOpenSSL_C_INT; cdecl = Load_EVP_CIPHER_get_key_length;
+  EVP_CIPHER_get_iv_length: function (const cipher: PEVP_CIPHER): TOpenSSL_C_INT; cdecl = Load_EVP_CIPHER_get_iv_length;
+
   EVP_CIPHER_CTX_cipher: function (const ctx: PEVP_CIPHER_CTX): PEVP_CIPHER; cdecl = Load_EVP_CIPHER_CTX_cipher;
   EVP_CIPHER_CTX_iv: function (const ctx: PEVP_CIPHER_CTX): PByte; cdecl = Load_EVP_CIPHER_CTX_iv;
   EVP_CIPHER_CTX_original_iv: function (const ctx: PEVP_CIPHER_CTX): PByte; cdecl = Load_EVP_CIPHER_CTX_original_iv;
@@ -2427,6 +2443,7 @@ var
   EVP_PKEY_encrypt_old: function (dec_key: PByte; const enc_key: PByte; key_len: TOpenSSL_C_INT; pub_key: PEVP_PKEY): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_encrypt_old;
   EVP_PKEY_type: function (type_: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_type;
   EVP_PKEY_get_base_id: function (const pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_get_base_id;
+  EVP_PKEY_get_bits: function (const pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_get_bits;
   EVP_PKEY_get_security_bits: function (const pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_get_security_bits;
   EVP_PKEY_get_size: function (const pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_get_size;
   EVP_PKEY_set_type: function (pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_set_type;
@@ -2698,6 +2715,10 @@ const
   EVP_CIPHER_nid_removed = ((((((byte(3) shl 8) or byte(0)) shl 8) or byte(0)) shl 8) or byte(0)) shl 4; {removed 3.0.0}
   EVP_CIPHER_block_size_removed = ((((((byte(3) shl 8) or byte(0)) shl 8) or byte(0)) shl 8) or byte(0)) shl 4; {removed 3.0.0}
   EVP_CIPHER_impl_ctx_size_introduced = ((((((byte(1) shl 8) or byte(1)) shl 8) or byte(0)) shl 8) or byte(0)) shl 4; {introduced 1.1.0}
+
+  EVP_CIPHER_get_key_length_introduced = ((((((byte(3) shl 8) or byte(0)) shl 8) or byte(0)) shl 8) or byte(0)) shl 4; {introduced 3.0.0}
+  EVP_CIPHER_get_iv_length_introduced = ((((((byte(3) shl 8) or byte(0)) shl 8) or byte(0)) shl 8) or byte(0)) shl 4; {introduced 3.0.0}
+
   EVP_CIPHER_key_length_removed = ((((((byte(3) shl 8) or byte(0)) shl 8) or byte(0)) shl 8) or byte(0)) shl 4; {removed 3.0.0}
   EVP_CIPHER_iv_length_removed = ((((((byte(3) shl 8) or byte(0)) shl 8) or byte(0)) shl 8) or byte(0)) shl 4; {removed 3.0.0}
   EVP_CIPHER_flags_removed = ((((((byte(3) shl 8) or byte(0)) shl 8) or byte(0)) shl 8) or byte(0)) shl 4; {removed 3.0.0}
@@ -2789,6 +2810,7 @@ const
   EVP_PKEY_id_removed = ((((((byte(3) shl 8) or byte(0)) shl 8) or byte(0)) shl 8) or byte(0)) shl 4; {removed 3.0.0}
   EVP_PKEY_base_id_removed = ((((((byte(3) shl 8) or byte(0)) shl 8) or byte(0)) shl 8) or byte(0)) shl 4; {removed 3.0.0}
   EVP_PKEY_get_base_id_introduced = ((((((byte(3) shl 8) or byte(0)) shl 8) or byte(0)) shl 8) or byte(0)) shl 4; {introduced 3.0.0}
+  EVP_PKEY_get_bits_introduced = ((((((byte(3) shl 8) or byte(0)) shl 8) or byte(0)) shl 8) or byte(0)) shl 4; {introduced 3.0.0}
   EVP_PKEY_bits_removed = ((((((byte(3) shl 8) or byte(0)) shl 8) or byte(0)) shl 8) or byte(0)) shl 4; {removed 3.0.0}
   EVP_PKEY_security_bits_introduced = ((((((byte(1) shl 8) or byte(1)) shl 8) or byte(0)) shl 8) or byte(0)) shl 4; {introduced 1.1.0}
   EVP_PKEY_security_bits_removed = ((((((byte(3) shl 8) or byte(0)) shl 8) or byte(0)) shl 8) or byte(0)) shl 4; {removed 3.0.0}
@@ -3680,6 +3702,23 @@ begin
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_CIPHER_impl_ctx_size');
   Result := EVP_CIPHER_impl_ctx_size(cipher);
 end;
+
+function Load_EVP_CIPHER_get_iv_length(const cipher: PEVP_CIPHER): TOpenSSL_C_INT; cdecl;
+begin
+  EVP_CIPHER_get_iv_length := LoadLibCryptoFunction('EVP_CIPHER_get_iv_length');
+  if not assigned(EVP_CIPHER_get_iv_length) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_CIPHER_get_iv_length');
+  Result := EVP_CIPHER_get_iv_length(cipher);
+end;
+
+function Load_EVP_CIPHER_get_key_length(const cipher: PEVP_CIPHER): TOpenSSL_C_INT; cdecl;
+begin
+  EVP_CIPHER_get_key_length := LoadLibCryptoFunction('EVP_CIPHER_get_key_length');
+  if not assigned(EVP_CIPHER_get_key_length) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_CIPHER_get_key_length');
+  Result := EVP_CIPHER_get_key_length(cipher);
+end;
+
 
 {$IFNDEF OPENSSL_NO_LEGACY_SUPPORT}
 function Load_EVP_CIPHER_key_length(const cipher: PEVP_CIPHER): TOpenSSL_C_INT; cdecl;
@@ -5825,6 +5864,14 @@ begin
   Result := EVP_PKEY_get_base_id(pkey);
 end;
 
+function Load_EVP_PKEY_get_bits(const pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
+begin
+  EVP_PKEY_get_bits := LoadLibCryptoFunction('EVP_PKEY_get_bits');
+  if not assigned(EVP_PKEY_get_bits) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_get_bits');
+  Result := EVP_PKEY_get_bits(pkey);
+end;
+
 {$IFNDEF OPENSSL_NO_LEGACY_SUPPORT}
 function Load_EVP_PKEY_bits(const pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
 begin
@@ -7766,6 +7813,7 @@ begin
   EVP_PKEY_base_id := Load_EVP_PKEY_base_id;
 {$ENDIF} //of OPENSSL_NO_LEGACY_SUPPORT
   EVP_PKEY_get_base_id := Load_EVP_PKEY_get_base_id;
+  EVP_PKEY_get_bits := Load_EVP_PKEY_get_bits;
 {$IFNDEF OPENSSL_NO_LEGACY_SUPPORT}
   EVP_PKEY_bits := Load_EVP_PKEY_bits;
   EVP_PKEY_security_bits := Load_EVP_PKEY_security_bits;
