@@ -18,7 +18,7 @@
 unit openssl_bn;
 
 {
-  Generated from OpenSSL 3.0.20 Header File bn.h - Wed  6 May 13:14:41 BST 2026
+  Generated from OpenSSL 3.0.20 Header File bn.h - Wed  6 May 14:04:50 BST 2026
   With Legacy Support Option
 }
 

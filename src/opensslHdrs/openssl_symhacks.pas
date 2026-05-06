@@ -18,7 +18,7 @@
 unit openssl_symhacks;
 
 {
-  Generated from OpenSSL 3.0.20 Header File symhacks.h - Wed  6 May 13:15:49 BST 2026
+  Generated from OpenSSL 3.0.20 Header File symhacks.h - Wed  6 May 14:05:59 BST 2026
   With Legacy Support Option
 }
 

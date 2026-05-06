@@ -18,7 +18,7 @@
 unit openssl_trace;
 
 {
-  Generated from OpenSSL 3.0.20 Header File trace.h - Wed  6 May 13:15:53 BST 2026
+  Generated from OpenSSL 3.0.20 Header File trace.h - Wed  6 May 14:06:03 BST 2026
   With Legacy Support Option
 }
 
