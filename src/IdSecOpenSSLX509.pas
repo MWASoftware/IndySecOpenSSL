@@ -47,9 +47,9 @@ uses
   SysUtils,
   IdCTypes,
   IdGlobal,
-  IdSecOpenSSLHeaders_ssl,
-  IdSecOpenSSLHeaders_ossl_typ,
-  IdSecOpenSSLHeaders_x509,
+  Openssl_ssl,
+  Openssl_types,
+  Openssl_x509,
   IdSecOpenSSLUtils
 ;
 
@@ -177,7 +177,7 @@ http://csrc.nist.gov/CryptoToolkit/tkhash.html
     property Certificate: PX509 read FX509;
   end;
 
-function IndySSL_load_client_CA_file(const AFileName: String) : PSTACK_OF_X509_NAME;
+function IndySSL_load_client_CA_file(const AFileName: String) : Pstack_st_X509_NAME_ENTRY;
 function IndySSL_CTX_load_verify_locations(ctx: PSSL_CTX; const ACAFile, ACAPath: String): TIdC_INT;
 function IndySSL_CTX_use_certificate_file(ctx: PSSL_CTX; const AFileName: String; AType: Integer): TIdC_INT;
 function IndySSL_CTX_use_certificate_file_PKCS12(ctx: PSSL_CTX; const AFileName: String): TIdC_INT;
@@ -194,18 +194,18 @@ uses
   IdStack,
   IdFIPS,
   IdSecOpenSSL,
-  IdSecOpenSSLAPI,
-  IdSecOpenSSLHeaders_x509_vfy,
-  IdSecOpenSSLHeaders_pkcs12,
-  IdSecOpenSSLHeaders_evp,
-  IdSecOpenSSLHeaders_objects,
-  IdSecOpenSSLHeaders_err,
-  IdSecOpenSSLHeaders_sslerr,
-  IdSecOpenSSLHeaders_stack,
-  IdSecOpenSSLHeaders_dh,
-  IdSecOpenSSLHeaders_pem,
-  IdSecOpenSSLHeaders_bio,
-  IdSecOpenSSLHeaders_obj_mac
+  OpenSSLAPI,
+  Openssl_x509_vfy,
+  Openssl_pkcs12,
+  Openssl_evp,
+  Openssl_objects,
+  Openssl_err,
+  Openssl_sslerr,
+  Openssl_stack,
+  Openssl_dh,
+  Openssl_pem,
+  Openssl_bio,
+  Openssl_obj_mac
   ;
 
 

@@ -1,0 +1,118 @@
+{
+    This file is part of the MWA Software Pascal API for OpenSSL .
+
+    The MWA Software Pascal API for OpenSSL is free software: you can redistribute it
+    and/or modify it under the terms of the Apache License Version 2.0 (the "License"), and as
+    a derived work of the OpenSSL Project (see below for the original licence text).
+
+    You may not use this file except in compliance with the License.  You can obtain a copy
+    in the file LICENSE.txt in the source distribution or at https://www.openssl.org/source/license.html.
+
+    The MWA Software Pascal API for OpenSSL is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the License for more details.
+}
+
+{$include openssl_defines.inc}
+
+unit openssl_core_object;
+
+{
+  Generated from OpenSSL 3.0.20 Header File core_object.h - Wed  6 May 10:56:02 BST 2026
+}
+
+interface
+
+uses OpenSSLAPI;
+
+
+{* Copyright 2020-2021 The OpenSSL Project Authors. All Rights Reserved.
+*
+* Licensed under the Apache License 2.0 (the "License").  You may not use
+* this file except in compliance with the License.  You can obtain a copy
+* in the file LICENSE in the source distribution or at
+* https://www.openssl.org/source/license.html
+}
+{$ifndef  OPENSSL_CORE_OBJECT_H}
+  {$define OPENSSL_CORE_OBJECT_H}
+
+const
+  {-
+  * Known object types
+  *
+  * These numbers are used as values for the OSSL_PARAM parameter
+  * OSSL_OBJECT_PARAM_TYPE.
+  *
+  * For most of these types, there's a corresponding libcrypto object type.
+  * The corresponding type is indicated with a comment after the number.
+  }
+  OSSL_OBJECT_UNKNOWN = 0;
+  OSSL_OBJECT_NAME = 1;
+  OSSL_OBJECT_PKEY = 2;
+  OSSL_OBJECT_CERT = 3;
+  OSSL_OBJECT_CRL = 4;
+  
+  {* The rest of the associated OSSL_PARAM elements is described in core_names.h
+  }
+{$endif}
+
+implementation
+
+uses Sysutils
+  {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
+   {$IFNDEF FPC}
+     ,System.SyncObjs
+     {$IFDEF POSIX}
+       ,Posix.Pthread
+     {$ELSE}
+       ,Windows
+     {$ENDIF}
+   {$ELSE}
+     ,SyncObjs
+   {$ENDIF}
+  {$endif}
+  ,Classes, OpenSSLExceptionHandlers;
+
+const
+  {$ifdef FPC}
+  __FILE__ = {$include %FILE%};
+  {$else}
+  __FILE__ = '$(INPUTFILENAME)';
+  {$endif}
+  OPENSSL_FILE = __FILE__;
+  OPENSSL_LINE  = 0;
+
+{$ifndef OPENSSL_STATIC_LINK_MODEL}
+procedure Load;
+begin
+  {$define EMPTY_LOAD_FUNCTION}
+end;
+
+procedure Unload;
+begin
+end;
+
+{$endif} {OPENSSL_STATIC_LINK_MODEL}
+
+initialization
+
+{$ifndef OPENSSL_STATIC_LINK_MODEL}
+{$ifndef EMPTY_LOAD_FUNCTION}
+Register_SSLloader(@Load);
+{$endif}
+Register_SSLUnloader(@Unload);
+{$endif}
+{$if declared(LegacySupport_Initialization)}
+LegacySupport_Initialization;
+{$ifend}
+
+finalization
+
+{$if declared(LegacySupport_Finalization)}
+LegacySupport_Finalization;
+{$ifend}
+
+end.
+
+
+

@@ -14,7 +14,7 @@ interface
 implementation
 
 uses
-  IdGlobal, IdFIPS, IdSecOpenSSLAPI, IdHashMessageDigest, IdSecOpenSSLHeaders_des,
+  IdGlobal, IdFIPS, OpenSSLAPI, IdHashMessageDigest, Openssl_des,
   SysUtils;
 
 {$I IdCompilerDefines.inc}
@@ -39,15 +39,15 @@ begin
 end;
 
 type
-  Pdes_key_schedule = ^des_key_schedule;
+  Pdes_key_schedule = ^Tdes_key_schedule;
 
 {/*
  * turns a 56 bit key into the 64 bit, odd parity key and sets the key.
  * The key schedule ks is also set.
  */}
-procedure setup_des_key(key_56: des_cblock; Var ks: des_key_schedule);
+procedure setup_des_key(key_56: Tdes_cblock; Var ks: Tdes_key_schedule);
 Var
-  key: des_cblock;
+  key: Tdes_cblock;
 begin
   key[0] := key_56[0];
 
@@ -60,7 +60,7 @@ begin
   key[7] :=  (key_56[6] SHL 1) and $FF;
 
   DES_set_odd_parity(@key);
-  DES_set_key(@key, ks);
+  DES_set_key(@key, @ks);
 end;
 
 {/*
@@ -70,8 +70,8 @@ end;
  */}
 procedure calc_resp(keys: PDES_cblock; const ANonce: TIdBytes; results: Pdes_key_schedule);
 Var
-  ks: des_key_schedule;
-  nonce: des_cblock;
+  ks: Tdes_key_schedule;
+  nonce: Tdes_cblock;
 begin
   setup_des_key(keys^, ks);
   Move(ANonce[0], nonce, 8);
@@ -85,7 +85,7 @@ begin
 end;
 
 Const
-  Magic: des_cblock = ($4B, $47, $53, $21, $40, $23, $24, $25 );
+  Magic: Tdes_cblock = ($4B, $47, $53, $21, $40, $23, $24, $25 );
 
 //* setup LanManager password */
 function SetupLanManagerPassword(const APassword: String; const ANonce: TIdBytes): TIdBytes;
@@ -93,7 +93,7 @@ var
   lm_hpw: array[0..20] of Byte;
   lm_pw: array[0..13] of Byte;
   idx, len: Integer;
-  ks: des_key_schedule;
+  ks: Tdes_key_schedule;
   lm_resp: array [0..23] of Byte;
   lPassword: {$IFDEF STRING_IS_UNICODE}TIdBytes{$ELSE}AnsiString{$ENDIF};
 begin

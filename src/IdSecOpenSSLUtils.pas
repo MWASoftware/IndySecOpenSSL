@@ -48,8 +48,8 @@ uses
   SysUtils,
   IdCTypes,
   IdGlobal,
-  IdSecOpenSSLHeaders_evp,
-  IdSecOpenSSLHeaders_ossl_typ
+  Openssl_evp,
+  Openssl_types
   {$IFNDEF FPC}, System.DateUtils{$ENDIF}
 ;
 
@@ -92,14 +92,14 @@ var
   {$ENDIF}
 begin
   Result := 0; {default is to return with an error indication}
-  if UTCtime^.length < 12 then begin
+  if length(PAnsiChar(UTCtime)^) < 12 then begin
     Exit;
   end;
   {$IFDEF USE_MARSHALLED_PTRS}
   time_str := TMarshal.ReadStringAsAnsi(TPtrWrapper.Create(UTCtime^.data), UTCtime^.length);
   {$ELSE}
     {$IFDEF STRING_IS_ANSI}
-  SetString(time_str, PAnsiChar(UTCtime^.data), UTCtime^.length);
+  SetString(time_str, PAnsiChar(UTCtime), length(PAnsiChar(UTCtime)^));
     {$ELSE}
   SetString(LTemp, PAnsiChar(UTCtime^.data), UTCtime^.length);   {Note: UTCtime is a type defined by OpenSSL and hence is ansistring and not UCS-2}
   // TODO: do we need to use SetCodePage() here?

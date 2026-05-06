@@ -44,12 +44,15 @@ uses
   IdGlobal,
   IdStackConsts,
   IdSecOpenSSLX509,
-  IdSecOpenSSLExceptionHandlers,
-  IdSecOpenSSLHeaders_ssl,
+  OpenSSLExceptionHandlers,
+  Openssl_ssl,
   IdSecOpenSSLOptions,
-  IdSecOpenSSLHeaders_ossl_typ
+  Openssl_types
   ;
 
+{$ifdef FPC}
+{$mode delphi}
+{$endif}
 {$I IdCompilerDefines.inc}
 
 {$IFDEF WINDOWS}
@@ -227,15 +230,16 @@ uses
   {$ENDIF}
   IdThreadSafe,
   IdSecOpenSSLUtils,
-  IdSecOpenSSLAPI,
+  OpenSSLAPI,
   IdSecOpenSSL,
   IdResourceStringsProtocols,
   IdSecResourceStringsOpenSSL,
-  IdSecOpenSSLHeaders_x509,
-  IdSecOpenSSLHeaders_ssl3,
-  IdSecOpenSSLHeaders_tls1,
-  IdSecOpenSSLHeaders_x509_vfy,
-  IdSecOpenSSLHeaders_err
+  Openssl_x509,
+  Openssl_ssl3,
+  Openssl_tls1,
+  Openssl_x509_vfy,
+  Openssl_err,
+  openssl_prov_ssl
 ;
 
 var
@@ -499,7 +503,7 @@ end;
 
 function TIdSecCipher.GetBits:TIdC_INT;
 begin
-  SSL_CIPHER_get_bits(SSL_get_current_cipher(FSSLSocket.fSSL), Result);
+  SSL_CIPHER_get_bits(SSL_get_current_cipher(FSSLSocket.fSSL), @Result);
 end;
 
 function TIdSecCipher.GetVersion:String;
@@ -637,9 +641,11 @@ begin
     EIdOSSLCreatingContextError.RaiseException(RSSSLCreatingContextError);
   end;
 
-  //set min and max SSL Versions we will aloow
+  //set min and max SSL Versions we will allow
+  {$if declared(HasTLS_method)}
   if HasTLS_method then
   begin
+  {$ifend}
     if SSLVersions <> [] then
     begin
       for v := sslvSSLv3 to MAX_SSLVERSION do
@@ -664,6 +670,7 @@ begin
      SSL_CTX_set_min_proto_version(fContext,SSL3_VERSION);
      SSL_CTX_set_max_proto_version(fContext,SSLProtoVersion[high(TIdSecVersion)]);
    end;
+   {$if declared(HasTLS_method)}
   end
   else
   begin
@@ -716,12 +723,13 @@ begin
         end;
       end;
   end;
+  {$ifend}
 
 //  SSL_CTX_set_mode(fContext, SSL_MODE_AUTO_RETRY);
   SSL_CTX_ctrl(fContext, SSL_CTRL_CLEAR_MODE, SSL_MODE_AUTO_RETRY, nil);
   // assign a password lookup routine
 //  if PasswordRoutineOn then begin
-    SSL_CTX_set_default_passwd_cb(fContext, @PasswordCallback);
+    SSL_CTX_set_default_passwd_cb(fContext, PasswordCallback);
     SSL_CTX_set_default_passwd_cb_userdata(fContext, Self);
 //  end;
 
@@ -753,7 +761,7 @@ begin
     end;
   end;
   if StatusInfoOn then begin
-    SSL_CTX_set_info_callback(fContext, @InfoCallback);
+    SSL_CTX_set_info_callback(fContext, InfoCallback);
   end;
   //if_SSL_CTX_set_tmp_rsa_callback(hSSLContext, @RSACallback);
   if fCipherList <> '' then begin    {Do not Localize}
