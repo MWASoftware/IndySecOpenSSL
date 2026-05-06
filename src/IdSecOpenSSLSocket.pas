@@ -47,7 +47,8 @@ uses
   OpenSSLExceptionHandlers,
   Openssl_ssl,
   IdSecOpenSSLOptions,
-  Openssl_types
+  Openssl_types,
+  openssl_x509err
   ;
 
 {$I IdCompilerDefines.inc}

@@ -18,7 +18,7 @@
 unit openssl_modes;
 
 {
-  Generated from OpenSSL 3.0.20 Header File modes.h - Wed  6 May 13:06:12 BST 2026
+  Generated from OpenSSL 3.0.20 Header File modes.h - Wed  6 May 14:30:19 BST 2026
 }
 
 interface

@@ -299,10 +299,7 @@ TOpenSSL_C_SSIZET = TOpenSSL_C_INT64;
   POpenSSL_C_TM = ^TOpenSSL_C_TM;
   PPOpenSSL_C_TM = ^POpenSSL_C_TM;
   
-  POpenSSL_C_TIMEVAL = ^TOpenSSL_C_TIMEVAL;
-  TOpenSSL_C_TIMEVAL = timeval;
-  
-  Toff_t = integer;
+    Toff_t = integer;
   Toff_64t = int64;
   
   {$IFNDEF OPENSSL_API_TYPES_ONLY}

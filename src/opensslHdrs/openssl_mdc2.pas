@@ -18,7 +18,7 @@
 unit openssl_mdc2;
 
 {
-  Generated from OpenSSL 3.0.20 Header File mdc2.h - Wed  6 May 13:06:11 BST 2026
+  Generated from OpenSSL 3.0.20 Header File mdc2.h - Wed  6 May 14:30:19 BST 2026
 }
 
 interface

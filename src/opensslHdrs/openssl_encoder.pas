@@ -18,7 +18,7 @@
 unit openssl_encoder;
 
 {
-  Generated from OpenSSL 3.0.20 Header File encoder.h - Wed  6 May 13:05:59 BST 2026
+  Generated from OpenSSL 3.0.20 Header File encoder.h - Wed  6 May 14:30:06 BST 2026
 }
 
 interface

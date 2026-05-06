@@ -18,7 +18,7 @@
 unit openssl_cmp;
 
 {
-  Generated from OpenSSL 3.0.20 Header File cmp.h - Wed  6 May 13:05:37 BST 2026
+  Generated from OpenSSL 3.0.20 Header File cmp.h - Wed  6 May 14:29:44 BST 2026
 }
 
 interface
@@ -145,9 +145,6 @@ const
   OSSL_CMP_PKIFAILUREINFO_duplicateCertReq = 26;
   OSSL_CMP_PKIFAILUREINFO_MAX = 26;
   OSSL_CMP_PKIFAILUREINFO_MAX_BIT_PATTERN = (1 shl (OSSL_CMP_PKIFAILUREINFO_MAX+1))-1;
-    {$if  OSSL_CMP_PKIFAILUREINFO_MAX_BIT_PATTERN > INT_MAX}
-      {$error  CMP_PKIFAILUREINFO_MAX bit pattern does not fit in type int}
-    {$endif}
 
 type
   {Auto-generated forward references}
@@ -157,6 +154,9 @@ type
   PPOSSL_CMP_PKIFAILUREINFO = ^POSSL_CMP_PKIFAILUREINFO;
   {end of auto-generated forward references}
 
+    {#if OSSL_CMP_PKIFAILUREINFO_MAX_BIT_PATTERN > INT_MAX}
+    {#error CMP_PKIFAILUREINFO_MAX bit pattern does not fit in type int}
+    {#endif}
   TASN1_BIT_STRING = record end;
   TOSSL_CMP_PKIFAILUREINFO = TASN1_BIT_STRING;
 
