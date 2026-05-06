@@ -18,7 +18,8 @@
 unit openssl_param_build;
 
 {
-  Generated from OpenSSL 3.0.20 Header File param_build.h - Wed  6 May 13:06:18 BST 2026
+  Generated from OpenSSL 3.0.20 Header File param_build.h - Wed  6 May 13:15:27 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -162,7 +163,11 @@ function Load_OSSL_PARAM_BLD_new: POSSL_PARAM_BLD; cdecl;
 begin
   OSSL_PARAM_BLD_new := LoadLibCryptoFunction('OSSL_PARAM_BLD_new');
   if not assigned(OSSL_PARAM_BLD_new) then
+    {$if declared(LEGACY_OSSL_PARAM_BLD_new)}
+    OSSL_PARAM_BLD_new := @LEGACY_OSSL_PARAM_BLD_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_BLD_new');
+    {$ifend}
   Result := OSSL_PARAM_BLD_new;
 end;
 
@@ -170,7 +175,11 @@ function Load_OSSL_PARAM_BLD_to_param(bld: POSSL_PARAM_BLD): POSSL_PARAM; cdecl;
 begin
   OSSL_PARAM_BLD_to_param := LoadLibCryptoFunction('OSSL_PARAM_BLD_to_param');
   if not assigned(OSSL_PARAM_BLD_to_param) then
+    {$if declared(LEGACY_OSSL_PARAM_BLD_to_param)}
+    OSSL_PARAM_BLD_to_param := @LEGACY_OSSL_PARAM_BLD_to_param;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_BLD_to_param');
+    {$ifend}
   Result := OSSL_PARAM_BLD_to_param(bld);
 end;
 
@@ -178,7 +187,11 @@ procedure Load_OSSL_PARAM_BLD_free(bld: POSSL_PARAM_BLD); cdecl;
 begin
   OSSL_PARAM_BLD_free := LoadLibCryptoFunction('OSSL_PARAM_BLD_free');
   if not assigned(OSSL_PARAM_BLD_free) then
+    {$if declared(LEGACY_OSSL_PARAM_BLD_free)}
+    OSSL_PARAM_BLD_free := @LEGACY_OSSL_PARAM_BLD_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_BLD_free');
+    {$ifend}
   OSSL_PARAM_BLD_free(bld);
 end;
 
@@ -186,7 +199,11 @@ function Load_OSSL_PARAM_BLD_push_int(bld: POSSL_PARAM_BLD; key: PAnsiChar; val:
 begin
   OSSL_PARAM_BLD_push_int := LoadLibCryptoFunction('OSSL_PARAM_BLD_push_int');
   if not assigned(OSSL_PARAM_BLD_push_int) then
+    {$if declared(LEGACY_OSSL_PARAM_BLD_push_int)}
+    OSSL_PARAM_BLD_push_int := @LEGACY_OSSL_PARAM_BLD_push_int;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_BLD_push_int');
+    {$ifend}
   Result := OSSL_PARAM_BLD_push_int(bld, key, val);
 end;
 
@@ -194,7 +211,11 @@ function Load_OSSL_PARAM_BLD_push_uint(bld: POSSL_PARAM_BLD; key: PAnsiChar; val
 begin
   OSSL_PARAM_BLD_push_uint := LoadLibCryptoFunction('OSSL_PARAM_BLD_push_uint');
   if not assigned(OSSL_PARAM_BLD_push_uint) then
+    {$if declared(LEGACY_OSSL_PARAM_BLD_push_uint)}
+    OSSL_PARAM_BLD_push_uint := @LEGACY_OSSL_PARAM_BLD_push_uint;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_BLD_push_uint');
+    {$ifend}
   Result := OSSL_PARAM_BLD_push_uint(bld, key, val);
 end;
 
@@ -202,7 +223,11 @@ function Load_OSSL_PARAM_BLD_push_long(bld: POSSL_PARAM_BLD; key: PAnsiChar; val
 begin
   OSSL_PARAM_BLD_push_long := LoadLibCryptoFunction('OSSL_PARAM_BLD_push_long');
   if not assigned(OSSL_PARAM_BLD_push_long) then
+    {$if declared(LEGACY_OSSL_PARAM_BLD_push_long)}
+    OSSL_PARAM_BLD_push_long := @LEGACY_OSSL_PARAM_BLD_push_long;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_BLD_push_long');
+    {$ifend}
   Result := OSSL_PARAM_BLD_push_long(bld, key, val);
 end;
 
@@ -210,7 +235,11 @@ function Load_OSSL_PARAM_BLD_push_ulong(bld: POSSL_PARAM_BLD; key: PAnsiChar; va
 begin
   OSSL_PARAM_BLD_push_ulong := LoadLibCryptoFunction('OSSL_PARAM_BLD_push_ulong');
   if not assigned(OSSL_PARAM_BLD_push_ulong) then
+    {$if declared(LEGACY_OSSL_PARAM_BLD_push_ulong)}
+    OSSL_PARAM_BLD_push_ulong := @LEGACY_OSSL_PARAM_BLD_push_ulong;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_BLD_push_ulong');
+    {$ifend}
   Result := OSSL_PARAM_BLD_push_ulong(bld, key, val);
 end;
 
@@ -218,7 +247,11 @@ function Load_OSSL_PARAM_BLD_push_int32(bld: POSSL_PARAM_BLD; key: PAnsiChar; va
 begin
   OSSL_PARAM_BLD_push_int32 := LoadLibCryptoFunction('OSSL_PARAM_BLD_push_int32');
   if not assigned(OSSL_PARAM_BLD_push_int32) then
+    {$if declared(LEGACY_OSSL_PARAM_BLD_push_int32)}
+    OSSL_PARAM_BLD_push_int32 := @LEGACY_OSSL_PARAM_BLD_push_int32;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_BLD_push_int32');
+    {$ifend}
   Result := OSSL_PARAM_BLD_push_int32(bld, key, val);
 end;
 
@@ -226,7 +259,11 @@ function Load_OSSL_PARAM_BLD_push_uint32(bld: POSSL_PARAM_BLD; key: PAnsiChar; v
 begin
   OSSL_PARAM_BLD_push_uint32 := LoadLibCryptoFunction('OSSL_PARAM_BLD_push_uint32');
   if not assigned(OSSL_PARAM_BLD_push_uint32) then
+    {$if declared(LEGACY_OSSL_PARAM_BLD_push_uint32)}
+    OSSL_PARAM_BLD_push_uint32 := @LEGACY_OSSL_PARAM_BLD_push_uint32;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_BLD_push_uint32');
+    {$ifend}
   Result := OSSL_PARAM_BLD_push_uint32(bld, key, val);
 end;
 
@@ -234,7 +271,11 @@ function Load_OSSL_PARAM_BLD_push_int64(bld: POSSL_PARAM_BLD; key: PAnsiChar; va
 begin
   OSSL_PARAM_BLD_push_int64 := LoadLibCryptoFunction('OSSL_PARAM_BLD_push_int64');
   if not assigned(OSSL_PARAM_BLD_push_int64) then
+    {$if declared(LEGACY_OSSL_PARAM_BLD_push_int64)}
+    OSSL_PARAM_BLD_push_int64 := @LEGACY_OSSL_PARAM_BLD_push_int64;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_BLD_push_int64');
+    {$ifend}
   Result := OSSL_PARAM_BLD_push_int64(bld, key, val);
 end;
 
@@ -242,7 +283,11 @@ function Load_OSSL_PARAM_BLD_push_uint64(bld: POSSL_PARAM_BLD; key: PAnsiChar; v
 begin
   OSSL_PARAM_BLD_push_uint64 := LoadLibCryptoFunction('OSSL_PARAM_BLD_push_uint64');
   if not assigned(OSSL_PARAM_BLD_push_uint64) then
+    {$if declared(LEGACY_OSSL_PARAM_BLD_push_uint64)}
+    OSSL_PARAM_BLD_push_uint64 := @LEGACY_OSSL_PARAM_BLD_push_uint64;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_BLD_push_uint64');
+    {$ifend}
   Result := OSSL_PARAM_BLD_push_uint64(bld, key, val);
 end;
 
@@ -250,7 +295,11 @@ function Load_OSSL_PARAM_BLD_push_size_t(bld: POSSL_PARAM_BLD; key: PAnsiChar; v
 begin
   OSSL_PARAM_BLD_push_size_t := LoadLibCryptoFunction('OSSL_PARAM_BLD_push_size_t');
   if not assigned(OSSL_PARAM_BLD_push_size_t) then
+    {$if declared(LEGACY_OSSL_PARAM_BLD_push_size_t)}
+    OSSL_PARAM_BLD_push_size_t := @LEGACY_OSSL_PARAM_BLD_push_size_t;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_BLD_push_size_t');
+    {$ifend}
   Result := OSSL_PARAM_BLD_push_size_t(bld, key, val);
 end;
 
@@ -258,7 +307,11 @@ function Load_OSSL_PARAM_BLD_push_time_t(bld: POSSL_PARAM_BLD; key: PAnsiChar; v
 begin
   OSSL_PARAM_BLD_push_time_t := LoadLibCryptoFunction('OSSL_PARAM_BLD_push_time_t');
   if not assigned(OSSL_PARAM_BLD_push_time_t) then
+    {$if declared(LEGACY_OSSL_PARAM_BLD_push_time_t)}
+    OSSL_PARAM_BLD_push_time_t := @LEGACY_OSSL_PARAM_BLD_push_time_t;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_BLD_push_time_t');
+    {$ifend}
   Result := OSSL_PARAM_BLD_push_time_t(bld, key, val);
 end;
 
@@ -266,7 +319,11 @@ function Load_OSSL_PARAM_BLD_push_double(bld: POSSL_PARAM_BLD; key: PAnsiChar; v
 begin
   OSSL_PARAM_BLD_push_double := LoadLibCryptoFunction('OSSL_PARAM_BLD_push_double');
   if not assigned(OSSL_PARAM_BLD_push_double) then
+    {$if declared(LEGACY_OSSL_PARAM_BLD_push_double)}
+    OSSL_PARAM_BLD_push_double := @LEGACY_OSSL_PARAM_BLD_push_double;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_BLD_push_double');
+    {$ifend}
   Result := OSSL_PARAM_BLD_push_double(bld, key, val);
 end;
 
@@ -274,7 +331,11 @@ function Load_OSSL_PARAM_BLD_push_BN(bld: POSSL_PARAM_BLD; key: PAnsiChar; bn: P
 begin
   OSSL_PARAM_BLD_push_BN := LoadLibCryptoFunction('OSSL_PARAM_BLD_push_BN');
   if not assigned(OSSL_PARAM_BLD_push_BN) then
+    {$if declared(LEGACY_OSSL_PARAM_BLD_push_BN)}
+    OSSL_PARAM_BLD_push_BN := @LEGACY_OSSL_PARAM_BLD_push_BN;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_BLD_push_BN');
+    {$ifend}
   Result := OSSL_PARAM_BLD_push_BN(bld, key, bn);
 end;
 
@@ -282,7 +343,11 @@ function Load_OSSL_PARAM_BLD_push_BN_pad(bld: POSSL_PARAM_BLD; key: PAnsiChar; b
 begin
   OSSL_PARAM_BLD_push_BN_pad := LoadLibCryptoFunction('OSSL_PARAM_BLD_push_BN_pad');
   if not assigned(OSSL_PARAM_BLD_push_BN_pad) then
+    {$if declared(LEGACY_OSSL_PARAM_BLD_push_BN_pad)}
+    OSSL_PARAM_BLD_push_BN_pad := @LEGACY_OSSL_PARAM_BLD_push_BN_pad;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_BLD_push_BN_pad');
+    {$ifend}
   Result := OSSL_PARAM_BLD_push_BN_pad(bld, key, bn, sz);
 end;
 
@@ -290,7 +355,11 @@ function Load_OSSL_PARAM_BLD_push_utf8_string(bld: POSSL_PARAM_BLD; key: PAnsiCh
 begin
   OSSL_PARAM_BLD_push_utf8_string := LoadLibCryptoFunction('OSSL_PARAM_BLD_push_utf8_string');
   if not assigned(OSSL_PARAM_BLD_push_utf8_string) then
+    {$if declared(LEGACY_OSSL_PARAM_BLD_push_utf8_string)}
+    OSSL_PARAM_BLD_push_utf8_string := @LEGACY_OSSL_PARAM_BLD_push_utf8_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_BLD_push_utf8_string');
+    {$ifend}
   Result := OSSL_PARAM_BLD_push_utf8_string(bld, key, buf, bsize);
 end;
 
@@ -298,7 +367,11 @@ function Load_OSSL_PARAM_BLD_push_utf8_ptr(bld: POSSL_PARAM_BLD; key: PAnsiChar;
 begin
   OSSL_PARAM_BLD_push_utf8_ptr := LoadLibCryptoFunction('OSSL_PARAM_BLD_push_utf8_ptr');
   if not assigned(OSSL_PARAM_BLD_push_utf8_ptr) then
+    {$if declared(LEGACY_OSSL_PARAM_BLD_push_utf8_ptr)}
+    OSSL_PARAM_BLD_push_utf8_ptr := @LEGACY_OSSL_PARAM_BLD_push_utf8_ptr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_BLD_push_utf8_ptr');
+    {$ifend}
   Result := OSSL_PARAM_BLD_push_utf8_ptr(bld, key, buf, bsize);
 end;
 
@@ -306,7 +379,11 @@ function Load_OSSL_PARAM_BLD_push_octet_string(bld: POSSL_PARAM_BLD; key: PAnsiC
 begin
   OSSL_PARAM_BLD_push_octet_string := LoadLibCryptoFunction('OSSL_PARAM_BLD_push_octet_string');
   if not assigned(OSSL_PARAM_BLD_push_octet_string) then
+    {$if declared(LEGACY_OSSL_PARAM_BLD_push_octet_string)}
+    OSSL_PARAM_BLD_push_octet_string := @LEGACY_OSSL_PARAM_BLD_push_octet_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_BLD_push_octet_string');
+    {$ifend}
   Result := OSSL_PARAM_BLD_push_octet_string(bld, key, buf, bsize);
 end;
 
@@ -314,7 +391,11 @@ function Load_OSSL_PARAM_BLD_push_octet_ptr(bld: POSSL_PARAM_BLD; key: PAnsiChar
 begin
   OSSL_PARAM_BLD_push_octet_ptr := LoadLibCryptoFunction('OSSL_PARAM_BLD_push_octet_ptr');
   if not assigned(OSSL_PARAM_BLD_push_octet_ptr) then
+    {$if declared(LEGACY_OSSL_PARAM_BLD_push_octet_ptr)}
+    OSSL_PARAM_BLD_push_octet_ptr := @LEGACY_OSSL_PARAM_BLD_push_octet_ptr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_BLD_push_octet_ptr');
+    {$ifend}
   Result := OSSL_PARAM_BLD_push_octet_ptr(bld, key, buf, bsize);
 end;
 

@@ -18,7 +18,8 @@
 unit openssl_cmac;
 
 {
-  Generated from OpenSSL 3.0.20 Header File cmac.h - Wed  6 May 13:05:34 BST 2026
+  Generated from OpenSSL 3.0.20 Header File cmac.h - Wed  6 May 13:14:44 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -140,7 +141,11 @@ function Load_CMAC_CTX_new: PCMAC_CTX; cdecl;
 begin
   CMAC_CTX_new := LoadLibCryptoFunction('CMAC_CTX_new');
   if not assigned(CMAC_CTX_new) then
+    {$if declared(LEGACY_CMAC_CTX_new)}
+    CMAC_CTX_new := @LEGACY_CMAC_CTX_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMAC_CTX_new');
+    {$ifend}
   Result := CMAC_CTX_new;
 end;
 
@@ -148,7 +153,11 @@ procedure Load_CMAC_CTX_cleanup(ctx: PCMAC_CTX); cdecl;
 begin
   CMAC_CTX_cleanup := LoadLibCryptoFunction('CMAC_CTX_cleanup');
   if not assigned(CMAC_CTX_cleanup) then
+    {$if declared(LEGACY_CMAC_CTX_cleanup)}
+    CMAC_CTX_cleanup := @LEGACY_CMAC_CTX_cleanup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMAC_CTX_cleanup');
+    {$ifend}
   CMAC_CTX_cleanup(ctx);
 end;
 
@@ -156,7 +165,11 @@ procedure Load_CMAC_CTX_free(ctx: PCMAC_CTX); cdecl;
 begin
   CMAC_CTX_free := LoadLibCryptoFunction('CMAC_CTX_free');
   if not assigned(CMAC_CTX_free) then
+    {$if declared(LEGACY_CMAC_CTX_free)}
+    CMAC_CTX_free := @LEGACY_CMAC_CTX_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMAC_CTX_free');
+    {$ifend}
   CMAC_CTX_free(ctx);
 end;
 
@@ -164,7 +177,11 @@ function Load_CMAC_CTX_get0_cipher_ctx(ctx: PCMAC_CTX): PEVP_CIPHER_CTX; cdecl;
 begin
   CMAC_CTX_get0_cipher_ctx := LoadLibCryptoFunction('CMAC_CTX_get0_cipher_ctx');
   if not assigned(CMAC_CTX_get0_cipher_ctx) then
+    {$if declared(LEGACY_CMAC_CTX_get0_cipher_ctx)}
+    CMAC_CTX_get0_cipher_ctx := @LEGACY_CMAC_CTX_get0_cipher_ctx;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMAC_CTX_get0_cipher_ctx');
+    {$ifend}
   Result := CMAC_CTX_get0_cipher_ctx(ctx);
 end;
 
@@ -172,7 +189,11 @@ function Load_CMAC_CTX_copy(out_: PCMAC_CTX; in_: PCMAC_CTX): TOpenSSL_C_INT; cd
 begin
   CMAC_CTX_copy := LoadLibCryptoFunction('CMAC_CTX_copy');
   if not assigned(CMAC_CTX_copy) then
+    {$if declared(LEGACY_CMAC_CTX_copy)}
+    CMAC_CTX_copy := @LEGACY_CMAC_CTX_copy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMAC_CTX_copy');
+    {$ifend}
   Result := CMAC_CTX_copy(out_, in_);
 end;
 
@@ -180,7 +201,11 @@ function Load_CMAC_Init(ctx: PCMAC_CTX; key: pointer; keylen: TOpenSSL_C_SIZET; 
 begin
   CMAC_Init := LoadLibCryptoFunction('CMAC_Init');
   if not assigned(CMAC_Init) then
+    {$if declared(LEGACY_CMAC_Init)}
+    CMAC_Init := @LEGACY_CMAC_Init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMAC_Init');
+    {$ifend}
   Result := CMAC_Init(ctx, key, keylen, cipher, impl);
 end;
 
@@ -188,7 +213,11 @@ function Load_CMAC_Update(ctx: PCMAC_CTX; data: pointer; dlen: TOpenSSL_C_SIZET)
 begin
   CMAC_Update := LoadLibCryptoFunction('CMAC_Update');
   if not assigned(CMAC_Update) then
+    {$if declared(LEGACY_CMAC_Update)}
+    CMAC_Update := @LEGACY_CMAC_Update;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMAC_Update');
+    {$ifend}
   Result := CMAC_Update(ctx, data, dlen);
 end;
 
@@ -196,7 +225,11 @@ function Load_CMAC_Final(ctx: PCMAC_CTX; out_: Pbyte; poutlen: POpenSSL_C_SIZET)
 begin
   CMAC_Final := LoadLibCryptoFunction('CMAC_Final');
   if not assigned(CMAC_Final) then
+    {$if declared(LEGACY_CMAC_Final)}
+    CMAC_Final := @LEGACY_CMAC_Final;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMAC_Final');
+    {$ifend}
   Result := CMAC_Final(ctx, out_, poutlen);
 end;
 
@@ -204,7 +237,11 @@ function Load_CMAC_resume(ctx: PCMAC_CTX): TOpenSSL_C_INT; cdecl;
 begin
   CMAC_resume := LoadLibCryptoFunction('CMAC_resume');
   if not assigned(CMAC_resume) then
+    {$if declared(LEGACY_CMAC_resume)}
+    CMAC_resume := @LEGACY_CMAC_resume;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMAC_resume');
+    {$ifend}
   Result := CMAC_resume(ctx);
 end;
 

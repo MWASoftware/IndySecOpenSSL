@@ -18,7 +18,8 @@
 unit openssl_blowfish;
 
 {
-  Generated from OpenSSL 3.0.20 Header File blowfish.h - Wed  6 May 13:05:31 BST 2026
+  Generated from OpenSSL 3.0.20 Header File blowfish.h - Wed  6 May 13:14:40 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -163,7 +164,11 @@ procedure Load_BF_set_key(key: PBF_KEY; len: TOpenSSL_C_INT; data: Pbyte); cdecl
 begin
   BF_set_key := LoadLibCryptoFunction('BF_set_key');
   if not assigned(BF_set_key) then
+    {$if declared(LEGACY_BF_set_key)}
+    BF_set_key := @LEGACY_BF_set_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BF_set_key');
+    {$ifend}
   BF_set_key(key, len, data);
 end;
 
@@ -171,7 +176,11 @@ procedure Load_BF_encrypt(data: POpenSSL_C_UINT; key: PBF_KEY); cdecl;
 begin
   BF_encrypt := LoadLibCryptoFunction('BF_encrypt');
   if not assigned(BF_encrypt) then
+    {$if declared(LEGACY_BF_encrypt)}
+    BF_encrypt := @LEGACY_BF_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BF_encrypt');
+    {$ifend}
   BF_encrypt(data, key);
 end;
 
@@ -179,7 +188,11 @@ procedure Load_BF_decrypt(data: POpenSSL_C_UINT; key: PBF_KEY); cdecl;
 begin
   BF_decrypt := LoadLibCryptoFunction('BF_decrypt');
   if not assigned(BF_decrypt) then
+    {$if declared(LEGACY_BF_decrypt)}
+    BF_decrypt := @LEGACY_BF_decrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BF_decrypt');
+    {$ifend}
   BF_decrypt(data, key);
 end;
 
@@ -187,7 +200,11 @@ procedure Load_BF_ecb_encrypt(in_: Pbyte; out_: Pbyte; key: PBF_KEY; enc: TOpenS
 begin
   BF_ecb_encrypt := LoadLibCryptoFunction('BF_ecb_encrypt');
   if not assigned(BF_ecb_encrypt) then
+    {$if declared(LEGACY_BF_ecb_encrypt)}
+    BF_ecb_encrypt := @LEGACY_BF_ecb_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BF_ecb_encrypt');
+    {$ifend}
   BF_ecb_encrypt(in_, out_, key, enc);
 end;
 
@@ -195,7 +212,11 @@ procedure Load_BF_cbc_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_INT; s
 begin
   BF_cbc_encrypt := LoadLibCryptoFunction('BF_cbc_encrypt');
   if not assigned(BF_cbc_encrypt) then
+    {$if declared(LEGACY_BF_cbc_encrypt)}
+    BF_cbc_encrypt := @LEGACY_BF_cbc_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BF_cbc_encrypt');
+    {$ifend}
   BF_cbc_encrypt(in_, out_, length, schedule, ivec, enc);
 end;
 
@@ -203,7 +224,11 @@ procedure Load_BF_cfb64_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_INT;
 begin
   BF_cfb64_encrypt := LoadLibCryptoFunction('BF_cfb64_encrypt');
   if not assigned(BF_cfb64_encrypt) then
+    {$if declared(LEGACY_BF_cfb64_encrypt)}
+    BF_cfb64_encrypt := @LEGACY_BF_cfb64_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BF_cfb64_encrypt');
+    {$ifend}
   BF_cfb64_encrypt(in_, out_, length, schedule, ivec, num, enc);
 end;
 
@@ -211,7 +236,11 @@ procedure Load_BF_ofb64_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_INT;
 begin
   BF_ofb64_encrypt := LoadLibCryptoFunction('BF_ofb64_encrypt');
   if not assigned(BF_ofb64_encrypt) then
+    {$if declared(LEGACY_BF_ofb64_encrypt)}
+    BF_ofb64_encrypt := @LEGACY_BF_ofb64_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BF_ofb64_encrypt');
+    {$ifend}
   BF_ofb64_encrypt(in_, out_, length, schedule, ivec, num);
 end;
 
@@ -219,7 +248,11 @@ function Load_BF_options: PAnsiChar; cdecl;
 begin
   BF_options := LoadLibCryptoFunction('BF_options');
   if not assigned(BF_options) then
+    {$if declared(LEGACY_BF_options)}
+    BF_options := @LEGACY_BF_options;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BF_options');
+    {$ifend}
   Result := BF_options;
 end;
 

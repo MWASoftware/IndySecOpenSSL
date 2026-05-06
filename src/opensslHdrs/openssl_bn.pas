@@ -18,7 +18,8 @@
 unit openssl_bn;
 
 {
-  Generated from OpenSSL 3.0.20 Header File bn.h - Wed  6 May 13:05:32 BST 2026
+  Generated from OpenSSL 3.0.20 Header File bn.h - Wed  6 May 13:14:41 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -1523,7 +1524,11 @@ procedure Load_BN_set_flags(b: PBIGNUM; n: TOpenSSL_C_INT); cdecl;
 begin
   BN_set_flags := LoadLibCryptoFunction('BN_set_flags');
   if not assigned(BN_set_flags) then
+    {$if declared(LEGACY_BN_set_flags)}
+    BN_set_flags := @LEGACY_BN_set_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_set_flags');
+    {$ifend}
   BN_set_flags(b, n);
 end;
 
@@ -1531,7 +1536,11 @@ function Load_BN_get_flags(b: PBIGNUM; n: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl
 begin
   BN_get_flags := LoadLibCryptoFunction('BN_get_flags');
   if not assigned(BN_get_flags) then
+    {$if declared(LEGACY_BN_get_flags)}
+    BN_get_flags := @LEGACY_BN_get_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_get_flags');
+    {$ifend}
   Result := BN_get_flags(b, n);
 end;
 
@@ -1539,7 +1548,11 @@ procedure Load_BN_with_flags(dest: PBIGNUM; b: PBIGNUM; flags: TOpenSSL_C_INT); 
 begin
   BN_with_flags := LoadLibCryptoFunction('BN_with_flags');
   if not assigned(BN_with_flags) then
+    {$if declared(LEGACY_BN_with_flags)}
+    BN_with_flags := @LEGACY_BN_with_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_with_flags');
+    {$ifend}
   BN_with_flags(dest, b, flags);
 end;
 
@@ -1547,7 +1560,11 @@ function Load_BN_GENCB_call(cb: PBN_GENCB; a: TOpenSSL_C_INT; b: TOpenSSL_C_INT)
 begin
   BN_GENCB_call := LoadLibCryptoFunction('BN_GENCB_call');
   if not assigned(BN_GENCB_call) then
+    {$if declared(LEGACY_BN_GENCB_call)}
+    BN_GENCB_call := @LEGACY_BN_GENCB_call;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_GENCB_call');
+    {$ifend}
   Result := BN_GENCB_call(cb, a, b);
 end;
 
@@ -1555,7 +1572,11 @@ function Load_BN_GENCB_new: PBN_GENCB; cdecl;
 begin
   BN_GENCB_new := LoadLibCryptoFunction('BN_GENCB_new');
   if not assigned(BN_GENCB_new) then
+    {$if declared(LEGACY_BN_GENCB_new)}
+    BN_GENCB_new := @LEGACY_BN_GENCB_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_GENCB_new');
+    {$ifend}
   Result := BN_GENCB_new;
 end;
 
@@ -1563,7 +1584,11 @@ procedure Load_BN_GENCB_free(cb: PBN_GENCB); cdecl;
 begin
   BN_GENCB_free := LoadLibCryptoFunction('BN_GENCB_free');
   if not assigned(BN_GENCB_free) then
+    {$if declared(LEGACY_BN_GENCB_free)}
+    BN_GENCB_free := @LEGACY_BN_GENCB_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_GENCB_free');
+    {$ifend}
   BN_GENCB_free(cb);
 end;
 
@@ -1571,7 +1596,11 @@ procedure Load_BN_GENCB_set_old(gencb: PBN_GENCB; callback: TFuncType000; cb_arg
 begin
   BN_GENCB_set_old := LoadLibCryptoFunction('BN_GENCB_set_old');
   if not assigned(BN_GENCB_set_old) then
+    {$if declared(LEGACY_BN_GENCB_set_old)}
+    BN_GENCB_set_old := @LEGACY_BN_GENCB_set_old;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_GENCB_set_old');
+    {$ifend}
   BN_GENCB_set_old(gencb, callback, cb_arg);
 end;
 
@@ -1579,7 +1608,11 @@ procedure Load_BN_GENCB_set(gencb: PBN_GENCB; callback: TFuncType001; cb_arg: po
 begin
   BN_GENCB_set := LoadLibCryptoFunction('BN_GENCB_set');
   if not assigned(BN_GENCB_set) then
+    {$if declared(LEGACY_BN_GENCB_set)}
+    BN_GENCB_set := @LEGACY_BN_GENCB_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_GENCB_set');
+    {$ifend}
   BN_GENCB_set(gencb, callback, cb_arg);
 end;
 
@@ -1587,7 +1620,11 @@ function Load_BN_GENCB_get_arg(cb: PBN_GENCB): pointer; cdecl;
 begin
   BN_GENCB_get_arg := LoadLibCryptoFunction('BN_GENCB_get_arg');
   if not assigned(BN_GENCB_get_arg) then
+    {$if declared(LEGACY_BN_GENCB_get_arg)}
+    BN_GENCB_get_arg := @LEGACY_BN_GENCB_get_arg;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_GENCB_get_arg');
+    {$ifend}
   Result := BN_GENCB_get_arg(cb);
 end;
 
@@ -1595,7 +1632,11 @@ function Load_BN_abs_is_word(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_INT; cd
 begin
   BN_abs_is_word := LoadLibCryptoFunction('BN_abs_is_word');
   if not assigned(BN_abs_is_word) then
+    {$if declared(LEGACY_BN_abs_is_word)}
+    BN_abs_is_word := @LEGACY_BN_abs_is_word;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_abs_is_word');
+    {$ifend}
   Result := BN_abs_is_word(a, w);
 end;
 
@@ -1603,7 +1644,11 @@ function Load_BN_is_zero(a: PBIGNUM): TOpenSSL_C_INT; cdecl;
 begin
   BN_is_zero := LoadLibCryptoFunction('BN_is_zero');
   if not assigned(BN_is_zero) then
+    {$if declared(LEGACY_BN_is_zero)}
+    BN_is_zero := @LEGACY_BN_is_zero;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_is_zero');
+    {$ifend}
   Result := BN_is_zero(a);
 end;
 
@@ -1611,7 +1656,11 @@ function Load_BN_is_one(a: PBIGNUM): TOpenSSL_C_INT; cdecl;
 begin
   BN_is_one := LoadLibCryptoFunction('BN_is_one');
   if not assigned(BN_is_one) then
+    {$if declared(LEGACY_BN_is_one)}
+    BN_is_one := @LEGACY_BN_is_one;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_is_one');
+    {$ifend}
   Result := BN_is_one(a);
 end;
 
@@ -1619,7 +1668,11 @@ function Load_BN_is_word(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl;
 begin
   BN_is_word := LoadLibCryptoFunction('BN_is_word');
   if not assigned(BN_is_word) then
+    {$if declared(LEGACY_BN_is_word)}
+    BN_is_word := @LEGACY_BN_is_word;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_is_word');
+    {$ifend}
   Result := BN_is_word(a, w);
 end;
 
@@ -1627,7 +1680,11 @@ function Load_BN_is_odd(a: PBIGNUM): TOpenSSL_C_INT; cdecl;
 begin
   BN_is_odd := LoadLibCryptoFunction('BN_is_odd');
   if not assigned(BN_is_odd) then
+    {$if declared(LEGACY_BN_is_odd)}
+    BN_is_odd := @LEGACY_BN_is_odd;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_is_odd');
+    {$ifend}
   Result := BN_is_odd(a);
 end;
 
@@ -1635,7 +1692,11 @@ procedure Load_BN_zero_ex(a: PBIGNUM); cdecl;
 begin
   BN_zero_ex := LoadLibCryptoFunction('BN_zero_ex');
   if not assigned(BN_zero_ex) then
+    {$if declared(LEGACY_BN_zero_ex)}
+    BN_zero_ex := @LEGACY_BN_zero_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_zero_ex');
+    {$ifend}
   BN_zero_ex(a);
 end;
 
@@ -1643,7 +1704,11 @@ function Load_BN_value_one: PBIGNUM; cdecl;
 begin
   BN_value_one := LoadLibCryptoFunction('BN_value_one');
   if not assigned(BN_value_one) then
+    {$if declared(LEGACY_BN_value_one)}
+    BN_value_one := @LEGACY_BN_value_one;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_value_one');
+    {$ifend}
   Result := BN_value_one;
 end;
 
@@ -1651,7 +1716,11 @@ function Load_BN_options: PAnsiChar; cdecl;
 begin
   BN_options := LoadLibCryptoFunction('BN_options');
   if not assigned(BN_options) then
+    {$if declared(LEGACY_BN_options)}
+    BN_options := @LEGACY_BN_options;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_options');
+    {$ifend}
   Result := BN_options;
 end;
 
@@ -1659,7 +1728,11 @@ function Load_BN_CTX_new_ex(ctx: POSSL_LIB_CTX): PBN_CTX; cdecl;
 begin
   BN_CTX_new_ex := LoadLibCryptoFunction('BN_CTX_new_ex');
   if not assigned(BN_CTX_new_ex) then
+    {$if declared(LEGACY_BN_CTX_new_ex)}
+    BN_CTX_new_ex := @LEGACY_BN_CTX_new_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_CTX_new_ex');
+    {$ifend}
   Result := BN_CTX_new_ex(ctx);
 end;
 
@@ -1667,7 +1740,11 @@ function Load_BN_CTX_new: PBN_CTX; cdecl;
 begin
   BN_CTX_new := LoadLibCryptoFunction('BN_CTX_new');
   if not assigned(BN_CTX_new) then
+    {$if declared(LEGACY_BN_CTX_new)}
+    BN_CTX_new := @LEGACY_BN_CTX_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_CTX_new');
+    {$ifend}
   Result := BN_CTX_new;
 end;
 
@@ -1675,7 +1752,11 @@ function Load_BN_CTX_secure_new_ex(ctx: POSSL_LIB_CTX): PBN_CTX; cdecl;
 begin
   BN_CTX_secure_new_ex := LoadLibCryptoFunction('BN_CTX_secure_new_ex');
   if not assigned(BN_CTX_secure_new_ex) then
+    {$if declared(LEGACY_BN_CTX_secure_new_ex)}
+    BN_CTX_secure_new_ex := @LEGACY_BN_CTX_secure_new_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_CTX_secure_new_ex');
+    {$ifend}
   Result := BN_CTX_secure_new_ex(ctx);
 end;
 
@@ -1683,7 +1764,11 @@ function Load_BN_CTX_secure_new: PBN_CTX; cdecl;
 begin
   BN_CTX_secure_new := LoadLibCryptoFunction('BN_CTX_secure_new');
   if not assigned(BN_CTX_secure_new) then
+    {$if declared(LEGACY_BN_CTX_secure_new)}
+    BN_CTX_secure_new := @LEGACY_BN_CTX_secure_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_CTX_secure_new');
+    {$ifend}
   Result := BN_CTX_secure_new;
 end;
 
@@ -1691,7 +1776,11 @@ procedure Load_BN_CTX_free(c: PBN_CTX); cdecl;
 begin
   BN_CTX_free := LoadLibCryptoFunction('BN_CTX_free');
   if not assigned(BN_CTX_free) then
+    {$if declared(LEGACY_BN_CTX_free)}
+    BN_CTX_free := @LEGACY_BN_CTX_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_CTX_free');
+    {$ifend}
   BN_CTX_free(c);
 end;
 
@@ -1699,7 +1788,11 @@ procedure Load_BN_CTX_start(ctx: PBN_CTX); cdecl;
 begin
   BN_CTX_start := LoadLibCryptoFunction('BN_CTX_start');
   if not assigned(BN_CTX_start) then
+    {$if declared(LEGACY_BN_CTX_start)}
+    BN_CTX_start := @LEGACY_BN_CTX_start;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_CTX_start');
+    {$ifend}
   BN_CTX_start(ctx);
 end;
 
@@ -1707,7 +1800,11 @@ function Load_BN_CTX_get(ctx: PBN_CTX): PBIGNUM; cdecl;
 begin
   BN_CTX_get := LoadLibCryptoFunction('BN_CTX_get');
   if not assigned(BN_CTX_get) then
+    {$if declared(LEGACY_BN_CTX_get)}
+    BN_CTX_get := @LEGACY_BN_CTX_get;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_CTX_get');
+    {$ifend}
   Result := BN_CTX_get(ctx);
 end;
 
@@ -1715,7 +1812,11 @@ procedure Load_BN_CTX_end(ctx: PBN_CTX); cdecl;
 begin
   BN_CTX_end := LoadLibCryptoFunction('BN_CTX_end');
   if not assigned(BN_CTX_end) then
+    {$if declared(LEGACY_BN_CTX_end)}
+    BN_CTX_end := @LEGACY_BN_CTX_end;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_CTX_end');
+    {$ifend}
   BN_CTX_end(ctx);
 end;
 
@@ -1723,7 +1824,11 @@ function Load_BN_rand_ex(rnd: PBIGNUM; bits: TOpenSSL_C_INT; top: TOpenSSL_C_INT
 begin
   BN_rand_ex := LoadLibCryptoFunction('BN_rand_ex');
   if not assigned(BN_rand_ex) then
+    {$if declared(LEGACY_BN_rand_ex)}
+    BN_rand_ex := @LEGACY_BN_rand_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_rand_ex');
+    {$ifend}
   Result := BN_rand_ex(rnd, bits, top, bottom, strength, ctx);
 end;
 
@@ -1731,7 +1836,11 @@ function Load_BN_rand(rnd: PBIGNUM; bits: TOpenSSL_C_INT; top: TOpenSSL_C_INT; b
 begin
   BN_rand := LoadLibCryptoFunction('BN_rand');
   if not assigned(BN_rand) then
+    {$if declared(LEGACY_BN_rand)}
+    BN_rand := @LEGACY_BN_rand;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_rand');
+    {$ifend}
   Result := BN_rand(rnd, bits, top, bottom);
 end;
 
@@ -1739,7 +1848,11 @@ function Load_BN_priv_rand_ex(rnd: PBIGNUM; bits: TOpenSSL_C_INT; top: TOpenSSL_
 begin
   BN_priv_rand_ex := LoadLibCryptoFunction('BN_priv_rand_ex');
   if not assigned(BN_priv_rand_ex) then
+    {$if declared(LEGACY_BN_priv_rand_ex)}
+    BN_priv_rand_ex := @LEGACY_BN_priv_rand_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_priv_rand_ex');
+    {$ifend}
   Result := BN_priv_rand_ex(rnd, bits, top, bottom, strength, ctx);
 end;
 
@@ -1747,7 +1860,11 @@ function Load_BN_priv_rand(rnd: PBIGNUM; bits: TOpenSSL_C_INT; top: TOpenSSL_C_I
 begin
   BN_priv_rand := LoadLibCryptoFunction('BN_priv_rand');
   if not assigned(BN_priv_rand) then
+    {$if declared(LEGACY_BN_priv_rand)}
+    BN_priv_rand := @LEGACY_BN_priv_rand;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_priv_rand');
+    {$ifend}
   Result := BN_priv_rand(rnd, bits, top, bottom);
 end;
 
@@ -1755,7 +1872,11 @@ function Load_BN_rand_range_ex(r: PBIGNUM; range: PBIGNUM; strength: TOpenSSL_C_
 begin
   BN_rand_range_ex := LoadLibCryptoFunction('BN_rand_range_ex');
   if not assigned(BN_rand_range_ex) then
+    {$if declared(LEGACY_BN_rand_range_ex)}
+    BN_rand_range_ex := @LEGACY_BN_rand_range_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_rand_range_ex');
+    {$ifend}
   Result := BN_rand_range_ex(r, range, strength, ctx);
 end;
 
@@ -1763,7 +1884,11 @@ function Load_BN_rand_range(rnd: PBIGNUM; range: PBIGNUM): TOpenSSL_C_INT; cdecl
 begin
   BN_rand_range := LoadLibCryptoFunction('BN_rand_range');
   if not assigned(BN_rand_range) then
+    {$if declared(LEGACY_BN_rand_range)}
+    BN_rand_range := @LEGACY_BN_rand_range;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_rand_range');
+    {$ifend}
   Result := BN_rand_range(rnd, range);
 end;
 
@@ -1771,7 +1896,11 @@ function Load_BN_priv_rand_range_ex(r: PBIGNUM; range: PBIGNUM; strength: TOpenS
 begin
   BN_priv_rand_range_ex := LoadLibCryptoFunction('BN_priv_rand_range_ex');
   if not assigned(BN_priv_rand_range_ex) then
+    {$if declared(LEGACY_BN_priv_rand_range_ex)}
+    BN_priv_rand_range_ex := @LEGACY_BN_priv_rand_range_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_priv_rand_range_ex');
+    {$ifend}
   Result := BN_priv_rand_range_ex(r, range, strength, ctx);
 end;
 
@@ -1779,7 +1908,11 @@ function Load_BN_priv_rand_range(rnd: PBIGNUM; range: PBIGNUM): TOpenSSL_C_INT; 
 begin
   BN_priv_rand_range := LoadLibCryptoFunction('BN_priv_rand_range');
   if not assigned(BN_priv_rand_range) then
+    {$if declared(LEGACY_BN_priv_rand_range)}
+    BN_priv_rand_range := @LEGACY_BN_priv_rand_range;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_priv_rand_range');
+    {$ifend}
   Result := BN_priv_rand_range(rnd, range);
 end;
 
@@ -1788,7 +1921,11 @@ function Load_BN_pseudo_rand(rnd: PBIGNUM; bits: TOpenSSL_C_INT; top: TOpenSSL_C
 begin
   BN_pseudo_rand := LoadLibCryptoFunction('BN_pseudo_rand');
   if not assigned(BN_pseudo_rand) then
+    {$if declared(LEGACY_BN_pseudo_rand)}
+    BN_pseudo_rand := @LEGACY_BN_pseudo_rand;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_pseudo_rand');
+    {$ifend}
   Result := BN_pseudo_rand(rnd, bits, top, bottom);
 end;
 
@@ -1796,7 +1933,11 @@ function Load_BN_pseudo_rand_range(rnd: PBIGNUM; range: PBIGNUM): TOpenSSL_C_INT
 begin
   BN_pseudo_rand_range := LoadLibCryptoFunction('BN_pseudo_rand_range');
   if not assigned(BN_pseudo_rand_range) then
+    {$if declared(LEGACY_BN_pseudo_rand_range)}
+    BN_pseudo_rand_range := @LEGACY_BN_pseudo_rand_range;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_pseudo_rand_range');
+    {$ifend}
   Result := BN_pseudo_rand_range(rnd, range);
 end;
 
@@ -1805,7 +1946,11 @@ function Load_BN_num_bits(a: PBIGNUM): TOpenSSL_C_INT; cdecl;
 begin
   BN_num_bits := LoadLibCryptoFunction('BN_num_bits');
   if not assigned(BN_num_bits) then
+    {$if declared(LEGACY_BN_num_bits)}
+    BN_num_bits := @LEGACY_BN_num_bits;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_num_bits');
+    {$ifend}
   Result := BN_num_bits(a);
 end;
 
@@ -1813,7 +1958,11 @@ function Load_BN_num_bits_word(l: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl;
 begin
   BN_num_bits_word := LoadLibCryptoFunction('BN_num_bits_word');
   if not assigned(BN_num_bits_word) then
+    {$if declared(LEGACY_BN_num_bits_word)}
+    BN_num_bits_word := @LEGACY_BN_num_bits_word;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_num_bits_word');
+    {$ifend}
   Result := BN_num_bits_word(l);
 end;
 
@@ -1821,7 +1970,11 @@ function Load_BN_security_bits(L: TOpenSSL_C_INT; N: TOpenSSL_C_INT): TOpenSSL_C
 begin
   BN_security_bits := LoadLibCryptoFunction('BN_security_bits');
   if not assigned(BN_security_bits) then
+    {$if declared(LEGACY_BN_security_bits)}
+    BN_security_bits := @LEGACY_BN_security_bits;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_security_bits');
+    {$ifend}
   Result := BN_security_bits(L, N);
 end;
 
@@ -1829,7 +1982,11 @@ function Load_BN_new: PBIGNUM; cdecl;
 begin
   BN_new := LoadLibCryptoFunction('BN_new');
   if not assigned(BN_new) then
+    {$if declared(LEGACY_BN_new)}
+    BN_new := @LEGACY_BN_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_new');
+    {$ifend}
   Result := BN_new;
 end;
 
@@ -1837,7 +1994,11 @@ function Load_BN_secure_new: PBIGNUM; cdecl;
 begin
   BN_secure_new := LoadLibCryptoFunction('BN_secure_new');
   if not assigned(BN_secure_new) then
+    {$if declared(LEGACY_BN_secure_new)}
+    BN_secure_new := @LEGACY_BN_secure_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_secure_new');
+    {$ifend}
   Result := BN_secure_new;
 end;
 
@@ -1845,7 +2006,11 @@ procedure Load_BN_clear_free(a: PBIGNUM); cdecl;
 begin
   BN_clear_free := LoadLibCryptoFunction('BN_clear_free');
   if not assigned(BN_clear_free) then
+    {$if declared(LEGACY_BN_clear_free)}
+    BN_clear_free := @LEGACY_BN_clear_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_clear_free');
+    {$ifend}
   BN_clear_free(a);
 end;
 
@@ -1853,7 +2018,11 @@ function Load_BN_copy(a: PBIGNUM; b: PBIGNUM): PBIGNUM; cdecl;
 begin
   BN_copy := LoadLibCryptoFunction('BN_copy');
   if not assigned(BN_copy) then
+    {$if declared(LEGACY_BN_copy)}
+    BN_copy := @LEGACY_BN_copy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_copy');
+    {$ifend}
   Result := BN_copy(a, b);
 end;
 
@@ -1861,7 +2030,11 @@ procedure Load_BN_swap(a: PBIGNUM; b: PBIGNUM); cdecl;
 begin
   BN_swap := LoadLibCryptoFunction('BN_swap');
   if not assigned(BN_swap) then
+    {$if declared(LEGACY_BN_swap)}
+    BN_swap := @LEGACY_BN_swap;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_swap');
+    {$ifend}
   BN_swap(a, b);
 end;
 
@@ -1869,7 +2042,11 @@ function Load_BN_bin2bn(s: Pbyte; len: TOpenSSL_C_INT; ret: PBIGNUM): PBIGNUM; c
 begin
   BN_bin2bn := LoadLibCryptoFunction('BN_bin2bn');
   if not assigned(BN_bin2bn) then
+    {$if declared(LEGACY_BN_bin2bn)}
+    BN_bin2bn := @LEGACY_BN_bin2bn;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_bin2bn');
+    {$ifend}
   Result := BN_bin2bn(s, len, ret);
 end;
 
@@ -1877,7 +2054,11 @@ function Load_BN_bn2bin(a: PBIGNUM; to_: Pbyte): TOpenSSL_C_INT; cdecl;
 begin
   BN_bn2bin := LoadLibCryptoFunction('BN_bn2bin');
   if not assigned(BN_bn2bin) then
+    {$if declared(LEGACY_BN_bn2bin)}
+    BN_bn2bin := @LEGACY_BN_bn2bin;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_bn2bin');
+    {$ifend}
   Result := BN_bn2bin(a, to_);
 end;
 
@@ -1885,7 +2066,11 @@ function Load_BN_bn2binpad(a: PBIGNUM; to_: Pbyte; tolen: TOpenSSL_C_INT): TOpen
 begin
   BN_bn2binpad := LoadLibCryptoFunction('BN_bn2binpad');
   if not assigned(BN_bn2binpad) then
+    {$if declared(LEGACY_BN_bn2binpad)}
+    BN_bn2binpad := @LEGACY_BN_bn2binpad;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_bn2binpad');
+    {$ifend}
   Result := BN_bn2binpad(a, to_, tolen);
 end;
 
@@ -1893,7 +2078,11 @@ function Load_BN_lebin2bn(s: Pbyte; len: TOpenSSL_C_INT; ret: PBIGNUM): PBIGNUM;
 begin
   BN_lebin2bn := LoadLibCryptoFunction('BN_lebin2bn');
   if not assigned(BN_lebin2bn) then
+    {$if declared(LEGACY_BN_lebin2bn)}
+    BN_lebin2bn := @LEGACY_BN_lebin2bn;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_lebin2bn');
+    {$ifend}
   Result := BN_lebin2bn(s, len, ret);
 end;
 
@@ -1901,7 +2090,11 @@ function Load_BN_bn2lebinpad(a: PBIGNUM; to_: Pbyte; tolen: TOpenSSL_C_INT): TOp
 begin
   BN_bn2lebinpad := LoadLibCryptoFunction('BN_bn2lebinpad');
   if not assigned(BN_bn2lebinpad) then
+    {$if declared(LEGACY_BN_bn2lebinpad)}
+    BN_bn2lebinpad := @LEGACY_BN_bn2lebinpad;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_bn2lebinpad');
+    {$ifend}
   Result := BN_bn2lebinpad(a, to_, tolen);
 end;
 
@@ -1909,7 +2102,11 @@ function Load_BN_native2bn(s: Pbyte; len: TOpenSSL_C_INT; ret: PBIGNUM): PBIGNUM
 begin
   BN_native2bn := LoadLibCryptoFunction('BN_native2bn');
   if not assigned(BN_native2bn) then
+    {$if declared(LEGACY_BN_native2bn)}
+    BN_native2bn := @LEGACY_BN_native2bn;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_native2bn');
+    {$ifend}
   Result := BN_native2bn(s, len, ret);
 end;
 
@@ -1917,7 +2114,11 @@ function Load_BN_bn2nativepad(a: PBIGNUM; to_: Pbyte; tolen: TOpenSSL_C_INT): TO
 begin
   BN_bn2nativepad := LoadLibCryptoFunction('BN_bn2nativepad');
   if not assigned(BN_bn2nativepad) then
+    {$if declared(LEGACY_BN_bn2nativepad)}
+    BN_bn2nativepad := @LEGACY_BN_bn2nativepad;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_bn2nativepad');
+    {$ifend}
   Result := BN_bn2nativepad(a, to_, tolen);
 end;
 
@@ -1925,7 +2126,11 @@ function Load_BN_mpi2bn(s: Pbyte; len: TOpenSSL_C_INT; ret: PBIGNUM): PBIGNUM; c
 begin
   BN_mpi2bn := LoadLibCryptoFunction('BN_mpi2bn');
   if not assigned(BN_mpi2bn) then
+    {$if declared(LEGACY_BN_mpi2bn)}
+    BN_mpi2bn := @LEGACY_BN_mpi2bn;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_mpi2bn');
+    {$ifend}
   Result := BN_mpi2bn(s, len, ret);
 end;
 
@@ -1933,7 +2138,11 @@ function Load_BN_bn2mpi(a: PBIGNUM; to_: Pbyte): TOpenSSL_C_INT; cdecl;
 begin
   BN_bn2mpi := LoadLibCryptoFunction('BN_bn2mpi');
   if not assigned(BN_bn2mpi) then
+    {$if declared(LEGACY_BN_bn2mpi)}
+    BN_bn2mpi := @LEGACY_BN_bn2mpi;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_bn2mpi');
+    {$ifend}
   Result := BN_bn2mpi(a, to_);
 end;
 
@@ -1941,7 +2150,11 @@ function Load_BN_sub(r: PBIGNUM; a: PBIGNUM; b: PBIGNUM): TOpenSSL_C_INT; cdecl;
 begin
   BN_sub := LoadLibCryptoFunction('BN_sub');
   if not assigned(BN_sub) then
+    {$if declared(LEGACY_BN_sub)}
+    BN_sub := @LEGACY_BN_sub;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_sub');
+    {$ifend}
   Result := BN_sub(r, a, b);
 end;
 
@@ -1949,7 +2162,11 @@ function Load_BN_usub(r: PBIGNUM; a: PBIGNUM; b: PBIGNUM): TOpenSSL_C_INT; cdecl
 begin
   BN_usub := LoadLibCryptoFunction('BN_usub');
   if not assigned(BN_usub) then
+    {$if declared(LEGACY_BN_usub)}
+    BN_usub := @LEGACY_BN_usub;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_usub');
+    {$ifend}
   Result := BN_usub(r, a, b);
 end;
 
@@ -1957,7 +2174,11 @@ function Load_BN_uadd(r: PBIGNUM; a: PBIGNUM; b: PBIGNUM): TOpenSSL_C_INT; cdecl
 begin
   BN_uadd := LoadLibCryptoFunction('BN_uadd');
   if not assigned(BN_uadd) then
+    {$if declared(LEGACY_BN_uadd)}
+    BN_uadd := @LEGACY_BN_uadd;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_uadd');
+    {$ifend}
   Result := BN_uadd(r, a, b);
 end;
 
@@ -1965,7 +2186,11 @@ function Load_BN_add(r: PBIGNUM; a: PBIGNUM; b: PBIGNUM): TOpenSSL_C_INT; cdecl;
 begin
   BN_add := LoadLibCryptoFunction('BN_add');
   if not assigned(BN_add) then
+    {$if declared(LEGACY_BN_add)}
+    BN_add := @LEGACY_BN_add;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_add');
+    {$ifend}
   Result := BN_add(r, a, b);
 end;
 
@@ -1973,7 +2198,11 @@ function Load_BN_mul(r: PBIGNUM; a: PBIGNUM; b: PBIGNUM; ctx: PBN_CTX): TOpenSSL
 begin
   BN_mul := LoadLibCryptoFunction('BN_mul');
   if not assigned(BN_mul) then
+    {$if declared(LEGACY_BN_mul)}
+    BN_mul := @LEGACY_BN_mul;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_mul');
+    {$ifend}
   Result := BN_mul(r, a, b, ctx);
 end;
 
@@ -1981,7 +2210,11 @@ function Load_BN_sqr(r: PBIGNUM; a: PBIGNUM; ctx: PBN_CTX): TOpenSSL_C_INT; cdec
 begin
   BN_sqr := LoadLibCryptoFunction('BN_sqr');
   if not assigned(BN_sqr) then
+    {$if declared(LEGACY_BN_sqr)}
+    BN_sqr := @LEGACY_BN_sqr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_sqr');
+    {$ifend}
   Result := BN_sqr(r, a, ctx);
 end;
 
@@ -1989,7 +2222,11 @@ procedure Load_BN_set_negative(b: PBIGNUM; n: TOpenSSL_C_INT); cdecl;
 begin
   BN_set_negative := LoadLibCryptoFunction('BN_set_negative');
   if not assigned(BN_set_negative) then
+    {$if declared(LEGACY_BN_set_negative)}
+    BN_set_negative := @LEGACY_BN_set_negative;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_set_negative');
+    {$ifend}
   BN_set_negative(b, n);
 end;
 
@@ -1997,7 +2234,11 @@ function Load_BN_is_negative(b: PBIGNUM): TOpenSSL_C_INT; cdecl;
 begin
   BN_is_negative := LoadLibCryptoFunction('BN_is_negative');
   if not assigned(BN_is_negative) then
+    {$if declared(LEGACY_BN_is_negative)}
+    BN_is_negative := @LEGACY_BN_is_negative;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_is_negative');
+    {$ifend}
   Result := BN_is_negative(b);
 end;
 
@@ -2005,7 +2246,11 @@ function Load_BN_div(dv: PBIGNUM; rem: PBIGNUM; m: PBIGNUM; d: PBIGNUM; ctx: PBN
 begin
   BN_div := LoadLibCryptoFunction('BN_div');
   if not assigned(BN_div) then
+    {$if declared(LEGACY_BN_div)}
+    BN_div := @LEGACY_BN_div;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_div');
+    {$ifend}
   Result := BN_div(dv, rem, m, d, ctx);
 end;
 
@@ -2013,7 +2258,11 @@ function Load_BN_nnmod(r: PBIGNUM; m: PBIGNUM; d: PBIGNUM; ctx: PBN_CTX): TOpenS
 begin
   BN_nnmod := LoadLibCryptoFunction('BN_nnmod');
   if not assigned(BN_nnmod) then
+    {$if declared(LEGACY_BN_nnmod)}
+    BN_nnmod := @LEGACY_BN_nnmod;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_nnmod');
+    {$ifend}
   Result := BN_nnmod(r, m, d, ctx);
 end;
 
@@ -2021,7 +2270,11 @@ function Load_BN_mod_add(r: PBIGNUM; a: PBIGNUM; b: PBIGNUM; m: PBIGNUM; ctx: PB
 begin
   BN_mod_add := LoadLibCryptoFunction('BN_mod_add');
   if not assigned(BN_mod_add) then
+    {$if declared(LEGACY_BN_mod_add)}
+    BN_mod_add := @LEGACY_BN_mod_add;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_mod_add');
+    {$ifend}
   Result := BN_mod_add(r, a, b, m, ctx);
 end;
 
@@ -2029,7 +2282,11 @@ function Load_BN_mod_add_quick(r: PBIGNUM; a: PBIGNUM; b: PBIGNUM; m: PBIGNUM): 
 begin
   BN_mod_add_quick := LoadLibCryptoFunction('BN_mod_add_quick');
   if not assigned(BN_mod_add_quick) then
+    {$if declared(LEGACY_BN_mod_add_quick)}
+    BN_mod_add_quick := @LEGACY_BN_mod_add_quick;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_mod_add_quick');
+    {$ifend}
   Result := BN_mod_add_quick(r, a, b, m);
 end;
 
@@ -2037,7 +2294,11 @@ function Load_BN_mod_sub(r: PBIGNUM; a: PBIGNUM; b: PBIGNUM; m: PBIGNUM; ctx: PB
 begin
   BN_mod_sub := LoadLibCryptoFunction('BN_mod_sub');
   if not assigned(BN_mod_sub) then
+    {$if declared(LEGACY_BN_mod_sub)}
+    BN_mod_sub := @LEGACY_BN_mod_sub;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_mod_sub');
+    {$ifend}
   Result := BN_mod_sub(r, a, b, m, ctx);
 end;
 
@@ -2045,7 +2306,11 @@ function Load_BN_mod_sub_quick(r: PBIGNUM; a: PBIGNUM; b: PBIGNUM; m: PBIGNUM): 
 begin
   BN_mod_sub_quick := LoadLibCryptoFunction('BN_mod_sub_quick');
   if not assigned(BN_mod_sub_quick) then
+    {$if declared(LEGACY_BN_mod_sub_quick)}
+    BN_mod_sub_quick := @LEGACY_BN_mod_sub_quick;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_mod_sub_quick');
+    {$ifend}
   Result := BN_mod_sub_quick(r, a, b, m);
 end;
 
@@ -2053,7 +2318,11 @@ function Load_BN_mod_mul(r: PBIGNUM; a: PBIGNUM; b: PBIGNUM; m: PBIGNUM; ctx: PB
 begin
   BN_mod_mul := LoadLibCryptoFunction('BN_mod_mul');
   if not assigned(BN_mod_mul) then
+    {$if declared(LEGACY_BN_mod_mul)}
+    BN_mod_mul := @LEGACY_BN_mod_mul;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_mod_mul');
+    {$ifend}
   Result := BN_mod_mul(r, a, b, m, ctx);
 end;
 
@@ -2061,7 +2330,11 @@ function Load_BN_mod_sqr(r: PBIGNUM; a: PBIGNUM; m: PBIGNUM; ctx: PBN_CTX): TOpe
 begin
   BN_mod_sqr := LoadLibCryptoFunction('BN_mod_sqr');
   if not assigned(BN_mod_sqr) then
+    {$if declared(LEGACY_BN_mod_sqr)}
+    BN_mod_sqr := @LEGACY_BN_mod_sqr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_mod_sqr');
+    {$ifend}
   Result := BN_mod_sqr(r, a, m, ctx);
 end;
 
@@ -2069,7 +2342,11 @@ function Load_BN_mod_lshift1(r: PBIGNUM; a: PBIGNUM; m: PBIGNUM; ctx: PBN_CTX): 
 begin
   BN_mod_lshift1 := LoadLibCryptoFunction('BN_mod_lshift1');
   if not assigned(BN_mod_lshift1) then
+    {$if declared(LEGACY_BN_mod_lshift1)}
+    BN_mod_lshift1 := @LEGACY_BN_mod_lshift1;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_mod_lshift1');
+    {$ifend}
   Result := BN_mod_lshift1(r, a, m, ctx);
 end;
 
@@ -2077,7 +2354,11 @@ function Load_BN_mod_lshift1_quick(r: PBIGNUM; a: PBIGNUM; m: PBIGNUM): TOpenSSL
 begin
   BN_mod_lshift1_quick := LoadLibCryptoFunction('BN_mod_lshift1_quick');
   if not assigned(BN_mod_lshift1_quick) then
+    {$if declared(LEGACY_BN_mod_lshift1_quick)}
+    BN_mod_lshift1_quick := @LEGACY_BN_mod_lshift1_quick;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_mod_lshift1_quick');
+    {$ifend}
   Result := BN_mod_lshift1_quick(r, a, m);
 end;
 
@@ -2085,7 +2366,11 @@ function Load_BN_mod_lshift(r: PBIGNUM; a: PBIGNUM; n: TOpenSSL_C_INT; m: PBIGNU
 begin
   BN_mod_lshift := LoadLibCryptoFunction('BN_mod_lshift');
   if not assigned(BN_mod_lshift) then
+    {$if declared(LEGACY_BN_mod_lshift)}
+    BN_mod_lshift := @LEGACY_BN_mod_lshift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_mod_lshift');
+    {$ifend}
   Result := BN_mod_lshift(r, a, n, m, ctx);
 end;
 
@@ -2093,7 +2378,11 @@ function Load_BN_mod_lshift_quick(r: PBIGNUM; a: PBIGNUM; n: TOpenSSL_C_INT; m: 
 begin
   BN_mod_lshift_quick := LoadLibCryptoFunction('BN_mod_lshift_quick');
   if not assigned(BN_mod_lshift_quick) then
+    {$if declared(LEGACY_BN_mod_lshift_quick)}
+    BN_mod_lshift_quick := @LEGACY_BN_mod_lshift_quick;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_mod_lshift_quick');
+    {$ifend}
   Result := BN_mod_lshift_quick(r, a, n, m);
 end;
 
@@ -2101,7 +2390,11 @@ function Load_BN_mod_word(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_UINT; cdec
 begin
   BN_mod_word := LoadLibCryptoFunction('BN_mod_word');
   if not assigned(BN_mod_word) then
+    {$if declared(LEGACY_BN_mod_word)}
+    BN_mod_word := @LEGACY_BN_mod_word;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_mod_word');
+    {$ifend}
   Result := BN_mod_word(a, w);
 end;
 
@@ -2109,7 +2402,11 @@ function Load_BN_div_word(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_UINT; cdec
 begin
   BN_div_word := LoadLibCryptoFunction('BN_div_word');
   if not assigned(BN_div_word) then
+    {$if declared(LEGACY_BN_div_word)}
+    BN_div_word := @LEGACY_BN_div_word;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_div_word');
+    {$ifend}
   Result := BN_div_word(a, w);
 end;
 
@@ -2117,7 +2414,11 @@ function Load_BN_mul_word(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl
 begin
   BN_mul_word := LoadLibCryptoFunction('BN_mul_word');
   if not assigned(BN_mul_word) then
+    {$if declared(LEGACY_BN_mul_word)}
+    BN_mul_word := @LEGACY_BN_mul_word;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_mul_word');
+    {$ifend}
   Result := BN_mul_word(a, w);
 end;
 
@@ -2125,7 +2426,11 @@ function Load_BN_add_word(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl
 begin
   BN_add_word := LoadLibCryptoFunction('BN_add_word');
   if not assigned(BN_add_word) then
+    {$if declared(LEGACY_BN_add_word)}
+    BN_add_word := @LEGACY_BN_add_word;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_add_word');
+    {$ifend}
   Result := BN_add_word(a, w);
 end;
 
@@ -2133,7 +2438,11 @@ function Load_BN_sub_word(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl
 begin
   BN_sub_word := LoadLibCryptoFunction('BN_sub_word');
   if not assigned(BN_sub_word) then
+    {$if declared(LEGACY_BN_sub_word)}
+    BN_sub_word := @LEGACY_BN_sub_word;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_sub_word');
+    {$ifend}
   Result := BN_sub_word(a, w);
 end;
 
@@ -2141,7 +2450,11 @@ function Load_BN_set_word(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl
 begin
   BN_set_word := LoadLibCryptoFunction('BN_set_word');
   if not assigned(BN_set_word) then
+    {$if declared(LEGACY_BN_set_word)}
+    BN_set_word := @LEGACY_BN_set_word;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_set_word');
+    {$ifend}
   Result := BN_set_word(a, w);
 end;
 
@@ -2149,7 +2462,11 @@ function Load_BN_get_word(a: PBIGNUM): TOpenSSL_C_UINT; cdecl;
 begin
   BN_get_word := LoadLibCryptoFunction('BN_get_word');
   if not assigned(BN_get_word) then
+    {$if declared(LEGACY_BN_get_word)}
+    BN_get_word := @LEGACY_BN_get_word;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_get_word');
+    {$ifend}
   Result := BN_get_word(a);
 end;
 
@@ -2157,7 +2474,11 @@ function Load_BN_cmp(a: PBIGNUM; b: PBIGNUM): TOpenSSL_C_INT; cdecl;
 begin
   BN_cmp := LoadLibCryptoFunction('BN_cmp');
   if not assigned(BN_cmp) then
+    {$if declared(LEGACY_BN_cmp)}
+    BN_cmp := @LEGACY_BN_cmp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_cmp');
+    {$ifend}
   Result := BN_cmp(a, b);
 end;
 
@@ -2165,7 +2486,11 @@ procedure Load_BN_free(a: PBIGNUM); cdecl;
 begin
   BN_free := LoadLibCryptoFunction('BN_free');
   if not assigned(BN_free) then
+    {$if declared(LEGACY_BN_free)}
+    BN_free := @LEGACY_BN_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_free');
+    {$ifend}
   BN_free(a);
 end;
 
@@ -2173,7 +2498,11 @@ function Load_BN_is_bit_set(a: PBIGNUM; n: TOpenSSL_C_INT): TOpenSSL_C_INT; cdec
 begin
   BN_is_bit_set := LoadLibCryptoFunction('BN_is_bit_set');
   if not assigned(BN_is_bit_set) then
+    {$if declared(LEGACY_BN_is_bit_set)}
+    BN_is_bit_set := @LEGACY_BN_is_bit_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_is_bit_set');
+    {$ifend}
   Result := BN_is_bit_set(a, n);
 end;
 
@@ -2181,7 +2510,11 @@ function Load_BN_lshift(r: PBIGNUM; a: PBIGNUM; n: TOpenSSL_C_INT): TOpenSSL_C_I
 begin
   BN_lshift := LoadLibCryptoFunction('BN_lshift');
   if not assigned(BN_lshift) then
+    {$if declared(LEGACY_BN_lshift)}
+    BN_lshift := @LEGACY_BN_lshift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_lshift');
+    {$ifend}
   Result := BN_lshift(r, a, n);
 end;
 
@@ -2189,7 +2522,11 @@ function Load_BN_lshift1(r: PBIGNUM; a: PBIGNUM): TOpenSSL_C_INT; cdecl;
 begin
   BN_lshift1 := LoadLibCryptoFunction('BN_lshift1');
   if not assigned(BN_lshift1) then
+    {$if declared(LEGACY_BN_lshift1)}
+    BN_lshift1 := @LEGACY_BN_lshift1;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_lshift1');
+    {$ifend}
   Result := BN_lshift1(r, a);
 end;
 
@@ -2197,7 +2534,11 @@ function Load_BN_exp(r: PBIGNUM; a: PBIGNUM; p: PBIGNUM; ctx: PBN_CTX): TOpenSSL
 begin
   BN_exp := LoadLibCryptoFunction('BN_exp');
   if not assigned(BN_exp) then
+    {$if declared(LEGACY_BN_exp)}
+    BN_exp := @LEGACY_BN_exp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_exp');
+    {$ifend}
   Result := BN_exp(r, a, p, ctx);
 end;
 
@@ -2205,7 +2546,11 @@ function Load_BN_mod_exp(r: PBIGNUM; a: PBIGNUM; p: PBIGNUM; m: PBIGNUM; ctx: PB
 begin
   BN_mod_exp := LoadLibCryptoFunction('BN_mod_exp');
   if not assigned(BN_mod_exp) then
+    {$if declared(LEGACY_BN_mod_exp)}
+    BN_mod_exp := @LEGACY_BN_mod_exp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_mod_exp');
+    {$ifend}
   Result := BN_mod_exp(r, a, p, m, ctx);
 end;
 
@@ -2213,7 +2558,11 @@ function Load_BN_mod_exp_mont(r: PBIGNUM; a: PBIGNUM; p: PBIGNUM; m: PBIGNUM; ct
 begin
   BN_mod_exp_mont := LoadLibCryptoFunction('BN_mod_exp_mont');
   if not assigned(BN_mod_exp_mont) then
+    {$if declared(LEGACY_BN_mod_exp_mont)}
+    BN_mod_exp_mont := @LEGACY_BN_mod_exp_mont;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_mod_exp_mont');
+    {$ifend}
   Result := BN_mod_exp_mont(r, a, p, m, ctx, m_ctx);
 end;
 
@@ -2221,7 +2570,11 @@ function Load_BN_mod_exp_mont_consttime(rr: PBIGNUM; a: PBIGNUM; p: PBIGNUM; m: 
 begin
   BN_mod_exp_mont_consttime := LoadLibCryptoFunction('BN_mod_exp_mont_consttime');
   if not assigned(BN_mod_exp_mont_consttime) then
+    {$if declared(LEGACY_BN_mod_exp_mont_consttime)}
+    BN_mod_exp_mont_consttime := @LEGACY_BN_mod_exp_mont_consttime;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_mod_exp_mont_consttime');
+    {$ifend}
   Result := BN_mod_exp_mont_consttime(rr, a, p, m, ctx, in_mont);
 end;
 
@@ -2229,7 +2582,11 @@ function Load_BN_mod_exp_mont_word(r: PBIGNUM; a: TOpenSSL_C_UINT; p: PBIGNUM; m
 begin
   BN_mod_exp_mont_word := LoadLibCryptoFunction('BN_mod_exp_mont_word');
   if not assigned(BN_mod_exp_mont_word) then
+    {$if declared(LEGACY_BN_mod_exp_mont_word)}
+    BN_mod_exp_mont_word := @LEGACY_BN_mod_exp_mont_word;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_mod_exp_mont_word');
+    {$ifend}
   Result := BN_mod_exp_mont_word(r, a, p, m, ctx, m_ctx);
 end;
 
@@ -2237,7 +2594,11 @@ function Load_BN_mod_exp2_mont(r: PBIGNUM; a1: PBIGNUM; p1: PBIGNUM; a2: PBIGNUM
 begin
   BN_mod_exp2_mont := LoadLibCryptoFunction('BN_mod_exp2_mont');
   if not assigned(BN_mod_exp2_mont) then
+    {$if declared(LEGACY_BN_mod_exp2_mont)}
+    BN_mod_exp2_mont := @LEGACY_BN_mod_exp2_mont;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_mod_exp2_mont');
+    {$ifend}
   Result := BN_mod_exp2_mont(r, a1, p1, a2, p2, m, ctx, m_ctx);
 end;
 
@@ -2245,7 +2606,11 @@ function Load_BN_mod_exp_simple(r: PBIGNUM; a: PBIGNUM; p: PBIGNUM; m: PBIGNUM; 
 begin
   BN_mod_exp_simple := LoadLibCryptoFunction('BN_mod_exp_simple');
   if not assigned(BN_mod_exp_simple) then
+    {$if declared(LEGACY_BN_mod_exp_simple)}
+    BN_mod_exp_simple := @LEGACY_BN_mod_exp_simple;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_mod_exp_simple');
+    {$ifend}
   Result := BN_mod_exp_simple(r, a, p, m, ctx);
 end;
 
@@ -2253,7 +2618,11 @@ function Load_BN_mod_exp_mont_consttime_x2(rr1: PBIGNUM; a1: PBIGNUM; p1: PBIGNU
 begin
   BN_mod_exp_mont_consttime_x2 := LoadLibCryptoFunction('BN_mod_exp_mont_consttime_x2');
   if not assigned(BN_mod_exp_mont_consttime_x2) then
+    {$if declared(LEGACY_BN_mod_exp_mont_consttime_x2)}
+    BN_mod_exp_mont_consttime_x2 := @LEGACY_BN_mod_exp_mont_consttime_x2;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_mod_exp_mont_consttime_x2');
+    {$ifend}
   Result := BN_mod_exp_mont_consttime_x2(rr1, a1, p1, m1, in_mont1, rr2, a2, p2, m2, in_mont2, ctx);
 end;
 
@@ -2261,7 +2630,11 @@ function Load_BN_mask_bits(a: PBIGNUM; n: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl
 begin
   BN_mask_bits := LoadLibCryptoFunction('BN_mask_bits');
   if not assigned(BN_mask_bits) then
+    {$if declared(LEGACY_BN_mask_bits)}
+    BN_mask_bits := @LEGACY_BN_mask_bits;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_mask_bits');
+    {$ifend}
   Result := BN_mask_bits(a, n);
 end;
 
@@ -2270,7 +2643,11 @@ function Load_BN_print_fp(fp: PFILE; a: PBIGNUM): TOpenSSL_C_INT; cdecl;
 begin
   BN_print_fp := LoadLibCryptoFunction('BN_print_fp');
   if not assigned(BN_print_fp) then
+    {$if declared(LEGACY_BN_print_fp)}
+    BN_print_fp := @LEGACY_BN_print_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_print_fp');
+    {$ifend}
   Result := BN_print_fp(fp, a);
 end;
 
@@ -2279,7 +2656,11 @@ function Load_BN_print(bio: PBIO; a: PBIGNUM): TOpenSSL_C_INT; cdecl;
 begin
   BN_print := LoadLibCryptoFunction('BN_print');
   if not assigned(BN_print) then
+    {$if declared(LEGACY_BN_print)}
+    BN_print := @LEGACY_BN_print;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_print');
+    {$ifend}
   Result := BN_print(bio, a);
 end;
 
@@ -2287,7 +2668,11 @@ function Load_BN_reciprocal(r: PBIGNUM; m: PBIGNUM; len: TOpenSSL_C_INT; ctx: PB
 begin
   BN_reciprocal := LoadLibCryptoFunction('BN_reciprocal');
   if not assigned(BN_reciprocal) then
+    {$if declared(LEGACY_BN_reciprocal)}
+    BN_reciprocal := @LEGACY_BN_reciprocal;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_reciprocal');
+    {$ifend}
   Result := BN_reciprocal(r, m, len, ctx);
 end;
 
@@ -2295,7 +2680,11 @@ function Load_BN_rshift(r: PBIGNUM; a: PBIGNUM; n: TOpenSSL_C_INT): TOpenSSL_C_I
 begin
   BN_rshift := LoadLibCryptoFunction('BN_rshift');
   if not assigned(BN_rshift) then
+    {$if declared(LEGACY_BN_rshift)}
+    BN_rshift := @LEGACY_BN_rshift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_rshift');
+    {$ifend}
   Result := BN_rshift(r, a, n);
 end;
 
@@ -2303,7 +2692,11 @@ function Load_BN_rshift1(r: PBIGNUM; a: PBIGNUM): TOpenSSL_C_INT; cdecl;
 begin
   BN_rshift1 := LoadLibCryptoFunction('BN_rshift1');
   if not assigned(BN_rshift1) then
+    {$if declared(LEGACY_BN_rshift1)}
+    BN_rshift1 := @LEGACY_BN_rshift1;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_rshift1');
+    {$ifend}
   Result := BN_rshift1(r, a);
 end;
 
@@ -2311,7 +2704,11 @@ procedure Load_BN_clear(a: PBIGNUM); cdecl;
 begin
   BN_clear := LoadLibCryptoFunction('BN_clear');
   if not assigned(BN_clear) then
+    {$if declared(LEGACY_BN_clear)}
+    BN_clear := @LEGACY_BN_clear;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_clear');
+    {$ifend}
   BN_clear(a);
 end;
 
@@ -2319,7 +2716,11 @@ function Load_BN_dup(a: PBIGNUM): PBIGNUM; cdecl;
 begin
   BN_dup := LoadLibCryptoFunction('BN_dup');
   if not assigned(BN_dup) then
+    {$if declared(LEGACY_BN_dup)}
+    BN_dup := @LEGACY_BN_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_dup');
+    {$ifend}
   Result := BN_dup(a);
 end;
 
@@ -2327,7 +2728,11 @@ function Load_BN_ucmp(a: PBIGNUM; b: PBIGNUM): TOpenSSL_C_INT; cdecl;
 begin
   BN_ucmp := LoadLibCryptoFunction('BN_ucmp');
   if not assigned(BN_ucmp) then
+    {$if declared(LEGACY_BN_ucmp)}
+    BN_ucmp := @LEGACY_BN_ucmp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_ucmp');
+    {$ifend}
   Result := BN_ucmp(a, b);
 end;
 
@@ -2335,7 +2740,11 @@ function Load_BN_set_bit(a: PBIGNUM; n: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
 begin
   BN_set_bit := LoadLibCryptoFunction('BN_set_bit');
   if not assigned(BN_set_bit) then
+    {$if declared(LEGACY_BN_set_bit)}
+    BN_set_bit := @LEGACY_BN_set_bit;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_set_bit');
+    {$ifend}
   Result := BN_set_bit(a, n);
 end;
 
@@ -2343,7 +2752,11 @@ function Load_BN_clear_bit(a: PBIGNUM; n: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl
 begin
   BN_clear_bit := LoadLibCryptoFunction('BN_clear_bit');
   if not assigned(BN_clear_bit) then
+    {$if declared(LEGACY_BN_clear_bit)}
+    BN_clear_bit := @LEGACY_BN_clear_bit;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_clear_bit');
+    {$ifend}
   Result := BN_clear_bit(a, n);
 end;
 
@@ -2351,7 +2764,11 @@ function Load_BN_bn2hex(a: PBIGNUM): PAnsiChar; cdecl;
 begin
   BN_bn2hex := LoadLibCryptoFunction('BN_bn2hex');
   if not assigned(BN_bn2hex) then
+    {$if declared(LEGACY_BN_bn2hex)}
+    BN_bn2hex := @LEGACY_BN_bn2hex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_bn2hex');
+    {$ifend}
   Result := BN_bn2hex(a);
 end;
 
@@ -2359,7 +2776,11 @@ function Load_BN_bn2dec(a: PBIGNUM): PAnsiChar; cdecl;
 begin
   BN_bn2dec := LoadLibCryptoFunction('BN_bn2dec');
   if not assigned(BN_bn2dec) then
+    {$if declared(LEGACY_BN_bn2dec)}
+    BN_bn2dec := @LEGACY_BN_bn2dec;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_bn2dec');
+    {$ifend}
   Result := BN_bn2dec(a);
 end;
 
@@ -2367,7 +2788,11 @@ function Load_BN_hex2bn(a: PPBIGNUM; str: PAnsiChar): TOpenSSL_C_INT; cdecl;
 begin
   BN_hex2bn := LoadLibCryptoFunction('BN_hex2bn');
   if not assigned(BN_hex2bn) then
+    {$if declared(LEGACY_BN_hex2bn)}
+    BN_hex2bn := @LEGACY_BN_hex2bn;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_hex2bn');
+    {$ifend}
   Result := BN_hex2bn(a, str);
 end;
 
@@ -2375,7 +2800,11 @@ function Load_BN_dec2bn(a: PPBIGNUM; str: PAnsiChar): TOpenSSL_C_INT; cdecl;
 begin
   BN_dec2bn := LoadLibCryptoFunction('BN_dec2bn');
   if not assigned(BN_dec2bn) then
+    {$if declared(LEGACY_BN_dec2bn)}
+    BN_dec2bn := @LEGACY_BN_dec2bn;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_dec2bn');
+    {$ifend}
   Result := BN_dec2bn(a, str);
 end;
 
@@ -2383,7 +2812,11 @@ function Load_BN_asc2bn(a: PPBIGNUM; str: PAnsiChar): TOpenSSL_C_INT; cdecl;
 begin
   BN_asc2bn := LoadLibCryptoFunction('BN_asc2bn');
   if not assigned(BN_asc2bn) then
+    {$if declared(LEGACY_BN_asc2bn)}
+    BN_asc2bn := @LEGACY_BN_asc2bn;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_asc2bn');
+    {$ifend}
   Result := BN_asc2bn(a, str);
 end;
 
@@ -2391,7 +2824,11 @@ function Load_BN_gcd(r: PBIGNUM; a: PBIGNUM; b: PBIGNUM; ctx: PBN_CTX): TOpenSSL
 begin
   BN_gcd := LoadLibCryptoFunction('BN_gcd');
   if not assigned(BN_gcd) then
+    {$if declared(LEGACY_BN_gcd)}
+    BN_gcd := @LEGACY_BN_gcd;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_gcd');
+    {$ifend}
   Result := BN_gcd(r, a, b, ctx);
 end;
 
@@ -2399,7 +2836,11 @@ function Load_BN_kronecker(a: PBIGNUM; b: PBIGNUM; ctx: PBN_CTX): TOpenSSL_C_INT
 begin
   BN_kronecker := LoadLibCryptoFunction('BN_kronecker');
   if not assigned(BN_kronecker) then
+    {$if declared(LEGACY_BN_kronecker)}
+    BN_kronecker := @LEGACY_BN_kronecker;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_kronecker');
+    {$ifend}
   Result := BN_kronecker(a, b, ctx);
 end;
 
@@ -2407,7 +2848,11 @@ function Load_BN_mod_inverse(ret: PBIGNUM; a: PBIGNUM; n: PBIGNUM; ctx: PBN_CTX)
 begin
   BN_mod_inverse := LoadLibCryptoFunction('BN_mod_inverse');
   if not assigned(BN_mod_inverse) then
+    {$if declared(LEGACY_BN_mod_inverse)}
+    BN_mod_inverse := @LEGACY_BN_mod_inverse;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_mod_inverse');
+    {$ifend}
   Result := BN_mod_inverse(ret, a, n, ctx);
 end;
 
@@ -2415,7 +2860,11 @@ function Load_BN_mod_sqrt(ret: PBIGNUM; a: PBIGNUM; n: PBIGNUM; ctx: PBN_CTX): P
 begin
   BN_mod_sqrt := LoadLibCryptoFunction('BN_mod_sqrt');
   if not assigned(BN_mod_sqrt) then
+    {$if declared(LEGACY_BN_mod_sqrt)}
+    BN_mod_sqrt := @LEGACY_BN_mod_sqrt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_mod_sqrt');
+    {$ifend}
   Result := BN_mod_sqrt(ret, a, n, ctx);
 end;
 
@@ -2423,7 +2872,11 @@ procedure Load_BN_consttime_swap(swap: TOpenSSL_C_UINT; a: PBIGNUM; b: PBIGNUM; 
 begin
   BN_consttime_swap := LoadLibCryptoFunction('BN_consttime_swap');
   if not assigned(BN_consttime_swap) then
+    {$if declared(LEGACY_BN_consttime_swap)}
+    BN_consttime_swap := @LEGACY_BN_consttime_swap;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_consttime_swap');
+    {$ifend}
   BN_consttime_swap(swap, a, b, nwords);
 end;
 
@@ -2432,7 +2885,11 @@ function Load_BN_generate_prime(ret: PBIGNUM; bits: TOpenSSL_C_INT; safe: TOpenS
 begin
   BN_generate_prime := LoadLibCryptoFunction('BN_generate_prime');
   if not assigned(BN_generate_prime) then
+    {$if declared(LEGACY_BN_generate_prime)}
+    BN_generate_prime := @LEGACY_BN_generate_prime;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_generate_prime');
+    {$ifend}
   Result := BN_generate_prime(ret, bits, safe, add, rem, callback, cb_arg);
 end;
 
@@ -2440,7 +2897,11 @@ function Load_BN_is_prime(p: PBIGNUM; nchecks: TOpenSSL_C_INT; callback: TFuncTy
 begin
   BN_is_prime := LoadLibCryptoFunction('BN_is_prime');
   if not assigned(BN_is_prime) then
+    {$if declared(LEGACY_BN_is_prime)}
+    BN_is_prime := @LEGACY_BN_is_prime;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_is_prime');
+    {$ifend}
   Result := BN_is_prime(p, nchecks, callback, ctx, cb_arg);
 end;
 
@@ -2448,7 +2909,11 @@ function Load_BN_is_prime_fasttest(p: PBIGNUM; nchecks: TOpenSSL_C_INT; callback
 begin
   BN_is_prime_fasttest := LoadLibCryptoFunction('BN_is_prime_fasttest');
   if not assigned(BN_is_prime_fasttest) then
+    {$if declared(LEGACY_BN_is_prime_fasttest)}
+    BN_is_prime_fasttest := @LEGACY_BN_is_prime_fasttest;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_is_prime_fasttest');
+    {$ifend}
   Result := BN_is_prime_fasttest(p, nchecks, callback, ctx, cb_arg, do_trial_division);
 end;
 
@@ -2458,7 +2923,11 @@ function Load_BN_is_prime_ex(p: PBIGNUM; nchecks: TOpenSSL_C_INT; ctx: PBN_CTX; 
 begin
   BN_is_prime_ex := LoadLibCryptoFunction('BN_is_prime_ex');
   if not assigned(BN_is_prime_ex) then
+    {$if declared(LEGACY_BN_is_prime_ex)}
+    BN_is_prime_ex := @LEGACY_BN_is_prime_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_is_prime_ex');
+    {$ifend}
   Result := BN_is_prime_ex(p, nchecks, ctx, cb);
 end;
 
@@ -2466,7 +2935,11 @@ function Load_BN_is_prime_fasttest_ex(p: PBIGNUM; nchecks: TOpenSSL_C_INT; ctx: 
 begin
   BN_is_prime_fasttest_ex := LoadLibCryptoFunction('BN_is_prime_fasttest_ex');
   if not assigned(BN_is_prime_fasttest_ex) then
+    {$if declared(LEGACY_BN_is_prime_fasttest_ex)}
+    BN_is_prime_fasttest_ex := @LEGACY_BN_is_prime_fasttest_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_is_prime_fasttest_ex');
+    {$ifend}
   Result := BN_is_prime_fasttest_ex(p, nchecks, ctx, do_trial_division, cb);
 end;
 
@@ -2475,7 +2948,11 @@ function Load_BN_generate_prime_ex2(ret: PBIGNUM; bits: TOpenSSL_C_INT; safe: TO
 begin
   BN_generate_prime_ex2 := LoadLibCryptoFunction('BN_generate_prime_ex2');
   if not assigned(BN_generate_prime_ex2) then
+    {$if declared(LEGACY_BN_generate_prime_ex2)}
+    BN_generate_prime_ex2 := @LEGACY_BN_generate_prime_ex2;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_generate_prime_ex2');
+    {$ifend}
   Result := BN_generate_prime_ex2(ret, bits, safe, add, rem, cb, ctx);
 end;
 
@@ -2483,7 +2960,11 @@ function Load_BN_generate_prime_ex(ret: PBIGNUM; bits: TOpenSSL_C_INT; safe: TOp
 begin
   BN_generate_prime_ex := LoadLibCryptoFunction('BN_generate_prime_ex');
   if not assigned(BN_generate_prime_ex) then
+    {$if declared(LEGACY_BN_generate_prime_ex)}
+    BN_generate_prime_ex := @LEGACY_BN_generate_prime_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_generate_prime_ex');
+    {$ifend}
   Result := BN_generate_prime_ex(ret, bits, safe, add, rem, cb);
 end;
 
@@ -2491,7 +2972,11 @@ function Load_BN_check_prime(p: PBIGNUM; ctx: PBN_CTX; cb: PBN_GENCB): TOpenSSL_
 begin
   BN_check_prime := LoadLibCryptoFunction('BN_check_prime');
   if not assigned(BN_check_prime) then
+    {$if declared(LEGACY_BN_check_prime)}
+    BN_check_prime := @LEGACY_BN_check_prime;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_check_prime');
+    {$ifend}
   Result := BN_check_prime(p, ctx, cb);
 end;
 
@@ -2500,7 +2985,11 @@ function Load_BN_X931_generate_Xpq(Xp: PBIGNUM; Xq: PBIGNUM; nbits: TOpenSSL_C_I
 begin
   BN_X931_generate_Xpq := LoadLibCryptoFunction('BN_X931_generate_Xpq');
   if not assigned(BN_X931_generate_Xpq) then
+    {$if declared(LEGACY_BN_X931_generate_Xpq)}
+    BN_X931_generate_Xpq := @LEGACY_BN_X931_generate_Xpq;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_X931_generate_Xpq');
+    {$ifend}
   Result := BN_X931_generate_Xpq(Xp, Xq, nbits, ctx);
 end;
 
@@ -2508,7 +2997,11 @@ function Load_BN_X931_derive_prime_ex(p: PBIGNUM; p1: PBIGNUM; p2: PBIGNUM; Xp: 
 begin
   BN_X931_derive_prime_ex := LoadLibCryptoFunction('BN_X931_derive_prime_ex');
   if not assigned(BN_X931_derive_prime_ex) then
+    {$if declared(LEGACY_BN_X931_derive_prime_ex)}
+    BN_X931_derive_prime_ex := @LEGACY_BN_X931_derive_prime_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_X931_derive_prime_ex');
+    {$ifend}
   Result := BN_X931_derive_prime_ex(p, p1, p2, Xp, Xp1, Xp2, e, ctx, cb);
 end;
 
@@ -2516,7 +3009,11 @@ function Load_BN_X931_generate_prime_ex(p: PBIGNUM; p1: PBIGNUM; p2: PBIGNUM; Xp
 begin
   BN_X931_generate_prime_ex := LoadLibCryptoFunction('BN_X931_generate_prime_ex');
   if not assigned(BN_X931_generate_prime_ex) then
+    {$if declared(LEGACY_BN_X931_generate_prime_ex)}
+    BN_X931_generate_prime_ex := @LEGACY_BN_X931_generate_prime_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_X931_generate_prime_ex');
+    {$ifend}
   Result := BN_X931_generate_prime_ex(p, p1, p2, Xp1, Xp2, Xp, e, ctx, cb);
 end;
 
@@ -2525,7 +3022,11 @@ function Load_BN_MONT_CTX_new: PBN_MONT_CTX; cdecl;
 begin
   BN_MONT_CTX_new := LoadLibCryptoFunction('BN_MONT_CTX_new');
   if not assigned(BN_MONT_CTX_new) then
+    {$if declared(LEGACY_BN_MONT_CTX_new)}
+    BN_MONT_CTX_new := @LEGACY_BN_MONT_CTX_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_MONT_CTX_new');
+    {$ifend}
   Result := BN_MONT_CTX_new;
 end;
 
@@ -2533,7 +3034,11 @@ function Load_BN_mod_mul_montgomery(r: PBIGNUM; a: PBIGNUM; b: PBIGNUM; mont: PB
 begin
   BN_mod_mul_montgomery := LoadLibCryptoFunction('BN_mod_mul_montgomery');
   if not assigned(BN_mod_mul_montgomery) then
+    {$if declared(LEGACY_BN_mod_mul_montgomery)}
+    BN_mod_mul_montgomery := @LEGACY_BN_mod_mul_montgomery;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_mod_mul_montgomery');
+    {$ifend}
   Result := BN_mod_mul_montgomery(r, a, b, mont, ctx);
 end;
 
@@ -2541,7 +3046,11 @@ function Load_BN_to_montgomery(r: PBIGNUM; a: PBIGNUM; mont: PBN_MONT_CTX; ctx: 
 begin
   BN_to_montgomery := LoadLibCryptoFunction('BN_to_montgomery');
   if not assigned(BN_to_montgomery) then
+    {$if declared(LEGACY_BN_to_montgomery)}
+    BN_to_montgomery := @LEGACY_BN_to_montgomery;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_to_montgomery');
+    {$ifend}
   Result := BN_to_montgomery(r, a, mont, ctx);
 end;
 
@@ -2549,7 +3058,11 @@ function Load_BN_from_montgomery(r: PBIGNUM; a: PBIGNUM; mont: PBN_MONT_CTX; ctx
 begin
   BN_from_montgomery := LoadLibCryptoFunction('BN_from_montgomery');
   if not assigned(BN_from_montgomery) then
+    {$if declared(LEGACY_BN_from_montgomery)}
+    BN_from_montgomery := @LEGACY_BN_from_montgomery;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_from_montgomery');
+    {$ifend}
   Result := BN_from_montgomery(r, a, mont, ctx);
 end;
 
@@ -2557,7 +3070,11 @@ procedure Load_BN_MONT_CTX_free(mont: PBN_MONT_CTX); cdecl;
 begin
   BN_MONT_CTX_free := LoadLibCryptoFunction('BN_MONT_CTX_free');
   if not assigned(BN_MONT_CTX_free) then
+    {$if declared(LEGACY_BN_MONT_CTX_free)}
+    BN_MONT_CTX_free := @LEGACY_BN_MONT_CTX_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_MONT_CTX_free');
+    {$ifend}
   BN_MONT_CTX_free(mont);
 end;
 
@@ -2565,7 +3082,11 @@ function Load_BN_MONT_CTX_set(mont: PBN_MONT_CTX; mod_: PBIGNUM; ctx: PBN_CTX): 
 begin
   BN_MONT_CTX_set := LoadLibCryptoFunction('BN_MONT_CTX_set');
   if not assigned(BN_MONT_CTX_set) then
+    {$if declared(LEGACY_BN_MONT_CTX_set)}
+    BN_MONT_CTX_set := @LEGACY_BN_MONT_CTX_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_MONT_CTX_set');
+    {$ifend}
   Result := BN_MONT_CTX_set(mont, mod_, ctx);
 end;
 
@@ -2573,7 +3094,11 @@ function Load_BN_MONT_CTX_copy(to_: PBN_MONT_CTX; from_: PBN_MONT_CTX): PBN_MONT
 begin
   BN_MONT_CTX_copy := LoadLibCryptoFunction('BN_MONT_CTX_copy');
   if not assigned(BN_MONT_CTX_copy) then
+    {$if declared(LEGACY_BN_MONT_CTX_copy)}
+    BN_MONT_CTX_copy := @LEGACY_BN_MONT_CTX_copy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_MONT_CTX_copy');
+    {$ifend}
   Result := BN_MONT_CTX_copy(to_, from_);
 end;
 
@@ -2581,7 +3106,11 @@ function Load_BN_MONT_CTX_set_locked(pmont: PPBN_MONT_CTX; lock: PCRYPTO_RWLOCK;
 begin
   BN_MONT_CTX_set_locked := LoadLibCryptoFunction('BN_MONT_CTX_set_locked');
   if not assigned(BN_MONT_CTX_set_locked) then
+    {$if declared(LEGACY_BN_MONT_CTX_set_locked)}
+    BN_MONT_CTX_set_locked := @LEGACY_BN_MONT_CTX_set_locked;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_MONT_CTX_set_locked');
+    {$ifend}
   Result := BN_MONT_CTX_set_locked(pmont, lock, mod_, ctx);
 end;
 
@@ -2589,7 +3118,11 @@ function Load_BN_BLINDING_new(A: PBIGNUM; Ai: PBIGNUM; mod_: PBIGNUM): PBN_BLIND
 begin
   BN_BLINDING_new := LoadLibCryptoFunction('BN_BLINDING_new');
   if not assigned(BN_BLINDING_new) then
+    {$if declared(LEGACY_BN_BLINDING_new)}
+    BN_BLINDING_new := @LEGACY_BN_BLINDING_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_BLINDING_new');
+    {$ifend}
   Result := BN_BLINDING_new(A, Ai, mod_);
 end;
 
@@ -2597,7 +3130,11 @@ procedure Load_BN_BLINDING_free(b: PBN_BLINDING); cdecl;
 begin
   BN_BLINDING_free := LoadLibCryptoFunction('BN_BLINDING_free');
   if not assigned(BN_BLINDING_free) then
+    {$if declared(LEGACY_BN_BLINDING_free)}
+    BN_BLINDING_free := @LEGACY_BN_BLINDING_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_BLINDING_free');
+    {$ifend}
   BN_BLINDING_free(b);
 end;
 
@@ -2605,7 +3142,11 @@ function Load_BN_BLINDING_update(b: PBN_BLINDING; ctx: PBN_CTX): TOpenSSL_C_INT;
 begin
   BN_BLINDING_update := LoadLibCryptoFunction('BN_BLINDING_update');
   if not assigned(BN_BLINDING_update) then
+    {$if declared(LEGACY_BN_BLINDING_update)}
+    BN_BLINDING_update := @LEGACY_BN_BLINDING_update;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_BLINDING_update');
+    {$ifend}
   Result := BN_BLINDING_update(b, ctx);
 end;
 
@@ -2613,7 +3154,11 @@ function Load_BN_BLINDING_convert(n: PBIGNUM; b: PBN_BLINDING; ctx: PBN_CTX): TO
 begin
   BN_BLINDING_convert := LoadLibCryptoFunction('BN_BLINDING_convert');
   if not assigned(BN_BLINDING_convert) then
+    {$if declared(LEGACY_BN_BLINDING_convert)}
+    BN_BLINDING_convert := @LEGACY_BN_BLINDING_convert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_BLINDING_convert');
+    {$ifend}
   Result := BN_BLINDING_convert(n, b, ctx);
 end;
 
@@ -2621,7 +3166,11 @@ function Load_BN_BLINDING_invert(n: PBIGNUM; b: PBN_BLINDING; ctx: PBN_CTX): TOp
 begin
   BN_BLINDING_invert := LoadLibCryptoFunction('BN_BLINDING_invert');
   if not assigned(BN_BLINDING_invert) then
+    {$if declared(LEGACY_BN_BLINDING_invert)}
+    BN_BLINDING_invert := @LEGACY_BN_BLINDING_invert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_BLINDING_invert');
+    {$ifend}
   Result := BN_BLINDING_invert(n, b, ctx);
 end;
 
@@ -2629,7 +3178,11 @@ function Load_BN_BLINDING_convert_ex(n: PBIGNUM; r: PBIGNUM; b: PBN_BLINDING; _p
 begin
   BN_BLINDING_convert_ex := LoadLibCryptoFunction('BN_BLINDING_convert_ex');
   if not assigned(BN_BLINDING_convert_ex) then
+    {$if declared(LEGACY_BN_BLINDING_convert_ex)}
+    BN_BLINDING_convert_ex := @LEGACY_BN_BLINDING_convert_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_BLINDING_convert_ex');
+    {$ifend}
   Result := BN_BLINDING_convert_ex(n, r, b, _param4);
 end;
 
@@ -2637,7 +3190,11 @@ function Load_BN_BLINDING_invert_ex(n: PBIGNUM; r: PBIGNUM; b: PBN_BLINDING; _pa
 begin
   BN_BLINDING_invert_ex := LoadLibCryptoFunction('BN_BLINDING_invert_ex');
   if not assigned(BN_BLINDING_invert_ex) then
+    {$if declared(LEGACY_BN_BLINDING_invert_ex)}
+    BN_BLINDING_invert_ex := @LEGACY_BN_BLINDING_invert_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_BLINDING_invert_ex');
+    {$ifend}
   Result := BN_BLINDING_invert_ex(n, r, b, _param4);
 end;
 
@@ -2645,7 +3202,11 @@ function Load_BN_BLINDING_is_current_thread(b: PBN_BLINDING): TOpenSSL_C_INT; cd
 begin
   BN_BLINDING_is_current_thread := LoadLibCryptoFunction('BN_BLINDING_is_current_thread');
   if not assigned(BN_BLINDING_is_current_thread) then
+    {$if declared(LEGACY_BN_BLINDING_is_current_thread)}
+    BN_BLINDING_is_current_thread := @LEGACY_BN_BLINDING_is_current_thread;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_BLINDING_is_current_thread');
+    {$ifend}
   Result := BN_BLINDING_is_current_thread(b);
 end;
 
@@ -2653,7 +3214,11 @@ procedure Load_BN_BLINDING_set_current_thread(b: PBN_BLINDING); cdecl;
 begin
   BN_BLINDING_set_current_thread := LoadLibCryptoFunction('BN_BLINDING_set_current_thread');
   if not assigned(BN_BLINDING_set_current_thread) then
+    {$if declared(LEGACY_BN_BLINDING_set_current_thread)}
+    BN_BLINDING_set_current_thread := @LEGACY_BN_BLINDING_set_current_thread;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_BLINDING_set_current_thread');
+    {$ifend}
   BN_BLINDING_set_current_thread(b);
 end;
 
@@ -2661,7 +3226,11 @@ function Load_BN_BLINDING_lock(b: PBN_BLINDING): TOpenSSL_C_INT; cdecl;
 begin
   BN_BLINDING_lock := LoadLibCryptoFunction('BN_BLINDING_lock');
   if not assigned(BN_BLINDING_lock) then
+    {$if declared(LEGACY_BN_BLINDING_lock)}
+    BN_BLINDING_lock := @LEGACY_BN_BLINDING_lock;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_BLINDING_lock');
+    {$ifend}
   Result := BN_BLINDING_lock(b);
 end;
 
@@ -2669,7 +3238,11 @@ function Load_BN_BLINDING_unlock(b: PBN_BLINDING): TOpenSSL_C_INT; cdecl;
 begin
   BN_BLINDING_unlock := LoadLibCryptoFunction('BN_BLINDING_unlock');
   if not assigned(BN_BLINDING_unlock) then
+    {$if declared(LEGACY_BN_BLINDING_unlock)}
+    BN_BLINDING_unlock := @LEGACY_BN_BLINDING_unlock;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_BLINDING_unlock');
+    {$ifend}
   Result := BN_BLINDING_unlock(b);
 end;
 
@@ -2677,7 +3250,11 @@ function Load_BN_BLINDING_get_flags(_param1: PBN_BLINDING): TOpenSSL_C_UINT; cde
 begin
   BN_BLINDING_get_flags := LoadLibCryptoFunction('BN_BLINDING_get_flags');
   if not assigned(BN_BLINDING_get_flags) then
+    {$if declared(LEGACY_BN_BLINDING_get_flags)}
+    BN_BLINDING_get_flags := @LEGACY_BN_BLINDING_get_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_BLINDING_get_flags');
+    {$ifend}
   Result := BN_BLINDING_get_flags(_param1);
 end;
 
@@ -2685,7 +3262,11 @@ procedure Load_BN_BLINDING_set_flags(_param1: PBN_BLINDING; _param2: TOpenSSL_C_
 begin
   BN_BLINDING_set_flags := LoadLibCryptoFunction('BN_BLINDING_set_flags');
   if not assigned(BN_BLINDING_set_flags) then
+    {$if declared(LEGACY_BN_BLINDING_set_flags)}
+    BN_BLINDING_set_flags := @LEGACY_BN_BLINDING_set_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_BLINDING_set_flags');
+    {$ifend}
   BN_BLINDING_set_flags(_param1, _param2);
 end;
 
@@ -2693,7 +3274,11 @@ function Load_BN_BLINDING_create_param(b: PBN_BLINDING; e: PBIGNUM; m: PBIGNUM; 
 begin
   BN_BLINDING_create_param := LoadLibCryptoFunction('BN_BLINDING_create_param');
   if not assigned(BN_BLINDING_create_param) then
+    {$if declared(LEGACY_BN_BLINDING_create_param)}
+    BN_BLINDING_create_param := @LEGACY_BN_BLINDING_create_param;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_BLINDING_create_param');
+    {$ifend}
   Result := BN_BLINDING_create_param(b, e, m, ctx, bn_mod_exp, m_ctx);
 end;
 
@@ -2702,7 +3287,11 @@ procedure Load_BN_set_params(mul: TOpenSSL_C_INT; high: TOpenSSL_C_INT; low: TOp
 begin
   BN_set_params := LoadLibCryptoFunction('BN_set_params');
   if not assigned(BN_set_params) then
+    {$if declared(LEGACY_BN_set_params)}
+    BN_set_params := @LEGACY_BN_set_params;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_set_params');
+    {$ifend}
   BN_set_params(mul, high, low, mont);
 end;
 
@@ -2710,7 +3299,11 @@ function Load_BN_get_params(which: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
 begin
   BN_get_params := LoadLibCryptoFunction('BN_get_params');
   if not assigned(BN_get_params) then
+    {$if declared(LEGACY_BN_get_params)}
+    BN_get_params := @LEGACY_BN_get_params;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_get_params');
+    {$ifend}
   Result := BN_get_params(which);
 end;
 
@@ -2719,7 +3312,11 @@ function Load_BN_RECP_CTX_new: PBN_RECP_CTX; cdecl;
 begin
   BN_RECP_CTX_new := LoadLibCryptoFunction('BN_RECP_CTX_new');
   if not assigned(BN_RECP_CTX_new) then
+    {$if declared(LEGACY_BN_RECP_CTX_new)}
+    BN_RECP_CTX_new := @LEGACY_BN_RECP_CTX_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_RECP_CTX_new');
+    {$ifend}
   Result := BN_RECP_CTX_new;
 end;
 
@@ -2727,7 +3324,11 @@ procedure Load_BN_RECP_CTX_free(recp: PBN_RECP_CTX); cdecl;
 begin
   BN_RECP_CTX_free := LoadLibCryptoFunction('BN_RECP_CTX_free');
   if not assigned(BN_RECP_CTX_free) then
+    {$if declared(LEGACY_BN_RECP_CTX_free)}
+    BN_RECP_CTX_free := @LEGACY_BN_RECP_CTX_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_RECP_CTX_free');
+    {$ifend}
   BN_RECP_CTX_free(recp);
 end;
 
@@ -2735,7 +3336,11 @@ function Load_BN_RECP_CTX_set(recp: PBN_RECP_CTX; rdiv: PBIGNUM; ctx: PBN_CTX): 
 begin
   BN_RECP_CTX_set := LoadLibCryptoFunction('BN_RECP_CTX_set');
   if not assigned(BN_RECP_CTX_set) then
+    {$if declared(LEGACY_BN_RECP_CTX_set)}
+    BN_RECP_CTX_set := @LEGACY_BN_RECP_CTX_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_RECP_CTX_set');
+    {$ifend}
   Result := BN_RECP_CTX_set(recp, rdiv, ctx);
 end;
 
@@ -2743,7 +3348,11 @@ function Load_BN_mod_mul_reciprocal(r: PBIGNUM; x: PBIGNUM; y: PBIGNUM; recp: PB
 begin
   BN_mod_mul_reciprocal := LoadLibCryptoFunction('BN_mod_mul_reciprocal');
   if not assigned(BN_mod_mul_reciprocal) then
+    {$if declared(LEGACY_BN_mod_mul_reciprocal)}
+    BN_mod_mul_reciprocal := @LEGACY_BN_mod_mul_reciprocal;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_mod_mul_reciprocal');
+    {$ifend}
   Result := BN_mod_mul_reciprocal(r, x, y, recp, ctx);
 end;
 
@@ -2751,7 +3360,11 @@ function Load_BN_mod_exp_recp(r: PBIGNUM; a: PBIGNUM; p: PBIGNUM; m: PBIGNUM; ct
 begin
   BN_mod_exp_recp := LoadLibCryptoFunction('BN_mod_exp_recp');
   if not assigned(BN_mod_exp_recp) then
+    {$if declared(LEGACY_BN_mod_exp_recp)}
+    BN_mod_exp_recp := @LEGACY_BN_mod_exp_recp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_mod_exp_recp');
+    {$ifend}
   Result := BN_mod_exp_recp(r, a, p, m, ctx);
 end;
 
@@ -2759,7 +3372,11 @@ function Load_BN_div_recp(dv: PBIGNUM; rem: PBIGNUM; m: PBIGNUM; recp: PBN_RECP_
 begin
   BN_div_recp := LoadLibCryptoFunction('BN_div_recp');
   if not assigned(BN_div_recp) then
+    {$if declared(LEGACY_BN_div_recp)}
+    BN_div_recp := @LEGACY_BN_div_recp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_div_recp');
+    {$ifend}
   Result := BN_div_recp(dv, rem, m, recp, ctx);
 end;
 
@@ -2768,7 +3385,11 @@ function Load_BN_GF2m_add(r: PBIGNUM; a: PBIGNUM; b: PBIGNUM): TOpenSSL_C_INT; c
 begin
   BN_GF2m_add := LoadLibCryptoFunction('BN_GF2m_add');
   if not assigned(BN_GF2m_add) then
+    {$if declared(LEGACY_BN_GF2m_add)}
+    BN_GF2m_add := @LEGACY_BN_GF2m_add;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_GF2m_add');
+    {$ifend}
   Result := BN_GF2m_add(r, a, b);
 end;
 
@@ -2776,7 +3397,11 @@ function Load_BN_GF2m_mod(r: PBIGNUM; a: PBIGNUM; p: PBIGNUM): TOpenSSL_C_INT; c
 begin
   BN_GF2m_mod := LoadLibCryptoFunction('BN_GF2m_mod');
   if not assigned(BN_GF2m_mod) then
+    {$if declared(LEGACY_BN_GF2m_mod)}
+    BN_GF2m_mod := @LEGACY_BN_GF2m_mod;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_GF2m_mod');
+    {$ifend}
   Result := BN_GF2m_mod(r, a, p);
 end;
 
@@ -2784,7 +3409,11 @@ function Load_BN_GF2m_mod_mul(r: PBIGNUM; a: PBIGNUM; b: PBIGNUM; p: PBIGNUM; ct
 begin
   BN_GF2m_mod_mul := LoadLibCryptoFunction('BN_GF2m_mod_mul');
   if not assigned(BN_GF2m_mod_mul) then
+    {$if declared(LEGACY_BN_GF2m_mod_mul)}
+    BN_GF2m_mod_mul := @LEGACY_BN_GF2m_mod_mul;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_GF2m_mod_mul');
+    {$ifend}
   Result := BN_GF2m_mod_mul(r, a, b, p, ctx);
 end;
 
@@ -2792,7 +3421,11 @@ function Load_BN_GF2m_mod_sqr(r: PBIGNUM; a: PBIGNUM; p: PBIGNUM; ctx: PBN_CTX):
 begin
   BN_GF2m_mod_sqr := LoadLibCryptoFunction('BN_GF2m_mod_sqr');
   if not assigned(BN_GF2m_mod_sqr) then
+    {$if declared(LEGACY_BN_GF2m_mod_sqr)}
+    BN_GF2m_mod_sqr := @LEGACY_BN_GF2m_mod_sqr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_GF2m_mod_sqr');
+    {$ifend}
   Result := BN_GF2m_mod_sqr(r, a, p, ctx);
 end;
 
@@ -2800,7 +3433,11 @@ function Load_BN_GF2m_mod_inv(r: PBIGNUM; b: PBIGNUM; p: PBIGNUM; ctx: PBN_CTX):
 begin
   BN_GF2m_mod_inv := LoadLibCryptoFunction('BN_GF2m_mod_inv');
   if not assigned(BN_GF2m_mod_inv) then
+    {$if declared(LEGACY_BN_GF2m_mod_inv)}
+    BN_GF2m_mod_inv := @LEGACY_BN_GF2m_mod_inv;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_GF2m_mod_inv');
+    {$ifend}
   Result := BN_GF2m_mod_inv(r, b, p, ctx);
 end;
 
@@ -2808,7 +3445,11 @@ function Load_BN_GF2m_mod_div(r: PBIGNUM; a: PBIGNUM; b: PBIGNUM; p: PBIGNUM; ct
 begin
   BN_GF2m_mod_div := LoadLibCryptoFunction('BN_GF2m_mod_div');
   if not assigned(BN_GF2m_mod_div) then
+    {$if declared(LEGACY_BN_GF2m_mod_div)}
+    BN_GF2m_mod_div := @LEGACY_BN_GF2m_mod_div;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_GF2m_mod_div');
+    {$ifend}
   Result := BN_GF2m_mod_div(r, a, b, p, ctx);
 end;
 
@@ -2816,7 +3457,11 @@ function Load_BN_GF2m_mod_exp(r: PBIGNUM; a: PBIGNUM; b: PBIGNUM; p: PBIGNUM; ct
 begin
   BN_GF2m_mod_exp := LoadLibCryptoFunction('BN_GF2m_mod_exp');
   if not assigned(BN_GF2m_mod_exp) then
+    {$if declared(LEGACY_BN_GF2m_mod_exp)}
+    BN_GF2m_mod_exp := @LEGACY_BN_GF2m_mod_exp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_GF2m_mod_exp');
+    {$ifend}
   Result := BN_GF2m_mod_exp(r, a, b, p, ctx);
 end;
 
@@ -2824,7 +3469,11 @@ function Load_BN_GF2m_mod_sqrt(r: PBIGNUM; a: PBIGNUM; p: PBIGNUM; ctx: PBN_CTX)
 begin
   BN_GF2m_mod_sqrt := LoadLibCryptoFunction('BN_GF2m_mod_sqrt');
   if not assigned(BN_GF2m_mod_sqrt) then
+    {$if declared(LEGACY_BN_GF2m_mod_sqrt)}
+    BN_GF2m_mod_sqrt := @LEGACY_BN_GF2m_mod_sqrt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_GF2m_mod_sqrt');
+    {$ifend}
   Result := BN_GF2m_mod_sqrt(r, a, p, ctx);
 end;
 
@@ -2832,7 +3481,11 @@ function Load_BN_GF2m_mod_solve_quad(r: PBIGNUM; a: PBIGNUM; p: PBIGNUM; ctx: PB
 begin
   BN_GF2m_mod_solve_quad := LoadLibCryptoFunction('BN_GF2m_mod_solve_quad');
   if not assigned(BN_GF2m_mod_solve_quad) then
+    {$if declared(LEGACY_BN_GF2m_mod_solve_quad)}
+    BN_GF2m_mod_solve_quad := @LEGACY_BN_GF2m_mod_solve_quad;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_GF2m_mod_solve_quad');
+    {$ifend}
   Result := BN_GF2m_mod_solve_quad(r, a, p, ctx);
 end;
 
@@ -2840,7 +3493,11 @@ function Load_BN_GF2m_mod_arr(r: PBIGNUM; a: PBIGNUM; p: POpenSSL_C_INT): TOpenS
 begin
   BN_GF2m_mod_arr := LoadLibCryptoFunction('BN_GF2m_mod_arr');
   if not assigned(BN_GF2m_mod_arr) then
+    {$if declared(LEGACY_BN_GF2m_mod_arr)}
+    BN_GF2m_mod_arr := @LEGACY_BN_GF2m_mod_arr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_GF2m_mod_arr');
+    {$ifend}
   Result := BN_GF2m_mod_arr(r, a, p);
 end;
 
@@ -2848,7 +3505,11 @@ function Load_BN_GF2m_mod_mul_arr(r: PBIGNUM; a: PBIGNUM; b: PBIGNUM; p: POpenSS
 begin
   BN_GF2m_mod_mul_arr := LoadLibCryptoFunction('BN_GF2m_mod_mul_arr');
   if not assigned(BN_GF2m_mod_mul_arr) then
+    {$if declared(LEGACY_BN_GF2m_mod_mul_arr)}
+    BN_GF2m_mod_mul_arr := @LEGACY_BN_GF2m_mod_mul_arr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_GF2m_mod_mul_arr');
+    {$ifend}
   Result := BN_GF2m_mod_mul_arr(r, a, b, p, ctx);
 end;
 
@@ -2856,7 +3517,11 @@ function Load_BN_GF2m_mod_sqr_arr(r: PBIGNUM; a: PBIGNUM; p: POpenSSL_C_INT; ctx
 begin
   BN_GF2m_mod_sqr_arr := LoadLibCryptoFunction('BN_GF2m_mod_sqr_arr');
   if not assigned(BN_GF2m_mod_sqr_arr) then
+    {$if declared(LEGACY_BN_GF2m_mod_sqr_arr)}
+    BN_GF2m_mod_sqr_arr := @LEGACY_BN_GF2m_mod_sqr_arr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_GF2m_mod_sqr_arr');
+    {$ifend}
   Result := BN_GF2m_mod_sqr_arr(r, a, p, ctx);
 end;
 
@@ -2864,7 +3529,11 @@ function Load_BN_GF2m_mod_inv_arr(r: PBIGNUM; b: PBIGNUM; p: POpenSSL_C_INT; ctx
 begin
   BN_GF2m_mod_inv_arr := LoadLibCryptoFunction('BN_GF2m_mod_inv_arr');
   if not assigned(BN_GF2m_mod_inv_arr) then
+    {$if declared(LEGACY_BN_GF2m_mod_inv_arr)}
+    BN_GF2m_mod_inv_arr := @LEGACY_BN_GF2m_mod_inv_arr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_GF2m_mod_inv_arr');
+    {$ifend}
   Result := BN_GF2m_mod_inv_arr(r, b, p, ctx);
 end;
 
@@ -2872,7 +3541,11 @@ function Load_BN_GF2m_mod_div_arr(r: PBIGNUM; a: PBIGNUM; b: PBIGNUM; p: POpenSS
 begin
   BN_GF2m_mod_div_arr := LoadLibCryptoFunction('BN_GF2m_mod_div_arr');
   if not assigned(BN_GF2m_mod_div_arr) then
+    {$if declared(LEGACY_BN_GF2m_mod_div_arr)}
+    BN_GF2m_mod_div_arr := @LEGACY_BN_GF2m_mod_div_arr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_GF2m_mod_div_arr');
+    {$ifend}
   Result := BN_GF2m_mod_div_arr(r, a, b, p, ctx);
 end;
 
@@ -2880,7 +3553,11 @@ function Load_BN_GF2m_mod_exp_arr(r: PBIGNUM; a: PBIGNUM; b: PBIGNUM; p: POpenSS
 begin
   BN_GF2m_mod_exp_arr := LoadLibCryptoFunction('BN_GF2m_mod_exp_arr');
   if not assigned(BN_GF2m_mod_exp_arr) then
+    {$if declared(LEGACY_BN_GF2m_mod_exp_arr)}
+    BN_GF2m_mod_exp_arr := @LEGACY_BN_GF2m_mod_exp_arr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_GF2m_mod_exp_arr');
+    {$ifend}
   Result := BN_GF2m_mod_exp_arr(r, a, b, p, ctx);
 end;
 
@@ -2888,7 +3565,11 @@ function Load_BN_GF2m_mod_sqrt_arr(r: PBIGNUM; a: PBIGNUM; p: POpenSSL_C_INT; ct
 begin
   BN_GF2m_mod_sqrt_arr := LoadLibCryptoFunction('BN_GF2m_mod_sqrt_arr');
   if not assigned(BN_GF2m_mod_sqrt_arr) then
+    {$if declared(LEGACY_BN_GF2m_mod_sqrt_arr)}
+    BN_GF2m_mod_sqrt_arr := @LEGACY_BN_GF2m_mod_sqrt_arr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_GF2m_mod_sqrt_arr');
+    {$ifend}
   Result := BN_GF2m_mod_sqrt_arr(r, a, p, ctx);
 end;
 
@@ -2896,7 +3577,11 @@ function Load_BN_GF2m_mod_solve_quad_arr(r: PBIGNUM; a: PBIGNUM; p: POpenSSL_C_I
 begin
   BN_GF2m_mod_solve_quad_arr := LoadLibCryptoFunction('BN_GF2m_mod_solve_quad_arr');
   if not assigned(BN_GF2m_mod_solve_quad_arr) then
+    {$if declared(LEGACY_BN_GF2m_mod_solve_quad_arr)}
+    BN_GF2m_mod_solve_quad_arr := @LEGACY_BN_GF2m_mod_solve_quad_arr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_GF2m_mod_solve_quad_arr');
+    {$ifend}
   Result := BN_GF2m_mod_solve_quad_arr(r, a, p, ctx);
 end;
 
@@ -2904,7 +3589,11 @@ function Load_BN_GF2m_poly2arr(a: PBIGNUM; p: POpenSSL_C_INT; max: TOpenSSL_C_IN
 begin
   BN_GF2m_poly2arr := LoadLibCryptoFunction('BN_GF2m_poly2arr');
   if not assigned(BN_GF2m_poly2arr) then
+    {$if declared(LEGACY_BN_GF2m_poly2arr)}
+    BN_GF2m_poly2arr := @LEGACY_BN_GF2m_poly2arr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_GF2m_poly2arr');
+    {$ifend}
   Result := BN_GF2m_poly2arr(a, p, max);
 end;
 
@@ -2912,7 +3601,11 @@ function Load_BN_GF2m_arr2poly(p: POpenSSL_C_INT; a: PBIGNUM): TOpenSSL_C_INT; c
 begin
   BN_GF2m_arr2poly := LoadLibCryptoFunction('BN_GF2m_arr2poly');
   if not assigned(BN_GF2m_arr2poly) then
+    {$if declared(LEGACY_BN_GF2m_arr2poly)}
+    BN_GF2m_arr2poly := @LEGACY_BN_GF2m_arr2poly;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_GF2m_arr2poly');
+    {$ifend}
   Result := BN_GF2m_arr2poly(p, a);
 end;
 
@@ -2921,7 +3614,11 @@ function Load_BN_nist_mod_192(r: PBIGNUM; a: PBIGNUM; p: PBIGNUM; ctx: PBN_CTX):
 begin
   BN_nist_mod_192 := LoadLibCryptoFunction('BN_nist_mod_192');
   if not assigned(BN_nist_mod_192) then
+    {$if declared(LEGACY_BN_nist_mod_192)}
+    BN_nist_mod_192 := @LEGACY_BN_nist_mod_192;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_nist_mod_192');
+    {$ifend}
   Result := BN_nist_mod_192(r, a, p, ctx);
 end;
 
@@ -2929,7 +3626,11 @@ function Load_BN_nist_mod_224(r: PBIGNUM; a: PBIGNUM; p: PBIGNUM; ctx: PBN_CTX):
 begin
   BN_nist_mod_224 := LoadLibCryptoFunction('BN_nist_mod_224');
   if not assigned(BN_nist_mod_224) then
+    {$if declared(LEGACY_BN_nist_mod_224)}
+    BN_nist_mod_224 := @LEGACY_BN_nist_mod_224;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_nist_mod_224');
+    {$ifend}
   Result := BN_nist_mod_224(r, a, p, ctx);
 end;
 
@@ -2937,7 +3638,11 @@ function Load_BN_nist_mod_256(r: PBIGNUM; a: PBIGNUM; p: PBIGNUM; ctx: PBN_CTX):
 begin
   BN_nist_mod_256 := LoadLibCryptoFunction('BN_nist_mod_256');
   if not assigned(BN_nist_mod_256) then
+    {$if declared(LEGACY_BN_nist_mod_256)}
+    BN_nist_mod_256 := @LEGACY_BN_nist_mod_256;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_nist_mod_256');
+    {$ifend}
   Result := BN_nist_mod_256(r, a, p, ctx);
 end;
 
@@ -2945,7 +3650,11 @@ function Load_BN_nist_mod_384(r: PBIGNUM; a: PBIGNUM; p: PBIGNUM; ctx: PBN_CTX):
 begin
   BN_nist_mod_384 := LoadLibCryptoFunction('BN_nist_mod_384');
   if not assigned(BN_nist_mod_384) then
+    {$if declared(LEGACY_BN_nist_mod_384)}
+    BN_nist_mod_384 := @LEGACY_BN_nist_mod_384;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_nist_mod_384');
+    {$ifend}
   Result := BN_nist_mod_384(r, a, p, ctx);
 end;
 
@@ -2953,7 +3662,11 @@ function Load_BN_nist_mod_521(r: PBIGNUM; a: PBIGNUM; p: PBIGNUM; ctx: PBN_CTX):
 begin
   BN_nist_mod_521 := LoadLibCryptoFunction('BN_nist_mod_521');
   if not assigned(BN_nist_mod_521) then
+    {$if declared(LEGACY_BN_nist_mod_521)}
+    BN_nist_mod_521 := @LEGACY_BN_nist_mod_521;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_nist_mod_521');
+    {$ifend}
   Result := BN_nist_mod_521(r, a, p, ctx);
 end;
 
@@ -2961,7 +3674,11 @@ function Load_BN_get0_nist_prime_192: PBIGNUM; cdecl;
 begin
   BN_get0_nist_prime_192 := LoadLibCryptoFunction('BN_get0_nist_prime_192');
   if not assigned(BN_get0_nist_prime_192) then
+    {$if declared(LEGACY_BN_get0_nist_prime_192)}
+    BN_get0_nist_prime_192 := @LEGACY_BN_get0_nist_prime_192;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_get0_nist_prime_192');
+    {$ifend}
   Result := BN_get0_nist_prime_192;
 end;
 
@@ -2969,7 +3686,11 @@ function Load_BN_get0_nist_prime_224: PBIGNUM; cdecl;
 begin
   BN_get0_nist_prime_224 := LoadLibCryptoFunction('BN_get0_nist_prime_224');
   if not assigned(BN_get0_nist_prime_224) then
+    {$if declared(LEGACY_BN_get0_nist_prime_224)}
+    BN_get0_nist_prime_224 := @LEGACY_BN_get0_nist_prime_224;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_get0_nist_prime_224');
+    {$ifend}
   Result := BN_get0_nist_prime_224;
 end;
 
@@ -2977,7 +3698,11 @@ function Load_BN_get0_nist_prime_256: PBIGNUM; cdecl;
 begin
   BN_get0_nist_prime_256 := LoadLibCryptoFunction('BN_get0_nist_prime_256');
   if not assigned(BN_get0_nist_prime_256) then
+    {$if declared(LEGACY_BN_get0_nist_prime_256)}
+    BN_get0_nist_prime_256 := @LEGACY_BN_get0_nist_prime_256;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_get0_nist_prime_256');
+    {$ifend}
   Result := BN_get0_nist_prime_256;
 end;
 
@@ -2985,7 +3710,11 @@ function Load_BN_get0_nist_prime_384: PBIGNUM; cdecl;
 begin
   BN_get0_nist_prime_384 := LoadLibCryptoFunction('BN_get0_nist_prime_384');
   if not assigned(BN_get0_nist_prime_384) then
+    {$if declared(LEGACY_BN_get0_nist_prime_384)}
+    BN_get0_nist_prime_384 := @LEGACY_BN_get0_nist_prime_384;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_get0_nist_prime_384');
+    {$ifend}
   Result := BN_get0_nist_prime_384;
 end;
 
@@ -2993,7 +3722,11 @@ function Load_BN_get0_nist_prime_521: PBIGNUM; cdecl;
 begin
   BN_get0_nist_prime_521 := LoadLibCryptoFunction('BN_get0_nist_prime_521');
   if not assigned(BN_get0_nist_prime_521) then
+    {$if declared(LEGACY_BN_get0_nist_prime_521)}
+    BN_get0_nist_prime_521 := @LEGACY_BN_get0_nist_prime_521;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_get0_nist_prime_521');
+    {$ifend}
   Result := BN_get0_nist_prime_521;
 end;
 
@@ -3001,7 +3734,11 @@ function Load_BN_nist_mod_func(p: PBIGNUM): TFuncType006; cdecl;
 begin
   BN_nist_mod_func := LoadLibCryptoFunction('BN_nist_mod_func');
   if not assigned(BN_nist_mod_func) then
+    {$if declared(LEGACY_BN_nist_mod_func)}
+    BN_nist_mod_func := @LEGACY_BN_nist_mod_func;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_nist_mod_func');
+    {$ifend}
   Result := BN_nist_mod_func(p);
 end;
 
@@ -3009,7 +3746,11 @@ function Load_BN_generate_dsa_nonce(out_: PBIGNUM; range: PBIGNUM; priv: PBIGNUM
 begin
   BN_generate_dsa_nonce := LoadLibCryptoFunction('BN_generate_dsa_nonce');
   if not assigned(BN_generate_dsa_nonce) then
+    {$if declared(LEGACY_BN_generate_dsa_nonce)}
+    BN_generate_dsa_nonce := @LEGACY_BN_generate_dsa_nonce;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_generate_dsa_nonce');
+    {$ifend}
   Result := BN_generate_dsa_nonce(out_, range, priv, message, message_len, ctx);
 end;
 
@@ -3017,7 +3758,11 @@ function Load_BN_get_rfc2409_prime_768(bn: PBIGNUM): PBIGNUM; cdecl;
 begin
   BN_get_rfc2409_prime_768 := LoadLibCryptoFunction('BN_get_rfc2409_prime_768');
   if not assigned(BN_get_rfc2409_prime_768) then
+    {$if declared(LEGACY_BN_get_rfc2409_prime_768)}
+    BN_get_rfc2409_prime_768 := @LEGACY_BN_get_rfc2409_prime_768;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_get_rfc2409_prime_768');
+    {$ifend}
   Result := BN_get_rfc2409_prime_768(bn);
 end;
 
@@ -3025,7 +3770,11 @@ function Load_BN_get_rfc2409_prime_1024(bn: PBIGNUM): PBIGNUM; cdecl;
 begin
   BN_get_rfc2409_prime_1024 := LoadLibCryptoFunction('BN_get_rfc2409_prime_1024');
   if not assigned(BN_get_rfc2409_prime_1024) then
+    {$if declared(LEGACY_BN_get_rfc2409_prime_1024)}
+    BN_get_rfc2409_prime_1024 := @LEGACY_BN_get_rfc2409_prime_1024;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_get_rfc2409_prime_1024');
+    {$ifend}
   Result := BN_get_rfc2409_prime_1024(bn);
 end;
 
@@ -3033,7 +3782,11 @@ function Load_BN_get_rfc3526_prime_1536(bn: PBIGNUM): PBIGNUM; cdecl;
 begin
   BN_get_rfc3526_prime_1536 := LoadLibCryptoFunction('BN_get_rfc3526_prime_1536');
   if not assigned(BN_get_rfc3526_prime_1536) then
+    {$if declared(LEGACY_BN_get_rfc3526_prime_1536)}
+    BN_get_rfc3526_prime_1536 := @LEGACY_BN_get_rfc3526_prime_1536;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_get_rfc3526_prime_1536');
+    {$ifend}
   Result := BN_get_rfc3526_prime_1536(bn);
 end;
 
@@ -3041,7 +3794,11 @@ function Load_BN_get_rfc3526_prime_2048(bn: PBIGNUM): PBIGNUM; cdecl;
 begin
   BN_get_rfc3526_prime_2048 := LoadLibCryptoFunction('BN_get_rfc3526_prime_2048');
   if not assigned(BN_get_rfc3526_prime_2048) then
+    {$if declared(LEGACY_BN_get_rfc3526_prime_2048)}
+    BN_get_rfc3526_prime_2048 := @LEGACY_BN_get_rfc3526_prime_2048;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_get_rfc3526_prime_2048');
+    {$ifend}
   Result := BN_get_rfc3526_prime_2048(bn);
 end;
 
@@ -3049,7 +3806,11 @@ function Load_BN_get_rfc3526_prime_3072(bn: PBIGNUM): PBIGNUM; cdecl;
 begin
   BN_get_rfc3526_prime_3072 := LoadLibCryptoFunction('BN_get_rfc3526_prime_3072');
   if not assigned(BN_get_rfc3526_prime_3072) then
+    {$if declared(LEGACY_BN_get_rfc3526_prime_3072)}
+    BN_get_rfc3526_prime_3072 := @LEGACY_BN_get_rfc3526_prime_3072;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_get_rfc3526_prime_3072');
+    {$ifend}
   Result := BN_get_rfc3526_prime_3072(bn);
 end;
 
@@ -3057,7 +3818,11 @@ function Load_BN_get_rfc3526_prime_4096(bn: PBIGNUM): PBIGNUM; cdecl;
 begin
   BN_get_rfc3526_prime_4096 := LoadLibCryptoFunction('BN_get_rfc3526_prime_4096');
   if not assigned(BN_get_rfc3526_prime_4096) then
+    {$if declared(LEGACY_BN_get_rfc3526_prime_4096)}
+    BN_get_rfc3526_prime_4096 := @LEGACY_BN_get_rfc3526_prime_4096;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_get_rfc3526_prime_4096');
+    {$ifend}
   Result := BN_get_rfc3526_prime_4096(bn);
 end;
 
@@ -3065,7 +3830,11 @@ function Load_BN_get_rfc3526_prime_6144(bn: PBIGNUM): PBIGNUM; cdecl;
 begin
   BN_get_rfc3526_prime_6144 := LoadLibCryptoFunction('BN_get_rfc3526_prime_6144');
   if not assigned(BN_get_rfc3526_prime_6144) then
+    {$if declared(LEGACY_BN_get_rfc3526_prime_6144)}
+    BN_get_rfc3526_prime_6144 := @LEGACY_BN_get_rfc3526_prime_6144;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_get_rfc3526_prime_6144');
+    {$ifend}
   Result := BN_get_rfc3526_prime_6144(bn);
 end;
 
@@ -3073,7 +3842,11 @@ function Load_BN_get_rfc3526_prime_8192(bn: PBIGNUM): PBIGNUM; cdecl;
 begin
   BN_get_rfc3526_prime_8192 := LoadLibCryptoFunction('BN_get_rfc3526_prime_8192');
   if not assigned(BN_get_rfc3526_prime_8192) then
+    {$if declared(LEGACY_BN_get_rfc3526_prime_8192)}
+    BN_get_rfc3526_prime_8192 := @LEGACY_BN_get_rfc3526_prime_8192;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_get_rfc3526_prime_8192');
+    {$ifend}
   Result := BN_get_rfc3526_prime_8192(bn);
 end;
 
@@ -3082,7 +3855,11 @@ function Load_get_rfc2409_prime_768(bn: PBIGNUM): PBIGNUM; cdecl;
 begin
   get_rfc2409_prime_768 := LoadLibCryptoFunction('BN_get_rfc2409_prime_768');
   if not assigned(get_rfc2409_prime_768) then
+    {$if declared(LEGACY_BN_get_rfc2409_prime_768)}
+    get_rfc2409_prime_768 := @LEGACY_BN_get_rfc2409_prime_768;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_get_rfc2409_prime_768');
+    {$ifend}
   Result := get_rfc2409_prime_768(bn);
 end;
 
@@ -3090,7 +3867,11 @@ function Load_get_rfc2409_prime_1024(bn: PBIGNUM): PBIGNUM; cdecl;
 begin
   get_rfc2409_prime_1024 := LoadLibCryptoFunction('BN_get_rfc2409_prime_1024');
   if not assigned(get_rfc2409_prime_1024) then
+    {$if declared(LEGACY_BN_get_rfc2409_prime_1024)}
+    get_rfc2409_prime_1024 := @LEGACY_BN_get_rfc2409_prime_1024;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_get_rfc2409_prime_1024');
+    {$ifend}
   Result := get_rfc2409_prime_1024(bn);
 end;
 
@@ -3098,7 +3879,11 @@ function Load_get_rfc3526_prime_1536(bn: PBIGNUM): PBIGNUM; cdecl;
 begin
   get_rfc3526_prime_1536 := LoadLibCryptoFunction('BN_get_rfc3526_prime_1536');
   if not assigned(get_rfc3526_prime_1536) then
+    {$if declared(LEGACY_BN_get_rfc3526_prime_1536)}
+    get_rfc3526_prime_1536 := @LEGACY_BN_get_rfc3526_prime_1536;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_get_rfc3526_prime_1536');
+    {$ifend}
   Result := get_rfc3526_prime_1536(bn);
 end;
 
@@ -3106,7 +3891,11 @@ function Load_get_rfc3526_prime_2048(bn: PBIGNUM): PBIGNUM; cdecl;
 begin
   get_rfc3526_prime_2048 := LoadLibCryptoFunction('BN_get_rfc3526_prime_2048');
   if not assigned(get_rfc3526_prime_2048) then
+    {$if declared(LEGACY_BN_get_rfc3526_prime_2048)}
+    get_rfc3526_prime_2048 := @LEGACY_BN_get_rfc3526_prime_2048;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_get_rfc3526_prime_2048');
+    {$ifend}
   Result := get_rfc3526_prime_2048(bn);
 end;
 
@@ -3114,7 +3903,11 @@ function Load_get_rfc3526_prime_3072(bn: PBIGNUM): PBIGNUM; cdecl;
 begin
   get_rfc3526_prime_3072 := LoadLibCryptoFunction('BN_get_rfc3526_prime_3072');
   if not assigned(get_rfc3526_prime_3072) then
+    {$if declared(LEGACY_BN_get_rfc3526_prime_3072)}
+    get_rfc3526_prime_3072 := @LEGACY_BN_get_rfc3526_prime_3072;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_get_rfc3526_prime_3072');
+    {$ifend}
   Result := get_rfc3526_prime_3072(bn);
 end;
 
@@ -3122,7 +3915,11 @@ function Load_get_rfc3526_prime_4096(bn: PBIGNUM): PBIGNUM; cdecl;
 begin
   get_rfc3526_prime_4096 := LoadLibCryptoFunction('BN_get_rfc3526_prime_4096');
   if not assigned(get_rfc3526_prime_4096) then
+    {$if declared(LEGACY_BN_get_rfc3526_prime_4096)}
+    get_rfc3526_prime_4096 := @LEGACY_BN_get_rfc3526_prime_4096;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_get_rfc3526_prime_4096');
+    {$ifend}
   Result := get_rfc3526_prime_4096(bn);
 end;
 
@@ -3130,7 +3927,11 @@ function Load_get_rfc3526_prime_6144(bn: PBIGNUM): PBIGNUM; cdecl;
 begin
   get_rfc3526_prime_6144 := LoadLibCryptoFunction('BN_get_rfc3526_prime_6144');
   if not assigned(get_rfc3526_prime_6144) then
+    {$if declared(LEGACY_BN_get_rfc3526_prime_6144)}
+    get_rfc3526_prime_6144 := @LEGACY_BN_get_rfc3526_prime_6144;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_get_rfc3526_prime_6144');
+    {$ifend}
   Result := get_rfc3526_prime_6144(bn);
 end;
 
@@ -3138,7 +3939,11 @@ function Load_get_rfc3526_prime_8192(bn: PBIGNUM): PBIGNUM; cdecl;
 begin
   get_rfc3526_prime_8192 := LoadLibCryptoFunction('BN_get_rfc3526_prime_8192');
   if not assigned(get_rfc3526_prime_8192) then
+    {$if declared(LEGACY_BN_get_rfc3526_prime_8192)}
+    get_rfc3526_prime_8192 := @LEGACY_BN_get_rfc3526_prime_8192;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_get_rfc3526_prime_8192');
+    {$ifend}
   Result := get_rfc3526_prime_8192(bn);
 end;
 
@@ -3147,7 +3952,11 @@ function Load_BN_bntest_rand(rnd: PBIGNUM; bits: TOpenSSL_C_INT; top: TOpenSSL_C
 begin
   BN_bntest_rand := LoadLibCryptoFunction('BN_bntest_rand');
   if not assigned(BN_bntest_rand) then
+    {$if declared(LEGACY_BN_bntest_rand)}
+    BN_bntest_rand := @LEGACY_BN_bntest_rand;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_bntest_rand');
+    {$ifend}
   Result := BN_bntest_rand(rnd, bits, top, bottom);
 end;
 

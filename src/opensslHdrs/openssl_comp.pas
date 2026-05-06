@@ -18,7 +18,8 @@
 unit openssl_comp;
 
 {
-  Generated from OpenSSL 3.0.20 Header File comp.h - Wed  6 May 13:05:42 BST 2026
+  Generated from OpenSSL 3.0.20 Header File comp.h - Wed  6 May 13:14:51 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -143,7 +144,11 @@ function Load_COMP_CTX_new(meth: PCOMP_METHOD): PCOMP_CTX; cdecl;
 begin
   COMP_CTX_new := LoadLibCryptoFunction('COMP_CTX_new');
   if not assigned(COMP_CTX_new) then
+    {$if declared(LEGACY_COMP_CTX_new)}
+    COMP_CTX_new := @LEGACY_COMP_CTX_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('COMP_CTX_new');
+    {$ifend}
   Result := COMP_CTX_new(meth);
 end;
 
@@ -151,7 +156,11 @@ function Load_COMP_CTX_get_method(ctx: PCOMP_CTX): PCOMP_METHOD; cdecl;
 begin
   COMP_CTX_get_method := LoadLibCryptoFunction('COMP_CTX_get_method');
   if not assigned(COMP_CTX_get_method) then
+    {$if declared(LEGACY_COMP_CTX_get_method)}
+    COMP_CTX_get_method := @LEGACY_COMP_CTX_get_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('COMP_CTX_get_method');
+    {$ifend}
   Result := COMP_CTX_get_method(ctx);
 end;
 
@@ -159,7 +168,11 @@ function Load_COMP_CTX_get_type(comp: PCOMP_CTX): TOpenSSL_C_INT; cdecl;
 begin
   COMP_CTX_get_type := LoadLibCryptoFunction('COMP_CTX_get_type');
   if not assigned(COMP_CTX_get_type) then
+    {$if declared(LEGACY_COMP_CTX_get_type)}
+    COMP_CTX_get_type := @LEGACY_COMP_CTX_get_type;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('COMP_CTX_get_type');
+    {$ifend}
   Result := COMP_CTX_get_type(comp);
 end;
 
@@ -167,7 +180,11 @@ function Load_COMP_get_type(meth: PCOMP_METHOD): TOpenSSL_C_INT; cdecl;
 begin
   COMP_get_type := LoadLibCryptoFunction('COMP_get_type');
   if not assigned(COMP_get_type) then
+    {$if declared(LEGACY_COMP_get_type)}
+    COMP_get_type := @LEGACY_COMP_get_type;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('COMP_get_type');
+    {$ifend}
   Result := COMP_get_type(meth);
 end;
 
@@ -175,7 +192,11 @@ function Load_COMP_get_name(meth: PCOMP_METHOD): PAnsiChar; cdecl;
 begin
   COMP_get_name := LoadLibCryptoFunction('COMP_get_name');
   if not assigned(COMP_get_name) then
+    {$if declared(LEGACY_COMP_get_name)}
+    COMP_get_name := @LEGACY_COMP_get_name;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('COMP_get_name');
+    {$ifend}
   Result := COMP_get_name(meth);
 end;
 
@@ -183,7 +204,11 @@ procedure Load_COMP_CTX_free(ctx: PCOMP_CTX); cdecl;
 begin
   COMP_CTX_free := LoadLibCryptoFunction('COMP_CTX_free');
   if not assigned(COMP_CTX_free) then
+    {$if declared(LEGACY_COMP_CTX_free)}
+    COMP_CTX_free := @LEGACY_COMP_CTX_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('COMP_CTX_free');
+    {$ifend}
   COMP_CTX_free(ctx);
 end;
 
@@ -191,7 +216,11 @@ function Load_COMP_compress_block(ctx: PCOMP_CTX; out_: Pbyte; olen: TOpenSSL_C_
 begin
   COMP_compress_block := LoadLibCryptoFunction('COMP_compress_block');
   if not assigned(COMP_compress_block) then
+    {$if declared(LEGACY_COMP_compress_block)}
+    COMP_compress_block := @LEGACY_COMP_compress_block;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('COMP_compress_block');
+    {$ifend}
   Result := COMP_compress_block(ctx, out_, olen, in_, ilen);
 end;
 
@@ -199,7 +228,11 @@ function Load_COMP_expand_block(ctx: PCOMP_CTX; out_: Pbyte; olen: TOpenSSL_C_IN
 begin
   COMP_expand_block := LoadLibCryptoFunction('COMP_expand_block');
   if not assigned(COMP_expand_block) then
+    {$if declared(LEGACY_COMP_expand_block)}
+    COMP_expand_block := @LEGACY_COMP_expand_block;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('COMP_expand_block');
+    {$ifend}
   Result := COMP_expand_block(ctx, out_, olen, in_, ilen);
 end;
 
@@ -207,7 +240,11 @@ function Load_COMP_zlib: PCOMP_METHOD; cdecl;
 begin
   COMP_zlib := LoadLibCryptoFunction('COMP_zlib');
   if not assigned(COMP_zlib) then
+    {$if declared(LEGACY_COMP_zlib)}
+    COMP_zlib := @LEGACY_COMP_zlib;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('COMP_zlib');
+    {$ifend}
   Result := COMP_zlib;
 end;
 
@@ -217,7 +254,11 @@ function Load_BIO_f_zlib: PBIO_METHOD; cdecl;
 begin
   BIO_f_zlib := LoadLibCryptoFunction('BIO_f_zlib');
   if not assigned(BIO_f_zlib) then
+    {$if declared(LEGACY_BIO_f_zlib)}
+    BIO_f_zlib := @LEGACY_BIO_f_zlib;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_f_zlib');
+    {$ifend}
   Result := BIO_f_zlib;
 end;
 

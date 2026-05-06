@@ -18,7 +18,8 @@
 unit openssl_storeerr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File storeerr.h - Wed  6 May 13:06:38 BST 2026
+  Generated from OpenSSL 3.0.20 Header File storeerr.h - Wed  6 May 13:15:47 BST 2026
+  With Legacy Support Option
 }
 
 interface

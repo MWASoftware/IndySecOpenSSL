@@ -18,7 +18,8 @@
 unit openssl_trace;
 
 {
-  Generated from OpenSSL 3.0.20 Header File trace.h - Wed  6 May 13:06:44 BST 2026
+  Generated from OpenSSL 3.0.20 Header File trace.h - Wed  6 May 13:15:53 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -442,7 +443,11 @@ function Load_OSSL_trace_get_category_num(name: PAnsiChar): TOpenSSL_C_INT; cdec
 begin
   OSSL_trace_get_category_num := LoadLibCryptoFunction('OSSL_trace_get_category_num');
   if not assigned(OSSL_trace_get_category_num) then
+    {$if declared(LEGACY_OSSL_trace_get_category_num)}
+    OSSL_trace_get_category_num := @LEGACY_OSSL_trace_get_category_num;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_trace_get_category_num');
+    {$ifend}
   Result := OSSL_trace_get_category_num(name);
 end;
 
@@ -450,7 +455,11 @@ function Load_OSSL_trace_get_category_name(num: TOpenSSL_C_INT): PAnsiChar; cdec
 begin
   OSSL_trace_get_category_name := LoadLibCryptoFunction('OSSL_trace_get_category_name');
   if not assigned(OSSL_trace_get_category_name) then
+    {$if declared(LEGACY_OSSL_trace_get_category_name)}
+    OSSL_trace_get_category_name := @LEGACY_OSSL_trace_get_category_name;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_trace_get_category_name');
+    {$ifend}
   Result := OSSL_trace_get_category_name(num);
 end;
 
@@ -458,7 +467,11 @@ function Load_OSSL_trace_set_channel(category: TOpenSSL_C_INT; channel: PBIO): T
 begin
   OSSL_trace_set_channel := LoadLibCryptoFunction('OSSL_trace_set_channel');
   if not assigned(OSSL_trace_set_channel) then
+    {$if declared(LEGACY_OSSL_trace_set_channel)}
+    OSSL_trace_set_channel := @LEGACY_OSSL_trace_set_channel;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_trace_set_channel');
+    {$ifend}
   Result := OSSL_trace_set_channel(category, channel);
 end;
 
@@ -466,7 +479,11 @@ function Load_OSSL_trace_set_prefix(category: TOpenSSL_C_INT; prefix: PAnsiChar)
 begin
   OSSL_trace_set_prefix := LoadLibCryptoFunction('OSSL_trace_set_prefix');
   if not assigned(OSSL_trace_set_prefix) then
+    {$if declared(LEGACY_OSSL_trace_set_prefix)}
+    OSSL_trace_set_prefix := @LEGACY_OSSL_trace_set_prefix;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_trace_set_prefix');
+    {$ifend}
   Result := OSSL_trace_set_prefix(category, prefix);
 end;
 
@@ -474,7 +491,11 @@ function Load_OSSL_trace_set_suffix(category: TOpenSSL_C_INT; suffix: PAnsiChar)
 begin
   OSSL_trace_set_suffix := LoadLibCryptoFunction('OSSL_trace_set_suffix');
   if not assigned(OSSL_trace_set_suffix) then
+    {$if declared(LEGACY_OSSL_trace_set_suffix)}
+    OSSL_trace_set_suffix := @LEGACY_OSSL_trace_set_suffix;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_trace_set_suffix');
+    {$ifend}
   Result := OSSL_trace_set_suffix(category, suffix);
 end;
 
@@ -482,7 +503,11 @@ function Load_OSSL_trace_set_callback(category: TOpenSSL_C_INT; callback: TOSSL_
 begin
   OSSL_trace_set_callback := LoadLibCryptoFunction('OSSL_trace_set_callback');
   if not assigned(OSSL_trace_set_callback) then
+    {$if declared(LEGACY_OSSL_trace_set_callback)}
+    OSSL_trace_set_callback := @LEGACY_OSSL_trace_set_callback;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_trace_set_callback');
+    {$ifend}
   Result := OSSL_trace_set_callback(category, callback, data);
 end;
 
@@ -490,7 +515,11 @@ function Load_OSSL_trace_enabled(category: TOpenSSL_C_INT): TOpenSSL_C_INT; cdec
 begin
   OSSL_trace_enabled := LoadLibCryptoFunction('OSSL_trace_enabled');
   if not assigned(OSSL_trace_enabled) then
+    {$if declared(LEGACY_OSSL_trace_enabled)}
+    OSSL_trace_enabled := @LEGACY_OSSL_trace_enabled;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_trace_enabled');
+    {$ifend}
   Result := OSSL_trace_enabled(category);
 end;
 
@@ -498,7 +527,11 @@ function Load_OSSL_trace_begin(category: TOpenSSL_C_INT): PBIO; cdecl;
 begin
   OSSL_trace_begin := LoadLibCryptoFunction('OSSL_trace_begin');
   if not assigned(OSSL_trace_begin) then
+    {$if declared(LEGACY_OSSL_trace_begin)}
+    OSSL_trace_begin := @LEGACY_OSSL_trace_begin;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_trace_begin');
+    {$ifend}
   Result := OSSL_trace_begin(category);
 end;
 
@@ -506,7 +539,11 @@ procedure Load_OSSL_trace_end(category: TOpenSSL_C_INT; channel: PBIO); cdecl;
 begin
   OSSL_trace_end := LoadLibCryptoFunction('OSSL_trace_end');
   if not assigned(OSSL_trace_end) then
+    {$if declared(LEGACY_OSSL_trace_end)}
+    OSSL_trace_end := @LEGACY_OSSL_trace_end;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_trace_end');
+    {$ifend}
   OSSL_trace_end(category, channel);
 end;
 

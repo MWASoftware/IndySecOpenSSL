@@ -18,7 +18,8 @@
 unit openssl_decoder;
 
 {
-  Generated from OpenSSL 3.0.20 Header File decoder.h - Wed  6 May 13:05:52 BST 2026
+  Generated from OpenSSL 3.0.20 Header File decoder.h - Wed  6 May 13:15:01 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -353,7 +354,11 @@ function Load_OSSL_DECODER_fetch(libctx: POSSL_LIB_CTX; name: PAnsiChar; propert
 begin
   OSSL_DECODER_fetch := LoadLibCryptoFunction('OSSL_DECODER_fetch');
   if not assigned(OSSL_DECODER_fetch) then
+    {$if declared(LEGACY_OSSL_DECODER_fetch)}
+    OSSL_DECODER_fetch := @LEGACY_OSSL_DECODER_fetch;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_fetch');
+    {$ifend}
   Result := OSSL_DECODER_fetch(libctx, name, properties);
 end;
 
@@ -361,7 +366,11 @@ function Load_OSSL_DECODER_up_ref(encoder: POSSL_DECODER): TOpenSSL_C_INT; cdecl
 begin
   OSSL_DECODER_up_ref := LoadLibCryptoFunction('OSSL_DECODER_up_ref');
   if not assigned(OSSL_DECODER_up_ref) then
+    {$if declared(LEGACY_OSSL_DECODER_up_ref)}
+    OSSL_DECODER_up_ref := @LEGACY_OSSL_DECODER_up_ref;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_up_ref');
+    {$ifend}
   Result := OSSL_DECODER_up_ref(encoder);
 end;
 
@@ -369,7 +378,11 @@ procedure Load_OSSL_DECODER_free(encoder: POSSL_DECODER); cdecl;
 begin
   OSSL_DECODER_free := LoadLibCryptoFunction('OSSL_DECODER_free');
   if not assigned(OSSL_DECODER_free) then
+    {$if declared(LEGACY_OSSL_DECODER_free)}
+    OSSL_DECODER_free := @LEGACY_OSSL_DECODER_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_free');
+    {$ifend}
   OSSL_DECODER_free(encoder);
 end;
 
@@ -377,7 +390,11 @@ function Load_OSSL_DECODER_get0_provider(encoder: POSSL_DECODER): POSSL_PROVIDER
 begin
   OSSL_DECODER_get0_provider := LoadLibCryptoFunction('OSSL_DECODER_get0_provider');
   if not assigned(OSSL_DECODER_get0_provider) then
+    {$if declared(LEGACY_OSSL_DECODER_get0_provider)}
+    OSSL_DECODER_get0_provider := @LEGACY_OSSL_DECODER_get0_provider;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_get0_provider');
+    {$ifend}
   Result := OSSL_DECODER_get0_provider(encoder);
 end;
 
@@ -385,7 +402,11 @@ function Load_OSSL_DECODER_get0_properties(encoder: POSSL_DECODER): PAnsiChar; c
 begin
   OSSL_DECODER_get0_properties := LoadLibCryptoFunction('OSSL_DECODER_get0_properties');
   if not assigned(OSSL_DECODER_get0_properties) then
+    {$if declared(LEGACY_OSSL_DECODER_get0_properties)}
+    OSSL_DECODER_get0_properties := @LEGACY_OSSL_DECODER_get0_properties;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_get0_properties');
+    {$ifend}
   Result := OSSL_DECODER_get0_properties(encoder);
 end;
 
@@ -393,7 +414,11 @@ function Load_OSSL_DECODER_get0_name(decoder: POSSL_DECODER): PAnsiChar; cdecl;
 begin
   OSSL_DECODER_get0_name := LoadLibCryptoFunction('OSSL_DECODER_get0_name');
   if not assigned(OSSL_DECODER_get0_name) then
+    {$if declared(LEGACY_OSSL_DECODER_get0_name)}
+    OSSL_DECODER_get0_name := @LEGACY_OSSL_DECODER_get0_name;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_get0_name');
+    {$ifend}
   Result := OSSL_DECODER_get0_name(decoder);
 end;
 
@@ -401,7 +426,11 @@ function Load_OSSL_DECODER_get0_description(decoder: POSSL_DECODER): PAnsiChar; 
 begin
   OSSL_DECODER_get0_description := LoadLibCryptoFunction('OSSL_DECODER_get0_description');
   if not assigned(OSSL_DECODER_get0_description) then
+    {$if declared(LEGACY_OSSL_DECODER_get0_description)}
+    OSSL_DECODER_get0_description := @LEGACY_OSSL_DECODER_get0_description;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_get0_description');
+    {$ifend}
   Result := OSSL_DECODER_get0_description(decoder);
 end;
 
@@ -409,7 +438,11 @@ function Load_OSSL_DECODER_is_a(encoder: POSSL_DECODER; name: PAnsiChar): TOpenS
 begin
   OSSL_DECODER_is_a := LoadLibCryptoFunction('OSSL_DECODER_is_a');
   if not assigned(OSSL_DECODER_is_a) then
+    {$if declared(LEGACY_OSSL_DECODER_is_a)}
+    OSSL_DECODER_is_a := @LEGACY_OSSL_DECODER_is_a;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_is_a');
+    {$ifend}
   Result := OSSL_DECODER_is_a(encoder, name);
 end;
 
@@ -417,7 +450,11 @@ procedure Load_OSSL_DECODER_do_all_provided(libctx: POSSL_LIB_CTX; fn: TFuncType
 begin
   OSSL_DECODER_do_all_provided := LoadLibCryptoFunction('OSSL_DECODER_do_all_provided');
   if not assigned(OSSL_DECODER_do_all_provided) then
+    {$if declared(LEGACY_OSSL_DECODER_do_all_provided)}
+    OSSL_DECODER_do_all_provided := @LEGACY_OSSL_DECODER_do_all_provided;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_do_all_provided');
+    {$ifend}
   OSSL_DECODER_do_all_provided(libctx, fn, arg);
 end;
 
@@ -425,7 +462,11 @@ function Load_OSSL_DECODER_names_do_all(encoder: POSSL_DECODER; fn: TFuncType001
 begin
   OSSL_DECODER_names_do_all := LoadLibCryptoFunction('OSSL_DECODER_names_do_all');
   if not assigned(OSSL_DECODER_names_do_all) then
+    {$if declared(LEGACY_OSSL_DECODER_names_do_all)}
+    OSSL_DECODER_names_do_all := @LEGACY_OSSL_DECODER_names_do_all;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_names_do_all');
+    {$ifend}
   Result := OSSL_DECODER_names_do_all(encoder, fn, data);
 end;
 
@@ -433,7 +474,11 @@ function Load_OSSL_DECODER_gettable_params(decoder: POSSL_DECODER): POSSL_PARAM;
 begin
   OSSL_DECODER_gettable_params := LoadLibCryptoFunction('OSSL_DECODER_gettable_params');
   if not assigned(OSSL_DECODER_gettable_params) then
+    {$if declared(LEGACY_OSSL_DECODER_gettable_params)}
+    OSSL_DECODER_gettable_params := @LEGACY_OSSL_DECODER_gettable_params;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_gettable_params');
+    {$ifend}
   Result := OSSL_DECODER_gettable_params(decoder);
 end;
 
@@ -441,7 +486,11 @@ function Load_OSSL_DECODER_get_params(decoder: POSSL_DECODER; params: POSSL_PARA
 begin
   OSSL_DECODER_get_params := LoadLibCryptoFunction('OSSL_DECODER_get_params');
   if not assigned(OSSL_DECODER_get_params) then
+    {$if declared(LEGACY_OSSL_DECODER_get_params)}
+    OSSL_DECODER_get_params := @LEGACY_OSSL_DECODER_get_params;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_get_params');
+    {$ifend}
   Result := OSSL_DECODER_get_params(decoder, params);
 end;
 
@@ -449,7 +498,11 @@ function Load_OSSL_DECODER_settable_ctx_params(encoder: POSSL_DECODER): POSSL_PA
 begin
   OSSL_DECODER_settable_ctx_params := LoadLibCryptoFunction('OSSL_DECODER_settable_ctx_params');
   if not assigned(OSSL_DECODER_settable_ctx_params) then
+    {$if declared(LEGACY_OSSL_DECODER_settable_ctx_params)}
+    OSSL_DECODER_settable_ctx_params := @LEGACY_OSSL_DECODER_settable_ctx_params;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_settable_ctx_params');
+    {$ifend}
   Result := OSSL_DECODER_settable_ctx_params(encoder);
 end;
 
@@ -457,7 +510,11 @@ function Load_OSSL_DECODER_CTX_new: POSSL_DECODER_CTX; cdecl;
 begin
   OSSL_DECODER_CTX_new := LoadLibCryptoFunction('OSSL_DECODER_CTX_new');
   if not assigned(OSSL_DECODER_CTX_new) then
+    {$if declared(LEGACY_OSSL_DECODER_CTX_new)}
+    OSSL_DECODER_CTX_new := @LEGACY_OSSL_DECODER_CTX_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_CTX_new');
+    {$ifend}
   Result := OSSL_DECODER_CTX_new;
 end;
 
@@ -465,7 +522,11 @@ function Load_OSSL_DECODER_CTX_set_params(ctx: POSSL_DECODER_CTX; params: POSSL_
 begin
   OSSL_DECODER_CTX_set_params := LoadLibCryptoFunction('OSSL_DECODER_CTX_set_params');
   if not assigned(OSSL_DECODER_CTX_set_params) then
+    {$if declared(LEGACY_OSSL_DECODER_CTX_set_params)}
+    OSSL_DECODER_CTX_set_params := @LEGACY_OSSL_DECODER_CTX_set_params;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_CTX_set_params');
+    {$ifend}
   Result := OSSL_DECODER_CTX_set_params(ctx, params);
 end;
 
@@ -473,7 +534,11 @@ procedure Load_OSSL_DECODER_CTX_free(ctx: POSSL_DECODER_CTX); cdecl;
 begin
   OSSL_DECODER_CTX_free := LoadLibCryptoFunction('OSSL_DECODER_CTX_free');
   if not assigned(OSSL_DECODER_CTX_free) then
+    {$if declared(LEGACY_OSSL_DECODER_CTX_free)}
+    OSSL_DECODER_CTX_free := @LEGACY_OSSL_DECODER_CTX_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_CTX_free');
+    {$ifend}
   OSSL_DECODER_CTX_free(ctx);
 end;
 
@@ -481,7 +546,11 @@ function Load_OSSL_DECODER_CTX_set_passphrase(ctx: POSSL_DECODER_CTX; kstr: Pbyt
 begin
   OSSL_DECODER_CTX_set_passphrase := LoadLibCryptoFunction('OSSL_DECODER_CTX_set_passphrase');
   if not assigned(OSSL_DECODER_CTX_set_passphrase) then
+    {$if declared(LEGACY_OSSL_DECODER_CTX_set_passphrase)}
+    OSSL_DECODER_CTX_set_passphrase := @LEGACY_OSSL_DECODER_CTX_set_passphrase;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_CTX_set_passphrase');
+    {$ifend}
   Result := OSSL_DECODER_CTX_set_passphrase(ctx, kstr, klen);
 end;
 
@@ -489,7 +558,11 @@ function Load_OSSL_DECODER_CTX_set_pem_password_cb(ctx: POSSL_DECODER_CTX; cb: T
 begin
   OSSL_DECODER_CTX_set_pem_password_cb := LoadLibCryptoFunction('OSSL_DECODER_CTX_set_pem_password_cb');
   if not assigned(OSSL_DECODER_CTX_set_pem_password_cb) then
+    {$if declared(LEGACY_OSSL_DECODER_CTX_set_pem_password_cb)}
+    OSSL_DECODER_CTX_set_pem_password_cb := @LEGACY_OSSL_DECODER_CTX_set_pem_password_cb;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_CTX_set_pem_password_cb');
+    {$ifend}
   Result := OSSL_DECODER_CTX_set_pem_password_cb(ctx, cb, cbarg);
 end;
 
@@ -497,7 +570,11 @@ function Load_OSSL_DECODER_CTX_set_passphrase_cb(ctx: POSSL_DECODER_CTX; cb: POS
 begin
   OSSL_DECODER_CTX_set_passphrase_cb := LoadLibCryptoFunction('OSSL_DECODER_CTX_set_passphrase_cb');
   if not assigned(OSSL_DECODER_CTX_set_passphrase_cb) then
+    {$if declared(LEGACY_OSSL_DECODER_CTX_set_passphrase_cb)}
+    OSSL_DECODER_CTX_set_passphrase_cb := @LEGACY_OSSL_DECODER_CTX_set_passphrase_cb;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_CTX_set_passphrase_cb');
+    {$ifend}
   Result := OSSL_DECODER_CTX_set_passphrase_cb(ctx, cb, cbarg);
 end;
 
@@ -505,7 +582,11 @@ function Load_OSSL_DECODER_CTX_set_passphrase_ui(ctx: POSSL_DECODER_CTX; ui_meth
 begin
   OSSL_DECODER_CTX_set_passphrase_ui := LoadLibCryptoFunction('OSSL_DECODER_CTX_set_passphrase_ui');
   if not assigned(OSSL_DECODER_CTX_set_passphrase_ui) then
+    {$if declared(LEGACY_OSSL_DECODER_CTX_set_passphrase_ui)}
+    OSSL_DECODER_CTX_set_passphrase_ui := @LEGACY_OSSL_DECODER_CTX_set_passphrase_ui;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_CTX_set_passphrase_ui');
+    {$ifend}
   Result := OSSL_DECODER_CTX_set_passphrase_ui(ctx, ui_method, ui_data);
 end;
 
@@ -513,7 +594,11 @@ function Load_OSSL_DECODER_CTX_set_selection(ctx: POSSL_DECODER_CTX; selection: 
 begin
   OSSL_DECODER_CTX_set_selection := LoadLibCryptoFunction('OSSL_DECODER_CTX_set_selection');
   if not assigned(OSSL_DECODER_CTX_set_selection) then
+    {$if declared(LEGACY_OSSL_DECODER_CTX_set_selection)}
+    OSSL_DECODER_CTX_set_selection := @LEGACY_OSSL_DECODER_CTX_set_selection;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_CTX_set_selection');
+    {$ifend}
   Result := OSSL_DECODER_CTX_set_selection(ctx, selection);
 end;
 
@@ -521,7 +606,11 @@ function Load_OSSL_DECODER_CTX_set_input_type(ctx: POSSL_DECODER_CTX; input_type
 begin
   OSSL_DECODER_CTX_set_input_type := LoadLibCryptoFunction('OSSL_DECODER_CTX_set_input_type');
   if not assigned(OSSL_DECODER_CTX_set_input_type) then
+    {$if declared(LEGACY_OSSL_DECODER_CTX_set_input_type)}
+    OSSL_DECODER_CTX_set_input_type := @LEGACY_OSSL_DECODER_CTX_set_input_type;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_CTX_set_input_type');
+    {$ifend}
   Result := OSSL_DECODER_CTX_set_input_type(ctx, input_type);
 end;
 
@@ -529,7 +618,11 @@ function Load_OSSL_DECODER_CTX_set_input_structure(ctx: POSSL_DECODER_CTX; input
 begin
   OSSL_DECODER_CTX_set_input_structure := LoadLibCryptoFunction('OSSL_DECODER_CTX_set_input_structure');
   if not assigned(OSSL_DECODER_CTX_set_input_structure) then
+    {$if declared(LEGACY_OSSL_DECODER_CTX_set_input_structure)}
+    OSSL_DECODER_CTX_set_input_structure := @LEGACY_OSSL_DECODER_CTX_set_input_structure;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_CTX_set_input_structure');
+    {$ifend}
   Result := OSSL_DECODER_CTX_set_input_structure(ctx, input_structure);
 end;
 
@@ -537,7 +630,11 @@ function Load_OSSL_DECODER_CTX_add_decoder(ctx: POSSL_DECODER_CTX; decoder: POSS
 begin
   OSSL_DECODER_CTX_add_decoder := LoadLibCryptoFunction('OSSL_DECODER_CTX_add_decoder');
   if not assigned(OSSL_DECODER_CTX_add_decoder) then
+    {$if declared(LEGACY_OSSL_DECODER_CTX_add_decoder)}
+    OSSL_DECODER_CTX_add_decoder := @LEGACY_OSSL_DECODER_CTX_add_decoder;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_CTX_add_decoder');
+    {$ifend}
   Result := OSSL_DECODER_CTX_add_decoder(ctx, decoder);
 end;
 
@@ -545,7 +642,11 @@ function Load_OSSL_DECODER_CTX_add_extra(ctx: POSSL_DECODER_CTX; libctx: POSSL_L
 begin
   OSSL_DECODER_CTX_add_extra := LoadLibCryptoFunction('OSSL_DECODER_CTX_add_extra');
   if not assigned(OSSL_DECODER_CTX_add_extra) then
+    {$if declared(LEGACY_OSSL_DECODER_CTX_add_extra)}
+    OSSL_DECODER_CTX_add_extra := @LEGACY_OSSL_DECODER_CTX_add_extra;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_CTX_add_extra');
+    {$ifend}
   Result := OSSL_DECODER_CTX_add_extra(ctx, libctx, propq);
 end;
 
@@ -553,7 +654,11 @@ function Load_OSSL_DECODER_CTX_get_num_decoders(ctx: POSSL_DECODER_CTX): TOpenSS
 begin
   OSSL_DECODER_CTX_get_num_decoders := LoadLibCryptoFunction('OSSL_DECODER_CTX_get_num_decoders');
   if not assigned(OSSL_DECODER_CTX_get_num_decoders) then
+    {$if declared(LEGACY_OSSL_DECODER_CTX_get_num_decoders)}
+    OSSL_DECODER_CTX_get_num_decoders := @LEGACY_OSSL_DECODER_CTX_get_num_decoders;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_CTX_get_num_decoders');
+    {$ifend}
   Result := OSSL_DECODER_CTX_get_num_decoders(ctx);
 end;
 
@@ -561,7 +666,11 @@ function Load_OSSL_DECODER_INSTANCE_get_decoder(decoder_inst: POSSL_DECODER_INST
 begin
   OSSL_DECODER_INSTANCE_get_decoder := LoadLibCryptoFunction('OSSL_DECODER_INSTANCE_get_decoder');
   if not assigned(OSSL_DECODER_INSTANCE_get_decoder) then
+    {$if declared(LEGACY_OSSL_DECODER_INSTANCE_get_decoder)}
+    OSSL_DECODER_INSTANCE_get_decoder := @LEGACY_OSSL_DECODER_INSTANCE_get_decoder;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_INSTANCE_get_decoder');
+    {$ifend}
   Result := OSSL_DECODER_INSTANCE_get_decoder(decoder_inst);
 end;
 
@@ -569,7 +678,11 @@ function Load_OSSL_DECODER_INSTANCE_get_decoder_ctx(decoder_inst: POSSL_DECODER_
 begin
   OSSL_DECODER_INSTANCE_get_decoder_ctx := LoadLibCryptoFunction('OSSL_DECODER_INSTANCE_get_decoder_ctx');
   if not assigned(OSSL_DECODER_INSTANCE_get_decoder_ctx) then
+    {$if declared(LEGACY_OSSL_DECODER_INSTANCE_get_decoder_ctx)}
+    OSSL_DECODER_INSTANCE_get_decoder_ctx := @LEGACY_OSSL_DECODER_INSTANCE_get_decoder_ctx;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_INSTANCE_get_decoder_ctx');
+    {$ifend}
   Result := OSSL_DECODER_INSTANCE_get_decoder_ctx(decoder_inst);
 end;
 
@@ -577,7 +690,11 @@ function Load_OSSL_DECODER_INSTANCE_get_input_type(decoder_inst: POSSL_DECODER_I
 begin
   OSSL_DECODER_INSTANCE_get_input_type := LoadLibCryptoFunction('OSSL_DECODER_INSTANCE_get_input_type');
   if not assigned(OSSL_DECODER_INSTANCE_get_input_type) then
+    {$if declared(LEGACY_OSSL_DECODER_INSTANCE_get_input_type)}
+    OSSL_DECODER_INSTANCE_get_input_type := @LEGACY_OSSL_DECODER_INSTANCE_get_input_type;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_INSTANCE_get_input_type');
+    {$ifend}
   Result := OSSL_DECODER_INSTANCE_get_input_type(decoder_inst);
 end;
 
@@ -585,7 +702,11 @@ function Load_OSSL_DECODER_INSTANCE_get_input_structure(decoder_inst: POSSL_DECO
 begin
   OSSL_DECODER_INSTANCE_get_input_structure := LoadLibCryptoFunction('OSSL_DECODER_INSTANCE_get_input_structure');
   if not assigned(OSSL_DECODER_INSTANCE_get_input_structure) then
+    {$if declared(LEGACY_OSSL_DECODER_INSTANCE_get_input_structure)}
+    OSSL_DECODER_INSTANCE_get_input_structure := @LEGACY_OSSL_DECODER_INSTANCE_get_input_structure;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_INSTANCE_get_input_structure');
+    {$ifend}
   Result := OSSL_DECODER_INSTANCE_get_input_structure(decoder_inst, was_set);
 end;
 
@@ -593,7 +714,11 @@ function Load_OSSL_DECODER_CTX_set_construct(ctx: POSSL_DECODER_CTX; construct: 
 begin
   OSSL_DECODER_CTX_set_construct := LoadLibCryptoFunction('OSSL_DECODER_CTX_set_construct');
   if not assigned(OSSL_DECODER_CTX_set_construct) then
+    {$if declared(LEGACY_OSSL_DECODER_CTX_set_construct)}
+    OSSL_DECODER_CTX_set_construct := @LEGACY_OSSL_DECODER_CTX_set_construct;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_CTX_set_construct');
+    {$ifend}
   Result := OSSL_DECODER_CTX_set_construct(ctx, construct);
 end;
 
@@ -601,7 +726,11 @@ function Load_OSSL_DECODER_CTX_set_construct_data(ctx: POSSL_DECODER_CTX; constr
 begin
   OSSL_DECODER_CTX_set_construct_data := LoadLibCryptoFunction('OSSL_DECODER_CTX_set_construct_data');
   if not assigned(OSSL_DECODER_CTX_set_construct_data) then
+    {$if declared(LEGACY_OSSL_DECODER_CTX_set_construct_data)}
+    OSSL_DECODER_CTX_set_construct_data := @LEGACY_OSSL_DECODER_CTX_set_construct_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_CTX_set_construct_data');
+    {$ifend}
   Result := OSSL_DECODER_CTX_set_construct_data(ctx, construct_data);
 end;
 
@@ -609,7 +738,11 @@ function Load_OSSL_DECODER_CTX_set_cleanup(ctx: POSSL_DECODER_CTX; cleanup: POSS
 begin
   OSSL_DECODER_CTX_set_cleanup := LoadLibCryptoFunction('OSSL_DECODER_CTX_set_cleanup');
   if not assigned(OSSL_DECODER_CTX_set_cleanup) then
+    {$if declared(LEGACY_OSSL_DECODER_CTX_set_cleanup)}
+    OSSL_DECODER_CTX_set_cleanup := @LEGACY_OSSL_DECODER_CTX_set_cleanup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_CTX_set_cleanup');
+    {$ifend}
   Result := OSSL_DECODER_CTX_set_cleanup(ctx, cleanup);
 end;
 
@@ -617,7 +750,11 @@ function Load_OSSL_DECODER_CTX_get_construct(ctx: POSSL_DECODER_CTX): POSSL_DECO
 begin
   OSSL_DECODER_CTX_get_construct := LoadLibCryptoFunction('OSSL_DECODER_CTX_get_construct');
   if not assigned(OSSL_DECODER_CTX_get_construct) then
+    {$if declared(LEGACY_OSSL_DECODER_CTX_get_construct)}
+    OSSL_DECODER_CTX_get_construct := @LEGACY_OSSL_DECODER_CTX_get_construct;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_CTX_get_construct');
+    {$ifend}
   Result := OSSL_DECODER_CTX_get_construct(ctx);
 end;
 
@@ -625,7 +762,11 @@ function Load_OSSL_DECODER_CTX_get_construct_data(ctx: POSSL_DECODER_CTX): point
 begin
   OSSL_DECODER_CTX_get_construct_data := LoadLibCryptoFunction('OSSL_DECODER_CTX_get_construct_data');
   if not assigned(OSSL_DECODER_CTX_get_construct_data) then
+    {$if declared(LEGACY_OSSL_DECODER_CTX_get_construct_data)}
+    OSSL_DECODER_CTX_get_construct_data := @LEGACY_OSSL_DECODER_CTX_get_construct_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_CTX_get_construct_data');
+    {$ifend}
   Result := OSSL_DECODER_CTX_get_construct_data(ctx);
 end;
 
@@ -633,7 +774,11 @@ function Load_OSSL_DECODER_CTX_get_cleanup(ctx: POSSL_DECODER_CTX): POSSL_DECODE
 begin
   OSSL_DECODER_CTX_get_cleanup := LoadLibCryptoFunction('OSSL_DECODER_CTX_get_cleanup');
   if not assigned(OSSL_DECODER_CTX_get_cleanup) then
+    {$if declared(LEGACY_OSSL_DECODER_CTX_get_cleanup)}
+    OSSL_DECODER_CTX_get_cleanup := @LEGACY_OSSL_DECODER_CTX_get_cleanup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_CTX_get_cleanup');
+    {$ifend}
   Result := OSSL_DECODER_CTX_get_cleanup(ctx);
 end;
 
@@ -641,7 +786,11 @@ function Load_OSSL_DECODER_export(decoder_inst: POSSL_DECODER_INSTANCE; referenc
 begin
   OSSL_DECODER_export := LoadLibCryptoFunction('OSSL_DECODER_export');
   if not assigned(OSSL_DECODER_export) then
+    {$if declared(LEGACY_OSSL_DECODER_export)}
+    OSSL_DECODER_export := @LEGACY_OSSL_DECODER_export;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_export');
+    {$ifend}
   Result := OSSL_DECODER_export(decoder_inst, reference, reference_sz, export_cb, export_cbarg);
 end;
 
@@ -649,7 +798,11 @@ function Load_OSSL_DECODER_from_bio(ctx: POSSL_DECODER_CTX; in_: PBIO): TOpenSSL
 begin
   OSSL_DECODER_from_bio := LoadLibCryptoFunction('OSSL_DECODER_from_bio');
   if not assigned(OSSL_DECODER_from_bio) then
+    {$if declared(LEGACY_OSSL_DECODER_from_bio)}
+    OSSL_DECODER_from_bio := @LEGACY_OSSL_DECODER_from_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_from_bio');
+    {$ifend}
   Result := OSSL_DECODER_from_bio(ctx, in_);
 end;
 
@@ -658,7 +811,11 @@ function Load_OSSL_DECODER_from_fp(ctx: POSSL_DECODER_CTX; in_: PFILE): TOpenSSL
 begin
   OSSL_DECODER_from_fp := LoadLibCryptoFunction('OSSL_DECODER_from_fp');
   if not assigned(OSSL_DECODER_from_fp) then
+    {$if declared(LEGACY_OSSL_DECODER_from_fp)}
+    OSSL_DECODER_from_fp := @LEGACY_OSSL_DECODER_from_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_from_fp');
+    {$ifend}
   Result := OSSL_DECODER_from_fp(ctx, in_);
 end;
 
@@ -667,7 +824,11 @@ function Load_OSSL_DECODER_from_data(ctx: POSSL_DECODER_CTX; pdata: PPbyte; pdat
 begin
   OSSL_DECODER_from_data := LoadLibCryptoFunction('OSSL_DECODER_from_data');
   if not assigned(OSSL_DECODER_from_data) then
+    {$if declared(LEGACY_OSSL_DECODER_from_data)}
+    OSSL_DECODER_from_data := @LEGACY_OSSL_DECODER_from_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_from_data');
+    {$ifend}
   Result := OSSL_DECODER_from_data(ctx, pdata, pdata_len);
 end;
 
@@ -675,7 +836,11 @@ function Load_OSSL_DECODER_CTX_new_for_pkey(pkey: PPEVP_PKEY; input_type: PAnsiC
 begin
   OSSL_DECODER_CTX_new_for_pkey := LoadLibCryptoFunction('OSSL_DECODER_CTX_new_for_pkey');
   if not assigned(OSSL_DECODER_CTX_new_for_pkey) then
+    {$if declared(LEGACY_OSSL_DECODER_CTX_new_for_pkey)}
+    OSSL_DECODER_CTX_new_for_pkey := @LEGACY_OSSL_DECODER_CTX_new_for_pkey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_DECODER_CTX_new_for_pkey');
+    {$ifend}
   Result := OSSL_DECODER_CTX_new_for_pkey(pkey, input_type, input_struct, keytype, selection, libctx, propquery);
 end;
 

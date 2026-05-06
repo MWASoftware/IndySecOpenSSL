@@ -18,7 +18,8 @@
 unit openssl_engine;
 
 {
-  Generated from OpenSSL 3.0.20 Header File engine.h - Wed  6 May 13:06:01 BST 2026
+  Generated from OpenSSL 3.0.20 Header File engine.h - Wed  6 May 13:15:10 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -1545,7 +1546,11 @@ function Load_ENGINE_get_first: PENGINE; cdecl;
 begin
   ENGINE_get_first := LoadLibCryptoFunction('ENGINE_get_first');
   if not assigned(ENGINE_get_first) then
+    {$if declared(LEGACY_ENGINE_get_first)}
+    ENGINE_get_first := @LEGACY_ENGINE_get_first;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_first');
+    {$ifend}
   Result := ENGINE_get_first;
 end;
 
@@ -1553,7 +1558,11 @@ function Load_ENGINE_get_last: PENGINE; cdecl;
 begin
   ENGINE_get_last := LoadLibCryptoFunction('ENGINE_get_last');
   if not assigned(ENGINE_get_last) then
+    {$if declared(LEGACY_ENGINE_get_last)}
+    ENGINE_get_last := @LEGACY_ENGINE_get_last;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_last');
+    {$ifend}
   Result := ENGINE_get_last;
 end;
 
@@ -1563,7 +1572,11 @@ function Load_ENGINE_get_next(e: PENGINE): PENGINE; cdecl;
 begin
   ENGINE_get_next := LoadLibCryptoFunction('ENGINE_get_next');
   if not assigned(ENGINE_get_next) then
+    {$if declared(LEGACY_ENGINE_get_next)}
+    ENGINE_get_next := @LEGACY_ENGINE_get_next;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_next');
+    {$ifend}
   Result := ENGINE_get_next(e);
 end;
 
@@ -1571,7 +1584,11 @@ function Load_ENGINE_get_prev(e: PENGINE): PENGINE; cdecl;
 begin
   ENGINE_get_prev := LoadLibCryptoFunction('ENGINE_get_prev');
   if not assigned(ENGINE_get_prev) then
+    {$if declared(LEGACY_ENGINE_get_prev)}
+    ENGINE_get_prev := @LEGACY_ENGINE_get_prev;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_prev');
+    {$ifend}
   Result := ENGINE_get_prev(e);
 end;
 
@@ -1581,7 +1598,11 @@ function Load_ENGINE_add(e: PENGINE): TOpenSSL_C_INT; cdecl;
 begin
   ENGINE_add := LoadLibCryptoFunction('ENGINE_add');
   if not assigned(ENGINE_add) then
+    {$if declared(LEGACY_ENGINE_add)}
+    ENGINE_add := @LEGACY_ENGINE_add;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_add');
+    {$ifend}
   Result := ENGINE_add(e);
 end;
 
@@ -1591,7 +1612,11 @@ function Load_ENGINE_remove(e: PENGINE): TOpenSSL_C_INT; cdecl;
 begin
   ENGINE_remove := LoadLibCryptoFunction('ENGINE_remove');
   if not assigned(ENGINE_remove) then
+    {$if declared(LEGACY_ENGINE_remove)}
+    ENGINE_remove := @LEGACY_ENGINE_remove;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_remove');
+    {$ifend}
   Result := ENGINE_remove(e);
 end;
 
@@ -1601,7 +1626,11 @@ function Load_ENGINE_by_id(id: PAnsiChar): PENGINE; cdecl;
 begin
   ENGINE_by_id := LoadLibCryptoFunction('ENGINE_by_id');
   if not assigned(ENGINE_by_id) then
+    {$if declared(LEGACY_ENGINE_by_id)}
+    ENGINE_by_id := @LEGACY_ENGINE_by_id;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_by_id');
+    {$ifend}
   Result := ENGINE_by_id(id);
 end;
 
@@ -1611,7 +1640,11 @@ procedure Load_ENGINE_load_builtin_engines; cdecl;
 begin
   ENGINE_load_builtin_engines := LoadLibCryptoFunction('ENGINE_load_builtin_engines');
   if not assigned(ENGINE_load_builtin_engines) then
+    {$if declared(LEGACY_ENGINE_load_builtin_engines)}
+    ENGINE_load_builtin_engines := @LEGACY_ENGINE_load_builtin_engines;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_load_builtin_engines');
+    {$ifend}
   ENGINE_load_builtin_engines;
 end;
 
@@ -1621,7 +1654,11 @@ function Load_ENGINE_get_table_flags: TOpenSSL_C_UINT; cdecl;
 begin
   ENGINE_get_table_flags := LoadLibCryptoFunction('ENGINE_get_table_flags');
   if not assigned(ENGINE_get_table_flags) then
+    {$if declared(LEGACY_ENGINE_get_table_flags)}
+    ENGINE_get_table_flags := @LEGACY_ENGINE_get_table_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_table_flags');
+    {$ifend}
   Result := ENGINE_get_table_flags;
 end;
 
@@ -1629,7 +1666,11 @@ procedure Load_ENGINE_set_table_flags(flags: TOpenSSL_C_UINT); cdecl;
 begin
   ENGINE_set_table_flags := LoadLibCryptoFunction('ENGINE_set_table_flags');
   if not assigned(ENGINE_set_table_flags) then
+    {$if declared(LEGACY_ENGINE_set_table_flags)}
+    ENGINE_set_table_flags := @LEGACY_ENGINE_set_table_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_set_table_flags');
+    {$ifend}
   ENGINE_set_table_flags(flags);
 end;
 
@@ -1639,7 +1680,11 @@ function Load_ENGINE_register_RSA(e: PENGINE): TOpenSSL_C_INT; cdecl;
 begin
   ENGINE_register_RSA := LoadLibCryptoFunction('ENGINE_register_RSA');
   if not assigned(ENGINE_register_RSA) then
+    {$if declared(LEGACY_ENGINE_register_RSA)}
+    ENGINE_register_RSA := @LEGACY_ENGINE_register_RSA;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_register_RSA');
+    {$ifend}
   Result := ENGINE_register_RSA(e);
 end;
 
@@ -1647,7 +1692,11 @@ procedure Load_ENGINE_unregister_RSA(e: PENGINE); cdecl;
 begin
   ENGINE_unregister_RSA := LoadLibCryptoFunction('ENGINE_unregister_RSA');
   if not assigned(ENGINE_unregister_RSA) then
+    {$if declared(LEGACY_ENGINE_unregister_RSA)}
+    ENGINE_unregister_RSA := @LEGACY_ENGINE_unregister_RSA;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_unregister_RSA');
+    {$ifend}
   ENGINE_unregister_RSA(e);
 end;
 
@@ -1655,7 +1704,11 @@ procedure Load_ENGINE_register_all_RSA; cdecl;
 begin
   ENGINE_register_all_RSA := LoadLibCryptoFunction('ENGINE_register_all_RSA');
   if not assigned(ENGINE_register_all_RSA) then
+    {$if declared(LEGACY_ENGINE_register_all_RSA)}
+    ENGINE_register_all_RSA := @LEGACY_ENGINE_register_all_RSA;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_register_all_RSA');
+    {$ifend}
   ENGINE_register_all_RSA;
 end;
 
@@ -1663,7 +1716,11 @@ function Load_ENGINE_register_DSA(e: PENGINE): TOpenSSL_C_INT; cdecl;
 begin
   ENGINE_register_DSA := LoadLibCryptoFunction('ENGINE_register_DSA');
   if not assigned(ENGINE_register_DSA) then
+    {$if declared(LEGACY_ENGINE_register_DSA)}
+    ENGINE_register_DSA := @LEGACY_ENGINE_register_DSA;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_register_DSA');
+    {$ifend}
   Result := ENGINE_register_DSA(e);
 end;
 
@@ -1671,7 +1728,11 @@ procedure Load_ENGINE_unregister_DSA(e: PENGINE); cdecl;
 begin
   ENGINE_unregister_DSA := LoadLibCryptoFunction('ENGINE_unregister_DSA');
   if not assigned(ENGINE_unregister_DSA) then
+    {$if declared(LEGACY_ENGINE_unregister_DSA)}
+    ENGINE_unregister_DSA := @LEGACY_ENGINE_unregister_DSA;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_unregister_DSA');
+    {$ifend}
   ENGINE_unregister_DSA(e);
 end;
 
@@ -1679,7 +1740,11 @@ procedure Load_ENGINE_register_all_DSA; cdecl;
 begin
   ENGINE_register_all_DSA := LoadLibCryptoFunction('ENGINE_register_all_DSA');
   if not assigned(ENGINE_register_all_DSA) then
+    {$if declared(LEGACY_ENGINE_register_all_DSA)}
+    ENGINE_register_all_DSA := @LEGACY_ENGINE_register_all_DSA;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_register_all_DSA');
+    {$ifend}
   ENGINE_register_all_DSA;
 end;
 
@@ -1687,7 +1752,11 @@ function Load_ENGINE_register_EC(e: PENGINE): TOpenSSL_C_INT; cdecl;
 begin
   ENGINE_register_EC := LoadLibCryptoFunction('ENGINE_register_EC');
   if not assigned(ENGINE_register_EC) then
+    {$if declared(LEGACY_ENGINE_register_EC)}
+    ENGINE_register_EC := @LEGACY_ENGINE_register_EC;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_register_EC');
+    {$ifend}
   Result := ENGINE_register_EC(e);
 end;
 
@@ -1695,7 +1764,11 @@ procedure Load_ENGINE_unregister_EC(e: PENGINE); cdecl;
 begin
   ENGINE_unregister_EC := LoadLibCryptoFunction('ENGINE_unregister_EC');
   if not assigned(ENGINE_unregister_EC) then
+    {$if declared(LEGACY_ENGINE_unregister_EC)}
+    ENGINE_unregister_EC := @LEGACY_ENGINE_unregister_EC;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_unregister_EC');
+    {$ifend}
   ENGINE_unregister_EC(e);
 end;
 
@@ -1703,7 +1776,11 @@ procedure Load_ENGINE_register_all_EC; cdecl;
 begin
   ENGINE_register_all_EC := LoadLibCryptoFunction('ENGINE_register_all_EC');
   if not assigned(ENGINE_register_all_EC) then
+    {$if declared(LEGACY_ENGINE_register_all_EC)}
+    ENGINE_register_all_EC := @LEGACY_ENGINE_register_all_EC;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_register_all_EC');
+    {$ifend}
   ENGINE_register_all_EC;
 end;
 
@@ -1711,7 +1788,11 @@ function Load_ENGINE_register_DH(e: PENGINE): TOpenSSL_C_INT; cdecl;
 begin
   ENGINE_register_DH := LoadLibCryptoFunction('ENGINE_register_DH');
   if not assigned(ENGINE_register_DH) then
+    {$if declared(LEGACY_ENGINE_register_DH)}
+    ENGINE_register_DH := @LEGACY_ENGINE_register_DH;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_register_DH');
+    {$ifend}
   Result := ENGINE_register_DH(e);
 end;
 
@@ -1719,7 +1800,11 @@ procedure Load_ENGINE_unregister_DH(e: PENGINE); cdecl;
 begin
   ENGINE_unregister_DH := LoadLibCryptoFunction('ENGINE_unregister_DH');
   if not assigned(ENGINE_unregister_DH) then
+    {$if declared(LEGACY_ENGINE_unregister_DH)}
+    ENGINE_unregister_DH := @LEGACY_ENGINE_unregister_DH;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_unregister_DH');
+    {$ifend}
   ENGINE_unregister_DH(e);
 end;
 
@@ -1727,7 +1812,11 @@ procedure Load_ENGINE_register_all_DH; cdecl;
 begin
   ENGINE_register_all_DH := LoadLibCryptoFunction('ENGINE_register_all_DH');
   if not assigned(ENGINE_register_all_DH) then
+    {$if declared(LEGACY_ENGINE_register_all_DH)}
+    ENGINE_register_all_DH := @LEGACY_ENGINE_register_all_DH;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_register_all_DH');
+    {$ifend}
   ENGINE_register_all_DH;
 end;
 
@@ -1735,7 +1824,11 @@ function Load_ENGINE_register_RAND(e: PENGINE): TOpenSSL_C_INT; cdecl;
 begin
   ENGINE_register_RAND := LoadLibCryptoFunction('ENGINE_register_RAND');
   if not assigned(ENGINE_register_RAND) then
+    {$if declared(LEGACY_ENGINE_register_RAND)}
+    ENGINE_register_RAND := @LEGACY_ENGINE_register_RAND;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_register_RAND');
+    {$ifend}
   Result := ENGINE_register_RAND(e);
 end;
 
@@ -1743,7 +1836,11 @@ procedure Load_ENGINE_unregister_RAND(e: PENGINE); cdecl;
 begin
   ENGINE_unregister_RAND := LoadLibCryptoFunction('ENGINE_unregister_RAND');
   if not assigned(ENGINE_unregister_RAND) then
+    {$if declared(LEGACY_ENGINE_unregister_RAND)}
+    ENGINE_unregister_RAND := @LEGACY_ENGINE_unregister_RAND;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_unregister_RAND');
+    {$ifend}
   ENGINE_unregister_RAND(e);
 end;
 
@@ -1751,7 +1848,11 @@ procedure Load_ENGINE_register_all_RAND; cdecl;
 begin
   ENGINE_register_all_RAND := LoadLibCryptoFunction('ENGINE_register_all_RAND');
   if not assigned(ENGINE_register_all_RAND) then
+    {$if declared(LEGACY_ENGINE_register_all_RAND)}
+    ENGINE_register_all_RAND := @LEGACY_ENGINE_register_all_RAND;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_register_all_RAND');
+    {$ifend}
   ENGINE_register_all_RAND;
 end;
 
@@ -1759,7 +1860,11 @@ function Load_ENGINE_register_ciphers(e: PENGINE): TOpenSSL_C_INT; cdecl;
 begin
   ENGINE_register_ciphers := LoadLibCryptoFunction('ENGINE_register_ciphers');
   if not assigned(ENGINE_register_ciphers) then
+    {$if declared(LEGACY_ENGINE_register_ciphers)}
+    ENGINE_register_ciphers := @LEGACY_ENGINE_register_ciphers;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_register_ciphers');
+    {$ifend}
   Result := ENGINE_register_ciphers(e);
 end;
 
@@ -1767,7 +1872,11 @@ procedure Load_ENGINE_unregister_ciphers(e: PENGINE); cdecl;
 begin
   ENGINE_unregister_ciphers := LoadLibCryptoFunction('ENGINE_unregister_ciphers');
   if not assigned(ENGINE_unregister_ciphers) then
+    {$if declared(LEGACY_ENGINE_unregister_ciphers)}
+    ENGINE_unregister_ciphers := @LEGACY_ENGINE_unregister_ciphers;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_unregister_ciphers');
+    {$ifend}
   ENGINE_unregister_ciphers(e);
 end;
 
@@ -1775,7 +1884,11 @@ procedure Load_ENGINE_register_all_ciphers; cdecl;
 begin
   ENGINE_register_all_ciphers := LoadLibCryptoFunction('ENGINE_register_all_ciphers');
   if not assigned(ENGINE_register_all_ciphers) then
+    {$if declared(LEGACY_ENGINE_register_all_ciphers)}
+    ENGINE_register_all_ciphers := @LEGACY_ENGINE_register_all_ciphers;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_register_all_ciphers');
+    {$ifend}
   ENGINE_register_all_ciphers;
 end;
 
@@ -1783,7 +1896,11 @@ function Load_ENGINE_register_digests(e: PENGINE): TOpenSSL_C_INT; cdecl;
 begin
   ENGINE_register_digests := LoadLibCryptoFunction('ENGINE_register_digests');
   if not assigned(ENGINE_register_digests) then
+    {$if declared(LEGACY_ENGINE_register_digests)}
+    ENGINE_register_digests := @LEGACY_ENGINE_register_digests;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_register_digests');
+    {$ifend}
   Result := ENGINE_register_digests(e);
 end;
 
@@ -1791,7 +1908,11 @@ procedure Load_ENGINE_unregister_digests(e: PENGINE); cdecl;
 begin
   ENGINE_unregister_digests := LoadLibCryptoFunction('ENGINE_unregister_digests');
   if not assigned(ENGINE_unregister_digests) then
+    {$if declared(LEGACY_ENGINE_unregister_digests)}
+    ENGINE_unregister_digests := @LEGACY_ENGINE_unregister_digests;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_unregister_digests');
+    {$ifend}
   ENGINE_unregister_digests(e);
 end;
 
@@ -1799,7 +1920,11 @@ procedure Load_ENGINE_register_all_digests; cdecl;
 begin
   ENGINE_register_all_digests := LoadLibCryptoFunction('ENGINE_register_all_digests');
   if not assigned(ENGINE_register_all_digests) then
+    {$if declared(LEGACY_ENGINE_register_all_digests)}
+    ENGINE_register_all_digests := @LEGACY_ENGINE_register_all_digests;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_register_all_digests');
+    {$ifend}
   ENGINE_register_all_digests;
 end;
 
@@ -1807,7 +1932,11 @@ function Load_ENGINE_register_pkey_meths(e: PENGINE): TOpenSSL_C_INT; cdecl;
 begin
   ENGINE_register_pkey_meths := LoadLibCryptoFunction('ENGINE_register_pkey_meths');
   if not assigned(ENGINE_register_pkey_meths) then
+    {$if declared(LEGACY_ENGINE_register_pkey_meths)}
+    ENGINE_register_pkey_meths := @LEGACY_ENGINE_register_pkey_meths;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_register_pkey_meths');
+    {$ifend}
   Result := ENGINE_register_pkey_meths(e);
 end;
 
@@ -1815,7 +1944,11 @@ procedure Load_ENGINE_unregister_pkey_meths(e: PENGINE); cdecl;
 begin
   ENGINE_unregister_pkey_meths := LoadLibCryptoFunction('ENGINE_unregister_pkey_meths');
   if not assigned(ENGINE_unregister_pkey_meths) then
+    {$if declared(LEGACY_ENGINE_unregister_pkey_meths)}
+    ENGINE_unregister_pkey_meths := @LEGACY_ENGINE_unregister_pkey_meths;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_unregister_pkey_meths');
+    {$ifend}
   ENGINE_unregister_pkey_meths(e);
 end;
 
@@ -1823,7 +1956,11 @@ procedure Load_ENGINE_register_all_pkey_meths; cdecl;
 begin
   ENGINE_register_all_pkey_meths := LoadLibCryptoFunction('ENGINE_register_all_pkey_meths');
   if not assigned(ENGINE_register_all_pkey_meths) then
+    {$if declared(LEGACY_ENGINE_register_all_pkey_meths)}
+    ENGINE_register_all_pkey_meths := @LEGACY_ENGINE_register_all_pkey_meths;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_register_all_pkey_meths');
+    {$ifend}
   ENGINE_register_all_pkey_meths;
 end;
 
@@ -1831,7 +1968,11 @@ function Load_ENGINE_register_pkey_asn1_meths(e: PENGINE): TOpenSSL_C_INT; cdecl
 begin
   ENGINE_register_pkey_asn1_meths := LoadLibCryptoFunction('ENGINE_register_pkey_asn1_meths');
   if not assigned(ENGINE_register_pkey_asn1_meths) then
+    {$if declared(LEGACY_ENGINE_register_pkey_asn1_meths)}
+    ENGINE_register_pkey_asn1_meths := @LEGACY_ENGINE_register_pkey_asn1_meths;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_register_pkey_asn1_meths');
+    {$ifend}
   Result := ENGINE_register_pkey_asn1_meths(e);
 end;
 
@@ -1839,7 +1980,11 @@ procedure Load_ENGINE_unregister_pkey_asn1_meths(e: PENGINE); cdecl;
 begin
   ENGINE_unregister_pkey_asn1_meths := LoadLibCryptoFunction('ENGINE_unregister_pkey_asn1_meths');
   if not assigned(ENGINE_unregister_pkey_asn1_meths) then
+    {$if declared(LEGACY_ENGINE_unregister_pkey_asn1_meths)}
+    ENGINE_unregister_pkey_asn1_meths := @LEGACY_ENGINE_unregister_pkey_asn1_meths;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_unregister_pkey_asn1_meths');
+    {$ifend}
   ENGINE_unregister_pkey_asn1_meths(e);
 end;
 
@@ -1847,7 +1992,11 @@ procedure Load_ENGINE_register_all_pkey_asn1_meths; cdecl;
 begin
   ENGINE_register_all_pkey_asn1_meths := LoadLibCryptoFunction('ENGINE_register_all_pkey_asn1_meths');
   if not assigned(ENGINE_register_all_pkey_asn1_meths) then
+    {$if declared(LEGACY_ENGINE_register_all_pkey_asn1_meths)}
+    ENGINE_register_all_pkey_asn1_meths := @LEGACY_ENGINE_register_all_pkey_asn1_meths;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_register_all_pkey_asn1_meths');
+    {$ifend}
   ENGINE_register_all_pkey_asn1_meths;
 end;
 
@@ -1857,7 +2006,11 @@ function Load_ENGINE_register_complete(e: PENGINE): TOpenSSL_C_INT; cdecl;
 begin
   ENGINE_register_complete := LoadLibCryptoFunction('ENGINE_register_complete');
   if not assigned(ENGINE_register_complete) then
+    {$if declared(LEGACY_ENGINE_register_complete)}
+    ENGINE_register_complete := @LEGACY_ENGINE_register_complete;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_register_complete');
+    {$ifend}
   Result := ENGINE_register_complete(e);
 end;
 
@@ -1865,7 +2018,11 @@ function Load_ENGINE_register_all_complete: TOpenSSL_C_INT; cdecl;
 begin
   ENGINE_register_all_complete := LoadLibCryptoFunction('ENGINE_register_all_complete');
   if not assigned(ENGINE_register_all_complete) then
+    {$if declared(LEGACY_ENGINE_register_all_complete)}
+    ENGINE_register_all_complete := @LEGACY_ENGINE_register_all_complete;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_register_all_complete');
+    {$ifend}
   Result := ENGINE_register_all_complete;
 end;
 
@@ -1875,7 +2032,11 @@ function Load_ENGINE_ctrl(e: PENGINE; cmd: TOpenSSL_C_INT; i: TOpenSSL_C_INT; p:
 begin
   ENGINE_ctrl := LoadLibCryptoFunction('ENGINE_ctrl');
   if not assigned(ENGINE_ctrl) then
+    {$if declared(LEGACY_ENGINE_ctrl)}
+    ENGINE_ctrl := @LEGACY_ENGINE_ctrl;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_ctrl');
+    {$ifend}
   Result := ENGINE_ctrl(e, cmd, i, p, f);
 end;
 
@@ -1885,7 +2046,11 @@ function Load_ENGINE_cmd_is_executable(e: PENGINE; cmd: TOpenSSL_C_INT): TOpenSS
 begin
   ENGINE_cmd_is_executable := LoadLibCryptoFunction('ENGINE_cmd_is_executable');
   if not assigned(ENGINE_cmd_is_executable) then
+    {$if declared(LEGACY_ENGINE_cmd_is_executable)}
+    ENGINE_cmd_is_executable := @LEGACY_ENGINE_cmd_is_executable;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_cmd_is_executable');
+    {$ifend}
   Result := ENGINE_cmd_is_executable(e, cmd);
 end;
 
@@ -1895,7 +2060,11 @@ function Load_ENGINE_ctrl_cmd(e: PENGINE; cmd_name: PAnsiChar; i: TOpenSSL_C_INT
 begin
   ENGINE_ctrl_cmd := LoadLibCryptoFunction('ENGINE_ctrl_cmd');
   if not assigned(ENGINE_ctrl_cmd) then
+    {$if declared(LEGACY_ENGINE_ctrl_cmd)}
+    ENGINE_ctrl_cmd := @LEGACY_ENGINE_ctrl_cmd;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_ctrl_cmd');
+    {$ifend}
   Result := ENGINE_ctrl_cmd(e, cmd_name, i, p, f, cmd_optional);
 end;
 
@@ -1905,7 +2074,11 @@ function Load_ENGINE_ctrl_cmd_string(e: PENGINE; cmd_name: PAnsiChar; arg: PAnsi
 begin
   ENGINE_ctrl_cmd_string := LoadLibCryptoFunction('ENGINE_ctrl_cmd_string');
   if not assigned(ENGINE_ctrl_cmd_string) then
+    {$if declared(LEGACY_ENGINE_ctrl_cmd_string)}
+    ENGINE_ctrl_cmd_string := @LEGACY_ENGINE_ctrl_cmd_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_ctrl_cmd_string');
+    {$ifend}
   Result := ENGINE_ctrl_cmd_string(e, cmd_name, arg, cmd_optional);
 end;
 
@@ -1915,7 +2088,11 @@ function Load_ENGINE_new: PENGINE; cdecl;
 begin
   ENGINE_new := LoadLibCryptoFunction('ENGINE_new');
   if not assigned(ENGINE_new) then
+    {$if declared(LEGACY_ENGINE_new)}
+    ENGINE_new := @LEGACY_ENGINE_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_new');
+    {$ifend}
   Result := ENGINE_new;
 end;
 
@@ -1923,7 +2100,11 @@ function Load_ENGINE_free(e: PENGINE): TOpenSSL_C_INT; cdecl;
 begin
   ENGINE_free := LoadLibCryptoFunction('ENGINE_free');
   if not assigned(ENGINE_free) then
+    {$if declared(LEGACY_ENGINE_free)}
+    ENGINE_free := @LEGACY_ENGINE_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_free');
+    {$ifend}
   Result := ENGINE_free(e);
 end;
 
@@ -1931,7 +2112,11 @@ function Load_ENGINE_up_ref(e: PENGINE): TOpenSSL_C_INT; cdecl;
 begin
   ENGINE_up_ref := LoadLibCryptoFunction('ENGINE_up_ref');
   if not assigned(ENGINE_up_ref) then
+    {$if declared(LEGACY_ENGINE_up_ref)}
+    ENGINE_up_ref := @LEGACY_ENGINE_up_ref;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_up_ref');
+    {$ifend}
   Result := ENGINE_up_ref(e);
 end;
 
@@ -1939,7 +2124,11 @@ function Load_ENGINE_set_id(e: PENGINE; id: PAnsiChar): TOpenSSL_C_INT; cdecl;
 begin
   ENGINE_set_id := LoadLibCryptoFunction('ENGINE_set_id');
   if not assigned(ENGINE_set_id) then
+    {$if declared(LEGACY_ENGINE_set_id)}
+    ENGINE_set_id := @LEGACY_ENGINE_set_id;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_set_id');
+    {$ifend}
   Result := ENGINE_set_id(e, id);
 end;
 
@@ -1947,7 +2136,11 @@ function Load_ENGINE_set_name(e: PENGINE; name: PAnsiChar): TOpenSSL_C_INT; cdec
 begin
   ENGINE_set_name := LoadLibCryptoFunction('ENGINE_set_name');
   if not assigned(ENGINE_set_name) then
+    {$if declared(LEGACY_ENGINE_set_name)}
+    ENGINE_set_name := @LEGACY_ENGINE_set_name;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_set_name');
+    {$ifend}
   Result := ENGINE_set_name(e, name);
 end;
 
@@ -1955,7 +2148,11 @@ function Load_ENGINE_set_RSA(e: PENGINE; rsa_meth: PRSA_METHOD): TOpenSSL_C_INT;
 begin
   ENGINE_set_RSA := LoadLibCryptoFunction('ENGINE_set_RSA');
   if not assigned(ENGINE_set_RSA) then
+    {$if declared(LEGACY_ENGINE_set_RSA)}
+    ENGINE_set_RSA := @LEGACY_ENGINE_set_RSA;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_set_RSA');
+    {$ifend}
   Result := ENGINE_set_RSA(e, rsa_meth);
 end;
 
@@ -1963,7 +2160,11 @@ function Load_ENGINE_set_DSA(e: PENGINE; dsa_meth: PDSA_METHOD): TOpenSSL_C_INT;
 begin
   ENGINE_set_DSA := LoadLibCryptoFunction('ENGINE_set_DSA');
   if not assigned(ENGINE_set_DSA) then
+    {$if declared(LEGACY_ENGINE_set_DSA)}
+    ENGINE_set_DSA := @LEGACY_ENGINE_set_DSA;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_set_DSA');
+    {$ifend}
   Result := ENGINE_set_DSA(e, dsa_meth);
 end;
 
@@ -1971,7 +2172,11 @@ function Load_ENGINE_set_EC(e: PENGINE; ecdsa_meth: PEC_KEY_METHOD): TOpenSSL_C_
 begin
   ENGINE_set_EC := LoadLibCryptoFunction('ENGINE_set_EC');
   if not assigned(ENGINE_set_EC) then
+    {$if declared(LEGACY_ENGINE_set_EC)}
+    ENGINE_set_EC := @LEGACY_ENGINE_set_EC;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_set_EC');
+    {$ifend}
   Result := ENGINE_set_EC(e, ecdsa_meth);
 end;
 
@@ -1979,7 +2184,11 @@ function Load_ENGINE_set_DH(e: PENGINE; dh_meth: PDH_METHOD): TOpenSSL_C_INT; cd
 begin
   ENGINE_set_DH := LoadLibCryptoFunction('ENGINE_set_DH');
   if not assigned(ENGINE_set_DH) then
+    {$if declared(LEGACY_ENGINE_set_DH)}
+    ENGINE_set_DH := @LEGACY_ENGINE_set_DH;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_set_DH');
+    {$ifend}
   Result := ENGINE_set_DH(e, dh_meth);
 end;
 
@@ -1987,7 +2196,11 @@ function Load_ENGINE_set_RAND(e: PENGINE; rand_meth: PRAND_METHOD): TOpenSSL_C_I
 begin
   ENGINE_set_RAND := LoadLibCryptoFunction('ENGINE_set_RAND');
   if not assigned(ENGINE_set_RAND) then
+    {$if declared(LEGACY_ENGINE_set_RAND)}
+    ENGINE_set_RAND := @LEGACY_ENGINE_set_RAND;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_set_RAND');
+    {$ifend}
   Result := ENGINE_set_RAND(e, rand_meth);
 end;
 
@@ -1995,7 +2208,11 @@ function Load_ENGINE_set_destroy_function(e: PENGINE; destroy_f: TENGINE_GEN_INT
 begin
   ENGINE_set_destroy_function := LoadLibCryptoFunction('ENGINE_set_destroy_function');
   if not assigned(ENGINE_set_destroy_function) then
+    {$if declared(LEGACY_ENGINE_set_destroy_function)}
+    ENGINE_set_destroy_function := @LEGACY_ENGINE_set_destroy_function;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_set_destroy_function');
+    {$ifend}
   Result := ENGINE_set_destroy_function(e, destroy_f);
 end;
 
@@ -2003,7 +2220,11 @@ function Load_ENGINE_set_init_function(e: PENGINE; init_f: TENGINE_GEN_INT_FUNC_
 begin
   ENGINE_set_init_function := LoadLibCryptoFunction('ENGINE_set_init_function');
   if not assigned(ENGINE_set_init_function) then
+    {$if declared(LEGACY_ENGINE_set_init_function)}
+    ENGINE_set_init_function := @LEGACY_ENGINE_set_init_function;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_set_init_function');
+    {$ifend}
   Result := ENGINE_set_init_function(e, init_f);
 end;
 
@@ -2011,7 +2232,11 @@ function Load_ENGINE_set_finish_function(e: PENGINE; finish_f: TENGINE_GEN_INT_F
 begin
   ENGINE_set_finish_function := LoadLibCryptoFunction('ENGINE_set_finish_function');
   if not assigned(ENGINE_set_finish_function) then
+    {$if declared(LEGACY_ENGINE_set_finish_function)}
+    ENGINE_set_finish_function := @LEGACY_ENGINE_set_finish_function;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_set_finish_function');
+    {$ifend}
   Result := ENGINE_set_finish_function(e, finish_f);
 end;
 
@@ -2019,7 +2244,11 @@ function Load_ENGINE_set_ctrl_function(e: PENGINE; ctrl_f: TENGINE_CTRL_FUNC_PTR
 begin
   ENGINE_set_ctrl_function := LoadLibCryptoFunction('ENGINE_set_ctrl_function');
   if not assigned(ENGINE_set_ctrl_function) then
+    {$if declared(LEGACY_ENGINE_set_ctrl_function)}
+    ENGINE_set_ctrl_function := @LEGACY_ENGINE_set_ctrl_function;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_set_ctrl_function');
+    {$ifend}
   Result := ENGINE_set_ctrl_function(e, ctrl_f);
 end;
 
@@ -2027,7 +2256,11 @@ function Load_ENGINE_set_load_privkey_function(e: PENGINE; loadpriv_f: TENGINE_L
 begin
   ENGINE_set_load_privkey_function := LoadLibCryptoFunction('ENGINE_set_load_privkey_function');
   if not assigned(ENGINE_set_load_privkey_function) then
+    {$if declared(LEGACY_ENGINE_set_load_privkey_function)}
+    ENGINE_set_load_privkey_function := @LEGACY_ENGINE_set_load_privkey_function;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_set_load_privkey_function');
+    {$ifend}
   Result := ENGINE_set_load_privkey_function(e, loadpriv_f);
 end;
 
@@ -2035,7 +2268,11 @@ function Load_ENGINE_set_load_pubkey_function(e: PENGINE; loadpub_f: TENGINE_LOA
 begin
   ENGINE_set_load_pubkey_function := LoadLibCryptoFunction('ENGINE_set_load_pubkey_function');
   if not assigned(ENGINE_set_load_pubkey_function) then
+    {$if declared(LEGACY_ENGINE_set_load_pubkey_function)}
+    ENGINE_set_load_pubkey_function := @LEGACY_ENGINE_set_load_pubkey_function;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_set_load_pubkey_function');
+    {$ifend}
   Result := ENGINE_set_load_pubkey_function(e, loadpub_f);
 end;
 
@@ -2043,7 +2280,11 @@ function Load_ENGINE_set_load_ssl_client_cert_function(e: PENGINE; loadssl_f: TE
 begin
   ENGINE_set_load_ssl_client_cert_function := LoadLibCryptoFunction('ENGINE_set_load_ssl_client_cert_function');
   if not assigned(ENGINE_set_load_ssl_client_cert_function) then
+    {$if declared(LEGACY_ENGINE_set_load_ssl_client_cert_function)}
+    ENGINE_set_load_ssl_client_cert_function := @LEGACY_ENGINE_set_load_ssl_client_cert_function;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_set_load_ssl_client_cert_function');
+    {$ifend}
   Result := ENGINE_set_load_ssl_client_cert_function(e, loadssl_f);
 end;
 
@@ -2051,7 +2292,11 @@ function Load_ENGINE_set_ciphers(e: PENGINE; f: TENGINE_CIPHERS_PTR): TOpenSSL_C
 begin
   ENGINE_set_ciphers := LoadLibCryptoFunction('ENGINE_set_ciphers');
   if not assigned(ENGINE_set_ciphers) then
+    {$if declared(LEGACY_ENGINE_set_ciphers)}
+    ENGINE_set_ciphers := @LEGACY_ENGINE_set_ciphers;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_set_ciphers');
+    {$ifend}
   Result := ENGINE_set_ciphers(e, f);
 end;
 
@@ -2059,7 +2304,11 @@ function Load_ENGINE_set_digests(e: PENGINE; f: TENGINE_DIGESTS_PTR): TOpenSSL_C
 begin
   ENGINE_set_digests := LoadLibCryptoFunction('ENGINE_set_digests');
   if not assigned(ENGINE_set_digests) then
+    {$if declared(LEGACY_ENGINE_set_digests)}
+    ENGINE_set_digests := @LEGACY_ENGINE_set_digests;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_set_digests');
+    {$ifend}
   Result := ENGINE_set_digests(e, f);
 end;
 
@@ -2067,7 +2316,11 @@ function Load_ENGINE_set_pkey_meths(e: PENGINE; f: TENGINE_PKEY_METHS_PTR): TOpe
 begin
   ENGINE_set_pkey_meths := LoadLibCryptoFunction('ENGINE_set_pkey_meths');
   if not assigned(ENGINE_set_pkey_meths) then
+    {$if declared(LEGACY_ENGINE_set_pkey_meths)}
+    ENGINE_set_pkey_meths := @LEGACY_ENGINE_set_pkey_meths;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_set_pkey_meths');
+    {$ifend}
   Result := ENGINE_set_pkey_meths(e, f);
 end;
 
@@ -2075,7 +2328,11 @@ function Load_ENGINE_set_pkey_asn1_meths(e: PENGINE; f: TENGINE_PKEY_ASN1_METHS_
 begin
   ENGINE_set_pkey_asn1_meths := LoadLibCryptoFunction('ENGINE_set_pkey_asn1_meths');
   if not assigned(ENGINE_set_pkey_asn1_meths) then
+    {$if declared(LEGACY_ENGINE_set_pkey_asn1_meths)}
+    ENGINE_set_pkey_asn1_meths := @LEGACY_ENGINE_set_pkey_asn1_meths;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_set_pkey_asn1_meths');
+    {$ifend}
   Result := ENGINE_set_pkey_asn1_meths(e, f);
 end;
 
@@ -2083,7 +2340,11 @@ function Load_ENGINE_set_flags(e: PENGINE; flags: TOpenSSL_C_INT): TOpenSSL_C_IN
 begin
   ENGINE_set_flags := LoadLibCryptoFunction('ENGINE_set_flags');
   if not assigned(ENGINE_set_flags) then
+    {$if declared(LEGACY_ENGINE_set_flags)}
+    ENGINE_set_flags := @LEGACY_ENGINE_set_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_set_flags');
+    {$ifend}
   Result := ENGINE_set_flags(e, flags);
 end;
 
@@ -2091,7 +2352,11 @@ function Load_ENGINE_set_cmd_defns(e: PENGINE; defns: PENGINE_CMD_DEFN): TOpenSS
 begin
   ENGINE_set_cmd_defns := LoadLibCryptoFunction('ENGINE_set_cmd_defns');
   if not assigned(ENGINE_set_cmd_defns) then
+    {$if declared(LEGACY_ENGINE_set_cmd_defns)}
+    ENGINE_set_cmd_defns := @LEGACY_ENGINE_set_cmd_defns;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_set_cmd_defns');
+    {$ifend}
   Result := ENGINE_set_cmd_defns(e, defns);
 end;
 
@@ -2101,7 +2366,11 @@ function Load_ENGINE_set_ex_data(e: PENGINE; idx: TOpenSSL_C_INT; arg: pointer):
 begin
   ENGINE_set_ex_data := LoadLibCryptoFunction('ENGINE_set_ex_data');
   if not assigned(ENGINE_set_ex_data) then
+    {$if declared(LEGACY_ENGINE_set_ex_data)}
+    ENGINE_set_ex_data := @LEGACY_ENGINE_set_ex_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_set_ex_data');
+    {$ifend}
   Result := ENGINE_set_ex_data(e, idx, arg);
 end;
 
@@ -2109,7 +2378,11 @@ function Load_ENGINE_get_ex_data(e: PENGINE; idx: TOpenSSL_C_INT): pointer; cdec
 begin
   ENGINE_get_ex_data := LoadLibCryptoFunction('ENGINE_get_ex_data');
   if not assigned(ENGINE_get_ex_data) then
+    {$if declared(LEGACY_ENGINE_get_ex_data)}
+    ENGINE_get_ex_data := @LEGACY_ENGINE_get_ex_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_ex_data');
+    {$ifend}
   Result := ENGINE_get_ex_data(e, idx);
 end;
 
@@ -2119,7 +2392,11 @@ function Load_ENGINE_get_id(e: PENGINE): PAnsiChar; cdecl;
 begin
   ENGINE_get_id := LoadLibCryptoFunction('ENGINE_get_id');
   if not assigned(ENGINE_get_id) then
+    {$if declared(LEGACY_ENGINE_get_id)}
+    ENGINE_get_id := @LEGACY_ENGINE_get_id;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_id');
+    {$ifend}
   Result := ENGINE_get_id(e);
 end;
 
@@ -2127,7 +2404,11 @@ function Load_ENGINE_get_name(e: PENGINE): PAnsiChar; cdecl;
 begin
   ENGINE_get_name := LoadLibCryptoFunction('ENGINE_get_name');
   if not assigned(ENGINE_get_name) then
+    {$if declared(LEGACY_ENGINE_get_name)}
+    ENGINE_get_name := @LEGACY_ENGINE_get_name;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_name');
+    {$ifend}
   Result := ENGINE_get_name(e);
 end;
 
@@ -2135,7 +2416,11 @@ function Load_ENGINE_get_RSA(e: PENGINE): PRSA_METHOD; cdecl;
 begin
   ENGINE_get_RSA := LoadLibCryptoFunction('ENGINE_get_RSA');
   if not assigned(ENGINE_get_RSA) then
+    {$if declared(LEGACY_ENGINE_get_RSA)}
+    ENGINE_get_RSA := @LEGACY_ENGINE_get_RSA;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_RSA');
+    {$ifend}
   Result := ENGINE_get_RSA(e);
 end;
 
@@ -2143,7 +2428,11 @@ function Load_ENGINE_get_DSA(e: PENGINE): PDSA_METHOD; cdecl;
 begin
   ENGINE_get_DSA := LoadLibCryptoFunction('ENGINE_get_DSA');
   if not assigned(ENGINE_get_DSA) then
+    {$if declared(LEGACY_ENGINE_get_DSA)}
+    ENGINE_get_DSA := @LEGACY_ENGINE_get_DSA;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_DSA');
+    {$ifend}
   Result := ENGINE_get_DSA(e);
 end;
 
@@ -2151,7 +2440,11 @@ function Load_ENGINE_get_EC(e: PENGINE): PEC_KEY_METHOD; cdecl;
 begin
   ENGINE_get_EC := LoadLibCryptoFunction('ENGINE_get_EC');
   if not assigned(ENGINE_get_EC) then
+    {$if declared(LEGACY_ENGINE_get_EC)}
+    ENGINE_get_EC := @LEGACY_ENGINE_get_EC;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_EC');
+    {$ifend}
   Result := ENGINE_get_EC(e);
 end;
 
@@ -2159,7 +2452,11 @@ function Load_ENGINE_get_DH(e: PENGINE): PDH_METHOD; cdecl;
 begin
   ENGINE_get_DH := LoadLibCryptoFunction('ENGINE_get_DH');
   if not assigned(ENGINE_get_DH) then
+    {$if declared(LEGACY_ENGINE_get_DH)}
+    ENGINE_get_DH := @LEGACY_ENGINE_get_DH;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_DH');
+    {$ifend}
   Result := ENGINE_get_DH(e);
 end;
 
@@ -2167,7 +2464,11 @@ function Load_ENGINE_get_RAND(e: PENGINE): PRAND_METHOD; cdecl;
 begin
   ENGINE_get_RAND := LoadLibCryptoFunction('ENGINE_get_RAND');
   if not assigned(ENGINE_get_RAND) then
+    {$if declared(LEGACY_ENGINE_get_RAND)}
+    ENGINE_get_RAND := @LEGACY_ENGINE_get_RAND;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_RAND');
+    {$ifend}
   Result := ENGINE_get_RAND(e);
 end;
 
@@ -2175,7 +2476,11 @@ function Load_ENGINE_get_destroy_function(e: PENGINE): TENGINE_GEN_INT_FUNC_PTR;
 begin
   ENGINE_get_destroy_function := LoadLibCryptoFunction('ENGINE_get_destroy_function');
   if not assigned(ENGINE_get_destroy_function) then
+    {$if declared(LEGACY_ENGINE_get_destroy_function)}
+    ENGINE_get_destroy_function := @LEGACY_ENGINE_get_destroy_function;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_destroy_function');
+    {$ifend}
   Result := ENGINE_get_destroy_function(e);
 end;
 
@@ -2183,7 +2488,11 @@ function Load_ENGINE_get_init_function(e: PENGINE): TENGINE_GEN_INT_FUNC_PTR; cd
 begin
   ENGINE_get_init_function := LoadLibCryptoFunction('ENGINE_get_init_function');
   if not assigned(ENGINE_get_init_function) then
+    {$if declared(LEGACY_ENGINE_get_init_function)}
+    ENGINE_get_init_function := @LEGACY_ENGINE_get_init_function;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_init_function');
+    {$ifend}
   Result := ENGINE_get_init_function(e);
 end;
 
@@ -2191,7 +2500,11 @@ function Load_ENGINE_get_finish_function(e: PENGINE): TENGINE_GEN_INT_FUNC_PTR; 
 begin
   ENGINE_get_finish_function := LoadLibCryptoFunction('ENGINE_get_finish_function');
   if not assigned(ENGINE_get_finish_function) then
+    {$if declared(LEGACY_ENGINE_get_finish_function)}
+    ENGINE_get_finish_function := @LEGACY_ENGINE_get_finish_function;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_finish_function');
+    {$ifend}
   Result := ENGINE_get_finish_function(e);
 end;
 
@@ -2199,7 +2512,11 @@ function Load_ENGINE_get_ctrl_function(e: PENGINE): TENGINE_CTRL_FUNC_PTR; cdecl
 begin
   ENGINE_get_ctrl_function := LoadLibCryptoFunction('ENGINE_get_ctrl_function');
   if not assigned(ENGINE_get_ctrl_function) then
+    {$if declared(LEGACY_ENGINE_get_ctrl_function)}
+    ENGINE_get_ctrl_function := @LEGACY_ENGINE_get_ctrl_function;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_ctrl_function');
+    {$ifend}
   Result := ENGINE_get_ctrl_function(e);
 end;
 
@@ -2207,7 +2524,11 @@ function Load_ENGINE_get_load_privkey_function(e: PENGINE): TENGINE_LOAD_KEY_PTR
 begin
   ENGINE_get_load_privkey_function := LoadLibCryptoFunction('ENGINE_get_load_privkey_function');
   if not assigned(ENGINE_get_load_privkey_function) then
+    {$if declared(LEGACY_ENGINE_get_load_privkey_function)}
+    ENGINE_get_load_privkey_function := @LEGACY_ENGINE_get_load_privkey_function;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_load_privkey_function');
+    {$ifend}
   Result := ENGINE_get_load_privkey_function(e);
 end;
 
@@ -2215,7 +2536,11 @@ function Load_ENGINE_get_load_pubkey_function(e: PENGINE): TENGINE_LOAD_KEY_PTR;
 begin
   ENGINE_get_load_pubkey_function := LoadLibCryptoFunction('ENGINE_get_load_pubkey_function');
   if not assigned(ENGINE_get_load_pubkey_function) then
+    {$if declared(LEGACY_ENGINE_get_load_pubkey_function)}
+    ENGINE_get_load_pubkey_function := @LEGACY_ENGINE_get_load_pubkey_function;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_load_pubkey_function');
+    {$ifend}
   Result := ENGINE_get_load_pubkey_function(e);
 end;
 
@@ -2223,7 +2548,11 @@ function Load_ENGINE_get_ssl_client_cert_function(e: PENGINE): TENGINE_SSL_CLIEN
 begin
   ENGINE_get_ssl_client_cert_function := LoadLibCryptoFunction('ENGINE_get_ssl_client_cert_function');
   if not assigned(ENGINE_get_ssl_client_cert_function) then
+    {$if declared(LEGACY_ENGINE_get_ssl_client_cert_function)}
+    ENGINE_get_ssl_client_cert_function := @LEGACY_ENGINE_get_ssl_client_cert_function;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_ssl_client_cert_function');
+    {$ifend}
   Result := ENGINE_get_ssl_client_cert_function(e);
 end;
 
@@ -2231,7 +2560,11 @@ function Load_ENGINE_get_ciphers(e: PENGINE): TENGINE_CIPHERS_PTR; cdecl;
 begin
   ENGINE_get_ciphers := LoadLibCryptoFunction('ENGINE_get_ciphers');
   if not assigned(ENGINE_get_ciphers) then
+    {$if declared(LEGACY_ENGINE_get_ciphers)}
+    ENGINE_get_ciphers := @LEGACY_ENGINE_get_ciphers;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_ciphers');
+    {$ifend}
   Result := ENGINE_get_ciphers(e);
 end;
 
@@ -2239,7 +2572,11 @@ function Load_ENGINE_get_digests(e: PENGINE): TENGINE_DIGESTS_PTR; cdecl;
 begin
   ENGINE_get_digests := LoadLibCryptoFunction('ENGINE_get_digests');
   if not assigned(ENGINE_get_digests) then
+    {$if declared(LEGACY_ENGINE_get_digests)}
+    ENGINE_get_digests := @LEGACY_ENGINE_get_digests;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_digests');
+    {$ifend}
   Result := ENGINE_get_digests(e);
 end;
 
@@ -2247,7 +2584,11 @@ function Load_ENGINE_get_pkey_meths(e: PENGINE): TENGINE_PKEY_METHS_PTR; cdecl;
 begin
   ENGINE_get_pkey_meths := LoadLibCryptoFunction('ENGINE_get_pkey_meths');
   if not assigned(ENGINE_get_pkey_meths) then
+    {$if declared(LEGACY_ENGINE_get_pkey_meths)}
+    ENGINE_get_pkey_meths := @LEGACY_ENGINE_get_pkey_meths;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_pkey_meths');
+    {$ifend}
   Result := ENGINE_get_pkey_meths(e);
 end;
 
@@ -2255,7 +2596,11 @@ function Load_ENGINE_get_pkey_asn1_meths(e: PENGINE): TENGINE_PKEY_ASN1_METHS_PT
 begin
   ENGINE_get_pkey_asn1_meths := LoadLibCryptoFunction('ENGINE_get_pkey_asn1_meths');
   if not assigned(ENGINE_get_pkey_asn1_meths) then
+    {$if declared(LEGACY_ENGINE_get_pkey_asn1_meths)}
+    ENGINE_get_pkey_asn1_meths := @LEGACY_ENGINE_get_pkey_asn1_meths;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_pkey_asn1_meths');
+    {$ifend}
   Result := ENGINE_get_pkey_asn1_meths(e);
 end;
 
@@ -2263,7 +2608,11 @@ function Load_ENGINE_get_cipher(e: PENGINE; nid: TOpenSSL_C_INT): PEVP_CIPHER; c
 begin
   ENGINE_get_cipher := LoadLibCryptoFunction('ENGINE_get_cipher');
   if not assigned(ENGINE_get_cipher) then
+    {$if declared(LEGACY_ENGINE_get_cipher)}
+    ENGINE_get_cipher := @LEGACY_ENGINE_get_cipher;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_cipher');
+    {$ifend}
   Result := ENGINE_get_cipher(e, nid);
 end;
 
@@ -2271,7 +2620,11 @@ function Load_ENGINE_get_digest(e: PENGINE; nid: TOpenSSL_C_INT): PEVP_MD; cdecl
 begin
   ENGINE_get_digest := LoadLibCryptoFunction('ENGINE_get_digest');
   if not assigned(ENGINE_get_digest) then
+    {$if declared(LEGACY_ENGINE_get_digest)}
+    ENGINE_get_digest := @LEGACY_ENGINE_get_digest;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_digest');
+    {$ifend}
   Result := ENGINE_get_digest(e, nid);
 end;
 
@@ -2279,7 +2632,11 @@ function Load_ENGINE_get_pkey_meth(e: PENGINE; nid: TOpenSSL_C_INT): PEVP_PKEY_M
 begin
   ENGINE_get_pkey_meth := LoadLibCryptoFunction('ENGINE_get_pkey_meth');
   if not assigned(ENGINE_get_pkey_meth) then
+    {$if declared(LEGACY_ENGINE_get_pkey_meth)}
+    ENGINE_get_pkey_meth := @LEGACY_ENGINE_get_pkey_meth;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_pkey_meth');
+    {$ifend}
   Result := ENGINE_get_pkey_meth(e, nid);
 end;
 
@@ -2287,7 +2644,11 @@ function Load_ENGINE_get_pkey_asn1_meth(e: PENGINE; nid: TOpenSSL_C_INT): PEVP_P
 begin
   ENGINE_get_pkey_asn1_meth := LoadLibCryptoFunction('ENGINE_get_pkey_asn1_meth');
   if not assigned(ENGINE_get_pkey_asn1_meth) then
+    {$if declared(LEGACY_ENGINE_get_pkey_asn1_meth)}
+    ENGINE_get_pkey_asn1_meth := @LEGACY_ENGINE_get_pkey_asn1_meth;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_pkey_asn1_meth');
+    {$ifend}
   Result := ENGINE_get_pkey_asn1_meth(e, nid);
 end;
 
@@ -2295,7 +2656,11 @@ function Load_ENGINE_get_pkey_asn1_meth_str(e: PENGINE; str: PAnsiChar; len: TOp
 begin
   ENGINE_get_pkey_asn1_meth_str := LoadLibCryptoFunction('ENGINE_get_pkey_asn1_meth_str');
   if not assigned(ENGINE_get_pkey_asn1_meth_str) then
+    {$if declared(LEGACY_ENGINE_get_pkey_asn1_meth_str)}
+    ENGINE_get_pkey_asn1_meth_str := @LEGACY_ENGINE_get_pkey_asn1_meth_str;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_pkey_asn1_meth_str');
+    {$ifend}
   Result := ENGINE_get_pkey_asn1_meth_str(e, str, len);
 end;
 
@@ -2303,7 +2668,11 @@ function Load_ENGINE_pkey_asn1_find_str(pe: PPENGINE; str: PAnsiChar; len: TOpen
 begin
   ENGINE_pkey_asn1_find_str := LoadLibCryptoFunction('ENGINE_pkey_asn1_find_str');
   if not assigned(ENGINE_pkey_asn1_find_str) then
+    {$if declared(LEGACY_ENGINE_pkey_asn1_find_str)}
+    ENGINE_pkey_asn1_find_str := @LEGACY_ENGINE_pkey_asn1_find_str;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_pkey_asn1_find_str');
+    {$ifend}
   Result := ENGINE_pkey_asn1_find_str(pe, str, len);
 end;
 
@@ -2311,7 +2680,11 @@ function Load_ENGINE_get_cmd_defns(e: PENGINE): PENGINE_CMD_DEFN; cdecl;
 begin
   ENGINE_get_cmd_defns := LoadLibCryptoFunction('ENGINE_get_cmd_defns');
   if not assigned(ENGINE_get_cmd_defns) then
+    {$if declared(LEGACY_ENGINE_get_cmd_defns)}
+    ENGINE_get_cmd_defns := @LEGACY_ENGINE_get_cmd_defns;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_cmd_defns');
+    {$ifend}
   Result := ENGINE_get_cmd_defns(e);
 end;
 
@@ -2319,7 +2692,11 @@ function Load_ENGINE_get_flags(e: PENGINE): TOpenSSL_C_INT; cdecl;
 begin
   ENGINE_get_flags := LoadLibCryptoFunction('ENGINE_get_flags');
   if not assigned(ENGINE_get_flags) then
+    {$if declared(LEGACY_ENGINE_get_flags)}
+    ENGINE_get_flags := @LEGACY_ENGINE_get_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_flags');
+    {$ifend}
   Result := ENGINE_get_flags(e);
 end;
 
@@ -2329,7 +2706,11 @@ function Load_ENGINE_init(e: PENGINE): TOpenSSL_C_INT; cdecl;
 begin
   ENGINE_init := LoadLibCryptoFunction('ENGINE_init');
   if not assigned(ENGINE_init) then
+    {$if declared(LEGACY_ENGINE_init)}
+    ENGINE_init := @LEGACY_ENGINE_init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_init');
+    {$ifend}
   Result := ENGINE_init(e);
 end;
 
@@ -2339,7 +2720,11 @@ function Load_ENGINE_finish(e: PENGINE): TOpenSSL_C_INT; cdecl;
 begin
   ENGINE_finish := LoadLibCryptoFunction('ENGINE_finish');
   if not assigned(ENGINE_finish) then
+    {$if declared(LEGACY_ENGINE_finish)}
+    ENGINE_finish := @LEGACY_ENGINE_finish;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_finish');
+    {$ifend}
   Result := ENGINE_finish(e);
 end;
 
@@ -2349,7 +2734,11 @@ function Load_ENGINE_load_private_key(e: PENGINE; key_id: PAnsiChar; ui_method: 
 begin
   ENGINE_load_private_key := LoadLibCryptoFunction('ENGINE_load_private_key');
   if not assigned(ENGINE_load_private_key) then
+    {$if declared(LEGACY_ENGINE_load_private_key)}
+    ENGINE_load_private_key := @LEGACY_ENGINE_load_private_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_load_private_key');
+    {$ifend}
   Result := ENGINE_load_private_key(e, key_id, ui_method, callback_data);
 end;
 
@@ -2357,7 +2746,11 @@ function Load_ENGINE_load_public_key(e: PENGINE; key_id: PAnsiChar; ui_method: P
 begin
   ENGINE_load_public_key := LoadLibCryptoFunction('ENGINE_load_public_key');
   if not assigned(ENGINE_load_public_key) then
+    {$if declared(LEGACY_ENGINE_load_public_key)}
+    ENGINE_load_public_key := @LEGACY_ENGINE_load_public_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_load_public_key');
+    {$ifend}
   Result := ENGINE_load_public_key(e, key_id, ui_method, callback_data);
 end;
 
@@ -2365,7 +2758,11 @@ function Load_ENGINE_load_ssl_client_cert(e: PENGINE; s: PSSL; ca_dn: Pstack_st_
 begin
   ENGINE_load_ssl_client_cert := LoadLibCryptoFunction('ENGINE_load_ssl_client_cert');
   if not assigned(ENGINE_load_ssl_client_cert) then
+    {$if declared(LEGACY_ENGINE_load_ssl_client_cert)}
+    ENGINE_load_ssl_client_cert := @LEGACY_ENGINE_load_ssl_client_cert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_load_ssl_client_cert');
+    {$ifend}
   Result := ENGINE_load_ssl_client_cert(e, s, ca_dn, pcert, ppkey, pother, ui_method, callback_data);
 end;
 
@@ -2375,7 +2772,11 @@ function Load_ENGINE_get_default_RSA: PENGINE; cdecl;
 begin
   ENGINE_get_default_RSA := LoadLibCryptoFunction('ENGINE_get_default_RSA');
   if not assigned(ENGINE_get_default_RSA) then
+    {$if declared(LEGACY_ENGINE_get_default_RSA)}
+    ENGINE_get_default_RSA := @LEGACY_ENGINE_get_default_RSA;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_default_RSA');
+    {$ifend}
   Result := ENGINE_get_default_RSA;
 end;
 
@@ -2385,7 +2786,11 @@ function Load_ENGINE_get_default_DSA: PENGINE; cdecl;
 begin
   ENGINE_get_default_DSA := LoadLibCryptoFunction('ENGINE_get_default_DSA');
   if not assigned(ENGINE_get_default_DSA) then
+    {$if declared(LEGACY_ENGINE_get_default_DSA)}
+    ENGINE_get_default_DSA := @LEGACY_ENGINE_get_default_DSA;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_default_DSA');
+    {$ifend}
   Result := ENGINE_get_default_DSA;
 end;
 
@@ -2393,7 +2798,11 @@ function Load_ENGINE_get_default_EC: PENGINE; cdecl;
 begin
   ENGINE_get_default_EC := LoadLibCryptoFunction('ENGINE_get_default_EC');
   if not assigned(ENGINE_get_default_EC) then
+    {$if declared(LEGACY_ENGINE_get_default_EC)}
+    ENGINE_get_default_EC := @LEGACY_ENGINE_get_default_EC;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_default_EC');
+    {$ifend}
   Result := ENGINE_get_default_EC;
 end;
 
@@ -2401,7 +2810,11 @@ function Load_ENGINE_get_default_DH: PENGINE; cdecl;
 begin
   ENGINE_get_default_DH := LoadLibCryptoFunction('ENGINE_get_default_DH');
   if not assigned(ENGINE_get_default_DH) then
+    {$if declared(LEGACY_ENGINE_get_default_DH)}
+    ENGINE_get_default_DH := @LEGACY_ENGINE_get_default_DH;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_default_DH');
+    {$ifend}
   Result := ENGINE_get_default_DH;
 end;
 
@@ -2409,7 +2822,11 @@ function Load_ENGINE_get_default_RAND: PENGINE; cdecl;
 begin
   ENGINE_get_default_RAND := LoadLibCryptoFunction('ENGINE_get_default_RAND');
   if not assigned(ENGINE_get_default_RAND) then
+    {$if declared(LEGACY_ENGINE_get_default_RAND)}
+    ENGINE_get_default_RAND := @LEGACY_ENGINE_get_default_RAND;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_default_RAND');
+    {$ifend}
   Result := ENGINE_get_default_RAND;
 end;
 
@@ -2419,7 +2836,11 @@ function Load_ENGINE_get_cipher_engine(nid: TOpenSSL_C_INT): PENGINE; cdecl;
 begin
   ENGINE_get_cipher_engine := LoadLibCryptoFunction('ENGINE_get_cipher_engine');
   if not assigned(ENGINE_get_cipher_engine) then
+    {$if declared(LEGACY_ENGINE_get_cipher_engine)}
+    ENGINE_get_cipher_engine := @LEGACY_ENGINE_get_cipher_engine;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_cipher_engine');
+    {$ifend}
   Result := ENGINE_get_cipher_engine(nid);
 end;
 
@@ -2427,7 +2848,11 @@ function Load_ENGINE_get_digest_engine(nid: TOpenSSL_C_INT): PENGINE; cdecl;
 begin
   ENGINE_get_digest_engine := LoadLibCryptoFunction('ENGINE_get_digest_engine');
   if not assigned(ENGINE_get_digest_engine) then
+    {$if declared(LEGACY_ENGINE_get_digest_engine)}
+    ENGINE_get_digest_engine := @LEGACY_ENGINE_get_digest_engine;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_digest_engine');
+    {$ifend}
   Result := ENGINE_get_digest_engine(nid);
 end;
 
@@ -2435,7 +2860,11 @@ function Load_ENGINE_get_pkey_meth_engine(nid: TOpenSSL_C_INT): PENGINE; cdecl;
 begin
   ENGINE_get_pkey_meth_engine := LoadLibCryptoFunction('ENGINE_get_pkey_meth_engine');
   if not assigned(ENGINE_get_pkey_meth_engine) then
+    {$if declared(LEGACY_ENGINE_get_pkey_meth_engine)}
+    ENGINE_get_pkey_meth_engine := @LEGACY_ENGINE_get_pkey_meth_engine;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_pkey_meth_engine');
+    {$ifend}
   Result := ENGINE_get_pkey_meth_engine(nid);
 end;
 
@@ -2443,7 +2872,11 @@ function Load_ENGINE_get_pkey_asn1_meth_engine(nid: TOpenSSL_C_INT): PENGINE; cd
 begin
   ENGINE_get_pkey_asn1_meth_engine := LoadLibCryptoFunction('ENGINE_get_pkey_asn1_meth_engine');
   if not assigned(ENGINE_get_pkey_asn1_meth_engine) then
+    {$if declared(LEGACY_ENGINE_get_pkey_asn1_meth_engine)}
+    ENGINE_get_pkey_asn1_meth_engine := @LEGACY_ENGINE_get_pkey_asn1_meth_engine;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_pkey_asn1_meth_engine');
+    {$ifend}
   Result := ENGINE_get_pkey_asn1_meth_engine(nid);
 end;
 
@@ -2453,7 +2886,11 @@ function Load_ENGINE_set_default_RSA(e: PENGINE): TOpenSSL_C_INT; cdecl;
 begin
   ENGINE_set_default_RSA := LoadLibCryptoFunction('ENGINE_set_default_RSA');
   if not assigned(ENGINE_set_default_RSA) then
+    {$if declared(LEGACY_ENGINE_set_default_RSA)}
+    ENGINE_set_default_RSA := @LEGACY_ENGINE_set_default_RSA;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_set_default_RSA');
+    {$ifend}
   Result := ENGINE_set_default_RSA(e);
 end;
 
@@ -2461,7 +2898,11 @@ function Load_ENGINE_set_default_string(e: PENGINE; def_list: PAnsiChar): TOpenS
 begin
   ENGINE_set_default_string := LoadLibCryptoFunction('ENGINE_set_default_string');
   if not assigned(ENGINE_set_default_string) then
+    {$if declared(LEGACY_ENGINE_set_default_string)}
+    ENGINE_set_default_string := @LEGACY_ENGINE_set_default_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_set_default_string');
+    {$ifend}
   Result := ENGINE_set_default_string(e, def_list);
 end;
 
@@ -2471,7 +2912,11 @@ function Load_ENGINE_set_default_DSA(e: PENGINE): TOpenSSL_C_INT; cdecl;
 begin
   ENGINE_set_default_DSA := LoadLibCryptoFunction('ENGINE_set_default_DSA');
   if not assigned(ENGINE_set_default_DSA) then
+    {$if declared(LEGACY_ENGINE_set_default_DSA)}
+    ENGINE_set_default_DSA := @LEGACY_ENGINE_set_default_DSA;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_set_default_DSA');
+    {$ifend}
   Result := ENGINE_set_default_DSA(e);
 end;
 
@@ -2479,7 +2924,11 @@ function Load_ENGINE_set_default_EC(e: PENGINE): TOpenSSL_C_INT; cdecl;
 begin
   ENGINE_set_default_EC := LoadLibCryptoFunction('ENGINE_set_default_EC');
   if not assigned(ENGINE_set_default_EC) then
+    {$if declared(LEGACY_ENGINE_set_default_EC)}
+    ENGINE_set_default_EC := @LEGACY_ENGINE_set_default_EC;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_set_default_EC');
+    {$ifend}
   Result := ENGINE_set_default_EC(e);
 end;
 
@@ -2487,7 +2936,11 @@ function Load_ENGINE_set_default_DH(e: PENGINE): TOpenSSL_C_INT; cdecl;
 begin
   ENGINE_set_default_DH := LoadLibCryptoFunction('ENGINE_set_default_DH');
   if not assigned(ENGINE_set_default_DH) then
+    {$if declared(LEGACY_ENGINE_set_default_DH)}
+    ENGINE_set_default_DH := @LEGACY_ENGINE_set_default_DH;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_set_default_DH');
+    {$ifend}
   Result := ENGINE_set_default_DH(e);
 end;
 
@@ -2495,7 +2948,11 @@ function Load_ENGINE_set_default_RAND(e: PENGINE): TOpenSSL_C_INT; cdecl;
 begin
   ENGINE_set_default_RAND := LoadLibCryptoFunction('ENGINE_set_default_RAND');
   if not assigned(ENGINE_set_default_RAND) then
+    {$if declared(LEGACY_ENGINE_set_default_RAND)}
+    ENGINE_set_default_RAND := @LEGACY_ENGINE_set_default_RAND;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_set_default_RAND');
+    {$ifend}
   Result := ENGINE_set_default_RAND(e);
 end;
 
@@ -2503,7 +2960,11 @@ function Load_ENGINE_set_default_ciphers(e: PENGINE): TOpenSSL_C_INT; cdecl;
 begin
   ENGINE_set_default_ciphers := LoadLibCryptoFunction('ENGINE_set_default_ciphers');
   if not assigned(ENGINE_set_default_ciphers) then
+    {$if declared(LEGACY_ENGINE_set_default_ciphers)}
+    ENGINE_set_default_ciphers := @LEGACY_ENGINE_set_default_ciphers;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_set_default_ciphers');
+    {$ifend}
   Result := ENGINE_set_default_ciphers(e);
 end;
 
@@ -2511,7 +2972,11 @@ function Load_ENGINE_set_default_digests(e: PENGINE): TOpenSSL_C_INT; cdecl;
 begin
   ENGINE_set_default_digests := LoadLibCryptoFunction('ENGINE_set_default_digests');
   if not assigned(ENGINE_set_default_digests) then
+    {$if declared(LEGACY_ENGINE_set_default_digests)}
+    ENGINE_set_default_digests := @LEGACY_ENGINE_set_default_digests;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_set_default_digests');
+    {$ifend}
   Result := ENGINE_set_default_digests(e);
 end;
 
@@ -2519,7 +2984,11 @@ function Load_ENGINE_set_default_pkey_meths(e: PENGINE): TOpenSSL_C_INT; cdecl;
 begin
   ENGINE_set_default_pkey_meths := LoadLibCryptoFunction('ENGINE_set_default_pkey_meths');
   if not assigned(ENGINE_set_default_pkey_meths) then
+    {$if declared(LEGACY_ENGINE_set_default_pkey_meths)}
+    ENGINE_set_default_pkey_meths := @LEGACY_ENGINE_set_default_pkey_meths;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_set_default_pkey_meths');
+    {$ifend}
   Result := ENGINE_set_default_pkey_meths(e);
 end;
 
@@ -2527,7 +2996,11 @@ function Load_ENGINE_set_default_pkey_asn1_meths(e: PENGINE): TOpenSSL_C_INT; cd
 begin
   ENGINE_set_default_pkey_asn1_meths := LoadLibCryptoFunction('ENGINE_set_default_pkey_asn1_meths');
   if not assigned(ENGINE_set_default_pkey_asn1_meths) then
+    {$if declared(LEGACY_ENGINE_set_default_pkey_asn1_meths)}
+    ENGINE_set_default_pkey_asn1_meths := @LEGACY_ENGINE_set_default_pkey_asn1_meths;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_set_default_pkey_asn1_meths');
+    {$ifend}
   Result := ENGINE_set_default_pkey_asn1_meths(e);
 end;
 
@@ -2537,7 +3010,11 @@ function Load_ENGINE_set_default(e: PENGINE; flags: TOpenSSL_C_UINT): TOpenSSL_C
 begin
   ENGINE_set_default := LoadLibCryptoFunction('ENGINE_set_default');
   if not assigned(ENGINE_set_default) then
+    {$if declared(LEGACY_ENGINE_set_default)}
+    ENGINE_set_default := @LEGACY_ENGINE_set_default;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_set_default');
+    {$ifend}
   Result := ENGINE_set_default(e, flags);
 end;
 
@@ -2545,7 +3022,11 @@ procedure Load_ENGINE_add_conf_module; cdecl;
 begin
   ENGINE_add_conf_module := LoadLibCryptoFunction('ENGINE_add_conf_module');
   if not assigned(ENGINE_add_conf_module) then
+    {$if declared(LEGACY_ENGINE_add_conf_module)}
+    ENGINE_add_conf_module := @LEGACY_ENGINE_add_conf_module;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_add_conf_module');
+    {$ifend}
   ENGINE_add_conf_module;
 end;
 
@@ -2554,7 +3035,11 @@ function Load_ENGINE_get_static_state: pointer; cdecl;
 begin
   ENGINE_get_static_state := LoadLibCryptoFunction('ENGINE_get_static_state');
   if not assigned(ENGINE_get_static_state) then
+    {$if declared(LEGACY_ENGINE_get_static_state)}
+    ENGINE_get_static_state := @LEGACY_ENGINE_get_static_state;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_get_static_state');
+    {$ifend}
   Result := ENGINE_get_static_state;
 end;
 
@@ -2564,7 +3049,11 @@ procedure Load_ENGINE_setup_bsd_cryptodev; cdecl;
 begin
   ENGINE_setup_bsd_cryptodev := LoadLibCryptoFunction('ENGINE_setup_bsd_cryptodev');
   if not assigned(ENGINE_setup_bsd_cryptodev) then
+    {$if declared(LEGACY_ENGINE_setup_bsd_cryptodev)}
+    ENGINE_setup_bsd_cryptodev := @LEGACY_ENGINE_setup_bsd_cryptodev;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_setup_bsd_cryptodev');
+    {$ifend}
   ENGINE_setup_bsd_cryptodev;
 end;
 

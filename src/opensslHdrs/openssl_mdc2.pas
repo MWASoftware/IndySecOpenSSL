@@ -18,7 +18,8 @@
 unit openssl_mdc2;
 
 {
-  Generated from OpenSSL 3.0.20 Header File mdc2.h - Wed  6 May 13:06:11 BST 2026
+  Generated from OpenSSL 3.0.20 Header File mdc2.h - Wed  6 May 13:15:20 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -132,7 +133,11 @@ function Load_MDC2_Init(c: PMDC2_CTX): TOpenSSL_C_INT; cdecl;
 begin
   MDC2_Init := LoadLibCryptoFunction('MDC2_Init');
   if not assigned(MDC2_Init) then
+    {$if declared(LEGACY_MDC2_Init)}
+    MDC2_Init := @LEGACY_MDC2_Init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('MDC2_Init');
+    {$ifend}
   Result := MDC2_Init(c);
 end;
 
@@ -140,7 +145,11 @@ function Load_MDC2_Update(c: PMDC2_CTX; data: Pbyte; len: TOpenSSL_C_SIZET): TOp
 begin
   MDC2_Update := LoadLibCryptoFunction('MDC2_Update');
   if not assigned(MDC2_Update) then
+    {$if declared(LEGACY_MDC2_Update)}
+    MDC2_Update := @LEGACY_MDC2_Update;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('MDC2_Update');
+    {$ifend}
   Result := MDC2_Update(c, data, len);
 end;
 
@@ -148,7 +157,11 @@ function Load_MDC2_Final(md: Pbyte; c: PMDC2_CTX): TOpenSSL_C_INT; cdecl;
 begin
   MDC2_Final := LoadLibCryptoFunction('MDC2_Final');
   if not assigned(MDC2_Final) then
+    {$if declared(LEGACY_MDC2_Final)}
+    MDC2_Final := @LEGACY_MDC2_Final;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('MDC2_Final');
+    {$ifend}
   Result := MDC2_Final(md, c);
 end;
 
@@ -156,7 +169,11 @@ function Load_MDC2(d: Pbyte; n: TOpenSSL_C_SIZET; md: Pbyte): Pbyte; cdecl;
 begin
   MDC2 := LoadLibCryptoFunction('MDC2');
   if not assigned(MDC2) then
+    {$if declared(LEGACY_MDC2)}
+    MDC2 := @LEGACY_MDC2;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('MDC2');
+    {$ifend}
   Result := MDC2(d, n, md);
 end;
 

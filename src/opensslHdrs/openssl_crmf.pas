@@ -18,7 +18,8 @@
 unit openssl_crmf;
 
 {
-  Generated from OpenSSL 3.0.20 Header File crmf.h - Wed  6 May 13:05:48 BST 2026
+  Generated from OpenSSL 3.0.20 Header File crmf.h - Wed  6 May 13:14:57 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -976,7 +977,11 @@ function Load_OSSL_CRMF_ENCRYPTEDVALUE_new: POSSL_CRMF_ENCRYPTEDVALUE; cdecl;
 begin
   OSSL_CRMF_ENCRYPTEDVALUE_new := LoadLibCryptoFunction('OSSL_CRMF_ENCRYPTEDVALUE_new');
   if not assigned(OSSL_CRMF_ENCRYPTEDVALUE_new) then
+    {$if declared(LEGACY_OSSL_CRMF_ENCRYPTEDVALUE_new)}
+    OSSL_CRMF_ENCRYPTEDVALUE_new := @LEGACY_OSSL_CRMF_ENCRYPTEDVALUE_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_ENCRYPTEDVALUE_new');
+    {$ifend}
   Result := OSSL_CRMF_ENCRYPTEDVALUE_new;
 end;
 
@@ -984,7 +989,11 @@ procedure Load_OSSL_CRMF_ENCRYPTEDVALUE_free(a: POSSL_CRMF_ENCRYPTEDVALUE); cdec
 begin
   OSSL_CRMF_ENCRYPTEDVALUE_free := LoadLibCryptoFunction('OSSL_CRMF_ENCRYPTEDVALUE_free');
   if not assigned(OSSL_CRMF_ENCRYPTEDVALUE_free) then
+    {$if declared(LEGACY_OSSL_CRMF_ENCRYPTEDVALUE_free)}
+    OSSL_CRMF_ENCRYPTEDVALUE_free := @LEGACY_OSSL_CRMF_ENCRYPTEDVALUE_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_ENCRYPTEDVALUE_free');
+    {$ifend}
   OSSL_CRMF_ENCRYPTEDVALUE_free(a);
 end;
 
@@ -992,7 +1001,11 @@ function Load_d2i_OSSL_CRMF_ENCRYPTEDVALUE(a: PPOSSL_CRMF_ENCRYPTEDVALUE; in_: P
 begin
   d2i_OSSL_CRMF_ENCRYPTEDVALUE := LoadLibCryptoFunction('d2i_OSSL_CRMF_ENCRYPTEDVALUE');
   if not assigned(d2i_OSSL_CRMF_ENCRYPTEDVALUE) then
+    {$if declared(LEGACY_d2i_OSSL_CRMF_ENCRYPTEDVALUE)}
+    d2i_OSSL_CRMF_ENCRYPTEDVALUE := @LEGACY_d2i_OSSL_CRMF_ENCRYPTEDVALUE;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_OSSL_CRMF_ENCRYPTEDVALUE');
+    {$ifend}
   Result := d2i_OSSL_CRMF_ENCRYPTEDVALUE(a, in_, len);
 end;
 
@@ -1000,7 +1013,11 @@ function Load_i2d_OSSL_CRMF_ENCRYPTEDVALUE(a: POSSL_CRMF_ENCRYPTEDVALUE; out_: P
 begin
   i2d_OSSL_CRMF_ENCRYPTEDVALUE := LoadLibCryptoFunction('i2d_OSSL_CRMF_ENCRYPTEDVALUE');
   if not assigned(i2d_OSSL_CRMF_ENCRYPTEDVALUE) then
+    {$if declared(LEGACY_i2d_OSSL_CRMF_ENCRYPTEDVALUE)}
+    i2d_OSSL_CRMF_ENCRYPTEDVALUE := @LEGACY_i2d_OSSL_CRMF_ENCRYPTEDVALUE;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_OSSL_CRMF_ENCRYPTEDVALUE');
+    {$ifend}
   Result := i2d_OSSL_CRMF_ENCRYPTEDVALUE(a, out_);
 end;
 
@@ -1008,7 +1025,11 @@ function Load_OSSL_CRMF_ENCRYPTEDVALUE_it: PASN1_ITEM; cdecl;
 begin
   OSSL_CRMF_ENCRYPTEDVALUE_it := LoadLibCryptoFunction('OSSL_CRMF_ENCRYPTEDVALUE_it');
   if not assigned(OSSL_CRMF_ENCRYPTEDVALUE_it) then
+    {$if declared(LEGACY_OSSL_CRMF_ENCRYPTEDVALUE_it)}
+    OSSL_CRMF_ENCRYPTEDVALUE_it := @LEGACY_OSSL_CRMF_ENCRYPTEDVALUE_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_ENCRYPTEDVALUE_it');
+    {$ifend}
   Result := OSSL_CRMF_ENCRYPTEDVALUE_it;
 end;
 
@@ -1016,7 +1037,11 @@ function Load_OSSL_CRMF_MSG_new: POSSL_CRMF_MSG; cdecl;
 begin
   OSSL_CRMF_MSG_new := LoadLibCryptoFunction('OSSL_CRMF_MSG_new');
   if not assigned(OSSL_CRMF_MSG_new) then
+    {$if declared(LEGACY_OSSL_CRMF_MSG_new)}
+    OSSL_CRMF_MSG_new := @LEGACY_OSSL_CRMF_MSG_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_MSG_new');
+    {$ifend}
   Result := OSSL_CRMF_MSG_new;
 end;
 
@@ -1024,7 +1049,11 @@ procedure Load_OSSL_CRMF_MSG_free(a: POSSL_CRMF_MSG); cdecl;
 begin
   OSSL_CRMF_MSG_free := LoadLibCryptoFunction('OSSL_CRMF_MSG_free');
   if not assigned(OSSL_CRMF_MSG_free) then
+    {$if declared(LEGACY_OSSL_CRMF_MSG_free)}
+    OSSL_CRMF_MSG_free := @LEGACY_OSSL_CRMF_MSG_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_MSG_free');
+    {$ifend}
   OSSL_CRMF_MSG_free(a);
 end;
 
@@ -1032,7 +1061,11 @@ function Load_d2i_OSSL_CRMF_MSG(a: PPOSSL_CRMF_MSG; in_: PPbyte; len: TOpenSSL_C
 begin
   d2i_OSSL_CRMF_MSG := LoadLibCryptoFunction('d2i_OSSL_CRMF_MSG');
   if not assigned(d2i_OSSL_CRMF_MSG) then
+    {$if declared(LEGACY_d2i_OSSL_CRMF_MSG)}
+    d2i_OSSL_CRMF_MSG := @LEGACY_d2i_OSSL_CRMF_MSG;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_OSSL_CRMF_MSG');
+    {$ifend}
   Result := d2i_OSSL_CRMF_MSG(a, in_, len);
 end;
 
@@ -1040,7 +1073,11 @@ function Load_i2d_OSSL_CRMF_MSG(a: POSSL_CRMF_MSG; out_: PPbyte): TOpenSSL_C_INT
 begin
   i2d_OSSL_CRMF_MSG := LoadLibCryptoFunction('i2d_OSSL_CRMF_MSG');
   if not assigned(i2d_OSSL_CRMF_MSG) then
+    {$if declared(LEGACY_i2d_OSSL_CRMF_MSG)}
+    i2d_OSSL_CRMF_MSG := @LEGACY_i2d_OSSL_CRMF_MSG;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_OSSL_CRMF_MSG');
+    {$ifend}
   Result := i2d_OSSL_CRMF_MSG(a, out_);
 end;
 
@@ -1048,7 +1085,11 @@ function Load_OSSL_CRMF_MSG_it: PASN1_ITEM; cdecl;
 begin
   OSSL_CRMF_MSG_it := LoadLibCryptoFunction('OSSL_CRMF_MSG_it');
   if not assigned(OSSL_CRMF_MSG_it) then
+    {$if declared(LEGACY_OSSL_CRMF_MSG_it)}
+    OSSL_CRMF_MSG_it := @LEGACY_OSSL_CRMF_MSG_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_MSG_it');
+    {$ifend}
   Result := OSSL_CRMF_MSG_it;
 end;
 
@@ -1056,7 +1097,11 @@ function Load_OSSL_CRMF_MSG_dup(a: POSSL_CRMF_MSG): POSSL_CRMF_MSG; cdecl;
 begin
   OSSL_CRMF_MSG_dup := LoadLibCryptoFunction('OSSL_CRMF_MSG_dup');
   if not assigned(OSSL_CRMF_MSG_dup) then
+    {$if declared(LEGACY_OSSL_CRMF_MSG_dup)}
+    OSSL_CRMF_MSG_dup := @LEGACY_OSSL_CRMF_MSG_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_MSG_dup');
+    {$ifend}
   Result := OSSL_CRMF_MSG_dup(a);
 end;
 
@@ -1064,7 +1109,11 @@ function Load_sk_OSSL_CRMF_MSG_num(_para: Pstack_st_OSSL_CRMF_MSG): TOpenSSL_C_I
 begin
   sk_OSSL_CRMF_MSG_num := LoadLibCryptoFunction('OPENSSL_sk_num');
   if not assigned(sk_OSSL_CRMF_MSG_num) then
+    {$if declared(LEGACY_OPENSSL_sk_num)}
+    sk_OSSL_CRMF_MSG_num := @LEGACY_OPENSSL_sk_num;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_num');
+    {$ifend}
   Result := sk_OSSL_CRMF_MSG_num(_para);
 end;
 
@@ -1072,7 +1121,11 @@ function Load_sk_OSSL_CRMF_MSG_value(_para: Pstack_st_OSSL_CRMF_MSG; _para2: TOp
 begin
   sk_OSSL_CRMF_MSG_value := LoadLibCryptoFunction('OPENSSL_sk_value');
   if not assigned(sk_OSSL_CRMF_MSG_value) then
+    {$if declared(LEGACY_OPENSSL_sk_value)}
+    sk_OSSL_CRMF_MSG_value := @LEGACY_OPENSSL_sk_value;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_value');
+    {$ifend}
   Result := sk_OSSL_CRMF_MSG_value(_para, _para2);
 end;
 
@@ -1080,7 +1133,11 @@ function Load_sk_OSSL_CRMF_MSG_new(cmp: Tsk_OSSL_CRMF_MSG_compfunc): Pstack_st_O
 begin
   sk_OSSL_CRMF_MSG_new := LoadLibCryptoFunction('OPENSSL_sk_new');
   if not assigned(sk_OSSL_CRMF_MSG_new) then
+    {$if declared(LEGACY_OPENSSL_sk_new)}
+    sk_OSSL_CRMF_MSG_new := @LEGACY_OPENSSL_sk_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new');
+    {$ifend}
   Result := sk_OSSL_CRMF_MSG_new(cmp);
 end;
 
@@ -1088,7 +1145,11 @@ function Load_sk_OSSL_CRMF_MSG_new_null: Pstack_st_OSSL_CRMF_MSG; cdecl;
 begin
   sk_OSSL_CRMF_MSG_new_null := LoadLibCryptoFunction('OPENSSL_sk_new_null');
   if not assigned(sk_OSSL_CRMF_MSG_new_null) then
+    {$if declared(LEGACY_OPENSSL_sk_new_null)}
+    sk_OSSL_CRMF_MSG_new_null := @LEGACY_OPENSSL_sk_new_null;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_null');
+    {$ifend}
   Result := sk_OSSL_CRMF_MSG_new_null;
 end;
 
@@ -1096,7 +1157,11 @@ function Load_sk_OSSL_CRMF_MSG_new_reserve(cmp: Tsk_OSSL_CRMF_MSG_compfunc; n: T
 begin
   sk_OSSL_CRMF_MSG_new_reserve := LoadLibCryptoFunction('OPENSSL_sk_new_reserve');
   if not assigned(sk_OSSL_CRMF_MSG_new_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_new_reserve)}
+    sk_OSSL_CRMF_MSG_new_reserve := @LEGACY_OPENSSL_sk_new_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_reserve');
+    {$ifend}
   Result := sk_OSSL_CRMF_MSG_new_reserve(cmp, n);
 end;
 
@@ -1104,7 +1169,11 @@ function Load_sk_OSSL_CRMF_MSG_reserve(_para: Pstack_st_OSSL_CRMF_MSG; n: TOpenS
 begin
   sk_OSSL_CRMF_MSG_reserve := LoadLibCryptoFunction('OPENSSL_sk_reserve');
   if not assigned(sk_OSSL_CRMF_MSG_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_reserve)}
+    sk_OSSL_CRMF_MSG_reserve := @LEGACY_OPENSSL_sk_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_reserve');
+    {$ifend}
   Result := sk_OSSL_CRMF_MSG_reserve(_para, n);
 end;
 
@@ -1112,7 +1181,11 @@ function Load_sk_OSSL_CRMF_MSG_free(_para: Pstack_st_OSSL_CRMF_MSG): TOpenSSL_C_
 begin
   sk_OSSL_CRMF_MSG_free := LoadLibCryptoFunction('OPENSSL_sk_free');
   if not assigned(sk_OSSL_CRMF_MSG_free) then
+    {$if declared(LEGACY_OPENSSL_sk_free)}
+    sk_OSSL_CRMF_MSG_free := @LEGACY_OPENSSL_sk_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_free');
+    {$ifend}
   Result := sk_OSSL_CRMF_MSG_free(_para);
 end;
 
@@ -1120,7 +1193,11 @@ function Load_sk_OSSL_CRMF_MSG_zero(_para: Pstack_st_OSSL_CRMF_MSG): TOpenSSL_C_
 begin
   sk_OSSL_CRMF_MSG_zero := LoadLibCryptoFunction('OPENSSL_sk_zero');
   if not assigned(sk_OSSL_CRMF_MSG_zero) then
+    {$if declared(LEGACY_OPENSSL_sk_zero)}
+    sk_OSSL_CRMF_MSG_zero := @LEGACY_OPENSSL_sk_zero;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_zero');
+    {$ifend}
   Result := sk_OSSL_CRMF_MSG_zero(_para);
 end;
 
@@ -1128,7 +1205,11 @@ function Load_sk_OSSL_CRMF_MSG_delete(st: Pstack_st_OSSL_CRMF_MSG; loc: TOpenSSL
 begin
   sk_OSSL_CRMF_MSG_delete := LoadLibCryptoFunction('OPENSSL_sk_delete');
   if not assigned(sk_OSSL_CRMF_MSG_delete) then
+    {$if declared(LEGACY_OPENSSL_sk_delete)}
+    sk_OSSL_CRMF_MSG_delete := @LEGACY_OPENSSL_sk_delete;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete');
+    {$ifend}
   Result := sk_OSSL_CRMF_MSG_delete(st, loc);
 end;
 
@@ -1136,7 +1217,11 @@ function Load_sk_OSSL_CRMF_MSG_delete_ptr(st: Pstack_st_OSSL_CRMF_MSG; ptr: Psta
 begin
   sk_OSSL_CRMF_MSG_delete_ptr := LoadLibCryptoFunction('OPENSSL_sk_delete_ptr');
   if not assigned(sk_OSSL_CRMF_MSG_delete_ptr) then
+    {$if declared(LEGACY_OPENSSL_sk_delete_ptr)}
+    sk_OSSL_CRMF_MSG_delete_ptr := @LEGACY_OPENSSL_sk_delete_ptr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete_ptr');
+    {$ifend}
   Result := sk_OSSL_CRMF_MSG_delete_ptr(st, ptr);
 end;
 
@@ -1144,7 +1229,11 @@ function Load_sk_OSSL_CRMF_MSG_push(st: Pstack_st_OSSL_CRMF_MSG; data: pointer):
 begin
   sk_OSSL_CRMF_MSG_push := LoadLibCryptoFunction('OPENSSL_sk_push');
   if not assigned(sk_OSSL_CRMF_MSG_push) then
+    {$if declared(LEGACY_OPENSSL_sk_push)}
+    sk_OSSL_CRMF_MSG_push := @LEGACY_OPENSSL_sk_push;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_push');
+    {$ifend}
   Result := sk_OSSL_CRMF_MSG_push(st, data);
 end;
 
@@ -1152,7 +1241,11 @@ function Load_sk_OSSL_CRMF_MSG_unshift(st: Pstack_st_OSSL_CRMF_MSG; data: pointe
 begin
   sk_OSSL_CRMF_MSG_unshift := LoadLibCryptoFunction('OPENSSL_sk_unshift');
   if not assigned(sk_OSSL_CRMF_MSG_unshift) then
+    {$if declared(LEGACY_OPENSSL_sk_unshift)}
+    sk_OSSL_CRMF_MSG_unshift := @LEGACY_OPENSSL_sk_unshift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_unshift');
+    {$ifend}
   Result := sk_OSSL_CRMF_MSG_unshift(st, data);
 end;
 
@@ -1160,7 +1253,11 @@ function Load_sk_OSSL_CRMF_MSG_pop(_para: Pstack_st_OSSL_CRMF_MSG): Pstack_st_OS
 begin
   sk_OSSL_CRMF_MSG_pop := LoadLibCryptoFunction('OPENSSL_sk_pop');
   if not assigned(sk_OSSL_CRMF_MSG_pop) then
+    {$if declared(LEGACY_OPENSSL_sk_pop)}
+    sk_OSSL_CRMF_MSG_pop := @LEGACY_OPENSSL_sk_pop;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop');
+    {$ifend}
   Result := sk_OSSL_CRMF_MSG_pop(_para);
 end;
 
@@ -1168,7 +1265,11 @@ function Load_sk_OSSL_CRMF_MSG_shift(_para: Pstack_st_OSSL_CRMF_MSG): Pstack_st_
 begin
   sk_OSSL_CRMF_MSG_shift := LoadLibCryptoFunction('OPENSSL_sk_shift');
   if not assigned(sk_OSSL_CRMF_MSG_shift) then
+    {$if declared(LEGACY_OPENSSL_sk_shift)}
+    sk_OSSL_CRMF_MSG_shift := @LEGACY_OPENSSL_sk_shift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_shift');
+    {$ifend}
   Result := sk_OSSL_CRMF_MSG_shift(_para);
 end;
 
@@ -1176,7 +1277,11 @@ procedure Load_sk_OSSL_CRMF_MSG_pop_free(st: Pstack_st_OSSL_CRMF_MSG; func: Tsk_
 begin
   sk_OSSL_CRMF_MSG_pop_free := LoadLibCryptoFunction('OPENSSL_sk_pop_free');
   if not assigned(sk_OSSL_CRMF_MSG_pop_free) then
+    {$if declared(LEGACY_OPENSSL_sk_pop_free)}
+    sk_OSSL_CRMF_MSG_pop_free := @LEGACY_OPENSSL_sk_pop_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop_free');
+    {$ifend}
   sk_OSSL_CRMF_MSG_pop_free(st, func);
 end;
 
@@ -1184,7 +1289,11 @@ function Load_sk_OSSL_CRMF_MSG_insert(st: Pstack_st_OSSL_CRMF_MSG; data: pointer
 begin
   sk_OSSL_CRMF_MSG_insert := LoadLibCryptoFunction('OPENSSL_sk_insert');
   if not assigned(sk_OSSL_CRMF_MSG_insert) then
+    {$if declared(LEGACY_OPENSSL_sk_insert)}
+    sk_OSSL_CRMF_MSG_insert := @LEGACY_OPENSSL_sk_insert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_insert');
+    {$ifend}
   Result := sk_OSSL_CRMF_MSG_insert(st, data, where);
 end;
 
@@ -1192,7 +1301,11 @@ function Load_sk_OSSL_CRMF_MSG_set(st: Pstack_st_OSSL_CRMF_MSG; i: TOpenSSL_C_IN
 begin
   sk_OSSL_CRMF_MSG_set := LoadLibCryptoFunction('OPENSSL_sk_set');
   if not assigned(sk_OSSL_CRMF_MSG_set) then
+    {$if declared(LEGACY_OPENSSL_sk_set)}
+    sk_OSSL_CRMF_MSG_set := @LEGACY_OPENSSL_sk_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set');
+    {$ifend}
   Result := sk_OSSL_CRMF_MSG_set(st, i, data);
 end;
 
@@ -1200,7 +1313,11 @@ function Load_sk_OSSL_CRMF_MSG_find(st: Pstack_st_OSSL_CRMF_MSG; data: pointer):
 begin
   sk_OSSL_CRMF_MSG_find := LoadLibCryptoFunction('OPENSSL_sk_find');
   if not assigned(sk_OSSL_CRMF_MSG_find) then
+    {$if declared(LEGACY_OPENSSL_sk_find)}
+    sk_OSSL_CRMF_MSG_find := @LEGACY_OPENSSL_sk_find;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find');
+    {$ifend}
   Result := sk_OSSL_CRMF_MSG_find(st, data);
 end;
 
@@ -1208,7 +1325,11 @@ function Load_sk_OSSL_CRMF_MSG_find_ex(st: Pstack_st_OSSL_CRMF_MSG; data: pointe
 begin
   sk_OSSL_CRMF_MSG_find_ex := LoadLibCryptoFunction('OPENSSL_sk_find_ex');
   if not assigned(sk_OSSL_CRMF_MSG_find_ex) then
+    {$if declared(LEGACY_OPENSSL_sk_find_ex)}
+    sk_OSSL_CRMF_MSG_find_ex := @LEGACY_OPENSSL_sk_find_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_ex');
+    {$ifend}
   Result := sk_OSSL_CRMF_MSG_find_ex(st, data);
 end;
 
@@ -1216,7 +1337,11 @@ function Load_sk_OSSL_CRMF_MSG_find_all(st: Pstack_st_OSSL_CRMF_MSG; data: point
 begin
   sk_OSSL_CRMF_MSG_find_all := LoadLibCryptoFunction('OPENSSL_sk_find_all');
   if not assigned(sk_OSSL_CRMF_MSG_find_all) then
+    {$if declared(LEGACY_OPENSSL_sk_find_all)}
+    sk_OSSL_CRMF_MSG_find_all := @LEGACY_OPENSSL_sk_find_all;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_all');
+    {$ifend}
   Result := sk_OSSL_CRMF_MSG_find_all(st, data, pnum);
 end;
 
@@ -1224,7 +1349,11 @@ function Load_sk_OSSL_CRMF_MSG_sort(_para: Pstack_st_OSSL_CRMF_MSG): TOpenSSL_C_
 begin
   sk_OSSL_CRMF_MSG_sort := LoadLibCryptoFunction('OPENSSL_sk_sort');
   if not assigned(sk_OSSL_CRMF_MSG_sort) then
+    {$if declared(LEGACY_OPENSSL_sk_sort)}
+    sk_OSSL_CRMF_MSG_sort := @LEGACY_OPENSSL_sk_sort;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_sort');
+    {$ifend}
   Result := sk_OSSL_CRMF_MSG_sort(_para);
 end;
 
@@ -1232,7 +1361,11 @@ function Load_sk_OSSL_CRMF_MSG_is_sorted(_para: Pstack_st_OSSL_CRMF_MSG): TOpenS
 begin
   sk_OSSL_CRMF_MSG_is_sorted := LoadLibCryptoFunction('OPENSSL_sk_is_sorted');
   if not assigned(sk_OSSL_CRMF_MSG_is_sorted) then
+    {$if declared(LEGACY_OPENSSL_sk_is_sorted)}
+    sk_OSSL_CRMF_MSG_is_sorted := @LEGACY_OPENSSL_sk_is_sorted;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_is_sorted');
+    {$ifend}
   Result := sk_OSSL_CRMF_MSG_is_sorted(_para);
 end;
 
@@ -1240,7 +1373,11 @@ function Load_sk_OSSL_CRMF_MSG_dup(st: Pstack_st_OSSL_CRMF_MSG): Pstack_st_OSSL_
 begin
   sk_OSSL_CRMF_MSG_dup := LoadLibCryptoFunction('OPENSSL_sk_dup');
   if not assigned(sk_OSSL_CRMF_MSG_dup) then
+    {$if declared(LEGACY_OPENSSL_sk_dup)}
+    sk_OSSL_CRMF_MSG_dup := @LEGACY_OPENSSL_sk_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_dup');
+    {$ifend}
   Result := sk_OSSL_CRMF_MSG_dup(st);
 end;
 
@@ -1248,7 +1385,11 @@ function Load_sk_OSSL_CRMF_MSG_deep_copy(st: Pstack_st_OSSL_CRMF_MSG; c: Tsk_OSS
 begin
   sk_OSSL_CRMF_MSG_deep_copy := LoadLibCryptoFunction('OPENSSL_sk_deep_copy');
   if not assigned(sk_OSSL_CRMF_MSG_deep_copy) then
+    {$if declared(LEGACY_OPENSSL_sk_deep_copy)}
+    sk_OSSL_CRMF_MSG_deep_copy := @LEGACY_OPENSSL_sk_deep_copy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_deep_copy');
+    {$ifend}
   Result := sk_OSSL_CRMF_MSG_deep_copy(st, c, f);
 end;
 
@@ -1256,7 +1397,11 @@ function Load_sk_OSSL_CRMF_MSG_set_cmp_func(st: Pstack_st_OSSL_CRMF_MSG; cmp: Ts
 begin
   sk_OSSL_CRMF_MSG_set_cmp_func := LoadLibCryptoFunction('OPENSSL_sk_set_cmp_func');
   if not assigned(sk_OSSL_CRMF_MSG_set_cmp_func) then
+    {$if declared(LEGACY_OPENSSL_sk_set_cmp_func)}
+    sk_OSSL_CRMF_MSG_set_cmp_func := @LEGACY_OPENSSL_sk_set_cmp_func;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set_cmp_func');
+    {$ifend}
   Result := sk_OSSL_CRMF_MSG_set_cmp_func(st, cmp);
 end;
 
@@ -1264,7 +1409,11 @@ function Load_OSSL_CRMF_PBMPARAMETER_new: POSSL_CRMF_PBMPARAMETER; cdecl;
 begin
   OSSL_CRMF_PBMPARAMETER_new := LoadLibCryptoFunction('OSSL_CRMF_PBMPARAMETER_new');
   if not assigned(OSSL_CRMF_PBMPARAMETER_new) then
+    {$if declared(LEGACY_OSSL_CRMF_PBMPARAMETER_new)}
+    OSSL_CRMF_PBMPARAMETER_new := @LEGACY_OSSL_CRMF_PBMPARAMETER_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_PBMPARAMETER_new');
+    {$ifend}
   Result := OSSL_CRMF_PBMPARAMETER_new;
 end;
 
@@ -1272,7 +1421,11 @@ procedure Load_OSSL_CRMF_PBMPARAMETER_free(a: POSSL_CRMF_PBMPARAMETER); cdecl;
 begin
   OSSL_CRMF_PBMPARAMETER_free := LoadLibCryptoFunction('OSSL_CRMF_PBMPARAMETER_free');
   if not assigned(OSSL_CRMF_PBMPARAMETER_free) then
+    {$if declared(LEGACY_OSSL_CRMF_PBMPARAMETER_free)}
+    OSSL_CRMF_PBMPARAMETER_free := @LEGACY_OSSL_CRMF_PBMPARAMETER_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_PBMPARAMETER_free');
+    {$ifend}
   OSSL_CRMF_PBMPARAMETER_free(a);
 end;
 
@@ -1280,7 +1433,11 @@ function Load_d2i_OSSL_CRMF_PBMPARAMETER(a: PPOSSL_CRMF_PBMPARAMETER; in_: PPbyt
 begin
   d2i_OSSL_CRMF_PBMPARAMETER := LoadLibCryptoFunction('d2i_OSSL_CRMF_PBMPARAMETER');
   if not assigned(d2i_OSSL_CRMF_PBMPARAMETER) then
+    {$if declared(LEGACY_d2i_OSSL_CRMF_PBMPARAMETER)}
+    d2i_OSSL_CRMF_PBMPARAMETER := @LEGACY_d2i_OSSL_CRMF_PBMPARAMETER;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_OSSL_CRMF_PBMPARAMETER');
+    {$ifend}
   Result := d2i_OSSL_CRMF_PBMPARAMETER(a, in_, len);
 end;
 
@@ -1288,7 +1445,11 @@ function Load_i2d_OSSL_CRMF_PBMPARAMETER(a: POSSL_CRMF_PBMPARAMETER; out_: PPbyt
 begin
   i2d_OSSL_CRMF_PBMPARAMETER := LoadLibCryptoFunction('i2d_OSSL_CRMF_PBMPARAMETER');
   if not assigned(i2d_OSSL_CRMF_PBMPARAMETER) then
+    {$if declared(LEGACY_i2d_OSSL_CRMF_PBMPARAMETER)}
+    i2d_OSSL_CRMF_PBMPARAMETER := @LEGACY_i2d_OSSL_CRMF_PBMPARAMETER;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_OSSL_CRMF_PBMPARAMETER');
+    {$ifend}
   Result := i2d_OSSL_CRMF_PBMPARAMETER(a, out_);
 end;
 
@@ -1296,7 +1457,11 @@ function Load_OSSL_CRMF_PBMPARAMETER_it: PASN1_ITEM; cdecl;
 begin
   OSSL_CRMF_PBMPARAMETER_it := LoadLibCryptoFunction('OSSL_CRMF_PBMPARAMETER_it');
   if not assigned(OSSL_CRMF_PBMPARAMETER_it) then
+    {$if declared(LEGACY_OSSL_CRMF_PBMPARAMETER_it)}
+    OSSL_CRMF_PBMPARAMETER_it := @LEGACY_OSSL_CRMF_PBMPARAMETER_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_PBMPARAMETER_it');
+    {$ifend}
   Result := OSSL_CRMF_PBMPARAMETER_it;
 end;
 
@@ -1304,7 +1469,11 @@ function Load_OSSL_CRMF_CERTID_new: POSSL_CRMF_CERTID; cdecl;
 begin
   OSSL_CRMF_CERTID_new := LoadLibCryptoFunction('OSSL_CRMF_CERTID_new');
   if not assigned(OSSL_CRMF_CERTID_new) then
+    {$if declared(LEGACY_OSSL_CRMF_CERTID_new)}
+    OSSL_CRMF_CERTID_new := @LEGACY_OSSL_CRMF_CERTID_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_CERTID_new');
+    {$ifend}
   Result := OSSL_CRMF_CERTID_new;
 end;
 
@@ -1312,7 +1481,11 @@ procedure Load_OSSL_CRMF_CERTID_free(a: POSSL_CRMF_CERTID); cdecl;
 begin
   OSSL_CRMF_CERTID_free := LoadLibCryptoFunction('OSSL_CRMF_CERTID_free');
   if not assigned(OSSL_CRMF_CERTID_free) then
+    {$if declared(LEGACY_OSSL_CRMF_CERTID_free)}
+    OSSL_CRMF_CERTID_free := @LEGACY_OSSL_CRMF_CERTID_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_CERTID_free');
+    {$ifend}
   OSSL_CRMF_CERTID_free(a);
 end;
 
@@ -1320,7 +1493,11 @@ function Load_d2i_OSSL_CRMF_CERTID(a: PPOSSL_CRMF_CERTID; in_: PPbyte; len: TOpe
 begin
   d2i_OSSL_CRMF_CERTID := LoadLibCryptoFunction('d2i_OSSL_CRMF_CERTID');
   if not assigned(d2i_OSSL_CRMF_CERTID) then
+    {$if declared(LEGACY_d2i_OSSL_CRMF_CERTID)}
+    d2i_OSSL_CRMF_CERTID := @LEGACY_d2i_OSSL_CRMF_CERTID;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_OSSL_CRMF_CERTID');
+    {$ifend}
   Result := d2i_OSSL_CRMF_CERTID(a, in_, len);
 end;
 
@@ -1328,7 +1505,11 @@ function Load_i2d_OSSL_CRMF_CERTID(a: POSSL_CRMF_CERTID; out_: PPbyte): TOpenSSL
 begin
   i2d_OSSL_CRMF_CERTID := LoadLibCryptoFunction('i2d_OSSL_CRMF_CERTID');
   if not assigned(i2d_OSSL_CRMF_CERTID) then
+    {$if declared(LEGACY_i2d_OSSL_CRMF_CERTID)}
+    i2d_OSSL_CRMF_CERTID := @LEGACY_i2d_OSSL_CRMF_CERTID;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_OSSL_CRMF_CERTID');
+    {$ifend}
   Result := i2d_OSSL_CRMF_CERTID(a, out_);
 end;
 
@@ -1336,7 +1517,11 @@ function Load_OSSL_CRMF_CERTID_it: PASN1_ITEM; cdecl;
 begin
   OSSL_CRMF_CERTID_it := LoadLibCryptoFunction('OSSL_CRMF_CERTID_it');
   if not assigned(OSSL_CRMF_CERTID_it) then
+    {$if declared(LEGACY_OSSL_CRMF_CERTID_it)}
+    OSSL_CRMF_CERTID_it := @LEGACY_OSSL_CRMF_CERTID_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_CERTID_it');
+    {$ifend}
   Result := OSSL_CRMF_CERTID_it;
 end;
 
@@ -1344,7 +1529,11 @@ function Load_OSSL_CRMF_CERTID_dup(a: POSSL_CRMF_CERTID): POSSL_CRMF_CERTID; cde
 begin
   OSSL_CRMF_CERTID_dup := LoadLibCryptoFunction('OSSL_CRMF_CERTID_dup');
   if not assigned(OSSL_CRMF_CERTID_dup) then
+    {$if declared(LEGACY_OSSL_CRMF_CERTID_dup)}
+    OSSL_CRMF_CERTID_dup := @LEGACY_OSSL_CRMF_CERTID_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_CERTID_dup');
+    {$ifend}
   Result := OSSL_CRMF_CERTID_dup(a);
 end;
 
@@ -1352,7 +1541,11 @@ function Load_sk_OSSL_CRMF_CERTID_num(_para: Pstack_st_OSSL_CRMF_CERTID): TOpenS
 begin
   sk_OSSL_CRMF_CERTID_num := LoadLibCryptoFunction('OPENSSL_sk_num');
   if not assigned(sk_OSSL_CRMF_CERTID_num) then
+    {$if declared(LEGACY_OPENSSL_sk_num)}
+    sk_OSSL_CRMF_CERTID_num := @LEGACY_OPENSSL_sk_num;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_num');
+    {$ifend}
   Result := sk_OSSL_CRMF_CERTID_num(_para);
 end;
 
@@ -1360,7 +1553,11 @@ function Load_sk_OSSL_CRMF_CERTID_value(_para: Pstack_st_OSSL_CRMF_CERTID; _para
 begin
   sk_OSSL_CRMF_CERTID_value := LoadLibCryptoFunction('OPENSSL_sk_value');
   if not assigned(sk_OSSL_CRMF_CERTID_value) then
+    {$if declared(LEGACY_OPENSSL_sk_value)}
+    sk_OSSL_CRMF_CERTID_value := @LEGACY_OPENSSL_sk_value;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_value');
+    {$ifend}
   Result := sk_OSSL_CRMF_CERTID_value(_para, _para2);
 end;
 
@@ -1368,7 +1565,11 @@ function Load_sk_OSSL_CRMF_CERTID_new(cmp: Tsk_OSSL_CRMF_CERTID_compfunc): Pstac
 begin
   sk_OSSL_CRMF_CERTID_new := LoadLibCryptoFunction('OPENSSL_sk_new');
   if not assigned(sk_OSSL_CRMF_CERTID_new) then
+    {$if declared(LEGACY_OPENSSL_sk_new)}
+    sk_OSSL_CRMF_CERTID_new := @LEGACY_OPENSSL_sk_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new');
+    {$ifend}
   Result := sk_OSSL_CRMF_CERTID_new(cmp);
 end;
 
@@ -1376,7 +1577,11 @@ function Load_sk_OSSL_CRMF_CERTID_new_null: Pstack_st_OSSL_CRMF_CERTID; cdecl;
 begin
   sk_OSSL_CRMF_CERTID_new_null := LoadLibCryptoFunction('OPENSSL_sk_new_null');
   if not assigned(sk_OSSL_CRMF_CERTID_new_null) then
+    {$if declared(LEGACY_OPENSSL_sk_new_null)}
+    sk_OSSL_CRMF_CERTID_new_null := @LEGACY_OPENSSL_sk_new_null;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_null');
+    {$ifend}
   Result := sk_OSSL_CRMF_CERTID_new_null;
 end;
 
@@ -1384,7 +1589,11 @@ function Load_sk_OSSL_CRMF_CERTID_new_reserve(cmp: Tsk_OSSL_CRMF_CERTID_compfunc
 begin
   sk_OSSL_CRMF_CERTID_new_reserve := LoadLibCryptoFunction('OPENSSL_sk_new_reserve');
   if not assigned(sk_OSSL_CRMF_CERTID_new_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_new_reserve)}
+    sk_OSSL_CRMF_CERTID_new_reserve := @LEGACY_OPENSSL_sk_new_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_reserve');
+    {$ifend}
   Result := sk_OSSL_CRMF_CERTID_new_reserve(cmp, n);
 end;
 
@@ -1392,7 +1601,11 @@ function Load_sk_OSSL_CRMF_CERTID_reserve(_para: Pstack_st_OSSL_CRMF_CERTID; n: 
 begin
   sk_OSSL_CRMF_CERTID_reserve := LoadLibCryptoFunction('OPENSSL_sk_reserve');
   if not assigned(sk_OSSL_CRMF_CERTID_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_reserve)}
+    sk_OSSL_CRMF_CERTID_reserve := @LEGACY_OPENSSL_sk_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_reserve');
+    {$ifend}
   Result := sk_OSSL_CRMF_CERTID_reserve(_para, n);
 end;
 
@@ -1400,7 +1613,11 @@ function Load_sk_OSSL_CRMF_CERTID_free(_para: Pstack_st_OSSL_CRMF_CERTID): TOpen
 begin
   sk_OSSL_CRMF_CERTID_free := LoadLibCryptoFunction('OPENSSL_sk_free');
   if not assigned(sk_OSSL_CRMF_CERTID_free) then
+    {$if declared(LEGACY_OPENSSL_sk_free)}
+    sk_OSSL_CRMF_CERTID_free := @LEGACY_OPENSSL_sk_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_free');
+    {$ifend}
   Result := sk_OSSL_CRMF_CERTID_free(_para);
 end;
 
@@ -1408,7 +1625,11 @@ function Load_sk_OSSL_CRMF_CERTID_zero(_para: Pstack_st_OSSL_CRMF_CERTID): TOpen
 begin
   sk_OSSL_CRMF_CERTID_zero := LoadLibCryptoFunction('OPENSSL_sk_zero');
   if not assigned(sk_OSSL_CRMF_CERTID_zero) then
+    {$if declared(LEGACY_OPENSSL_sk_zero)}
+    sk_OSSL_CRMF_CERTID_zero := @LEGACY_OPENSSL_sk_zero;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_zero');
+    {$ifend}
   Result := sk_OSSL_CRMF_CERTID_zero(_para);
 end;
 
@@ -1416,7 +1637,11 @@ function Load_sk_OSSL_CRMF_CERTID_delete(st: Pstack_st_OSSL_CRMF_CERTID; loc: TO
 begin
   sk_OSSL_CRMF_CERTID_delete := LoadLibCryptoFunction('OPENSSL_sk_delete');
   if not assigned(sk_OSSL_CRMF_CERTID_delete) then
+    {$if declared(LEGACY_OPENSSL_sk_delete)}
+    sk_OSSL_CRMF_CERTID_delete := @LEGACY_OPENSSL_sk_delete;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete');
+    {$ifend}
   Result := sk_OSSL_CRMF_CERTID_delete(st, loc);
 end;
 
@@ -1424,7 +1649,11 @@ function Load_sk_OSSL_CRMF_CERTID_delete_ptr(st: Pstack_st_OSSL_CRMF_CERTID; ptr
 begin
   sk_OSSL_CRMF_CERTID_delete_ptr := LoadLibCryptoFunction('OPENSSL_sk_delete_ptr');
   if not assigned(sk_OSSL_CRMF_CERTID_delete_ptr) then
+    {$if declared(LEGACY_OPENSSL_sk_delete_ptr)}
+    sk_OSSL_CRMF_CERTID_delete_ptr := @LEGACY_OPENSSL_sk_delete_ptr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete_ptr');
+    {$ifend}
   Result := sk_OSSL_CRMF_CERTID_delete_ptr(st, ptr);
 end;
 
@@ -1432,7 +1661,11 @@ function Load_sk_OSSL_CRMF_CERTID_push(st: Pstack_st_OSSL_CRMF_CERTID; data: poi
 begin
   sk_OSSL_CRMF_CERTID_push := LoadLibCryptoFunction('OPENSSL_sk_push');
   if not assigned(sk_OSSL_CRMF_CERTID_push) then
+    {$if declared(LEGACY_OPENSSL_sk_push)}
+    sk_OSSL_CRMF_CERTID_push := @LEGACY_OPENSSL_sk_push;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_push');
+    {$ifend}
   Result := sk_OSSL_CRMF_CERTID_push(st, data);
 end;
 
@@ -1440,7 +1673,11 @@ function Load_sk_OSSL_CRMF_CERTID_unshift(st: Pstack_st_OSSL_CRMF_CERTID; data: 
 begin
   sk_OSSL_CRMF_CERTID_unshift := LoadLibCryptoFunction('OPENSSL_sk_unshift');
   if not assigned(sk_OSSL_CRMF_CERTID_unshift) then
+    {$if declared(LEGACY_OPENSSL_sk_unshift)}
+    sk_OSSL_CRMF_CERTID_unshift := @LEGACY_OPENSSL_sk_unshift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_unshift');
+    {$ifend}
   Result := sk_OSSL_CRMF_CERTID_unshift(st, data);
 end;
 
@@ -1448,7 +1685,11 @@ function Load_sk_OSSL_CRMF_CERTID_pop(_para: Pstack_st_OSSL_CRMF_CERTID): Pstack
 begin
   sk_OSSL_CRMF_CERTID_pop := LoadLibCryptoFunction('OPENSSL_sk_pop');
   if not assigned(sk_OSSL_CRMF_CERTID_pop) then
+    {$if declared(LEGACY_OPENSSL_sk_pop)}
+    sk_OSSL_CRMF_CERTID_pop := @LEGACY_OPENSSL_sk_pop;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop');
+    {$ifend}
   Result := sk_OSSL_CRMF_CERTID_pop(_para);
 end;
 
@@ -1456,7 +1697,11 @@ function Load_sk_OSSL_CRMF_CERTID_shift(_para: Pstack_st_OSSL_CRMF_CERTID): Psta
 begin
   sk_OSSL_CRMF_CERTID_shift := LoadLibCryptoFunction('OPENSSL_sk_shift');
   if not assigned(sk_OSSL_CRMF_CERTID_shift) then
+    {$if declared(LEGACY_OPENSSL_sk_shift)}
+    sk_OSSL_CRMF_CERTID_shift := @LEGACY_OPENSSL_sk_shift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_shift');
+    {$ifend}
   Result := sk_OSSL_CRMF_CERTID_shift(_para);
 end;
 
@@ -1464,7 +1709,11 @@ procedure Load_sk_OSSL_CRMF_CERTID_pop_free(st: Pstack_st_OSSL_CRMF_CERTID; func
 begin
   sk_OSSL_CRMF_CERTID_pop_free := LoadLibCryptoFunction('OPENSSL_sk_pop_free');
   if not assigned(sk_OSSL_CRMF_CERTID_pop_free) then
+    {$if declared(LEGACY_OPENSSL_sk_pop_free)}
+    sk_OSSL_CRMF_CERTID_pop_free := @LEGACY_OPENSSL_sk_pop_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop_free');
+    {$ifend}
   sk_OSSL_CRMF_CERTID_pop_free(st, func);
 end;
 
@@ -1472,7 +1721,11 @@ function Load_sk_OSSL_CRMF_CERTID_insert(st: Pstack_st_OSSL_CRMF_CERTID; data: p
 begin
   sk_OSSL_CRMF_CERTID_insert := LoadLibCryptoFunction('OPENSSL_sk_insert');
   if not assigned(sk_OSSL_CRMF_CERTID_insert) then
+    {$if declared(LEGACY_OPENSSL_sk_insert)}
+    sk_OSSL_CRMF_CERTID_insert := @LEGACY_OPENSSL_sk_insert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_insert');
+    {$ifend}
   Result := sk_OSSL_CRMF_CERTID_insert(st, data, where);
 end;
 
@@ -1480,7 +1733,11 @@ function Load_sk_OSSL_CRMF_CERTID_set(st: Pstack_st_OSSL_CRMF_CERTID; i: TOpenSS
 begin
   sk_OSSL_CRMF_CERTID_set := LoadLibCryptoFunction('OPENSSL_sk_set');
   if not assigned(sk_OSSL_CRMF_CERTID_set) then
+    {$if declared(LEGACY_OPENSSL_sk_set)}
+    sk_OSSL_CRMF_CERTID_set := @LEGACY_OPENSSL_sk_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set');
+    {$ifend}
   Result := sk_OSSL_CRMF_CERTID_set(st, i, data);
 end;
 
@@ -1488,7 +1745,11 @@ function Load_sk_OSSL_CRMF_CERTID_find(st: Pstack_st_OSSL_CRMF_CERTID; data: poi
 begin
   sk_OSSL_CRMF_CERTID_find := LoadLibCryptoFunction('OPENSSL_sk_find');
   if not assigned(sk_OSSL_CRMF_CERTID_find) then
+    {$if declared(LEGACY_OPENSSL_sk_find)}
+    sk_OSSL_CRMF_CERTID_find := @LEGACY_OPENSSL_sk_find;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find');
+    {$ifend}
   Result := sk_OSSL_CRMF_CERTID_find(st, data);
 end;
 
@@ -1496,7 +1757,11 @@ function Load_sk_OSSL_CRMF_CERTID_find_ex(st: Pstack_st_OSSL_CRMF_CERTID; data: 
 begin
   sk_OSSL_CRMF_CERTID_find_ex := LoadLibCryptoFunction('OPENSSL_sk_find_ex');
   if not assigned(sk_OSSL_CRMF_CERTID_find_ex) then
+    {$if declared(LEGACY_OPENSSL_sk_find_ex)}
+    sk_OSSL_CRMF_CERTID_find_ex := @LEGACY_OPENSSL_sk_find_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_ex');
+    {$ifend}
   Result := sk_OSSL_CRMF_CERTID_find_ex(st, data);
 end;
 
@@ -1504,7 +1769,11 @@ function Load_sk_OSSL_CRMF_CERTID_find_all(st: Pstack_st_OSSL_CRMF_CERTID; data:
 begin
   sk_OSSL_CRMF_CERTID_find_all := LoadLibCryptoFunction('OPENSSL_sk_find_all');
   if not assigned(sk_OSSL_CRMF_CERTID_find_all) then
+    {$if declared(LEGACY_OPENSSL_sk_find_all)}
+    sk_OSSL_CRMF_CERTID_find_all := @LEGACY_OPENSSL_sk_find_all;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_all');
+    {$ifend}
   Result := sk_OSSL_CRMF_CERTID_find_all(st, data, pnum);
 end;
 
@@ -1512,7 +1781,11 @@ function Load_sk_OSSL_CRMF_CERTID_sort(_para: Pstack_st_OSSL_CRMF_CERTID): TOpen
 begin
   sk_OSSL_CRMF_CERTID_sort := LoadLibCryptoFunction('OPENSSL_sk_sort');
   if not assigned(sk_OSSL_CRMF_CERTID_sort) then
+    {$if declared(LEGACY_OPENSSL_sk_sort)}
+    sk_OSSL_CRMF_CERTID_sort := @LEGACY_OPENSSL_sk_sort;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_sort');
+    {$ifend}
   Result := sk_OSSL_CRMF_CERTID_sort(_para);
 end;
 
@@ -1520,7 +1793,11 @@ function Load_sk_OSSL_CRMF_CERTID_is_sorted(_para: Pstack_st_OSSL_CRMF_CERTID): 
 begin
   sk_OSSL_CRMF_CERTID_is_sorted := LoadLibCryptoFunction('OPENSSL_sk_is_sorted');
   if not assigned(sk_OSSL_CRMF_CERTID_is_sorted) then
+    {$if declared(LEGACY_OPENSSL_sk_is_sorted)}
+    sk_OSSL_CRMF_CERTID_is_sorted := @LEGACY_OPENSSL_sk_is_sorted;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_is_sorted');
+    {$ifend}
   Result := sk_OSSL_CRMF_CERTID_is_sorted(_para);
 end;
 
@@ -1528,7 +1805,11 @@ function Load_sk_OSSL_CRMF_CERTID_dup(st: Pstack_st_OSSL_CRMF_CERTID): Pstack_st
 begin
   sk_OSSL_CRMF_CERTID_dup := LoadLibCryptoFunction('OPENSSL_sk_dup');
   if not assigned(sk_OSSL_CRMF_CERTID_dup) then
+    {$if declared(LEGACY_OPENSSL_sk_dup)}
+    sk_OSSL_CRMF_CERTID_dup := @LEGACY_OPENSSL_sk_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_dup');
+    {$ifend}
   Result := sk_OSSL_CRMF_CERTID_dup(st);
 end;
 
@@ -1536,7 +1817,11 @@ function Load_sk_OSSL_CRMF_CERTID_deep_copy(st: Pstack_st_OSSL_CRMF_CERTID; c: T
 begin
   sk_OSSL_CRMF_CERTID_deep_copy := LoadLibCryptoFunction('OPENSSL_sk_deep_copy');
   if not assigned(sk_OSSL_CRMF_CERTID_deep_copy) then
+    {$if declared(LEGACY_OPENSSL_sk_deep_copy)}
+    sk_OSSL_CRMF_CERTID_deep_copy := @LEGACY_OPENSSL_sk_deep_copy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_deep_copy');
+    {$ifend}
   Result := sk_OSSL_CRMF_CERTID_deep_copy(st, c, f);
 end;
 
@@ -1544,7 +1829,11 @@ function Load_sk_OSSL_CRMF_CERTID_set_cmp_func(st: Pstack_st_OSSL_CRMF_CERTID; c
 begin
   sk_OSSL_CRMF_CERTID_set_cmp_func := LoadLibCryptoFunction('OPENSSL_sk_set_cmp_func');
   if not assigned(sk_OSSL_CRMF_CERTID_set_cmp_func) then
+    {$if declared(LEGACY_OPENSSL_sk_set_cmp_func)}
+    sk_OSSL_CRMF_CERTID_set_cmp_func := @LEGACY_OPENSSL_sk_set_cmp_func;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set_cmp_func');
+    {$ifend}
   Result := sk_OSSL_CRMF_CERTID_set_cmp_func(st, cmp);
 end;
 
@@ -1552,7 +1841,11 @@ function Load_OSSL_CRMF_PKIPUBLICATIONINFO_new: POSSL_CRMF_PKIPUBLICATIONINFO; c
 begin
   OSSL_CRMF_PKIPUBLICATIONINFO_new := LoadLibCryptoFunction('OSSL_CRMF_PKIPUBLICATIONINFO_new');
   if not assigned(OSSL_CRMF_PKIPUBLICATIONINFO_new) then
+    {$if declared(LEGACY_OSSL_CRMF_PKIPUBLICATIONINFO_new)}
+    OSSL_CRMF_PKIPUBLICATIONINFO_new := @LEGACY_OSSL_CRMF_PKIPUBLICATIONINFO_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_PKIPUBLICATIONINFO_new');
+    {$ifend}
   Result := OSSL_CRMF_PKIPUBLICATIONINFO_new;
 end;
 
@@ -1560,7 +1853,11 @@ procedure Load_OSSL_CRMF_PKIPUBLICATIONINFO_free(a: POSSL_CRMF_PKIPUBLICATIONINF
 begin
   OSSL_CRMF_PKIPUBLICATIONINFO_free := LoadLibCryptoFunction('OSSL_CRMF_PKIPUBLICATIONINFO_free');
   if not assigned(OSSL_CRMF_PKIPUBLICATIONINFO_free) then
+    {$if declared(LEGACY_OSSL_CRMF_PKIPUBLICATIONINFO_free)}
+    OSSL_CRMF_PKIPUBLICATIONINFO_free := @LEGACY_OSSL_CRMF_PKIPUBLICATIONINFO_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_PKIPUBLICATIONINFO_free');
+    {$ifend}
   OSSL_CRMF_PKIPUBLICATIONINFO_free(a);
 end;
 
@@ -1568,7 +1865,11 @@ function Load_d2i_OSSL_CRMF_PKIPUBLICATIONINFO(a: PPOSSL_CRMF_PKIPUBLICATIONINFO
 begin
   d2i_OSSL_CRMF_PKIPUBLICATIONINFO := LoadLibCryptoFunction('d2i_OSSL_CRMF_PKIPUBLICATIONINFO');
   if not assigned(d2i_OSSL_CRMF_PKIPUBLICATIONINFO) then
+    {$if declared(LEGACY_d2i_OSSL_CRMF_PKIPUBLICATIONINFO)}
+    d2i_OSSL_CRMF_PKIPUBLICATIONINFO := @LEGACY_d2i_OSSL_CRMF_PKIPUBLICATIONINFO;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_OSSL_CRMF_PKIPUBLICATIONINFO');
+    {$ifend}
   Result := d2i_OSSL_CRMF_PKIPUBLICATIONINFO(a, in_, len);
 end;
 
@@ -1576,7 +1877,11 @@ function Load_i2d_OSSL_CRMF_PKIPUBLICATIONINFO(a: POSSL_CRMF_PKIPUBLICATIONINFO;
 begin
   i2d_OSSL_CRMF_PKIPUBLICATIONINFO := LoadLibCryptoFunction('i2d_OSSL_CRMF_PKIPUBLICATIONINFO');
   if not assigned(i2d_OSSL_CRMF_PKIPUBLICATIONINFO) then
+    {$if declared(LEGACY_i2d_OSSL_CRMF_PKIPUBLICATIONINFO)}
+    i2d_OSSL_CRMF_PKIPUBLICATIONINFO := @LEGACY_i2d_OSSL_CRMF_PKIPUBLICATIONINFO;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_OSSL_CRMF_PKIPUBLICATIONINFO');
+    {$ifend}
   Result := i2d_OSSL_CRMF_PKIPUBLICATIONINFO(a, out_);
 end;
 
@@ -1584,7 +1889,11 @@ function Load_OSSL_CRMF_PKIPUBLICATIONINFO_it: PASN1_ITEM; cdecl;
 begin
   OSSL_CRMF_PKIPUBLICATIONINFO_it := LoadLibCryptoFunction('OSSL_CRMF_PKIPUBLICATIONINFO_it');
   if not assigned(OSSL_CRMF_PKIPUBLICATIONINFO_it) then
+    {$if declared(LEGACY_OSSL_CRMF_PKIPUBLICATIONINFO_it)}
+    OSSL_CRMF_PKIPUBLICATIONINFO_it := @LEGACY_OSSL_CRMF_PKIPUBLICATIONINFO_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_PKIPUBLICATIONINFO_it');
+    {$ifend}
   Result := OSSL_CRMF_PKIPUBLICATIONINFO_it;
 end;
 
@@ -1592,7 +1901,11 @@ function Load_OSSL_CRMF_SINGLEPUBINFO_new: POSSL_CRMF_SINGLEPUBINFO; cdecl;
 begin
   OSSL_CRMF_SINGLEPUBINFO_new := LoadLibCryptoFunction('OSSL_CRMF_SINGLEPUBINFO_new');
   if not assigned(OSSL_CRMF_SINGLEPUBINFO_new) then
+    {$if declared(LEGACY_OSSL_CRMF_SINGLEPUBINFO_new)}
+    OSSL_CRMF_SINGLEPUBINFO_new := @LEGACY_OSSL_CRMF_SINGLEPUBINFO_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_SINGLEPUBINFO_new');
+    {$ifend}
   Result := OSSL_CRMF_SINGLEPUBINFO_new;
 end;
 
@@ -1600,7 +1913,11 @@ procedure Load_OSSL_CRMF_SINGLEPUBINFO_free(a: POSSL_CRMF_SINGLEPUBINFO); cdecl;
 begin
   OSSL_CRMF_SINGLEPUBINFO_free := LoadLibCryptoFunction('OSSL_CRMF_SINGLEPUBINFO_free');
   if not assigned(OSSL_CRMF_SINGLEPUBINFO_free) then
+    {$if declared(LEGACY_OSSL_CRMF_SINGLEPUBINFO_free)}
+    OSSL_CRMF_SINGLEPUBINFO_free := @LEGACY_OSSL_CRMF_SINGLEPUBINFO_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_SINGLEPUBINFO_free');
+    {$ifend}
   OSSL_CRMF_SINGLEPUBINFO_free(a);
 end;
 
@@ -1608,7 +1925,11 @@ function Load_d2i_OSSL_CRMF_SINGLEPUBINFO(a: PPOSSL_CRMF_SINGLEPUBINFO; in_: PPb
 begin
   d2i_OSSL_CRMF_SINGLEPUBINFO := LoadLibCryptoFunction('d2i_OSSL_CRMF_SINGLEPUBINFO');
   if not assigned(d2i_OSSL_CRMF_SINGLEPUBINFO) then
+    {$if declared(LEGACY_d2i_OSSL_CRMF_SINGLEPUBINFO)}
+    d2i_OSSL_CRMF_SINGLEPUBINFO := @LEGACY_d2i_OSSL_CRMF_SINGLEPUBINFO;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_OSSL_CRMF_SINGLEPUBINFO');
+    {$ifend}
   Result := d2i_OSSL_CRMF_SINGLEPUBINFO(a, in_, len);
 end;
 
@@ -1616,7 +1937,11 @@ function Load_i2d_OSSL_CRMF_SINGLEPUBINFO(a: POSSL_CRMF_SINGLEPUBINFO; out_: PPb
 begin
   i2d_OSSL_CRMF_SINGLEPUBINFO := LoadLibCryptoFunction('i2d_OSSL_CRMF_SINGLEPUBINFO');
   if not assigned(i2d_OSSL_CRMF_SINGLEPUBINFO) then
+    {$if declared(LEGACY_i2d_OSSL_CRMF_SINGLEPUBINFO)}
+    i2d_OSSL_CRMF_SINGLEPUBINFO := @LEGACY_i2d_OSSL_CRMF_SINGLEPUBINFO;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_OSSL_CRMF_SINGLEPUBINFO');
+    {$ifend}
   Result := i2d_OSSL_CRMF_SINGLEPUBINFO(a, out_);
 end;
 
@@ -1624,7 +1949,11 @@ function Load_OSSL_CRMF_SINGLEPUBINFO_it: PASN1_ITEM; cdecl;
 begin
   OSSL_CRMF_SINGLEPUBINFO_it := LoadLibCryptoFunction('OSSL_CRMF_SINGLEPUBINFO_it');
   if not assigned(OSSL_CRMF_SINGLEPUBINFO_it) then
+    {$if declared(LEGACY_OSSL_CRMF_SINGLEPUBINFO_it)}
+    OSSL_CRMF_SINGLEPUBINFO_it := @LEGACY_OSSL_CRMF_SINGLEPUBINFO_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_SINGLEPUBINFO_it');
+    {$ifend}
   Result := OSSL_CRMF_SINGLEPUBINFO_it;
 end;
 
@@ -1632,7 +1961,11 @@ function Load_OSSL_CRMF_CERTTEMPLATE_new: POSSL_CRMF_CERTTEMPLATE; cdecl;
 begin
   OSSL_CRMF_CERTTEMPLATE_new := LoadLibCryptoFunction('OSSL_CRMF_CERTTEMPLATE_new');
   if not assigned(OSSL_CRMF_CERTTEMPLATE_new) then
+    {$if declared(LEGACY_OSSL_CRMF_CERTTEMPLATE_new)}
+    OSSL_CRMF_CERTTEMPLATE_new := @LEGACY_OSSL_CRMF_CERTTEMPLATE_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_CERTTEMPLATE_new');
+    {$ifend}
   Result := OSSL_CRMF_CERTTEMPLATE_new;
 end;
 
@@ -1640,7 +1973,11 @@ procedure Load_OSSL_CRMF_CERTTEMPLATE_free(a: POSSL_CRMF_CERTTEMPLATE); cdecl;
 begin
   OSSL_CRMF_CERTTEMPLATE_free := LoadLibCryptoFunction('OSSL_CRMF_CERTTEMPLATE_free');
   if not assigned(OSSL_CRMF_CERTTEMPLATE_free) then
+    {$if declared(LEGACY_OSSL_CRMF_CERTTEMPLATE_free)}
+    OSSL_CRMF_CERTTEMPLATE_free := @LEGACY_OSSL_CRMF_CERTTEMPLATE_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_CERTTEMPLATE_free');
+    {$ifend}
   OSSL_CRMF_CERTTEMPLATE_free(a);
 end;
 
@@ -1648,7 +1985,11 @@ function Load_d2i_OSSL_CRMF_CERTTEMPLATE(a: PPOSSL_CRMF_CERTTEMPLATE; in_: PPbyt
 begin
   d2i_OSSL_CRMF_CERTTEMPLATE := LoadLibCryptoFunction('d2i_OSSL_CRMF_CERTTEMPLATE');
   if not assigned(d2i_OSSL_CRMF_CERTTEMPLATE) then
+    {$if declared(LEGACY_d2i_OSSL_CRMF_CERTTEMPLATE)}
+    d2i_OSSL_CRMF_CERTTEMPLATE := @LEGACY_d2i_OSSL_CRMF_CERTTEMPLATE;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_OSSL_CRMF_CERTTEMPLATE');
+    {$ifend}
   Result := d2i_OSSL_CRMF_CERTTEMPLATE(a, in_, len);
 end;
 
@@ -1656,7 +1997,11 @@ function Load_i2d_OSSL_CRMF_CERTTEMPLATE(a: POSSL_CRMF_CERTTEMPLATE; out_: PPbyt
 begin
   i2d_OSSL_CRMF_CERTTEMPLATE := LoadLibCryptoFunction('i2d_OSSL_CRMF_CERTTEMPLATE');
   if not assigned(i2d_OSSL_CRMF_CERTTEMPLATE) then
+    {$if declared(LEGACY_i2d_OSSL_CRMF_CERTTEMPLATE)}
+    i2d_OSSL_CRMF_CERTTEMPLATE := @LEGACY_i2d_OSSL_CRMF_CERTTEMPLATE;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_OSSL_CRMF_CERTTEMPLATE');
+    {$ifend}
   Result := i2d_OSSL_CRMF_CERTTEMPLATE(a, out_);
 end;
 
@@ -1664,7 +2009,11 @@ function Load_OSSL_CRMF_CERTTEMPLATE_it: PASN1_ITEM; cdecl;
 begin
   OSSL_CRMF_CERTTEMPLATE_it := LoadLibCryptoFunction('OSSL_CRMF_CERTTEMPLATE_it');
   if not assigned(OSSL_CRMF_CERTTEMPLATE_it) then
+    {$if declared(LEGACY_OSSL_CRMF_CERTTEMPLATE_it)}
+    OSSL_CRMF_CERTTEMPLATE_it := @LEGACY_OSSL_CRMF_CERTTEMPLATE_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_CERTTEMPLATE_it');
+    {$ifend}
   Result := OSSL_CRMF_CERTTEMPLATE_it;
 end;
 
@@ -1672,7 +2021,11 @@ function Load_OSSL_CRMF_MSGS_new: POSSL_CRMF_MSGS; cdecl;
 begin
   OSSL_CRMF_MSGS_new := LoadLibCryptoFunction('OSSL_CRMF_MSGS_new');
   if not assigned(OSSL_CRMF_MSGS_new) then
+    {$if declared(LEGACY_OSSL_CRMF_MSGS_new)}
+    OSSL_CRMF_MSGS_new := @LEGACY_OSSL_CRMF_MSGS_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_MSGS_new');
+    {$ifend}
   Result := OSSL_CRMF_MSGS_new;
 end;
 
@@ -1680,7 +2033,11 @@ procedure Load_OSSL_CRMF_MSGS_free(a: POSSL_CRMF_MSGS); cdecl;
 begin
   OSSL_CRMF_MSGS_free := LoadLibCryptoFunction('OSSL_CRMF_MSGS_free');
   if not assigned(OSSL_CRMF_MSGS_free) then
+    {$if declared(LEGACY_OSSL_CRMF_MSGS_free)}
+    OSSL_CRMF_MSGS_free := @LEGACY_OSSL_CRMF_MSGS_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_MSGS_free');
+    {$ifend}
   OSSL_CRMF_MSGS_free(a);
 end;
 
@@ -1688,7 +2045,11 @@ function Load_d2i_OSSL_CRMF_MSGS(a: PPOSSL_CRMF_MSGS; in_: PPbyte; len: TOpenSSL
 begin
   d2i_OSSL_CRMF_MSGS := LoadLibCryptoFunction('d2i_OSSL_CRMF_MSGS');
   if not assigned(d2i_OSSL_CRMF_MSGS) then
+    {$if declared(LEGACY_d2i_OSSL_CRMF_MSGS)}
+    d2i_OSSL_CRMF_MSGS := @LEGACY_d2i_OSSL_CRMF_MSGS;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_OSSL_CRMF_MSGS');
+    {$ifend}
   Result := d2i_OSSL_CRMF_MSGS(a, in_, len);
 end;
 
@@ -1696,7 +2057,11 @@ function Load_i2d_OSSL_CRMF_MSGS(a: POSSL_CRMF_MSGS; out_: PPbyte): TOpenSSL_C_I
 begin
   i2d_OSSL_CRMF_MSGS := LoadLibCryptoFunction('i2d_OSSL_CRMF_MSGS');
   if not assigned(i2d_OSSL_CRMF_MSGS) then
+    {$if declared(LEGACY_i2d_OSSL_CRMF_MSGS)}
+    i2d_OSSL_CRMF_MSGS := @LEGACY_i2d_OSSL_CRMF_MSGS;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_OSSL_CRMF_MSGS');
+    {$ifend}
   Result := i2d_OSSL_CRMF_MSGS(a, out_);
 end;
 
@@ -1704,7 +2069,11 @@ function Load_OSSL_CRMF_MSGS_it: PASN1_ITEM; cdecl;
 begin
   OSSL_CRMF_MSGS_it := LoadLibCryptoFunction('OSSL_CRMF_MSGS_it');
   if not assigned(OSSL_CRMF_MSGS_it) then
+    {$if declared(LEGACY_OSSL_CRMF_MSGS_it)}
+    OSSL_CRMF_MSGS_it := @LEGACY_OSSL_CRMF_MSGS_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_MSGS_it');
+    {$ifend}
   Result := OSSL_CRMF_MSGS_it;
 end;
 
@@ -1712,7 +2081,11 @@ function Load_OSSL_CRMF_pbmp_new(libctx: POSSL_LIB_CTX; slen: TOpenSSL_C_SIZET; 
 begin
   OSSL_CRMF_pbmp_new := LoadLibCryptoFunction('OSSL_CRMF_pbmp_new');
   if not assigned(OSSL_CRMF_pbmp_new) then
+    {$if declared(LEGACY_OSSL_CRMF_pbmp_new)}
+    OSSL_CRMF_pbmp_new := @LEGACY_OSSL_CRMF_pbmp_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_pbmp_new');
+    {$ifend}
   Result := OSSL_CRMF_pbmp_new(libctx, slen, owfnid, itercnt, macnid);
 end;
 
@@ -1720,7 +2093,11 @@ function Load_OSSL_CRMF_pbm_new(libctx: POSSL_LIB_CTX; propq: PAnsiChar; pbmp: P
 begin
   OSSL_CRMF_pbm_new := LoadLibCryptoFunction('OSSL_CRMF_pbm_new');
   if not assigned(OSSL_CRMF_pbm_new) then
+    {$if declared(LEGACY_OSSL_CRMF_pbm_new)}
+    OSSL_CRMF_pbm_new := @LEGACY_OSSL_CRMF_pbm_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_pbm_new');
+    {$ifend}
   Result := OSSL_CRMF_pbm_new(libctx, propq, pbmp, msg, msglen, sec, seclen, mac, maclen);
 end;
 
@@ -1728,7 +2105,11 @@ function Load_OSSL_CRMF_MSG_set1_regCtrl_regToken(msg: POSSL_CRMF_MSG; tok: PASN
 begin
   OSSL_CRMF_MSG_set1_regCtrl_regToken := LoadLibCryptoFunction('OSSL_CRMF_MSG_set1_regCtrl_regToken');
   if not assigned(OSSL_CRMF_MSG_set1_regCtrl_regToken) then
+    {$if declared(LEGACY_OSSL_CRMF_MSG_set1_regCtrl_regToken)}
+    OSSL_CRMF_MSG_set1_regCtrl_regToken := @LEGACY_OSSL_CRMF_MSG_set1_regCtrl_regToken;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_MSG_set1_regCtrl_regToken');
+    {$ifend}
   Result := OSSL_CRMF_MSG_set1_regCtrl_regToken(msg, tok);
 end;
 
@@ -1736,7 +2117,11 @@ function Load_OSSL_CRMF_MSG_get0_regCtrl_regToken(msg: POSSL_CRMF_MSG): PASN1_UT
 begin
   OSSL_CRMF_MSG_get0_regCtrl_regToken := LoadLibCryptoFunction('OSSL_CRMF_MSG_get0_regCtrl_regToken');
   if not assigned(OSSL_CRMF_MSG_get0_regCtrl_regToken) then
+    {$if declared(LEGACY_OSSL_CRMF_MSG_get0_regCtrl_regToken)}
+    OSSL_CRMF_MSG_get0_regCtrl_regToken := @LEGACY_OSSL_CRMF_MSG_get0_regCtrl_regToken;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_MSG_get0_regCtrl_regToken');
+    {$ifend}
   Result := OSSL_CRMF_MSG_get0_regCtrl_regToken(msg);
 end;
 
@@ -1744,7 +2129,11 @@ function Load_OSSL_CRMF_MSG_set1_regCtrl_authenticator(msg: POSSL_CRMF_MSG; auth
 begin
   OSSL_CRMF_MSG_set1_regCtrl_authenticator := LoadLibCryptoFunction('OSSL_CRMF_MSG_set1_regCtrl_authenticator');
   if not assigned(OSSL_CRMF_MSG_set1_regCtrl_authenticator) then
+    {$if declared(LEGACY_OSSL_CRMF_MSG_set1_regCtrl_authenticator)}
+    OSSL_CRMF_MSG_set1_regCtrl_authenticator := @LEGACY_OSSL_CRMF_MSG_set1_regCtrl_authenticator;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_MSG_set1_regCtrl_authenticator');
+    {$ifend}
   Result := OSSL_CRMF_MSG_set1_regCtrl_authenticator(msg, auth);
 end;
 
@@ -1752,7 +2141,11 @@ function Load_OSSL_CRMF_MSG_get0_regCtrl_authenticator(msg: POSSL_CRMF_MSG): PAS
 begin
   OSSL_CRMF_MSG_get0_regCtrl_authenticator := LoadLibCryptoFunction('OSSL_CRMF_MSG_get0_regCtrl_authenticator');
   if not assigned(OSSL_CRMF_MSG_get0_regCtrl_authenticator) then
+    {$if declared(LEGACY_OSSL_CRMF_MSG_get0_regCtrl_authenticator)}
+    OSSL_CRMF_MSG_get0_regCtrl_authenticator := @LEGACY_OSSL_CRMF_MSG_get0_regCtrl_authenticator;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_MSG_get0_regCtrl_authenticator');
+    {$ifend}
   Result := OSSL_CRMF_MSG_get0_regCtrl_authenticator(msg);
 end;
 
@@ -1760,7 +2153,11 @@ function Load_OSSL_CRMF_MSG_PKIPublicationInfo_push0_SinglePubInfo(pi: POSSL_CRM
 begin
   OSSL_CRMF_MSG_PKIPublicationInfo_push0_SinglePubInfo := LoadLibCryptoFunction('OSSL_CRMF_MSG_PKIPublicationInfo_push0_SinglePubInfo');
   if not assigned(OSSL_CRMF_MSG_PKIPublicationInfo_push0_SinglePubInfo) then
+    {$if declared(LEGACY_OSSL_CRMF_MSG_PKIPublicationInfo_push0_SinglePubInfo)}
+    OSSL_CRMF_MSG_PKIPublicationInfo_push0_SinglePubInfo := @LEGACY_OSSL_CRMF_MSG_PKIPublicationInfo_push0_SinglePubInfo;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_MSG_PKIPublicationInfo_push0_SinglePubInfo');
+    {$ifend}
   Result := OSSL_CRMF_MSG_PKIPublicationInfo_push0_SinglePubInfo(pi, spi);
 end;
 
@@ -1768,7 +2165,11 @@ function Load_OSSL_CRMF_MSG_set0_SinglePubInfo(spi: POSSL_CRMF_SINGLEPUBINFO; me
 begin
   OSSL_CRMF_MSG_set0_SinglePubInfo := LoadLibCryptoFunction('OSSL_CRMF_MSG_set0_SinglePubInfo');
   if not assigned(OSSL_CRMF_MSG_set0_SinglePubInfo) then
+    {$if declared(LEGACY_OSSL_CRMF_MSG_set0_SinglePubInfo)}
+    OSSL_CRMF_MSG_set0_SinglePubInfo := @LEGACY_OSSL_CRMF_MSG_set0_SinglePubInfo;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_MSG_set0_SinglePubInfo');
+    {$ifend}
   Result := OSSL_CRMF_MSG_set0_SinglePubInfo(spi, method, nm);
 end;
 
@@ -1776,7 +2177,11 @@ function Load_OSSL_CRMF_MSG_set_PKIPublicationInfo_action(pi: POSSL_CRMF_PKIPUBL
 begin
   OSSL_CRMF_MSG_set_PKIPublicationInfo_action := LoadLibCryptoFunction('OSSL_CRMF_MSG_set_PKIPublicationInfo_action');
   if not assigned(OSSL_CRMF_MSG_set_PKIPublicationInfo_action) then
+    {$if declared(LEGACY_OSSL_CRMF_MSG_set_PKIPublicationInfo_action)}
+    OSSL_CRMF_MSG_set_PKIPublicationInfo_action := @LEGACY_OSSL_CRMF_MSG_set_PKIPublicationInfo_action;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_MSG_set_PKIPublicationInfo_action');
+    {$ifend}
   Result := OSSL_CRMF_MSG_set_PKIPublicationInfo_action(pi, action);
 end;
 
@@ -1784,7 +2189,11 @@ function Load_OSSL_CRMF_MSG_set1_regCtrl_pkiPublicationInfo(msg: POSSL_CRMF_MSG;
 begin
   OSSL_CRMF_MSG_set1_regCtrl_pkiPublicationInfo := LoadLibCryptoFunction('OSSL_CRMF_MSG_set1_regCtrl_pkiPublicationInfo');
   if not assigned(OSSL_CRMF_MSG_set1_regCtrl_pkiPublicationInfo) then
+    {$if declared(LEGACY_OSSL_CRMF_MSG_set1_regCtrl_pkiPublicationInfo)}
+    OSSL_CRMF_MSG_set1_regCtrl_pkiPublicationInfo := @LEGACY_OSSL_CRMF_MSG_set1_regCtrl_pkiPublicationInfo;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_MSG_set1_regCtrl_pkiPublicationInfo');
+    {$ifend}
   Result := OSSL_CRMF_MSG_set1_regCtrl_pkiPublicationInfo(msg, pi);
 end;
 
@@ -1792,7 +2201,11 @@ function Load_OSSL_CRMF_MSG_get0_regCtrl_pkiPublicationInfo(msg: POSSL_CRMF_MSG)
 begin
   OSSL_CRMF_MSG_get0_regCtrl_pkiPublicationInfo := LoadLibCryptoFunction('OSSL_CRMF_MSG_get0_regCtrl_pkiPublicationInfo');
   if not assigned(OSSL_CRMF_MSG_get0_regCtrl_pkiPublicationInfo) then
+    {$if declared(LEGACY_OSSL_CRMF_MSG_get0_regCtrl_pkiPublicationInfo)}
+    OSSL_CRMF_MSG_get0_regCtrl_pkiPublicationInfo := @LEGACY_OSSL_CRMF_MSG_get0_regCtrl_pkiPublicationInfo;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_MSG_get0_regCtrl_pkiPublicationInfo');
+    {$ifend}
   Result := OSSL_CRMF_MSG_get0_regCtrl_pkiPublicationInfo(msg);
 end;
 
@@ -1800,7 +2213,11 @@ function Load_OSSL_CRMF_MSG_set1_regCtrl_protocolEncrKey(msg: POSSL_CRMF_MSG; pu
 begin
   OSSL_CRMF_MSG_set1_regCtrl_protocolEncrKey := LoadLibCryptoFunction('OSSL_CRMF_MSG_set1_regCtrl_protocolEncrKey');
   if not assigned(OSSL_CRMF_MSG_set1_regCtrl_protocolEncrKey) then
+    {$if declared(LEGACY_OSSL_CRMF_MSG_set1_regCtrl_protocolEncrKey)}
+    OSSL_CRMF_MSG_set1_regCtrl_protocolEncrKey := @LEGACY_OSSL_CRMF_MSG_set1_regCtrl_protocolEncrKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_MSG_set1_regCtrl_protocolEncrKey');
+    {$ifend}
   Result := OSSL_CRMF_MSG_set1_regCtrl_protocolEncrKey(msg, pubkey);
 end;
 
@@ -1808,7 +2225,11 @@ function Load_OSSL_CRMF_MSG_get0_regCtrl_protocolEncrKey(msg: POSSL_CRMF_MSG): P
 begin
   OSSL_CRMF_MSG_get0_regCtrl_protocolEncrKey := LoadLibCryptoFunction('OSSL_CRMF_MSG_get0_regCtrl_protocolEncrKey');
   if not assigned(OSSL_CRMF_MSG_get0_regCtrl_protocolEncrKey) then
+    {$if declared(LEGACY_OSSL_CRMF_MSG_get0_regCtrl_protocolEncrKey)}
+    OSSL_CRMF_MSG_get0_regCtrl_protocolEncrKey := @LEGACY_OSSL_CRMF_MSG_get0_regCtrl_protocolEncrKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_MSG_get0_regCtrl_protocolEncrKey');
+    {$ifend}
   Result := OSSL_CRMF_MSG_get0_regCtrl_protocolEncrKey(msg);
 end;
 
@@ -1816,7 +2237,11 @@ function Load_OSSL_CRMF_MSG_set1_regCtrl_oldCertID(msg: POSSL_CRMF_MSG; cid: POS
 begin
   OSSL_CRMF_MSG_set1_regCtrl_oldCertID := LoadLibCryptoFunction('OSSL_CRMF_MSG_set1_regCtrl_oldCertID');
   if not assigned(OSSL_CRMF_MSG_set1_regCtrl_oldCertID) then
+    {$if declared(LEGACY_OSSL_CRMF_MSG_set1_regCtrl_oldCertID)}
+    OSSL_CRMF_MSG_set1_regCtrl_oldCertID := @LEGACY_OSSL_CRMF_MSG_set1_regCtrl_oldCertID;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_MSG_set1_regCtrl_oldCertID');
+    {$ifend}
   Result := OSSL_CRMF_MSG_set1_regCtrl_oldCertID(msg, cid);
 end;
 
@@ -1824,7 +2249,11 @@ function Load_OSSL_CRMF_MSG_get0_regCtrl_oldCertID(msg: POSSL_CRMF_MSG): POSSL_C
 begin
   OSSL_CRMF_MSG_get0_regCtrl_oldCertID := LoadLibCryptoFunction('OSSL_CRMF_MSG_get0_regCtrl_oldCertID');
   if not assigned(OSSL_CRMF_MSG_get0_regCtrl_oldCertID) then
+    {$if declared(LEGACY_OSSL_CRMF_MSG_get0_regCtrl_oldCertID)}
+    OSSL_CRMF_MSG_get0_regCtrl_oldCertID := @LEGACY_OSSL_CRMF_MSG_get0_regCtrl_oldCertID;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_MSG_get0_regCtrl_oldCertID');
+    {$ifend}
   Result := OSSL_CRMF_MSG_get0_regCtrl_oldCertID(msg);
 end;
 
@@ -1832,7 +2261,11 @@ function Load_OSSL_CRMF_CERTID_gen(issuer: PX509_NAME; serial: PASN1_INTEGER): P
 begin
   OSSL_CRMF_CERTID_gen := LoadLibCryptoFunction('OSSL_CRMF_CERTID_gen');
   if not assigned(OSSL_CRMF_CERTID_gen) then
+    {$if declared(LEGACY_OSSL_CRMF_CERTID_gen)}
+    OSSL_CRMF_CERTID_gen := @LEGACY_OSSL_CRMF_CERTID_gen;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_CERTID_gen');
+    {$ifend}
   Result := OSSL_CRMF_CERTID_gen(issuer, serial);
 end;
 
@@ -1840,7 +2273,11 @@ function Load_OSSL_CRMF_MSG_set1_regInfo_utf8Pairs(msg: POSSL_CRMF_MSG; utf8pair
 begin
   OSSL_CRMF_MSG_set1_regInfo_utf8Pairs := LoadLibCryptoFunction('OSSL_CRMF_MSG_set1_regInfo_utf8Pairs');
   if not assigned(OSSL_CRMF_MSG_set1_regInfo_utf8Pairs) then
+    {$if declared(LEGACY_OSSL_CRMF_MSG_set1_regInfo_utf8Pairs)}
+    OSSL_CRMF_MSG_set1_regInfo_utf8Pairs := @LEGACY_OSSL_CRMF_MSG_set1_regInfo_utf8Pairs;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_MSG_set1_regInfo_utf8Pairs');
+    {$ifend}
   Result := OSSL_CRMF_MSG_set1_regInfo_utf8Pairs(msg, utf8pairs);
 end;
 
@@ -1848,7 +2285,11 @@ function Load_OSSL_CRMF_MSG_get0_regInfo_utf8Pairs(msg: POSSL_CRMF_MSG): PASN1_U
 begin
   OSSL_CRMF_MSG_get0_regInfo_utf8Pairs := LoadLibCryptoFunction('OSSL_CRMF_MSG_get0_regInfo_utf8Pairs');
   if not assigned(OSSL_CRMF_MSG_get0_regInfo_utf8Pairs) then
+    {$if declared(LEGACY_OSSL_CRMF_MSG_get0_regInfo_utf8Pairs)}
+    OSSL_CRMF_MSG_get0_regInfo_utf8Pairs := @LEGACY_OSSL_CRMF_MSG_get0_regInfo_utf8Pairs;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_MSG_get0_regInfo_utf8Pairs');
+    {$ifend}
   Result := OSSL_CRMF_MSG_get0_regInfo_utf8Pairs(msg);
 end;
 
@@ -1856,7 +2297,11 @@ function Load_OSSL_CRMF_MSG_set1_regInfo_certReq(msg: POSSL_CRMF_MSG; cr: POSSL_
 begin
   OSSL_CRMF_MSG_set1_regInfo_certReq := LoadLibCryptoFunction('OSSL_CRMF_MSG_set1_regInfo_certReq');
   if not assigned(OSSL_CRMF_MSG_set1_regInfo_certReq) then
+    {$if declared(LEGACY_OSSL_CRMF_MSG_set1_regInfo_certReq)}
+    OSSL_CRMF_MSG_set1_regInfo_certReq := @LEGACY_OSSL_CRMF_MSG_set1_regInfo_certReq;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_MSG_set1_regInfo_certReq');
+    {$ifend}
   Result := OSSL_CRMF_MSG_set1_regInfo_certReq(msg, cr);
 end;
 
@@ -1864,7 +2309,11 @@ function Load_OSSL_CRMF_MSG_get0_regInfo_certReq(msg: POSSL_CRMF_MSG): POSSL_CRM
 begin
   OSSL_CRMF_MSG_get0_regInfo_certReq := LoadLibCryptoFunction('OSSL_CRMF_MSG_get0_regInfo_certReq');
   if not assigned(OSSL_CRMF_MSG_get0_regInfo_certReq) then
+    {$if declared(LEGACY_OSSL_CRMF_MSG_get0_regInfo_certReq)}
+    OSSL_CRMF_MSG_get0_regInfo_certReq := @LEGACY_OSSL_CRMF_MSG_get0_regInfo_certReq;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_MSG_get0_regInfo_certReq');
+    {$ifend}
   Result := OSSL_CRMF_MSG_get0_regInfo_certReq(msg);
 end;
 
@@ -1872,7 +2321,11 @@ function Load_OSSL_CRMF_MSG_set0_validity(crm: POSSL_CRMF_MSG; notBefore: PASN1_
 begin
   OSSL_CRMF_MSG_set0_validity := LoadLibCryptoFunction('OSSL_CRMF_MSG_set0_validity');
   if not assigned(OSSL_CRMF_MSG_set0_validity) then
+    {$if declared(LEGACY_OSSL_CRMF_MSG_set0_validity)}
+    OSSL_CRMF_MSG_set0_validity := @LEGACY_OSSL_CRMF_MSG_set0_validity;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_MSG_set0_validity');
+    {$ifend}
   Result := OSSL_CRMF_MSG_set0_validity(crm, notBefore, notAfter);
 end;
 
@@ -1880,7 +2333,11 @@ function Load_OSSL_CRMF_MSG_set_certReqId(crm: POSSL_CRMF_MSG; rid: TOpenSSL_C_I
 begin
   OSSL_CRMF_MSG_set_certReqId := LoadLibCryptoFunction('OSSL_CRMF_MSG_set_certReqId');
   if not assigned(OSSL_CRMF_MSG_set_certReqId) then
+    {$if declared(LEGACY_OSSL_CRMF_MSG_set_certReqId)}
+    OSSL_CRMF_MSG_set_certReqId := @LEGACY_OSSL_CRMF_MSG_set_certReqId;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_MSG_set_certReqId');
+    {$ifend}
   Result := OSSL_CRMF_MSG_set_certReqId(crm, rid);
 end;
 
@@ -1888,7 +2345,11 @@ function Load_OSSL_CRMF_MSG_get_certReqId(crm: POSSL_CRMF_MSG): TOpenSSL_C_INT; 
 begin
   OSSL_CRMF_MSG_get_certReqId := LoadLibCryptoFunction('OSSL_CRMF_MSG_get_certReqId');
   if not assigned(OSSL_CRMF_MSG_get_certReqId) then
+    {$if declared(LEGACY_OSSL_CRMF_MSG_get_certReqId)}
+    OSSL_CRMF_MSG_get_certReqId := @LEGACY_OSSL_CRMF_MSG_get_certReqId;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_MSG_get_certReqId');
+    {$ifend}
   Result := OSSL_CRMF_MSG_get_certReqId(crm);
 end;
 
@@ -1896,7 +2357,11 @@ function Load_OSSL_CRMF_MSG_set0_extensions(crm: POSSL_CRMF_MSG; exts: PX509_EXT
 begin
   OSSL_CRMF_MSG_set0_extensions := LoadLibCryptoFunction('OSSL_CRMF_MSG_set0_extensions');
   if not assigned(OSSL_CRMF_MSG_set0_extensions) then
+    {$if declared(LEGACY_OSSL_CRMF_MSG_set0_extensions)}
+    OSSL_CRMF_MSG_set0_extensions := @LEGACY_OSSL_CRMF_MSG_set0_extensions;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_MSG_set0_extensions');
+    {$ifend}
   Result := OSSL_CRMF_MSG_set0_extensions(crm, exts);
 end;
 
@@ -1904,7 +2369,11 @@ function Load_OSSL_CRMF_MSG_push0_extension(crm: POSSL_CRMF_MSG; ext: PX509_EXTE
 begin
   OSSL_CRMF_MSG_push0_extension := LoadLibCryptoFunction('OSSL_CRMF_MSG_push0_extension');
   if not assigned(OSSL_CRMF_MSG_push0_extension) then
+    {$if declared(LEGACY_OSSL_CRMF_MSG_push0_extension)}
+    OSSL_CRMF_MSG_push0_extension := @LEGACY_OSSL_CRMF_MSG_push0_extension;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_MSG_push0_extension');
+    {$ifend}
   Result := OSSL_CRMF_MSG_push0_extension(crm, ext);
 end;
 
@@ -1912,7 +2381,11 @@ function Load_OSSL_CRMF_MSG_create_popo(meth: TOpenSSL_C_INT; crm: POSSL_CRMF_MS
 begin
   OSSL_CRMF_MSG_create_popo := LoadLibCryptoFunction('OSSL_CRMF_MSG_create_popo');
   if not assigned(OSSL_CRMF_MSG_create_popo) then
+    {$if declared(LEGACY_OSSL_CRMF_MSG_create_popo)}
+    OSSL_CRMF_MSG_create_popo := @LEGACY_OSSL_CRMF_MSG_create_popo;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_MSG_create_popo');
+    {$ifend}
   Result := OSSL_CRMF_MSG_create_popo(meth, crm, pkey, digest, libctx, propq);
 end;
 
@@ -1920,7 +2393,11 @@ function Load_OSSL_CRMF_MSGS_verify_popo(reqs: POSSL_CRMF_MSGS; rid: TOpenSSL_C_
 begin
   OSSL_CRMF_MSGS_verify_popo := LoadLibCryptoFunction('OSSL_CRMF_MSGS_verify_popo');
   if not assigned(OSSL_CRMF_MSGS_verify_popo) then
+    {$if declared(LEGACY_OSSL_CRMF_MSGS_verify_popo)}
+    OSSL_CRMF_MSGS_verify_popo := @LEGACY_OSSL_CRMF_MSGS_verify_popo;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_MSGS_verify_popo');
+    {$ifend}
   Result := OSSL_CRMF_MSGS_verify_popo(reqs, rid, acceptRAVerified, libctx, propq);
 end;
 
@@ -1928,7 +2405,11 @@ function Load_OSSL_CRMF_MSG_get0_tmpl(crm: POSSL_CRMF_MSG): POSSL_CRMF_CERTTEMPL
 begin
   OSSL_CRMF_MSG_get0_tmpl := LoadLibCryptoFunction('OSSL_CRMF_MSG_get0_tmpl');
   if not assigned(OSSL_CRMF_MSG_get0_tmpl) then
+    {$if declared(LEGACY_OSSL_CRMF_MSG_get0_tmpl)}
+    OSSL_CRMF_MSG_get0_tmpl := @LEGACY_OSSL_CRMF_MSG_get0_tmpl;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_MSG_get0_tmpl');
+    {$ifend}
   Result := OSSL_CRMF_MSG_get0_tmpl(crm);
 end;
 
@@ -1936,7 +2417,11 @@ function Load_OSSL_CRMF_CERTTEMPLATE_get0_serialNumber(tmpl: POSSL_CRMF_CERTTEMP
 begin
   OSSL_CRMF_CERTTEMPLATE_get0_serialNumber := LoadLibCryptoFunction('OSSL_CRMF_CERTTEMPLATE_get0_serialNumber');
   if not assigned(OSSL_CRMF_CERTTEMPLATE_get0_serialNumber) then
+    {$if declared(LEGACY_OSSL_CRMF_CERTTEMPLATE_get0_serialNumber)}
+    OSSL_CRMF_CERTTEMPLATE_get0_serialNumber := @LEGACY_OSSL_CRMF_CERTTEMPLATE_get0_serialNumber;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_CERTTEMPLATE_get0_serialNumber');
+    {$ifend}
   Result := OSSL_CRMF_CERTTEMPLATE_get0_serialNumber(tmpl);
 end;
 
@@ -1944,7 +2429,11 @@ function Load_OSSL_CRMF_CERTTEMPLATE_get0_subject(tmpl: POSSL_CRMF_CERTTEMPLATE)
 begin
   OSSL_CRMF_CERTTEMPLATE_get0_subject := LoadLibCryptoFunction('OSSL_CRMF_CERTTEMPLATE_get0_subject');
   if not assigned(OSSL_CRMF_CERTTEMPLATE_get0_subject) then
+    {$if declared(LEGACY_OSSL_CRMF_CERTTEMPLATE_get0_subject)}
+    OSSL_CRMF_CERTTEMPLATE_get0_subject := @LEGACY_OSSL_CRMF_CERTTEMPLATE_get0_subject;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_CERTTEMPLATE_get0_subject');
+    {$ifend}
   Result := OSSL_CRMF_CERTTEMPLATE_get0_subject(tmpl);
 end;
 
@@ -1952,7 +2441,11 @@ function Load_OSSL_CRMF_CERTTEMPLATE_get0_issuer(tmpl: POSSL_CRMF_CERTTEMPLATE):
 begin
   OSSL_CRMF_CERTTEMPLATE_get0_issuer := LoadLibCryptoFunction('OSSL_CRMF_CERTTEMPLATE_get0_issuer');
   if not assigned(OSSL_CRMF_CERTTEMPLATE_get0_issuer) then
+    {$if declared(LEGACY_OSSL_CRMF_CERTTEMPLATE_get0_issuer)}
+    OSSL_CRMF_CERTTEMPLATE_get0_issuer := @LEGACY_OSSL_CRMF_CERTTEMPLATE_get0_issuer;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_CERTTEMPLATE_get0_issuer');
+    {$ifend}
   Result := OSSL_CRMF_CERTTEMPLATE_get0_issuer(tmpl);
 end;
 
@@ -1960,7 +2453,11 @@ function Load_OSSL_CRMF_CERTTEMPLATE_get0_extensions(tmpl: POSSL_CRMF_CERTTEMPLA
 begin
   OSSL_CRMF_CERTTEMPLATE_get0_extensions := LoadLibCryptoFunction('OSSL_CRMF_CERTTEMPLATE_get0_extensions');
   if not assigned(OSSL_CRMF_CERTTEMPLATE_get0_extensions) then
+    {$if declared(LEGACY_OSSL_CRMF_CERTTEMPLATE_get0_extensions)}
+    OSSL_CRMF_CERTTEMPLATE_get0_extensions := @LEGACY_OSSL_CRMF_CERTTEMPLATE_get0_extensions;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_CERTTEMPLATE_get0_extensions');
+    {$ifend}
   Result := OSSL_CRMF_CERTTEMPLATE_get0_extensions(tmpl);
 end;
 
@@ -1968,7 +2465,11 @@ function Load_OSSL_CRMF_CERTID_get0_issuer(cid: POSSL_CRMF_CERTID): PX509_NAME; 
 begin
   OSSL_CRMF_CERTID_get0_issuer := LoadLibCryptoFunction('OSSL_CRMF_CERTID_get0_issuer');
   if not assigned(OSSL_CRMF_CERTID_get0_issuer) then
+    {$if declared(LEGACY_OSSL_CRMF_CERTID_get0_issuer)}
+    OSSL_CRMF_CERTID_get0_issuer := @LEGACY_OSSL_CRMF_CERTID_get0_issuer;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_CERTID_get0_issuer');
+    {$ifend}
   Result := OSSL_CRMF_CERTID_get0_issuer(cid);
 end;
 
@@ -1976,7 +2477,11 @@ function Load_OSSL_CRMF_CERTID_get0_serialNumber(cid: POSSL_CRMF_CERTID): PASN1_
 begin
   OSSL_CRMF_CERTID_get0_serialNumber := LoadLibCryptoFunction('OSSL_CRMF_CERTID_get0_serialNumber');
   if not assigned(OSSL_CRMF_CERTID_get0_serialNumber) then
+    {$if declared(LEGACY_OSSL_CRMF_CERTID_get0_serialNumber)}
+    OSSL_CRMF_CERTID_get0_serialNumber := @LEGACY_OSSL_CRMF_CERTID_get0_serialNumber;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_CERTID_get0_serialNumber');
+    {$ifend}
   Result := OSSL_CRMF_CERTID_get0_serialNumber(cid);
 end;
 
@@ -1984,7 +2489,11 @@ function Load_OSSL_CRMF_CERTTEMPLATE_fill(tmpl: POSSL_CRMF_CERTTEMPLATE; pubkey:
 begin
   OSSL_CRMF_CERTTEMPLATE_fill := LoadLibCryptoFunction('OSSL_CRMF_CERTTEMPLATE_fill');
   if not assigned(OSSL_CRMF_CERTTEMPLATE_fill) then
+    {$if declared(LEGACY_OSSL_CRMF_CERTTEMPLATE_fill)}
+    OSSL_CRMF_CERTTEMPLATE_fill := @LEGACY_OSSL_CRMF_CERTTEMPLATE_fill;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_CERTTEMPLATE_fill');
+    {$ifend}
   Result := OSSL_CRMF_CERTTEMPLATE_fill(tmpl, pubkey, subject, issuer, serial);
 end;
 
@@ -1992,7 +2501,11 @@ function Load_OSSL_CRMF_ENCRYPTEDVALUE_get1_encCert(ecert: POSSL_CRMF_ENCRYPTEDV
 begin
   OSSL_CRMF_ENCRYPTEDVALUE_get1_encCert := LoadLibCryptoFunction('OSSL_CRMF_ENCRYPTEDVALUE_get1_encCert');
   if not assigned(OSSL_CRMF_ENCRYPTEDVALUE_get1_encCert) then
+    {$if declared(LEGACY_OSSL_CRMF_ENCRYPTEDVALUE_get1_encCert)}
+    OSSL_CRMF_ENCRYPTEDVALUE_get1_encCert := @LEGACY_OSSL_CRMF_ENCRYPTEDVALUE_get1_encCert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CRMF_ENCRYPTEDVALUE_get1_encCert');
+    {$ifend}
   Result := OSSL_CRMF_ENCRYPTEDVALUE_get1_encCert(ecert, libctx, propq, pkey);
 end;
 

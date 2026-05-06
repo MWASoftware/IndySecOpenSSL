@@ -18,7 +18,8 @@
 unit openssl_conftypes;
 
 {
-  Generated from OpenSSL 3.0.20 Header File conftypes.h - Wed  6 May 13:05:44 BST 2026
+  Generated from OpenSSL 3.0.20 Header File conftypes.h - Wed  6 May 13:14:53 BST 2026
+  With Legacy Support Option
 }
 
 interface

@@ -18,7 +18,8 @@
 unit openssl_sslerr_legacy;
 
 {
-  Generated from OpenSSL 3.0.20 Header File sslerr_legacy.h - Wed  6 May 13:06:35 BST 2026
+  Generated from OpenSSL 3.0.20 Header File sslerr_legacy.h - Wed  6 May 13:15:44 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -531,7 +532,11 @@ function Load_ERR_load_SSL_strings: TOpenSSL_C_INT; cdecl;
 begin
   ERR_load_SSL_strings := LoadLibCryptoFunction('ERR_load_SSL_strings');
   if not assigned(ERR_load_SSL_strings) then
+    {$if declared(LEGACY_ERR_load_SSL_strings)}
+    ERR_load_SSL_strings := @LEGACY_ERR_load_SSL_strings;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_load_SSL_strings');
+    {$ifend}
   Result := ERR_load_SSL_strings;
 end;
 

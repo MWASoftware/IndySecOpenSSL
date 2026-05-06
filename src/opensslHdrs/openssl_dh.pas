@@ -18,7 +18,8 @@
 unit openssl_dh;
 
 {
-  Generated from OpenSSL 3.0.20 Header File dh.h - Wed  6 May 13:05:53 BST 2026
+  Generated from OpenSSL 3.0.20 Header File dh.h - Wed  6 May 13:15:02 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -847,7 +848,11 @@ function Load_EVP_PKEY_CTX_set_dh_paramgen_type(ctx: PEVP_PKEY_CTX; typ: TOpenSS
 begin
   EVP_PKEY_CTX_set_dh_paramgen_type := LoadLibCryptoFunction('EVP_PKEY_CTX_set_dh_paramgen_type');
   if not assigned(EVP_PKEY_CTX_set_dh_paramgen_type) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_dh_paramgen_type)}
+    EVP_PKEY_CTX_set_dh_paramgen_type := @LEGACY_EVP_PKEY_CTX_set_dh_paramgen_type;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_dh_paramgen_type');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_dh_paramgen_type(ctx, typ);
 end;
 
@@ -855,7 +860,11 @@ function Load_EVP_PKEY_CTX_set_dh_paramgen_gindex(ctx: PEVP_PKEY_CTX; gindex: TO
 begin
   EVP_PKEY_CTX_set_dh_paramgen_gindex := LoadLibCryptoFunction('EVP_PKEY_CTX_set_dh_paramgen_gindex');
   if not assigned(EVP_PKEY_CTX_set_dh_paramgen_gindex) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_dh_paramgen_gindex)}
+    EVP_PKEY_CTX_set_dh_paramgen_gindex := @LEGACY_EVP_PKEY_CTX_set_dh_paramgen_gindex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_dh_paramgen_gindex');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_dh_paramgen_gindex(ctx, gindex);
 end;
 
@@ -863,7 +872,11 @@ function Load_EVP_PKEY_CTX_set_dh_paramgen_seed(ctx: PEVP_PKEY_CTX; seed: Pbyte;
 begin
   EVP_PKEY_CTX_set_dh_paramgen_seed := LoadLibCryptoFunction('EVP_PKEY_CTX_set_dh_paramgen_seed');
   if not assigned(EVP_PKEY_CTX_set_dh_paramgen_seed) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_dh_paramgen_seed)}
+    EVP_PKEY_CTX_set_dh_paramgen_seed := @LEGACY_EVP_PKEY_CTX_set_dh_paramgen_seed;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_dh_paramgen_seed');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_dh_paramgen_seed(ctx, seed, seedlen);
 end;
 
@@ -871,7 +884,11 @@ function Load_EVP_PKEY_CTX_set_dh_paramgen_prime_len(ctx: PEVP_PKEY_CTX; pbits: 
 begin
   EVP_PKEY_CTX_set_dh_paramgen_prime_len := LoadLibCryptoFunction('EVP_PKEY_CTX_set_dh_paramgen_prime_len');
   if not assigned(EVP_PKEY_CTX_set_dh_paramgen_prime_len) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_dh_paramgen_prime_len)}
+    EVP_PKEY_CTX_set_dh_paramgen_prime_len := @LEGACY_EVP_PKEY_CTX_set_dh_paramgen_prime_len;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_dh_paramgen_prime_len');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_dh_paramgen_prime_len(ctx, pbits);
 end;
 
@@ -879,7 +896,11 @@ function Load_EVP_PKEY_CTX_set_dh_paramgen_subprime_len(ctx: PEVP_PKEY_CTX; qlen
 begin
   EVP_PKEY_CTX_set_dh_paramgen_subprime_len := LoadLibCryptoFunction('EVP_PKEY_CTX_set_dh_paramgen_subprime_len');
   if not assigned(EVP_PKEY_CTX_set_dh_paramgen_subprime_len) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_dh_paramgen_subprime_len)}
+    EVP_PKEY_CTX_set_dh_paramgen_subprime_len := @LEGACY_EVP_PKEY_CTX_set_dh_paramgen_subprime_len;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_dh_paramgen_subprime_len');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_dh_paramgen_subprime_len(ctx, qlen);
 end;
 
@@ -887,7 +908,11 @@ function Load_EVP_PKEY_CTX_set_dh_paramgen_generator(ctx: PEVP_PKEY_CTX; gen: TO
 begin
   EVP_PKEY_CTX_set_dh_paramgen_generator := LoadLibCryptoFunction('EVP_PKEY_CTX_set_dh_paramgen_generator');
   if not assigned(EVP_PKEY_CTX_set_dh_paramgen_generator) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_dh_paramgen_generator)}
+    EVP_PKEY_CTX_set_dh_paramgen_generator := @LEGACY_EVP_PKEY_CTX_set_dh_paramgen_generator;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_dh_paramgen_generator');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_dh_paramgen_generator(ctx, gen);
 end;
 
@@ -895,7 +920,11 @@ function Load_EVP_PKEY_CTX_set_dh_nid(ctx: PEVP_PKEY_CTX; nid: TOpenSSL_C_INT): 
 begin
   EVP_PKEY_CTX_set_dh_nid := LoadLibCryptoFunction('EVP_PKEY_CTX_set_dh_nid');
   if not assigned(EVP_PKEY_CTX_set_dh_nid) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_dh_nid)}
+    EVP_PKEY_CTX_set_dh_nid := @LEGACY_EVP_PKEY_CTX_set_dh_nid;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_dh_nid');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_dh_nid(ctx, nid);
 end;
 
@@ -903,7 +932,11 @@ function Load_EVP_PKEY_CTX_set_dh_rfc5114(ctx: PEVP_PKEY_CTX; gen: TOpenSSL_C_IN
 begin
   EVP_PKEY_CTX_set_dh_rfc5114 := LoadLibCryptoFunction('EVP_PKEY_CTX_set_dh_rfc5114');
   if not assigned(EVP_PKEY_CTX_set_dh_rfc5114) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_dh_rfc5114)}
+    EVP_PKEY_CTX_set_dh_rfc5114 := @LEGACY_EVP_PKEY_CTX_set_dh_rfc5114;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_dh_rfc5114');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_dh_rfc5114(ctx, gen);
 end;
 
@@ -911,7 +944,11 @@ function Load_EVP_PKEY_CTX_set_dhx_rfc5114(ctx: PEVP_PKEY_CTX; gen: TOpenSSL_C_I
 begin
   EVP_PKEY_CTX_set_dhx_rfc5114 := LoadLibCryptoFunction('EVP_PKEY_CTX_set_dhx_rfc5114');
   if not assigned(EVP_PKEY_CTX_set_dhx_rfc5114) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_dhx_rfc5114)}
+    EVP_PKEY_CTX_set_dhx_rfc5114 := @LEGACY_EVP_PKEY_CTX_set_dhx_rfc5114;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_dhx_rfc5114');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_dhx_rfc5114(ctx, gen);
 end;
 
@@ -919,7 +956,11 @@ function Load_EVP_PKEY_CTX_set_dh_pad(ctx: PEVP_PKEY_CTX; pad: TOpenSSL_C_INT): 
 begin
   EVP_PKEY_CTX_set_dh_pad := LoadLibCryptoFunction('EVP_PKEY_CTX_set_dh_pad');
   if not assigned(EVP_PKEY_CTX_set_dh_pad) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_dh_pad)}
+    EVP_PKEY_CTX_set_dh_pad := @LEGACY_EVP_PKEY_CTX_set_dh_pad;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_dh_pad');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_dh_pad(ctx, pad);
 end;
 
@@ -927,7 +968,11 @@ function Load_EVP_PKEY_CTX_set_dh_kdf_type(ctx: PEVP_PKEY_CTX; kdf: TOpenSSL_C_I
 begin
   EVP_PKEY_CTX_set_dh_kdf_type := LoadLibCryptoFunction('EVP_PKEY_CTX_set_dh_kdf_type');
   if not assigned(EVP_PKEY_CTX_set_dh_kdf_type) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_dh_kdf_type)}
+    EVP_PKEY_CTX_set_dh_kdf_type := @LEGACY_EVP_PKEY_CTX_set_dh_kdf_type;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_dh_kdf_type');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_dh_kdf_type(ctx, kdf);
 end;
 
@@ -935,7 +980,11 @@ function Load_EVP_PKEY_CTX_get_dh_kdf_type(ctx: PEVP_PKEY_CTX): TOpenSSL_C_INT; 
 begin
   EVP_PKEY_CTX_get_dh_kdf_type := LoadLibCryptoFunction('EVP_PKEY_CTX_get_dh_kdf_type');
   if not assigned(EVP_PKEY_CTX_get_dh_kdf_type) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_get_dh_kdf_type)}
+    EVP_PKEY_CTX_get_dh_kdf_type := @LEGACY_EVP_PKEY_CTX_get_dh_kdf_type;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_get_dh_kdf_type');
+    {$ifend}
   Result := EVP_PKEY_CTX_get_dh_kdf_type(ctx);
 end;
 
@@ -943,7 +992,11 @@ function Load_EVP_PKEY_CTX_set0_dh_kdf_oid(ctx: PEVP_PKEY_CTX; oid: PASN1_OBJECT
 begin
   EVP_PKEY_CTX_set0_dh_kdf_oid := LoadLibCryptoFunction('EVP_PKEY_CTX_set0_dh_kdf_oid');
   if not assigned(EVP_PKEY_CTX_set0_dh_kdf_oid) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set0_dh_kdf_oid)}
+    EVP_PKEY_CTX_set0_dh_kdf_oid := @LEGACY_EVP_PKEY_CTX_set0_dh_kdf_oid;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set0_dh_kdf_oid');
+    {$ifend}
   Result := EVP_PKEY_CTX_set0_dh_kdf_oid(ctx, oid);
 end;
 
@@ -951,7 +1004,11 @@ function Load_EVP_PKEY_CTX_get0_dh_kdf_oid(ctx: PEVP_PKEY_CTX; oid: PPASN1_OBJEC
 begin
   EVP_PKEY_CTX_get0_dh_kdf_oid := LoadLibCryptoFunction('EVP_PKEY_CTX_get0_dh_kdf_oid');
   if not assigned(EVP_PKEY_CTX_get0_dh_kdf_oid) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_get0_dh_kdf_oid)}
+    EVP_PKEY_CTX_get0_dh_kdf_oid := @LEGACY_EVP_PKEY_CTX_get0_dh_kdf_oid;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_get0_dh_kdf_oid');
+    {$ifend}
   Result := EVP_PKEY_CTX_get0_dh_kdf_oid(ctx, oid);
 end;
 
@@ -959,7 +1016,11 @@ function Load_EVP_PKEY_CTX_set_dh_kdf_md(ctx: PEVP_PKEY_CTX; md: PEVP_MD): TOpen
 begin
   EVP_PKEY_CTX_set_dh_kdf_md := LoadLibCryptoFunction('EVP_PKEY_CTX_set_dh_kdf_md');
   if not assigned(EVP_PKEY_CTX_set_dh_kdf_md) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_dh_kdf_md)}
+    EVP_PKEY_CTX_set_dh_kdf_md := @LEGACY_EVP_PKEY_CTX_set_dh_kdf_md;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_dh_kdf_md');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_dh_kdf_md(ctx, md);
 end;
 
@@ -967,7 +1028,11 @@ function Load_EVP_PKEY_CTX_get_dh_kdf_md(ctx: PEVP_PKEY_CTX; md: PPEVP_MD): TOpe
 begin
   EVP_PKEY_CTX_get_dh_kdf_md := LoadLibCryptoFunction('EVP_PKEY_CTX_get_dh_kdf_md');
   if not assigned(EVP_PKEY_CTX_get_dh_kdf_md) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_get_dh_kdf_md)}
+    EVP_PKEY_CTX_get_dh_kdf_md := @LEGACY_EVP_PKEY_CTX_get_dh_kdf_md;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_get_dh_kdf_md');
+    {$ifend}
   Result := EVP_PKEY_CTX_get_dh_kdf_md(ctx, md);
 end;
 
@@ -975,7 +1040,11 @@ function Load_EVP_PKEY_CTX_set_dh_kdf_outlen(ctx: PEVP_PKEY_CTX; len: TOpenSSL_C
 begin
   EVP_PKEY_CTX_set_dh_kdf_outlen := LoadLibCryptoFunction('EVP_PKEY_CTX_set_dh_kdf_outlen');
   if not assigned(EVP_PKEY_CTX_set_dh_kdf_outlen) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_dh_kdf_outlen)}
+    EVP_PKEY_CTX_set_dh_kdf_outlen := @LEGACY_EVP_PKEY_CTX_set_dh_kdf_outlen;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_dh_kdf_outlen');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_dh_kdf_outlen(ctx, len);
 end;
 
@@ -983,7 +1052,11 @@ function Load_EVP_PKEY_CTX_get_dh_kdf_outlen(ctx: PEVP_PKEY_CTX; len: POpenSSL_C
 begin
   EVP_PKEY_CTX_get_dh_kdf_outlen := LoadLibCryptoFunction('EVP_PKEY_CTX_get_dh_kdf_outlen');
   if not assigned(EVP_PKEY_CTX_get_dh_kdf_outlen) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_get_dh_kdf_outlen)}
+    EVP_PKEY_CTX_get_dh_kdf_outlen := @LEGACY_EVP_PKEY_CTX_get_dh_kdf_outlen;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_get_dh_kdf_outlen');
+    {$ifend}
   Result := EVP_PKEY_CTX_get_dh_kdf_outlen(ctx, len);
 end;
 
@@ -991,7 +1064,11 @@ function Load_EVP_PKEY_CTX_set0_dh_kdf_ukm(ctx: PEVP_PKEY_CTX; ukm: Pbyte; len: 
 begin
   EVP_PKEY_CTX_set0_dh_kdf_ukm := LoadLibCryptoFunction('EVP_PKEY_CTX_set0_dh_kdf_ukm');
   if not assigned(EVP_PKEY_CTX_set0_dh_kdf_ukm) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set0_dh_kdf_ukm)}
+    EVP_PKEY_CTX_set0_dh_kdf_ukm := @LEGACY_EVP_PKEY_CTX_set0_dh_kdf_ukm;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set0_dh_kdf_ukm');
+    {$ifend}
   Result := EVP_PKEY_CTX_set0_dh_kdf_ukm(ctx, ukm, len);
 end;
 
@@ -1000,7 +1077,11 @@ function Load_EVP_PKEY_CTX_get0_dh_kdf_ukm(ctx: PEVP_PKEY_CTX; ukm: PPbyte): TOp
 begin
   EVP_PKEY_CTX_get0_dh_kdf_ukm := LoadLibCryptoFunction('EVP_PKEY_CTX_get0_dh_kdf_ukm');
   if not assigned(EVP_PKEY_CTX_get0_dh_kdf_ukm) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_get0_dh_kdf_ukm)}
+    EVP_PKEY_CTX_get0_dh_kdf_ukm := @LEGACY_EVP_PKEY_CTX_get0_dh_kdf_ukm;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_get0_dh_kdf_ukm');
+    {$ifend}
   Result := EVP_PKEY_CTX_get0_dh_kdf_ukm(ctx, ukm);
 end;
 
@@ -1010,7 +1091,11 @@ function Load_DHparams_it: PASN1_ITEM; cdecl;
 begin
   DHparams_it := LoadLibCryptoFunction('DHparams_it');
   if not assigned(DHparams_it) then
+    {$if declared(LEGACY_DHparams_it)}
+    DHparams_it := @LEGACY_DHparams_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DHparams_it');
+    {$ifend}
   Result := DHparams_it;
 end;
 
@@ -1019,7 +1104,11 @@ function Load_DHparams_dup(a: PDH): PDH; cdecl;
 begin
   DHparams_dup := LoadLibCryptoFunction('DHparams_dup');
   if not assigned(DHparams_dup) then
+    {$if declared(LEGACY_DHparams_dup)}
+    DHparams_dup := @LEGACY_DHparams_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DHparams_dup');
+    {$ifend}
   Result := DHparams_dup(a);
 end;
 
@@ -1027,7 +1116,11 @@ function Load_DH_OpenSSL: PDH_METHOD; cdecl;
 begin
   DH_OpenSSL := LoadLibCryptoFunction('DH_OpenSSL');
   if not assigned(DH_OpenSSL) then
+    {$if declared(LEGACY_DH_OpenSSL)}
+    DH_OpenSSL := @LEGACY_DH_OpenSSL;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_OpenSSL');
+    {$ifend}
   Result := DH_OpenSSL;
 end;
 
@@ -1035,7 +1128,11 @@ procedure Load_DH_set_default_method(meth: PDH_METHOD); cdecl;
 begin
   DH_set_default_method := LoadLibCryptoFunction('DH_set_default_method');
   if not assigned(DH_set_default_method) then
+    {$if declared(LEGACY_DH_set_default_method)}
+    DH_set_default_method := @LEGACY_DH_set_default_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_set_default_method');
+    {$ifend}
   DH_set_default_method(meth);
 end;
 
@@ -1043,7 +1140,11 @@ function Load_DH_get_default_method: PDH_METHOD; cdecl;
 begin
   DH_get_default_method := LoadLibCryptoFunction('DH_get_default_method');
   if not assigned(DH_get_default_method) then
+    {$if declared(LEGACY_DH_get_default_method)}
+    DH_get_default_method := @LEGACY_DH_get_default_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_get_default_method');
+    {$ifend}
   Result := DH_get_default_method;
 end;
 
@@ -1051,7 +1152,11 @@ function Load_DH_set_method(dh: PDH; meth: PDH_METHOD): TOpenSSL_C_INT; cdecl;
 begin
   DH_set_method := LoadLibCryptoFunction('DH_set_method');
   if not assigned(DH_set_method) then
+    {$if declared(LEGACY_DH_set_method)}
+    DH_set_method := @LEGACY_DH_set_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_set_method');
+    {$ifend}
   Result := DH_set_method(dh, meth);
 end;
 
@@ -1059,7 +1164,11 @@ function Load_DH_new_method(engine: PENGINE): PDH; cdecl;
 begin
   DH_new_method := LoadLibCryptoFunction('DH_new_method');
   if not assigned(DH_new_method) then
+    {$if declared(LEGACY_DH_new_method)}
+    DH_new_method := @LEGACY_DH_new_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_new_method');
+    {$ifend}
   Result := DH_new_method(engine);
 end;
 
@@ -1067,7 +1176,11 @@ function Load_DH_new: PDH; cdecl;
 begin
   DH_new := LoadLibCryptoFunction('DH_new');
   if not assigned(DH_new) then
+    {$if declared(LEGACY_DH_new)}
+    DH_new := @LEGACY_DH_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_new');
+    {$ifend}
   Result := DH_new;
 end;
 
@@ -1075,7 +1188,11 @@ procedure Load_DH_free(dh: PDH); cdecl;
 begin
   DH_free := LoadLibCryptoFunction('DH_free');
   if not assigned(DH_free) then
+    {$if declared(LEGACY_DH_free)}
+    DH_free := @LEGACY_DH_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_free');
+    {$ifend}
   DH_free(dh);
 end;
 
@@ -1083,7 +1200,11 @@ function Load_DH_up_ref(dh: PDH): TOpenSSL_C_INT; cdecl;
 begin
   DH_up_ref := LoadLibCryptoFunction('DH_up_ref');
   if not assigned(DH_up_ref) then
+    {$if declared(LEGACY_DH_up_ref)}
+    DH_up_ref := @LEGACY_DH_up_ref;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_up_ref');
+    {$ifend}
   Result := DH_up_ref(dh);
 end;
 
@@ -1091,7 +1212,11 @@ function Load_DH_bits(dh: PDH): TOpenSSL_C_INT; cdecl;
 begin
   DH_bits := LoadLibCryptoFunction('DH_bits');
   if not assigned(DH_bits) then
+    {$if declared(LEGACY_DH_bits)}
+    DH_bits := @LEGACY_DH_bits;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_bits');
+    {$ifend}
   Result := DH_bits(dh);
 end;
 
@@ -1099,7 +1224,11 @@ function Load_DH_size(dh: PDH): TOpenSSL_C_INT; cdecl;
 begin
   DH_size := LoadLibCryptoFunction('DH_size');
   if not assigned(DH_size) then
+    {$if declared(LEGACY_DH_size)}
+    DH_size := @LEGACY_DH_size;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_size');
+    {$ifend}
   Result := DH_size(dh);
 end;
 
@@ -1107,7 +1236,11 @@ function Load_DH_security_bits(dh: PDH): TOpenSSL_C_INT; cdecl;
 begin
   DH_security_bits := LoadLibCryptoFunction('DH_security_bits');
   if not assigned(DH_security_bits) then
+    {$if declared(LEGACY_DH_security_bits)}
+    DH_security_bits := @LEGACY_DH_security_bits;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_security_bits');
+    {$ifend}
   Result := DH_security_bits(dh);
 end;
 
@@ -1115,7 +1248,11 @@ function Load_DH_set_ex_data(d: PDH; idx: TOpenSSL_C_INT; arg: pointer): TOpenSS
 begin
   DH_set_ex_data := LoadLibCryptoFunction('DH_set_ex_data');
   if not assigned(DH_set_ex_data) then
+    {$if declared(LEGACY_DH_set_ex_data)}
+    DH_set_ex_data := @LEGACY_DH_set_ex_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_set_ex_data');
+    {$ifend}
   Result := DH_set_ex_data(d, idx, arg);
 end;
 
@@ -1123,7 +1260,11 @@ function Load_DH_get_ex_data(d: PDH; idx: TOpenSSL_C_INT): pointer; cdecl;
 begin
   DH_get_ex_data := LoadLibCryptoFunction('DH_get_ex_data');
   if not assigned(DH_get_ex_data) then
+    {$if declared(LEGACY_DH_get_ex_data)}
+    DH_get_ex_data := @LEGACY_DH_get_ex_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_get_ex_data');
+    {$ifend}
   Result := DH_get_ex_data(d, idx);
 end;
 
@@ -1131,7 +1272,11 @@ function Load_DH_generate_parameters_ex(dh: PDH; prime_len: TOpenSSL_C_INT; gene
 begin
   DH_generate_parameters_ex := LoadLibCryptoFunction('DH_generate_parameters_ex');
   if not assigned(DH_generate_parameters_ex) then
+    {$if declared(LEGACY_DH_generate_parameters_ex)}
+    DH_generate_parameters_ex := @LEGACY_DH_generate_parameters_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_generate_parameters_ex');
+    {$ifend}
   Result := DH_generate_parameters_ex(dh, prime_len, generator, cb);
 end;
 
@@ -1139,7 +1284,11 @@ function Load_DH_check_params_ex(dh: PDH): TOpenSSL_C_INT; cdecl;
 begin
   DH_check_params_ex := LoadLibCryptoFunction('DH_check_params_ex');
   if not assigned(DH_check_params_ex) then
+    {$if declared(LEGACY_DH_check_params_ex)}
+    DH_check_params_ex := @LEGACY_DH_check_params_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_check_params_ex');
+    {$ifend}
   Result := DH_check_params_ex(dh);
 end;
 
@@ -1147,7 +1296,11 @@ function Load_DH_check_ex(dh: PDH): TOpenSSL_C_INT; cdecl;
 begin
   DH_check_ex := LoadLibCryptoFunction('DH_check_ex');
   if not assigned(DH_check_ex) then
+    {$if declared(LEGACY_DH_check_ex)}
+    DH_check_ex := @LEGACY_DH_check_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_check_ex');
+    {$ifend}
   Result := DH_check_ex(dh);
 end;
 
@@ -1155,7 +1308,11 @@ function Load_DH_check_pub_key_ex(dh: PDH; pub_key: PBIGNUM): TOpenSSL_C_INT; cd
 begin
   DH_check_pub_key_ex := LoadLibCryptoFunction('DH_check_pub_key_ex');
   if not assigned(DH_check_pub_key_ex) then
+    {$if declared(LEGACY_DH_check_pub_key_ex)}
+    DH_check_pub_key_ex := @LEGACY_DH_check_pub_key_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_check_pub_key_ex');
+    {$ifend}
   Result := DH_check_pub_key_ex(dh, pub_key);
 end;
 
@@ -1163,7 +1320,11 @@ function Load_DH_check_params(dh: PDH; ret: POpenSSL_C_INT): TOpenSSL_C_INT; cde
 begin
   DH_check_params := LoadLibCryptoFunction('DH_check_params');
   if not assigned(DH_check_params) then
+    {$if declared(LEGACY_DH_check_params)}
+    DH_check_params := @LEGACY_DH_check_params;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_check_params');
+    {$ifend}
   Result := DH_check_params(dh, ret);
 end;
 
@@ -1171,7 +1332,11 @@ function Load_DH_check(dh: PDH; codes: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
 begin
   DH_check := LoadLibCryptoFunction('DH_check');
   if not assigned(DH_check) then
+    {$if declared(LEGACY_DH_check)}
+    DH_check := @LEGACY_DH_check;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_check');
+    {$ifend}
   Result := DH_check(dh, codes);
 end;
 
@@ -1179,7 +1344,11 @@ function Load_DH_check_pub_key(dh: PDH; pub_key: PBIGNUM; codes: POpenSSL_C_INT)
 begin
   DH_check_pub_key := LoadLibCryptoFunction('DH_check_pub_key');
   if not assigned(DH_check_pub_key) then
+    {$if declared(LEGACY_DH_check_pub_key)}
+    DH_check_pub_key := @LEGACY_DH_check_pub_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_check_pub_key');
+    {$ifend}
   Result := DH_check_pub_key(dh, pub_key, codes);
 end;
 
@@ -1187,7 +1356,11 @@ function Load_DH_generate_key(dh: PDH): TOpenSSL_C_INT; cdecl;
 begin
   DH_generate_key := LoadLibCryptoFunction('DH_generate_key');
   if not assigned(DH_generate_key) then
+    {$if declared(LEGACY_DH_generate_key)}
+    DH_generate_key := @LEGACY_DH_generate_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_generate_key');
+    {$ifend}
   Result := DH_generate_key(dh);
 end;
 
@@ -1195,7 +1368,11 @@ function Load_DH_compute_key(key: Pbyte; pub_key: PBIGNUM; dh: PDH): TOpenSSL_C_
 begin
   DH_compute_key := LoadLibCryptoFunction('DH_compute_key');
   if not assigned(DH_compute_key) then
+    {$if declared(LEGACY_DH_compute_key)}
+    DH_compute_key := @LEGACY_DH_compute_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_compute_key');
+    {$ifend}
   Result := DH_compute_key(key, pub_key, dh);
 end;
 
@@ -1203,7 +1380,11 @@ function Load_DH_compute_key_padded(key: Pbyte; pub_key: PBIGNUM; dh: PDH): TOpe
 begin
   DH_compute_key_padded := LoadLibCryptoFunction('DH_compute_key_padded');
   if not assigned(DH_compute_key_padded) then
+    {$if declared(LEGACY_DH_compute_key_padded)}
+    DH_compute_key_padded := @LEGACY_DH_compute_key_padded;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_compute_key_padded');
+    {$ifend}
   Result := DH_compute_key_padded(key, pub_key, dh);
 end;
 
@@ -1211,7 +1392,11 @@ function Load_d2i_DHparams(a: PPDH; in_: PPbyte; len: TOpenSSL_C_INT): PDH; cdec
 begin
   d2i_DHparams := LoadLibCryptoFunction('d2i_DHparams');
   if not assigned(d2i_DHparams) then
+    {$if declared(LEGACY_d2i_DHparams)}
+    d2i_DHparams := @LEGACY_d2i_DHparams;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_DHparams');
+    {$ifend}
   Result := d2i_DHparams(a, in_, len);
 end;
 
@@ -1219,7 +1404,11 @@ function Load_i2d_DHparams(a: PDH; out_: PPbyte): TOpenSSL_C_INT; cdecl;
 begin
   i2d_DHparams := LoadLibCryptoFunction('i2d_DHparams');
   if not assigned(i2d_DHparams) then
+    {$if declared(LEGACY_i2d_DHparams)}
+    i2d_DHparams := @LEGACY_i2d_DHparams;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_DHparams');
+    {$ifend}
   Result := i2d_DHparams(a, out_);
 end;
 
@@ -1227,7 +1416,11 @@ function Load_d2i_DHxparams(a: PPDH; in_: PPbyte; len: TOpenSSL_C_INT): PDH; cde
 begin
   d2i_DHxparams := LoadLibCryptoFunction('d2i_DHxparams');
   if not assigned(d2i_DHxparams) then
+    {$if declared(LEGACY_d2i_DHxparams)}
+    d2i_DHxparams := @LEGACY_d2i_DHxparams;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_DHxparams');
+    {$ifend}
   Result := d2i_DHxparams(a, in_, len);
 end;
 
@@ -1235,7 +1428,11 @@ function Load_i2d_DHxparams(a: PDH; out_: PPbyte): TOpenSSL_C_INT; cdecl;
 begin
   i2d_DHxparams := LoadLibCryptoFunction('i2d_DHxparams');
   if not assigned(i2d_DHxparams) then
+    {$if declared(LEGACY_i2d_DHxparams)}
+    i2d_DHxparams := @LEGACY_i2d_DHxparams;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_DHxparams');
+    {$ifend}
   Result := i2d_DHxparams(a, out_);
 end;
 
@@ -1244,7 +1441,11 @@ function Load_DHparams_print_fp(fp: PFILE; x: PDH): TOpenSSL_C_INT; cdecl;
 begin
   DHparams_print_fp := LoadLibCryptoFunction('DHparams_print_fp');
   if not assigned(DHparams_print_fp) then
+    {$if declared(LEGACY_DHparams_print_fp)}
+    DHparams_print_fp := @LEGACY_DHparams_print_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DHparams_print_fp');
+    {$ifend}
   Result := DHparams_print_fp(fp, x);
 end;
 
@@ -1253,7 +1454,11 @@ function Load_DHparams_print(bp: PBIO; x: PDH): TOpenSSL_C_INT; cdecl;
 begin
   DHparams_print := LoadLibCryptoFunction('DHparams_print');
   if not assigned(DHparams_print) then
+    {$if declared(LEGACY_DHparams_print)}
+    DHparams_print := @LEGACY_DHparams_print;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DHparams_print');
+    {$ifend}
   Result := DHparams_print(bp, x);
 end;
 
@@ -1261,7 +1466,11 @@ function Load_DH_get_1024_160: PDH; cdecl;
 begin
   DH_get_1024_160 := LoadLibCryptoFunction('DH_get_1024_160');
   if not assigned(DH_get_1024_160) then
+    {$if declared(LEGACY_DH_get_1024_160)}
+    DH_get_1024_160 := @LEGACY_DH_get_1024_160;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_get_1024_160');
+    {$ifend}
   Result := DH_get_1024_160;
 end;
 
@@ -1269,7 +1478,11 @@ function Load_DH_get_2048_224: PDH; cdecl;
 begin
   DH_get_2048_224 := LoadLibCryptoFunction('DH_get_2048_224');
   if not assigned(DH_get_2048_224) then
+    {$if declared(LEGACY_DH_get_2048_224)}
+    DH_get_2048_224 := @LEGACY_DH_get_2048_224;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_get_2048_224');
+    {$ifend}
   Result := DH_get_2048_224;
 end;
 
@@ -1277,7 +1490,11 @@ function Load_DH_get_2048_256: PDH; cdecl;
 begin
   DH_get_2048_256 := LoadLibCryptoFunction('DH_get_2048_256');
   if not assigned(DH_get_2048_256) then
+    {$if declared(LEGACY_DH_get_2048_256)}
+    DH_get_2048_256 := @LEGACY_DH_get_2048_256;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_get_2048_256');
+    {$ifend}
   Result := DH_get_2048_256;
 end;
 
@@ -1285,7 +1502,11 @@ function Load_DH_new_by_nid(nid: TOpenSSL_C_INT): PDH; cdecl;
 begin
   DH_new_by_nid := LoadLibCryptoFunction('DH_new_by_nid');
   if not assigned(DH_new_by_nid) then
+    {$if declared(LEGACY_DH_new_by_nid)}
+    DH_new_by_nid := @LEGACY_DH_new_by_nid;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_new_by_nid');
+    {$ifend}
   Result := DH_new_by_nid(nid);
 end;
 
@@ -1293,7 +1514,11 @@ function Load_DH_get_nid(dh: PDH): TOpenSSL_C_INT; cdecl;
 begin
   DH_get_nid := LoadLibCryptoFunction('DH_get_nid');
   if not assigned(DH_get_nid) then
+    {$if declared(LEGACY_DH_get_nid)}
+    DH_get_nid := @LEGACY_DH_get_nid;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_get_nid');
+    {$ifend}
   Result := DH_get_nid(dh);
 end;
 
@@ -1301,7 +1526,11 @@ function Load_DH_KDF_X9_42(out_: Pbyte; outlen: TOpenSSL_C_SIZET; Z: Pbyte; Zlen
 begin
   DH_KDF_X9_42 := LoadLibCryptoFunction('DH_KDF_X9_42');
   if not assigned(DH_KDF_X9_42) then
+    {$if declared(LEGACY_DH_KDF_X9_42)}
+    DH_KDF_X9_42 := @LEGACY_DH_KDF_X9_42;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_KDF_X9_42');
+    {$ifend}
   Result := DH_KDF_X9_42(out_, outlen, Z, Zlen, key_oid, ukm, ukmlen, md);
 end;
 
@@ -1309,7 +1538,11 @@ procedure Load_DH_get0_pqg(dh: PDH; p: PPBIGNUM; q: PPBIGNUM; g: PPBIGNUM); cdec
 begin
   DH_get0_pqg := LoadLibCryptoFunction('DH_get0_pqg');
   if not assigned(DH_get0_pqg) then
+    {$if declared(LEGACY_DH_get0_pqg)}
+    DH_get0_pqg := @LEGACY_DH_get0_pqg;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_get0_pqg');
+    {$ifend}
   DH_get0_pqg(dh, p, q, g);
 end;
 
@@ -1317,7 +1550,11 @@ function Load_DH_set0_pqg(dh: PDH; p: PBIGNUM; q: PBIGNUM; g: PBIGNUM): TOpenSSL
 begin
   DH_set0_pqg := LoadLibCryptoFunction('DH_set0_pqg');
   if not assigned(DH_set0_pqg) then
+    {$if declared(LEGACY_DH_set0_pqg)}
+    DH_set0_pqg := @LEGACY_DH_set0_pqg;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_set0_pqg');
+    {$ifend}
   Result := DH_set0_pqg(dh, p, q, g);
 end;
 
@@ -1325,7 +1562,11 @@ procedure Load_DH_get0_key(dh: PDH; pub_key: PPBIGNUM; priv_key: PPBIGNUM); cdec
 begin
   DH_get0_key := LoadLibCryptoFunction('DH_get0_key');
   if not assigned(DH_get0_key) then
+    {$if declared(LEGACY_DH_get0_key)}
+    DH_get0_key := @LEGACY_DH_get0_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_get0_key');
+    {$ifend}
   DH_get0_key(dh, pub_key, priv_key);
 end;
 
@@ -1333,7 +1574,11 @@ function Load_DH_set0_key(dh: PDH; pub_key: PBIGNUM; priv_key: PBIGNUM): TOpenSS
 begin
   DH_set0_key := LoadLibCryptoFunction('DH_set0_key');
   if not assigned(DH_set0_key) then
+    {$if declared(LEGACY_DH_set0_key)}
+    DH_set0_key := @LEGACY_DH_set0_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_set0_key');
+    {$ifend}
   Result := DH_set0_key(dh, pub_key, priv_key);
 end;
 
@@ -1341,7 +1586,11 @@ function Load_DH_get0_p(dh: PDH): PBIGNUM; cdecl;
 begin
   DH_get0_p := LoadLibCryptoFunction('DH_get0_p');
   if not assigned(DH_get0_p) then
+    {$if declared(LEGACY_DH_get0_p)}
+    DH_get0_p := @LEGACY_DH_get0_p;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_get0_p');
+    {$ifend}
   Result := DH_get0_p(dh);
 end;
 
@@ -1349,7 +1598,11 @@ function Load_DH_get0_q(dh: PDH): PBIGNUM; cdecl;
 begin
   DH_get0_q := LoadLibCryptoFunction('DH_get0_q');
   if not assigned(DH_get0_q) then
+    {$if declared(LEGACY_DH_get0_q)}
+    DH_get0_q := @LEGACY_DH_get0_q;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_get0_q');
+    {$ifend}
   Result := DH_get0_q(dh);
 end;
 
@@ -1357,7 +1610,11 @@ function Load_DH_get0_g(dh: PDH): PBIGNUM; cdecl;
 begin
   DH_get0_g := LoadLibCryptoFunction('DH_get0_g');
   if not assigned(DH_get0_g) then
+    {$if declared(LEGACY_DH_get0_g)}
+    DH_get0_g := @LEGACY_DH_get0_g;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_get0_g');
+    {$ifend}
   Result := DH_get0_g(dh);
 end;
 
@@ -1365,7 +1622,11 @@ function Load_DH_get0_priv_key(dh: PDH): PBIGNUM; cdecl;
 begin
   DH_get0_priv_key := LoadLibCryptoFunction('DH_get0_priv_key');
   if not assigned(DH_get0_priv_key) then
+    {$if declared(LEGACY_DH_get0_priv_key)}
+    DH_get0_priv_key := @LEGACY_DH_get0_priv_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_get0_priv_key');
+    {$ifend}
   Result := DH_get0_priv_key(dh);
 end;
 
@@ -1373,7 +1634,11 @@ function Load_DH_get0_pub_key(dh: PDH): PBIGNUM; cdecl;
 begin
   DH_get0_pub_key := LoadLibCryptoFunction('DH_get0_pub_key');
   if not assigned(DH_get0_pub_key) then
+    {$if declared(LEGACY_DH_get0_pub_key)}
+    DH_get0_pub_key := @LEGACY_DH_get0_pub_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_get0_pub_key');
+    {$ifend}
   Result := DH_get0_pub_key(dh);
 end;
 
@@ -1381,7 +1646,11 @@ procedure Load_DH_clear_flags(dh: PDH; flags: TOpenSSL_C_INT); cdecl;
 begin
   DH_clear_flags := LoadLibCryptoFunction('DH_clear_flags');
   if not assigned(DH_clear_flags) then
+    {$if declared(LEGACY_DH_clear_flags)}
+    DH_clear_flags := @LEGACY_DH_clear_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_clear_flags');
+    {$ifend}
   DH_clear_flags(dh, flags);
 end;
 
@@ -1389,7 +1658,11 @@ function Load_DH_test_flags(dh: PDH; flags: TOpenSSL_C_INT): TOpenSSL_C_INT; cde
 begin
   DH_test_flags := LoadLibCryptoFunction('DH_test_flags');
   if not assigned(DH_test_flags) then
+    {$if declared(LEGACY_DH_test_flags)}
+    DH_test_flags := @LEGACY_DH_test_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_test_flags');
+    {$ifend}
   Result := DH_test_flags(dh, flags);
 end;
 
@@ -1397,7 +1670,11 @@ procedure Load_DH_set_flags(dh: PDH; flags: TOpenSSL_C_INT); cdecl;
 begin
   DH_set_flags := LoadLibCryptoFunction('DH_set_flags');
   if not assigned(DH_set_flags) then
+    {$if declared(LEGACY_DH_set_flags)}
+    DH_set_flags := @LEGACY_DH_set_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_set_flags');
+    {$ifend}
   DH_set_flags(dh, flags);
 end;
 
@@ -1405,7 +1682,11 @@ function Load_DH_get0_engine(d: PDH): PENGINE; cdecl;
 begin
   DH_get0_engine := LoadLibCryptoFunction('DH_get0_engine');
   if not assigned(DH_get0_engine) then
+    {$if declared(LEGACY_DH_get0_engine)}
+    DH_get0_engine := @LEGACY_DH_get0_engine;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_get0_engine');
+    {$ifend}
   Result := DH_get0_engine(d);
 end;
 
@@ -1413,7 +1694,11 @@ function Load_DH_get_length(dh: PDH): TOpenSSL_C_INT; cdecl;
 begin
   DH_get_length := LoadLibCryptoFunction('DH_get_length');
   if not assigned(DH_get_length) then
+    {$if declared(LEGACY_DH_get_length)}
+    DH_get_length := @LEGACY_DH_get_length;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_get_length');
+    {$ifend}
   Result := DH_get_length(dh);
 end;
 
@@ -1421,7 +1706,11 @@ function Load_DH_set_length(dh: PDH; length: TOpenSSL_C_INT): TOpenSSL_C_INT; cd
 begin
   DH_set_length := LoadLibCryptoFunction('DH_set_length');
   if not assigned(DH_set_length) then
+    {$if declared(LEGACY_DH_set_length)}
+    DH_set_length := @LEGACY_DH_set_length;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_set_length');
+    {$ifend}
   Result := DH_set_length(dh, length);
 end;
 
@@ -1429,7 +1718,11 @@ function Load_DH_meth_new(name: PAnsiChar; flags: TOpenSSL_C_INT): PDH_METHOD; c
 begin
   DH_meth_new := LoadLibCryptoFunction('DH_meth_new');
   if not assigned(DH_meth_new) then
+    {$if declared(LEGACY_DH_meth_new)}
+    DH_meth_new := @LEGACY_DH_meth_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_meth_new');
+    {$ifend}
   Result := DH_meth_new(name, flags);
 end;
 
@@ -1437,7 +1730,11 @@ procedure Load_DH_meth_free(dhm: PDH_METHOD); cdecl;
 begin
   DH_meth_free := LoadLibCryptoFunction('DH_meth_free');
   if not assigned(DH_meth_free) then
+    {$if declared(LEGACY_DH_meth_free)}
+    DH_meth_free := @LEGACY_DH_meth_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_meth_free');
+    {$ifend}
   DH_meth_free(dhm);
 end;
 
@@ -1445,7 +1742,11 @@ function Load_DH_meth_dup(dhm: PDH_METHOD): PDH_METHOD; cdecl;
 begin
   DH_meth_dup := LoadLibCryptoFunction('DH_meth_dup');
   if not assigned(DH_meth_dup) then
+    {$if declared(LEGACY_DH_meth_dup)}
+    DH_meth_dup := @LEGACY_DH_meth_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_meth_dup');
+    {$ifend}
   Result := DH_meth_dup(dhm);
 end;
 
@@ -1453,7 +1754,11 @@ function Load_DH_meth_get0_name(dhm: PDH_METHOD): PAnsiChar; cdecl;
 begin
   DH_meth_get0_name := LoadLibCryptoFunction('DH_meth_get0_name');
   if not assigned(DH_meth_get0_name) then
+    {$if declared(LEGACY_DH_meth_get0_name)}
+    DH_meth_get0_name := @LEGACY_DH_meth_get0_name;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_meth_get0_name');
+    {$ifend}
   Result := DH_meth_get0_name(dhm);
 end;
 
@@ -1461,7 +1766,11 @@ function Load_DH_meth_set1_name(dhm: PDH_METHOD; name: PAnsiChar): TOpenSSL_C_IN
 begin
   DH_meth_set1_name := LoadLibCryptoFunction('DH_meth_set1_name');
   if not assigned(DH_meth_set1_name) then
+    {$if declared(LEGACY_DH_meth_set1_name)}
+    DH_meth_set1_name := @LEGACY_DH_meth_set1_name;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_meth_set1_name');
+    {$ifend}
   Result := DH_meth_set1_name(dhm, name);
 end;
 
@@ -1469,7 +1778,11 @@ function Load_DH_meth_get_flags(dhm: PDH_METHOD): TOpenSSL_C_INT; cdecl;
 begin
   DH_meth_get_flags := LoadLibCryptoFunction('DH_meth_get_flags');
   if not assigned(DH_meth_get_flags) then
+    {$if declared(LEGACY_DH_meth_get_flags)}
+    DH_meth_get_flags := @LEGACY_DH_meth_get_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_meth_get_flags');
+    {$ifend}
   Result := DH_meth_get_flags(dhm);
 end;
 
@@ -1477,7 +1790,11 @@ function Load_DH_meth_set_flags(dhm: PDH_METHOD; flags: TOpenSSL_C_INT): TOpenSS
 begin
   DH_meth_set_flags := LoadLibCryptoFunction('DH_meth_set_flags');
   if not assigned(DH_meth_set_flags) then
+    {$if declared(LEGACY_DH_meth_set_flags)}
+    DH_meth_set_flags := @LEGACY_DH_meth_set_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_meth_set_flags');
+    {$ifend}
   Result := DH_meth_set_flags(dhm, flags);
 end;
 
@@ -1485,7 +1802,11 @@ function Load_DH_meth_get0_app_data(dhm: PDH_METHOD): pointer; cdecl;
 begin
   DH_meth_get0_app_data := LoadLibCryptoFunction('DH_meth_get0_app_data');
   if not assigned(DH_meth_get0_app_data) then
+    {$if declared(LEGACY_DH_meth_get0_app_data)}
+    DH_meth_get0_app_data := @LEGACY_DH_meth_get0_app_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_meth_get0_app_data');
+    {$ifend}
   Result := DH_meth_get0_app_data(dhm);
 end;
 
@@ -1493,7 +1814,11 @@ function Load_DH_meth_set0_app_data(dhm: PDH_METHOD; app_data: pointer): TOpenSS
 begin
   DH_meth_set0_app_data := LoadLibCryptoFunction('DH_meth_set0_app_data');
   if not assigned(DH_meth_set0_app_data) then
+    {$if declared(LEGACY_DH_meth_set0_app_data)}
+    DH_meth_set0_app_data := @LEGACY_DH_meth_set0_app_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_meth_set0_app_data');
+    {$ifend}
   Result := DH_meth_set0_app_data(dhm, app_data);
 end;
 
@@ -1501,7 +1826,11 @@ function Load_DH_meth_get_generate_key(dhm: PDH_METHOD): TFuncType000; cdecl;
 begin
   DH_meth_get_generate_key := LoadLibCryptoFunction('DH_meth_get_generate_key');
   if not assigned(DH_meth_get_generate_key) then
+    {$if declared(LEGACY_DH_meth_get_generate_key)}
+    DH_meth_get_generate_key := @LEGACY_DH_meth_get_generate_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_meth_get_generate_key');
+    {$ifend}
   Result := DH_meth_get_generate_key(dhm);
 end;
 
@@ -1509,7 +1838,11 @@ function Load_DH_meth_set_generate_key(dhm: PDH_METHOD; generate_key: TFuncType0
 begin
   DH_meth_set_generate_key := LoadLibCryptoFunction('DH_meth_set_generate_key');
   if not assigned(DH_meth_set_generate_key) then
+    {$if declared(LEGACY_DH_meth_set_generate_key)}
+    DH_meth_set_generate_key := @LEGACY_DH_meth_set_generate_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_meth_set_generate_key');
+    {$ifend}
   Result := DH_meth_set_generate_key(dhm, generate_key);
 end;
 
@@ -1517,7 +1850,11 @@ function Load_DH_meth_get_compute_key(dhm: PDH_METHOD): TFuncType002; cdecl;
 begin
   DH_meth_get_compute_key := LoadLibCryptoFunction('DH_meth_get_compute_key');
   if not assigned(DH_meth_get_compute_key) then
+    {$if declared(LEGACY_DH_meth_get_compute_key)}
+    DH_meth_get_compute_key := @LEGACY_DH_meth_get_compute_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_meth_get_compute_key');
+    {$ifend}
   Result := DH_meth_get_compute_key(dhm);
 end;
 
@@ -1525,7 +1862,11 @@ function Load_DH_meth_set_compute_key(dhm: PDH_METHOD; compute_key: TFuncType003
 begin
   DH_meth_set_compute_key := LoadLibCryptoFunction('DH_meth_set_compute_key');
   if not assigned(DH_meth_set_compute_key) then
+    {$if declared(LEGACY_DH_meth_set_compute_key)}
+    DH_meth_set_compute_key := @LEGACY_DH_meth_set_compute_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_meth_set_compute_key');
+    {$ifend}
   Result := DH_meth_set_compute_key(dhm, compute_key);
 end;
 
@@ -1533,7 +1874,11 @@ function Load_DH_meth_get_bn_mod_exp(dhm: PDH_METHOD): TFuncType004; cdecl;
 begin
   DH_meth_get_bn_mod_exp := LoadLibCryptoFunction('DH_meth_get_bn_mod_exp');
   if not assigned(DH_meth_get_bn_mod_exp) then
+    {$if declared(LEGACY_DH_meth_get_bn_mod_exp)}
+    DH_meth_get_bn_mod_exp := @LEGACY_DH_meth_get_bn_mod_exp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_meth_get_bn_mod_exp');
+    {$ifend}
   Result := DH_meth_get_bn_mod_exp(dhm);
 end;
 
@@ -1541,7 +1886,11 @@ function Load_DH_meth_set_bn_mod_exp(dhm: PDH_METHOD; bn_mod_exp: TFuncType005):
 begin
   DH_meth_set_bn_mod_exp := LoadLibCryptoFunction('DH_meth_set_bn_mod_exp');
   if not assigned(DH_meth_set_bn_mod_exp) then
+    {$if declared(LEGACY_DH_meth_set_bn_mod_exp)}
+    DH_meth_set_bn_mod_exp := @LEGACY_DH_meth_set_bn_mod_exp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_meth_set_bn_mod_exp');
+    {$ifend}
   Result := DH_meth_set_bn_mod_exp(dhm, bn_mod_exp);
 end;
 
@@ -1549,7 +1898,11 @@ function Load_DH_meth_get_init(dhm: PDH_METHOD): TFuncType006; cdecl;
 begin
   DH_meth_get_init := LoadLibCryptoFunction('DH_meth_get_init');
   if not assigned(DH_meth_get_init) then
+    {$if declared(LEGACY_DH_meth_get_init)}
+    DH_meth_get_init := @LEGACY_DH_meth_get_init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_meth_get_init');
+    {$ifend}
   Result := DH_meth_get_init(dhm);
 end;
 
@@ -1557,7 +1910,11 @@ function Load_DH_meth_set_init(dhm: PDH_METHOD; init: TFuncType007): TOpenSSL_C_
 begin
   DH_meth_set_init := LoadLibCryptoFunction('DH_meth_set_init');
   if not assigned(DH_meth_set_init) then
+    {$if declared(LEGACY_DH_meth_set_init)}
+    DH_meth_set_init := @LEGACY_DH_meth_set_init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_meth_set_init');
+    {$ifend}
   Result := DH_meth_set_init(dhm, init);
 end;
 
@@ -1565,7 +1922,11 @@ function Load_DH_meth_get_finish(dhm: PDH_METHOD): TFuncType008; cdecl;
 begin
   DH_meth_get_finish := LoadLibCryptoFunction('DH_meth_get_finish');
   if not assigned(DH_meth_get_finish) then
+    {$if declared(LEGACY_DH_meth_get_finish)}
+    DH_meth_get_finish := @LEGACY_DH_meth_get_finish;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_meth_get_finish');
+    {$ifend}
   Result := DH_meth_get_finish(dhm);
 end;
 
@@ -1573,7 +1934,11 @@ function Load_DH_meth_set_finish(dhm: PDH_METHOD; finish: TFuncType009): TOpenSS
 begin
   DH_meth_set_finish := LoadLibCryptoFunction('DH_meth_set_finish');
   if not assigned(DH_meth_set_finish) then
+    {$if declared(LEGACY_DH_meth_set_finish)}
+    DH_meth_set_finish := @LEGACY_DH_meth_set_finish;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_meth_set_finish');
+    {$ifend}
   Result := DH_meth_set_finish(dhm, finish);
 end;
 
@@ -1581,7 +1946,11 @@ function Load_DH_meth_get_generate_params(dhm: PDH_METHOD): TFuncType010; cdecl;
 begin
   DH_meth_get_generate_params := LoadLibCryptoFunction('DH_meth_get_generate_params');
   if not assigned(DH_meth_get_generate_params) then
+    {$if declared(LEGACY_DH_meth_get_generate_params)}
+    DH_meth_get_generate_params := @LEGACY_DH_meth_get_generate_params;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_meth_get_generate_params');
+    {$ifend}
   Result := DH_meth_get_generate_params(dhm);
 end;
 
@@ -1589,7 +1958,11 @@ function Load_DH_meth_set_generate_params(dhm: PDH_METHOD; generate_params: TFun
 begin
   DH_meth_set_generate_params := LoadLibCryptoFunction('DH_meth_set_generate_params');
   if not assigned(DH_meth_set_generate_params) then
+    {$if declared(LEGACY_DH_meth_set_generate_params)}
+    DH_meth_set_generate_params := @LEGACY_DH_meth_set_generate_params;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_meth_set_generate_params');
+    {$ifend}
   Result := DH_meth_set_generate_params(dhm, generate_params);
 end;
 
@@ -1599,7 +1972,11 @@ function Load_DH_generate_parameters(prime_len: TOpenSSL_C_INT; generator: TOpen
 begin
   DH_generate_parameters := LoadLibCryptoFunction('DH_generate_parameters');
   if not assigned(DH_generate_parameters) then
+    {$if declared(LEGACY_DH_generate_parameters)}
+    DH_generate_parameters := @LEGACY_DH_generate_parameters;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DH_generate_parameters');
+    {$ifend}
   Result := DH_generate_parameters(prime_len, generator, callback, cb_arg);
 end;
 

@@ -18,7 +18,8 @@
 unit openssl_conferr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File conferr.h - Wed  6 May 13:05:43 BST 2026
+  Generated from OpenSSL 3.0.20 Header File conferr.h - Wed  6 May 13:14:52 BST 2026
+  With Legacy Support Option
 }
 
 interface

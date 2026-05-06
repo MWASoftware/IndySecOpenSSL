@@ -18,7 +18,8 @@
 unit openssl_params;
 
 {
-  Generated from OpenSSL 3.0.20 Header File params.h - Wed  6 May 13:06:18 BST 2026
+  Generated from OpenSSL 3.0.20 Header File params.h - Wed  6 May 13:15:27 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -347,7 +348,11 @@ function Load_OSSL_PARAM_locate(p: POSSL_PARAM; key: PAnsiChar): POSSL_PARAM; cd
 begin
   OSSL_PARAM_locate := LoadLibCryptoFunction('OSSL_PARAM_locate');
   if not assigned(OSSL_PARAM_locate) then
+    {$if declared(LEGACY_OSSL_PARAM_locate)}
+    OSSL_PARAM_locate := @LEGACY_OSSL_PARAM_locate;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_locate');
+    {$ifend}
   Result := OSSL_PARAM_locate(p, key);
 end;
 
@@ -355,7 +360,11 @@ function Load_OSSL_PARAM_locate_const(p: POSSL_PARAM; key: PAnsiChar): POSSL_PAR
 begin
   OSSL_PARAM_locate_const := LoadLibCryptoFunction('OSSL_PARAM_locate_const');
   if not assigned(OSSL_PARAM_locate_const) then
+    {$if declared(LEGACY_OSSL_PARAM_locate_const)}
+    OSSL_PARAM_locate_const := @LEGACY_OSSL_PARAM_locate_const;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_locate_const');
+    {$ifend}
   Result := OSSL_PARAM_locate_const(p, key);
 end;
 
@@ -363,7 +372,11 @@ function Load_OSSL_PARAM_construct_int(key: PAnsiChar; buf: POpenSSL_C_INT): TOS
 begin
   OSSL_PARAM_construct_int := LoadLibCryptoFunction('OSSL_PARAM_construct_int');
   if not assigned(OSSL_PARAM_construct_int) then
+    {$if declared(LEGACY_OSSL_PARAM_construct_int)}
+    OSSL_PARAM_construct_int := @LEGACY_OSSL_PARAM_construct_int;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_construct_int');
+    {$ifend}
   Result := OSSL_PARAM_construct_int(key, buf);
 end;
 
@@ -371,7 +384,11 @@ function Load_OSSL_PARAM_construct_uint(key: PAnsiChar; buf: POpenSSL_C_UINT): T
 begin
   OSSL_PARAM_construct_uint := LoadLibCryptoFunction('OSSL_PARAM_construct_uint');
   if not assigned(OSSL_PARAM_construct_uint) then
+    {$if declared(LEGACY_OSSL_PARAM_construct_uint)}
+    OSSL_PARAM_construct_uint := @LEGACY_OSSL_PARAM_construct_uint;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_construct_uint');
+    {$ifend}
   Result := OSSL_PARAM_construct_uint(key, buf);
 end;
 
@@ -379,7 +396,11 @@ function Load_OSSL_PARAM_construct_long(key: PAnsiChar; buf: POpenSSL_C_INT): TO
 begin
   OSSL_PARAM_construct_long := LoadLibCryptoFunction('OSSL_PARAM_construct_long');
   if not assigned(OSSL_PARAM_construct_long) then
+    {$if declared(LEGACY_OSSL_PARAM_construct_long)}
+    OSSL_PARAM_construct_long := @LEGACY_OSSL_PARAM_construct_long;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_construct_long');
+    {$ifend}
   Result := OSSL_PARAM_construct_long(key, buf);
 end;
 
@@ -387,7 +408,11 @@ function Load_OSSL_PARAM_construct_ulong(key: PAnsiChar; buf: POpenSSL_C_UINT): 
 begin
   OSSL_PARAM_construct_ulong := LoadLibCryptoFunction('OSSL_PARAM_construct_ulong');
   if not assigned(OSSL_PARAM_construct_ulong) then
+    {$if declared(LEGACY_OSSL_PARAM_construct_ulong)}
+    OSSL_PARAM_construct_ulong := @LEGACY_OSSL_PARAM_construct_ulong;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_construct_ulong');
+    {$ifend}
   Result := OSSL_PARAM_construct_ulong(key, buf);
 end;
 
@@ -395,7 +420,11 @@ function Load_OSSL_PARAM_construct_int32(key: PAnsiChar; buf: POpenSSL_C_INT): T
 begin
   OSSL_PARAM_construct_int32 := LoadLibCryptoFunction('OSSL_PARAM_construct_int32');
   if not assigned(OSSL_PARAM_construct_int32) then
+    {$if declared(LEGACY_OSSL_PARAM_construct_int32)}
+    OSSL_PARAM_construct_int32 := @LEGACY_OSSL_PARAM_construct_int32;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_construct_int32');
+    {$ifend}
   Result := OSSL_PARAM_construct_int32(key, buf);
 end;
 
@@ -403,7 +432,11 @@ function Load_OSSL_PARAM_construct_uint32(key: PAnsiChar; buf: POpenSSL_C_UINT):
 begin
   OSSL_PARAM_construct_uint32 := LoadLibCryptoFunction('OSSL_PARAM_construct_uint32');
   if not assigned(OSSL_PARAM_construct_uint32) then
+    {$if declared(LEGACY_OSSL_PARAM_construct_uint32)}
+    OSSL_PARAM_construct_uint32 := @LEGACY_OSSL_PARAM_construct_uint32;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_construct_uint32');
+    {$ifend}
   Result := OSSL_PARAM_construct_uint32(key, buf);
 end;
 
@@ -411,7 +444,11 @@ function Load_OSSL_PARAM_construct_int64(key: PAnsiChar; buf: POpenSSL_C_LONG): 
 begin
   OSSL_PARAM_construct_int64 := LoadLibCryptoFunction('OSSL_PARAM_construct_int64');
   if not assigned(OSSL_PARAM_construct_int64) then
+    {$if declared(LEGACY_OSSL_PARAM_construct_int64)}
+    OSSL_PARAM_construct_int64 := @LEGACY_OSSL_PARAM_construct_int64;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_construct_int64');
+    {$ifend}
   Result := OSSL_PARAM_construct_int64(key, buf);
 end;
 
@@ -419,7 +456,11 @@ function Load_OSSL_PARAM_construct_uint64(key: PAnsiChar; buf: Pqword): TOSSL_PA
 begin
   OSSL_PARAM_construct_uint64 := LoadLibCryptoFunction('OSSL_PARAM_construct_uint64');
   if not assigned(OSSL_PARAM_construct_uint64) then
+    {$if declared(LEGACY_OSSL_PARAM_construct_uint64)}
+    OSSL_PARAM_construct_uint64 := @LEGACY_OSSL_PARAM_construct_uint64;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_construct_uint64');
+    {$ifend}
   Result := OSSL_PARAM_construct_uint64(key, buf);
 end;
 
@@ -427,7 +468,11 @@ function Load_OSSL_PARAM_construct_size_t(key: PAnsiChar; buf: POpenSSL_C_SIZET)
 begin
   OSSL_PARAM_construct_size_t := LoadLibCryptoFunction('OSSL_PARAM_construct_size_t');
   if not assigned(OSSL_PARAM_construct_size_t) then
+    {$if declared(LEGACY_OSSL_PARAM_construct_size_t)}
+    OSSL_PARAM_construct_size_t := @LEGACY_OSSL_PARAM_construct_size_t;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_construct_size_t');
+    {$ifend}
   Result := OSSL_PARAM_construct_size_t(key, buf);
 end;
 
@@ -435,7 +480,11 @@ function Load_OSSL_PARAM_construct_time_t(key: PAnsiChar; buf: POpenSSL_C_TIMET)
 begin
   OSSL_PARAM_construct_time_t := LoadLibCryptoFunction('OSSL_PARAM_construct_time_t');
   if not assigned(OSSL_PARAM_construct_time_t) then
+    {$if declared(LEGACY_OSSL_PARAM_construct_time_t)}
+    OSSL_PARAM_construct_time_t := @LEGACY_OSSL_PARAM_construct_time_t;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_construct_time_t');
+    {$ifend}
   Result := OSSL_PARAM_construct_time_t(key, buf);
 end;
 
@@ -443,7 +492,11 @@ function Load_OSSL_PARAM_construct_BN(key: PAnsiChar; buf: Pbyte; bsize: TOpenSS
 begin
   OSSL_PARAM_construct_BN := LoadLibCryptoFunction('OSSL_PARAM_construct_BN');
   if not assigned(OSSL_PARAM_construct_BN) then
+    {$if declared(LEGACY_OSSL_PARAM_construct_BN)}
+    OSSL_PARAM_construct_BN := @LEGACY_OSSL_PARAM_construct_BN;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_construct_BN');
+    {$ifend}
   Result := OSSL_PARAM_construct_BN(key, buf, bsize);
 end;
 
@@ -451,7 +504,11 @@ function Load_OSSL_PARAM_construct_double(key: PAnsiChar; buf: POpenSSL_C_DOUBLE
 begin
   OSSL_PARAM_construct_double := LoadLibCryptoFunction('OSSL_PARAM_construct_double');
   if not assigned(OSSL_PARAM_construct_double) then
+    {$if declared(LEGACY_OSSL_PARAM_construct_double)}
+    OSSL_PARAM_construct_double := @LEGACY_OSSL_PARAM_construct_double;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_construct_double');
+    {$ifend}
   Result := OSSL_PARAM_construct_double(key, buf);
 end;
 
@@ -459,7 +516,11 @@ function Load_OSSL_PARAM_construct_utf8_string(key: PAnsiChar; buf: PAnsiChar; b
 begin
   OSSL_PARAM_construct_utf8_string := LoadLibCryptoFunction('OSSL_PARAM_construct_utf8_string');
   if not assigned(OSSL_PARAM_construct_utf8_string) then
+    {$if declared(LEGACY_OSSL_PARAM_construct_utf8_string)}
+    OSSL_PARAM_construct_utf8_string := @LEGACY_OSSL_PARAM_construct_utf8_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_construct_utf8_string');
+    {$ifend}
   Result := OSSL_PARAM_construct_utf8_string(key, buf, bsize);
 end;
 
@@ -467,7 +528,11 @@ function Load_OSSL_PARAM_construct_utf8_ptr(key: PAnsiChar; buf: PPAnsiChar; bsi
 begin
   OSSL_PARAM_construct_utf8_ptr := LoadLibCryptoFunction('OSSL_PARAM_construct_utf8_ptr');
   if not assigned(OSSL_PARAM_construct_utf8_ptr) then
+    {$if declared(LEGACY_OSSL_PARAM_construct_utf8_ptr)}
+    OSSL_PARAM_construct_utf8_ptr := @LEGACY_OSSL_PARAM_construct_utf8_ptr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_construct_utf8_ptr');
+    {$ifend}
   Result := OSSL_PARAM_construct_utf8_ptr(key, buf, bsize);
 end;
 
@@ -475,7 +540,11 @@ function Load_OSSL_PARAM_construct_octet_string(key: PAnsiChar; buf: pointer; bs
 begin
   OSSL_PARAM_construct_octet_string := LoadLibCryptoFunction('OSSL_PARAM_construct_octet_string');
   if not assigned(OSSL_PARAM_construct_octet_string) then
+    {$if declared(LEGACY_OSSL_PARAM_construct_octet_string)}
+    OSSL_PARAM_construct_octet_string := @LEGACY_OSSL_PARAM_construct_octet_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_construct_octet_string');
+    {$ifend}
   Result := OSSL_PARAM_construct_octet_string(key, buf, bsize);
 end;
 
@@ -483,7 +552,11 @@ function Load_OSSL_PARAM_construct_octet_ptr(key: PAnsiChar; buf: Ppointer; bsiz
 begin
   OSSL_PARAM_construct_octet_ptr := LoadLibCryptoFunction('OSSL_PARAM_construct_octet_ptr');
   if not assigned(OSSL_PARAM_construct_octet_ptr) then
+    {$if declared(LEGACY_OSSL_PARAM_construct_octet_ptr)}
+    OSSL_PARAM_construct_octet_ptr := @LEGACY_OSSL_PARAM_construct_octet_ptr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_construct_octet_ptr');
+    {$ifend}
   Result := OSSL_PARAM_construct_octet_ptr(key, buf, bsize);
 end;
 
@@ -491,7 +564,11 @@ function Load_OSSL_PARAM_construct_end: TOSSL_PARAM; cdecl;
 begin
   OSSL_PARAM_construct_end := LoadLibCryptoFunction('OSSL_PARAM_construct_end');
   if not assigned(OSSL_PARAM_construct_end) then
+    {$if declared(LEGACY_OSSL_PARAM_construct_end)}
+    OSSL_PARAM_construct_end := @LEGACY_OSSL_PARAM_construct_end;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_construct_end');
+    {$ifend}
   Result := OSSL_PARAM_construct_end;
 end;
 
@@ -499,7 +576,11 @@ function Load_OSSL_PARAM_allocate_from_text(to_: POSSL_PARAM; paramdefs: POSSL_P
 begin
   OSSL_PARAM_allocate_from_text := LoadLibCryptoFunction('OSSL_PARAM_allocate_from_text');
   if not assigned(OSSL_PARAM_allocate_from_text) then
+    {$if declared(LEGACY_OSSL_PARAM_allocate_from_text)}
+    OSSL_PARAM_allocate_from_text := @LEGACY_OSSL_PARAM_allocate_from_text;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_allocate_from_text');
+    {$ifend}
   Result := OSSL_PARAM_allocate_from_text(to_, paramdefs, key, value, value_n, found);
 end;
 
@@ -507,7 +588,11 @@ function Load_OSSL_PARAM_get_int(p: POSSL_PARAM; val: POpenSSL_C_INT): TOpenSSL_
 begin
   OSSL_PARAM_get_int := LoadLibCryptoFunction('OSSL_PARAM_get_int');
   if not assigned(OSSL_PARAM_get_int) then
+    {$if declared(LEGACY_OSSL_PARAM_get_int)}
+    OSSL_PARAM_get_int := @LEGACY_OSSL_PARAM_get_int;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_get_int');
+    {$ifend}
   Result := OSSL_PARAM_get_int(p, val);
 end;
 
@@ -515,7 +600,11 @@ function Load_OSSL_PARAM_get_uint(p: POSSL_PARAM; val: POpenSSL_C_UINT): TOpenSS
 begin
   OSSL_PARAM_get_uint := LoadLibCryptoFunction('OSSL_PARAM_get_uint');
   if not assigned(OSSL_PARAM_get_uint) then
+    {$if declared(LEGACY_OSSL_PARAM_get_uint)}
+    OSSL_PARAM_get_uint := @LEGACY_OSSL_PARAM_get_uint;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_get_uint');
+    {$ifend}
   Result := OSSL_PARAM_get_uint(p, val);
 end;
 
@@ -523,7 +612,11 @@ function Load_OSSL_PARAM_get_long(p: POSSL_PARAM; val: POpenSSL_C_INT): TOpenSSL
 begin
   OSSL_PARAM_get_long := LoadLibCryptoFunction('OSSL_PARAM_get_long');
   if not assigned(OSSL_PARAM_get_long) then
+    {$if declared(LEGACY_OSSL_PARAM_get_long)}
+    OSSL_PARAM_get_long := @LEGACY_OSSL_PARAM_get_long;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_get_long');
+    {$ifend}
   Result := OSSL_PARAM_get_long(p, val);
 end;
 
@@ -531,7 +624,11 @@ function Load_OSSL_PARAM_get_ulong(p: POSSL_PARAM; val: POpenSSL_C_UINT): TOpenS
 begin
   OSSL_PARAM_get_ulong := LoadLibCryptoFunction('OSSL_PARAM_get_ulong');
   if not assigned(OSSL_PARAM_get_ulong) then
+    {$if declared(LEGACY_OSSL_PARAM_get_ulong)}
+    OSSL_PARAM_get_ulong := @LEGACY_OSSL_PARAM_get_ulong;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_get_ulong');
+    {$ifend}
   Result := OSSL_PARAM_get_ulong(p, val);
 end;
 
@@ -539,7 +636,11 @@ function Load_OSSL_PARAM_get_int32(p: POSSL_PARAM; val: POpenSSL_C_INT): TOpenSS
 begin
   OSSL_PARAM_get_int32 := LoadLibCryptoFunction('OSSL_PARAM_get_int32');
   if not assigned(OSSL_PARAM_get_int32) then
+    {$if declared(LEGACY_OSSL_PARAM_get_int32)}
+    OSSL_PARAM_get_int32 := @LEGACY_OSSL_PARAM_get_int32;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_get_int32');
+    {$ifend}
   Result := OSSL_PARAM_get_int32(p, val);
 end;
 
@@ -547,7 +648,11 @@ function Load_OSSL_PARAM_get_uint32(p: POSSL_PARAM; val: POpenSSL_C_UINT): TOpen
 begin
   OSSL_PARAM_get_uint32 := LoadLibCryptoFunction('OSSL_PARAM_get_uint32');
   if not assigned(OSSL_PARAM_get_uint32) then
+    {$if declared(LEGACY_OSSL_PARAM_get_uint32)}
+    OSSL_PARAM_get_uint32 := @LEGACY_OSSL_PARAM_get_uint32;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_get_uint32');
+    {$ifend}
   Result := OSSL_PARAM_get_uint32(p, val);
 end;
 
@@ -555,7 +660,11 @@ function Load_OSSL_PARAM_get_int64(p: POSSL_PARAM; val: POpenSSL_C_LONG): TOpenS
 begin
   OSSL_PARAM_get_int64 := LoadLibCryptoFunction('OSSL_PARAM_get_int64');
   if not assigned(OSSL_PARAM_get_int64) then
+    {$if declared(LEGACY_OSSL_PARAM_get_int64)}
+    OSSL_PARAM_get_int64 := @LEGACY_OSSL_PARAM_get_int64;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_get_int64');
+    {$ifend}
   Result := OSSL_PARAM_get_int64(p, val);
 end;
 
@@ -563,7 +672,11 @@ function Load_OSSL_PARAM_get_uint64(p: POSSL_PARAM; val: Pqword): TOpenSSL_C_INT
 begin
   OSSL_PARAM_get_uint64 := LoadLibCryptoFunction('OSSL_PARAM_get_uint64');
   if not assigned(OSSL_PARAM_get_uint64) then
+    {$if declared(LEGACY_OSSL_PARAM_get_uint64)}
+    OSSL_PARAM_get_uint64 := @LEGACY_OSSL_PARAM_get_uint64;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_get_uint64');
+    {$ifend}
   Result := OSSL_PARAM_get_uint64(p, val);
 end;
 
@@ -571,7 +684,11 @@ function Load_OSSL_PARAM_get_size_t(p: POSSL_PARAM; val: POpenSSL_C_SIZET): TOpe
 begin
   OSSL_PARAM_get_size_t := LoadLibCryptoFunction('OSSL_PARAM_get_size_t');
   if not assigned(OSSL_PARAM_get_size_t) then
+    {$if declared(LEGACY_OSSL_PARAM_get_size_t)}
+    OSSL_PARAM_get_size_t := @LEGACY_OSSL_PARAM_get_size_t;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_get_size_t');
+    {$ifend}
   Result := OSSL_PARAM_get_size_t(p, val);
 end;
 
@@ -579,7 +696,11 @@ function Load_OSSL_PARAM_get_time_t(p: POSSL_PARAM; val: POpenSSL_C_TIMET): TOpe
 begin
   OSSL_PARAM_get_time_t := LoadLibCryptoFunction('OSSL_PARAM_get_time_t');
   if not assigned(OSSL_PARAM_get_time_t) then
+    {$if declared(LEGACY_OSSL_PARAM_get_time_t)}
+    OSSL_PARAM_get_time_t := @LEGACY_OSSL_PARAM_get_time_t;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_get_time_t');
+    {$ifend}
   Result := OSSL_PARAM_get_time_t(p, val);
 end;
 
@@ -587,7 +708,11 @@ function Load_OSSL_PARAM_set_int(p: POSSL_PARAM; val: TOpenSSL_C_INT): TOpenSSL_
 begin
   OSSL_PARAM_set_int := LoadLibCryptoFunction('OSSL_PARAM_set_int');
   if not assigned(OSSL_PARAM_set_int) then
+    {$if declared(LEGACY_OSSL_PARAM_set_int)}
+    OSSL_PARAM_set_int := @LEGACY_OSSL_PARAM_set_int;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_set_int');
+    {$ifend}
   Result := OSSL_PARAM_set_int(p, val);
 end;
 
@@ -595,7 +720,11 @@ function Load_OSSL_PARAM_set_uint(p: POSSL_PARAM; val: TOpenSSL_C_UINT): TOpenSS
 begin
   OSSL_PARAM_set_uint := LoadLibCryptoFunction('OSSL_PARAM_set_uint');
   if not assigned(OSSL_PARAM_set_uint) then
+    {$if declared(LEGACY_OSSL_PARAM_set_uint)}
+    OSSL_PARAM_set_uint := @LEGACY_OSSL_PARAM_set_uint;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_set_uint');
+    {$ifend}
   Result := OSSL_PARAM_set_uint(p, val);
 end;
 
@@ -603,7 +732,11 @@ function Load_OSSL_PARAM_set_long(p: POSSL_PARAM; val: TOpenSSL_C_INT): TOpenSSL
 begin
   OSSL_PARAM_set_long := LoadLibCryptoFunction('OSSL_PARAM_set_long');
   if not assigned(OSSL_PARAM_set_long) then
+    {$if declared(LEGACY_OSSL_PARAM_set_long)}
+    OSSL_PARAM_set_long := @LEGACY_OSSL_PARAM_set_long;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_set_long');
+    {$ifend}
   Result := OSSL_PARAM_set_long(p, val);
 end;
 
@@ -611,7 +744,11 @@ function Load_OSSL_PARAM_set_ulong(p: POSSL_PARAM; val: TOpenSSL_C_UINT): TOpenS
 begin
   OSSL_PARAM_set_ulong := LoadLibCryptoFunction('OSSL_PARAM_set_ulong');
   if not assigned(OSSL_PARAM_set_ulong) then
+    {$if declared(LEGACY_OSSL_PARAM_set_ulong)}
+    OSSL_PARAM_set_ulong := @LEGACY_OSSL_PARAM_set_ulong;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_set_ulong');
+    {$ifend}
   Result := OSSL_PARAM_set_ulong(p, val);
 end;
 
@@ -619,7 +756,11 @@ function Load_OSSL_PARAM_set_int32(p: POSSL_PARAM; val: TOpenSSL_C_INT): TOpenSS
 begin
   OSSL_PARAM_set_int32 := LoadLibCryptoFunction('OSSL_PARAM_set_int32');
   if not assigned(OSSL_PARAM_set_int32) then
+    {$if declared(LEGACY_OSSL_PARAM_set_int32)}
+    OSSL_PARAM_set_int32 := @LEGACY_OSSL_PARAM_set_int32;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_set_int32');
+    {$ifend}
   Result := OSSL_PARAM_set_int32(p, val);
 end;
 
@@ -627,7 +768,11 @@ function Load_OSSL_PARAM_set_uint32(p: POSSL_PARAM; val: TOpenSSL_C_UINT): TOpen
 begin
   OSSL_PARAM_set_uint32 := LoadLibCryptoFunction('OSSL_PARAM_set_uint32');
   if not assigned(OSSL_PARAM_set_uint32) then
+    {$if declared(LEGACY_OSSL_PARAM_set_uint32)}
+    OSSL_PARAM_set_uint32 := @LEGACY_OSSL_PARAM_set_uint32;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_set_uint32');
+    {$ifend}
   Result := OSSL_PARAM_set_uint32(p, val);
 end;
 
@@ -635,7 +780,11 @@ function Load_OSSL_PARAM_set_int64(p: POSSL_PARAM; val: TOpenSSL_C_LONG): TOpenS
 begin
   OSSL_PARAM_set_int64 := LoadLibCryptoFunction('OSSL_PARAM_set_int64');
   if not assigned(OSSL_PARAM_set_int64) then
+    {$if declared(LEGACY_OSSL_PARAM_set_int64)}
+    OSSL_PARAM_set_int64 := @LEGACY_OSSL_PARAM_set_int64;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_set_int64');
+    {$ifend}
   Result := OSSL_PARAM_set_int64(p, val);
 end;
 
@@ -643,7 +792,11 @@ function Load_OSSL_PARAM_set_uint64(p: POSSL_PARAM; val: qword): TOpenSSL_C_INT;
 begin
   OSSL_PARAM_set_uint64 := LoadLibCryptoFunction('OSSL_PARAM_set_uint64');
   if not assigned(OSSL_PARAM_set_uint64) then
+    {$if declared(LEGACY_OSSL_PARAM_set_uint64)}
+    OSSL_PARAM_set_uint64 := @LEGACY_OSSL_PARAM_set_uint64;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_set_uint64');
+    {$ifend}
   Result := OSSL_PARAM_set_uint64(p, val);
 end;
 
@@ -651,7 +804,11 @@ function Load_OSSL_PARAM_set_size_t(p: POSSL_PARAM; val: TOpenSSL_C_SIZET): TOpe
 begin
   OSSL_PARAM_set_size_t := LoadLibCryptoFunction('OSSL_PARAM_set_size_t');
   if not assigned(OSSL_PARAM_set_size_t) then
+    {$if declared(LEGACY_OSSL_PARAM_set_size_t)}
+    OSSL_PARAM_set_size_t := @LEGACY_OSSL_PARAM_set_size_t;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_set_size_t');
+    {$ifend}
   Result := OSSL_PARAM_set_size_t(p, val);
 end;
 
@@ -659,7 +816,11 @@ function Load_OSSL_PARAM_set_time_t(p: POSSL_PARAM; val: TOpenSSL_C_TIMET): TOpe
 begin
   OSSL_PARAM_set_time_t := LoadLibCryptoFunction('OSSL_PARAM_set_time_t');
   if not assigned(OSSL_PARAM_set_time_t) then
+    {$if declared(LEGACY_OSSL_PARAM_set_time_t)}
+    OSSL_PARAM_set_time_t := @LEGACY_OSSL_PARAM_set_time_t;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_set_time_t');
+    {$ifend}
   Result := OSSL_PARAM_set_time_t(p, val);
 end;
 
@@ -667,7 +828,11 @@ function Load_OSSL_PARAM_get_double(p: POSSL_PARAM; val: POpenSSL_C_DOUBLE): TOp
 begin
   OSSL_PARAM_get_double := LoadLibCryptoFunction('OSSL_PARAM_get_double');
   if not assigned(OSSL_PARAM_get_double) then
+    {$if declared(LEGACY_OSSL_PARAM_get_double)}
+    OSSL_PARAM_get_double := @LEGACY_OSSL_PARAM_get_double;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_get_double');
+    {$ifend}
   Result := OSSL_PARAM_get_double(p, val);
 end;
 
@@ -675,7 +840,11 @@ function Load_OSSL_PARAM_set_double(p: POSSL_PARAM; val: TOpenSSL_C_DOUBLE): TOp
 begin
   OSSL_PARAM_set_double := LoadLibCryptoFunction('OSSL_PARAM_set_double');
   if not assigned(OSSL_PARAM_set_double) then
+    {$if declared(LEGACY_OSSL_PARAM_set_double)}
+    OSSL_PARAM_set_double := @LEGACY_OSSL_PARAM_set_double;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_set_double');
+    {$ifend}
   Result := OSSL_PARAM_set_double(p, val);
 end;
 
@@ -683,7 +852,11 @@ function Load_OSSL_PARAM_get_BN(p: POSSL_PARAM; val: PPBIGNUM): TOpenSSL_C_INT; 
 begin
   OSSL_PARAM_get_BN := LoadLibCryptoFunction('OSSL_PARAM_get_BN');
   if not assigned(OSSL_PARAM_get_BN) then
+    {$if declared(LEGACY_OSSL_PARAM_get_BN)}
+    OSSL_PARAM_get_BN := @LEGACY_OSSL_PARAM_get_BN;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_get_BN');
+    {$ifend}
   Result := OSSL_PARAM_get_BN(p, val);
 end;
 
@@ -691,7 +864,11 @@ function Load_OSSL_PARAM_set_BN(p: POSSL_PARAM; val: PBIGNUM): TOpenSSL_C_INT; c
 begin
   OSSL_PARAM_set_BN := LoadLibCryptoFunction('OSSL_PARAM_set_BN');
   if not assigned(OSSL_PARAM_set_BN) then
+    {$if declared(LEGACY_OSSL_PARAM_set_BN)}
+    OSSL_PARAM_set_BN := @LEGACY_OSSL_PARAM_set_BN;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_set_BN');
+    {$ifend}
   Result := OSSL_PARAM_set_BN(p, val);
 end;
 
@@ -699,7 +876,11 @@ function Load_OSSL_PARAM_get_utf8_string(p: POSSL_PARAM; val: PPAnsiChar; max_le
 begin
   OSSL_PARAM_get_utf8_string := LoadLibCryptoFunction('OSSL_PARAM_get_utf8_string');
   if not assigned(OSSL_PARAM_get_utf8_string) then
+    {$if declared(LEGACY_OSSL_PARAM_get_utf8_string)}
+    OSSL_PARAM_get_utf8_string := @LEGACY_OSSL_PARAM_get_utf8_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_get_utf8_string');
+    {$ifend}
   Result := OSSL_PARAM_get_utf8_string(p, val, max_len);
 end;
 
@@ -707,7 +888,11 @@ function Load_OSSL_PARAM_set_utf8_string(p: POSSL_PARAM; val: PAnsiChar): TOpenS
 begin
   OSSL_PARAM_set_utf8_string := LoadLibCryptoFunction('OSSL_PARAM_set_utf8_string');
   if not assigned(OSSL_PARAM_set_utf8_string) then
+    {$if declared(LEGACY_OSSL_PARAM_set_utf8_string)}
+    OSSL_PARAM_set_utf8_string := @LEGACY_OSSL_PARAM_set_utf8_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_set_utf8_string');
+    {$ifend}
   Result := OSSL_PARAM_set_utf8_string(p, val);
 end;
 
@@ -715,7 +900,11 @@ function Load_OSSL_PARAM_get_octet_string(p: POSSL_PARAM; val: Ppointer; max_len
 begin
   OSSL_PARAM_get_octet_string := LoadLibCryptoFunction('OSSL_PARAM_get_octet_string');
   if not assigned(OSSL_PARAM_get_octet_string) then
+    {$if declared(LEGACY_OSSL_PARAM_get_octet_string)}
+    OSSL_PARAM_get_octet_string := @LEGACY_OSSL_PARAM_get_octet_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_get_octet_string');
+    {$ifend}
   Result := OSSL_PARAM_get_octet_string(p, val, max_len, used_len);
 end;
 
@@ -723,7 +912,11 @@ function Load_OSSL_PARAM_set_octet_string(p: POSSL_PARAM; val: pointer; len: TOp
 begin
   OSSL_PARAM_set_octet_string := LoadLibCryptoFunction('OSSL_PARAM_set_octet_string');
   if not assigned(OSSL_PARAM_set_octet_string) then
+    {$if declared(LEGACY_OSSL_PARAM_set_octet_string)}
+    OSSL_PARAM_set_octet_string := @LEGACY_OSSL_PARAM_set_octet_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_set_octet_string');
+    {$ifend}
   Result := OSSL_PARAM_set_octet_string(p, val, len);
 end;
 
@@ -731,7 +924,11 @@ function Load_OSSL_PARAM_get_utf8_ptr(p: POSSL_PARAM; val: PPAnsiChar): TOpenSSL
 begin
   OSSL_PARAM_get_utf8_ptr := LoadLibCryptoFunction('OSSL_PARAM_get_utf8_ptr');
   if not assigned(OSSL_PARAM_get_utf8_ptr) then
+    {$if declared(LEGACY_OSSL_PARAM_get_utf8_ptr)}
+    OSSL_PARAM_get_utf8_ptr := @LEGACY_OSSL_PARAM_get_utf8_ptr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_get_utf8_ptr');
+    {$ifend}
   Result := OSSL_PARAM_get_utf8_ptr(p, val);
 end;
 
@@ -739,7 +936,11 @@ function Load_OSSL_PARAM_set_utf8_ptr(p: POSSL_PARAM; val: PAnsiChar): TOpenSSL_
 begin
   OSSL_PARAM_set_utf8_ptr := LoadLibCryptoFunction('OSSL_PARAM_set_utf8_ptr');
   if not assigned(OSSL_PARAM_set_utf8_ptr) then
+    {$if declared(LEGACY_OSSL_PARAM_set_utf8_ptr)}
+    OSSL_PARAM_set_utf8_ptr := @LEGACY_OSSL_PARAM_set_utf8_ptr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_set_utf8_ptr');
+    {$ifend}
   Result := OSSL_PARAM_set_utf8_ptr(p, val);
 end;
 
@@ -747,7 +948,11 @@ function Load_OSSL_PARAM_get_octet_ptr(p: POSSL_PARAM; val: Ppointer; used_len: 
 begin
   OSSL_PARAM_get_octet_ptr := LoadLibCryptoFunction('OSSL_PARAM_get_octet_ptr');
   if not assigned(OSSL_PARAM_get_octet_ptr) then
+    {$if declared(LEGACY_OSSL_PARAM_get_octet_ptr)}
+    OSSL_PARAM_get_octet_ptr := @LEGACY_OSSL_PARAM_get_octet_ptr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_get_octet_ptr');
+    {$ifend}
   Result := OSSL_PARAM_get_octet_ptr(p, val, used_len);
 end;
 
@@ -755,7 +960,11 @@ function Load_OSSL_PARAM_set_octet_ptr(p: POSSL_PARAM; val: pointer; used_len: T
 begin
   OSSL_PARAM_set_octet_ptr := LoadLibCryptoFunction('OSSL_PARAM_set_octet_ptr');
   if not assigned(OSSL_PARAM_set_octet_ptr) then
+    {$if declared(LEGACY_OSSL_PARAM_set_octet_ptr)}
+    OSSL_PARAM_set_octet_ptr := @LEGACY_OSSL_PARAM_set_octet_ptr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_set_octet_ptr');
+    {$ifend}
   Result := OSSL_PARAM_set_octet_ptr(p, val, used_len);
 end;
 
@@ -763,7 +972,11 @@ function Load_OSSL_PARAM_get_utf8_string_ptr(p: POSSL_PARAM; val: PPAnsiChar): T
 begin
   OSSL_PARAM_get_utf8_string_ptr := LoadLibCryptoFunction('OSSL_PARAM_get_utf8_string_ptr');
   if not assigned(OSSL_PARAM_get_utf8_string_ptr) then
+    {$if declared(LEGACY_OSSL_PARAM_get_utf8_string_ptr)}
+    OSSL_PARAM_get_utf8_string_ptr := @LEGACY_OSSL_PARAM_get_utf8_string_ptr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_get_utf8_string_ptr');
+    {$ifend}
   Result := OSSL_PARAM_get_utf8_string_ptr(p, val);
 end;
 
@@ -771,7 +984,11 @@ function Load_OSSL_PARAM_get_octet_string_ptr(p: POSSL_PARAM; val: Ppointer; use
 begin
   OSSL_PARAM_get_octet_string_ptr := LoadLibCryptoFunction('OSSL_PARAM_get_octet_string_ptr');
   if not assigned(OSSL_PARAM_get_octet_string_ptr) then
+    {$if declared(LEGACY_OSSL_PARAM_get_octet_string_ptr)}
+    OSSL_PARAM_get_octet_string_ptr := @LEGACY_OSSL_PARAM_get_octet_string_ptr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_get_octet_string_ptr');
+    {$ifend}
   Result := OSSL_PARAM_get_octet_string_ptr(p, val, used_len);
 end;
 
@@ -779,7 +996,11 @@ function Load_OSSL_PARAM_modified(p: POSSL_PARAM): TOpenSSL_C_INT; cdecl;
 begin
   OSSL_PARAM_modified := LoadLibCryptoFunction('OSSL_PARAM_modified');
   if not assigned(OSSL_PARAM_modified) then
+    {$if declared(LEGACY_OSSL_PARAM_modified)}
+    OSSL_PARAM_modified := @LEGACY_OSSL_PARAM_modified;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_modified');
+    {$ifend}
   Result := OSSL_PARAM_modified(p);
 end;
 
@@ -787,7 +1008,11 @@ procedure Load_OSSL_PARAM_set_all_unmodified(p: POSSL_PARAM); cdecl;
 begin
   OSSL_PARAM_set_all_unmodified := LoadLibCryptoFunction('OSSL_PARAM_set_all_unmodified');
   if not assigned(OSSL_PARAM_set_all_unmodified) then
+    {$if declared(LEGACY_OSSL_PARAM_set_all_unmodified)}
+    OSSL_PARAM_set_all_unmodified := @LEGACY_OSSL_PARAM_set_all_unmodified;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_set_all_unmodified');
+    {$ifend}
   OSSL_PARAM_set_all_unmodified(p);
 end;
 
@@ -795,7 +1020,11 @@ function Load_OSSL_PARAM_dup(p: POSSL_PARAM): POSSL_PARAM; cdecl;
 begin
   OSSL_PARAM_dup := LoadLibCryptoFunction('OSSL_PARAM_dup');
   if not assigned(OSSL_PARAM_dup) then
+    {$if declared(LEGACY_OSSL_PARAM_dup)}
+    OSSL_PARAM_dup := @LEGACY_OSSL_PARAM_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_dup');
+    {$ifend}
   Result := OSSL_PARAM_dup(p);
 end;
 
@@ -803,7 +1032,11 @@ function Load_OSSL_PARAM_merge(p1: POSSL_PARAM; p2: POSSL_PARAM): POSSL_PARAM; c
 begin
   OSSL_PARAM_merge := LoadLibCryptoFunction('OSSL_PARAM_merge');
   if not assigned(OSSL_PARAM_merge) then
+    {$if declared(LEGACY_OSSL_PARAM_merge)}
+    OSSL_PARAM_merge := @LEGACY_OSSL_PARAM_merge;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_merge');
+    {$ifend}
   Result := OSSL_PARAM_merge(p1, p2);
 end;
 
@@ -811,7 +1044,11 @@ procedure Load_OSSL_PARAM_free(p: POSSL_PARAM); cdecl;
 begin
   OSSL_PARAM_free := LoadLibCryptoFunction('OSSL_PARAM_free');
   if not assigned(OSSL_PARAM_free) then
+    {$if declared(LEGACY_OSSL_PARAM_free)}
+    OSSL_PARAM_free := @LEGACY_OSSL_PARAM_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_free');
+    {$ifend}
   OSSL_PARAM_free(p);
 end;
 

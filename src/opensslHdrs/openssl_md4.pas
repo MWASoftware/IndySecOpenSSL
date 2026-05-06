@@ -18,7 +18,8 @@
 unit openssl_md4;
 
 {
-  Generated from OpenSSL 3.0.20 Header File md4.h - Wed  6 May 13:06:11 BST 2026
+  Generated from OpenSSL 3.0.20 Header File md4.h - Wed  6 May 13:15:20 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -153,7 +154,11 @@ function Load_MD4_Init(c: PMD4_CTX): TOpenSSL_C_INT; cdecl;
 begin
   MD4_Init := LoadLibCryptoFunction('MD4_Init');
   if not assigned(MD4_Init) then
+    {$if declared(LEGACY_MD4_Init)}
+    MD4_Init := @LEGACY_MD4_Init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('MD4_Init');
+    {$ifend}
   Result := MD4_Init(c);
 end;
 
@@ -161,7 +166,11 @@ function Load_MD4_Update(c: PMD4_CTX; data: pointer; len: TOpenSSL_C_SIZET): TOp
 begin
   MD4_Update := LoadLibCryptoFunction('MD4_Update');
   if not assigned(MD4_Update) then
+    {$if declared(LEGACY_MD4_Update)}
+    MD4_Update := @LEGACY_MD4_Update;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('MD4_Update');
+    {$ifend}
   Result := MD4_Update(c, data, len);
 end;
 
@@ -169,7 +178,11 @@ function Load_MD4_Final(md: Pbyte; c: PMD4_CTX): TOpenSSL_C_INT; cdecl;
 begin
   MD4_Final := LoadLibCryptoFunction('MD4_Final');
   if not assigned(MD4_Final) then
+    {$if declared(LEGACY_MD4_Final)}
+    MD4_Final := @LEGACY_MD4_Final;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('MD4_Final');
+    {$ifend}
   Result := MD4_Final(md, c);
 end;
 
@@ -177,7 +190,11 @@ function Load_MD4(d: Pbyte; n: TOpenSSL_C_SIZET; md: Pbyte): Pbyte; cdecl;
 begin
   MD4 := LoadLibCryptoFunction('MD4');
   if not assigned(MD4) then
+    {$if declared(LEGACY_MD4)}
+    MD4 := @LEGACY_MD4;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('MD4');
+    {$ifend}
   Result := MD4(d, n, md);
 end;
 
@@ -185,7 +202,11 @@ procedure Load_MD4_Transform(c: PMD4_CTX; b: Pbyte); cdecl;
 begin
   MD4_Transform := LoadLibCryptoFunction('MD4_Transform');
   if not assigned(MD4_Transform) then
+    {$if declared(LEGACY_MD4_Transform)}
+    MD4_Transform := @LEGACY_MD4_Transform;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('MD4_Transform');
+    {$ifend}
   MD4_Transform(c, b);
 end;
 

@@ -18,7 +18,8 @@
 unit openssl_srp;
 
 {
-  Generated from OpenSSL 3.0.20 Header File srp.h - Wed  6 May 13:06:30 BST 2026
+  Generated from OpenSSL 3.0.20 Header File srp.h - Wed  6 May 13:15:39 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -766,7 +767,11 @@ function Load_sk_SRP_user_pwd_num(_para: Pstack_st_SRP): TOpenSSL_C_INT; cdecl;
 begin
   sk_SRP_user_pwd_num := LoadLibCryptoFunction('OPENSSL_sk_user_pwd_num');
   if not assigned(sk_SRP_user_pwd_num) then
+    {$if declared(LEGACY_OPENSSL_sk_user_pwd_num)}
+    sk_SRP_user_pwd_num := @LEGACY_OPENSSL_sk_user_pwd_num;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_user_pwd_num');
+    {$ifend}
   Result := sk_SRP_user_pwd_num(_para);
 end;
 
@@ -774,7 +779,11 @@ function Load_sk_SRP_user_pwd_value(_para: Pstack_st_SRP; _para2: TOpenSSL_C_INT
 begin
   sk_SRP_user_pwd_value := LoadLibCryptoFunction('OPENSSL_sk_user_pwd_value');
   if not assigned(sk_SRP_user_pwd_value) then
+    {$if declared(LEGACY_OPENSSL_sk_user_pwd_value)}
+    sk_SRP_user_pwd_value := @LEGACY_OPENSSL_sk_user_pwd_value;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_user_pwd_value');
+    {$ifend}
   Result := sk_SRP_user_pwd_value(_para, _para2);
 end;
 
@@ -782,7 +791,11 @@ function Load_sk_SRP_user_pwd_new(cmp: Tsk_SRP_compfunc): Pstack_st_SRP_user_pwd
 begin
   sk_SRP_user_pwd_new := LoadLibCryptoFunction('OPENSSL_sk_user_pwd_new');
   if not assigned(sk_SRP_user_pwd_new) then
+    {$if declared(LEGACY_OPENSSL_sk_user_pwd_new)}
+    sk_SRP_user_pwd_new := @LEGACY_OPENSSL_sk_user_pwd_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_user_pwd_new');
+    {$ifend}
   Result := sk_SRP_user_pwd_new(cmp);
 end;
 
@@ -790,7 +803,11 @@ function Load_sk_SRP_user_pwd_new_null: Pstack_st_SRP_user_pwd; cdecl;
 begin
   sk_SRP_user_pwd_new_null := LoadLibCryptoFunction('OPENSSL_sk_user_pwd_new_null');
   if not assigned(sk_SRP_user_pwd_new_null) then
+    {$if declared(LEGACY_OPENSSL_sk_user_pwd_new_null)}
+    sk_SRP_user_pwd_new_null := @LEGACY_OPENSSL_sk_user_pwd_new_null;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_user_pwd_new_null');
+    {$ifend}
   Result := sk_SRP_user_pwd_new_null;
 end;
 
@@ -798,7 +815,11 @@ function Load_sk_SRP_user_pwd_new_reserve(cmp: Tsk_SRP_compfunc; n: TOpenSSL_C_I
 begin
   sk_SRP_user_pwd_new_reserve := LoadLibCryptoFunction('OPENSSL_sk_user_pwd_new_reserve');
   if not assigned(sk_SRP_user_pwd_new_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_user_pwd_new_reserve)}
+    sk_SRP_user_pwd_new_reserve := @LEGACY_OPENSSL_sk_user_pwd_new_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_user_pwd_new_reserve');
+    {$ifend}
   Result := sk_SRP_user_pwd_new_reserve(cmp, n);
 end;
 
@@ -806,7 +827,11 @@ function Load_sk_SRP_user_pwd_reserve(_para: Pstack_st_SRP; n: TOpenSSL_C_INT): 
 begin
   sk_SRP_user_pwd_reserve := LoadLibCryptoFunction('OPENSSL_sk_user_pwd_reserve');
   if not assigned(sk_SRP_user_pwd_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_user_pwd_reserve)}
+    sk_SRP_user_pwd_reserve := @LEGACY_OPENSSL_sk_user_pwd_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_user_pwd_reserve');
+    {$ifend}
   Result := sk_SRP_user_pwd_reserve(_para, n);
 end;
 
@@ -814,7 +839,11 @@ function Load_sk_SRP_user_pwd_free(_para: Pstack_st_SRP): TOpenSSL_C_INT; cdecl;
 begin
   sk_SRP_user_pwd_free := LoadLibCryptoFunction('OPENSSL_sk_user_pwd_free');
   if not assigned(sk_SRP_user_pwd_free) then
+    {$if declared(LEGACY_OPENSSL_sk_user_pwd_free)}
+    sk_SRP_user_pwd_free := @LEGACY_OPENSSL_sk_user_pwd_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_user_pwd_free');
+    {$ifend}
   Result := sk_SRP_user_pwd_free(_para);
 end;
 
@@ -822,7 +851,11 @@ function Load_sk_SRP_user_pwd_zero(_para: Pstack_st_SRP): TOpenSSL_C_INT; cdecl;
 begin
   sk_SRP_user_pwd_zero := LoadLibCryptoFunction('OPENSSL_sk_user_pwd_zero');
   if not assigned(sk_SRP_user_pwd_zero) then
+    {$if declared(LEGACY_OPENSSL_sk_user_pwd_zero)}
+    sk_SRP_user_pwd_zero := @LEGACY_OPENSSL_sk_user_pwd_zero;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_user_pwd_zero');
+    {$ifend}
   Result := sk_SRP_user_pwd_zero(_para);
 end;
 
@@ -830,7 +863,11 @@ function Load_sk_SRP_user_pwd_delete(st: Pstack_st_SRP; loc: TOpenSSL_C_INT): Ps
 begin
   sk_SRP_user_pwd_delete := LoadLibCryptoFunction('OPENSSL_sk_user_pwd_delete');
   if not assigned(sk_SRP_user_pwd_delete) then
+    {$if declared(LEGACY_OPENSSL_sk_user_pwd_delete)}
+    sk_SRP_user_pwd_delete := @LEGACY_OPENSSL_sk_user_pwd_delete;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_user_pwd_delete');
+    {$ifend}
   Result := sk_SRP_user_pwd_delete(st, loc);
 end;
 
@@ -838,7 +875,11 @@ function Load_sk_SRP_user_pwd_delete_ptr(st: Pstack_st_SRP; ptr: Pstack_st_SRP):
 begin
   sk_SRP_user_pwd_delete_ptr := LoadLibCryptoFunction('OPENSSL_sk_user_pwd_delete_ptr');
   if not assigned(sk_SRP_user_pwd_delete_ptr) then
+    {$if declared(LEGACY_OPENSSL_sk_user_pwd_delete_ptr)}
+    sk_SRP_user_pwd_delete_ptr := @LEGACY_OPENSSL_sk_user_pwd_delete_ptr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_user_pwd_delete_ptr');
+    {$ifend}
   Result := sk_SRP_user_pwd_delete_ptr(st, ptr);
 end;
 
@@ -846,7 +887,11 @@ function Load_sk_SRP_user_pwd_push(st: Pstack_st_SRP; data: pointer): TOpenSSL_C
 begin
   sk_SRP_user_pwd_push := LoadLibCryptoFunction('OPENSSL_sk_user_pwd_push');
   if not assigned(sk_SRP_user_pwd_push) then
+    {$if declared(LEGACY_OPENSSL_sk_user_pwd_push)}
+    sk_SRP_user_pwd_push := @LEGACY_OPENSSL_sk_user_pwd_push;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_user_pwd_push');
+    {$ifend}
   Result := sk_SRP_user_pwd_push(st, data);
 end;
 
@@ -854,7 +899,11 @@ function Load_sk_SRP_user_pwd_unshift(st: Pstack_st_SRP; data: pointer): TOpenSS
 begin
   sk_SRP_user_pwd_unshift := LoadLibCryptoFunction('OPENSSL_sk_user_pwd_unshift');
   if not assigned(sk_SRP_user_pwd_unshift) then
+    {$if declared(LEGACY_OPENSSL_sk_user_pwd_unshift)}
+    sk_SRP_user_pwd_unshift := @LEGACY_OPENSSL_sk_user_pwd_unshift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_user_pwd_unshift');
+    {$ifend}
   Result := sk_SRP_user_pwd_unshift(st, data);
 end;
 
@@ -862,7 +911,11 @@ function Load_sk_SRP_user_pwd_pop(_para: Pstack_st_SRP): Pstack_st_SRP_user_pwd;
 begin
   sk_SRP_user_pwd_pop := LoadLibCryptoFunction('OPENSSL_sk_user_pwd_pop');
   if not assigned(sk_SRP_user_pwd_pop) then
+    {$if declared(LEGACY_OPENSSL_sk_user_pwd_pop)}
+    sk_SRP_user_pwd_pop := @LEGACY_OPENSSL_sk_user_pwd_pop;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_user_pwd_pop');
+    {$ifend}
   Result := sk_SRP_user_pwd_pop(_para);
 end;
 
@@ -870,7 +923,11 @@ function Load_sk_SRP_user_pwd_shift(_para: Pstack_st_SRP): Pstack_st_SRP_user_pw
 begin
   sk_SRP_user_pwd_shift := LoadLibCryptoFunction('OPENSSL_sk_user_pwd_shift');
   if not assigned(sk_SRP_user_pwd_shift) then
+    {$if declared(LEGACY_OPENSSL_sk_user_pwd_shift)}
+    sk_SRP_user_pwd_shift := @LEGACY_OPENSSL_sk_user_pwd_shift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_user_pwd_shift');
+    {$ifend}
   Result := sk_SRP_user_pwd_shift(_para);
 end;
 
@@ -878,7 +935,11 @@ procedure Load_sk_SRP_user_pwd_pop_free(st: Pstack_st_SRP; func: Tsk_SRP_freefun
 begin
   sk_SRP_user_pwd_pop_free := LoadLibCryptoFunction('OPENSSL_sk_user_pwd_pop_free');
   if not assigned(sk_SRP_user_pwd_pop_free) then
+    {$if declared(LEGACY_OPENSSL_sk_user_pwd_pop_free)}
+    sk_SRP_user_pwd_pop_free := @LEGACY_OPENSSL_sk_user_pwd_pop_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_user_pwd_pop_free');
+    {$ifend}
   sk_SRP_user_pwd_pop_free(st, func);
 end;
 
@@ -886,7 +947,11 @@ function Load_sk_SRP_user_pwd_insert(st: Pstack_st_SRP; data: pointer; where: TO
 begin
   sk_SRP_user_pwd_insert := LoadLibCryptoFunction('OPENSSL_sk_user_pwd_insert');
   if not assigned(sk_SRP_user_pwd_insert) then
+    {$if declared(LEGACY_OPENSSL_sk_user_pwd_insert)}
+    sk_SRP_user_pwd_insert := @LEGACY_OPENSSL_sk_user_pwd_insert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_user_pwd_insert');
+    {$ifend}
   Result := sk_SRP_user_pwd_insert(st, data, where);
 end;
 
@@ -894,7 +959,11 @@ function Load_sk_SRP_user_pwd_set(st: Pstack_st_SRP; i: TOpenSSL_C_INT; data: po
 begin
   sk_SRP_user_pwd_set := LoadLibCryptoFunction('OPENSSL_sk_user_pwd_set');
   if not assigned(sk_SRP_user_pwd_set) then
+    {$if declared(LEGACY_OPENSSL_sk_user_pwd_set)}
+    sk_SRP_user_pwd_set := @LEGACY_OPENSSL_sk_user_pwd_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_user_pwd_set');
+    {$ifend}
   Result := sk_SRP_user_pwd_set(st, i, data);
 end;
 
@@ -902,7 +971,11 @@ function Load_sk_SRP_user_pwd_find(st: Pstack_st_SRP; data: pointer): TOpenSSL_C
 begin
   sk_SRP_user_pwd_find := LoadLibCryptoFunction('OPENSSL_sk_user_pwd_find');
   if not assigned(sk_SRP_user_pwd_find) then
+    {$if declared(LEGACY_OPENSSL_sk_user_pwd_find)}
+    sk_SRP_user_pwd_find := @LEGACY_OPENSSL_sk_user_pwd_find;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_user_pwd_find');
+    {$ifend}
   Result := sk_SRP_user_pwd_find(st, data);
 end;
 
@@ -910,7 +983,11 @@ function Load_sk_SRP_user_pwd_find_ex(st: Pstack_st_SRP; data: pointer): TOpenSS
 begin
   sk_SRP_user_pwd_find_ex := LoadLibCryptoFunction('OPENSSL_sk_user_pwd_find_ex');
   if not assigned(sk_SRP_user_pwd_find_ex) then
+    {$if declared(LEGACY_OPENSSL_sk_user_pwd_find_ex)}
+    sk_SRP_user_pwd_find_ex := @LEGACY_OPENSSL_sk_user_pwd_find_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_user_pwd_find_ex');
+    {$ifend}
   Result := sk_SRP_user_pwd_find_ex(st, data);
 end;
 
@@ -918,7 +995,11 @@ function Load_sk_SRP_user_pwd_find_all(st: Pstack_st_SRP; data: pointer; pnum: P
 begin
   sk_SRP_user_pwd_find_all := LoadLibCryptoFunction('OPENSSL_sk_user_pwd_find_all');
   if not assigned(sk_SRP_user_pwd_find_all) then
+    {$if declared(LEGACY_OPENSSL_sk_user_pwd_find_all)}
+    sk_SRP_user_pwd_find_all := @LEGACY_OPENSSL_sk_user_pwd_find_all;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_user_pwd_find_all');
+    {$ifend}
   Result := sk_SRP_user_pwd_find_all(st, data, pnum);
 end;
 
@@ -926,7 +1007,11 @@ function Load_sk_SRP_user_pwd_sort(_para: Pstack_st_SRP): TOpenSSL_C_INT; cdecl;
 begin
   sk_SRP_user_pwd_sort := LoadLibCryptoFunction('OPENSSL_sk_user_pwd_sort');
   if not assigned(sk_SRP_user_pwd_sort) then
+    {$if declared(LEGACY_OPENSSL_sk_user_pwd_sort)}
+    sk_SRP_user_pwd_sort := @LEGACY_OPENSSL_sk_user_pwd_sort;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_user_pwd_sort');
+    {$ifend}
   Result := sk_SRP_user_pwd_sort(_para);
 end;
 
@@ -934,7 +1019,11 @@ function Load_sk_SRP_user_pwd_is_sorted(_para: Pstack_st_SRP): TOpenSSL_C_INT; c
 begin
   sk_SRP_user_pwd_is_sorted := LoadLibCryptoFunction('OPENSSL_sk_user_pwd_is_sorted');
   if not assigned(sk_SRP_user_pwd_is_sorted) then
+    {$if declared(LEGACY_OPENSSL_sk_user_pwd_is_sorted)}
+    sk_SRP_user_pwd_is_sorted := @LEGACY_OPENSSL_sk_user_pwd_is_sorted;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_user_pwd_is_sorted');
+    {$ifend}
   Result := sk_SRP_user_pwd_is_sorted(_para);
 end;
 
@@ -942,7 +1031,11 @@ function Load_sk_SRP_user_pwd_dup(st: Pstack_st_SRP): Pstack_st_SRP_user_pwd; cd
 begin
   sk_SRP_user_pwd_dup := LoadLibCryptoFunction('OPENSSL_sk_user_pwd_dup');
   if not assigned(sk_SRP_user_pwd_dup) then
+    {$if declared(LEGACY_OPENSSL_sk_user_pwd_dup)}
+    sk_SRP_user_pwd_dup := @LEGACY_OPENSSL_sk_user_pwd_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_user_pwd_dup');
+    {$ifend}
   Result := sk_SRP_user_pwd_dup(st);
 end;
 
@@ -950,7 +1043,11 @@ function Load_sk_SRP_user_pwd_deep_copy(st: Pstack_st_SRP; c: Tsk_SRP_compfunc; 
 begin
   sk_SRP_user_pwd_deep_copy := LoadLibCryptoFunction('OPENSSL_sk_user_pwd_deep_copy');
   if not assigned(sk_SRP_user_pwd_deep_copy) then
+    {$if declared(LEGACY_OPENSSL_sk_user_pwd_deep_copy)}
+    sk_SRP_user_pwd_deep_copy := @LEGACY_OPENSSL_sk_user_pwd_deep_copy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_user_pwd_deep_copy');
+    {$ifend}
   Result := sk_SRP_user_pwd_deep_copy(st, c, f);
 end;
 
@@ -958,7 +1055,11 @@ function Load_sk_SRP_user_pwd_set_cmp_func(st: Pstack_st_SRP; cmp: Tsk_SRP_compf
 begin
   sk_SRP_user_pwd_set_cmp_func := LoadLibCryptoFunction('OPENSSL_sk_user_pwd_set_cmp_func');
   if not assigned(sk_SRP_user_pwd_set_cmp_func) then
+    {$if declared(LEGACY_OPENSSL_sk_user_pwd_set_cmp_func)}
+    sk_SRP_user_pwd_set_cmp_func := @LEGACY_OPENSSL_sk_user_pwd_set_cmp_func;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_user_pwd_set_cmp_func');
+    {$ifend}
   Result := sk_SRP_user_pwd_set_cmp_func(st, cmp);
 end;
 
@@ -966,7 +1067,11 @@ function Load_SRP_user_pwd_new: PSRP_user_pwd; cdecl;
 begin
   SRP_user_pwd_new := LoadLibCryptoFunction('SRP_user_pwd_new');
   if not assigned(SRP_user_pwd_new) then
+    {$if declared(LEGACY_SRP_user_pwd_new)}
+    SRP_user_pwd_new := @LEGACY_SRP_user_pwd_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SRP_user_pwd_new');
+    {$ifend}
   Result := SRP_user_pwd_new;
 end;
 
@@ -974,7 +1079,11 @@ procedure Load_SRP_user_pwd_free(user_pwd: PSRP_user_pwd); cdecl;
 begin
   SRP_user_pwd_free := LoadLibCryptoFunction('SRP_user_pwd_free');
   if not assigned(SRP_user_pwd_free) then
+    {$if declared(LEGACY_SRP_user_pwd_free)}
+    SRP_user_pwd_free := @LEGACY_SRP_user_pwd_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SRP_user_pwd_free');
+    {$ifend}
   SRP_user_pwd_free(user_pwd);
 end;
 
@@ -982,7 +1091,11 @@ procedure Load_SRP_user_pwd_set_gN(user_pwd: PSRP_user_pwd; g: PBIGNUM; N: PBIGN
 begin
   SRP_user_pwd_set_gN := LoadLibCryptoFunction('SRP_user_pwd_set_gN');
   if not assigned(SRP_user_pwd_set_gN) then
+    {$if declared(LEGACY_SRP_user_pwd_set_gN)}
+    SRP_user_pwd_set_gN := @LEGACY_SRP_user_pwd_set_gN;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SRP_user_pwd_set_gN');
+    {$ifend}
   SRP_user_pwd_set_gN(user_pwd, g, N);
 end;
 
@@ -990,7 +1103,11 @@ function Load_SRP_user_pwd_set1_ids(user_pwd: PSRP_user_pwd; id: PAnsiChar; info
 begin
   SRP_user_pwd_set1_ids := LoadLibCryptoFunction('SRP_user_pwd_set1_ids');
   if not assigned(SRP_user_pwd_set1_ids) then
+    {$if declared(LEGACY_SRP_user_pwd_set1_ids)}
+    SRP_user_pwd_set1_ids := @LEGACY_SRP_user_pwd_set1_ids;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SRP_user_pwd_set1_ids');
+    {$ifend}
   Result := SRP_user_pwd_set1_ids(user_pwd, id, info);
 end;
 
@@ -998,7 +1115,11 @@ function Load_SRP_user_pwd_set0_sv(user_pwd: PSRP_user_pwd; s: PBIGNUM; v: PBIGN
 begin
   SRP_user_pwd_set0_sv := LoadLibCryptoFunction('SRP_user_pwd_set0_sv');
   if not assigned(SRP_user_pwd_set0_sv) then
+    {$if declared(LEGACY_SRP_user_pwd_set0_sv)}
+    SRP_user_pwd_set0_sv := @LEGACY_SRP_user_pwd_set0_sv;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SRP_user_pwd_set0_sv');
+    {$ifend}
   Result := SRP_user_pwd_set0_sv(user_pwd, s, v);
 end;
 
@@ -1006,7 +1127,11 @@ function Load_SRP_VBASE_new(seed_key: PAnsiChar): PSRP_VBASE; cdecl;
 begin
   SRP_VBASE_new := LoadLibCryptoFunction('SRP_VBASE_new');
   if not assigned(SRP_VBASE_new) then
+    {$if declared(LEGACY_SRP_VBASE_new)}
+    SRP_VBASE_new := @LEGACY_SRP_VBASE_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SRP_VBASE_new');
+    {$ifend}
   Result := SRP_VBASE_new(seed_key);
 end;
 
@@ -1014,7 +1139,11 @@ procedure Load_SRP_VBASE_free(vb: PSRP_VBASE); cdecl;
 begin
   SRP_VBASE_free := LoadLibCryptoFunction('SRP_VBASE_free');
   if not assigned(SRP_VBASE_free) then
+    {$if declared(LEGACY_SRP_VBASE_free)}
+    SRP_VBASE_free := @LEGACY_SRP_VBASE_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SRP_VBASE_free');
+    {$ifend}
   SRP_VBASE_free(vb);
 end;
 
@@ -1022,7 +1151,11 @@ function Load_SRP_VBASE_init(vb: PSRP_VBASE; verifier_file: PAnsiChar): TOpenSSL
 begin
   SRP_VBASE_init := LoadLibCryptoFunction('SRP_VBASE_init');
   if not assigned(SRP_VBASE_init) then
+    {$if declared(LEGACY_SRP_VBASE_init)}
+    SRP_VBASE_init := @LEGACY_SRP_VBASE_init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SRP_VBASE_init');
+    {$ifend}
   Result := SRP_VBASE_init(vb, verifier_file);
 end;
 
@@ -1030,7 +1163,11 @@ function Load_SRP_VBASE_add0_user(vb: PSRP_VBASE; user_pwd: PSRP_user_pwd): TOpe
 begin
   SRP_VBASE_add0_user := LoadLibCryptoFunction('SRP_VBASE_add0_user');
   if not assigned(SRP_VBASE_add0_user) then
+    {$if declared(LEGACY_SRP_VBASE_add0_user)}
+    SRP_VBASE_add0_user := @LEGACY_SRP_VBASE_add0_user;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SRP_VBASE_add0_user');
+    {$ifend}
   Result := SRP_VBASE_add0_user(vb, user_pwd);
 end;
 
@@ -1038,7 +1175,11 @@ function Load_SRP_VBASE_get1_by_user(vb: PSRP_VBASE; username: PAnsiChar): PSRP_
 begin
   SRP_VBASE_get1_by_user := LoadLibCryptoFunction('SRP_VBASE_get1_by_user');
   if not assigned(SRP_VBASE_get1_by_user) then
+    {$if declared(LEGACY_SRP_VBASE_get1_by_user)}
+    SRP_VBASE_get1_by_user := @LEGACY_SRP_VBASE_get1_by_user;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SRP_VBASE_get1_by_user');
+    {$ifend}
   Result := SRP_VBASE_get1_by_user(vb, username);
 end;
 
@@ -1046,7 +1187,11 @@ function Load_SRP_create_verifier_ex(user: PAnsiChar; pass: PAnsiChar; salt: PPA
 begin
   SRP_create_verifier_ex := LoadLibCryptoFunction('SRP_create_verifier_ex');
   if not assigned(SRP_create_verifier_ex) then
+    {$if declared(LEGACY_SRP_create_verifier_ex)}
+    SRP_create_verifier_ex := @LEGACY_SRP_create_verifier_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SRP_create_verifier_ex');
+    {$ifend}
   Result := SRP_create_verifier_ex(user, pass, salt, verifier, N, g, libctx, propq);
 end;
 
@@ -1054,7 +1199,11 @@ function Load_SRP_create_verifier(user: PAnsiChar; pass: PAnsiChar; salt: PPAnsi
 begin
   SRP_create_verifier := LoadLibCryptoFunction('SRP_create_verifier');
   if not assigned(SRP_create_verifier) then
+    {$if declared(LEGACY_SRP_create_verifier)}
+    SRP_create_verifier := @LEGACY_SRP_create_verifier;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SRP_create_verifier');
+    {$ifend}
   Result := SRP_create_verifier(user, pass, salt, verifier, N, g);
 end;
 
@@ -1062,7 +1211,11 @@ function Load_SRP_create_verifier_BN_ex(user: PAnsiChar; pass: PAnsiChar; salt: 
 begin
   SRP_create_verifier_BN_ex := LoadLibCryptoFunction('SRP_create_verifier_BN_ex');
   if not assigned(SRP_create_verifier_BN_ex) then
+    {$if declared(LEGACY_SRP_create_verifier_BN_ex)}
+    SRP_create_verifier_BN_ex := @LEGACY_SRP_create_verifier_BN_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SRP_create_verifier_BN_ex');
+    {$ifend}
   Result := SRP_create_verifier_BN_ex(user, pass, salt, verifier, N, g, libctx, propq);
 end;
 
@@ -1070,7 +1223,11 @@ function Load_SRP_create_verifier_BN(user: PAnsiChar; pass: PAnsiChar; salt: PPB
 begin
   SRP_create_verifier_BN := LoadLibCryptoFunction('SRP_create_verifier_BN');
   if not assigned(SRP_create_verifier_BN) then
+    {$if declared(LEGACY_SRP_create_verifier_BN)}
+    SRP_create_verifier_BN := @LEGACY_SRP_create_verifier_BN;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SRP_create_verifier_BN');
+    {$ifend}
   Result := SRP_create_verifier_BN(user, pass, salt, verifier, N, g);
 end;
 
@@ -1078,7 +1235,11 @@ function Load_SRP_check_known_gN_param(g: PBIGNUM; N: PBIGNUM): PAnsiChar; cdecl
 begin
   SRP_check_known_gN_param := LoadLibCryptoFunction('SRP_check_known_gN_param');
   if not assigned(SRP_check_known_gN_param) then
+    {$if declared(LEGACY_SRP_check_known_gN_param)}
+    SRP_check_known_gN_param := @LEGACY_SRP_check_known_gN_param;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SRP_check_known_gN_param');
+    {$ifend}
   Result := SRP_check_known_gN_param(g, N);
 end;
 
@@ -1086,7 +1247,11 @@ function Load_SRP_get_default_gN(id: PAnsiChar): PSRP_gN; cdecl;
 begin
   SRP_get_default_gN := LoadLibCryptoFunction('SRP_get_default_gN');
   if not assigned(SRP_get_default_gN) then
+    {$if declared(LEGACY_SRP_get_default_gN)}
+    SRP_get_default_gN := @LEGACY_SRP_get_default_gN;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SRP_get_default_gN');
+    {$ifend}
   Result := SRP_get_default_gN(id);
 end;
 
@@ -1094,7 +1259,11 @@ function Load_SRP_Calc_server_key(A: PBIGNUM; v: PBIGNUM; u: PBIGNUM; b: PBIGNUM
 begin
   SRP_Calc_server_key := LoadLibCryptoFunction('SRP_Calc_server_key');
   if not assigned(SRP_Calc_server_key) then
+    {$if declared(LEGACY_SRP_Calc_server_key)}
+    SRP_Calc_server_key := @LEGACY_SRP_Calc_server_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SRP_Calc_server_key');
+    {$ifend}
   Result := SRP_Calc_server_key(A, v, u, b, N);
 end;
 
@@ -1102,7 +1271,11 @@ function Load_SRP_Calc_B_ex(b: PBIGNUM; N: PBIGNUM; g: PBIGNUM; v: PBIGNUM; libc
 begin
   SRP_Calc_B_ex := LoadLibCryptoFunction('SRP_Calc_B_ex');
   if not assigned(SRP_Calc_B_ex) then
+    {$if declared(LEGACY_SRP_Calc_B_ex)}
+    SRP_Calc_B_ex := @LEGACY_SRP_Calc_B_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SRP_Calc_B_ex');
+    {$ifend}
   Result := SRP_Calc_B_ex(b, N, g, v, libctx, propq);
 end;
 
@@ -1110,7 +1283,11 @@ function Load_SRP_Calc_B(b: PBIGNUM; N: PBIGNUM; g: PBIGNUM; v: PBIGNUM): PBIGNU
 begin
   SRP_Calc_B := LoadLibCryptoFunction('SRP_Calc_B');
   if not assigned(SRP_Calc_B) then
+    {$if declared(LEGACY_SRP_Calc_B)}
+    SRP_Calc_B := @LEGACY_SRP_Calc_B;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SRP_Calc_B');
+    {$ifend}
   Result := SRP_Calc_B(b, N, g, v);
 end;
 
@@ -1118,7 +1295,11 @@ function Load_SRP_Verify_A_mod_N(A: PBIGNUM; N: PBIGNUM): TOpenSSL_C_INT; cdecl;
 begin
   SRP_Verify_A_mod_N := LoadLibCryptoFunction('SRP_Verify_A_mod_N');
   if not assigned(SRP_Verify_A_mod_N) then
+    {$if declared(LEGACY_SRP_Verify_A_mod_N)}
+    SRP_Verify_A_mod_N := @LEGACY_SRP_Verify_A_mod_N;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SRP_Verify_A_mod_N');
+    {$ifend}
   Result := SRP_Verify_A_mod_N(A, N);
 end;
 
@@ -1126,7 +1307,11 @@ function Load_SRP_Calc_u_ex(A: PBIGNUM; B: PBIGNUM; N: PBIGNUM; libctx: POSSL_LI
 begin
   SRP_Calc_u_ex := LoadLibCryptoFunction('SRP_Calc_u_ex');
   if not assigned(SRP_Calc_u_ex) then
+    {$if declared(LEGACY_SRP_Calc_u_ex)}
+    SRP_Calc_u_ex := @LEGACY_SRP_Calc_u_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SRP_Calc_u_ex');
+    {$ifend}
   Result := SRP_Calc_u_ex(A, B, N, libctx, propq);
 end;
 
@@ -1134,7 +1319,11 @@ function Load_SRP_Calc_u(A: PBIGNUM; B: PBIGNUM; N: PBIGNUM): PBIGNUM; cdecl;
 begin
   SRP_Calc_u := LoadLibCryptoFunction('SRP_Calc_u');
   if not assigned(SRP_Calc_u) then
+    {$if declared(LEGACY_SRP_Calc_u)}
+    SRP_Calc_u := @LEGACY_SRP_Calc_u;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SRP_Calc_u');
+    {$ifend}
   Result := SRP_Calc_u(A, B, N);
 end;
 
@@ -1142,7 +1331,11 @@ function Load_SRP_Calc_x_ex(s: PBIGNUM; user: PAnsiChar; pass: PAnsiChar; libctx
 begin
   SRP_Calc_x_ex := LoadLibCryptoFunction('SRP_Calc_x_ex');
   if not assigned(SRP_Calc_x_ex) then
+    {$if declared(LEGACY_SRP_Calc_x_ex)}
+    SRP_Calc_x_ex := @LEGACY_SRP_Calc_x_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SRP_Calc_x_ex');
+    {$ifend}
   Result := SRP_Calc_x_ex(s, user, pass, libctx, propq);
 end;
 
@@ -1150,7 +1343,11 @@ function Load_SRP_Calc_x(s: PBIGNUM; user: PAnsiChar; pass: PAnsiChar): PBIGNUM;
 begin
   SRP_Calc_x := LoadLibCryptoFunction('SRP_Calc_x');
   if not assigned(SRP_Calc_x) then
+    {$if declared(LEGACY_SRP_Calc_x)}
+    SRP_Calc_x := @LEGACY_SRP_Calc_x;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SRP_Calc_x');
+    {$ifend}
   Result := SRP_Calc_x(s, user, pass);
 end;
 
@@ -1158,7 +1355,11 @@ function Load_SRP_Calc_A(a: PBIGNUM; N: PBIGNUM; g: PBIGNUM): PBIGNUM; cdecl;
 begin
   SRP_Calc_A := LoadLibCryptoFunction('SRP_Calc_A');
   if not assigned(SRP_Calc_A) then
+    {$if declared(LEGACY_SRP_Calc_A)}
+    SRP_Calc_A := @LEGACY_SRP_Calc_A;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SRP_Calc_A');
+    {$ifend}
   Result := SRP_Calc_A(a, N, g);
 end;
 
@@ -1166,7 +1367,11 @@ function Load_SRP_Calc_client_key_ex(N: PBIGNUM; B: PBIGNUM; g: PBIGNUM; x: PBIG
 begin
   SRP_Calc_client_key_ex := LoadLibCryptoFunction('SRP_Calc_client_key_ex');
   if not assigned(SRP_Calc_client_key_ex) then
+    {$if declared(LEGACY_SRP_Calc_client_key_ex)}
+    SRP_Calc_client_key_ex := @LEGACY_SRP_Calc_client_key_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SRP_Calc_client_key_ex');
+    {$ifend}
   Result := SRP_Calc_client_key_ex(N, B, g, x, a, u, libctx, propq);
 end;
 
@@ -1174,7 +1379,11 @@ function Load_SRP_Calc_client_key(N: PBIGNUM; B: PBIGNUM; g: PBIGNUM; x: PBIGNUM
 begin
   SRP_Calc_client_key := LoadLibCryptoFunction('SRP_Calc_client_key');
   if not assigned(SRP_Calc_client_key) then
+    {$if declared(LEGACY_SRP_Calc_client_key)}
+    SRP_Calc_client_key := @LEGACY_SRP_Calc_client_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SRP_Calc_client_key');
+    {$ifend}
   Result := SRP_Calc_client_key(N, B, g, x, a, u);
 end;
 
@@ -1182,7 +1391,11 @@ function Load_SRP_Verify_B_mod_N(B: PBIGNUM; N: PBIGNUM): TOpenSSL_C_INT; cdecl;
 begin
   SRP_Verify_B_mod_N := LoadLibCryptoFunction('SRP_Verify_B_mod_N');
   if not assigned(SRP_Verify_B_mod_N) then
+    {$if declared(LEGACY_SRP_Verify_B_mod_N)}
+    SRP_Verify_B_mod_N := @LEGACY_SRP_Verify_B_mod_N;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SRP_Verify_B_mod_N');
+    {$ifend}
   Result := SRP_Verify_B_mod_N(B, N);
 end;
 
@@ -1192,7 +1405,11 @@ function Load_SRP_VBASE_get_by_user(vb: PSRP_VBASE; username: PAnsiChar): PSRP_u
 begin
   SRP_VBASE_get_by_user := LoadLibCryptoFunction('SRP_VBASE_get_by_user');
   if not assigned(SRP_VBASE_get_by_user) then
+    {$if declared(LEGACY_SRP_VBASE_get_by_user)}
+    SRP_VBASE_get_by_user := @LEGACY_SRP_VBASE_get_by_user;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SRP_VBASE_get_by_user');
+    {$ifend}
   Result := SRP_VBASE_get_by_user(vb, username);
 end;
 

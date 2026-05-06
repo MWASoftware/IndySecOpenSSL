@@ -18,7 +18,8 @@
 unit openssl_decodererr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File decodererr.h - Wed  6 May 13:05:51 BST 2026
+  Generated from OpenSSL 3.0.20 Header File decodererr.h - Wed  6 May 13:15:01 BST 2026
+  With Legacy Support Option
 }
 
 interface

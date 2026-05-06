@@ -18,7 +18,8 @@
 unit openssl_ripemd;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ripemd.h - Wed  6 May 13:06:27 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ripemd.h - Wed  6 May 13:15:36 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -149,7 +150,11 @@ function Load_RIPEMD160_Init(c: PRIPEMD160_CTX): TOpenSSL_C_INT; cdecl;
 begin
   RIPEMD160_Init := LoadLibCryptoFunction('RIPEMD160_Init');
   if not assigned(RIPEMD160_Init) then
+    {$if declared(LEGACY_RIPEMD160_Init)}
+    RIPEMD160_Init := @LEGACY_RIPEMD160_Init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RIPEMD160_Init');
+    {$ifend}
   Result := RIPEMD160_Init(c);
 end;
 
@@ -157,7 +162,11 @@ function Load_RIPEMD160_Update(c: PRIPEMD160_CTX; data: pointer; len: TOpenSSL_C
 begin
   RIPEMD160_Update := LoadLibCryptoFunction('RIPEMD160_Update');
   if not assigned(RIPEMD160_Update) then
+    {$if declared(LEGACY_RIPEMD160_Update)}
+    RIPEMD160_Update := @LEGACY_RIPEMD160_Update;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RIPEMD160_Update');
+    {$ifend}
   Result := RIPEMD160_Update(c, data, len);
 end;
 
@@ -165,7 +174,11 @@ function Load_RIPEMD160_Final(md: Pbyte; c: PRIPEMD160_CTX): TOpenSSL_C_INT; cde
 begin
   RIPEMD160_Final := LoadLibCryptoFunction('RIPEMD160_Final');
   if not assigned(RIPEMD160_Final) then
+    {$if declared(LEGACY_RIPEMD160_Final)}
+    RIPEMD160_Final := @LEGACY_RIPEMD160_Final;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RIPEMD160_Final');
+    {$ifend}
   Result := RIPEMD160_Final(md, c);
 end;
 
@@ -173,7 +186,11 @@ function Load_RIPEMD160(d: Pbyte; n: TOpenSSL_C_SIZET; md: Pbyte): Pbyte; cdecl;
 begin
   RIPEMD160 := LoadLibCryptoFunction('RIPEMD160');
   if not assigned(RIPEMD160) then
+    {$if declared(LEGACY_RIPEMD160)}
+    RIPEMD160 := @LEGACY_RIPEMD160;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RIPEMD160');
+    {$ifend}
   Result := RIPEMD160(d, n, md);
 end;
 
@@ -181,7 +198,11 @@ procedure Load_RIPEMD160_Transform(c: PRIPEMD160_CTX; b: Pbyte); cdecl;
 begin
   RIPEMD160_Transform := LoadLibCryptoFunction('RIPEMD160_Transform');
   if not assigned(RIPEMD160_Transform) then
+    {$if declared(LEGACY_RIPEMD160_Transform)}
+    RIPEMD160_Transform := @LEGACY_RIPEMD160_Transform;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RIPEMD160_Transform');
+    {$ifend}
   RIPEMD160_Transform(c, b);
 end;
 

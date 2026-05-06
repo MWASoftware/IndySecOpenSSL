@@ -18,7 +18,8 @@
 unit openssl_modes;
 
 {
-  Generated from OpenSSL 3.0.20 Header File modes.h - Wed  6 May 13:06:12 BST 2026
+  Generated from OpenSSL 3.0.20 Header File modes.h - Wed  6 May 13:15:21 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -381,7 +382,11 @@ procedure Load_CRYPTO_cbc128_encrypt(in_: Pbyte; out_: Pbyte; len: TOpenSSL_C_SI
 begin
   CRYPTO_cbc128_encrypt := LoadLibCryptoFunction('CRYPTO_cbc128_encrypt');
   if not assigned(CRYPTO_cbc128_encrypt) then
+    {$if declared(LEGACY_CRYPTO_cbc128_encrypt)}
+    CRYPTO_cbc128_encrypt := @LEGACY_CRYPTO_cbc128_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_cbc128_encrypt');
+    {$ifend}
   CRYPTO_cbc128_encrypt(in_, out_, len, key, ivec, block);
 end;
 
@@ -389,7 +394,11 @@ procedure Load_CRYPTO_cbc128_decrypt(in_: Pbyte; out_: Pbyte; len: TOpenSSL_C_SI
 begin
   CRYPTO_cbc128_decrypt := LoadLibCryptoFunction('CRYPTO_cbc128_decrypt');
   if not assigned(CRYPTO_cbc128_decrypt) then
+    {$if declared(LEGACY_CRYPTO_cbc128_decrypt)}
+    CRYPTO_cbc128_decrypt := @LEGACY_CRYPTO_cbc128_decrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_cbc128_decrypt');
+    {$ifend}
   CRYPTO_cbc128_decrypt(in_, out_, len, key, ivec, block);
 end;
 
@@ -397,7 +406,11 @@ procedure Load_CRYPTO_ctr128_encrypt(in_: Pbyte; out_: Pbyte; len: TOpenSSL_C_SI
 begin
   CRYPTO_ctr128_encrypt := LoadLibCryptoFunction('CRYPTO_ctr128_encrypt');
   if not assigned(CRYPTO_ctr128_encrypt) then
+    {$if declared(LEGACY_CRYPTO_ctr128_encrypt)}
+    CRYPTO_ctr128_encrypt := @LEGACY_CRYPTO_ctr128_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_ctr128_encrypt');
+    {$ifend}
   CRYPTO_ctr128_encrypt(in_, out_, len, key, ivec, ecount_buf, num, block);
 end;
 
@@ -405,7 +418,11 @@ procedure Load_CRYPTO_ctr128_encrypt_ctr32(in_: Pbyte; out_: Pbyte; len: TOpenSS
 begin
   CRYPTO_ctr128_encrypt_ctr32 := LoadLibCryptoFunction('CRYPTO_ctr128_encrypt_ctr32');
   if not assigned(CRYPTO_ctr128_encrypt_ctr32) then
+    {$if declared(LEGACY_CRYPTO_ctr128_encrypt_ctr32)}
+    CRYPTO_ctr128_encrypt_ctr32 := @LEGACY_CRYPTO_ctr128_encrypt_ctr32;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_ctr128_encrypt_ctr32');
+    {$ifend}
   CRYPTO_ctr128_encrypt_ctr32(in_, out_, len, key, ivec, ecount_buf, num, ctr);
 end;
 
@@ -413,7 +430,11 @@ procedure Load_CRYPTO_ofb128_encrypt(in_: Pbyte; out_: Pbyte; len: TOpenSSL_C_SI
 begin
   CRYPTO_ofb128_encrypt := LoadLibCryptoFunction('CRYPTO_ofb128_encrypt');
   if not assigned(CRYPTO_ofb128_encrypt) then
+    {$if declared(LEGACY_CRYPTO_ofb128_encrypt)}
+    CRYPTO_ofb128_encrypt := @LEGACY_CRYPTO_ofb128_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_ofb128_encrypt');
+    {$ifend}
   CRYPTO_ofb128_encrypt(in_, out_, len, key, ivec, num, block);
 end;
 
@@ -421,7 +442,11 @@ procedure Load_CRYPTO_cfb128_encrypt(in_: Pbyte; out_: Pbyte; len: TOpenSSL_C_SI
 begin
   CRYPTO_cfb128_encrypt := LoadLibCryptoFunction('CRYPTO_cfb128_encrypt');
   if not assigned(CRYPTO_cfb128_encrypt) then
+    {$if declared(LEGACY_CRYPTO_cfb128_encrypt)}
+    CRYPTO_cfb128_encrypt := @LEGACY_CRYPTO_cfb128_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_cfb128_encrypt');
+    {$ifend}
   CRYPTO_cfb128_encrypt(in_, out_, len, key, ivec, num, enc, block);
 end;
 
@@ -429,7 +454,11 @@ procedure Load_CRYPTO_cfb128_8_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL
 begin
   CRYPTO_cfb128_8_encrypt := LoadLibCryptoFunction('CRYPTO_cfb128_8_encrypt');
   if not assigned(CRYPTO_cfb128_8_encrypt) then
+    {$if declared(LEGACY_CRYPTO_cfb128_8_encrypt)}
+    CRYPTO_cfb128_8_encrypt := @LEGACY_CRYPTO_cfb128_8_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_cfb128_8_encrypt');
+    {$ifend}
   CRYPTO_cfb128_8_encrypt(in_, out_, length, key, ivec, num, enc, block);
 end;
 
@@ -437,7 +466,11 @@ procedure Load_CRYPTO_cfb128_1_encrypt(in_: Pbyte; out_: Pbyte; bits: TOpenSSL_C
 begin
   CRYPTO_cfb128_1_encrypt := LoadLibCryptoFunction('CRYPTO_cfb128_1_encrypt');
   if not assigned(CRYPTO_cfb128_1_encrypt) then
+    {$if declared(LEGACY_CRYPTO_cfb128_1_encrypt)}
+    CRYPTO_cfb128_1_encrypt := @LEGACY_CRYPTO_cfb128_1_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_cfb128_1_encrypt');
+    {$ifend}
   CRYPTO_cfb128_1_encrypt(in_, out_, bits, key, ivec, num, enc, block);
 end;
 
@@ -445,7 +478,11 @@ function Load_CRYPTO_cts128_encrypt_block(in_: Pbyte; out_: Pbyte; len: TOpenSSL
 begin
   CRYPTO_cts128_encrypt_block := LoadLibCryptoFunction('CRYPTO_cts128_encrypt_block');
   if not assigned(CRYPTO_cts128_encrypt_block) then
+    {$if declared(LEGACY_CRYPTO_cts128_encrypt_block)}
+    CRYPTO_cts128_encrypt_block := @LEGACY_CRYPTO_cts128_encrypt_block;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_cts128_encrypt_block');
+    {$ifend}
   Result := CRYPTO_cts128_encrypt_block(in_, out_, len, key, ivec, block);
 end;
 
@@ -453,7 +490,11 @@ function Load_CRYPTO_cts128_encrypt(in_: Pbyte; out_: Pbyte; len: TOpenSSL_C_SIZ
 begin
   CRYPTO_cts128_encrypt := LoadLibCryptoFunction('CRYPTO_cts128_encrypt');
   if not assigned(CRYPTO_cts128_encrypt) then
+    {$if declared(LEGACY_CRYPTO_cts128_encrypt)}
+    CRYPTO_cts128_encrypt := @LEGACY_CRYPTO_cts128_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_cts128_encrypt');
+    {$ifend}
   Result := CRYPTO_cts128_encrypt(in_, out_, len, key, ivec, cbc);
 end;
 
@@ -461,7 +502,11 @@ function Load_CRYPTO_cts128_decrypt_block(in_: Pbyte; out_: Pbyte; len: TOpenSSL
 begin
   CRYPTO_cts128_decrypt_block := LoadLibCryptoFunction('CRYPTO_cts128_decrypt_block');
   if not assigned(CRYPTO_cts128_decrypt_block) then
+    {$if declared(LEGACY_CRYPTO_cts128_decrypt_block)}
+    CRYPTO_cts128_decrypt_block := @LEGACY_CRYPTO_cts128_decrypt_block;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_cts128_decrypt_block');
+    {$ifend}
   Result := CRYPTO_cts128_decrypt_block(in_, out_, len, key, ivec, block);
 end;
 
@@ -469,7 +514,11 @@ function Load_CRYPTO_cts128_decrypt(in_: Pbyte; out_: Pbyte; len: TOpenSSL_C_SIZ
 begin
   CRYPTO_cts128_decrypt := LoadLibCryptoFunction('CRYPTO_cts128_decrypt');
   if not assigned(CRYPTO_cts128_decrypt) then
+    {$if declared(LEGACY_CRYPTO_cts128_decrypt)}
+    CRYPTO_cts128_decrypt := @LEGACY_CRYPTO_cts128_decrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_cts128_decrypt');
+    {$ifend}
   Result := CRYPTO_cts128_decrypt(in_, out_, len, key, ivec, cbc);
 end;
 
@@ -477,7 +526,11 @@ function Load_CRYPTO_nistcts128_encrypt_block(in_: Pbyte; out_: Pbyte; len: TOpe
 begin
   CRYPTO_nistcts128_encrypt_block := LoadLibCryptoFunction('CRYPTO_nistcts128_encrypt_block');
   if not assigned(CRYPTO_nistcts128_encrypt_block) then
+    {$if declared(LEGACY_CRYPTO_nistcts128_encrypt_block)}
+    CRYPTO_nistcts128_encrypt_block := @LEGACY_CRYPTO_nistcts128_encrypt_block;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_nistcts128_encrypt_block');
+    {$ifend}
   Result := CRYPTO_nistcts128_encrypt_block(in_, out_, len, key, ivec, block);
 end;
 
@@ -485,7 +538,11 @@ function Load_CRYPTO_nistcts128_encrypt(in_: Pbyte; out_: Pbyte; len: TOpenSSL_C
 begin
   CRYPTO_nistcts128_encrypt := LoadLibCryptoFunction('CRYPTO_nistcts128_encrypt');
   if not assigned(CRYPTO_nistcts128_encrypt) then
+    {$if declared(LEGACY_CRYPTO_nistcts128_encrypt)}
+    CRYPTO_nistcts128_encrypt := @LEGACY_CRYPTO_nistcts128_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_nistcts128_encrypt');
+    {$ifend}
   Result := CRYPTO_nistcts128_encrypt(in_, out_, len, key, ivec, cbc);
 end;
 
@@ -493,7 +550,11 @@ function Load_CRYPTO_nistcts128_decrypt_block(in_: Pbyte; out_: Pbyte; len: TOpe
 begin
   CRYPTO_nistcts128_decrypt_block := LoadLibCryptoFunction('CRYPTO_nistcts128_decrypt_block');
   if not assigned(CRYPTO_nistcts128_decrypt_block) then
+    {$if declared(LEGACY_CRYPTO_nistcts128_decrypt_block)}
+    CRYPTO_nistcts128_decrypt_block := @LEGACY_CRYPTO_nistcts128_decrypt_block;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_nistcts128_decrypt_block');
+    {$ifend}
   Result := CRYPTO_nistcts128_decrypt_block(in_, out_, len, key, ivec, block);
 end;
 
@@ -501,7 +562,11 @@ function Load_CRYPTO_nistcts128_decrypt(in_: Pbyte; out_: Pbyte; len: TOpenSSL_C
 begin
   CRYPTO_nistcts128_decrypt := LoadLibCryptoFunction('CRYPTO_nistcts128_decrypt');
   if not assigned(CRYPTO_nistcts128_decrypt) then
+    {$if declared(LEGACY_CRYPTO_nistcts128_decrypt)}
+    CRYPTO_nistcts128_decrypt := @LEGACY_CRYPTO_nistcts128_decrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_nistcts128_decrypt');
+    {$ifend}
   Result := CRYPTO_nistcts128_decrypt(in_, out_, len, key, ivec, cbc);
 end;
 
@@ -509,7 +574,11 @@ function Load_CRYPTO_gcm128_new(key: pointer; block: Tblock128_f): PGCM128_CONTE
 begin
   CRYPTO_gcm128_new := LoadLibCryptoFunction('CRYPTO_gcm128_new');
   if not assigned(CRYPTO_gcm128_new) then
+    {$if declared(LEGACY_CRYPTO_gcm128_new)}
+    CRYPTO_gcm128_new := @LEGACY_CRYPTO_gcm128_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_gcm128_new');
+    {$ifend}
   Result := CRYPTO_gcm128_new(key, block);
 end;
 
@@ -517,7 +586,11 @@ procedure Load_CRYPTO_gcm128_init(ctx: PGCM128_CONTEXT; key: pointer; block: Tbl
 begin
   CRYPTO_gcm128_init := LoadLibCryptoFunction('CRYPTO_gcm128_init');
   if not assigned(CRYPTO_gcm128_init) then
+    {$if declared(LEGACY_CRYPTO_gcm128_init)}
+    CRYPTO_gcm128_init := @LEGACY_CRYPTO_gcm128_init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_gcm128_init');
+    {$ifend}
   CRYPTO_gcm128_init(ctx, key, block);
 end;
 
@@ -525,7 +598,11 @@ procedure Load_CRYPTO_gcm128_setiv(ctx: PGCM128_CONTEXT; iv: Pbyte; len: TOpenSS
 begin
   CRYPTO_gcm128_setiv := LoadLibCryptoFunction('CRYPTO_gcm128_setiv');
   if not assigned(CRYPTO_gcm128_setiv) then
+    {$if declared(LEGACY_CRYPTO_gcm128_setiv)}
+    CRYPTO_gcm128_setiv := @LEGACY_CRYPTO_gcm128_setiv;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_gcm128_setiv');
+    {$ifend}
   CRYPTO_gcm128_setiv(ctx, iv, len);
 end;
 
@@ -533,7 +610,11 @@ function Load_CRYPTO_gcm128_aad(ctx: PGCM128_CONTEXT; aad: Pbyte; len: TOpenSSL_
 begin
   CRYPTO_gcm128_aad := LoadLibCryptoFunction('CRYPTO_gcm128_aad');
   if not assigned(CRYPTO_gcm128_aad) then
+    {$if declared(LEGACY_CRYPTO_gcm128_aad)}
+    CRYPTO_gcm128_aad := @LEGACY_CRYPTO_gcm128_aad;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_gcm128_aad');
+    {$ifend}
   Result := CRYPTO_gcm128_aad(ctx, aad, len);
 end;
 
@@ -541,7 +622,11 @@ function Load_CRYPTO_gcm128_encrypt(ctx: PGCM128_CONTEXT; in_: Pbyte; out_: Pbyt
 begin
   CRYPTO_gcm128_encrypt := LoadLibCryptoFunction('CRYPTO_gcm128_encrypt');
   if not assigned(CRYPTO_gcm128_encrypt) then
+    {$if declared(LEGACY_CRYPTO_gcm128_encrypt)}
+    CRYPTO_gcm128_encrypt := @LEGACY_CRYPTO_gcm128_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_gcm128_encrypt');
+    {$ifend}
   Result := CRYPTO_gcm128_encrypt(ctx, in_, out_, len);
 end;
 
@@ -549,7 +634,11 @@ function Load_CRYPTO_gcm128_decrypt(ctx: PGCM128_CONTEXT; in_: Pbyte; out_: Pbyt
 begin
   CRYPTO_gcm128_decrypt := LoadLibCryptoFunction('CRYPTO_gcm128_decrypt');
   if not assigned(CRYPTO_gcm128_decrypt) then
+    {$if declared(LEGACY_CRYPTO_gcm128_decrypt)}
+    CRYPTO_gcm128_decrypt := @LEGACY_CRYPTO_gcm128_decrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_gcm128_decrypt');
+    {$ifend}
   Result := CRYPTO_gcm128_decrypt(ctx, in_, out_, len);
 end;
 
@@ -557,7 +646,11 @@ function Load_CRYPTO_gcm128_encrypt_ctr32(ctx: PGCM128_CONTEXT; in_: Pbyte; out_
 begin
   CRYPTO_gcm128_encrypt_ctr32 := LoadLibCryptoFunction('CRYPTO_gcm128_encrypt_ctr32');
   if not assigned(CRYPTO_gcm128_encrypt_ctr32) then
+    {$if declared(LEGACY_CRYPTO_gcm128_encrypt_ctr32)}
+    CRYPTO_gcm128_encrypt_ctr32 := @LEGACY_CRYPTO_gcm128_encrypt_ctr32;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_gcm128_encrypt_ctr32');
+    {$ifend}
   Result := CRYPTO_gcm128_encrypt_ctr32(ctx, in_, out_, len, stream);
 end;
 
@@ -565,7 +658,11 @@ function Load_CRYPTO_gcm128_decrypt_ctr32(ctx: PGCM128_CONTEXT; in_: Pbyte; out_
 begin
   CRYPTO_gcm128_decrypt_ctr32 := LoadLibCryptoFunction('CRYPTO_gcm128_decrypt_ctr32');
   if not assigned(CRYPTO_gcm128_decrypt_ctr32) then
+    {$if declared(LEGACY_CRYPTO_gcm128_decrypt_ctr32)}
+    CRYPTO_gcm128_decrypt_ctr32 := @LEGACY_CRYPTO_gcm128_decrypt_ctr32;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_gcm128_decrypt_ctr32');
+    {$ifend}
   Result := CRYPTO_gcm128_decrypt_ctr32(ctx, in_, out_, len, stream);
 end;
 
@@ -573,7 +670,11 @@ function Load_CRYPTO_gcm128_finish(ctx: PGCM128_CONTEXT; tag: Pbyte; len: TOpenS
 begin
   CRYPTO_gcm128_finish := LoadLibCryptoFunction('CRYPTO_gcm128_finish');
   if not assigned(CRYPTO_gcm128_finish) then
+    {$if declared(LEGACY_CRYPTO_gcm128_finish)}
+    CRYPTO_gcm128_finish := @LEGACY_CRYPTO_gcm128_finish;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_gcm128_finish');
+    {$ifend}
   Result := CRYPTO_gcm128_finish(ctx, tag, len);
 end;
 
@@ -581,7 +682,11 @@ procedure Load_CRYPTO_gcm128_tag(ctx: PGCM128_CONTEXT; tag: Pbyte; len: TOpenSSL
 begin
   CRYPTO_gcm128_tag := LoadLibCryptoFunction('CRYPTO_gcm128_tag');
   if not assigned(CRYPTO_gcm128_tag) then
+    {$if declared(LEGACY_CRYPTO_gcm128_tag)}
+    CRYPTO_gcm128_tag := @LEGACY_CRYPTO_gcm128_tag;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_gcm128_tag');
+    {$ifend}
   CRYPTO_gcm128_tag(ctx, tag, len);
 end;
 
@@ -589,7 +694,11 @@ procedure Load_CRYPTO_gcm128_release(ctx: PGCM128_CONTEXT); cdecl;
 begin
   CRYPTO_gcm128_release := LoadLibCryptoFunction('CRYPTO_gcm128_release');
   if not assigned(CRYPTO_gcm128_release) then
+    {$if declared(LEGACY_CRYPTO_gcm128_release)}
+    CRYPTO_gcm128_release := @LEGACY_CRYPTO_gcm128_release;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_gcm128_release');
+    {$ifend}
   CRYPTO_gcm128_release(ctx);
 end;
 
@@ -597,7 +706,11 @@ procedure Load_CRYPTO_ccm128_init(ctx: PCCM128_CONTEXT; M: TOpenSSL_C_UINT; L: T
 begin
   CRYPTO_ccm128_init := LoadLibCryptoFunction('CRYPTO_ccm128_init');
   if not assigned(CRYPTO_ccm128_init) then
+    {$if declared(LEGACY_CRYPTO_ccm128_init)}
+    CRYPTO_ccm128_init := @LEGACY_CRYPTO_ccm128_init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_ccm128_init');
+    {$ifend}
   CRYPTO_ccm128_init(ctx, M, L, key, block);
 end;
 
@@ -605,7 +718,11 @@ function Load_CRYPTO_ccm128_setiv(ctx: PCCM128_CONTEXT; nonce: Pbyte; nlen: TOpe
 begin
   CRYPTO_ccm128_setiv := LoadLibCryptoFunction('CRYPTO_ccm128_setiv');
   if not assigned(CRYPTO_ccm128_setiv) then
+    {$if declared(LEGACY_CRYPTO_ccm128_setiv)}
+    CRYPTO_ccm128_setiv := @LEGACY_CRYPTO_ccm128_setiv;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_ccm128_setiv');
+    {$ifend}
   Result := CRYPTO_ccm128_setiv(ctx, nonce, nlen, mlen);
 end;
 
@@ -613,7 +730,11 @@ procedure Load_CRYPTO_ccm128_aad(ctx: PCCM128_CONTEXT; aad: Pbyte; alen: TOpenSS
 begin
   CRYPTO_ccm128_aad := LoadLibCryptoFunction('CRYPTO_ccm128_aad');
   if not assigned(CRYPTO_ccm128_aad) then
+    {$if declared(LEGACY_CRYPTO_ccm128_aad)}
+    CRYPTO_ccm128_aad := @LEGACY_CRYPTO_ccm128_aad;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_ccm128_aad');
+    {$ifend}
   CRYPTO_ccm128_aad(ctx, aad, alen);
 end;
 
@@ -621,7 +742,11 @@ function Load_CRYPTO_ccm128_encrypt(ctx: PCCM128_CONTEXT; inp: Pbyte; out_: Pbyt
 begin
   CRYPTO_ccm128_encrypt := LoadLibCryptoFunction('CRYPTO_ccm128_encrypt');
   if not assigned(CRYPTO_ccm128_encrypt) then
+    {$if declared(LEGACY_CRYPTO_ccm128_encrypt)}
+    CRYPTO_ccm128_encrypt := @LEGACY_CRYPTO_ccm128_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_ccm128_encrypt');
+    {$ifend}
   Result := CRYPTO_ccm128_encrypt(ctx, inp, out_, len);
 end;
 
@@ -629,7 +754,11 @@ function Load_CRYPTO_ccm128_decrypt(ctx: PCCM128_CONTEXT; inp: Pbyte; out_: Pbyt
 begin
   CRYPTO_ccm128_decrypt := LoadLibCryptoFunction('CRYPTO_ccm128_decrypt');
   if not assigned(CRYPTO_ccm128_decrypt) then
+    {$if declared(LEGACY_CRYPTO_ccm128_decrypt)}
+    CRYPTO_ccm128_decrypt := @LEGACY_CRYPTO_ccm128_decrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_ccm128_decrypt');
+    {$ifend}
   Result := CRYPTO_ccm128_decrypt(ctx, inp, out_, len);
 end;
 
@@ -637,7 +766,11 @@ function Load_CRYPTO_ccm128_encrypt_ccm64(ctx: PCCM128_CONTEXT; inp: Pbyte; out_
 begin
   CRYPTO_ccm128_encrypt_ccm64 := LoadLibCryptoFunction('CRYPTO_ccm128_encrypt_ccm64');
   if not assigned(CRYPTO_ccm128_encrypt_ccm64) then
+    {$if declared(LEGACY_CRYPTO_ccm128_encrypt_ccm64)}
+    CRYPTO_ccm128_encrypt_ccm64 := @LEGACY_CRYPTO_ccm128_encrypt_ccm64;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_ccm128_encrypt_ccm64');
+    {$ifend}
   Result := CRYPTO_ccm128_encrypt_ccm64(ctx, inp, out_, len, stream);
 end;
 
@@ -645,7 +778,11 @@ function Load_CRYPTO_ccm128_decrypt_ccm64(ctx: PCCM128_CONTEXT; inp: Pbyte; out_
 begin
   CRYPTO_ccm128_decrypt_ccm64 := LoadLibCryptoFunction('CRYPTO_ccm128_decrypt_ccm64');
   if not assigned(CRYPTO_ccm128_decrypt_ccm64) then
+    {$if declared(LEGACY_CRYPTO_ccm128_decrypt_ccm64)}
+    CRYPTO_ccm128_decrypt_ccm64 := @LEGACY_CRYPTO_ccm128_decrypt_ccm64;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_ccm128_decrypt_ccm64');
+    {$ifend}
   Result := CRYPTO_ccm128_decrypt_ccm64(ctx, inp, out_, len, stream);
 end;
 
@@ -653,7 +790,11 @@ function Load_CRYPTO_ccm128_tag(ctx: PCCM128_CONTEXT; tag: Pbyte; len: TOpenSSL_
 begin
   CRYPTO_ccm128_tag := LoadLibCryptoFunction('CRYPTO_ccm128_tag');
   if not assigned(CRYPTO_ccm128_tag) then
+    {$if declared(LEGACY_CRYPTO_ccm128_tag)}
+    CRYPTO_ccm128_tag := @LEGACY_CRYPTO_ccm128_tag;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_ccm128_tag');
+    {$ifend}
   Result := CRYPTO_ccm128_tag(ctx, tag, len);
 end;
 
@@ -661,7 +802,11 @@ function Load_CRYPTO_xts128_encrypt(ctx: PXTS128_CONTEXT; iv: array of byte; inp
 begin
   CRYPTO_xts128_encrypt := LoadLibCryptoFunction('CRYPTO_xts128_encrypt');
   if not assigned(CRYPTO_xts128_encrypt) then
+    {$if declared(LEGACY_CRYPTO_xts128_encrypt)}
+    CRYPTO_xts128_encrypt := @LEGACY_CRYPTO_xts128_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_xts128_encrypt');
+    {$ifend}
   Result := CRYPTO_xts128_encrypt(ctx, iv, inp, out_, len, enc);
 end;
 
@@ -669,7 +814,11 @@ function Load_CRYPTO_128_wrap(key: pointer; iv: Pbyte; out_: Pbyte; in_: Pbyte; 
 begin
   CRYPTO_128_wrap := LoadLibCryptoFunction('CRYPTO_128_wrap');
   if not assigned(CRYPTO_128_wrap) then
+    {$if declared(LEGACY_CRYPTO_128_wrap)}
+    CRYPTO_128_wrap := @LEGACY_CRYPTO_128_wrap;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_128_wrap');
+    {$ifend}
   Result := CRYPTO_128_wrap(key, iv, out_, in_, inlen, block);
 end;
 
@@ -677,7 +826,11 @@ function Load_CRYPTO_128_unwrap(key: pointer; iv: Pbyte; out_: Pbyte; in_: Pbyte
 begin
   CRYPTO_128_unwrap := LoadLibCryptoFunction('CRYPTO_128_unwrap');
   if not assigned(CRYPTO_128_unwrap) then
+    {$if declared(LEGACY_CRYPTO_128_unwrap)}
+    CRYPTO_128_unwrap := @LEGACY_CRYPTO_128_unwrap;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_128_unwrap');
+    {$ifend}
   Result := CRYPTO_128_unwrap(key, iv, out_, in_, inlen, block);
 end;
 
@@ -685,7 +838,11 @@ function Load_CRYPTO_128_wrap_pad(key: pointer; icv: Pbyte; out_: Pbyte; in_: Pb
 begin
   CRYPTO_128_wrap_pad := LoadLibCryptoFunction('CRYPTO_128_wrap_pad');
   if not assigned(CRYPTO_128_wrap_pad) then
+    {$if declared(LEGACY_CRYPTO_128_wrap_pad)}
+    CRYPTO_128_wrap_pad := @LEGACY_CRYPTO_128_wrap_pad;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_128_wrap_pad');
+    {$ifend}
   Result := CRYPTO_128_wrap_pad(key, icv, out_, in_, inlen, block);
 end;
 
@@ -693,7 +850,11 @@ function Load_CRYPTO_128_unwrap_pad(key: pointer; icv: Pbyte; out_: Pbyte; in_: 
 begin
   CRYPTO_128_unwrap_pad := LoadLibCryptoFunction('CRYPTO_128_unwrap_pad');
   if not assigned(CRYPTO_128_unwrap_pad) then
+    {$if declared(LEGACY_CRYPTO_128_unwrap_pad)}
+    CRYPTO_128_unwrap_pad := @LEGACY_CRYPTO_128_unwrap_pad;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_128_unwrap_pad');
+    {$ifend}
   Result := CRYPTO_128_unwrap_pad(key, icv, out_, in_, inlen, block);
 end;
 
@@ -702,7 +863,11 @@ function Load_CRYPTO_ocb128_new(keyenc: pointer; keydec: pointer; encrypt: Tbloc
 begin
   CRYPTO_ocb128_new := LoadLibCryptoFunction('CRYPTO_ocb128_new');
   if not assigned(CRYPTO_ocb128_new) then
+    {$if declared(LEGACY_CRYPTO_ocb128_new)}
+    CRYPTO_ocb128_new := @LEGACY_CRYPTO_ocb128_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_ocb128_new');
+    {$ifend}
   Result := CRYPTO_ocb128_new(keyenc, keydec, encrypt, decrypt, stream);
 end;
 
@@ -710,7 +875,11 @@ function Load_CRYPTO_ocb128_init(ctx: POCB128_CONTEXT; keyenc: pointer; keydec: 
 begin
   CRYPTO_ocb128_init := LoadLibCryptoFunction('CRYPTO_ocb128_init');
   if not assigned(CRYPTO_ocb128_init) then
+    {$if declared(LEGACY_CRYPTO_ocb128_init)}
+    CRYPTO_ocb128_init := @LEGACY_CRYPTO_ocb128_init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_ocb128_init');
+    {$ifend}
   Result := CRYPTO_ocb128_init(ctx, keyenc, keydec, encrypt, decrypt, stream);
 end;
 
@@ -718,7 +887,11 @@ function Load_CRYPTO_ocb128_copy_ctx(dest: POCB128_CONTEXT; src: POCB128_CONTEXT
 begin
   CRYPTO_ocb128_copy_ctx := LoadLibCryptoFunction('CRYPTO_ocb128_copy_ctx');
   if not assigned(CRYPTO_ocb128_copy_ctx) then
+    {$if declared(LEGACY_CRYPTO_ocb128_copy_ctx)}
+    CRYPTO_ocb128_copy_ctx := @LEGACY_CRYPTO_ocb128_copy_ctx;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_ocb128_copy_ctx');
+    {$ifend}
   Result := CRYPTO_ocb128_copy_ctx(dest, src, keyenc, keydec);
 end;
 
@@ -726,7 +899,11 @@ function Load_CRYPTO_ocb128_setiv(ctx: POCB128_CONTEXT; iv: Pbyte; len: TOpenSSL
 begin
   CRYPTO_ocb128_setiv := LoadLibCryptoFunction('CRYPTO_ocb128_setiv');
   if not assigned(CRYPTO_ocb128_setiv) then
+    {$if declared(LEGACY_CRYPTO_ocb128_setiv)}
+    CRYPTO_ocb128_setiv := @LEGACY_CRYPTO_ocb128_setiv;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_ocb128_setiv');
+    {$ifend}
   Result := CRYPTO_ocb128_setiv(ctx, iv, len, taglen);
 end;
 
@@ -734,7 +911,11 @@ function Load_CRYPTO_ocb128_aad(ctx: POCB128_CONTEXT; aad: Pbyte; len: TOpenSSL_
 begin
   CRYPTO_ocb128_aad := LoadLibCryptoFunction('CRYPTO_ocb128_aad');
   if not assigned(CRYPTO_ocb128_aad) then
+    {$if declared(LEGACY_CRYPTO_ocb128_aad)}
+    CRYPTO_ocb128_aad := @LEGACY_CRYPTO_ocb128_aad;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_ocb128_aad');
+    {$ifend}
   Result := CRYPTO_ocb128_aad(ctx, aad, len);
 end;
 
@@ -742,7 +923,11 @@ function Load_CRYPTO_ocb128_encrypt(ctx: POCB128_CONTEXT; in_: Pbyte; out_: Pbyt
 begin
   CRYPTO_ocb128_encrypt := LoadLibCryptoFunction('CRYPTO_ocb128_encrypt');
   if not assigned(CRYPTO_ocb128_encrypt) then
+    {$if declared(LEGACY_CRYPTO_ocb128_encrypt)}
+    CRYPTO_ocb128_encrypt := @LEGACY_CRYPTO_ocb128_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_ocb128_encrypt');
+    {$ifend}
   Result := CRYPTO_ocb128_encrypt(ctx, in_, out_, len);
 end;
 
@@ -750,7 +935,11 @@ function Load_CRYPTO_ocb128_decrypt(ctx: POCB128_CONTEXT; in_: Pbyte; out_: Pbyt
 begin
   CRYPTO_ocb128_decrypt := LoadLibCryptoFunction('CRYPTO_ocb128_decrypt');
   if not assigned(CRYPTO_ocb128_decrypt) then
+    {$if declared(LEGACY_CRYPTO_ocb128_decrypt)}
+    CRYPTO_ocb128_decrypt := @LEGACY_CRYPTO_ocb128_decrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_ocb128_decrypt');
+    {$ifend}
   Result := CRYPTO_ocb128_decrypt(ctx, in_, out_, len);
 end;
 
@@ -758,7 +947,11 @@ function Load_CRYPTO_ocb128_finish(ctx: POCB128_CONTEXT; tag: Pbyte; len: TOpenS
 begin
   CRYPTO_ocb128_finish := LoadLibCryptoFunction('CRYPTO_ocb128_finish');
   if not assigned(CRYPTO_ocb128_finish) then
+    {$if declared(LEGACY_CRYPTO_ocb128_finish)}
+    CRYPTO_ocb128_finish := @LEGACY_CRYPTO_ocb128_finish;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_ocb128_finish');
+    {$ifend}
   Result := CRYPTO_ocb128_finish(ctx, tag, len);
 end;
 
@@ -766,7 +959,11 @@ function Load_CRYPTO_ocb128_tag(ctx: POCB128_CONTEXT; tag: Pbyte; len: TOpenSSL_
 begin
   CRYPTO_ocb128_tag := LoadLibCryptoFunction('CRYPTO_ocb128_tag');
   if not assigned(CRYPTO_ocb128_tag) then
+    {$if declared(LEGACY_CRYPTO_ocb128_tag)}
+    CRYPTO_ocb128_tag := @LEGACY_CRYPTO_ocb128_tag;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_ocb128_tag');
+    {$ifend}
   Result := CRYPTO_ocb128_tag(ctx, tag, len);
 end;
 
@@ -774,7 +971,11 @@ procedure Load_CRYPTO_ocb128_cleanup(ctx: POCB128_CONTEXT); cdecl;
 begin
   CRYPTO_ocb128_cleanup := LoadLibCryptoFunction('CRYPTO_ocb128_cleanup');
   if not assigned(CRYPTO_ocb128_cleanup) then
+    {$if declared(LEGACY_CRYPTO_ocb128_cleanup)}
+    CRYPTO_ocb128_cleanup := @LEGACY_CRYPTO_ocb128_cleanup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_ocb128_cleanup');
+    {$ifend}
   CRYPTO_ocb128_cleanup(ctx);
 end;
 

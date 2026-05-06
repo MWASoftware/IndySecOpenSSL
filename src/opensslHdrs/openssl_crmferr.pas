@@ -18,7 +18,8 @@
 unit openssl_crmferr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File crmferr.h - Wed  6 May 13:05:46 BST 2026
+  Generated from OpenSSL 3.0.20 Header File crmferr.h - Wed  6 May 13:14:55 BST 2026
+  With Legacy Support Option
 }
 
 interface

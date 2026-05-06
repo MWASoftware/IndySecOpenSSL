@@ -18,7 +18,8 @@
 unit openssl_ui;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ui.h - Wed  6 May 13:06:50 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ui.h - Wed  6 May 13:15:59 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -1167,7 +1168,11 @@ function Load_UI_new: PUI; cdecl;
 begin
   UI_new := LoadLibCryptoFunction('UI_new');
   if not assigned(UI_new) then
+    {$if declared(LEGACY_UI_new)}
+    UI_new := @LEGACY_UI_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_new');
+    {$ifend}
   Result := UI_new;
 end;
 
@@ -1175,7 +1180,11 @@ function Load_UI_new_method(method: PUI_METHOD): PUI; cdecl;
 begin
   UI_new_method := LoadLibCryptoFunction('UI_new_method');
   if not assigned(UI_new_method) then
+    {$if declared(LEGACY_UI_new_method)}
+    UI_new_method := @LEGACY_UI_new_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_new_method');
+    {$ifend}
   Result := UI_new_method(method);
 end;
 
@@ -1183,7 +1192,11 @@ procedure Load_UI_free(ui: PUI); cdecl;
 begin
   UI_free := LoadLibCryptoFunction('UI_free');
   if not assigned(UI_free) then
+    {$if declared(LEGACY_UI_free)}
+    UI_free := @LEGACY_UI_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_free');
+    {$ifend}
   UI_free(ui);
 end;
 
@@ -1191,7 +1204,11 @@ function Load_UI_add_input_string(ui: PUI; prompt: PAnsiChar; flags: TOpenSSL_C_
 begin
   UI_add_input_string := LoadLibCryptoFunction('UI_add_input_string');
   if not assigned(UI_add_input_string) then
+    {$if declared(LEGACY_UI_add_input_string)}
+    UI_add_input_string := @LEGACY_UI_add_input_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_add_input_string');
+    {$ifend}
   Result := UI_add_input_string(ui, prompt, flags, result_buf, minsize, maxsize);
 end;
 
@@ -1199,7 +1216,11 @@ function Load_UI_dup_input_string(ui: PUI; prompt: PAnsiChar; flags: TOpenSSL_C_
 begin
   UI_dup_input_string := LoadLibCryptoFunction('UI_dup_input_string');
   if not assigned(UI_dup_input_string) then
+    {$if declared(LEGACY_UI_dup_input_string)}
+    UI_dup_input_string := @LEGACY_UI_dup_input_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_dup_input_string');
+    {$ifend}
   Result := UI_dup_input_string(ui, prompt, flags, result_buf, minsize, maxsize);
 end;
 
@@ -1207,7 +1228,11 @@ function Load_UI_add_verify_string(ui: PUI; prompt: PAnsiChar; flags: TOpenSSL_C
 begin
   UI_add_verify_string := LoadLibCryptoFunction('UI_add_verify_string');
   if not assigned(UI_add_verify_string) then
+    {$if declared(LEGACY_UI_add_verify_string)}
+    UI_add_verify_string := @LEGACY_UI_add_verify_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_add_verify_string');
+    {$ifend}
   Result := UI_add_verify_string(ui, prompt, flags, result_buf, minsize, maxsize, test_buf);
 end;
 
@@ -1215,7 +1240,11 @@ function Load_UI_dup_verify_string(ui: PUI; prompt: PAnsiChar; flags: TOpenSSL_C
 begin
   UI_dup_verify_string := LoadLibCryptoFunction('UI_dup_verify_string');
   if not assigned(UI_dup_verify_string) then
+    {$if declared(LEGACY_UI_dup_verify_string)}
+    UI_dup_verify_string := @LEGACY_UI_dup_verify_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_dup_verify_string');
+    {$ifend}
   Result := UI_dup_verify_string(ui, prompt, flags, result_buf, minsize, maxsize, test_buf);
 end;
 
@@ -1223,7 +1252,11 @@ function Load_UI_add_input_boolean(ui: PUI; prompt: PAnsiChar; action_desc: PAns
 begin
   UI_add_input_boolean := LoadLibCryptoFunction('UI_add_input_boolean');
   if not assigned(UI_add_input_boolean) then
+    {$if declared(LEGACY_UI_add_input_boolean)}
+    UI_add_input_boolean := @LEGACY_UI_add_input_boolean;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_add_input_boolean');
+    {$ifend}
   Result := UI_add_input_boolean(ui, prompt, action_desc, ok_chars, cancel_chars, flags, result_buf);
 end;
 
@@ -1231,7 +1264,11 @@ function Load_UI_dup_input_boolean(ui: PUI; prompt: PAnsiChar; action_desc: PAns
 begin
   UI_dup_input_boolean := LoadLibCryptoFunction('UI_dup_input_boolean');
   if not assigned(UI_dup_input_boolean) then
+    {$if declared(LEGACY_UI_dup_input_boolean)}
+    UI_dup_input_boolean := @LEGACY_UI_dup_input_boolean;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_dup_input_boolean');
+    {$ifend}
   Result := UI_dup_input_boolean(ui, prompt, action_desc, ok_chars, cancel_chars, flags, result_buf);
 end;
 
@@ -1239,7 +1276,11 @@ function Load_UI_add_info_string(ui: PUI; text: PAnsiChar): TOpenSSL_C_INT; cdec
 begin
   UI_add_info_string := LoadLibCryptoFunction('UI_add_info_string');
   if not assigned(UI_add_info_string) then
+    {$if declared(LEGACY_UI_add_info_string)}
+    UI_add_info_string := @LEGACY_UI_add_info_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_add_info_string');
+    {$ifend}
   Result := UI_add_info_string(ui, text);
 end;
 
@@ -1247,7 +1288,11 @@ function Load_UI_dup_info_string(ui: PUI; text: PAnsiChar): TOpenSSL_C_INT; cdec
 begin
   UI_dup_info_string := LoadLibCryptoFunction('UI_dup_info_string');
   if not assigned(UI_dup_info_string) then
+    {$if declared(LEGACY_UI_dup_info_string)}
+    UI_dup_info_string := @LEGACY_UI_dup_info_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_dup_info_string');
+    {$ifend}
   Result := UI_dup_info_string(ui, text);
 end;
 
@@ -1255,7 +1300,11 @@ function Load_UI_add_error_string(ui: PUI; text: PAnsiChar): TOpenSSL_C_INT; cde
 begin
   UI_add_error_string := LoadLibCryptoFunction('UI_add_error_string');
   if not assigned(UI_add_error_string) then
+    {$if declared(LEGACY_UI_add_error_string)}
+    UI_add_error_string := @LEGACY_UI_add_error_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_add_error_string');
+    {$ifend}
   Result := UI_add_error_string(ui, text);
 end;
 
@@ -1263,7 +1312,11 @@ function Load_UI_dup_error_string(ui: PUI; text: PAnsiChar): TOpenSSL_C_INT; cde
 begin
   UI_dup_error_string := LoadLibCryptoFunction('UI_dup_error_string');
   if not assigned(UI_dup_error_string) then
+    {$if declared(LEGACY_UI_dup_error_string)}
+    UI_dup_error_string := @LEGACY_UI_dup_error_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_dup_error_string');
+    {$ifend}
   Result := UI_dup_error_string(ui, text);
 end;
 
@@ -1271,7 +1324,11 @@ function Load_UI_construct_prompt(ui_method: PUI; phrase_desc: PAnsiChar; object
 begin
   UI_construct_prompt := LoadLibCryptoFunction('UI_construct_prompt');
   if not assigned(UI_construct_prompt) then
+    {$if declared(LEGACY_UI_construct_prompt)}
+    UI_construct_prompt := @LEGACY_UI_construct_prompt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_construct_prompt');
+    {$ifend}
   Result := UI_construct_prompt(ui_method, phrase_desc, object_name);
 end;
 
@@ -1279,7 +1336,11 @@ function Load_UI_add_user_data(ui: PUI; user_data: pointer): pointer; cdecl;
 begin
   UI_add_user_data := LoadLibCryptoFunction('UI_add_user_data');
   if not assigned(UI_add_user_data) then
+    {$if declared(LEGACY_UI_add_user_data)}
+    UI_add_user_data := @LEGACY_UI_add_user_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_add_user_data');
+    {$ifend}
   Result := UI_add_user_data(ui, user_data);
 end;
 
@@ -1287,7 +1348,11 @@ function Load_UI_dup_user_data(ui: PUI; user_data: pointer): TOpenSSL_C_INT; cde
 begin
   UI_dup_user_data := LoadLibCryptoFunction('UI_dup_user_data');
   if not assigned(UI_dup_user_data) then
+    {$if declared(LEGACY_UI_dup_user_data)}
+    UI_dup_user_data := @LEGACY_UI_dup_user_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_dup_user_data');
+    {$ifend}
   Result := UI_dup_user_data(ui, user_data);
 end;
 
@@ -1295,7 +1360,11 @@ function Load_UI_get0_user_data(ui: PUI): pointer; cdecl;
 begin
   UI_get0_user_data := LoadLibCryptoFunction('UI_get0_user_data');
   if not assigned(UI_get0_user_data) then
+    {$if declared(LEGACY_UI_get0_user_data)}
+    UI_get0_user_data := @LEGACY_UI_get0_user_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_get0_user_data');
+    {$ifend}
   Result := UI_get0_user_data(ui);
 end;
 
@@ -1303,7 +1372,11 @@ function Load_UI_get0_result(ui: PUI; i: TOpenSSL_C_INT): PAnsiChar; cdecl;
 begin
   UI_get0_result := LoadLibCryptoFunction('UI_get0_result');
   if not assigned(UI_get0_result) then
+    {$if declared(LEGACY_UI_get0_result)}
+    UI_get0_result := @LEGACY_UI_get0_result;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_get0_result');
+    {$ifend}
   Result := UI_get0_result(ui, i);
 end;
 
@@ -1311,7 +1384,11 @@ function Load_UI_get_result_length(ui: PUI; i: TOpenSSL_C_INT): TOpenSSL_C_INT; 
 begin
   UI_get_result_length := LoadLibCryptoFunction('UI_get_result_length');
   if not assigned(UI_get_result_length) then
+    {$if declared(LEGACY_UI_get_result_length)}
+    UI_get_result_length := @LEGACY_UI_get_result_length;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_get_result_length');
+    {$ifend}
   Result := UI_get_result_length(ui, i);
 end;
 
@@ -1319,7 +1396,11 @@ function Load_UI_process(ui: PUI): TOpenSSL_C_INT; cdecl;
 begin
   UI_process := LoadLibCryptoFunction('UI_process');
   if not assigned(UI_process) then
+    {$if declared(LEGACY_UI_process)}
+    UI_process := @LEGACY_UI_process;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_process');
+    {$ifend}
   Result := UI_process(ui);
 end;
 
@@ -1327,7 +1408,11 @@ function Load_UI_ctrl(ui: PUI; cmd: TOpenSSL_C_INT; i: TOpenSSL_C_INT; p: pointe
 begin
   UI_ctrl := LoadLibCryptoFunction('UI_ctrl');
   if not assigned(UI_ctrl) then
+    {$if declared(LEGACY_UI_ctrl)}
+    UI_ctrl := @LEGACY_UI_ctrl;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_ctrl');
+    {$ifend}
   Result := UI_ctrl(ui, cmd, i, p, f);
 end;
 
@@ -1335,7 +1420,11 @@ function Load_UI_set_ex_data(r: PUI; idx: TOpenSSL_C_INT; arg: pointer): TOpenSS
 begin
   UI_set_ex_data := LoadLibCryptoFunction('UI_set_ex_data');
   if not assigned(UI_set_ex_data) then
+    {$if declared(LEGACY_UI_set_ex_data)}
+    UI_set_ex_data := @LEGACY_UI_set_ex_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_set_ex_data');
+    {$ifend}
   Result := UI_set_ex_data(r, idx, arg);
 end;
 
@@ -1343,7 +1432,11 @@ function Load_UI_get_ex_data(r: PUI; idx: TOpenSSL_C_INT): pointer; cdecl;
 begin
   UI_get_ex_data := LoadLibCryptoFunction('UI_get_ex_data');
   if not assigned(UI_get_ex_data) then
+    {$if declared(LEGACY_UI_get_ex_data)}
+    UI_get_ex_data := @LEGACY_UI_get_ex_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_get_ex_data');
+    {$ifend}
   Result := UI_get_ex_data(r, idx);
 end;
 
@@ -1351,7 +1444,11 @@ procedure Load_UI_set_default_method(meth: PUI_METHOD); cdecl;
 begin
   UI_set_default_method := LoadLibCryptoFunction('UI_set_default_method');
   if not assigned(UI_set_default_method) then
+    {$if declared(LEGACY_UI_set_default_method)}
+    UI_set_default_method := @LEGACY_UI_set_default_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_set_default_method');
+    {$ifend}
   UI_set_default_method(meth);
 end;
 
@@ -1359,7 +1456,11 @@ function Load_UI_get_default_method: PUI_METHOD; cdecl;
 begin
   UI_get_default_method := LoadLibCryptoFunction('UI_get_default_method');
   if not assigned(UI_get_default_method) then
+    {$if declared(LEGACY_UI_get_default_method)}
+    UI_get_default_method := @LEGACY_UI_get_default_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_get_default_method');
+    {$ifend}
   Result := UI_get_default_method;
 end;
 
@@ -1367,7 +1468,11 @@ function Load_UI_get_method(ui: PUI): PUI_METHOD; cdecl;
 begin
   UI_get_method := LoadLibCryptoFunction('UI_get_method');
   if not assigned(UI_get_method) then
+    {$if declared(LEGACY_UI_get_method)}
+    UI_get_method := @LEGACY_UI_get_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_get_method');
+    {$ifend}
   Result := UI_get_method(ui);
 end;
 
@@ -1375,7 +1480,11 @@ function Load_UI_set_method(ui: PUI; meth: PUI_METHOD): PUI_METHOD; cdecl;
 begin
   UI_set_method := LoadLibCryptoFunction('UI_set_method');
   if not assigned(UI_set_method) then
+    {$if declared(LEGACY_UI_set_method)}
+    UI_set_method := @LEGACY_UI_set_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_set_method');
+    {$ifend}
   Result := UI_set_method(ui, meth);
 end;
 
@@ -1384,7 +1493,11 @@ function Load_UI_OpenSSL: PUI_METHOD; cdecl;
 begin
   UI_OpenSSL := LoadLibCryptoFunction('UI_OpenSSL');
   if not assigned(UI_OpenSSL) then
+    {$if declared(LEGACY_UI_OpenSSL)}
+    UI_OpenSSL := @LEGACY_UI_OpenSSL;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_OpenSSL');
+    {$ifend}
   Result := UI_OpenSSL;
 end;
 
@@ -1393,7 +1506,11 @@ function Load_UI_null: PUI_METHOD; cdecl;
 begin
   UI_null := LoadLibCryptoFunction('UI_null');
   if not assigned(UI_null) then
+    {$if declared(LEGACY_UI_null)}
+    UI_null := @LEGACY_UI_null;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_null');
+    {$ifend}
   Result := UI_null;
 end;
 
@@ -1401,7 +1518,11 @@ function Load_sk_UI_STRING_num(_para: Pstack_st_UI_STRING): TOpenSSL_C_INT; cdec
 begin
   sk_UI_STRING_num := LoadLibCryptoFunction('OPENSSL_sk_num');
   if not assigned(sk_UI_STRING_num) then
+    {$if declared(LEGACY_OPENSSL_sk_num)}
+    sk_UI_STRING_num := @LEGACY_OPENSSL_sk_num;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_num');
+    {$ifend}
   Result := sk_UI_STRING_num(_para);
 end;
 
@@ -1409,7 +1530,11 @@ function Load_sk_UI_STRING_value(_para: Pstack_st_UI_STRING; _para2: TOpenSSL_C_
 begin
   sk_UI_STRING_value := LoadLibCryptoFunction('OPENSSL_sk_value');
   if not assigned(sk_UI_STRING_value) then
+    {$if declared(LEGACY_OPENSSL_sk_value)}
+    sk_UI_STRING_value := @LEGACY_OPENSSL_sk_value;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_value');
+    {$ifend}
   Result := sk_UI_STRING_value(_para, _para2);
 end;
 
@@ -1417,7 +1542,11 @@ function Load_sk_UI_STRING_new(cmp: Tsk_UI_STRING_compfunc): Pstack_st_UI_STRING
 begin
   sk_UI_STRING_new := LoadLibCryptoFunction('OPENSSL_sk_new');
   if not assigned(sk_UI_STRING_new) then
+    {$if declared(LEGACY_OPENSSL_sk_new)}
+    sk_UI_STRING_new := @LEGACY_OPENSSL_sk_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new');
+    {$ifend}
   Result := sk_UI_STRING_new(cmp);
 end;
 
@@ -1425,7 +1554,11 @@ function Load_sk_UI_STRING_new_null: Pstack_st_UI_STRING; cdecl;
 begin
   sk_UI_STRING_new_null := LoadLibCryptoFunction('OPENSSL_sk_new_null');
   if not assigned(sk_UI_STRING_new_null) then
+    {$if declared(LEGACY_OPENSSL_sk_new_null)}
+    sk_UI_STRING_new_null := @LEGACY_OPENSSL_sk_new_null;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_null');
+    {$ifend}
   Result := sk_UI_STRING_new_null;
 end;
 
@@ -1433,7 +1566,11 @@ function Load_sk_UI_STRING_new_reserve(cmp: Tsk_UI_STRING_compfunc; n: TOpenSSL_
 begin
   sk_UI_STRING_new_reserve := LoadLibCryptoFunction('OPENSSL_sk_new_reserve');
   if not assigned(sk_UI_STRING_new_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_new_reserve)}
+    sk_UI_STRING_new_reserve := @LEGACY_OPENSSL_sk_new_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_reserve');
+    {$ifend}
   Result := sk_UI_STRING_new_reserve(cmp, n);
 end;
 
@@ -1441,7 +1578,11 @@ function Load_sk_UI_STRING_reserve(_para: Pstack_st_UI_STRING; n: TOpenSSL_C_INT
 begin
   sk_UI_STRING_reserve := LoadLibCryptoFunction('OPENSSL_sk_reserve');
   if not assigned(sk_UI_STRING_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_reserve)}
+    sk_UI_STRING_reserve := @LEGACY_OPENSSL_sk_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_reserve');
+    {$ifend}
   Result := sk_UI_STRING_reserve(_para, n);
 end;
 
@@ -1449,7 +1590,11 @@ function Load_sk_UI_STRING_free(_para: Pstack_st_UI_STRING): TOpenSSL_C_INT; cde
 begin
   sk_UI_STRING_free := LoadLibCryptoFunction('OPENSSL_sk_free');
   if not assigned(sk_UI_STRING_free) then
+    {$if declared(LEGACY_OPENSSL_sk_free)}
+    sk_UI_STRING_free := @LEGACY_OPENSSL_sk_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_free');
+    {$ifend}
   Result := sk_UI_STRING_free(_para);
 end;
 
@@ -1457,7 +1602,11 @@ function Load_sk_UI_STRING_zero(_para: Pstack_st_UI_STRING): TOpenSSL_C_INT; cde
 begin
   sk_UI_STRING_zero := LoadLibCryptoFunction('OPENSSL_sk_zero');
   if not assigned(sk_UI_STRING_zero) then
+    {$if declared(LEGACY_OPENSSL_sk_zero)}
+    sk_UI_STRING_zero := @LEGACY_OPENSSL_sk_zero;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_zero');
+    {$ifend}
   Result := sk_UI_STRING_zero(_para);
 end;
 
@@ -1465,7 +1614,11 @@ function Load_sk_UI_STRING_delete(st: Pstack_st_UI_STRING; loc: TOpenSSL_C_INT):
 begin
   sk_UI_STRING_delete := LoadLibCryptoFunction('OPENSSL_sk_delete');
   if not assigned(sk_UI_STRING_delete) then
+    {$if declared(LEGACY_OPENSSL_sk_delete)}
+    sk_UI_STRING_delete := @LEGACY_OPENSSL_sk_delete;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete');
+    {$ifend}
   Result := sk_UI_STRING_delete(st, loc);
 end;
 
@@ -1473,7 +1626,11 @@ function Load_sk_UI_STRING_delete_ptr(st: Pstack_st_UI_STRING; ptr: Pstack_st_UI
 begin
   sk_UI_STRING_delete_ptr := LoadLibCryptoFunction('OPENSSL_sk_delete_ptr');
   if not assigned(sk_UI_STRING_delete_ptr) then
+    {$if declared(LEGACY_OPENSSL_sk_delete_ptr)}
+    sk_UI_STRING_delete_ptr := @LEGACY_OPENSSL_sk_delete_ptr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete_ptr');
+    {$ifend}
   Result := sk_UI_STRING_delete_ptr(st, ptr);
 end;
 
@@ -1481,7 +1638,11 @@ function Load_sk_UI_STRING_push(st: Pstack_st_UI_STRING; data: pointer): TOpenSS
 begin
   sk_UI_STRING_push := LoadLibCryptoFunction('OPENSSL_sk_push');
   if not assigned(sk_UI_STRING_push) then
+    {$if declared(LEGACY_OPENSSL_sk_push)}
+    sk_UI_STRING_push := @LEGACY_OPENSSL_sk_push;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_push');
+    {$ifend}
   Result := sk_UI_STRING_push(st, data);
 end;
 
@@ -1489,7 +1650,11 @@ function Load_sk_UI_STRING_unshift(st: Pstack_st_UI_STRING; data: pointer): TOpe
 begin
   sk_UI_STRING_unshift := LoadLibCryptoFunction('OPENSSL_sk_unshift');
   if not assigned(sk_UI_STRING_unshift) then
+    {$if declared(LEGACY_OPENSSL_sk_unshift)}
+    sk_UI_STRING_unshift := @LEGACY_OPENSSL_sk_unshift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_unshift');
+    {$ifend}
   Result := sk_UI_STRING_unshift(st, data);
 end;
 
@@ -1497,7 +1662,11 @@ function Load_sk_UI_STRING_pop(_para: Pstack_st_UI_STRING): Pstack_st_UI_STRING;
 begin
   sk_UI_STRING_pop := LoadLibCryptoFunction('OPENSSL_sk_pop');
   if not assigned(sk_UI_STRING_pop) then
+    {$if declared(LEGACY_OPENSSL_sk_pop)}
+    sk_UI_STRING_pop := @LEGACY_OPENSSL_sk_pop;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop');
+    {$ifend}
   Result := sk_UI_STRING_pop(_para);
 end;
 
@@ -1505,7 +1674,11 @@ function Load_sk_UI_STRING_shift(_para: Pstack_st_UI_STRING): Pstack_st_UI_STRIN
 begin
   sk_UI_STRING_shift := LoadLibCryptoFunction('OPENSSL_sk_shift');
   if not assigned(sk_UI_STRING_shift) then
+    {$if declared(LEGACY_OPENSSL_sk_shift)}
+    sk_UI_STRING_shift := @LEGACY_OPENSSL_sk_shift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_shift');
+    {$ifend}
   Result := sk_UI_STRING_shift(_para);
 end;
 
@@ -1513,7 +1686,11 @@ procedure Load_sk_UI_STRING_pop_free(st: Pstack_st_UI_STRING; func: Tsk_UI_STRIN
 begin
   sk_UI_STRING_pop_free := LoadLibCryptoFunction('OPENSSL_sk_pop_free');
   if not assigned(sk_UI_STRING_pop_free) then
+    {$if declared(LEGACY_OPENSSL_sk_pop_free)}
+    sk_UI_STRING_pop_free := @LEGACY_OPENSSL_sk_pop_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop_free');
+    {$ifend}
   sk_UI_STRING_pop_free(st, func);
 end;
 
@@ -1521,7 +1698,11 @@ function Load_sk_UI_STRING_insert(st: Pstack_st_UI_STRING; data: pointer; where:
 begin
   sk_UI_STRING_insert := LoadLibCryptoFunction('OPENSSL_sk_insert');
   if not assigned(sk_UI_STRING_insert) then
+    {$if declared(LEGACY_OPENSSL_sk_insert)}
+    sk_UI_STRING_insert := @LEGACY_OPENSSL_sk_insert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_insert');
+    {$ifend}
   Result := sk_UI_STRING_insert(st, data, where);
 end;
 
@@ -1529,7 +1710,11 @@ function Load_sk_UI_STRING_set(st: Pstack_st_UI_STRING; i: TOpenSSL_C_INT; data:
 begin
   sk_UI_STRING_set := LoadLibCryptoFunction('OPENSSL_sk_set');
   if not assigned(sk_UI_STRING_set) then
+    {$if declared(LEGACY_OPENSSL_sk_set)}
+    sk_UI_STRING_set := @LEGACY_OPENSSL_sk_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set');
+    {$ifend}
   Result := sk_UI_STRING_set(st, i, data);
 end;
 
@@ -1537,7 +1722,11 @@ function Load_sk_UI_STRING_find(st: Pstack_st_UI_STRING; data: pointer): TOpenSS
 begin
   sk_UI_STRING_find := LoadLibCryptoFunction('OPENSSL_sk_find');
   if not assigned(sk_UI_STRING_find) then
+    {$if declared(LEGACY_OPENSSL_sk_find)}
+    sk_UI_STRING_find := @LEGACY_OPENSSL_sk_find;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find');
+    {$ifend}
   Result := sk_UI_STRING_find(st, data);
 end;
 
@@ -1545,7 +1734,11 @@ function Load_sk_UI_STRING_find_ex(st: Pstack_st_UI_STRING; data: pointer): TOpe
 begin
   sk_UI_STRING_find_ex := LoadLibCryptoFunction('OPENSSL_sk_find_ex');
   if not assigned(sk_UI_STRING_find_ex) then
+    {$if declared(LEGACY_OPENSSL_sk_find_ex)}
+    sk_UI_STRING_find_ex := @LEGACY_OPENSSL_sk_find_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_ex');
+    {$ifend}
   Result := sk_UI_STRING_find_ex(st, data);
 end;
 
@@ -1553,7 +1746,11 @@ function Load_sk_UI_STRING_find_all(st: Pstack_st_UI_STRING; data: pointer; pnum
 begin
   sk_UI_STRING_find_all := LoadLibCryptoFunction('OPENSSL_sk_find_all');
   if not assigned(sk_UI_STRING_find_all) then
+    {$if declared(LEGACY_OPENSSL_sk_find_all)}
+    sk_UI_STRING_find_all := @LEGACY_OPENSSL_sk_find_all;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_all');
+    {$ifend}
   Result := sk_UI_STRING_find_all(st, data, pnum);
 end;
 
@@ -1561,7 +1758,11 @@ function Load_sk_UI_STRING_sort(_para: Pstack_st_UI_STRING): TOpenSSL_C_INT; cde
 begin
   sk_UI_STRING_sort := LoadLibCryptoFunction('OPENSSL_sk_sort');
   if not assigned(sk_UI_STRING_sort) then
+    {$if declared(LEGACY_OPENSSL_sk_sort)}
+    sk_UI_STRING_sort := @LEGACY_OPENSSL_sk_sort;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_sort');
+    {$ifend}
   Result := sk_UI_STRING_sort(_para);
 end;
 
@@ -1569,7 +1770,11 @@ function Load_sk_UI_STRING_is_sorted(_para: Pstack_st_UI_STRING): TOpenSSL_C_INT
 begin
   sk_UI_STRING_is_sorted := LoadLibCryptoFunction('OPENSSL_sk_is_sorted');
   if not assigned(sk_UI_STRING_is_sorted) then
+    {$if declared(LEGACY_OPENSSL_sk_is_sorted)}
+    sk_UI_STRING_is_sorted := @LEGACY_OPENSSL_sk_is_sorted;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_is_sorted');
+    {$ifend}
   Result := sk_UI_STRING_is_sorted(_para);
 end;
 
@@ -1577,7 +1782,11 @@ function Load_sk_UI_STRING_dup(st: Pstack_st_UI_STRING): Pstack_st_UI_STRING; cd
 begin
   sk_UI_STRING_dup := LoadLibCryptoFunction('OPENSSL_sk_dup');
   if not assigned(sk_UI_STRING_dup) then
+    {$if declared(LEGACY_OPENSSL_sk_dup)}
+    sk_UI_STRING_dup := @LEGACY_OPENSSL_sk_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_dup');
+    {$ifend}
   Result := sk_UI_STRING_dup(st);
 end;
 
@@ -1585,7 +1794,11 @@ function Load_sk_UI_STRING_deep_copy(st: Pstack_st_UI_STRING; c: Tsk_UI_STRING_c
 begin
   sk_UI_STRING_deep_copy := LoadLibCryptoFunction('OPENSSL_sk_deep_copy');
   if not assigned(sk_UI_STRING_deep_copy) then
+    {$if declared(LEGACY_OPENSSL_sk_deep_copy)}
+    sk_UI_STRING_deep_copy := @LEGACY_OPENSSL_sk_deep_copy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_deep_copy');
+    {$ifend}
   Result := sk_UI_STRING_deep_copy(st, c, f);
 end;
 
@@ -1593,7 +1806,11 @@ function Load_sk_UI_STRING_set_cmp_func(st: Pstack_st_UI_STRING; cmp: Tsk_UI_STR
 begin
   sk_UI_STRING_set_cmp_func := LoadLibCryptoFunction('OPENSSL_sk_set_cmp_func');
   if not assigned(sk_UI_STRING_set_cmp_func) then
+    {$if declared(LEGACY_OPENSSL_sk_set_cmp_func)}
+    sk_UI_STRING_set_cmp_func := @LEGACY_OPENSSL_sk_set_cmp_func;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set_cmp_func');
+    {$ifend}
   Result := sk_UI_STRING_set_cmp_func(st, cmp);
 end;
 
@@ -1601,7 +1818,11 @@ function Load_UI_create_method(name: PAnsiChar): PUI_METHOD; cdecl;
 begin
   UI_create_method := LoadLibCryptoFunction('UI_create_method');
   if not assigned(UI_create_method) then
+    {$if declared(LEGACY_UI_create_method)}
+    UI_create_method := @LEGACY_UI_create_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_create_method');
+    {$ifend}
   Result := UI_create_method(name);
 end;
 
@@ -1609,7 +1830,11 @@ procedure Load_UI_destroy_method(ui_method: PUI_METHOD); cdecl;
 begin
   UI_destroy_method := LoadLibCryptoFunction('UI_destroy_method');
   if not assigned(UI_destroy_method) then
+    {$if declared(LEGACY_UI_destroy_method)}
+    UI_destroy_method := @LEGACY_UI_destroy_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_destroy_method');
+    {$ifend}
   UI_destroy_method(ui_method);
 end;
 
@@ -1617,7 +1842,11 @@ function Load_UI_method_set_opener(method: PUI_METHOD; opener: TFuncType001): TO
 begin
   UI_method_set_opener := LoadLibCryptoFunction('UI_method_set_opener');
   if not assigned(UI_method_set_opener) then
+    {$if declared(LEGACY_UI_method_set_opener)}
+    UI_method_set_opener := @LEGACY_UI_method_set_opener;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_method_set_opener');
+    {$ifend}
   Result := UI_method_set_opener(method, opener);
 end;
 
@@ -1625,7 +1854,11 @@ function Load_UI_method_set_writer(method: PUI_METHOD; writer: TFuncType002): TO
 begin
   UI_method_set_writer := LoadLibCryptoFunction('UI_method_set_writer');
   if not assigned(UI_method_set_writer) then
+    {$if declared(LEGACY_UI_method_set_writer)}
+    UI_method_set_writer := @LEGACY_UI_method_set_writer;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_method_set_writer');
+    {$ifend}
   Result := UI_method_set_writer(method, writer);
 end;
 
@@ -1633,7 +1866,11 @@ function Load_UI_method_set_flusher(method: PUI_METHOD; flusher: TFuncType003): 
 begin
   UI_method_set_flusher := LoadLibCryptoFunction('UI_method_set_flusher');
   if not assigned(UI_method_set_flusher) then
+    {$if declared(LEGACY_UI_method_set_flusher)}
+    UI_method_set_flusher := @LEGACY_UI_method_set_flusher;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_method_set_flusher');
+    {$ifend}
   Result := UI_method_set_flusher(method, flusher);
 end;
 
@@ -1641,7 +1878,11 @@ function Load_UI_method_set_reader(method: PUI_METHOD; reader: TFuncType004): TO
 begin
   UI_method_set_reader := LoadLibCryptoFunction('UI_method_set_reader');
   if not assigned(UI_method_set_reader) then
+    {$if declared(LEGACY_UI_method_set_reader)}
+    UI_method_set_reader := @LEGACY_UI_method_set_reader;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_method_set_reader');
+    {$ifend}
   Result := UI_method_set_reader(method, reader);
 end;
 
@@ -1649,7 +1890,11 @@ function Load_UI_method_set_closer(method: PUI_METHOD; closer: TFuncType005): TO
 begin
   UI_method_set_closer := LoadLibCryptoFunction('UI_method_set_closer');
   if not assigned(UI_method_set_closer) then
+    {$if declared(LEGACY_UI_method_set_closer)}
+    UI_method_set_closer := @LEGACY_UI_method_set_closer;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_method_set_closer');
+    {$ifend}
   Result := UI_method_set_closer(method, closer);
 end;
 
@@ -1657,7 +1902,11 @@ function Load_UI_method_set_data_duplicator(method: PUI_METHOD; duplicator: TFun
 begin
   UI_method_set_data_duplicator := LoadLibCryptoFunction('UI_method_set_data_duplicator');
   if not assigned(UI_method_set_data_duplicator) then
+    {$if declared(LEGACY_UI_method_set_data_duplicator)}
+    UI_method_set_data_duplicator := @LEGACY_UI_method_set_data_duplicator;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_method_set_data_duplicator');
+    {$ifend}
   Result := UI_method_set_data_duplicator(method, duplicator, destructor_);
 end;
 
@@ -1665,7 +1914,11 @@ function Load_UI_method_set_prompt_constructor(method: PUI_METHOD; prompt_constr
 begin
   UI_method_set_prompt_constructor := LoadLibCryptoFunction('UI_method_set_prompt_constructor');
   if not assigned(UI_method_set_prompt_constructor) then
+    {$if declared(LEGACY_UI_method_set_prompt_constructor)}
+    UI_method_set_prompt_constructor := @LEGACY_UI_method_set_prompt_constructor;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_method_set_prompt_constructor');
+    {$ifend}
   Result := UI_method_set_prompt_constructor(method, prompt_constructor);
 end;
 
@@ -1673,7 +1926,11 @@ function Load_UI_method_set_ex_data(method: PUI_METHOD; idx: TOpenSSL_C_INT; dat
 begin
   UI_method_set_ex_data := LoadLibCryptoFunction('UI_method_set_ex_data');
   if not assigned(UI_method_set_ex_data) then
+    {$if declared(LEGACY_UI_method_set_ex_data)}
+    UI_method_set_ex_data := @LEGACY_UI_method_set_ex_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_method_set_ex_data');
+    {$ifend}
   Result := UI_method_set_ex_data(method, idx, data);
 end;
 
@@ -1681,7 +1938,11 @@ function Load_UI_method_get_opener(method: PUI_METHOD): TFuncType009; cdecl;
 begin
   UI_method_get_opener := LoadLibCryptoFunction('UI_method_get_opener');
   if not assigned(UI_method_get_opener) then
+    {$if declared(LEGACY_UI_method_get_opener)}
+    UI_method_get_opener := @LEGACY_UI_method_get_opener;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_method_get_opener');
+    {$ifend}
   Result := UI_method_get_opener(method);
 end;
 
@@ -1689,7 +1950,11 @@ function Load_UI_method_get_writer(method: PUI_METHOD): TFuncType010; cdecl;
 begin
   UI_method_get_writer := LoadLibCryptoFunction('UI_method_get_writer');
   if not assigned(UI_method_get_writer) then
+    {$if declared(LEGACY_UI_method_get_writer)}
+    UI_method_get_writer := @LEGACY_UI_method_get_writer;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_method_get_writer');
+    {$ifend}
   Result := UI_method_get_writer(method);
 end;
 
@@ -1697,7 +1962,11 @@ function Load_UI_method_get_flusher(method: PUI_METHOD): TFuncType011; cdecl;
 begin
   UI_method_get_flusher := LoadLibCryptoFunction('UI_method_get_flusher');
   if not assigned(UI_method_get_flusher) then
+    {$if declared(LEGACY_UI_method_get_flusher)}
+    UI_method_get_flusher := @LEGACY_UI_method_get_flusher;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_method_get_flusher');
+    {$ifend}
   Result := UI_method_get_flusher(method);
 end;
 
@@ -1705,7 +1974,11 @@ function Load_UI_method_get_reader(method: PUI_METHOD): TFuncType012; cdecl;
 begin
   UI_method_get_reader := LoadLibCryptoFunction('UI_method_get_reader');
   if not assigned(UI_method_get_reader) then
+    {$if declared(LEGACY_UI_method_get_reader)}
+    UI_method_get_reader := @LEGACY_UI_method_get_reader;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_method_get_reader');
+    {$ifend}
   Result := UI_method_get_reader(method);
 end;
 
@@ -1713,7 +1986,11 @@ function Load_UI_method_get_closer(method: PUI_METHOD): TFuncType013; cdecl;
 begin
   UI_method_get_closer := LoadLibCryptoFunction('UI_method_get_closer');
   if not assigned(UI_method_get_closer) then
+    {$if declared(LEGACY_UI_method_get_closer)}
+    UI_method_get_closer := @LEGACY_UI_method_get_closer;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_method_get_closer');
+    {$ifend}
   Result := UI_method_get_closer(method);
 end;
 
@@ -1721,7 +1998,11 @@ function Load_UI_method_get_prompt_constructor(method: PUI_METHOD): TFuncType014
 begin
   UI_method_get_prompt_constructor := LoadLibCryptoFunction('UI_method_get_prompt_constructor');
   if not assigned(UI_method_get_prompt_constructor) then
+    {$if declared(LEGACY_UI_method_get_prompt_constructor)}
+    UI_method_get_prompt_constructor := @LEGACY_UI_method_get_prompt_constructor;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_method_get_prompt_constructor');
+    {$ifend}
   Result := UI_method_get_prompt_constructor(method);
 end;
 
@@ -1729,7 +2010,11 @@ function Load_UI_method_get_data_duplicator(method: PUI_METHOD): pointer; cdecl;
 begin
   UI_method_get_data_duplicator := LoadLibCryptoFunction('UI_method_get_data_duplicator');
   if not assigned(UI_method_get_data_duplicator) then
+    {$if declared(LEGACY_UI_method_get_data_duplicator)}
+    UI_method_get_data_duplicator := @LEGACY_UI_method_get_data_duplicator;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_method_get_data_duplicator');
+    {$ifend}
   Result := UI_method_get_data_duplicator(method);
 end;
 
@@ -1737,7 +2022,11 @@ function Load_UI_method_get_data_destructor(method: PUI_METHOD): pointer; cdecl;
 begin
   UI_method_get_data_destructor := LoadLibCryptoFunction('UI_method_get_data_destructor');
   if not assigned(UI_method_get_data_destructor) then
+    {$if declared(LEGACY_UI_method_get_data_destructor)}
+    UI_method_get_data_destructor := @LEGACY_UI_method_get_data_destructor;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_method_get_data_destructor');
+    {$ifend}
   Result := UI_method_get_data_destructor(method);
 end;
 
@@ -1745,7 +2034,11 @@ function Load_UI_method_get_ex_data(method: PUI_METHOD; idx: TOpenSSL_C_INT): po
 begin
   UI_method_get_ex_data := LoadLibCryptoFunction('UI_method_get_ex_data');
   if not assigned(UI_method_get_ex_data) then
+    {$if declared(LEGACY_UI_method_get_ex_data)}
+    UI_method_get_ex_data := @LEGACY_UI_method_get_ex_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_method_get_ex_data');
+    {$ifend}
   Result := UI_method_get_ex_data(method, idx);
 end;
 
@@ -1753,7 +2046,11 @@ function Load_UI_get_string_type(uis: PUI_STRING): TUI_string_types; cdecl;
 begin
   UI_get_string_type := LoadLibCryptoFunction('UI_get_string_type');
   if not assigned(UI_get_string_type) then
+    {$if declared(LEGACY_UI_get_string_type)}
+    UI_get_string_type := @LEGACY_UI_get_string_type;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_get_string_type');
+    {$ifend}
   Result := UI_get_string_type(uis);
 end;
 
@@ -1761,7 +2058,11 @@ function Load_UI_get_input_flags(uis: PUI_STRING): TOpenSSL_C_INT; cdecl;
 begin
   UI_get_input_flags := LoadLibCryptoFunction('UI_get_input_flags');
   if not assigned(UI_get_input_flags) then
+    {$if declared(LEGACY_UI_get_input_flags)}
+    UI_get_input_flags := @LEGACY_UI_get_input_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_get_input_flags');
+    {$ifend}
   Result := UI_get_input_flags(uis);
 end;
 
@@ -1769,7 +2070,11 @@ function Load_UI_get0_output_string(uis: PUI_STRING): PAnsiChar; cdecl;
 begin
   UI_get0_output_string := LoadLibCryptoFunction('UI_get0_output_string');
   if not assigned(UI_get0_output_string) then
+    {$if declared(LEGACY_UI_get0_output_string)}
+    UI_get0_output_string := @LEGACY_UI_get0_output_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_get0_output_string');
+    {$ifend}
   Result := UI_get0_output_string(uis);
 end;
 
@@ -1777,7 +2082,11 @@ function Load_UI_get0_action_string(uis: PUI_STRING): PAnsiChar; cdecl;
 begin
   UI_get0_action_string := LoadLibCryptoFunction('UI_get0_action_string');
   if not assigned(UI_get0_action_string) then
+    {$if declared(LEGACY_UI_get0_action_string)}
+    UI_get0_action_string := @LEGACY_UI_get0_action_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_get0_action_string');
+    {$ifend}
   Result := UI_get0_action_string(uis);
 end;
 
@@ -1785,7 +2094,11 @@ function Load_UI_get0_result_string(uis: PUI_STRING): PAnsiChar; cdecl;
 begin
   UI_get0_result_string := LoadLibCryptoFunction('UI_get0_result_string');
   if not assigned(UI_get0_result_string) then
+    {$if declared(LEGACY_UI_get0_result_string)}
+    UI_get0_result_string := @LEGACY_UI_get0_result_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_get0_result_string');
+    {$ifend}
   Result := UI_get0_result_string(uis);
 end;
 
@@ -1793,7 +2106,11 @@ function Load_UI_get_result_string_length(uis: PUI_STRING): TOpenSSL_C_INT; cdec
 begin
   UI_get_result_string_length := LoadLibCryptoFunction('UI_get_result_string_length');
   if not assigned(UI_get_result_string_length) then
+    {$if declared(LEGACY_UI_get_result_string_length)}
+    UI_get_result_string_length := @LEGACY_UI_get_result_string_length;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_get_result_string_length');
+    {$ifend}
   Result := UI_get_result_string_length(uis);
 end;
 
@@ -1801,7 +2118,11 @@ function Load_UI_get0_test_string(uis: PUI_STRING): PAnsiChar; cdecl;
 begin
   UI_get0_test_string := LoadLibCryptoFunction('UI_get0_test_string');
   if not assigned(UI_get0_test_string) then
+    {$if declared(LEGACY_UI_get0_test_string)}
+    UI_get0_test_string := @LEGACY_UI_get0_test_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_get0_test_string');
+    {$ifend}
   Result := UI_get0_test_string(uis);
 end;
 
@@ -1809,7 +2130,11 @@ function Load_UI_get_result_minsize(uis: PUI_STRING): TOpenSSL_C_INT; cdecl;
 begin
   UI_get_result_minsize := LoadLibCryptoFunction('UI_get_result_minsize');
   if not assigned(UI_get_result_minsize) then
+    {$if declared(LEGACY_UI_get_result_minsize)}
+    UI_get_result_minsize := @LEGACY_UI_get_result_minsize;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_get_result_minsize');
+    {$ifend}
   Result := UI_get_result_minsize(uis);
 end;
 
@@ -1817,7 +2142,11 @@ function Load_UI_get_result_maxsize(uis: PUI_STRING): TOpenSSL_C_INT; cdecl;
 begin
   UI_get_result_maxsize := LoadLibCryptoFunction('UI_get_result_maxsize');
   if not assigned(UI_get_result_maxsize) then
+    {$if declared(LEGACY_UI_get_result_maxsize)}
+    UI_get_result_maxsize := @LEGACY_UI_get_result_maxsize;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_get_result_maxsize');
+    {$ifend}
   Result := UI_get_result_maxsize(uis);
 end;
 
@@ -1825,7 +2154,11 @@ function Load_UI_set_result(ui: PUI; uis: PUI_STRING; result_: PAnsiChar): TOpen
 begin
   UI_set_result := LoadLibCryptoFunction('UI_set_result');
   if not assigned(UI_set_result) then
+    {$if declared(LEGACY_UI_set_result)}
+    UI_set_result := @LEGACY_UI_set_result;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_set_result');
+    {$ifend}
   Result := UI_set_result(ui, uis, result_);
 end;
 
@@ -1833,7 +2166,11 @@ function Load_UI_set_result_ex(ui: PUI; uis: PUI_STRING; result_: PAnsiChar; len
 begin
   UI_set_result_ex := LoadLibCryptoFunction('UI_set_result_ex');
   if not assigned(UI_set_result_ex) then
+    {$if declared(LEGACY_UI_set_result_ex)}
+    UI_set_result_ex := @LEGACY_UI_set_result_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_set_result_ex');
+    {$ifend}
   Result := UI_set_result_ex(ui, uis, result_, len);
 end;
 
@@ -1841,7 +2178,11 @@ function Load_UI_UTIL_read_pw_string(buf: PAnsiChar; length: TOpenSSL_C_INT; pro
 begin
   UI_UTIL_read_pw_string := LoadLibCryptoFunction('UI_UTIL_read_pw_string');
   if not assigned(UI_UTIL_read_pw_string) then
+    {$if declared(LEGACY_UI_UTIL_read_pw_string)}
+    UI_UTIL_read_pw_string := @LEGACY_UI_UTIL_read_pw_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_UTIL_read_pw_string');
+    {$ifend}
   Result := UI_UTIL_read_pw_string(buf, length, prompt, verify);
 end;
 
@@ -1849,7 +2190,11 @@ function Load_UI_UTIL_read_pw(buf: PAnsiChar; buff: PAnsiChar; size: TOpenSSL_C_
 begin
   UI_UTIL_read_pw := LoadLibCryptoFunction('UI_UTIL_read_pw');
   if not assigned(UI_UTIL_read_pw) then
+    {$if declared(LEGACY_UI_UTIL_read_pw)}
+    UI_UTIL_read_pw := @LEGACY_UI_UTIL_read_pw;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_UTIL_read_pw');
+    {$ifend}
   Result := UI_UTIL_read_pw(buf, buff, size, prompt, verify);
 end;
 
@@ -1857,7 +2202,11 @@ function Load_UI_UTIL_wrap_read_pem_callback(cb: Tpem_password_cb; rwflag: TOpen
 begin
   UI_UTIL_wrap_read_pem_callback := LoadLibCryptoFunction('UI_UTIL_wrap_read_pem_callback');
   if not assigned(UI_UTIL_wrap_read_pem_callback) then
+    {$if declared(LEGACY_UI_UTIL_wrap_read_pem_callback)}
+    UI_UTIL_wrap_read_pem_callback := @LEGACY_UI_UTIL_wrap_read_pem_callback;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UI_UTIL_wrap_read_pem_callback');
+    {$ifend}
   Result := UI_UTIL_wrap_read_pem_callback(cb, rwflag);
 end;
 

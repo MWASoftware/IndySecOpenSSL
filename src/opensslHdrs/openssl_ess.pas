@@ -18,7 +18,8 @@
 unit openssl_ess;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ess.h - Wed  6 May 13:06:04 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ess.h - Wed  6 May 13:15:13 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -553,7 +554,11 @@ function Load_sk_ESS_CERT_ID_num(_para: Pstack_st_ESS_CERT_ID): TOpenSSL_C_INT; 
 begin
   sk_ESS_CERT_ID_num := LoadLibCryptoFunction('OPENSSL_sk_num');
   if not assigned(sk_ESS_CERT_ID_num) then
+    {$if declared(LEGACY_OPENSSL_sk_num)}
+    sk_ESS_CERT_ID_num := @LEGACY_OPENSSL_sk_num;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_num');
+    {$ifend}
   Result := sk_ESS_CERT_ID_num(_para);
 end;
 
@@ -561,7 +566,11 @@ function Load_sk_ESS_CERT_ID_value(_para: Pstack_st_ESS_CERT_ID; _para2: TOpenSS
 begin
   sk_ESS_CERT_ID_value := LoadLibCryptoFunction('OPENSSL_sk_value');
   if not assigned(sk_ESS_CERT_ID_value) then
+    {$if declared(LEGACY_OPENSSL_sk_value)}
+    sk_ESS_CERT_ID_value := @LEGACY_OPENSSL_sk_value;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_value');
+    {$ifend}
   Result := sk_ESS_CERT_ID_value(_para, _para2);
 end;
 
@@ -569,7 +578,11 @@ function Load_sk_ESS_CERT_ID_new(cmp: Tsk_ESS_CERT_ID_compfunc): Pstack_st_ESS_C
 begin
   sk_ESS_CERT_ID_new := LoadLibCryptoFunction('OPENSSL_sk_new');
   if not assigned(sk_ESS_CERT_ID_new) then
+    {$if declared(LEGACY_OPENSSL_sk_new)}
+    sk_ESS_CERT_ID_new := @LEGACY_OPENSSL_sk_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new');
+    {$ifend}
   Result := sk_ESS_CERT_ID_new(cmp);
 end;
 
@@ -577,7 +590,11 @@ function Load_sk_ESS_CERT_ID_new_null: Pstack_st_ESS_CERT_ID; cdecl;
 begin
   sk_ESS_CERT_ID_new_null := LoadLibCryptoFunction('OPENSSL_sk_new_null');
   if not assigned(sk_ESS_CERT_ID_new_null) then
+    {$if declared(LEGACY_OPENSSL_sk_new_null)}
+    sk_ESS_CERT_ID_new_null := @LEGACY_OPENSSL_sk_new_null;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_null');
+    {$ifend}
   Result := sk_ESS_CERT_ID_new_null;
 end;
 
@@ -585,7 +602,11 @@ function Load_sk_ESS_CERT_ID_new_reserve(cmp: Tsk_ESS_CERT_ID_compfunc; n: TOpen
 begin
   sk_ESS_CERT_ID_new_reserve := LoadLibCryptoFunction('OPENSSL_sk_new_reserve');
   if not assigned(sk_ESS_CERT_ID_new_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_new_reserve)}
+    sk_ESS_CERT_ID_new_reserve := @LEGACY_OPENSSL_sk_new_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_reserve');
+    {$ifend}
   Result := sk_ESS_CERT_ID_new_reserve(cmp, n);
 end;
 
@@ -593,7 +614,11 @@ function Load_sk_ESS_CERT_ID_reserve(_para: Pstack_st_ESS_CERT_ID; n: TOpenSSL_C
 begin
   sk_ESS_CERT_ID_reserve := LoadLibCryptoFunction('OPENSSL_sk_reserve');
   if not assigned(sk_ESS_CERT_ID_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_reserve)}
+    sk_ESS_CERT_ID_reserve := @LEGACY_OPENSSL_sk_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_reserve');
+    {$ifend}
   Result := sk_ESS_CERT_ID_reserve(_para, n);
 end;
 
@@ -601,7 +626,11 @@ function Load_sk_ESS_CERT_ID_free(_para: Pstack_st_ESS_CERT_ID): TOpenSSL_C_INT;
 begin
   sk_ESS_CERT_ID_free := LoadLibCryptoFunction('OPENSSL_sk_free');
   if not assigned(sk_ESS_CERT_ID_free) then
+    {$if declared(LEGACY_OPENSSL_sk_free)}
+    sk_ESS_CERT_ID_free := @LEGACY_OPENSSL_sk_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_free');
+    {$ifend}
   Result := sk_ESS_CERT_ID_free(_para);
 end;
 
@@ -609,7 +638,11 @@ function Load_sk_ESS_CERT_ID_zero(_para: Pstack_st_ESS_CERT_ID): TOpenSSL_C_INT;
 begin
   sk_ESS_CERT_ID_zero := LoadLibCryptoFunction('OPENSSL_sk_zero');
   if not assigned(sk_ESS_CERT_ID_zero) then
+    {$if declared(LEGACY_OPENSSL_sk_zero)}
+    sk_ESS_CERT_ID_zero := @LEGACY_OPENSSL_sk_zero;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_zero');
+    {$ifend}
   Result := sk_ESS_CERT_ID_zero(_para);
 end;
 
@@ -617,7 +650,11 @@ function Load_sk_ESS_CERT_ID_delete(st: Pstack_st_ESS_CERT_ID; loc: TOpenSSL_C_I
 begin
   sk_ESS_CERT_ID_delete := LoadLibCryptoFunction('OPENSSL_sk_delete');
   if not assigned(sk_ESS_CERT_ID_delete) then
+    {$if declared(LEGACY_OPENSSL_sk_delete)}
+    sk_ESS_CERT_ID_delete := @LEGACY_OPENSSL_sk_delete;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete');
+    {$ifend}
   Result := sk_ESS_CERT_ID_delete(st, loc);
 end;
 
@@ -625,7 +662,11 @@ function Load_sk_ESS_CERT_ID_delete_ptr(st: Pstack_st_ESS_CERT_ID; ptr: Pstack_s
 begin
   sk_ESS_CERT_ID_delete_ptr := LoadLibCryptoFunction('OPENSSL_sk_delete_ptr');
   if not assigned(sk_ESS_CERT_ID_delete_ptr) then
+    {$if declared(LEGACY_OPENSSL_sk_delete_ptr)}
+    sk_ESS_CERT_ID_delete_ptr := @LEGACY_OPENSSL_sk_delete_ptr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete_ptr');
+    {$ifend}
   Result := sk_ESS_CERT_ID_delete_ptr(st, ptr);
 end;
 
@@ -633,7 +674,11 @@ function Load_sk_ESS_CERT_ID_push(st: Pstack_st_ESS_CERT_ID; data: pointer): TOp
 begin
   sk_ESS_CERT_ID_push := LoadLibCryptoFunction('OPENSSL_sk_push');
   if not assigned(sk_ESS_CERT_ID_push) then
+    {$if declared(LEGACY_OPENSSL_sk_push)}
+    sk_ESS_CERT_ID_push := @LEGACY_OPENSSL_sk_push;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_push');
+    {$ifend}
   Result := sk_ESS_CERT_ID_push(st, data);
 end;
 
@@ -641,7 +686,11 @@ function Load_sk_ESS_CERT_ID_unshift(st: Pstack_st_ESS_CERT_ID; data: pointer): 
 begin
   sk_ESS_CERT_ID_unshift := LoadLibCryptoFunction('OPENSSL_sk_unshift');
   if not assigned(sk_ESS_CERT_ID_unshift) then
+    {$if declared(LEGACY_OPENSSL_sk_unshift)}
+    sk_ESS_CERT_ID_unshift := @LEGACY_OPENSSL_sk_unshift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_unshift');
+    {$ifend}
   Result := sk_ESS_CERT_ID_unshift(st, data);
 end;
 
@@ -649,7 +698,11 @@ function Load_sk_ESS_CERT_ID_pop(_para: Pstack_st_ESS_CERT_ID): Pstack_st_ESS_CE
 begin
   sk_ESS_CERT_ID_pop := LoadLibCryptoFunction('OPENSSL_sk_pop');
   if not assigned(sk_ESS_CERT_ID_pop) then
+    {$if declared(LEGACY_OPENSSL_sk_pop)}
+    sk_ESS_CERT_ID_pop := @LEGACY_OPENSSL_sk_pop;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop');
+    {$ifend}
   Result := sk_ESS_CERT_ID_pop(_para);
 end;
 
@@ -657,7 +710,11 @@ function Load_sk_ESS_CERT_ID_shift(_para: Pstack_st_ESS_CERT_ID): Pstack_st_ESS_
 begin
   sk_ESS_CERT_ID_shift := LoadLibCryptoFunction('OPENSSL_sk_shift');
   if not assigned(sk_ESS_CERT_ID_shift) then
+    {$if declared(LEGACY_OPENSSL_sk_shift)}
+    sk_ESS_CERT_ID_shift := @LEGACY_OPENSSL_sk_shift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_shift');
+    {$ifend}
   Result := sk_ESS_CERT_ID_shift(_para);
 end;
 
@@ -665,7 +722,11 @@ procedure Load_sk_ESS_CERT_ID_pop_free(st: Pstack_st_ESS_CERT_ID; func: Tsk_ESS_
 begin
   sk_ESS_CERT_ID_pop_free := LoadLibCryptoFunction('OPENSSL_sk_pop_free');
   if not assigned(sk_ESS_CERT_ID_pop_free) then
+    {$if declared(LEGACY_OPENSSL_sk_pop_free)}
+    sk_ESS_CERT_ID_pop_free := @LEGACY_OPENSSL_sk_pop_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop_free');
+    {$ifend}
   sk_ESS_CERT_ID_pop_free(st, func);
 end;
 
@@ -673,7 +734,11 @@ function Load_sk_ESS_CERT_ID_insert(st: Pstack_st_ESS_CERT_ID; data: pointer; wh
 begin
   sk_ESS_CERT_ID_insert := LoadLibCryptoFunction('OPENSSL_sk_insert');
   if not assigned(sk_ESS_CERT_ID_insert) then
+    {$if declared(LEGACY_OPENSSL_sk_insert)}
+    sk_ESS_CERT_ID_insert := @LEGACY_OPENSSL_sk_insert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_insert');
+    {$ifend}
   Result := sk_ESS_CERT_ID_insert(st, data, where);
 end;
 
@@ -681,7 +746,11 @@ function Load_sk_ESS_CERT_ID_set(st: Pstack_st_ESS_CERT_ID; i: TOpenSSL_C_INT; d
 begin
   sk_ESS_CERT_ID_set := LoadLibCryptoFunction('OPENSSL_sk_set');
   if not assigned(sk_ESS_CERT_ID_set) then
+    {$if declared(LEGACY_OPENSSL_sk_set)}
+    sk_ESS_CERT_ID_set := @LEGACY_OPENSSL_sk_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set');
+    {$ifend}
   Result := sk_ESS_CERT_ID_set(st, i, data);
 end;
 
@@ -689,7 +758,11 @@ function Load_sk_ESS_CERT_ID_find(st: Pstack_st_ESS_CERT_ID; data: pointer): TOp
 begin
   sk_ESS_CERT_ID_find := LoadLibCryptoFunction('OPENSSL_sk_find');
   if not assigned(sk_ESS_CERT_ID_find) then
+    {$if declared(LEGACY_OPENSSL_sk_find)}
+    sk_ESS_CERT_ID_find := @LEGACY_OPENSSL_sk_find;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find');
+    {$ifend}
   Result := sk_ESS_CERT_ID_find(st, data);
 end;
 
@@ -697,7 +770,11 @@ function Load_sk_ESS_CERT_ID_find_ex(st: Pstack_st_ESS_CERT_ID; data: pointer): 
 begin
   sk_ESS_CERT_ID_find_ex := LoadLibCryptoFunction('OPENSSL_sk_find_ex');
   if not assigned(sk_ESS_CERT_ID_find_ex) then
+    {$if declared(LEGACY_OPENSSL_sk_find_ex)}
+    sk_ESS_CERT_ID_find_ex := @LEGACY_OPENSSL_sk_find_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_ex');
+    {$ifend}
   Result := sk_ESS_CERT_ID_find_ex(st, data);
 end;
 
@@ -705,7 +782,11 @@ function Load_sk_ESS_CERT_ID_find_all(st: Pstack_st_ESS_CERT_ID; data: pointer; 
 begin
   sk_ESS_CERT_ID_find_all := LoadLibCryptoFunction('OPENSSL_sk_find_all');
   if not assigned(sk_ESS_CERT_ID_find_all) then
+    {$if declared(LEGACY_OPENSSL_sk_find_all)}
+    sk_ESS_CERT_ID_find_all := @LEGACY_OPENSSL_sk_find_all;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_all');
+    {$ifend}
   Result := sk_ESS_CERT_ID_find_all(st, data, pnum);
 end;
 
@@ -713,7 +794,11 @@ function Load_sk_ESS_CERT_ID_sort(_para: Pstack_st_ESS_CERT_ID): TOpenSSL_C_INT;
 begin
   sk_ESS_CERT_ID_sort := LoadLibCryptoFunction('OPENSSL_sk_sort');
   if not assigned(sk_ESS_CERT_ID_sort) then
+    {$if declared(LEGACY_OPENSSL_sk_sort)}
+    sk_ESS_CERT_ID_sort := @LEGACY_OPENSSL_sk_sort;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_sort');
+    {$ifend}
   Result := sk_ESS_CERT_ID_sort(_para);
 end;
 
@@ -721,7 +806,11 @@ function Load_sk_ESS_CERT_ID_is_sorted(_para: Pstack_st_ESS_CERT_ID): TOpenSSL_C
 begin
   sk_ESS_CERT_ID_is_sorted := LoadLibCryptoFunction('OPENSSL_sk_is_sorted');
   if not assigned(sk_ESS_CERT_ID_is_sorted) then
+    {$if declared(LEGACY_OPENSSL_sk_is_sorted)}
+    sk_ESS_CERT_ID_is_sorted := @LEGACY_OPENSSL_sk_is_sorted;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_is_sorted');
+    {$ifend}
   Result := sk_ESS_CERT_ID_is_sorted(_para);
 end;
 
@@ -729,7 +818,11 @@ function Load_sk_ESS_CERT_ID_dup(st: Pstack_st_ESS_CERT_ID): Pstack_st_ESS_CERT_
 begin
   sk_ESS_CERT_ID_dup := LoadLibCryptoFunction('OPENSSL_sk_dup');
   if not assigned(sk_ESS_CERT_ID_dup) then
+    {$if declared(LEGACY_OPENSSL_sk_dup)}
+    sk_ESS_CERT_ID_dup := @LEGACY_OPENSSL_sk_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_dup');
+    {$ifend}
   Result := sk_ESS_CERT_ID_dup(st);
 end;
 
@@ -737,7 +830,11 @@ function Load_sk_ESS_CERT_ID_deep_copy(st: Pstack_st_ESS_CERT_ID; c: Tsk_ESS_CER
 begin
   sk_ESS_CERT_ID_deep_copy := LoadLibCryptoFunction('OPENSSL_sk_deep_copy');
   if not assigned(sk_ESS_CERT_ID_deep_copy) then
+    {$if declared(LEGACY_OPENSSL_sk_deep_copy)}
+    sk_ESS_CERT_ID_deep_copy := @LEGACY_OPENSSL_sk_deep_copy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_deep_copy');
+    {$ifend}
   Result := sk_ESS_CERT_ID_deep_copy(st, c, f);
 end;
 
@@ -745,7 +842,11 @@ function Load_sk_ESS_CERT_ID_set_cmp_func(st: Pstack_st_ESS_CERT_ID; cmp: Tsk_ES
 begin
   sk_ESS_CERT_ID_set_cmp_func := LoadLibCryptoFunction('OPENSSL_sk_set_cmp_func');
   if not assigned(sk_ESS_CERT_ID_set_cmp_func) then
+    {$if declared(LEGACY_OPENSSL_sk_set_cmp_func)}
+    sk_ESS_CERT_ID_set_cmp_func := @LEGACY_OPENSSL_sk_set_cmp_func;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set_cmp_func');
+    {$ifend}
   Result := sk_ESS_CERT_ID_set_cmp_func(st, cmp);
 end;
 
@@ -753,7 +854,11 @@ function Load_sk_ESS_CERT_ID_V2_num(_para: Pstack_st_ESS_CERT_ID_V2): TOpenSSL_C
 begin
   sk_ESS_CERT_ID_V2_num := LoadLibCryptoFunction('OPENSSL_sk_num');
   if not assigned(sk_ESS_CERT_ID_V2_num) then
+    {$if declared(LEGACY_OPENSSL_sk_num)}
+    sk_ESS_CERT_ID_V2_num := @LEGACY_OPENSSL_sk_num;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_num');
+    {$ifend}
   Result := sk_ESS_CERT_ID_V2_num(_para);
 end;
 
@@ -761,7 +866,11 @@ function Load_sk_ESS_CERT_ID_V2_value(_para: Pstack_st_ESS_CERT_ID_V2; _para2: T
 begin
   sk_ESS_CERT_ID_V2_value := LoadLibCryptoFunction('OPENSSL_sk_value');
   if not assigned(sk_ESS_CERT_ID_V2_value) then
+    {$if declared(LEGACY_OPENSSL_sk_value)}
+    sk_ESS_CERT_ID_V2_value := @LEGACY_OPENSSL_sk_value;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_value');
+    {$ifend}
   Result := sk_ESS_CERT_ID_V2_value(_para, _para2);
 end;
 
@@ -769,7 +878,11 @@ function Load_sk_ESS_CERT_ID_V2_new(cmp: Tsk_ESS_CERT_ID_V2_compfunc): Pstack_st
 begin
   sk_ESS_CERT_ID_V2_new := LoadLibCryptoFunction('OPENSSL_sk_new');
   if not assigned(sk_ESS_CERT_ID_V2_new) then
+    {$if declared(LEGACY_OPENSSL_sk_new)}
+    sk_ESS_CERT_ID_V2_new := @LEGACY_OPENSSL_sk_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new');
+    {$ifend}
   Result := sk_ESS_CERT_ID_V2_new(cmp);
 end;
 
@@ -777,7 +890,11 @@ function Load_sk_ESS_CERT_ID_V2_new_null: Pstack_st_ESS_CERT_ID_V2; cdecl;
 begin
   sk_ESS_CERT_ID_V2_new_null := LoadLibCryptoFunction('OPENSSL_sk_new_null');
   if not assigned(sk_ESS_CERT_ID_V2_new_null) then
+    {$if declared(LEGACY_OPENSSL_sk_new_null)}
+    sk_ESS_CERT_ID_V2_new_null := @LEGACY_OPENSSL_sk_new_null;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_null');
+    {$ifend}
   Result := sk_ESS_CERT_ID_V2_new_null;
 end;
 
@@ -785,7 +902,11 @@ function Load_sk_ESS_CERT_ID_V2_new_reserve(cmp: Tsk_ESS_CERT_ID_V2_compfunc; n:
 begin
   sk_ESS_CERT_ID_V2_new_reserve := LoadLibCryptoFunction('OPENSSL_sk_new_reserve');
   if not assigned(sk_ESS_CERT_ID_V2_new_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_new_reserve)}
+    sk_ESS_CERT_ID_V2_new_reserve := @LEGACY_OPENSSL_sk_new_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_reserve');
+    {$ifend}
   Result := sk_ESS_CERT_ID_V2_new_reserve(cmp, n);
 end;
 
@@ -793,7 +914,11 @@ function Load_sk_ESS_CERT_ID_V2_reserve(_para: Pstack_st_ESS_CERT_ID_V2; n: TOpe
 begin
   sk_ESS_CERT_ID_V2_reserve := LoadLibCryptoFunction('OPENSSL_sk_reserve');
   if not assigned(sk_ESS_CERT_ID_V2_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_reserve)}
+    sk_ESS_CERT_ID_V2_reserve := @LEGACY_OPENSSL_sk_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_reserve');
+    {$ifend}
   Result := sk_ESS_CERT_ID_V2_reserve(_para, n);
 end;
 
@@ -801,7 +926,11 @@ function Load_sk_ESS_CERT_ID_V2_free(_para: Pstack_st_ESS_CERT_ID_V2): TOpenSSL_
 begin
   sk_ESS_CERT_ID_V2_free := LoadLibCryptoFunction('OPENSSL_sk_free');
   if not assigned(sk_ESS_CERT_ID_V2_free) then
+    {$if declared(LEGACY_OPENSSL_sk_free)}
+    sk_ESS_CERT_ID_V2_free := @LEGACY_OPENSSL_sk_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_free');
+    {$ifend}
   Result := sk_ESS_CERT_ID_V2_free(_para);
 end;
 
@@ -809,7 +938,11 @@ function Load_sk_ESS_CERT_ID_V2_zero(_para: Pstack_st_ESS_CERT_ID_V2): TOpenSSL_
 begin
   sk_ESS_CERT_ID_V2_zero := LoadLibCryptoFunction('OPENSSL_sk_zero');
   if not assigned(sk_ESS_CERT_ID_V2_zero) then
+    {$if declared(LEGACY_OPENSSL_sk_zero)}
+    sk_ESS_CERT_ID_V2_zero := @LEGACY_OPENSSL_sk_zero;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_zero');
+    {$ifend}
   Result := sk_ESS_CERT_ID_V2_zero(_para);
 end;
 
@@ -817,7 +950,11 @@ function Load_sk_ESS_CERT_ID_V2_delete(st: Pstack_st_ESS_CERT_ID_V2; loc: TOpenS
 begin
   sk_ESS_CERT_ID_V2_delete := LoadLibCryptoFunction('OPENSSL_sk_delete');
   if not assigned(sk_ESS_CERT_ID_V2_delete) then
+    {$if declared(LEGACY_OPENSSL_sk_delete)}
+    sk_ESS_CERT_ID_V2_delete := @LEGACY_OPENSSL_sk_delete;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete');
+    {$ifend}
   Result := sk_ESS_CERT_ID_V2_delete(st, loc);
 end;
 
@@ -825,7 +962,11 @@ function Load_sk_ESS_CERT_ID_V2_delete_ptr(st: Pstack_st_ESS_CERT_ID_V2; ptr: Ps
 begin
   sk_ESS_CERT_ID_V2_delete_ptr := LoadLibCryptoFunction('OPENSSL_sk_delete_ptr');
   if not assigned(sk_ESS_CERT_ID_V2_delete_ptr) then
+    {$if declared(LEGACY_OPENSSL_sk_delete_ptr)}
+    sk_ESS_CERT_ID_V2_delete_ptr := @LEGACY_OPENSSL_sk_delete_ptr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete_ptr');
+    {$ifend}
   Result := sk_ESS_CERT_ID_V2_delete_ptr(st, ptr);
 end;
 
@@ -833,7 +974,11 @@ function Load_sk_ESS_CERT_ID_V2_push(st: Pstack_st_ESS_CERT_ID_V2; data: pointer
 begin
   sk_ESS_CERT_ID_V2_push := LoadLibCryptoFunction('OPENSSL_sk_push');
   if not assigned(sk_ESS_CERT_ID_V2_push) then
+    {$if declared(LEGACY_OPENSSL_sk_push)}
+    sk_ESS_CERT_ID_V2_push := @LEGACY_OPENSSL_sk_push;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_push');
+    {$ifend}
   Result := sk_ESS_CERT_ID_V2_push(st, data);
 end;
 
@@ -841,7 +986,11 @@ function Load_sk_ESS_CERT_ID_V2_unshift(st: Pstack_st_ESS_CERT_ID_V2; data: poin
 begin
   sk_ESS_CERT_ID_V2_unshift := LoadLibCryptoFunction('OPENSSL_sk_unshift');
   if not assigned(sk_ESS_CERT_ID_V2_unshift) then
+    {$if declared(LEGACY_OPENSSL_sk_unshift)}
+    sk_ESS_CERT_ID_V2_unshift := @LEGACY_OPENSSL_sk_unshift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_unshift');
+    {$ifend}
   Result := sk_ESS_CERT_ID_V2_unshift(st, data);
 end;
 
@@ -849,7 +998,11 @@ function Load_sk_ESS_CERT_ID_V2_pop(_para: Pstack_st_ESS_CERT_ID_V2): Pstack_st_
 begin
   sk_ESS_CERT_ID_V2_pop := LoadLibCryptoFunction('OPENSSL_sk_pop');
   if not assigned(sk_ESS_CERT_ID_V2_pop) then
+    {$if declared(LEGACY_OPENSSL_sk_pop)}
+    sk_ESS_CERT_ID_V2_pop := @LEGACY_OPENSSL_sk_pop;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop');
+    {$ifend}
   Result := sk_ESS_CERT_ID_V2_pop(_para);
 end;
 
@@ -857,7 +1010,11 @@ function Load_sk_ESS_CERT_ID_V2_shift(_para: Pstack_st_ESS_CERT_ID_V2): Pstack_s
 begin
   sk_ESS_CERT_ID_V2_shift := LoadLibCryptoFunction('OPENSSL_sk_shift');
   if not assigned(sk_ESS_CERT_ID_V2_shift) then
+    {$if declared(LEGACY_OPENSSL_sk_shift)}
+    sk_ESS_CERT_ID_V2_shift := @LEGACY_OPENSSL_sk_shift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_shift');
+    {$ifend}
   Result := sk_ESS_CERT_ID_V2_shift(_para);
 end;
 
@@ -865,7 +1022,11 @@ procedure Load_sk_ESS_CERT_ID_V2_pop_free(st: Pstack_st_ESS_CERT_ID_V2; func: Ts
 begin
   sk_ESS_CERT_ID_V2_pop_free := LoadLibCryptoFunction('OPENSSL_sk_pop_free');
   if not assigned(sk_ESS_CERT_ID_V2_pop_free) then
+    {$if declared(LEGACY_OPENSSL_sk_pop_free)}
+    sk_ESS_CERT_ID_V2_pop_free := @LEGACY_OPENSSL_sk_pop_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop_free');
+    {$ifend}
   sk_ESS_CERT_ID_V2_pop_free(st, func);
 end;
 
@@ -873,7 +1034,11 @@ function Load_sk_ESS_CERT_ID_V2_insert(st: Pstack_st_ESS_CERT_ID_V2; data: point
 begin
   sk_ESS_CERT_ID_V2_insert := LoadLibCryptoFunction('OPENSSL_sk_insert');
   if not assigned(sk_ESS_CERT_ID_V2_insert) then
+    {$if declared(LEGACY_OPENSSL_sk_insert)}
+    sk_ESS_CERT_ID_V2_insert := @LEGACY_OPENSSL_sk_insert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_insert');
+    {$ifend}
   Result := sk_ESS_CERT_ID_V2_insert(st, data, where);
 end;
 
@@ -881,7 +1046,11 @@ function Load_sk_ESS_CERT_ID_V2_set(st: Pstack_st_ESS_CERT_ID_V2; i: TOpenSSL_C_
 begin
   sk_ESS_CERT_ID_V2_set := LoadLibCryptoFunction('OPENSSL_sk_set');
   if not assigned(sk_ESS_CERT_ID_V2_set) then
+    {$if declared(LEGACY_OPENSSL_sk_set)}
+    sk_ESS_CERT_ID_V2_set := @LEGACY_OPENSSL_sk_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set');
+    {$ifend}
   Result := sk_ESS_CERT_ID_V2_set(st, i, data);
 end;
 
@@ -889,7 +1058,11 @@ function Load_sk_ESS_CERT_ID_V2_find(st: Pstack_st_ESS_CERT_ID_V2; data: pointer
 begin
   sk_ESS_CERT_ID_V2_find := LoadLibCryptoFunction('OPENSSL_sk_find');
   if not assigned(sk_ESS_CERT_ID_V2_find) then
+    {$if declared(LEGACY_OPENSSL_sk_find)}
+    sk_ESS_CERT_ID_V2_find := @LEGACY_OPENSSL_sk_find;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find');
+    {$ifend}
   Result := sk_ESS_CERT_ID_V2_find(st, data);
 end;
 
@@ -897,7 +1070,11 @@ function Load_sk_ESS_CERT_ID_V2_find_ex(st: Pstack_st_ESS_CERT_ID_V2; data: poin
 begin
   sk_ESS_CERT_ID_V2_find_ex := LoadLibCryptoFunction('OPENSSL_sk_find_ex');
   if not assigned(sk_ESS_CERT_ID_V2_find_ex) then
+    {$if declared(LEGACY_OPENSSL_sk_find_ex)}
+    sk_ESS_CERT_ID_V2_find_ex := @LEGACY_OPENSSL_sk_find_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_ex');
+    {$ifend}
   Result := sk_ESS_CERT_ID_V2_find_ex(st, data);
 end;
 
@@ -905,7 +1082,11 @@ function Load_sk_ESS_CERT_ID_V2_find_all(st: Pstack_st_ESS_CERT_ID_V2; data: poi
 begin
   sk_ESS_CERT_ID_V2_find_all := LoadLibCryptoFunction('OPENSSL_sk_find_all');
   if not assigned(sk_ESS_CERT_ID_V2_find_all) then
+    {$if declared(LEGACY_OPENSSL_sk_find_all)}
+    sk_ESS_CERT_ID_V2_find_all := @LEGACY_OPENSSL_sk_find_all;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_all');
+    {$ifend}
   Result := sk_ESS_CERT_ID_V2_find_all(st, data, pnum);
 end;
 
@@ -913,7 +1094,11 @@ function Load_sk_ESS_CERT_ID_V2_sort(_para: Pstack_st_ESS_CERT_ID_V2): TOpenSSL_
 begin
   sk_ESS_CERT_ID_V2_sort := LoadLibCryptoFunction('OPENSSL_sk_sort');
   if not assigned(sk_ESS_CERT_ID_V2_sort) then
+    {$if declared(LEGACY_OPENSSL_sk_sort)}
+    sk_ESS_CERT_ID_V2_sort := @LEGACY_OPENSSL_sk_sort;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_sort');
+    {$ifend}
   Result := sk_ESS_CERT_ID_V2_sort(_para);
 end;
 
@@ -921,7 +1106,11 @@ function Load_sk_ESS_CERT_ID_V2_is_sorted(_para: Pstack_st_ESS_CERT_ID_V2): TOpe
 begin
   sk_ESS_CERT_ID_V2_is_sorted := LoadLibCryptoFunction('OPENSSL_sk_is_sorted');
   if not assigned(sk_ESS_CERT_ID_V2_is_sorted) then
+    {$if declared(LEGACY_OPENSSL_sk_is_sorted)}
+    sk_ESS_CERT_ID_V2_is_sorted := @LEGACY_OPENSSL_sk_is_sorted;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_is_sorted');
+    {$ifend}
   Result := sk_ESS_CERT_ID_V2_is_sorted(_para);
 end;
 
@@ -929,7 +1118,11 @@ function Load_sk_ESS_CERT_ID_V2_dup(st: Pstack_st_ESS_CERT_ID_V2): Pstack_st_ESS
 begin
   sk_ESS_CERT_ID_V2_dup := LoadLibCryptoFunction('OPENSSL_sk_dup');
   if not assigned(sk_ESS_CERT_ID_V2_dup) then
+    {$if declared(LEGACY_OPENSSL_sk_dup)}
+    sk_ESS_CERT_ID_V2_dup := @LEGACY_OPENSSL_sk_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_dup');
+    {$ifend}
   Result := sk_ESS_CERT_ID_V2_dup(st);
 end;
 
@@ -937,7 +1130,11 @@ function Load_sk_ESS_CERT_ID_V2_deep_copy(st: Pstack_st_ESS_CERT_ID_V2; c: Tsk_E
 begin
   sk_ESS_CERT_ID_V2_deep_copy := LoadLibCryptoFunction('OPENSSL_sk_deep_copy');
   if not assigned(sk_ESS_CERT_ID_V2_deep_copy) then
+    {$if declared(LEGACY_OPENSSL_sk_deep_copy)}
+    sk_ESS_CERT_ID_V2_deep_copy := @LEGACY_OPENSSL_sk_deep_copy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_deep_copy');
+    {$ifend}
   Result := sk_ESS_CERT_ID_V2_deep_copy(st, c, f);
 end;
 
@@ -945,7 +1142,11 @@ function Load_sk_ESS_CERT_ID_V2_set_cmp_func(st: Pstack_st_ESS_CERT_ID_V2; cmp: 
 begin
   sk_ESS_CERT_ID_V2_set_cmp_func := LoadLibCryptoFunction('OPENSSL_sk_set_cmp_func');
   if not assigned(sk_ESS_CERT_ID_V2_set_cmp_func) then
+    {$if declared(LEGACY_OPENSSL_sk_set_cmp_func)}
+    sk_ESS_CERT_ID_V2_set_cmp_func := @LEGACY_OPENSSL_sk_set_cmp_func;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set_cmp_func');
+    {$ifend}
   Result := sk_ESS_CERT_ID_V2_set_cmp_func(st, cmp);
 end;
 
@@ -953,7 +1154,11 @@ function Load_ESS_ISSUER_SERIAL_new: PESS_ISSUER_SERIAL; cdecl;
 begin
   ESS_ISSUER_SERIAL_new := LoadLibCryptoFunction('ESS_ISSUER_SERIAL_new');
   if not assigned(ESS_ISSUER_SERIAL_new) then
+    {$if declared(LEGACY_ESS_ISSUER_SERIAL_new)}
+    ESS_ISSUER_SERIAL_new := @LEGACY_ESS_ISSUER_SERIAL_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ESS_ISSUER_SERIAL_new');
+    {$ifend}
   Result := ESS_ISSUER_SERIAL_new;
 end;
 
@@ -961,7 +1166,11 @@ procedure Load_ESS_ISSUER_SERIAL_free(a: PESS_ISSUER_SERIAL); cdecl;
 begin
   ESS_ISSUER_SERIAL_free := LoadLibCryptoFunction('ESS_ISSUER_SERIAL_free');
   if not assigned(ESS_ISSUER_SERIAL_free) then
+    {$if declared(LEGACY_ESS_ISSUER_SERIAL_free)}
+    ESS_ISSUER_SERIAL_free := @LEGACY_ESS_ISSUER_SERIAL_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ESS_ISSUER_SERIAL_free');
+    {$ifend}
   ESS_ISSUER_SERIAL_free(a);
 end;
 
@@ -969,7 +1178,11 @@ function Load_d2i_ESS_ISSUER_SERIAL(a: PPESS_ISSUER_SERIAL; in_: PPbyte; len: TO
 begin
   d2i_ESS_ISSUER_SERIAL := LoadLibCryptoFunction('d2i_ESS_ISSUER_SERIAL');
   if not assigned(d2i_ESS_ISSUER_SERIAL) then
+    {$if declared(LEGACY_d2i_ESS_ISSUER_SERIAL)}
+    d2i_ESS_ISSUER_SERIAL := @LEGACY_d2i_ESS_ISSUER_SERIAL;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_ESS_ISSUER_SERIAL');
+    {$ifend}
   Result := d2i_ESS_ISSUER_SERIAL(a, in_, len);
 end;
 
@@ -977,7 +1190,11 @@ function Load_i2d_ESS_ISSUER_SERIAL(a: PESS_ISSUER_SERIAL; out_: PPbyte): TOpenS
 begin
   i2d_ESS_ISSUER_SERIAL := LoadLibCryptoFunction('i2d_ESS_ISSUER_SERIAL');
   if not assigned(i2d_ESS_ISSUER_SERIAL) then
+    {$if declared(LEGACY_i2d_ESS_ISSUER_SERIAL)}
+    i2d_ESS_ISSUER_SERIAL := @LEGACY_i2d_ESS_ISSUER_SERIAL;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_ESS_ISSUER_SERIAL');
+    {$ifend}
   Result := i2d_ESS_ISSUER_SERIAL(a, out_);
 end;
 
@@ -985,7 +1202,11 @@ function Load_ESS_ISSUER_SERIAL_dup(a: PESS_ISSUER_SERIAL): PESS_ISSUER_SERIAL; 
 begin
   ESS_ISSUER_SERIAL_dup := LoadLibCryptoFunction('ESS_ISSUER_SERIAL_dup');
   if not assigned(ESS_ISSUER_SERIAL_dup) then
+    {$if declared(LEGACY_ESS_ISSUER_SERIAL_dup)}
+    ESS_ISSUER_SERIAL_dup := @LEGACY_ESS_ISSUER_SERIAL_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ESS_ISSUER_SERIAL_dup');
+    {$ifend}
   Result := ESS_ISSUER_SERIAL_dup(a);
 end;
 
@@ -993,7 +1214,11 @@ function Load_ESS_CERT_ID_new: PESS_CERT_ID; cdecl;
 begin
   ESS_CERT_ID_new := LoadLibCryptoFunction('ESS_CERT_ID_new');
   if not assigned(ESS_CERT_ID_new) then
+    {$if declared(LEGACY_ESS_CERT_ID_new)}
+    ESS_CERT_ID_new := @LEGACY_ESS_CERT_ID_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ESS_CERT_ID_new');
+    {$ifend}
   Result := ESS_CERT_ID_new;
 end;
 
@@ -1001,7 +1226,11 @@ procedure Load_ESS_CERT_ID_free(a: PESS_CERT_ID); cdecl;
 begin
   ESS_CERT_ID_free := LoadLibCryptoFunction('ESS_CERT_ID_free');
   if not assigned(ESS_CERT_ID_free) then
+    {$if declared(LEGACY_ESS_CERT_ID_free)}
+    ESS_CERT_ID_free := @LEGACY_ESS_CERT_ID_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ESS_CERT_ID_free');
+    {$ifend}
   ESS_CERT_ID_free(a);
 end;
 
@@ -1009,7 +1238,11 @@ function Load_d2i_ESS_CERT_ID(a: PPESS_CERT_ID; in_: PPbyte; len: TOpenSSL_C_INT
 begin
   d2i_ESS_CERT_ID := LoadLibCryptoFunction('d2i_ESS_CERT_ID');
   if not assigned(d2i_ESS_CERT_ID) then
+    {$if declared(LEGACY_d2i_ESS_CERT_ID)}
+    d2i_ESS_CERT_ID := @LEGACY_d2i_ESS_CERT_ID;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_ESS_CERT_ID');
+    {$ifend}
   Result := d2i_ESS_CERT_ID(a, in_, len);
 end;
 
@@ -1017,7 +1250,11 @@ function Load_i2d_ESS_CERT_ID(a: PESS_CERT_ID; out_: PPbyte): TOpenSSL_C_INT; cd
 begin
   i2d_ESS_CERT_ID := LoadLibCryptoFunction('i2d_ESS_CERT_ID');
   if not assigned(i2d_ESS_CERT_ID) then
+    {$if declared(LEGACY_i2d_ESS_CERT_ID)}
+    i2d_ESS_CERT_ID := @LEGACY_i2d_ESS_CERT_ID;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_ESS_CERT_ID');
+    {$ifend}
   Result := i2d_ESS_CERT_ID(a, out_);
 end;
 
@@ -1025,7 +1262,11 @@ function Load_ESS_CERT_ID_dup(a: PESS_CERT_ID): PESS_CERT_ID; cdecl;
 begin
   ESS_CERT_ID_dup := LoadLibCryptoFunction('ESS_CERT_ID_dup');
   if not assigned(ESS_CERT_ID_dup) then
+    {$if declared(LEGACY_ESS_CERT_ID_dup)}
+    ESS_CERT_ID_dup := @LEGACY_ESS_CERT_ID_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ESS_CERT_ID_dup');
+    {$ifend}
   Result := ESS_CERT_ID_dup(a);
 end;
 
@@ -1033,7 +1274,11 @@ function Load_ESS_SIGNING_CERT_new: PESS_SIGNING_CERT; cdecl;
 begin
   ESS_SIGNING_CERT_new := LoadLibCryptoFunction('ESS_SIGNING_CERT_new');
   if not assigned(ESS_SIGNING_CERT_new) then
+    {$if declared(LEGACY_ESS_SIGNING_CERT_new)}
+    ESS_SIGNING_CERT_new := @LEGACY_ESS_SIGNING_CERT_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ESS_SIGNING_CERT_new');
+    {$ifend}
   Result := ESS_SIGNING_CERT_new;
 end;
 
@@ -1041,7 +1286,11 @@ procedure Load_ESS_SIGNING_CERT_free(a: PESS_SIGNING_CERT); cdecl;
 begin
   ESS_SIGNING_CERT_free := LoadLibCryptoFunction('ESS_SIGNING_CERT_free');
   if not assigned(ESS_SIGNING_CERT_free) then
+    {$if declared(LEGACY_ESS_SIGNING_CERT_free)}
+    ESS_SIGNING_CERT_free := @LEGACY_ESS_SIGNING_CERT_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ESS_SIGNING_CERT_free');
+    {$ifend}
   ESS_SIGNING_CERT_free(a);
 end;
 
@@ -1049,7 +1298,11 @@ function Load_d2i_ESS_SIGNING_CERT(a: PPESS_SIGNING_CERT; in_: PPbyte; len: TOpe
 begin
   d2i_ESS_SIGNING_CERT := LoadLibCryptoFunction('d2i_ESS_SIGNING_CERT');
   if not assigned(d2i_ESS_SIGNING_CERT) then
+    {$if declared(LEGACY_d2i_ESS_SIGNING_CERT)}
+    d2i_ESS_SIGNING_CERT := @LEGACY_d2i_ESS_SIGNING_CERT;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_ESS_SIGNING_CERT');
+    {$ifend}
   Result := d2i_ESS_SIGNING_CERT(a, in_, len);
 end;
 
@@ -1057,7 +1310,11 @@ function Load_i2d_ESS_SIGNING_CERT(a: PESS_SIGNING_CERT; out_: PPbyte): TOpenSSL
 begin
   i2d_ESS_SIGNING_CERT := LoadLibCryptoFunction('i2d_ESS_SIGNING_CERT');
   if not assigned(i2d_ESS_SIGNING_CERT) then
+    {$if declared(LEGACY_i2d_ESS_SIGNING_CERT)}
+    i2d_ESS_SIGNING_CERT := @LEGACY_i2d_ESS_SIGNING_CERT;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_ESS_SIGNING_CERT');
+    {$ifend}
   Result := i2d_ESS_SIGNING_CERT(a, out_);
 end;
 
@@ -1065,7 +1322,11 @@ function Load_ESS_SIGNING_CERT_it: PASN1_ITEM; cdecl;
 begin
   ESS_SIGNING_CERT_it := LoadLibCryptoFunction('ESS_SIGNING_CERT_it');
   if not assigned(ESS_SIGNING_CERT_it) then
+    {$if declared(LEGACY_ESS_SIGNING_CERT_it)}
+    ESS_SIGNING_CERT_it := @LEGACY_ESS_SIGNING_CERT_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ESS_SIGNING_CERT_it');
+    {$ifend}
   Result := ESS_SIGNING_CERT_it;
 end;
 
@@ -1073,7 +1334,11 @@ function Load_ESS_SIGNING_CERT_dup(a: PESS_SIGNING_CERT): PESS_SIGNING_CERT; cde
 begin
   ESS_SIGNING_CERT_dup := LoadLibCryptoFunction('ESS_SIGNING_CERT_dup');
   if not assigned(ESS_SIGNING_CERT_dup) then
+    {$if declared(LEGACY_ESS_SIGNING_CERT_dup)}
+    ESS_SIGNING_CERT_dup := @LEGACY_ESS_SIGNING_CERT_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ESS_SIGNING_CERT_dup');
+    {$ifend}
   Result := ESS_SIGNING_CERT_dup(a);
 end;
 
@@ -1081,7 +1346,11 @@ function Load_ESS_CERT_ID_V2_new: PESS_CERT_ID_V2; cdecl;
 begin
   ESS_CERT_ID_V2_new := LoadLibCryptoFunction('ESS_CERT_ID_V2_new');
   if not assigned(ESS_CERT_ID_V2_new) then
+    {$if declared(LEGACY_ESS_CERT_ID_V2_new)}
+    ESS_CERT_ID_V2_new := @LEGACY_ESS_CERT_ID_V2_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ESS_CERT_ID_V2_new');
+    {$ifend}
   Result := ESS_CERT_ID_V2_new;
 end;
 
@@ -1089,7 +1358,11 @@ procedure Load_ESS_CERT_ID_V2_free(a: PESS_CERT_ID_V2); cdecl;
 begin
   ESS_CERT_ID_V2_free := LoadLibCryptoFunction('ESS_CERT_ID_V2_free');
   if not assigned(ESS_CERT_ID_V2_free) then
+    {$if declared(LEGACY_ESS_CERT_ID_V2_free)}
+    ESS_CERT_ID_V2_free := @LEGACY_ESS_CERT_ID_V2_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ESS_CERT_ID_V2_free');
+    {$ifend}
   ESS_CERT_ID_V2_free(a);
 end;
 
@@ -1097,7 +1370,11 @@ function Load_d2i_ESS_CERT_ID_V2(a: PPESS_CERT_ID_V2; in_: PPbyte; len: TOpenSSL
 begin
   d2i_ESS_CERT_ID_V2 := LoadLibCryptoFunction('d2i_ESS_CERT_ID_V2');
   if not assigned(d2i_ESS_CERT_ID_V2) then
+    {$if declared(LEGACY_d2i_ESS_CERT_ID_V2)}
+    d2i_ESS_CERT_ID_V2 := @LEGACY_d2i_ESS_CERT_ID_V2;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_ESS_CERT_ID_V2');
+    {$ifend}
   Result := d2i_ESS_CERT_ID_V2(a, in_, len);
 end;
 
@@ -1105,7 +1382,11 @@ function Load_i2d_ESS_CERT_ID_V2(a: PESS_CERT_ID_V2; out_: PPbyte): TOpenSSL_C_I
 begin
   i2d_ESS_CERT_ID_V2 := LoadLibCryptoFunction('i2d_ESS_CERT_ID_V2');
   if not assigned(i2d_ESS_CERT_ID_V2) then
+    {$if declared(LEGACY_i2d_ESS_CERT_ID_V2)}
+    i2d_ESS_CERT_ID_V2 := @LEGACY_i2d_ESS_CERT_ID_V2;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_ESS_CERT_ID_V2');
+    {$ifend}
   Result := i2d_ESS_CERT_ID_V2(a, out_);
 end;
 
@@ -1113,7 +1394,11 @@ function Load_ESS_CERT_ID_V2_dup(a: PESS_CERT_ID_V2): PESS_CERT_ID_V2; cdecl;
 begin
   ESS_CERT_ID_V2_dup := LoadLibCryptoFunction('ESS_CERT_ID_V2_dup');
   if not assigned(ESS_CERT_ID_V2_dup) then
+    {$if declared(LEGACY_ESS_CERT_ID_V2_dup)}
+    ESS_CERT_ID_V2_dup := @LEGACY_ESS_CERT_ID_V2_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ESS_CERT_ID_V2_dup');
+    {$ifend}
   Result := ESS_CERT_ID_V2_dup(a);
 end;
 
@@ -1121,7 +1406,11 @@ function Load_ESS_SIGNING_CERT_V2_new: PESS_SIGNING_CERT_V2; cdecl;
 begin
   ESS_SIGNING_CERT_V2_new := LoadLibCryptoFunction('ESS_SIGNING_CERT_V2_new');
   if not assigned(ESS_SIGNING_CERT_V2_new) then
+    {$if declared(LEGACY_ESS_SIGNING_CERT_V2_new)}
+    ESS_SIGNING_CERT_V2_new := @LEGACY_ESS_SIGNING_CERT_V2_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ESS_SIGNING_CERT_V2_new');
+    {$ifend}
   Result := ESS_SIGNING_CERT_V2_new;
 end;
 
@@ -1129,7 +1418,11 @@ procedure Load_ESS_SIGNING_CERT_V2_free(a: PESS_SIGNING_CERT_V2); cdecl;
 begin
   ESS_SIGNING_CERT_V2_free := LoadLibCryptoFunction('ESS_SIGNING_CERT_V2_free');
   if not assigned(ESS_SIGNING_CERT_V2_free) then
+    {$if declared(LEGACY_ESS_SIGNING_CERT_V2_free)}
+    ESS_SIGNING_CERT_V2_free := @LEGACY_ESS_SIGNING_CERT_V2_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ESS_SIGNING_CERT_V2_free');
+    {$ifend}
   ESS_SIGNING_CERT_V2_free(a);
 end;
 
@@ -1137,7 +1430,11 @@ function Load_d2i_ESS_SIGNING_CERT_V2(a: PPESS_SIGNING_CERT_V2; in_: PPbyte; len
 begin
   d2i_ESS_SIGNING_CERT_V2 := LoadLibCryptoFunction('d2i_ESS_SIGNING_CERT_V2');
   if not assigned(d2i_ESS_SIGNING_CERT_V2) then
+    {$if declared(LEGACY_d2i_ESS_SIGNING_CERT_V2)}
+    d2i_ESS_SIGNING_CERT_V2 := @LEGACY_d2i_ESS_SIGNING_CERT_V2;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_ESS_SIGNING_CERT_V2');
+    {$ifend}
   Result := d2i_ESS_SIGNING_CERT_V2(a, in_, len);
 end;
 
@@ -1145,7 +1442,11 @@ function Load_i2d_ESS_SIGNING_CERT_V2(a: PESS_SIGNING_CERT_V2; out_: PPbyte): TO
 begin
   i2d_ESS_SIGNING_CERT_V2 := LoadLibCryptoFunction('i2d_ESS_SIGNING_CERT_V2');
   if not assigned(i2d_ESS_SIGNING_CERT_V2) then
+    {$if declared(LEGACY_i2d_ESS_SIGNING_CERT_V2)}
+    i2d_ESS_SIGNING_CERT_V2 := @LEGACY_i2d_ESS_SIGNING_CERT_V2;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_ESS_SIGNING_CERT_V2');
+    {$ifend}
   Result := i2d_ESS_SIGNING_CERT_V2(a, out_);
 end;
 
@@ -1153,7 +1454,11 @@ function Load_ESS_SIGNING_CERT_V2_it: PASN1_ITEM; cdecl;
 begin
   ESS_SIGNING_CERT_V2_it := LoadLibCryptoFunction('ESS_SIGNING_CERT_V2_it');
   if not assigned(ESS_SIGNING_CERT_V2_it) then
+    {$if declared(LEGACY_ESS_SIGNING_CERT_V2_it)}
+    ESS_SIGNING_CERT_V2_it := @LEGACY_ESS_SIGNING_CERT_V2_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ESS_SIGNING_CERT_V2_it');
+    {$ifend}
   Result := ESS_SIGNING_CERT_V2_it;
 end;
 
@@ -1161,7 +1466,11 @@ function Load_ESS_SIGNING_CERT_V2_dup(a: PESS_SIGNING_CERT_V2): PESS_SIGNING_CER
 begin
   ESS_SIGNING_CERT_V2_dup := LoadLibCryptoFunction('ESS_SIGNING_CERT_V2_dup');
   if not assigned(ESS_SIGNING_CERT_V2_dup) then
+    {$if declared(LEGACY_ESS_SIGNING_CERT_V2_dup)}
+    ESS_SIGNING_CERT_V2_dup := @LEGACY_ESS_SIGNING_CERT_V2_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ESS_SIGNING_CERT_V2_dup');
+    {$ifend}
   Result := ESS_SIGNING_CERT_V2_dup(a);
 end;
 
@@ -1169,7 +1478,11 @@ function Load_OSSL_ESS_signing_cert_new_init(signcert: PX509; certs: Pstack_st_X
 begin
   OSSL_ESS_signing_cert_new_init := LoadLibCryptoFunction('OSSL_ESS_signing_cert_new_init');
   if not assigned(OSSL_ESS_signing_cert_new_init) then
+    {$if declared(LEGACY_OSSL_ESS_signing_cert_new_init)}
+    OSSL_ESS_signing_cert_new_init := @LEGACY_OSSL_ESS_signing_cert_new_init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_ESS_signing_cert_new_init');
+    {$ifend}
   Result := OSSL_ESS_signing_cert_new_init(signcert, certs, set_issuer_serial);
 end;
 
@@ -1177,7 +1490,11 @@ function Load_OSSL_ESS_signing_cert_v2_new_init(hash_alg: PEVP_MD; signcert: PX5
 begin
   OSSL_ESS_signing_cert_v2_new_init := LoadLibCryptoFunction('OSSL_ESS_signing_cert_v2_new_init');
   if not assigned(OSSL_ESS_signing_cert_v2_new_init) then
+    {$if declared(LEGACY_OSSL_ESS_signing_cert_v2_new_init)}
+    OSSL_ESS_signing_cert_v2_new_init := @LEGACY_OSSL_ESS_signing_cert_v2_new_init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_ESS_signing_cert_v2_new_init');
+    {$ifend}
   Result := OSSL_ESS_signing_cert_v2_new_init(hash_alg, signcert, certs, set_issuer_serial);
 end;
 
@@ -1185,7 +1502,11 @@ function Load_OSSL_ESS_check_signing_certs(ss: PESS_SIGNING_CERT; ssv2: PESS_SIG
 begin
   OSSL_ESS_check_signing_certs := LoadLibCryptoFunction('OSSL_ESS_check_signing_certs');
   if not assigned(OSSL_ESS_check_signing_certs) then
+    {$if declared(LEGACY_OSSL_ESS_check_signing_certs)}
+    OSSL_ESS_check_signing_certs := @LEGACY_OSSL_ESS_check_signing_certs;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_ESS_check_signing_certs');
+    {$ifend}
   Result := OSSL_ESS_check_signing_certs(ss, ssv2, chain, require_signing_cert);
 end;
 

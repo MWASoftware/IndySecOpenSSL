@@ -18,7 +18,8 @@
 unit openssl_e_os2;
 
 {
-  Generated from OpenSSL 3.0.20 Header File e_os2.h - Wed  6 May 13:06:01 BST 2026
+  Generated from OpenSSL 3.0.20 Header File e_os2.h - Wed  6 May 13:15:10 BST 2026
+  With Legacy Support Option
 }
 
 interface

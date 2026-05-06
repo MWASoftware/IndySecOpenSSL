@@ -18,7 +18,8 @@
 unit openssl_cms;
 
 {
-  Generated from OpenSSL 3.0.20 Header File cms.h - Wed  6 May 13:05:40 BST 2026
+  Generated from OpenSSL 3.0.20 Header File cms.h - Wed  6 May 13:14:49 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -1192,7 +1193,11 @@ function Load_CMS_ContentInfo_new: PCMS_ContentInfo; cdecl;
 begin
   CMS_ContentInfo_new := LoadLibCryptoFunction('CMS_ContentInfo_new');
   if not assigned(CMS_ContentInfo_new) then
+    {$if declared(LEGACY_CMS_ContentInfo_new)}
+    CMS_ContentInfo_new := @LEGACY_CMS_ContentInfo_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_ContentInfo_new');
+    {$ifend}
   Result := CMS_ContentInfo_new;
 end;
 
@@ -1200,7 +1205,11 @@ procedure Load_CMS_ContentInfo_free(a: PCMS_ContentInfo); cdecl;
 begin
   CMS_ContentInfo_free := LoadLibCryptoFunction('CMS_ContentInfo_free');
   if not assigned(CMS_ContentInfo_free) then
+    {$if declared(LEGACY_CMS_ContentInfo_free)}
+    CMS_ContentInfo_free := @LEGACY_CMS_ContentInfo_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_ContentInfo_free');
+    {$ifend}
   CMS_ContentInfo_free(a);
 end;
 
@@ -1208,7 +1217,11 @@ function Load_d2i_CMS_ContentInfo(a: PPCMS_ContentInfo; in_: PPbyte; len: TOpenS
 begin
   d2i_CMS_ContentInfo := LoadLibCryptoFunction('d2i_CMS_ContentInfo');
   if not assigned(d2i_CMS_ContentInfo) then
+    {$if declared(LEGACY_d2i_CMS_ContentInfo)}
+    d2i_CMS_ContentInfo := @LEGACY_d2i_CMS_ContentInfo;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_CMS_ContentInfo');
+    {$ifend}
   Result := d2i_CMS_ContentInfo(a, in_, len);
 end;
 
@@ -1216,7 +1229,11 @@ function Load_i2d_CMS_ContentInfo(a: PCMS_ContentInfo; out_: PPbyte): TOpenSSL_C
 begin
   i2d_CMS_ContentInfo := LoadLibCryptoFunction('i2d_CMS_ContentInfo');
   if not assigned(i2d_CMS_ContentInfo) then
+    {$if declared(LEGACY_i2d_CMS_ContentInfo)}
+    i2d_CMS_ContentInfo := @LEGACY_i2d_CMS_ContentInfo;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_CMS_ContentInfo');
+    {$ifend}
   Result := i2d_CMS_ContentInfo(a, out_);
 end;
 
@@ -1224,7 +1241,11 @@ function Load_CMS_ContentInfo_it: PASN1_ITEM; cdecl;
 begin
   CMS_ContentInfo_it := LoadLibCryptoFunction('CMS_ContentInfo_it');
   if not assigned(CMS_ContentInfo_it) then
+    {$if declared(LEGACY_CMS_ContentInfo_it)}
+    CMS_ContentInfo_it := @LEGACY_CMS_ContentInfo_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_ContentInfo_it');
+    {$ifend}
   Result := CMS_ContentInfo_it;
 end;
 
@@ -1232,7 +1253,11 @@ function Load_CMS_ReceiptRequest_new: PCMS_ReceiptRequest; cdecl;
 begin
   CMS_ReceiptRequest_new := LoadLibCryptoFunction('CMS_ReceiptRequest_new');
   if not assigned(CMS_ReceiptRequest_new) then
+    {$if declared(LEGACY_CMS_ReceiptRequest_new)}
+    CMS_ReceiptRequest_new := @LEGACY_CMS_ReceiptRequest_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_ReceiptRequest_new');
+    {$ifend}
   Result := CMS_ReceiptRequest_new;
 end;
 
@@ -1240,7 +1265,11 @@ procedure Load_CMS_ReceiptRequest_free(a: PCMS_ReceiptRequest); cdecl;
 begin
   CMS_ReceiptRequest_free := LoadLibCryptoFunction('CMS_ReceiptRequest_free');
   if not assigned(CMS_ReceiptRequest_free) then
+    {$if declared(LEGACY_CMS_ReceiptRequest_free)}
+    CMS_ReceiptRequest_free := @LEGACY_CMS_ReceiptRequest_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_ReceiptRequest_free');
+    {$ifend}
   CMS_ReceiptRequest_free(a);
 end;
 
@@ -1248,7 +1277,11 @@ function Load_d2i_CMS_ReceiptRequest(a: PPCMS_ReceiptRequest; in_: PPbyte; len: 
 begin
   d2i_CMS_ReceiptRequest := LoadLibCryptoFunction('d2i_CMS_ReceiptRequest');
   if not assigned(d2i_CMS_ReceiptRequest) then
+    {$if declared(LEGACY_d2i_CMS_ReceiptRequest)}
+    d2i_CMS_ReceiptRequest := @LEGACY_d2i_CMS_ReceiptRequest;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_CMS_ReceiptRequest');
+    {$ifend}
   Result := d2i_CMS_ReceiptRequest(a, in_, len);
 end;
 
@@ -1256,7 +1289,11 @@ function Load_i2d_CMS_ReceiptRequest(a: PCMS_ReceiptRequest; out_: PPbyte): TOpe
 begin
   i2d_CMS_ReceiptRequest := LoadLibCryptoFunction('i2d_CMS_ReceiptRequest');
   if not assigned(i2d_CMS_ReceiptRequest) then
+    {$if declared(LEGACY_i2d_CMS_ReceiptRequest)}
+    i2d_CMS_ReceiptRequest := @LEGACY_i2d_CMS_ReceiptRequest;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_CMS_ReceiptRequest');
+    {$ifend}
   Result := i2d_CMS_ReceiptRequest(a, out_);
 end;
 
@@ -1264,7 +1301,11 @@ function Load_CMS_ReceiptRequest_it: PASN1_ITEM; cdecl;
 begin
   CMS_ReceiptRequest_it := LoadLibCryptoFunction('CMS_ReceiptRequest_it');
   if not assigned(CMS_ReceiptRequest_it) then
+    {$if declared(LEGACY_CMS_ReceiptRequest_it)}
+    CMS_ReceiptRequest_it := @LEGACY_CMS_ReceiptRequest_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_ReceiptRequest_it');
+    {$ifend}
   Result := CMS_ReceiptRequest_it;
 end;
 
@@ -1272,7 +1313,11 @@ function Load_CMS_ContentInfo_print_ctx(out_: PBIO; x: PCMS_ContentInfo; indent:
 begin
   CMS_ContentInfo_print_ctx := LoadLibCryptoFunction('CMS_ContentInfo_print_ctx');
   if not assigned(CMS_ContentInfo_print_ctx) then
+    {$if declared(LEGACY_CMS_ContentInfo_print_ctx)}
+    CMS_ContentInfo_print_ctx := @LEGACY_CMS_ContentInfo_print_ctx;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_ContentInfo_print_ctx');
+    {$ifend}
   Result := CMS_ContentInfo_print_ctx(out_, x, indent, pctx);
 end;
 
@@ -1280,7 +1325,11 @@ function Load_CMS_ContentInfo_new_ex(libctx: POSSL_LIB_CTX; propq: PAnsiChar): P
 begin
   CMS_ContentInfo_new_ex := LoadLibCryptoFunction('CMS_ContentInfo_new_ex');
   if not assigned(CMS_ContentInfo_new_ex) then
+    {$if declared(LEGACY_CMS_ContentInfo_new_ex)}
+    CMS_ContentInfo_new_ex := @LEGACY_CMS_ContentInfo_new_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_ContentInfo_new_ex');
+    {$ifend}
   Result := CMS_ContentInfo_new_ex(libctx, propq);
 end;
 
@@ -1288,7 +1337,11 @@ function Load_CMS_get0_type(cms: PCMS_ContentInfo): PASN1_OBJECT; cdecl;
 begin
   CMS_get0_type := LoadLibCryptoFunction('CMS_get0_type');
   if not assigned(CMS_get0_type) then
+    {$if declared(LEGACY_CMS_get0_type)}
+    CMS_get0_type := @LEGACY_CMS_get0_type;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_get0_type');
+    {$ifend}
   Result := CMS_get0_type(cms);
 end;
 
@@ -1296,7 +1349,11 @@ function Load_CMS_dataInit(cms: PCMS_ContentInfo; icont: PBIO): PBIO; cdecl;
 begin
   CMS_dataInit := LoadLibCryptoFunction('CMS_dataInit');
   if not assigned(CMS_dataInit) then
+    {$if declared(LEGACY_CMS_dataInit)}
+    CMS_dataInit := @LEGACY_CMS_dataInit;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_dataInit');
+    {$ifend}
   Result := CMS_dataInit(cms, icont);
 end;
 
@@ -1304,7 +1361,11 @@ function Load_CMS_dataFinal(cms: PCMS_ContentInfo; bio: PBIO): TOpenSSL_C_INT; c
 begin
   CMS_dataFinal := LoadLibCryptoFunction('CMS_dataFinal');
   if not assigned(CMS_dataFinal) then
+    {$if declared(LEGACY_CMS_dataFinal)}
+    CMS_dataFinal := @LEGACY_CMS_dataFinal;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_dataFinal');
+    {$ifend}
   Result := CMS_dataFinal(cms, bio);
 end;
 
@@ -1312,7 +1373,11 @@ function Load_CMS_get0_content(cms: PCMS_ContentInfo): PPASN1_OCTET_STRING; cdec
 begin
   CMS_get0_content := LoadLibCryptoFunction('CMS_get0_content');
   if not assigned(CMS_get0_content) then
+    {$if declared(LEGACY_CMS_get0_content)}
+    CMS_get0_content := @LEGACY_CMS_get0_content;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_get0_content');
+    {$ifend}
   Result := CMS_get0_content(cms);
 end;
 
@@ -1320,7 +1385,11 @@ function Load_CMS_is_detached(cms: PCMS_ContentInfo): TOpenSSL_C_INT; cdecl;
 begin
   CMS_is_detached := LoadLibCryptoFunction('CMS_is_detached');
   if not assigned(CMS_is_detached) then
+    {$if declared(LEGACY_CMS_is_detached)}
+    CMS_is_detached := @LEGACY_CMS_is_detached;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_is_detached');
+    {$ifend}
   Result := CMS_is_detached(cms);
 end;
 
@@ -1328,7 +1397,11 @@ function Load_CMS_set_detached(cms: PCMS_ContentInfo; detached: TOpenSSL_C_INT):
 begin
   CMS_set_detached := LoadLibCryptoFunction('CMS_set_detached');
   if not assigned(CMS_set_detached) then
+    {$if declared(LEGACY_CMS_set_detached)}
+    CMS_set_detached := @LEGACY_CMS_set_detached;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_set_detached');
+    {$ifend}
   Result := CMS_set_detached(cms, detached);
 end;
 
@@ -1336,7 +1409,11 @@ function Load_CMS_stream(boundary: PPPbyte; cms: PCMS_ContentInfo): TOpenSSL_C_I
 begin
   CMS_stream := LoadLibCryptoFunction('CMS_stream');
   if not assigned(CMS_stream) then
+    {$if declared(LEGACY_CMS_stream)}
+    CMS_stream := @LEGACY_CMS_stream;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_stream');
+    {$ifend}
   Result := CMS_stream(boundary, cms);
 end;
 
@@ -1344,7 +1421,11 @@ function Load_d2i_CMS_bio(bp: PBIO; cms: PPCMS_ContentInfo): PCMS_ContentInfo; c
 begin
   d2i_CMS_bio := LoadLibCryptoFunction('d2i_CMS_bio');
   if not assigned(d2i_CMS_bio) then
+    {$if declared(LEGACY_d2i_CMS_bio)}
+    d2i_CMS_bio := @LEGACY_d2i_CMS_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_CMS_bio');
+    {$ifend}
   Result := d2i_CMS_bio(bp, cms);
 end;
 
@@ -1352,7 +1433,11 @@ function Load_i2d_CMS_bio(bp: PBIO; cms: PCMS_ContentInfo): TOpenSSL_C_INT; cdec
 begin
   i2d_CMS_bio := LoadLibCryptoFunction('i2d_CMS_bio');
   if not assigned(i2d_CMS_bio) then
+    {$if declared(LEGACY_i2d_CMS_bio)}
+    i2d_CMS_bio := @LEGACY_i2d_CMS_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_CMS_bio');
+    {$ifend}
   Result := i2d_CMS_bio(bp, cms);
 end;
 
@@ -1360,7 +1445,11 @@ function Load_BIO_new_CMS(out_: PBIO; cms: PCMS_ContentInfo): PBIO; cdecl;
 begin
   BIO_new_CMS := LoadLibCryptoFunction('BIO_new_CMS');
   if not assigned(BIO_new_CMS) then
+    {$if declared(LEGACY_BIO_new_CMS)}
+    BIO_new_CMS := @LEGACY_BIO_new_CMS;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_new_CMS');
+    {$ifend}
   Result := BIO_new_CMS(out_, cms);
 end;
 
@@ -1368,7 +1457,11 @@ function Load_i2d_CMS_bio_stream(out_: PBIO; cms: PCMS_ContentInfo; in_: PBIO; f
 begin
   i2d_CMS_bio_stream := LoadLibCryptoFunction('i2d_CMS_bio_stream');
   if not assigned(i2d_CMS_bio_stream) then
+    {$if declared(LEGACY_i2d_CMS_bio_stream)}
+    i2d_CMS_bio_stream := @LEGACY_i2d_CMS_bio_stream;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_CMS_bio_stream');
+    {$ifend}
   Result := i2d_CMS_bio_stream(out_, cms, in_, flags);
 end;
 
@@ -1376,7 +1469,11 @@ function Load_PEM_write_bio_CMS_stream(out_: PBIO; cms: PCMS_ContentInfo; in_: P
 begin
   PEM_write_bio_CMS_stream := LoadLibCryptoFunction('PEM_write_bio_CMS_stream');
   if not assigned(PEM_write_bio_CMS_stream) then
+    {$if declared(LEGACY_PEM_write_bio_CMS_stream)}
+    PEM_write_bio_CMS_stream := @LEGACY_PEM_write_bio_CMS_stream;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_bio_CMS_stream');
+    {$ifend}
   Result := PEM_write_bio_CMS_stream(out_, cms, in_, flags);
 end;
 
@@ -1384,7 +1481,11 @@ function Load_SMIME_read_CMS(bio: PBIO; bcont: PPBIO): PCMS_ContentInfo; cdecl;
 begin
   SMIME_read_CMS := LoadLibCryptoFunction('SMIME_read_CMS');
   if not assigned(SMIME_read_CMS) then
+    {$if declared(LEGACY_SMIME_read_CMS)}
+    SMIME_read_CMS := @LEGACY_SMIME_read_CMS;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SMIME_read_CMS');
+    {$ifend}
   Result := SMIME_read_CMS(bio, bcont);
 end;
 
@@ -1392,7 +1493,11 @@ function Load_SMIME_read_CMS_ex(bio: PBIO; flags: TOpenSSL_C_INT; bcont: PPBIO; 
 begin
   SMIME_read_CMS_ex := LoadLibCryptoFunction('SMIME_read_CMS_ex');
   if not assigned(SMIME_read_CMS_ex) then
+    {$if declared(LEGACY_SMIME_read_CMS_ex)}
+    SMIME_read_CMS_ex := @LEGACY_SMIME_read_CMS_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SMIME_read_CMS_ex');
+    {$ifend}
   Result := SMIME_read_CMS_ex(bio, flags, bcont, ci);
 end;
 
@@ -1400,7 +1505,11 @@ function Load_SMIME_write_CMS(bio: PBIO; cms: PCMS_ContentInfo; data: PBIO; flag
 begin
   SMIME_write_CMS := LoadLibCryptoFunction('SMIME_write_CMS');
   if not assigned(SMIME_write_CMS) then
+    {$if declared(LEGACY_SMIME_write_CMS)}
+    SMIME_write_CMS := @LEGACY_SMIME_write_CMS;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SMIME_write_CMS');
+    {$ifend}
   Result := SMIME_write_CMS(bio, cms, data, flags);
 end;
 
@@ -1408,7 +1517,11 @@ function Load_CMS_final(cms: PCMS_ContentInfo; data: PBIO; dcont: PBIO; flags: T
 begin
   CMS_final := LoadLibCryptoFunction('CMS_final');
   if not assigned(CMS_final) then
+    {$if declared(LEGACY_CMS_final)}
+    CMS_final := @LEGACY_CMS_final;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_final');
+    {$ifend}
   Result := CMS_final(cms, data, dcont, flags);
 end;
 
@@ -1416,7 +1529,11 @@ function Load_CMS_sign(signcert: PX509; pkey: PEVP_PKEY; certs: Pstack_st_X509; 
 begin
   CMS_sign := LoadLibCryptoFunction('CMS_sign');
   if not assigned(CMS_sign) then
+    {$if declared(LEGACY_CMS_sign)}
+    CMS_sign := @LEGACY_CMS_sign;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_sign');
+    {$ifend}
   Result := CMS_sign(signcert, pkey, certs, data, flags);
 end;
 
@@ -1424,7 +1541,11 @@ function Load_CMS_sign_ex(signcert: PX509; pkey: PEVP_PKEY; certs: Pstack_st_X50
 begin
   CMS_sign_ex := LoadLibCryptoFunction('CMS_sign_ex');
   if not assigned(CMS_sign_ex) then
+    {$if declared(LEGACY_CMS_sign_ex)}
+    CMS_sign_ex := @LEGACY_CMS_sign_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_sign_ex');
+    {$ifend}
   Result := CMS_sign_ex(signcert, pkey, certs, data, flags, ctx, propq);
 end;
 
@@ -1432,7 +1553,11 @@ function Load_CMS_sign_receipt(si: PCMS_SignerInfo; signcert: PX509; pkey: PEVP_
 begin
   CMS_sign_receipt := LoadLibCryptoFunction('CMS_sign_receipt');
   if not assigned(CMS_sign_receipt) then
+    {$if declared(LEGACY_CMS_sign_receipt)}
+    CMS_sign_receipt := @LEGACY_CMS_sign_receipt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_sign_receipt');
+    {$ifend}
   Result := CMS_sign_receipt(si, signcert, pkey, certs, flags);
 end;
 
@@ -1440,7 +1565,11 @@ function Load_CMS_data(cms: PCMS_ContentInfo; out_: PBIO; flags: TOpenSSL_C_UINT
 begin
   CMS_data := LoadLibCryptoFunction('CMS_data');
   if not assigned(CMS_data) then
+    {$if declared(LEGACY_CMS_data)}
+    CMS_data := @LEGACY_CMS_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_data');
+    {$ifend}
   Result := CMS_data(cms, out_, flags);
 end;
 
@@ -1448,7 +1577,11 @@ function Load_CMS_data_create(in_: PBIO; flags: TOpenSSL_C_UINT): PCMS_ContentIn
 begin
   CMS_data_create := LoadLibCryptoFunction('CMS_data_create');
   if not assigned(CMS_data_create) then
+    {$if declared(LEGACY_CMS_data_create)}
+    CMS_data_create := @LEGACY_CMS_data_create;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_data_create');
+    {$ifend}
   Result := CMS_data_create(in_, flags);
 end;
 
@@ -1456,7 +1589,11 @@ function Load_CMS_data_create_ex(in_: PBIO; flags: TOpenSSL_C_UINT; ctx: POSSL_L
 begin
   CMS_data_create_ex := LoadLibCryptoFunction('CMS_data_create_ex');
   if not assigned(CMS_data_create_ex) then
+    {$if declared(LEGACY_CMS_data_create_ex)}
+    CMS_data_create_ex := @LEGACY_CMS_data_create_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_data_create_ex');
+    {$ifend}
   Result := CMS_data_create_ex(in_, flags, ctx, propq);
 end;
 
@@ -1464,7 +1601,11 @@ function Load_CMS_digest_verify(cms: PCMS_ContentInfo; dcont: PBIO; out_: PBIO; 
 begin
   CMS_digest_verify := LoadLibCryptoFunction('CMS_digest_verify');
   if not assigned(CMS_digest_verify) then
+    {$if declared(LEGACY_CMS_digest_verify)}
+    CMS_digest_verify := @LEGACY_CMS_digest_verify;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_digest_verify');
+    {$ifend}
   Result := CMS_digest_verify(cms, dcont, out_, flags);
 end;
 
@@ -1472,7 +1613,11 @@ function Load_CMS_digest_create(in_: PBIO; md: PEVP_MD; flags: TOpenSSL_C_UINT):
 begin
   CMS_digest_create := LoadLibCryptoFunction('CMS_digest_create');
   if not assigned(CMS_digest_create) then
+    {$if declared(LEGACY_CMS_digest_create)}
+    CMS_digest_create := @LEGACY_CMS_digest_create;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_digest_create');
+    {$ifend}
   Result := CMS_digest_create(in_, md, flags);
 end;
 
@@ -1480,7 +1625,11 @@ function Load_CMS_digest_create_ex(in_: PBIO; md: PEVP_MD; flags: TOpenSSL_C_UIN
 begin
   CMS_digest_create_ex := LoadLibCryptoFunction('CMS_digest_create_ex');
   if not assigned(CMS_digest_create_ex) then
+    {$if declared(LEGACY_CMS_digest_create_ex)}
+    CMS_digest_create_ex := @LEGACY_CMS_digest_create_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_digest_create_ex');
+    {$ifend}
   Result := CMS_digest_create_ex(in_, md, flags, ctx, propq);
 end;
 
@@ -1488,7 +1637,11 @@ function Load_CMS_EncryptedData_decrypt(cms: PCMS_ContentInfo; key: Pbyte; keyle
 begin
   CMS_EncryptedData_decrypt := LoadLibCryptoFunction('CMS_EncryptedData_decrypt');
   if not assigned(CMS_EncryptedData_decrypt) then
+    {$if declared(LEGACY_CMS_EncryptedData_decrypt)}
+    CMS_EncryptedData_decrypt := @LEGACY_CMS_EncryptedData_decrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_EncryptedData_decrypt');
+    {$ifend}
   Result := CMS_EncryptedData_decrypt(cms, key, keylen, dcont, out_, flags);
 end;
 
@@ -1496,7 +1649,11 @@ function Load_CMS_EncryptedData_encrypt(in_: PBIO; cipher: PEVP_CIPHER; key: Pby
 begin
   CMS_EncryptedData_encrypt := LoadLibCryptoFunction('CMS_EncryptedData_encrypt');
   if not assigned(CMS_EncryptedData_encrypt) then
+    {$if declared(LEGACY_CMS_EncryptedData_encrypt)}
+    CMS_EncryptedData_encrypt := @LEGACY_CMS_EncryptedData_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_EncryptedData_encrypt');
+    {$ifend}
   Result := CMS_EncryptedData_encrypt(in_, cipher, key, keylen, flags);
 end;
 
@@ -1504,7 +1661,11 @@ function Load_CMS_EncryptedData_encrypt_ex(in_: PBIO; cipher: PEVP_CIPHER; key: 
 begin
   CMS_EncryptedData_encrypt_ex := LoadLibCryptoFunction('CMS_EncryptedData_encrypt_ex');
   if not assigned(CMS_EncryptedData_encrypt_ex) then
+    {$if declared(LEGACY_CMS_EncryptedData_encrypt_ex)}
+    CMS_EncryptedData_encrypt_ex := @LEGACY_CMS_EncryptedData_encrypt_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_EncryptedData_encrypt_ex');
+    {$ifend}
   Result := CMS_EncryptedData_encrypt_ex(in_, cipher, key, keylen, flags, ctx, propq);
 end;
 
@@ -1512,7 +1673,11 @@ function Load_CMS_EncryptedData_set1_key(cms: PCMS_ContentInfo; ciph: PEVP_CIPHE
 begin
   CMS_EncryptedData_set1_key := LoadLibCryptoFunction('CMS_EncryptedData_set1_key');
   if not assigned(CMS_EncryptedData_set1_key) then
+    {$if declared(LEGACY_CMS_EncryptedData_set1_key)}
+    CMS_EncryptedData_set1_key := @LEGACY_CMS_EncryptedData_set1_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_EncryptedData_set1_key');
+    {$ifend}
   Result := CMS_EncryptedData_set1_key(cms, ciph, key, keylen);
 end;
 
@@ -1520,7 +1685,11 @@ function Load_CMS_verify(cms: PCMS_ContentInfo; certs: Pstack_st_X509; store: PX
 begin
   CMS_verify := LoadLibCryptoFunction('CMS_verify');
   if not assigned(CMS_verify) then
+    {$if declared(LEGACY_CMS_verify)}
+    CMS_verify := @LEGACY_CMS_verify;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_verify');
+    {$ifend}
   Result := CMS_verify(cms, certs, store, dcont, out_, flags);
 end;
 
@@ -1528,7 +1697,11 @@ function Load_CMS_verify_receipt(rcms: PCMS_ContentInfo; ocms: PCMS_ContentInfo;
 begin
   CMS_verify_receipt := LoadLibCryptoFunction('CMS_verify_receipt');
   if not assigned(CMS_verify_receipt) then
+    {$if declared(LEGACY_CMS_verify_receipt)}
+    CMS_verify_receipt := @LEGACY_CMS_verify_receipt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_verify_receipt');
+    {$ifend}
   Result := CMS_verify_receipt(rcms, ocms, certs, store, flags);
 end;
 
@@ -1536,7 +1709,11 @@ function Load_CMS_get0_signers(cms: PCMS_ContentInfo): Pstack_st_X509; cdecl;
 begin
   CMS_get0_signers := LoadLibCryptoFunction('CMS_get0_signers');
   if not assigned(CMS_get0_signers) then
+    {$if declared(LEGACY_CMS_get0_signers)}
+    CMS_get0_signers := @LEGACY_CMS_get0_signers;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_get0_signers');
+    {$ifend}
   Result := CMS_get0_signers(cms);
 end;
 
@@ -1544,7 +1721,11 @@ function Load_CMS_encrypt(certs: Pstack_st_X509; in_: PBIO; cipher: PEVP_CIPHER;
 begin
   CMS_encrypt := LoadLibCryptoFunction('CMS_encrypt');
   if not assigned(CMS_encrypt) then
+    {$if declared(LEGACY_CMS_encrypt)}
+    CMS_encrypt := @LEGACY_CMS_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_encrypt');
+    {$ifend}
   Result := CMS_encrypt(certs, in_, cipher, flags);
 end;
 
@@ -1552,7 +1733,11 @@ function Load_CMS_encrypt_ex(certs: Pstack_st_X509; in_: PBIO; cipher: PEVP_CIPH
 begin
   CMS_encrypt_ex := LoadLibCryptoFunction('CMS_encrypt_ex');
   if not assigned(CMS_encrypt_ex) then
+    {$if declared(LEGACY_CMS_encrypt_ex)}
+    CMS_encrypt_ex := @LEGACY_CMS_encrypt_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_encrypt_ex');
+    {$ifend}
   Result := CMS_encrypt_ex(certs, in_, cipher, flags, ctx, propq);
 end;
 
@@ -1560,7 +1745,11 @@ function Load_CMS_decrypt(cms: PCMS_ContentInfo; pkey: PEVP_PKEY; cert: PX509; d
 begin
   CMS_decrypt := LoadLibCryptoFunction('CMS_decrypt');
   if not assigned(CMS_decrypt) then
+    {$if declared(LEGACY_CMS_decrypt)}
+    CMS_decrypt := @LEGACY_CMS_decrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_decrypt');
+    {$ifend}
   Result := CMS_decrypt(cms, pkey, cert, dcont, out_, flags);
 end;
 
@@ -1568,7 +1757,11 @@ function Load_CMS_decrypt_set1_pkey(cms: PCMS_ContentInfo; pk: PEVP_PKEY; cert: 
 begin
   CMS_decrypt_set1_pkey := LoadLibCryptoFunction('CMS_decrypt_set1_pkey');
   if not assigned(CMS_decrypt_set1_pkey) then
+    {$if declared(LEGACY_CMS_decrypt_set1_pkey)}
+    CMS_decrypt_set1_pkey := @LEGACY_CMS_decrypt_set1_pkey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_decrypt_set1_pkey');
+    {$ifend}
   Result := CMS_decrypt_set1_pkey(cms, pk, cert);
 end;
 
@@ -1576,7 +1769,11 @@ function Load_CMS_decrypt_set1_pkey_and_peer(cms: PCMS_ContentInfo; pk: PEVP_PKE
 begin
   CMS_decrypt_set1_pkey_and_peer := LoadLibCryptoFunction('CMS_decrypt_set1_pkey_and_peer');
   if not assigned(CMS_decrypt_set1_pkey_and_peer) then
+    {$if declared(LEGACY_CMS_decrypt_set1_pkey_and_peer)}
+    CMS_decrypt_set1_pkey_and_peer := @LEGACY_CMS_decrypt_set1_pkey_and_peer;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_decrypt_set1_pkey_and_peer');
+    {$ifend}
   Result := CMS_decrypt_set1_pkey_and_peer(cms, pk, cert, peer);
 end;
 
@@ -1584,7 +1781,11 @@ function Load_CMS_decrypt_set1_key(cms: PCMS_ContentInfo; key: Pbyte; keylen: TO
 begin
   CMS_decrypt_set1_key := LoadLibCryptoFunction('CMS_decrypt_set1_key');
   if not assigned(CMS_decrypt_set1_key) then
+    {$if declared(LEGACY_CMS_decrypt_set1_key)}
+    CMS_decrypt_set1_key := @LEGACY_CMS_decrypt_set1_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_decrypt_set1_key');
+    {$ifend}
   Result := CMS_decrypt_set1_key(cms, key, keylen, id, idlen);
 end;
 
@@ -1592,7 +1793,11 @@ function Load_CMS_decrypt_set1_password(cms: PCMS_ContentInfo; pass: Pbyte; pass
 begin
   CMS_decrypt_set1_password := LoadLibCryptoFunction('CMS_decrypt_set1_password');
   if not assigned(CMS_decrypt_set1_password) then
+    {$if declared(LEGACY_CMS_decrypt_set1_password)}
+    CMS_decrypt_set1_password := @LEGACY_CMS_decrypt_set1_password;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_decrypt_set1_password');
+    {$ifend}
   Result := CMS_decrypt_set1_password(cms, pass, passlen);
 end;
 
@@ -1600,7 +1805,11 @@ function Load_CMS_get0_RecipientInfos(cms: PCMS_ContentInfo): Pstack_st_CMS_Reci
 begin
   CMS_get0_RecipientInfos := LoadLibCryptoFunction('CMS_get0_RecipientInfos');
   if not assigned(CMS_get0_RecipientInfos) then
+    {$if declared(LEGACY_CMS_get0_RecipientInfos)}
+    CMS_get0_RecipientInfos := @LEGACY_CMS_get0_RecipientInfos;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_get0_RecipientInfos');
+    {$ifend}
   Result := CMS_get0_RecipientInfos(cms);
 end;
 
@@ -1608,7 +1817,11 @@ function Load_CMS_RecipientInfo_type(ri: PCMS_RecipientInfo): TOpenSSL_C_INT; cd
 begin
   CMS_RecipientInfo_type := LoadLibCryptoFunction('CMS_RecipientInfo_type');
   if not assigned(CMS_RecipientInfo_type) then
+    {$if declared(LEGACY_CMS_RecipientInfo_type)}
+    CMS_RecipientInfo_type := @LEGACY_CMS_RecipientInfo_type;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_RecipientInfo_type');
+    {$ifend}
   Result := CMS_RecipientInfo_type(ri);
 end;
 
@@ -1616,7 +1829,11 @@ function Load_CMS_RecipientInfo_get0_pkey_ctx(ri: PCMS_RecipientInfo): PEVP_PKEY
 begin
   CMS_RecipientInfo_get0_pkey_ctx := LoadLibCryptoFunction('CMS_RecipientInfo_get0_pkey_ctx');
   if not assigned(CMS_RecipientInfo_get0_pkey_ctx) then
+    {$if declared(LEGACY_CMS_RecipientInfo_get0_pkey_ctx)}
+    CMS_RecipientInfo_get0_pkey_ctx := @LEGACY_CMS_RecipientInfo_get0_pkey_ctx;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_RecipientInfo_get0_pkey_ctx');
+    {$ifend}
   Result := CMS_RecipientInfo_get0_pkey_ctx(ri);
 end;
 
@@ -1624,7 +1841,11 @@ function Load_CMS_AuthEnvelopedData_create(cipher: PEVP_CIPHER): PCMS_ContentInf
 begin
   CMS_AuthEnvelopedData_create := LoadLibCryptoFunction('CMS_AuthEnvelopedData_create');
   if not assigned(CMS_AuthEnvelopedData_create) then
+    {$if declared(LEGACY_CMS_AuthEnvelopedData_create)}
+    CMS_AuthEnvelopedData_create := @LEGACY_CMS_AuthEnvelopedData_create;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_AuthEnvelopedData_create');
+    {$ifend}
   Result := CMS_AuthEnvelopedData_create(cipher);
 end;
 
@@ -1632,7 +1853,11 @@ function Load_CMS_AuthEnvelopedData_create_ex(cipher: PEVP_CIPHER; ctx: POSSL_LI
 begin
   CMS_AuthEnvelopedData_create_ex := LoadLibCryptoFunction('CMS_AuthEnvelopedData_create_ex');
   if not assigned(CMS_AuthEnvelopedData_create_ex) then
+    {$if declared(LEGACY_CMS_AuthEnvelopedData_create_ex)}
+    CMS_AuthEnvelopedData_create_ex := @LEGACY_CMS_AuthEnvelopedData_create_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_AuthEnvelopedData_create_ex');
+    {$ifend}
   Result := CMS_AuthEnvelopedData_create_ex(cipher, ctx, propq);
 end;
 
@@ -1640,7 +1865,11 @@ function Load_CMS_EnvelopedData_create(cipher: PEVP_CIPHER): PCMS_ContentInfo; c
 begin
   CMS_EnvelopedData_create := LoadLibCryptoFunction('CMS_EnvelopedData_create');
   if not assigned(CMS_EnvelopedData_create) then
+    {$if declared(LEGACY_CMS_EnvelopedData_create)}
+    CMS_EnvelopedData_create := @LEGACY_CMS_EnvelopedData_create;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_EnvelopedData_create');
+    {$ifend}
   Result := CMS_EnvelopedData_create(cipher);
 end;
 
@@ -1648,7 +1877,11 @@ function Load_CMS_EnvelopedData_create_ex(cipher: PEVP_CIPHER; ctx: POSSL_LIB_CT
 begin
   CMS_EnvelopedData_create_ex := LoadLibCryptoFunction('CMS_EnvelopedData_create_ex');
   if not assigned(CMS_EnvelopedData_create_ex) then
+    {$if declared(LEGACY_CMS_EnvelopedData_create_ex)}
+    CMS_EnvelopedData_create_ex := @LEGACY_CMS_EnvelopedData_create_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_EnvelopedData_create_ex');
+    {$ifend}
   Result := CMS_EnvelopedData_create_ex(cipher, ctx, propq);
 end;
 
@@ -1656,7 +1889,11 @@ function Load_CMS_add1_recipient_cert(cms: PCMS_ContentInfo; recip: PX509; flags
 begin
   CMS_add1_recipient_cert := LoadLibCryptoFunction('CMS_add1_recipient_cert');
   if not assigned(CMS_add1_recipient_cert) then
+    {$if declared(LEGACY_CMS_add1_recipient_cert)}
+    CMS_add1_recipient_cert := @LEGACY_CMS_add1_recipient_cert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_add1_recipient_cert');
+    {$ifend}
   Result := CMS_add1_recipient_cert(cms, recip, flags);
 end;
 
@@ -1664,7 +1901,11 @@ function Load_CMS_add1_recipient(cms: PCMS_ContentInfo; recip: PX509; originator
 begin
   CMS_add1_recipient := LoadLibCryptoFunction('CMS_add1_recipient');
   if not assigned(CMS_add1_recipient) then
+    {$if declared(LEGACY_CMS_add1_recipient)}
+    CMS_add1_recipient := @LEGACY_CMS_add1_recipient;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_add1_recipient');
+    {$ifend}
   Result := CMS_add1_recipient(cms, recip, originatorPrivKey, originator, flags);
 end;
 
@@ -1672,7 +1913,11 @@ function Load_CMS_RecipientInfo_set0_pkey(ri: PCMS_RecipientInfo; pkey: PEVP_PKE
 begin
   CMS_RecipientInfo_set0_pkey := LoadLibCryptoFunction('CMS_RecipientInfo_set0_pkey');
   if not assigned(CMS_RecipientInfo_set0_pkey) then
+    {$if declared(LEGACY_CMS_RecipientInfo_set0_pkey)}
+    CMS_RecipientInfo_set0_pkey := @LEGACY_CMS_RecipientInfo_set0_pkey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_RecipientInfo_set0_pkey');
+    {$ifend}
   Result := CMS_RecipientInfo_set0_pkey(ri, pkey);
 end;
 
@@ -1680,7 +1925,11 @@ function Load_CMS_RecipientInfo_ktri_cert_cmp(ri: PCMS_RecipientInfo; cert: PX50
 begin
   CMS_RecipientInfo_ktri_cert_cmp := LoadLibCryptoFunction('CMS_RecipientInfo_ktri_cert_cmp');
   if not assigned(CMS_RecipientInfo_ktri_cert_cmp) then
+    {$if declared(LEGACY_CMS_RecipientInfo_ktri_cert_cmp)}
+    CMS_RecipientInfo_ktri_cert_cmp := @LEGACY_CMS_RecipientInfo_ktri_cert_cmp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_RecipientInfo_ktri_cert_cmp');
+    {$ifend}
   Result := CMS_RecipientInfo_ktri_cert_cmp(ri, cert);
 end;
 
@@ -1688,7 +1937,11 @@ function Load_CMS_RecipientInfo_ktri_get0_algs(ri: PCMS_RecipientInfo; pk: PPEVP
 begin
   CMS_RecipientInfo_ktri_get0_algs := LoadLibCryptoFunction('CMS_RecipientInfo_ktri_get0_algs');
   if not assigned(CMS_RecipientInfo_ktri_get0_algs) then
+    {$if declared(LEGACY_CMS_RecipientInfo_ktri_get0_algs)}
+    CMS_RecipientInfo_ktri_get0_algs := @LEGACY_CMS_RecipientInfo_ktri_get0_algs;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_RecipientInfo_ktri_get0_algs');
+    {$ifend}
   Result := CMS_RecipientInfo_ktri_get0_algs(ri, pk, recip, palg);
 end;
 
@@ -1696,7 +1949,11 @@ function Load_CMS_RecipientInfo_ktri_get0_signer_id(ri: PCMS_RecipientInfo; keyi
 begin
   CMS_RecipientInfo_ktri_get0_signer_id := LoadLibCryptoFunction('CMS_RecipientInfo_ktri_get0_signer_id');
   if not assigned(CMS_RecipientInfo_ktri_get0_signer_id) then
+    {$if declared(LEGACY_CMS_RecipientInfo_ktri_get0_signer_id)}
+    CMS_RecipientInfo_ktri_get0_signer_id := @LEGACY_CMS_RecipientInfo_ktri_get0_signer_id;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_RecipientInfo_ktri_get0_signer_id');
+    {$ifend}
   Result := CMS_RecipientInfo_ktri_get0_signer_id(ri, keyid, issuer, sno);
 end;
 
@@ -1704,7 +1961,11 @@ function Load_CMS_add0_recipient_key(cms: PCMS_ContentInfo; nid: TOpenSSL_C_INT;
 begin
   CMS_add0_recipient_key := LoadLibCryptoFunction('CMS_add0_recipient_key');
   if not assigned(CMS_add0_recipient_key) then
+    {$if declared(LEGACY_CMS_add0_recipient_key)}
+    CMS_add0_recipient_key := @LEGACY_CMS_add0_recipient_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_add0_recipient_key');
+    {$ifend}
   Result := CMS_add0_recipient_key(cms, nid, key, keylen, id, idlen, date, otherTypeId, otherType);
 end;
 
@@ -1712,7 +1973,11 @@ function Load_CMS_RecipientInfo_kekri_get0_id(ri: PCMS_RecipientInfo; palg: PPX5
 begin
   CMS_RecipientInfo_kekri_get0_id := LoadLibCryptoFunction('CMS_RecipientInfo_kekri_get0_id');
   if not assigned(CMS_RecipientInfo_kekri_get0_id) then
+    {$if declared(LEGACY_CMS_RecipientInfo_kekri_get0_id)}
+    CMS_RecipientInfo_kekri_get0_id := @LEGACY_CMS_RecipientInfo_kekri_get0_id;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_RecipientInfo_kekri_get0_id');
+    {$ifend}
   Result := CMS_RecipientInfo_kekri_get0_id(ri, palg, pid, pdate, potherid, pothertype);
 end;
 
@@ -1720,7 +1985,11 @@ function Load_CMS_RecipientInfo_set0_key(ri: PCMS_RecipientInfo; key: Pbyte; key
 begin
   CMS_RecipientInfo_set0_key := LoadLibCryptoFunction('CMS_RecipientInfo_set0_key');
   if not assigned(CMS_RecipientInfo_set0_key) then
+    {$if declared(LEGACY_CMS_RecipientInfo_set0_key)}
+    CMS_RecipientInfo_set0_key := @LEGACY_CMS_RecipientInfo_set0_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_RecipientInfo_set0_key');
+    {$ifend}
   Result := CMS_RecipientInfo_set0_key(ri, key, keylen);
 end;
 
@@ -1728,7 +1997,11 @@ function Load_CMS_RecipientInfo_kekri_id_cmp(ri: PCMS_RecipientInfo; id: Pbyte; 
 begin
   CMS_RecipientInfo_kekri_id_cmp := LoadLibCryptoFunction('CMS_RecipientInfo_kekri_id_cmp');
   if not assigned(CMS_RecipientInfo_kekri_id_cmp) then
+    {$if declared(LEGACY_CMS_RecipientInfo_kekri_id_cmp)}
+    CMS_RecipientInfo_kekri_id_cmp := @LEGACY_CMS_RecipientInfo_kekri_id_cmp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_RecipientInfo_kekri_id_cmp');
+    {$ifend}
   Result := CMS_RecipientInfo_kekri_id_cmp(ri, id, idlen);
 end;
 
@@ -1736,7 +2009,11 @@ function Load_CMS_RecipientInfo_set0_password(ri: PCMS_RecipientInfo; pass: Pbyt
 begin
   CMS_RecipientInfo_set0_password := LoadLibCryptoFunction('CMS_RecipientInfo_set0_password');
   if not assigned(CMS_RecipientInfo_set0_password) then
+    {$if declared(LEGACY_CMS_RecipientInfo_set0_password)}
+    CMS_RecipientInfo_set0_password := @LEGACY_CMS_RecipientInfo_set0_password;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_RecipientInfo_set0_password');
+    {$ifend}
   Result := CMS_RecipientInfo_set0_password(ri, pass, passlen);
 end;
 
@@ -1744,7 +2021,11 @@ function Load_CMS_add0_recipient_password(cms: PCMS_ContentInfo; iter: TOpenSSL_
 begin
   CMS_add0_recipient_password := LoadLibCryptoFunction('CMS_add0_recipient_password');
   if not assigned(CMS_add0_recipient_password) then
+    {$if declared(LEGACY_CMS_add0_recipient_password)}
+    CMS_add0_recipient_password := @LEGACY_CMS_add0_recipient_password;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_add0_recipient_password');
+    {$ifend}
   Result := CMS_add0_recipient_password(cms, iter, wrap_nid, pbe_nid, pass, passlen, kekciph);
 end;
 
@@ -1752,7 +2033,11 @@ function Load_CMS_RecipientInfo_decrypt(cms: PCMS_ContentInfo; ri: PCMS_Recipien
 begin
   CMS_RecipientInfo_decrypt := LoadLibCryptoFunction('CMS_RecipientInfo_decrypt');
   if not assigned(CMS_RecipientInfo_decrypt) then
+    {$if declared(LEGACY_CMS_RecipientInfo_decrypt)}
+    CMS_RecipientInfo_decrypt := @LEGACY_CMS_RecipientInfo_decrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_RecipientInfo_decrypt');
+    {$ifend}
   Result := CMS_RecipientInfo_decrypt(cms, ri);
 end;
 
@@ -1760,7 +2045,11 @@ function Load_CMS_RecipientInfo_encrypt(cms: PCMS_ContentInfo; ri: PCMS_Recipien
 begin
   CMS_RecipientInfo_encrypt := LoadLibCryptoFunction('CMS_RecipientInfo_encrypt');
   if not assigned(CMS_RecipientInfo_encrypt) then
+    {$if declared(LEGACY_CMS_RecipientInfo_encrypt)}
+    CMS_RecipientInfo_encrypt := @LEGACY_CMS_RecipientInfo_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_RecipientInfo_encrypt');
+    {$ifend}
   Result := CMS_RecipientInfo_encrypt(cms, ri);
 end;
 
@@ -1768,7 +2057,11 @@ function Load_CMS_uncompress(cms: PCMS_ContentInfo; dcont: PBIO; out_: PBIO; fla
 begin
   CMS_uncompress := LoadLibCryptoFunction('CMS_uncompress');
   if not assigned(CMS_uncompress) then
+    {$if declared(LEGACY_CMS_uncompress)}
+    CMS_uncompress := @LEGACY_CMS_uncompress;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_uncompress');
+    {$ifend}
   Result := CMS_uncompress(cms, dcont, out_, flags);
 end;
 
@@ -1776,7 +2069,11 @@ function Load_CMS_compress(in_: PBIO; comp_nid: TOpenSSL_C_INT; flags: TOpenSSL_
 begin
   CMS_compress := LoadLibCryptoFunction('CMS_compress');
   if not assigned(CMS_compress) then
+    {$if declared(LEGACY_CMS_compress)}
+    CMS_compress := @LEGACY_CMS_compress;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_compress');
+    {$ifend}
   Result := CMS_compress(in_, comp_nid, flags);
 end;
 
@@ -1784,7 +2081,11 @@ function Load_CMS_set1_eContentType(cms: PCMS_ContentInfo; oid: PASN1_OBJECT): T
 begin
   CMS_set1_eContentType := LoadLibCryptoFunction('CMS_set1_eContentType');
   if not assigned(CMS_set1_eContentType) then
+    {$if declared(LEGACY_CMS_set1_eContentType)}
+    CMS_set1_eContentType := @LEGACY_CMS_set1_eContentType;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_set1_eContentType');
+    {$ifend}
   Result := CMS_set1_eContentType(cms, oid);
 end;
 
@@ -1792,7 +2093,11 @@ function Load_CMS_get0_eContentType(cms: PCMS_ContentInfo): PASN1_OBJECT; cdecl;
 begin
   CMS_get0_eContentType := LoadLibCryptoFunction('CMS_get0_eContentType');
   if not assigned(CMS_get0_eContentType) then
+    {$if declared(LEGACY_CMS_get0_eContentType)}
+    CMS_get0_eContentType := @LEGACY_CMS_get0_eContentType;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_get0_eContentType');
+    {$ifend}
   Result := CMS_get0_eContentType(cms);
 end;
 
@@ -1800,7 +2105,11 @@ function Load_CMS_add0_CertificateChoices(cms: PCMS_ContentInfo): PCMS_Certifica
 begin
   CMS_add0_CertificateChoices := LoadLibCryptoFunction('CMS_add0_CertificateChoices');
   if not assigned(CMS_add0_CertificateChoices) then
+    {$if declared(LEGACY_CMS_add0_CertificateChoices)}
+    CMS_add0_CertificateChoices := @LEGACY_CMS_add0_CertificateChoices;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_add0_CertificateChoices');
+    {$ifend}
   Result := CMS_add0_CertificateChoices(cms);
 end;
 
@@ -1808,7 +2117,11 @@ function Load_CMS_add0_cert(cms: PCMS_ContentInfo; cert: PX509): TOpenSSL_C_INT;
 begin
   CMS_add0_cert := LoadLibCryptoFunction('CMS_add0_cert');
   if not assigned(CMS_add0_cert) then
+    {$if declared(LEGACY_CMS_add0_cert)}
+    CMS_add0_cert := @LEGACY_CMS_add0_cert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_add0_cert');
+    {$ifend}
   Result := CMS_add0_cert(cms, cert);
 end;
 
@@ -1816,7 +2129,11 @@ function Load_CMS_add1_cert(cms: PCMS_ContentInfo; cert: PX509): TOpenSSL_C_INT;
 begin
   CMS_add1_cert := LoadLibCryptoFunction('CMS_add1_cert');
   if not assigned(CMS_add1_cert) then
+    {$if declared(LEGACY_CMS_add1_cert)}
+    CMS_add1_cert := @LEGACY_CMS_add1_cert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_add1_cert');
+    {$ifend}
   Result := CMS_add1_cert(cms, cert);
 end;
 
@@ -1824,7 +2141,11 @@ function Load_CMS_get1_certs(cms: PCMS_ContentInfo): Pstack_st_X509; cdecl;
 begin
   CMS_get1_certs := LoadLibCryptoFunction('CMS_get1_certs');
   if not assigned(CMS_get1_certs) then
+    {$if declared(LEGACY_CMS_get1_certs)}
+    CMS_get1_certs := @LEGACY_CMS_get1_certs;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_get1_certs');
+    {$ifend}
   Result := CMS_get1_certs(cms);
 end;
 
@@ -1832,7 +2153,11 @@ function Load_CMS_add0_RevocationInfoChoice(cms: PCMS_ContentInfo): PCMS_Revocat
 begin
   CMS_add0_RevocationInfoChoice := LoadLibCryptoFunction('CMS_add0_RevocationInfoChoice');
   if not assigned(CMS_add0_RevocationInfoChoice) then
+    {$if declared(LEGACY_CMS_add0_RevocationInfoChoice)}
+    CMS_add0_RevocationInfoChoice := @LEGACY_CMS_add0_RevocationInfoChoice;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_add0_RevocationInfoChoice');
+    {$ifend}
   Result := CMS_add0_RevocationInfoChoice(cms);
 end;
 
@@ -1840,7 +2165,11 @@ function Load_CMS_add0_crl(cms: PCMS_ContentInfo; crl: PX509_CRL): TOpenSSL_C_IN
 begin
   CMS_add0_crl := LoadLibCryptoFunction('CMS_add0_crl');
   if not assigned(CMS_add0_crl) then
+    {$if declared(LEGACY_CMS_add0_crl)}
+    CMS_add0_crl := @LEGACY_CMS_add0_crl;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_add0_crl');
+    {$ifend}
   Result := CMS_add0_crl(cms, crl);
 end;
 
@@ -1848,7 +2177,11 @@ function Load_CMS_add1_crl(cms: PCMS_ContentInfo; crl: PX509_CRL): TOpenSSL_C_IN
 begin
   CMS_add1_crl := LoadLibCryptoFunction('CMS_add1_crl');
   if not assigned(CMS_add1_crl) then
+    {$if declared(LEGACY_CMS_add1_crl)}
+    CMS_add1_crl := @LEGACY_CMS_add1_crl;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_add1_crl');
+    {$ifend}
   Result := CMS_add1_crl(cms, crl);
 end;
 
@@ -1856,7 +2189,11 @@ function Load_CMS_get1_crls(cms: PCMS_ContentInfo): Pstack_st_X509_CRL; cdecl;
 begin
   CMS_get1_crls := LoadLibCryptoFunction('CMS_get1_crls');
   if not assigned(CMS_get1_crls) then
+    {$if declared(LEGACY_CMS_get1_crls)}
+    CMS_get1_crls := @LEGACY_CMS_get1_crls;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_get1_crls');
+    {$ifend}
   Result := CMS_get1_crls(cms);
 end;
 
@@ -1864,7 +2201,11 @@ function Load_CMS_SignedData_init(cms: PCMS_ContentInfo): TOpenSSL_C_INT; cdecl;
 begin
   CMS_SignedData_init := LoadLibCryptoFunction('CMS_SignedData_init');
   if not assigned(CMS_SignedData_init) then
+    {$if declared(LEGACY_CMS_SignedData_init)}
+    CMS_SignedData_init := @LEGACY_CMS_SignedData_init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_SignedData_init');
+    {$ifend}
   Result := CMS_SignedData_init(cms);
 end;
 
@@ -1872,7 +2213,11 @@ function Load_CMS_add1_signer(cms: PCMS_ContentInfo; signer: PX509; pk: PEVP_PKE
 begin
   CMS_add1_signer := LoadLibCryptoFunction('CMS_add1_signer');
   if not assigned(CMS_add1_signer) then
+    {$if declared(LEGACY_CMS_add1_signer)}
+    CMS_add1_signer := @LEGACY_CMS_add1_signer;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_add1_signer');
+    {$ifend}
   Result := CMS_add1_signer(cms, signer, pk, md, flags);
 end;
 
@@ -1880,7 +2225,11 @@ function Load_CMS_SignerInfo_get0_pkey_ctx(si: PCMS_SignerInfo): PEVP_PKEY_CTX; 
 begin
   CMS_SignerInfo_get0_pkey_ctx := LoadLibCryptoFunction('CMS_SignerInfo_get0_pkey_ctx');
   if not assigned(CMS_SignerInfo_get0_pkey_ctx) then
+    {$if declared(LEGACY_CMS_SignerInfo_get0_pkey_ctx)}
+    CMS_SignerInfo_get0_pkey_ctx := @LEGACY_CMS_SignerInfo_get0_pkey_ctx;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_SignerInfo_get0_pkey_ctx');
+    {$ifend}
   Result := CMS_SignerInfo_get0_pkey_ctx(si);
 end;
 
@@ -1888,7 +2237,11 @@ function Load_CMS_SignerInfo_get0_md_ctx(si: PCMS_SignerInfo): PEVP_MD_CTX; cdec
 begin
   CMS_SignerInfo_get0_md_ctx := LoadLibCryptoFunction('CMS_SignerInfo_get0_md_ctx');
   if not assigned(CMS_SignerInfo_get0_md_ctx) then
+    {$if declared(LEGACY_CMS_SignerInfo_get0_md_ctx)}
+    CMS_SignerInfo_get0_md_ctx := @LEGACY_CMS_SignerInfo_get0_md_ctx;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_SignerInfo_get0_md_ctx');
+    {$ifend}
   Result := CMS_SignerInfo_get0_md_ctx(si);
 end;
 
@@ -1896,7 +2249,11 @@ function Load_CMS_get0_SignerInfos(cms: PCMS_ContentInfo): Pstack_st_CMS_SignerI
 begin
   CMS_get0_SignerInfos := LoadLibCryptoFunction('CMS_get0_SignerInfos');
   if not assigned(CMS_get0_SignerInfos) then
+    {$if declared(LEGACY_CMS_get0_SignerInfos)}
+    CMS_get0_SignerInfos := @LEGACY_CMS_get0_SignerInfos;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_get0_SignerInfos');
+    {$ifend}
   Result := CMS_get0_SignerInfos(cms);
 end;
 
@@ -1904,7 +2261,11 @@ procedure Load_CMS_SignerInfo_set1_signer_cert(si: PCMS_SignerInfo; signer: PX50
 begin
   CMS_SignerInfo_set1_signer_cert := LoadLibCryptoFunction('CMS_SignerInfo_set1_signer_cert');
   if not assigned(CMS_SignerInfo_set1_signer_cert) then
+    {$if declared(LEGACY_CMS_SignerInfo_set1_signer_cert)}
+    CMS_SignerInfo_set1_signer_cert := @LEGACY_CMS_SignerInfo_set1_signer_cert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_SignerInfo_set1_signer_cert');
+    {$ifend}
   CMS_SignerInfo_set1_signer_cert(si, signer);
 end;
 
@@ -1912,7 +2273,11 @@ function Load_CMS_SignerInfo_get0_signer_id(si: PCMS_SignerInfo; keyid: PPASN1_O
 begin
   CMS_SignerInfo_get0_signer_id := LoadLibCryptoFunction('CMS_SignerInfo_get0_signer_id');
   if not assigned(CMS_SignerInfo_get0_signer_id) then
+    {$if declared(LEGACY_CMS_SignerInfo_get0_signer_id)}
+    CMS_SignerInfo_get0_signer_id := @LEGACY_CMS_SignerInfo_get0_signer_id;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_SignerInfo_get0_signer_id');
+    {$ifend}
   Result := CMS_SignerInfo_get0_signer_id(si, keyid, issuer, sno);
 end;
 
@@ -1920,7 +2285,11 @@ function Load_CMS_SignerInfo_cert_cmp(si: PCMS_SignerInfo; cert: PX509): TOpenSS
 begin
   CMS_SignerInfo_cert_cmp := LoadLibCryptoFunction('CMS_SignerInfo_cert_cmp');
   if not assigned(CMS_SignerInfo_cert_cmp) then
+    {$if declared(LEGACY_CMS_SignerInfo_cert_cmp)}
+    CMS_SignerInfo_cert_cmp := @LEGACY_CMS_SignerInfo_cert_cmp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_SignerInfo_cert_cmp');
+    {$ifend}
   Result := CMS_SignerInfo_cert_cmp(si, cert);
 end;
 
@@ -1928,7 +2297,11 @@ function Load_CMS_set1_signers_certs(cms: PCMS_ContentInfo; certs: Pstack_st_X50
 begin
   CMS_set1_signers_certs := LoadLibCryptoFunction('CMS_set1_signers_certs');
   if not assigned(CMS_set1_signers_certs) then
+    {$if declared(LEGACY_CMS_set1_signers_certs)}
+    CMS_set1_signers_certs := @LEGACY_CMS_set1_signers_certs;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_set1_signers_certs');
+    {$ifend}
   Result := CMS_set1_signers_certs(cms, certs, flags);
 end;
 
@@ -1936,7 +2309,11 @@ procedure Load_CMS_SignerInfo_get0_algs(si: PCMS_SignerInfo; pk: PPEVP_PKEY; sig
 begin
   CMS_SignerInfo_get0_algs := LoadLibCryptoFunction('CMS_SignerInfo_get0_algs');
   if not assigned(CMS_SignerInfo_get0_algs) then
+    {$if declared(LEGACY_CMS_SignerInfo_get0_algs)}
+    CMS_SignerInfo_get0_algs := @LEGACY_CMS_SignerInfo_get0_algs;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_SignerInfo_get0_algs');
+    {$ifend}
   CMS_SignerInfo_get0_algs(si, pk, signer, pdig, psig);
 end;
 
@@ -1944,7 +2321,11 @@ function Load_CMS_SignerInfo_get0_signature(si: PCMS_SignerInfo): PASN1_OCTET_ST
 begin
   CMS_SignerInfo_get0_signature := LoadLibCryptoFunction('CMS_SignerInfo_get0_signature');
   if not assigned(CMS_SignerInfo_get0_signature) then
+    {$if declared(LEGACY_CMS_SignerInfo_get0_signature)}
+    CMS_SignerInfo_get0_signature := @LEGACY_CMS_SignerInfo_get0_signature;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_SignerInfo_get0_signature');
+    {$ifend}
   Result := CMS_SignerInfo_get0_signature(si);
 end;
 
@@ -1952,7 +2333,11 @@ function Load_CMS_SignerInfo_sign(si: PCMS_SignerInfo): TOpenSSL_C_INT; cdecl;
 begin
   CMS_SignerInfo_sign := LoadLibCryptoFunction('CMS_SignerInfo_sign');
   if not assigned(CMS_SignerInfo_sign) then
+    {$if declared(LEGACY_CMS_SignerInfo_sign)}
+    CMS_SignerInfo_sign := @LEGACY_CMS_SignerInfo_sign;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_SignerInfo_sign');
+    {$ifend}
   Result := CMS_SignerInfo_sign(si);
 end;
 
@@ -1960,7 +2345,11 @@ function Load_CMS_SignerInfo_verify(si: PCMS_SignerInfo): TOpenSSL_C_INT; cdecl;
 begin
   CMS_SignerInfo_verify := LoadLibCryptoFunction('CMS_SignerInfo_verify');
   if not assigned(CMS_SignerInfo_verify) then
+    {$if declared(LEGACY_CMS_SignerInfo_verify)}
+    CMS_SignerInfo_verify := @LEGACY_CMS_SignerInfo_verify;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_SignerInfo_verify');
+    {$ifend}
   Result := CMS_SignerInfo_verify(si);
 end;
 
@@ -1968,7 +2357,11 @@ function Load_CMS_SignerInfo_verify_content(si: PCMS_SignerInfo; chain: PBIO): T
 begin
   CMS_SignerInfo_verify_content := LoadLibCryptoFunction('CMS_SignerInfo_verify_content');
   if not assigned(CMS_SignerInfo_verify_content) then
+    {$if declared(LEGACY_CMS_SignerInfo_verify_content)}
+    CMS_SignerInfo_verify_content := @LEGACY_CMS_SignerInfo_verify_content;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_SignerInfo_verify_content');
+    {$ifend}
   Result := CMS_SignerInfo_verify_content(si, chain);
 end;
 
@@ -1976,7 +2369,11 @@ function Load_CMS_add_smimecap(si: PCMS_SignerInfo; algs: Pstack_st_X509_ALGOR):
 begin
   CMS_add_smimecap := LoadLibCryptoFunction('CMS_add_smimecap');
   if not assigned(CMS_add_smimecap) then
+    {$if declared(LEGACY_CMS_add_smimecap)}
+    CMS_add_smimecap := @LEGACY_CMS_add_smimecap;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_add_smimecap');
+    {$ifend}
   Result := CMS_add_smimecap(si, algs);
 end;
 
@@ -1984,7 +2381,11 @@ function Load_CMS_add_simple_smimecap(algs: PPstack_st_X509_ALGOR; algnid: TOpen
 begin
   CMS_add_simple_smimecap := LoadLibCryptoFunction('CMS_add_simple_smimecap');
   if not assigned(CMS_add_simple_smimecap) then
+    {$if declared(LEGACY_CMS_add_simple_smimecap)}
+    CMS_add_simple_smimecap := @LEGACY_CMS_add_simple_smimecap;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_add_simple_smimecap');
+    {$ifend}
   Result := CMS_add_simple_smimecap(algs, algnid, keysize);
 end;
 
@@ -1992,7 +2393,11 @@ function Load_CMS_add_standard_smimecap(smcap: PPstack_st_X509_ALGOR): TOpenSSL_
 begin
   CMS_add_standard_smimecap := LoadLibCryptoFunction('CMS_add_standard_smimecap');
   if not assigned(CMS_add_standard_smimecap) then
+    {$if declared(LEGACY_CMS_add_standard_smimecap)}
+    CMS_add_standard_smimecap := @LEGACY_CMS_add_standard_smimecap;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_add_standard_smimecap');
+    {$ifend}
   Result := CMS_add_standard_smimecap(smcap);
 end;
 
@@ -2000,7 +2405,11 @@ function Load_CMS_signed_get_attr_count(si: PCMS_SignerInfo): TOpenSSL_C_INT; cd
 begin
   CMS_signed_get_attr_count := LoadLibCryptoFunction('CMS_signed_get_attr_count');
   if not assigned(CMS_signed_get_attr_count) then
+    {$if declared(LEGACY_CMS_signed_get_attr_count)}
+    CMS_signed_get_attr_count := @LEGACY_CMS_signed_get_attr_count;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_signed_get_attr_count');
+    {$ifend}
   Result := CMS_signed_get_attr_count(si);
 end;
 
@@ -2008,7 +2417,11 @@ function Load_CMS_signed_get_attr_by_NID(si: PCMS_SignerInfo; nid: TOpenSSL_C_IN
 begin
   CMS_signed_get_attr_by_NID := LoadLibCryptoFunction('CMS_signed_get_attr_by_NID');
   if not assigned(CMS_signed_get_attr_by_NID) then
+    {$if declared(LEGACY_CMS_signed_get_attr_by_NID)}
+    CMS_signed_get_attr_by_NID := @LEGACY_CMS_signed_get_attr_by_NID;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_signed_get_attr_by_NID');
+    {$ifend}
   Result := CMS_signed_get_attr_by_NID(si, nid, lastpos);
 end;
 
@@ -2016,7 +2429,11 @@ function Load_CMS_signed_get_attr_by_OBJ(si: PCMS_SignerInfo; obj: PASN1_OBJECT;
 begin
   CMS_signed_get_attr_by_OBJ := LoadLibCryptoFunction('CMS_signed_get_attr_by_OBJ');
   if not assigned(CMS_signed_get_attr_by_OBJ) then
+    {$if declared(LEGACY_CMS_signed_get_attr_by_OBJ)}
+    CMS_signed_get_attr_by_OBJ := @LEGACY_CMS_signed_get_attr_by_OBJ;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_signed_get_attr_by_OBJ');
+    {$ifend}
   Result := CMS_signed_get_attr_by_OBJ(si, obj, lastpos);
 end;
 
@@ -2024,7 +2441,11 @@ function Load_CMS_signed_get_attr(si: PCMS_SignerInfo; loc: TOpenSSL_C_INT): PX5
 begin
   CMS_signed_get_attr := LoadLibCryptoFunction('CMS_signed_get_attr');
   if not assigned(CMS_signed_get_attr) then
+    {$if declared(LEGACY_CMS_signed_get_attr)}
+    CMS_signed_get_attr := @LEGACY_CMS_signed_get_attr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_signed_get_attr');
+    {$ifend}
   Result := CMS_signed_get_attr(si, loc);
 end;
 
@@ -2032,7 +2453,11 @@ function Load_CMS_signed_delete_attr(si: PCMS_SignerInfo; loc: TOpenSSL_C_INT): 
 begin
   CMS_signed_delete_attr := LoadLibCryptoFunction('CMS_signed_delete_attr');
   if not assigned(CMS_signed_delete_attr) then
+    {$if declared(LEGACY_CMS_signed_delete_attr)}
+    CMS_signed_delete_attr := @LEGACY_CMS_signed_delete_attr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_signed_delete_attr');
+    {$ifend}
   Result := CMS_signed_delete_attr(si, loc);
 end;
 
@@ -2040,7 +2465,11 @@ function Load_CMS_signed_add1_attr(si: PCMS_SignerInfo; attr: PX509_ATTRIBUTE): 
 begin
   CMS_signed_add1_attr := LoadLibCryptoFunction('CMS_signed_add1_attr');
   if not assigned(CMS_signed_add1_attr) then
+    {$if declared(LEGACY_CMS_signed_add1_attr)}
+    CMS_signed_add1_attr := @LEGACY_CMS_signed_add1_attr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_signed_add1_attr');
+    {$ifend}
   Result := CMS_signed_add1_attr(si, attr);
 end;
 
@@ -2048,7 +2477,11 @@ function Load_CMS_signed_add1_attr_by_OBJ(si: PCMS_SignerInfo; obj: PASN1_OBJECT
 begin
   CMS_signed_add1_attr_by_OBJ := LoadLibCryptoFunction('CMS_signed_add1_attr_by_OBJ');
   if not assigned(CMS_signed_add1_attr_by_OBJ) then
+    {$if declared(LEGACY_CMS_signed_add1_attr_by_OBJ)}
+    CMS_signed_add1_attr_by_OBJ := @LEGACY_CMS_signed_add1_attr_by_OBJ;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_signed_add1_attr_by_OBJ');
+    {$ifend}
   Result := CMS_signed_add1_attr_by_OBJ(si, obj, type_, bytes, len);
 end;
 
@@ -2056,7 +2489,11 @@ function Load_CMS_signed_add1_attr_by_NID(si: PCMS_SignerInfo; nid: TOpenSSL_C_I
 begin
   CMS_signed_add1_attr_by_NID := LoadLibCryptoFunction('CMS_signed_add1_attr_by_NID');
   if not assigned(CMS_signed_add1_attr_by_NID) then
+    {$if declared(LEGACY_CMS_signed_add1_attr_by_NID)}
+    CMS_signed_add1_attr_by_NID := @LEGACY_CMS_signed_add1_attr_by_NID;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_signed_add1_attr_by_NID');
+    {$ifend}
   Result := CMS_signed_add1_attr_by_NID(si, nid, type_, bytes, len);
 end;
 
@@ -2064,7 +2501,11 @@ function Load_CMS_signed_add1_attr_by_txt(si: PCMS_SignerInfo; attrname: PAnsiCh
 begin
   CMS_signed_add1_attr_by_txt := LoadLibCryptoFunction('CMS_signed_add1_attr_by_txt');
   if not assigned(CMS_signed_add1_attr_by_txt) then
+    {$if declared(LEGACY_CMS_signed_add1_attr_by_txt)}
+    CMS_signed_add1_attr_by_txt := @LEGACY_CMS_signed_add1_attr_by_txt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_signed_add1_attr_by_txt');
+    {$ifend}
   Result := CMS_signed_add1_attr_by_txt(si, attrname, type_, bytes, len);
 end;
 
@@ -2072,7 +2513,11 @@ function Load_CMS_signed_get0_data_by_OBJ(si: PCMS_SignerInfo; oid: PASN1_OBJECT
 begin
   CMS_signed_get0_data_by_OBJ := LoadLibCryptoFunction('CMS_signed_get0_data_by_OBJ');
   if not assigned(CMS_signed_get0_data_by_OBJ) then
+    {$if declared(LEGACY_CMS_signed_get0_data_by_OBJ)}
+    CMS_signed_get0_data_by_OBJ := @LEGACY_CMS_signed_get0_data_by_OBJ;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_signed_get0_data_by_OBJ');
+    {$ifend}
   Result := CMS_signed_get0_data_by_OBJ(si, oid, lastpos, type_);
 end;
 
@@ -2080,7 +2525,11 @@ function Load_CMS_unsigned_get_attr_count(si: PCMS_SignerInfo): TOpenSSL_C_INT; 
 begin
   CMS_unsigned_get_attr_count := LoadLibCryptoFunction('CMS_unsigned_get_attr_count');
   if not assigned(CMS_unsigned_get_attr_count) then
+    {$if declared(LEGACY_CMS_unsigned_get_attr_count)}
+    CMS_unsigned_get_attr_count := @LEGACY_CMS_unsigned_get_attr_count;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_unsigned_get_attr_count');
+    {$ifend}
   Result := CMS_unsigned_get_attr_count(si);
 end;
 
@@ -2088,7 +2537,11 @@ function Load_CMS_unsigned_get_attr_by_NID(si: PCMS_SignerInfo; nid: TOpenSSL_C_
 begin
   CMS_unsigned_get_attr_by_NID := LoadLibCryptoFunction('CMS_unsigned_get_attr_by_NID');
   if not assigned(CMS_unsigned_get_attr_by_NID) then
+    {$if declared(LEGACY_CMS_unsigned_get_attr_by_NID)}
+    CMS_unsigned_get_attr_by_NID := @LEGACY_CMS_unsigned_get_attr_by_NID;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_unsigned_get_attr_by_NID');
+    {$ifend}
   Result := CMS_unsigned_get_attr_by_NID(si, nid, lastpos);
 end;
 
@@ -2096,7 +2549,11 @@ function Load_CMS_unsigned_get_attr_by_OBJ(si: PCMS_SignerInfo; obj: PASN1_OBJEC
 begin
   CMS_unsigned_get_attr_by_OBJ := LoadLibCryptoFunction('CMS_unsigned_get_attr_by_OBJ');
   if not assigned(CMS_unsigned_get_attr_by_OBJ) then
+    {$if declared(LEGACY_CMS_unsigned_get_attr_by_OBJ)}
+    CMS_unsigned_get_attr_by_OBJ := @LEGACY_CMS_unsigned_get_attr_by_OBJ;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_unsigned_get_attr_by_OBJ');
+    {$ifend}
   Result := CMS_unsigned_get_attr_by_OBJ(si, obj, lastpos);
 end;
 
@@ -2104,7 +2561,11 @@ function Load_CMS_unsigned_get_attr(si: PCMS_SignerInfo; loc: TOpenSSL_C_INT): P
 begin
   CMS_unsigned_get_attr := LoadLibCryptoFunction('CMS_unsigned_get_attr');
   if not assigned(CMS_unsigned_get_attr) then
+    {$if declared(LEGACY_CMS_unsigned_get_attr)}
+    CMS_unsigned_get_attr := @LEGACY_CMS_unsigned_get_attr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_unsigned_get_attr');
+    {$ifend}
   Result := CMS_unsigned_get_attr(si, loc);
 end;
 
@@ -2112,7 +2573,11 @@ function Load_CMS_unsigned_delete_attr(si: PCMS_SignerInfo; loc: TOpenSSL_C_INT)
 begin
   CMS_unsigned_delete_attr := LoadLibCryptoFunction('CMS_unsigned_delete_attr');
   if not assigned(CMS_unsigned_delete_attr) then
+    {$if declared(LEGACY_CMS_unsigned_delete_attr)}
+    CMS_unsigned_delete_attr := @LEGACY_CMS_unsigned_delete_attr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_unsigned_delete_attr');
+    {$ifend}
   Result := CMS_unsigned_delete_attr(si, loc);
 end;
 
@@ -2120,7 +2585,11 @@ function Load_CMS_unsigned_add1_attr(si: PCMS_SignerInfo; attr: PX509_ATTRIBUTE)
 begin
   CMS_unsigned_add1_attr := LoadLibCryptoFunction('CMS_unsigned_add1_attr');
   if not assigned(CMS_unsigned_add1_attr) then
+    {$if declared(LEGACY_CMS_unsigned_add1_attr)}
+    CMS_unsigned_add1_attr := @LEGACY_CMS_unsigned_add1_attr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_unsigned_add1_attr');
+    {$ifend}
   Result := CMS_unsigned_add1_attr(si, attr);
 end;
 
@@ -2128,7 +2597,11 @@ function Load_CMS_unsigned_add1_attr_by_OBJ(si: PCMS_SignerInfo; obj: PASN1_OBJE
 begin
   CMS_unsigned_add1_attr_by_OBJ := LoadLibCryptoFunction('CMS_unsigned_add1_attr_by_OBJ');
   if not assigned(CMS_unsigned_add1_attr_by_OBJ) then
+    {$if declared(LEGACY_CMS_unsigned_add1_attr_by_OBJ)}
+    CMS_unsigned_add1_attr_by_OBJ := @LEGACY_CMS_unsigned_add1_attr_by_OBJ;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_unsigned_add1_attr_by_OBJ');
+    {$ifend}
   Result := CMS_unsigned_add1_attr_by_OBJ(si, obj, type_, bytes, len);
 end;
 
@@ -2136,7 +2609,11 @@ function Load_CMS_unsigned_add1_attr_by_NID(si: PCMS_SignerInfo; nid: TOpenSSL_C
 begin
   CMS_unsigned_add1_attr_by_NID := LoadLibCryptoFunction('CMS_unsigned_add1_attr_by_NID');
   if not assigned(CMS_unsigned_add1_attr_by_NID) then
+    {$if declared(LEGACY_CMS_unsigned_add1_attr_by_NID)}
+    CMS_unsigned_add1_attr_by_NID := @LEGACY_CMS_unsigned_add1_attr_by_NID;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_unsigned_add1_attr_by_NID');
+    {$ifend}
   Result := CMS_unsigned_add1_attr_by_NID(si, nid, type_, bytes, len);
 end;
 
@@ -2144,7 +2621,11 @@ function Load_CMS_unsigned_add1_attr_by_txt(si: PCMS_SignerInfo; attrname: PAnsi
 begin
   CMS_unsigned_add1_attr_by_txt := LoadLibCryptoFunction('CMS_unsigned_add1_attr_by_txt');
   if not assigned(CMS_unsigned_add1_attr_by_txt) then
+    {$if declared(LEGACY_CMS_unsigned_add1_attr_by_txt)}
+    CMS_unsigned_add1_attr_by_txt := @LEGACY_CMS_unsigned_add1_attr_by_txt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_unsigned_add1_attr_by_txt');
+    {$ifend}
   Result := CMS_unsigned_add1_attr_by_txt(si, attrname, type_, bytes, len);
 end;
 
@@ -2152,7 +2633,11 @@ function Load_CMS_unsigned_get0_data_by_OBJ(si: PCMS_SignerInfo; oid: PASN1_OBJE
 begin
   CMS_unsigned_get0_data_by_OBJ := LoadLibCryptoFunction('CMS_unsigned_get0_data_by_OBJ');
   if not assigned(CMS_unsigned_get0_data_by_OBJ) then
+    {$if declared(LEGACY_CMS_unsigned_get0_data_by_OBJ)}
+    CMS_unsigned_get0_data_by_OBJ := @LEGACY_CMS_unsigned_get0_data_by_OBJ;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_unsigned_get0_data_by_OBJ');
+    {$ifend}
   Result := CMS_unsigned_get0_data_by_OBJ(si, oid, lastpos, type_);
 end;
 
@@ -2160,7 +2645,11 @@ function Load_CMS_get1_ReceiptRequest(si: PCMS_SignerInfo; prr: PPCMS_ReceiptReq
 begin
   CMS_get1_ReceiptRequest := LoadLibCryptoFunction('CMS_get1_ReceiptRequest');
   if not assigned(CMS_get1_ReceiptRequest) then
+    {$if declared(LEGACY_CMS_get1_ReceiptRequest)}
+    CMS_get1_ReceiptRequest := @LEGACY_CMS_get1_ReceiptRequest;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_get1_ReceiptRequest');
+    {$ifend}
   Result := CMS_get1_ReceiptRequest(si, prr);
 end;
 
@@ -2168,7 +2657,11 @@ function Load_CMS_ReceiptRequest_create0(id: Pbyte; idlen: TOpenSSL_C_INT; allor
 begin
   CMS_ReceiptRequest_create0 := LoadLibCryptoFunction('CMS_ReceiptRequest_create0');
   if not assigned(CMS_ReceiptRequest_create0) then
+    {$if declared(LEGACY_CMS_ReceiptRequest_create0)}
+    CMS_ReceiptRequest_create0 := @LEGACY_CMS_ReceiptRequest_create0;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_ReceiptRequest_create0');
+    {$ifend}
   Result := CMS_ReceiptRequest_create0(id, idlen, allorfirst, receiptList, receiptsTo);
 end;
 
@@ -2176,7 +2669,11 @@ function Load_CMS_ReceiptRequest_create0_ex(id: Pbyte; idlen: TOpenSSL_C_INT; al
 begin
   CMS_ReceiptRequest_create0_ex := LoadLibCryptoFunction('CMS_ReceiptRequest_create0_ex');
   if not assigned(CMS_ReceiptRequest_create0_ex) then
+    {$if declared(LEGACY_CMS_ReceiptRequest_create0_ex)}
+    CMS_ReceiptRequest_create0_ex := @LEGACY_CMS_ReceiptRequest_create0_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_ReceiptRequest_create0_ex');
+    {$ifend}
   Result := CMS_ReceiptRequest_create0_ex(id, idlen, allorfirst, receiptList, receiptsTo, ctx);
 end;
 
@@ -2184,7 +2681,11 @@ function Load_CMS_add1_ReceiptRequest(si: PCMS_SignerInfo; rr: PCMS_ReceiptReque
 begin
   CMS_add1_ReceiptRequest := LoadLibCryptoFunction('CMS_add1_ReceiptRequest');
   if not assigned(CMS_add1_ReceiptRequest) then
+    {$if declared(LEGACY_CMS_add1_ReceiptRequest)}
+    CMS_add1_ReceiptRequest := @LEGACY_CMS_add1_ReceiptRequest;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_add1_ReceiptRequest');
+    {$ifend}
   Result := CMS_add1_ReceiptRequest(si, rr);
 end;
 
@@ -2192,7 +2693,11 @@ procedure Load_CMS_ReceiptRequest_get0_values(rr: PCMS_ReceiptRequest; pcid: PPA
 begin
   CMS_ReceiptRequest_get0_values := LoadLibCryptoFunction('CMS_ReceiptRequest_get0_values');
   if not assigned(CMS_ReceiptRequest_get0_values) then
+    {$if declared(LEGACY_CMS_ReceiptRequest_get0_values)}
+    CMS_ReceiptRequest_get0_values := @LEGACY_CMS_ReceiptRequest_get0_values;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_ReceiptRequest_get0_values');
+    {$ifend}
   CMS_ReceiptRequest_get0_values(rr, pcid, pallorfirst, plist, prto);
 end;
 
@@ -2200,7 +2705,11 @@ function Load_CMS_RecipientInfo_kari_get0_alg(ri: PCMS_RecipientInfo; palg: PPX5
 begin
   CMS_RecipientInfo_kari_get0_alg := LoadLibCryptoFunction('CMS_RecipientInfo_kari_get0_alg');
   if not assigned(CMS_RecipientInfo_kari_get0_alg) then
+    {$if declared(LEGACY_CMS_RecipientInfo_kari_get0_alg)}
+    CMS_RecipientInfo_kari_get0_alg := @LEGACY_CMS_RecipientInfo_kari_get0_alg;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_RecipientInfo_kari_get0_alg');
+    {$ifend}
   Result := CMS_RecipientInfo_kari_get0_alg(ri, palg, pukm);
 end;
 
@@ -2208,7 +2717,11 @@ function Load_CMS_RecipientInfo_kari_get0_reks(ri: PCMS_RecipientInfo): Pstack_s
 begin
   CMS_RecipientInfo_kari_get0_reks := LoadLibCryptoFunction('CMS_RecipientInfo_kari_get0_reks');
   if not assigned(CMS_RecipientInfo_kari_get0_reks) then
+    {$if declared(LEGACY_CMS_RecipientInfo_kari_get0_reks)}
+    CMS_RecipientInfo_kari_get0_reks := @LEGACY_CMS_RecipientInfo_kari_get0_reks;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_RecipientInfo_kari_get0_reks');
+    {$ifend}
   Result := CMS_RecipientInfo_kari_get0_reks(ri);
 end;
 
@@ -2216,7 +2729,11 @@ function Load_CMS_RecipientInfo_kari_get0_orig_id(ri: PCMS_RecipientInfo; pubalg
 begin
   CMS_RecipientInfo_kari_get0_orig_id := LoadLibCryptoFunction('CMS_RecipientInfo_kari_get0_orig_id');
   if not assigned(CMS_RecipientInfo_kari_get0_orig_id) then
+    {$if declared(LEGACY_CMS_RecipientInfo_kari_get0_orig_id)}
+    CMS_RecipientInfo_kari_get0_orig_id := @LEGACY_CMS_RecipientInfo_kari_get0_orig_id;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_RecipientInfo_kari_get0_orig_id');
+    {$ifend}
   Result := CMS_RecipientInfo_kari_get0_orig_id(ri, pubalg, pubkey, keyid, issuer, sno);
 end;
 
@@ -2224,7 +2741,11 @@ function Load_CMS_RecipientInfo_kari_orig_id_cmp(ri: PCMS_RecipientInfo; cert: P
 begin
   CMS_RecipientInfo_kari_orig_id_cmp := LoadLibCryptoFunction('CMS_RecipientInfo_kari_orig_id_cmp');
   if not assigned(CMS_RecipientInfo_kari_orig_id_cmp) then
+    {$if declared(LEGACY_CMS_RecipientInfo_kari_orig_id_cmp)}
+    CMS_RecipientInfo_kari_orig_id_cmp := @LEGACY_CMS_RecipientInfo_kari_orig_id_cmp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_RecipientInfo_kari_orig_id_cmp');
+    {$ifend}
   Result := CMS_RecipientInfo_kari_orig_id_cmp(ri, cert);
 end;
 
@@ -2232,7 +2753,11 @@ function Load_CMS_RecipientEncryptedKey_get0_id(rek: PCMS_RecipientEncryptedKey;
 begin
   CMS_RecipientEncryptedKey_get0_id := LoadLibCryptoFunction('CMS_RecipientEncryptedKey_get0_id');
   if not assigned(CMS_RecipientEncryptedKey_get0_id) then
+    {$if declared(LEGACY_CMS_RecipientEncryptedKey_get0_id)}
+    CMS_RecipientEncryptedKey_get0_id := @LEGACY_CMS_RecipientEncryptedKey_get0_id;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_RecipientEncryptedKey_get0_id');
+    {$ifend}
   Result := CMS_RecipientEncryptedKey_get0_id(rek, keyid, tm, other, issuer, sno);
 end;
 
@@ -2240,7 +2765,11 @@ function Load_CMS_RecipientEncryptedKey_cert_cmp(rek: PCMS_RecipientEncryptedKey
 begin
   CMS_RecipientEncryptedKey_cert_cmp := LoadLibCryptoFunction('CMS_RecipientEncryptedKey_cert_cmp');
   if not assigned(CMS_RecipientEncryptedKey_cert_cmp) then
+    {$if declared(LEGACY_CMS_RecipientEncryptedKey_cert_cmp)}
+    CMS_RecipientEncryptedKey_cert_cmp := @LEGACY_CMS_RecipientEncryptedKey_cert_cmp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_RecipientEncryptedKey_cert_cmp');
+    {$ifend}
   Result := CMS_RecipientEncryptedKey_cert_cmp(rek, cert);
 end;
 
@@ -2248,7 +2777,11 @@ function Load_CMS_RecipientInfo_kari_set0_pkey(ri: PCMS_RecipientInfo; pk: PEVP_
 begin
   CMS_RecipientInfo_kari_set0_pkey := LoadLibCryptoFunction('CMS_RecipientInfo_kari_set0_pkey');
   if not assigned(CMS_RecipientInfo_kari_set0_pkey) then
+    {$if declared(LEGACY_CMS_RecipientInfo_kari_set0_pkey)}
+    CMS_RecipientInfo_kari_set0_pkey := @LEGACY_CMS_RecipientInfo_kari_set0_pkey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_RecipientInfo_kari_set0_pkey');
+    {$ifend}
   Result := CMS_RecipientInfo_kari_set0_pkey(ri, pk);
 end;
 
@@ -2256,7 +2789,11 @@ function Load_CMS_RecipientInfo_kari_set0_pkey_and_peer(ri: PCMS_RecipientInfo; 
 begin
   CMS_RecipientInfo_kari_set0_pkey_and_peer := LoadLibCryptoFunction('CMS_RecipientInfo_kari_set0_pkey_and_peer');
   if not assigned(CMS_RecipientInfo_kari_set0_pkey_and_peer) then
+    {$if declared(LEGACY_CMS_RecipientInfo_kari_set0_pkey_and_peer)}
+    CMS_RecipientInfo_kari_set0_pkey_and_peer := @LEGACY_CMS_RecipientInfo_kari_set0_pkey_and_peer;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_RecipientInfo_kari_set0_pkey_and_peer');
+    {$ifend}
   Result := CMS_RecipientInfo_kari_set0_pkey_and_peer(ri, pk, peer);
 end;
 
@@ -2264,7 +2801,11 @@ function Load_CMS_RecipientInfo_kari_get0_ctx(ri: PCMS_RecipientInfo): PEVP_CIPH
 begin
   CMS_RecipientInfo_kari_get0_ctx := LoadLibCryptoFunction('CMS_RecipientInfo_kari_get0_ctx');
   if not assigned(CMS_RecipientInfo_kari_get0_ctx) then
+    {$if declared(LEGACY_CMS_RecipientInfo_kari_get0_ctx)}
+    CMS_RecipientInfo_kari_get0_ctx := @LEGACY_CMS_RecipientInfo_kari_get0_ctx;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_RecipientInfo_kari_get0_ctx');
+    {$ifend}
   Result := CMS_RecipientInfo_kari_get0_ctx(ri);
 end;
 
@@ -2272,7 +2813,11 @@ function Load_CMS_RecipientInfo_kari_decrypt(cms: PCMS_ContentInfo; ri: PCMS_Rec
 begin
   CMS_RecipientInfo_kari_decrypt := LoadLibCryptoFunction('CMS_RecipientInfo_kari_decrypt');
   if not assigned(CMS_RecipientInfo_kari_decrypt) then
+    {$if declared(LEGACY_CMS_RecipientInfo_kari_decrypt)}
+    CMS_RecipientInfo_kari_decrypt := @LEGACY_CMS_RecipientInfo_kari_decrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_RecipientInfo_kari_decrypt');
+    {$ifend}
   Result := CMS_RecipientInfo_kari_decrypt(cms, ri, rek);
 end;
 
@@ -2280,7 +2825,11 @@ function Load_CMS_SharedInfo_encode(pder: PPbyte; kekalg: PX509_ALGOR; ukm: PASN
 begin
   CMS_SharedInfo_encode := LoadLibCryptoFunction('CMS_SharedInfo_encode');
   if not assigned(CMS_SharedInfo_encode) then
+    {$if declared(LEGACY_CMS_SharedInfo_encode)}
+    CMS_SharedInfo_encode := @LEGACY_CMS_SharedInfo_encode;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_SharedInfo_encode');
+    {$ifend}
   Result := CMS_SharedInfo_encode(pder, kekalg, ukm, keylen);
 end;
 

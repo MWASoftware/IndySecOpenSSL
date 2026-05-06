@@ -18,7 +18,8 @@
 unit openssl_camellia;
 
 {
-  Generated from OpenSSL 3.0.20 Header File camellia.h - Wed  6 May 13:05:33 BST 2026
+  Generated from OpenSSL 3.0.20 Header File camellia.h - Wed  6 May 13:14:42 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -171,7 +172,11 @@ function Load_Camellia_set_key(userKey: Pbyte; bits: TOpenSSL_C_INT; key: PCAMEL
 begin
   Camellia_set_key := LoadLibCryptoFunction('Camellia_set_key');
   if not assigned(Camellia_set_key) then
+    {$if declared(LEGACY_Camellia_set_key)}
+    Camellia_set_key := @LEGACY_Camellia_set_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('Camellia_set_key');
+    {$ifend}
   Result := Camellia_set_key(userKey, bits, key);
 end;
 
@@ -179,7 +184,11 @@ procedure Load_Camellia_encrypt(in_: Pbyte; out_: Pbyte; key: PCAMELLIA_KEY); cd
 begin
   Camellia_encrypt := LoadLibCryptoFunction('Camellia_encrypt');
   if not assigned(Camellia_encrypt) then
+    {$if declared(LEGACY_Camellia_encrypt)}
+    Camellia_encrypt := @LEGACY_Camellia_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('Camellia_encrypt');
+    {$ifend}
   Camellia_encrypt(in_, out_, key);
 end;
 
@@ -187,7 +196,11 @@ procedure Load_Camellia_decrypt(in_: Pbyte; out_: Pbyte; key: PCAMELLIA_KEY); cd
 begin
   Camellia_decrypt := LoadLibCryptoFunction('Camellia_decrypt');
   if not assigned(Camellia_decrypt) then
+    {$if declared(LEGACY_Camellia_decrypt)}
+    Camellia_decrypt := @LEGACY_Camellia_decrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('Camellia_decrypt');
+    {$ifend}
   Camellia_decrypt(in_, out_, key);
 end;
 
@@ -195,7 +208,11 @@ procedure Load_Camellia_ecb_encrypt(in_: Pbyte; out_: Pbyte; key: PCAMELLIA_KEY;
 begin
   Camellia_ecb_encrypt := LoadLibCryptoFunction('Camellia_ecb_encrypt');
   if not assigned(Camellia_ecb_encrypt) then
+    {$if declared(LEGACY_Camellia_ecb_encrypt)}
+    Camellia_ecb_encrypt := @LEGACY_Camellia_ecb_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('Camellia_ecb_encrypt');
+    {$ifend}
   Camellia_ecb_encrypt(in_, out_, key, enc);
 end;
 
@@ -203,7 +220,11 @@ procedure Load_Camellia_cbc_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_
 begin
   Camellia_cbc_encrypt := LoadLibCryptoFunction('Camellia_cbc_encrypt');
   if not assigned(Camellia_cbc_encrypt) then
+    {$if declared(LEGACY_Camellia_cbc_encrypt)}
+    Camellia_cbc_encrypt := @LEGACY_Camellia_cbc_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('Camellia_cbc_encrypt');
+    {$ifend}
   Camellia_cbc_encrypt(in_, out_, length, key, ivec, enc);
 end;
 
@@ -211,7 +232,11 @@ procedure Load_Camellia_cfb128_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL
 begin
   Camellia_cfb128_encrypt := LoadLibCryptoFunction('Camellia_cfb128_encrypt');
   if not assigned(Camellia_cfb128_encrypt) then
+    {$if declared(LEGACY_Camellia_cfb128_encrypt)}
+    Camellia_cfb128_encrypt := @LEGACY_Camellia_cfb128_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('Camellia_cfb128_encrypt');
+    {$ifend}
   Camellia_cfb128_encrypt(in_, out_, length, key, ivec, num, enc);
 end;
 
@@ -219,7 +244,11 @@ procedure Load_Camellia_cfb1_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C
 begin
   Camellia_cfb1_encrypt := LoadLibCryptoFunction('Camellia_cfb1_encrypt');
   if not assigned(Camellia_cfb1_encrypt) then
+    {$if declared(LEGACY_Camellia_cfb1_encrypt)}
+    Camellia_cfb1_encrypt := @LEGACY_Camellia_cfb1_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('Camellia_cfb1_encrypt');
+    {$ifend}
   Camellia_cfb1_encrypt(in_, out_, length, key, ivec, num, enc);
 end;
 
@@ -227,7 +256,11 @@ procedure Load_Camellia_cfb8_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C
 begin
   Camellia_cfb8_encrypt := LoadLibCryptoFunction('Camellia_cfb8_encrypt');
   if not assigned(Camellia_cfb8_encrypt) then
+    {$if declared(LEGACY_Camellia_cfb8_encrypt)}
+    Camellia_cfb8_encrypt := @LEGACY_Camellia_cfb8_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('Camellia_cfb8_encrypt');
+    {$ifend}
   Camellia_cfb8_encrypt(in_, out_, length, key, ivec, num, enc);
 end;
 
@@ -235,7 +268,11 @@ procedure Load_Camellia_ofb128_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL
 begin
   Camellia_ofb128_encrypt := LoadLibCryptoFunction('Camellia_ofb128_encrypt');
   if not assigned(Camellia_ofb128_encrypt) then
+    {$if declared(LEGACY_Camellia_ofb128_encrypt)}
+    Camellia_ofb128_encrypt := @LEGACY_Camellia_ofb128_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('Camellia_ofb128_encrypt');
+    {$ifend}
   Camellia_ofb128_encrypt(in_, out_, length, key, ivec, num);
 end;
 
@@ -243,7 +280,11 @@ procedure Load_Camellia_ctr128_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL
 begin
   Camellia_ctr128_encrypt := LoadLibCryptoFunction('Camellia_ctr128_encrypt');
   if not assigned(Camellia_ctr128_encrypt) then
+    {$if declared(LEGACY_Camellia_ctr128_encrypt)}
+    Camellia_ctr128_encrypt := @LEGACY_Camellia_ctr128_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('Camellia_ctr128_encrypt');
+    {$ifend}
   Camellia_ctr128_encrypt(in_, out_, length, key, ivec, ecount_buf, num);
 end;
 

@@ -18,7 +18,8 @@
 unit openssl_pem;
 
 {
-  Generated from OpenSSL 3.0.20 Header File pem.h - Wed  6 May 13:06:20 BST 2026
+  Generated from OpenSSL 3.0.20 Header File pem.h - Wed  6 May 13:15:30 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -935,7 +936,11 @@ function Load_PEM_get_EVP_CIPHER_INFO(header: PAnsiChar; cipher: PEVP_CIPHER_INF
 begin
   PEM_get_EVP_CIPHER_INFO := LoadLibCryptoFunction('PEM_get_EVP_CIPHER_INFO');
   if not assigned(PEM_get_EVP_CIPHER_INFO) then
+    {$if declared(LEGACY_PEM_get_EVP_CIPHER_INFO)}
+    PEM_get_EVP_CIPHER_INFO := @LEGACY_PEM_get_EVP_CIPHER_INFO;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_get_EVP_CIPHER_INFO');
+    {$ifend}
   Result := PEM_get_EVP_CIPHER_INFO(header, cipher);
 end;
 
@@ -943,7 +948,11 @@ function Load_PEM_do_header(cipher: PEVP_CIPHER_INFO; data: Pbyte; len: POpenSSL
 begin
   PEM_do_header := LoadLibCryptoFunction('PEM_do_header');
   if not assigned(PEM_do_header) then
+    {$if declared(LEGACY_PEM_do_header)}
+    PEM_do_header := @LEGACY_PEM_do_header;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_do_header');
+    {$ifend}
   Result := PEM_do_header(cipher, data, len, callback, u);
 end;
 
@@ -951,7 +960,11 @@ function Load_PEM_read_bio(bp: PBIO; name: PPAnsiChar; header: PPAnsiChar; data:
 begin
   PEM_read_bio := LoadLibCryptoFunction('PEM_read_bio');
   if not assigned(PEM_read_bio) then
+    {$if declared(LEGACY_PEM_read_bio)}
+    PEM_read_bio := @LEGACY_PEM_read_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_bio');
+    {$ifend}
   Result := PEM_read_bio(bp, name, header, data, len);
 end;
 
@@ -959,7 +972,11 @@ function Load_PEM_read_bio_ex(bp: PBIO; name: PPAnsiChar; header: PPAnsiChar; da
 begin
   PEM_read_bio_ex := LoadLibCryptoFunction('PEM_read_bio_ex');
   if not assigned(PEM_read_bio_ex) then
+    {$if declared(LEGACY_PEM_read_bio_ex)}
+    PEM_read_bio_ex := @LEGACY_PEM_read_bio_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_bio_ex');
+    {$ifend}
   Result := PEM_read_bio_ex(bp, name, header, data, len, flags);
 end;
 
@@ -967,7 +984,11 @@ function Load_PEM_bytes_read_bio_secmem(pdata: PPbyte; plen: POpenSSL_C_INT; pnm
 begin
   PEM_bytes_read_bio_secmem := LoadLibCryptoFunction('PEM_bytes_read_bio_secmem');
   if not assigned(PEM_bytes_read_bio_secmem) then
+    {$if declared(LEGACY_PEM_bytes_read_bio_secmem)}
+    PEM_bytes_read_bio_secmem := @LEGACY_PEM_bytes_read_bio_secmem;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_bytes_read_bio_secmem');
+    {$ifend}
   Result := PEM_bytes_read_bio_secmem(pdata, plen, pnm, name, bp, cb, u);
 end;
 
@@ -975,7 +996,11 @@ function Load_PEM_write_bio(bp: PBIO; name: PAnsiChar; hdr: PAnsiChar; data: Pby
 begin
   PEM_write_bio := LoadLibCryptoFunction('PEM_write_bio');
   if not assigned(PEM_write_bio) then
+    {$if declared(LEGACY_PEM_write_bio)}
+    PEM_write_bio := @LEGACY_PEM_write_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_bio');
+    {$ifend}
   Result := PEM_write_bio(bp, name, hdr, data, len);
 end;
 
@@ -983,7 +1008,11 @@ function Load_PEM_bytes_read_bio(pdata: PPbyte; plen: POpenSSL_C_INT; pnm: PPAns
 begin
   PEM_bytes_read_bio := LoadLibCryptoFunction('PEM_bytes_read_bio');
   if not assigned(PEM_bytes_read_bio) then
+    {$if declared(LEGACY_PEM_bytes_read_bio)}
+    PEM_bytes_read_bio := @LEGACY_PEM_bytes_read_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_bytes_read_bio');
+    {$ifend}
   Result := PEM_bytes_read_bio(pdata, plen, pnm, name, bp, cb, u);
 end;
 
@@ -991,7 +1020,11 @@ function Load_PEM_ASN1_read_bio(d2i: Pd2i_of_void; name: PAnsiChar; bp: PBIO; x:
 begin
   PEM_ASN1_read_bio := LoadLibCryptoFunction('PEM_ASN1_read_bio');
   if not assigned(PEM_ASN1_read_bio) then
+    {$if declared(LEGACY_PEM_ASN1_read_bio)}
+    PEM_ASN1_read_bio := @LEGACY_PEM_ASN1_read_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_ASN1_read_bio');
+    {$ifend}
   Result := PEM_ASN1_read_bio(d2i, name, bp, x, cb, u);
 end;
 
@@ -999,7 +1032,11 @@ function Load_PEM_ASN1_write_bio(i2d: Pi2d_of_void; name: PAnsiChar; bp: PBIO; x
 begin
   PEM_ASN1_write_bio := LoadLibCryptoFunction('PEM_ASN1_write_bio');
   if not assigned(PEM_ASN1_write_bio) then
+    {$if declared(LEGACY_PEM_ASN1_write_bio)}
+    PEM_ASN1_write_bio := @LEGACY_PEM_ASN1_write_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_ASN1_write_bio');
+    {$ifend}
   Result := PEM_ASN1_write_bio(i2d, name, bp, x, enc, kstr, klen, cb, u);
 end;
 
@@ -1007,7 +1044,11 @@ function Load_PEM_X509_INFO_read_bio(bp: PBIO; sk: Pstack_st_X509_INFO; cb: Tpem
 begin
   PEM_X509_INFO_read_bio := LoadLibCryptoFunction('PEM_X509_INFO_read_bio');
   if not assigned(PEM_X509_INFO_read_bio) then
+    {$if declared(LEGACY_PEM_X509_INFO_read_bio)}
+    PEM_X509_INFO_read_bio := @LEGACY_PEM_X509_INFO_read_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_X509_INFO_read_bio');
+    {$ifend}
   Result := PEM_X509_INFO_read_bio(bp, sk, cb, u);
 end;
 
@@ -1015,7 +1056,11 @@ function Load_PEM_X509_INFO_read_bio_ex(bp: PBIO; sk: Pstack_st_X509_INFO; cb: T
 begin
   PEM_X509_INFO_read_bio_ex := LoadLibCryptoFunction('PEM_X509_INFO_read_bio_ex');
   if not assigned(PEM_X509_INFO_read_bio_ex) then
+    {$if declared(LEGACY_PEM_X509_INFO_read_bio_ex)}
+    PEM_X509_INFO_read_bio_ex := @LEGACY_PEM_X509_INFO_read_bio_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_X509_INFO_read_bio_ex');
+    {$ifend}
   Result := PEM_X509_INFO_read_bio_ex(bp, sk, cb, u, libctx, propq);
 end;
 
@@ -1023,7 +1068,11 @@ function Load_PEM_X509_INFO_write_bio(bp: PBIO; xi: PX509_INFO; enc: PEVP_CIPHER
 begin
   PEM_X509_INFO_write_bio := LoadLibCryptoFunction('PEM_X509_INFO_write_bio');
   if not assigned(PEM_X509_INFO_write_bio) then
+    {$if declared(LEGACY_PEM_X509_INFO_write_bio)}
+    PEM_X509_INFO_write_bio := @LEGACY_PEM_X509_INFO_write_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_X509_INFO_write_bio');
+    {$ifend}
   Result := PEM_X509_INFO_write_bio(bp, xi, enc, kstr, klen, cd, u);
 end;
 
@@ -1032,7 +1081,11 @@ function Load_PEM_read(fp: PFILE; name: PPAnsiChar; header: PPAnsiChar; data: PP
 begin
   PEM_read := LoadLibCryptoFunction('PEM_read');
   if not assigned(PEM_read) then
+    {$if declared(LEGACY_PEM_read)}
+    PEM_read := @LEGACY_PEM_read;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read');
+    {$ifend}
   Result := PEM_read(fp, name, header, data, len);
 end;
 
@@ -1040,7 +1093,11 @@ function Load_PEM_write(fp: PFILE; name: PAnsiChar; hdr: PAnsiChar; data: Pbyte;
 begin
   PEM_write := LoadLibCryptoFunction('PEM_write');
   if not assigned(PEM_write) then
+    {$if declared(LEGACY_PEM_write)}
+    PEM_write := @LEGACY_PEM_write;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write');
+    {$ifend}
   Result := PEM_write(fp, name, hdr, data, len);
 end;
 
@@ -1048,7 +1105,11 @@ function Load_PEM_ASN1_read(d2i: Pd2i_of_void; name: PAnsiChar; fp: PFILE; x: Pp
 begin
   PEM_ASN1_read := LoadLibCryptoFunction('PEM_ASN1_read');
   if not assigned(PEM_ASN1_read) then
+    {$if declared(LEGACY_PEM_ASN1_read)}
+    PEM_ASN1_read := @LEGACY_PEM_ASN1_read;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_ASN1_read');
+    {$ifend}
   Result := PEM_ASN1_read(d2i, name, fp, x, cb, u);
 end;
 
@@ -1056,7 +1117,11 @@ function Load_PEM_ASN1_write(i2d: Pi2d_of_void; name: PAnsiChar; fp: PFILE; x: p
 begin
   PEM_ASN1_write := LoadLibCryptoFunction('PEM_ASN1_write');
   if not assigned(PEM_ASN1_write) then
+    {$if declared(LEGACY_PEM_ASN1_write)}
+    PEM_ASN1_write := @LEGACY_PEM_ASN1_write;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_ASN1_write');
+    {$ifend}
   Result := PEM_ASN1_write(i2d, name, fp, x, enc, kstr, klen, callback, u);
 end;
 
@@ -1064,7 +1129,11 @@ function Load_PEM_X509_INFO_read(fp: PFILE; sk: Pstack_st_X509_INFO; cb: Tpem_pa
 begin
   PEM_X509_INFO_read := LoadLibCryptoFunction('PEM_X509_INFO_read');
   if not assigned(PEM_X509_INFO_read) then
+    {$if declared(LEGACY_PEM_X509_INFO_read)}
+    PEM_X509_INFO_read := @LEGACY_PEM_X509_INFO_read;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_X509_INFO_read');
+    {$ifend}
   Result := PEM_X509_INFO_read(fp, sk, cb, u);
 end;
 
@@ -1072,7 +1141,11 @@ function Load_PEM_X509_INFO_read_ex(fp: PFILE; sk: Pstack_st_X509_INFO; cb: Tpem
 begin
   PEM_X509_INFO_read_ex := LoadLibCryptoFunction('PEM_X509_INFO_read_ex');
   if not assigned(PEM_X509_INFO_read_ex) then
+    {$if declared(LEGACY_PEM_X509_INFO_read_ex)}
+    PEM_X509_INFO_read_ex := @LEGACY_PEM_X509_INFO_read_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_X509_INFO_read_ex');
+    {$ifend}
   Result := PEM_X509_INFO_read_ex(fp, sk, cb, u, libctx, propq);
 end;
 
@@ -1081,7 +1154,11 @@ function Load_PEM_SignInit(ctx: PEVP_MD_CTX; type_: PEVP_MD): TOpenSSL_C_INT; cd
 begin
   PEM_SignInit := LoadLibCryptoFunction('PEM_SignInit');
   if not assigned(PEM_SignInit) then
+    {$if declared(LEGACY_PEM_SignInit)}
+    PEM_SignInit := @LEGACY_PEM_SignInit;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_SignInit');
+    {$ifend}
   Result := PEM_SignInit(ctx, type_);
 end;
 
@@ -1089,7 +1166,11 @@ function Load_PEM_SignUpdate(ctx: PEVP_MD_CTX; d: Pbyte; cnt: TOpenSSL_C_UINT): 
 begin
   PEM_SignUpdate := LoadLibCryptoFunction('PEM_SignUpdate');
   if not assigned(PEM_SignUpdate) then
+    {$if declared(LEGACY_PEM_SignUpdate)}
+    PEM_SignUpdate := @LEGACY_PEM_SignUpdate;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_SignUpdate');
+    {$ifend}
   Result := PEM_SignUpdate(ctx, d, cnt);
 end;
 
@@ -1097,7 +1178,11 @@ function Load_PEM_SignFinal(ctx: PEVP_MD_CTX; sigret: Pbyte; siglen: POpenSSL_C_
 begin
   PEM_SignFinal := LoadLibCryptoFunction('PEM_SignFinal');
   if not assigned(PEM_SignFinal) then
+    {$if declared(LEGACY_PEM_SignFinal)}
+    PEM_SignFinal := @LEGACY_PEM_SignFinal;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_SignFinal');
+    {$ifend}
   Result := PEM_SignFinal(ctx, sigret, siglen, pkey);
 end;
 
@@ -1105,7 +1190,11 @@ function Load_PEM_def_callback(buf: PAnsiChar; num: TOpenSSL_C_INT; rwflag: TOpe
 begin
   PEM_def_callback := LoadLibCryptoFunction('PEM_def_callback');
   if not assigned(PEM_def_callback) then
+    {$if declared(LEGACY_PEM_def_callback)}
+    PEM_def_callback := @LEGACY_PEM_def_callback;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_def_callback');
+    {$ifend}
   Result := PEM_def_callback(buf, num, rwflag, userdata);
 end;
 
@@ -1113,7 +1202,11 @@ procedure Load_PEM_proc_type(buf: PAnsiChar; type_: TOpenSSL_C_INT); cdecl;
 begin
   PEM_proc_type := LoadLibCryptoFunction('PEM_proc_type');
   if not assigned(PEM_proc_type) then
+    {$if declared(LEGACY_PEM_proc_type)}
+    PEM_proc_type := @LEGACY_PEM_proc_type;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_proc_type');
+    {$ifend}
   PEM_proc_type(buf, type_);
 end;
 
@@ -1121,7 +1214,11 @@ procedure Load_PEM_dek_info(buf: PAnsiChar; type_: PAnsiChar; len: TOpenSSL_C_IN
 begin
   PEM_dek_info := LoadLibCryptoFunction('PEM_dek_info');
   if not assigned(PEM_dek_info) then
+    {$if declared(LEGACY_PEM_dek_info)}
+    PEM_dek_info := @LEGACY_PEM_dek_info;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_dek_info');
+    {$ifend}
   PEM_dek_info(buf, type_, len, str);
 end;
 
@@ -1129,7 +1226,11 @@ function Load_PEM_read_bio_X509(out_: PBIO; x: PPX509; cb: Tpem_password_cb; u: 
 begin
   PEM_read_bio_X509 := LoadLibCryptoFunction('PEM_read_bio_X509');
   if not assigned(PEM_read_bio_X509) then
+    {$if declared(LEGACY_PEM_read_bio_X509)}
+    PEM_read_bio_X509 := @LEGACY_PEM_read_bio_X509;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_bio_X509');
+    {$ifend}
   Result := PEM_read_bio_X509(out_, x, cb, u);
 end;
 
@@ -1137,7 +1238,11 @@ function Load_PEM_read_X509(out_: PFILE; x: PPX509; cb: Tpem_password_cb; u: poi
 begin
   PEM_read_X509 := LoadLibCryptoFunction('PEM_read_X509');
   if not assigned(PEM_read_X509) then
+    {$if declared(LEGACY_PEM_read_X509)}
+    PEM_read_X509 := @LEGACY_PEM_read_X509;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_X509');
+    {$ifend}
   Result := PEM_read_X509(out_, x, cb, u);
 end;
 
@@ -1145,7 +1250,11 @@ function Load_PEM_write_bio_X509(out_: PBIO; x: PX509): TOpenSSL_C_INT; cdecl;
 begin
   PEM_write_bio_X509 := LoadLibCryptoFunction('PEM_write_bio_X509');
   if not assigned(PEM_write_bio_X509) then
+    {$if declared(LEGACY_PEM_write_bio_X509)}
+    PEM_write_bio_X509 := @LEGACY_PEM_write_bio_X509;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_bio_X509');
+    {$ifend}
   Result := PEM_write_bio_X509(out_, x);
 end;
 
@@ -1153,7 +1262,11 @@ function Load_PEM_write_X509(out_: PFILE; x: PX509): TOpenSSL_C_INT; cdecl;
 begin
   PEM_write_X509 := LoadLibCryptoFunction('PEM_write_X509');
   if not assigned(PEM_write_X509) then
+    {$if declared(LEGACY_PEM_write_X509)}
+    PEM_write_X509 := @LEGACY_PEM_write_X509;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_X509');
+    {$ifend}
   Result := PEM_write_X509(out_, x);
 end;
 
@@ -1161,7 +1274,11 @@ function Load_PEM_read_bio_X509_AUX(out_: PBIO; x: PPX509; cb: Tpem_password_cb;
 begin
   PEM_read_bio_X509_AUX := LoadLibCryptoFunction('PEM_read_bio_X509_AUX');
   if not assigned(PEM_read_bio_X509_AUX) then
+    {$if declared(LEGACY_PEM_read_bio_X509_AUX)}
+    PEM_read_bio_X509_AUX := @LEGACY_PEM_read_bio_X509_AUX;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_bio_X509_AUX');
+    {$ifend}
   Result := PEM_read_bio_X509_AUX(out_, x, cb, u);
 end;
 
@@ -1169,7 +1286,11 @@ function Load_PEM_read_X509_AUX(out_: PFILE; x: PPX509; cb: Tpem_password_cb; u:
 begin
   PEM_read_X509_AUX := LoadLibCryptoFunction('PEM_read_X509_AUX');
   if not assigned(PEM_read_X509_AUX) then
+    {$if declared(LEGACY_PEM_read_X509_AUX)}
+    PEM_read_X509_AUX := @LEGACY_PEM_read_X509_AUX;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_X509_AUX');
+    {$ifend}
   Result := PEM_read_X509_AUX(out_, x, cb, u);
 end;
 
@@ -1177,7 +1298,11 @@ function Load_PEM_write_bio_X509_AUX(out_: PBIO; x: PX509): TOpenSSL_C_INT; cdec
 begin
   PEM_write_bio_X509_AUX := LoadLibCryptoFunction('PEM_write_bio_X509_AUX');
   if not assigned(PEM_write_bio_X509_AUX) then
+    {$if declared(LEGACY_PEM_write_bio_X509_AUX)}
+    PEM_write_bio_X509_AUX := @LEGACY_PEM_write_bio_X509_AUX;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_bio_X509_AUX');
+    {$ifend}
   Result := PEM_write_bio_X509_AUX(out_, x);
 end;
 
@@ -1185,7 +1310,11 @@ function Load_PEM_write_X509_AUX(out_: PFILE; x: PX509): TOpenSSL_C_INT; cdecl;
 begin
   PEM_write_X509_AUX := LoadLibCryptoFunction('PEM_write_X509_AUX');
   if not assigned(PEM_write_X509_AUX) then
+    {$if declared(LEGACY_PEM_write_X509_AUX)}
+    PEM_write_X509_AUX := @LEGACY_PEM_write_X509_AUX;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_X509_AUX');
+    {$ifend}
   Result := PEM_write_X509_AUX(out_, x);
 end;
 
@@ -1193,7 +1322,11 @@ function Load_PEM_read_bio_X509_REQ(out_: PBIO; x: PPX509_REQ; cb: Tpem_password
 begin
   PEM_read_bio_X509_REQ := LoadLibCryptoFunction('PEM_read_bio_X509_REQ');
   if not assigned(PEM_read_bio_X509_REQ) then
+    {$if declared(LEGACY_PEM_read_bio_X509_REQ)}
+    PEM_read_bio_X509_REQ := @LEGACY_PEM_read_bio_X509_REQ;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_bio_X509_REQ');
+    {$ifend}
   Result := PEM_read_bio_X509_REQ(out_, x, cb, u);
 end;
 
@@ -1201,7 +1334,11 @@ function Load_PEM_read_X509_REQ(out_: PFILE; x: PPX509_REQ; cb: Tpem_password_cb
 begin
   PEM_read_X509_REQ := LoadLibCryptoFunction('PEM_read_X509_REQ');
   if not assigned(PEM_read_X509_REQ) then
+    {$if declared(LEGACY_PEM_read_X509_REQ)}
+    PEM_read_X509_REQ := @LEGACY_PEM_read_X509_REQ;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_X509_REQ');
+    {$ifend}
   Result := PEM_read_X509_REQ(out_, x, cb, u);
 end;
 
@@ -1209,7 +1346,11 @@ function Load_PEM_write_bio_X509_REQ(out_: PBIO; x: PX509_REQ): TOpenSSL_C_INT; 
 begin
   PEM_write_bio_X509_REQ := LoadLibCryptoFunction('PEM_write_bio_X509_REQ');
   if not assigned(PEM_write_bio_X509_REQ) then
+    {$if declared(LEGACY_PEM_write_bio_X509_REQ)}
+    PEM_write_bio_X509_REQ := @LEGACY_PEM_write_bio_X509_REQ;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_bio_X509_REQ');
+    {$ifend}
   Result := PEM_write_bio_X509_REQ(out_, x);
 end;
 
@@ -1217,7 +1358,11 @@ function Load_PEM_write_X509_REQ(out_: PFILE; x: PX509_REQ): TOpenSSL_C_INT; cde
 begin
   PEM_write_X509_REQ := LoadLibCryptoFunction('PEM_write_X509_REQ');
   if not assigned(PEM_write_X509_REQ) then
+    {$if declared(LEGACY_PEM_write_X509_REQ)}
+    PEM_write_X509_REQ := @LEGACY_PEM_write_X509_REQ;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_X509_REQ');
+    {$ifend}
   Result := PEM_write_X509_REQ(out_, x);
 end;
 
@@ -1225,7 +1370,11 @@ function Load_PEM_write_bio_X509_REQ_NEW(out_: PBIO; x: PX509_REQ): TOpenSSL_C_I
 begin
   PEM_write_bio_X509_REQ_NEW := LoadLibCryptoFunction('PEM_write_bio_X509_REQ_NEW');
   if not assigned(PEM_write_bio_X509_REQ_NEW) then
+    {$if declared(LEGACY_PEM_write_bio_X509_REQ_NEW)}
+    PEM_write_bio_X509_REQ_NEW := @LEGACY_PEM_write_bio_X509_REQ_NEW;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_bio_X509_REQ_NEW');
+    {$ifend}
   Result := PEM_write_bio_X509_REQ_NEW(out_, x);
 end;
 
@@ -1233,7 +1382,11 @@ function Load_PEM_write_X509_REQ_NEW(out_: PFILE; x: PX509_REQ): TOpenSSL_C_INT;
 begin
   PEM_write_X509_REQ_NEW := LoadLibCryptoFunction('PEM_write_X509_REQ_NEW');
   if not assigned(PEM_write_X509_REQ_NEW) then
+    {$if declared(LEGACY_PEM_write_X509_REQ_NEW)}
+    PEM_write_X509_REQ_NEW := @LEGACY_PEM_write_X509_REQ_NEW;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_X509_REQ_NEW');
+    {$ifend}
   Result := PEM_write_X509_REQ_NEW(out_, x);
 end;
 
@@ -1241,7 +1394,11 @@ function Load_PEM_read_bio_X509_CRL(out_: PBIO; x: PPX509_CRL; cb: Tpem_password
 begin
   PEM_read_bio_X509_CRL := LoadLibCryptoFunction('PEM_read_bio_X509_CRL');
   if not assigned(PEM_read_bio_X509_CRL) then
+    {$if declared(LEGACY_PEM_read_bio_X509_CRL)}
+    PEM_read_bio_X509_CRL := @LEGACY_PEM_read_bio_X509_CRL;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_bio_X509_CRL');
+    {$ifend}
   Result := PEM_read_bio_X509_CRL(out_, x, cb, u);
 end;
 
@@ -1249,7 +1406,11 @@ function Load_PEM_read_X509_CRL(out_: PFILE; x: PPX509_CRL; cb: Tpem_password_cb
 begin
   PEM_read_X509_CRL := LoadLibCryptoFunction('PEM_read_X509_CRL');
   if not assigned(PEM_read_X509_CRL) then
+    {$if declared(LEGACY_PEM_read_X509_CRL)}
+    PEM_read_X509_CRL := @LEGACY_PEM_read_X509_CRL;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_X509_CRL');
+    {$ifend}
   Result := PEM_read_X509_CRL(out_, x, cb, u);
 end;
 
@@ -1257,7 +1418,11 @@ function Load_PEM_write_bio_X509_CRL(out_: PBIO; x: PX509_CRL): TOpenSSL_C_INT; 
 begin
   PEM_write_bio_X509_CRL := LoadLibCryptoFunction('PEM_write_bio_X509_CRL');
   if not assigned(PEM_write_bio_X509_CRL) then
+    {$if declared(LEGACY_PEM_write_bio_X509_CRL)}
+    PEM_write_bio_X509_CRL := @LEGACY_PEM_write_bio_X509_CRL;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_bio_X509_CRL');
+    {$ifend}
   Result := PEM_write_bio_X509_CRL(out_, x);
 end;
 
@@ -1265,7 +1430,11 @@ function Load_PEM_write_X509_CRL(out_: PFILE; x: PX509_CRL): TOpenSSL_C_INT; cde
 begin
   PEM_write_X509_CRL := LoadLibCryptoFunction('PEM_write_X509_CRL');
   if not assigned(PEM_write_X509_CRL) then
+    {$if declared(LEGACY_PEM_write_X509_CRL)}
+    PEM_write_X509_CRL := @LEGACY_PEM_write_X509_CRL;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_X509_CRL');
+    {$ifend}
   Result := PEM_write_X509_CRL(out_, x);
 end;
 
@@ -1273,7 +1442,11 @@ function Load_PEM_read_bio_X509_PUBKEY(out_: PBIO; x: PPX509_PUBKEY; cb: Tpem_pa
 begin
   PEM_read_bio_X509_PUBKEY := LoadLibCryptoFunction('PEM_read_bio_X509_PUBKEY');
   if not assigned(PEM_read_bio_X509_PUBKEY) then
+    {$if declared(LEGACY_PEM_read_bio_X509_PUBKEY)}
+    PEM_read_bio_X509_PUBKEY := @LEGACY_PEM_read_bio_X509_PUBKEY;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_bio_X509_PUBKEY');
+    {$ifend}
   Result := PEM_read_bio_X509_PUBKEY(out_, x, cb, u);
 end;
 
@@ -1281,7 +1454,11 @@ function Load_PEM_read_X509_PUBKEY(out_: PFILE; x: PPX509_PUBKEY; cb: Tpem_passw
 begin
   PEM_read_X509_PUBKEY := LoadLibCryptoFunction('PEM_read_X509_PUBKEY');
   if not assigned(PEM_read_X509_PUBKEY) then
+    {$if declared(LEGACY_PEM_read_X509_PUBKEY)}
+    PEM_read_X509_PUBKEY := @LEGACY_PEM_read_X509_PUBKEY;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_X509_PUBKEY');
+    {$ifend}
   Result := PEM_read_X509_PUBKEY(out_, x, cb, u);
 end;
 
@@ -1289,7 +1466,11 @@ function Load_PEM_write_bio_X509_PUBKEY(out_: PBIO; x: PX509_PUBKEY): TOpenSSL_C
 begin
   PEM_write_bio_X509_PUBKEY := LoadLibCryptoFunction('PEM_write_bio_X509_PUBKEY');
   if not assigned(PEM_write_bio_X509_PUBKEY) then
+    {$if declared(LEGACY_PEM_write_bio_X509_PUBKEY)}
+    PEM_write_bio_X509_PUBKEY := @LEGACY_PEM_write_bio_X509_PUBKEY;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_bio_X509_PUBKEY');
+    {$ifend}
   Result := PEM_write_bio_X509_PUBKEY(out_, x);
 end;
 
@@ -1297,7 +1478,11 @@ function Load_PEM_write_X509_PUBKEY(out_: PFILE; x: PX509_PUBKEY): TOpenSSL_C_IN
 begin
   PEM_write_X509_PUBKEY := LoadLibCryptoFunction('PEM_write_X509_PUBKEY');
   if not assigned(PEM_write_X509_PUBKEY) then
+    {$if declared(LEGACY_PEM_write_X509_PUBKEY)}
+    PEM_write_X509_PUBKEY := @LEGACY_PEM_write_X509_PUBKEY;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_X509_PUBKEY');
+    {$ifend}
   Result := PEM_write_X509_PUBKEY(out_, x);
 end;
 
@@ -1305,7 +1490,11 @@ function Load_PEM_read_bio_PKCS7(out_: PBIO; x: PPPKCS7; cb: Tpem_password_cb; u
 begin
   PEM_read_bio_PKCS7 := LoadLibCryptoFunction('PEM_read_bio_PKCS7');
   if not assigned(PEM_read_bio_PKCS7) then
+    {$if declared(LEGACY_PEM_read_bio_PKCS7)}
+    PEM_read_bio_PKCS7 := @LEGACY_PEM_read_bio_PKCS7;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_bio_PKCS7');
+    {$ifend}
   Result := PEM_read_bio_PKCS7(out_, x, cb, u);
 end;
 
@@ -1313,7 +1502,11 @@ function Load_PEM_read_PKCS7(out_: PFILE; x: PPPKCS7; cb: Tpem_password_cb; u: p
 begin
   PEM_read_PKCS7 := LoadLibCryptoFunction('PEM_read_PKCS7');
   if not assigned(PEM_read_PKCS7) then
+    {$if declared(LEGACY_PEM_read_PKCS7)}
+    PEM_read_PKCS7 := @LEGACY_PEM_read_PKCS7;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_PKCS7');
+    {$ifend}
   Result := PEM_read_PKCS7(out_, x, cb, u);
 end;
 
@@ -1321,7 +1514,11 @@ function Load_PEM_write_bio_PKCS7(out_: PBIO; x: PPKCS7): TOpenSSL_C_INT; cdecl;
 begin
   PEM_write_bio_PKCS7 := LoadLibCryptoFunction('PEM_write_bio_PKCS7');
   if not assigned(PEM_write_bio_PKCS7) then
+    {$if declared(LEGACY_PEM_write_bio_PKCS7)}
+    PEM_write_bio_PKCS7 := @LEGACY_PEM_write_bio_PKCS7;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_bio_PKCS7');
+    {$ifend}
   Result := PEM_write_bio_PKCS7(out_, x);
 end;
 
@@ -1329,7 +1526,11 @@ function Load_PEM_write_PKCS7(out_: PFILE; x: PPKCS7): TOpenSSL_C_INT; cdecl;
 begin
   PEM_write_PKCS7 := LoadLibCryptoFunction('PEM_write_PKCS7');
   if not assigned(PEM_write_PKCS7) then
+    {$if declared(LEGACY_PEM_write_PKCS7)}
+    PEM_write_PKCS7 := @LEGACY_PEM_write_PKCS7;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_PKCS7');
+    {$ifend}
   Result := PEM_write_PKCS7(out_, x);
 end;
 
@@ -1337,7 +1538,11 @@ function Load_PEM_read_bio_NETSCAPE_CERT_SEQUENCE(out_: PBIO; x: PPNETSCAPE_CERT
 begin
   PEM_read_bio_NETSCAPE_CERT_SEQUENCE := LoadLibCryptoFunction('PEM_read_bio_NETSCAPE_CERT_SEQUENCE');
   if not assigned(PEM_read_bio_NETSCAPE_CERT_SEQUENCE) then
+    {$if declared(LEGACY_PEM_read_bio_NETSCAPE_CERT_SEQUENCE)}
+    PEM_read_bio_NETSCAPE_CERT_SEQUENCE := @LEGACY_PEM_read_bio_NETSCAPE_CERT_SEQUENCE;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_bio_NETSCAPE_CERT_SEQUENCE');
+    {$ifend}
   Result := PEM_read_bio_NETSCAPE_CERT_SEQUENCE(out_, x, cb, u);
 end;
 
@@ -1345,7 +1550,11 @@ function Load_PEM_read_NETSCAPE_CERT_SEQUENCE(out_: PFILE; x: PPNETSCAPE_CERT_SE
 begin
   PEM_read_NETSCAPE_CERT_SEQUENCE := LoadLibCryptoFunction('PEM_read_NETSCAPE_CERT_SEQUENCE');
   if not assigned(PEM_read_NETSCAPE_CERT_SEQUENCE) then
+    {$if declared(LEGACY_PEM_read_NETSCAPE_CERT_SEQUENCE)}
+    PEM_read_NETSCAPE_CERT_SEQUENCE := @LEGACY_PEM_read_NETSCAPE_CERT_SEQUENCE;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_NETSCAPE_CERT_SEQUENCE');
+    {$ifend}
   Result := PEM_read_NETSCAPE_CERT_SEQUENCE(out_, x, cb, u);
 end;
 
@@ -1353,7 +1562,11 @@ function Load_PEM_write_bio_NETSCAPE_CERT_SEQUENCE(out_: PBIO; x: PNETSCAPE_CERT
 begin
   PEM_write_bio_NETSCAPE_CERT_SEQUENCE := LoadLibCryptoFunction('PEM_write_bio_NETSCAPE_CERT_SEQUENCE');
   if not assigned(PEM_write_bio_NETSCAPE_CERT_SEQUENCE) then
+    {$if declared(LEGACY_PEM_write_bio_NETSCAPE_CERT_SEQUENCE)}
+    PEM_write_bio_NETSCAPE_CERT_SEQUENCE := @LEGACY_PEM_write_bio_NETSCAPE_CERT_SEQUENCE;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_bio_NETSCAPE_CERT_SEQUENCE');
+    {$ifend}
   Result := PEM_write_bio_NETSCAPE_CERT_SEQUENCE(out_, x);
 end;
 
@@ -1361,7 +1574,11 @@ function Load_PEM_write_NETSCAPE_CERT_SEQUENCE(out_: PFILE; x: PNETSCAPE_CERT_SE
 begin
   PEM_write_NETSCAPE_CERT_SEQUENCE := LoadLibCryptoFunction('PEM_write_NETSCAPE_CERT_SEQUENCE');
   if not assigned(PEM_write_NETSCAPE_CERT_SEQUENCE) then
+    {$if declared(LEGACY_PEM_write_NETSCAPE_CERT_SEQUENCE)}
+    PEM_write_NETSCAPE_CERT_SEQUENCE := @LEGACY_PEM_write_NETSCAPE_CERT_SEQUENCE;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_NETSCAPE_CERT_SEQUENCE');
+    {$ifend}
   Result := PEM_write_NETSCAPE_CERT_SEQUENCE(out_, x);
 end;
 
@@ -1369,7 +1586,11 @@ function Load_PEM_read_bio_PKCS8(out_: PBIO; x: PPX509_SIG; cb: Tpem_password_cb
 begin
   PEM_read_bio_PKCS8 := LoadLibCryptoFunction('PEM_read_bio_PKCS8');
   if not assigned(PEM_read_bio_PKCS8) then
+    {$if declared(LEGACY_PEM_read_bio_PKCS8)}
+    PEM_read_bio_PKCS8 := @LEGACY_PEM_read_bio_PKCS8;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_bio_PKCS8');
+    {$ifend}
   Result := PEM_read_bio_PKCS8(out_, x, cb, u);
 end;
 
@@ -1377,7 +1598,11 @@ function Load_PEM_read_PKCS8(out_: PFILE; x: PPX509_SIG; cb: Tpem_password_cb; u
 begin
   PEM_read_PKCS8 := LoadLibCryptoFunction('PEM_read_PKCS8');
   if not assigned(PEM_read_PKCS8) then
+    {$if declared(LEGACY_PEM_read_PKCS8)}
+    PEM_read_PKCS8 := @LEGACY_PEM_read_PKCS8;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_PKCS8');
+    {$ifend}
   Result := PEM_read_PKCS8(out_, x, cb, u);
 end;
 
@@ -1385,7 +1610,11 @@ function Load_PEM_write_bio_PKCS8(out_: PBIO; x: PX509_SIG): TOpenSSL_C_INT; cde
 begin
   PEM_write_bio_PKCS8 := LoadLibCryptoFunction('PEM_write_bio_PKCS8');
   if not assigned(PEM_write_bio_PKCS8) then
+    {$if declared(LEGACY_PEM_write_bio_PKCS8)}
+    PEM_write_bio_PKCS8 := @LEGACY_PEM_write_bio_PKCS8;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_bio_PKCS8');
+    {$ifend}
   Result := PEM_write_bio_PKCS8(out_, x);
 end;
 
@@ -1393,7 +1622,11 @@ function Load_PEM_write_PKCS8(out_: PFILE; x: PX509_SIG): TOpenSSL_C_INT; cdecl;
 begin
   PEM_write_PKCS8 := LoadLibCryptoFunction('PEM_write_PKCS8');
   if not assigned(PEM_write_PKCS8) then
+    {$if declared(LEGACY_PEM_write_PKCS8)}
+    PEM_write_PKCS8 := @LEGACY_PEM_write_PKCS8;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_PKCS8');
+    {$ifend}
   Result := PEM_write_PKCS8(out_, x);
 end;
 
@@ -1401,7 +1634,11 @@ function Load_PEM_read_bio_PKCS8_PRIV_KEY_INFO(out_: PBIO; x: PPPKCS8_PRIV_KEY_I
 begin
   PEM_read_bio_PKCS8_PRIV_KEY_INFO := LoadLibCryptoFunction('PEM_read_bio_PKCS8_PRIV_KEY_INFO');
   if not assigned(PEM_read_bio_PKCS8_PRIV_KEY_INFO) then
+    {$if declared(LEGACY_PEM_read_bio_PKCS8_PRIV_KEY_INFO)}
+    PEM_read_bio_PKCS8_PRIV_KEY_INFO := @LEGACY_PEM_read_bio_PKCS8_PRIV_KEY_INFO;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_bio_PKCS8_PRIV_KEY_INFO');
+    {$ifend}
   Result := PEM_read_bio_PKCS8_PRIV_KEY_INFO(out_, x, cb, u);
 end;
 
@@ -1409,7 +1646,11 @@ function Load_PEM_read_PKCS8_PRIV_KEY_INFO(out_: PFILE; x: PPPKCS8_PRIV_KEY_INFO
 begin
   PEM_read_PKCS8_PRIV_KEY_INFO := LoadLibCryptoFunction('PEM_read_PKCS8_PRIV_KEY_INFO');
   if not assigned(PEM_read_PKCS8_PRIV_KEY_INFO) then
+    {$if declared(LEGACY_PEM_read_PKCS8_PRIV_KEY_INFO)}
+    PEM_read_PKCS8_PRIV_KEY_INFO := @LEGACY_PEM_read_PKCS8_PRIV_KEY_INFO;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_PKCS8_PRIV_KEY_INFO');
+    {$ifend}
   Result := PEM_read_PKCS8_PRIV_KEY_INFO(out_, x, cb, u);
 end;
 
@@ -1417,7 +1658,11 @@ function Load_PEM_write_bio_PKCS8_PRIV_KEY_INFO(out_: PBIO; x: PPKCS8_PRIV_KEY_I
 begin
   PEM_write_bio_PKCS8_PRIV_KEY_INFO := LoadLibCryptoFunction('PEM_write_bio_PKCS8_PRIV_KEY_INFO');
   if not assigned(PEM_write_bio_PKCS8_PRIV_KEY_INFO) then
+    {$if declared(LEGACY_PEM_write_bio_PKCS8_PRIV_KEY_INFO)}
+    PEM_write_bio_PKCS8_PRIV_KEY_INFO := @LEGACY_PEM_write_bio_PKCS8_PRIV_KEY_INFO;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_bio_PKCS8_PRIV_KEY_INFO');
+    {$ifend}
   Result := PEM_write_bio_PKCS8_PRIV_KEY_INFO(out_, x);
 end;
 
@@ -1425,7 +1670,11 @@ function Load_PEM_write_PKCS8_PRIV_KEY_INFO(out_: PFILE; x: PPKCS8_PRIV_KEY_INFO
 begin
   PEM_write_PKCS8_PRIV_KEY_INFO := LoadLibCryptoFunction('PEM_write_PKCS8_PRIV_KEY_INFO');
   if not assigned(PEM_write_PKCS8_PRIV_KEY_INFO) then
+    {$if declared(LEGACY_PEM_write_PKCS8_PRIV_KEY_INFO)}
+    PEM_write_PKCS8_PRIV_KEY_INFO := @LEGACY_PEM_write_PKCS8_PRIV_KEY_INFO;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_PKCS8_PRIV_KEY_INFO');
+    {$ifend}
   Result := PEM_write_PKCS8_PRIV_KEY_INFO(out_, x);
 end;
 
@@ -1434,7 +1683,11 @@ function Load_PEM_read_bio_RSAPrivateKey(out_: PBIO; x: PPRSA; cb: Tpem_password
 begin
   PEM_read_bio_RSAPrivateKey := LoadLibCryptoFunction('PEM_read_bio_RSAPrivateKey');
   if not assigned(PEM_read_bio_RSAPrivateKey) then
+    {$if declared(LEGACY_PEM_read_bio_RSAPrivateKey)}
+    PEM_read_bio_RSAPrivateKey := @LEGACY_PEM_read_bio_RSAPrivateKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_bio_RSAPrivateKey');
+    {$ifend}
   Result := PEM_read_bio_RSAPrivateKey(out_, x, cb, u);
 end;
 
@@ -1442,7 +1695,11 @@ function Load_PEM_read_RSAPrivateKey(out_: PFILE; x: PPRSA; cb: Tpem_password_cb
 begin
   PEM_read_RSAPrivateKey := LoadLibCryptoFunction('PEM_read_RSAPrivateKey');
   if not assigned(PEM_read_RSAPrivateKey) then
+    {$if declared(LEGACY_PEM_read_RSAPrivateKey)}
+    PEM_read_RSAPrivateKey := @LEGACY_PEM_read_RSAPrivateKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_RSAPrivateKey');
+    {$ifend}
   Result := PEM_read_RSAPrivateKey(out_, x, cb, u);
 end;
 
@@ -1450,7 +1707,11 @@ function Load_PEM_write_bio_RSAPrivateKey(out_: PBIO; x: PRSA; enc: PEVP_CIPHER;
 begin
   PEM_write_bio_RSAPrivateKey := LoadLibCryptoFunction('PEM_write_bio_RSAPrivateKey');
   if not assigned(PEM_write_bio_RSAPrivateKey) then
+    {$if declared(LEGACY_PEM_write_bio_RSAPrivateKey)}
+    PEM_write_bio_RSAPrivateKey := @LEGACY_PEM_write_bio_RSAPrivateKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_bio_RSAPrivateKey');
+    {$ifend}
   Result := PEM_write_bio_RSAPrivateKey(out_, x, enc, kstr, klen, cb, u);
 end;
 
@@ -1458,7 +1719,11 @@ function Load_PEM_write_RSAPrivateKey(out_: PFILE; x: PRSA; enc: PEVP_CIPHER; ks
 begin
   PEM_write_RSAPrivateKey := LoadLibCryptoFunction('PEM_write_RSAPrivateKey');
   if not assigned(PEM_write_RSAPrivateKey) then
+    {$if declared(LEGACY_PEM_write_RSAPrivateKey)}
+    PEM_write_RSAPrivateKey := @LEGACY_PEM_write_RSAPrivateKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_RSAPrivateKey');
+    {$ifend}
   Result := PEM_write_RSAPrivateKey(out_, x, enc, kstr, klen, cb, u);
 end;
 
@@ -1466,7 +1731,11 @@ function Load_PEM_read_bio_RSAPublicKey(out_: PBIO; x: PPRSA; cb: Tpem_password_
 begin
   PEM_read_bio_RSAPublicKey := LoadLibCryptoFunction('PEM_read_bio_RSAPublicKey');
   if not assigned(PEM_read_bio_RSAPublicKey) then
+    {$if declared(LEGACY_PEM_read_bio_RSAPublicKey)}
+    PEM_read_bio_RSAPublicKey := @LEGACY_PEM_read_bio_RSAPublicKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_bio_RSAPublicKey');
+    {$ifend}
   Result := PEM_read_bio_RSAPublicKey(out_, x, cb, u);
 end;
 
@@ -1474,7 +1743,11 @@ function Load_PEM_read_RSAPublicKey(out_: PFILE; x: PPRSA; cb: Tpem_password_cb;
 begin
   PEM_read_RSAPublicKey := LoadLibCryptoFunction('PEM_read_RSAPublicKey');
   if not assigned(PEM_read_RSAPublicKey) then
+    {$if declared(LEGACY_PEM_read_RSAPublicKey)}
+    PEM_read_RSAPublicKey := @LEGACY_PEM_read_RSAPublicKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_RSAPublicKey');
+    {$ifend}
   Result := PEM_read_RSAPublicKey(out_, x, cb, u);
 end;
 
@@ -1482,7 +1755,11 @@ function Load_PEM_write_bio_RSAPublicKey(out_: PBIO; x: PRSA): TOpenSSL_C_INT; c
 begin
   PEM_write_bio_RSAPublicKey := LoadLibCryptoFunction('PEM_write_bio_RSAPublicKey');
   if not assigned(PEM_write_bio_RSAPublicKey) then
+    {$if declared(LEGACY_PEM_write_bio_RSAPublicKey)}
+    PEM_write_bio_RSAPublicKey := @LEGACY_PEM_write_bio_RSAPublicKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_bio_RSAPublicKey');
+    {$ifend}
   Result := PEM_write_bio_RSAPublicKey(out_, x);
 end;
 
@@ -1490,7 +1767,11 @@ function Load_PEM_write_RSAPublicKey(out_: PFILE; x: PRSA): TOpenSSL_C_INT; cdec
 begin
   PEM_write_RSAPublicKey := LoadLibCryptoFunction('PEM_write_RSAPublicKey');
   if not assigned(PEM_write_RSAPublicKey) then
+    {$if declared(LEGACY_PEM_write_RSAPublicKey)}
+    PEM_write_RSAPublicKey := @LEGACY_PEM_write_RSAPublicKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_RSAPublicKey');
+    {$ifend}
   Result := PEM_write_RSAPublicKey(out_, x);
 end;
 
@@ -1498,7 +1779,11 @@ function Load_PEM_read_bio_RSA_PUBKEY(out_: PBIO; x: PPRSA; cb: Tpem_password_cb
 begin
   PEM_read_bio_RSA_PUBKEY := LoadLibCryptoFunction('PEM_read_bio_RSA_PUBKEY');
   if not assigned(PEM_read_bio_RSA_PUBKEY) then
+    {$if declared(LEGACY_PEM_read_bio_RSA_PUBKEY)}
+    PEM_read_bio_RSA_PUBKEY := @LEGACY_PEM_read_bio_RSA_PUBKEY;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_bio_RSA_PUBKEY');
+    {$ifend}
   Result := PEM_read_bio_RSA_PUBKEY(out_, x, cb, u);
 end;
 
@@ -1506,7 +1791,11 @@ function Load_PEM_read_RSA_PUBKEY(out_: PFILE; x: PPRSA; cb: Tpem_password_cb; u
 begin
   PEM_read_RSA_PUBKEY := LoadLibCryptoFunction('PEM_read_RSA_PUBKEY');
   if not assigned(PEM_read_RSA_PUBKEY) then
+    {$if declared(LEGACY_PEM_read_RSA_PUBKEY)}
+    PEM_read_RSA_PUBKEY := @LEGACY_PEM_read_RSA_PUBKEY;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_RSA_PUBKEY');
+    {$ifend}
   Result := PEM_read_RSA_PUBKEY(out_, x, cb, u);
 end;
 
@@ -1514,7 +1803,11 @@ function Load_PEM_write_bio_RSA_PUBKEY(out_: PBIO; x: PRSA): TOpenSSL_C_INT; cde
 begin
   PEM_write_bio_RSA_PUBKEY := LoadLibCryptoFunction('PEM_write_bio_RSA_PUBKEY');
   if not assigned(PEM_write_bio_RSA_PUBKEY) then
+    {$if declared(LEGACY_PEM_write_bio_RSA_PUBKEY)}
+    PEM_write_bio_RSA_PUBKEY := @LEGACY_PEM_write_bio_RSA_PUBKEY;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_bio_RSA_PUBKEY');
+    {$ifend}
   Result := PEM_write_bio_RSA_PUBKEY(out_, x);
 end;
 
@@ -1522,7 +1815,11 @@ function Load_PEM_write_RSA_PUBKEY(out_: PFILE; x: PRSA): TOpenSSL_C_INT; cdecl;
 begin
   PEM_write_RSA_PUBKEY := LoadLibCryptoFunction('PEM_write_RSA_PUBKEY');
   if not assigned(PEM_write_RSA_PUBKEY) then
+    {$if declared(LEGACY_PEM_write_RSA_PUBKEY)}
+    PEM_write_RSA_PUBKEY := @LEGACY_PEM_write_RSA_PUBKEY;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_RSA_PUBKEY');
+    {$ifend}
   Result := PEM_write_RSA_PUBKEY(out_, x);
 end;
 
@@ -1533,7 +1830,11 @@ function Load_PEM_read_bio_DSAPrivateKey(out_: PBIO; x: PPDSA; cb: Tpem_password
 begin
   PEM_read_bio_DSAPrivateKey := LoadLibCryptoFunction('PEM_read_bio_DSAPrivateKey');
   if not assigned(PEM_read_bio_DSAPrivateKey) then
+    {$if declared(LEGACY_PEM_read_bio_DSAPrivateKey)}
+    PEM_read_bio_DSAPrivateKey := @LEGACY_PEM_read_bio_DSAPrivateKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_bio_DSAPrivateKey');
+    {$ifend}
   Result := PEM_read_bio_DSAPrivateKey(out_, x, cb, u);
 end;
 
@@ -1541,7 +1842,11 @@ function Load_PEM_read_DSAPrivateKey(out_: PFILE; x: PPDSA; cb: Tpem_password_cb
 begin
   PEM_read_DSAPrivateKey := LoadLibCryptoFunction('PEM_read_DSAPrivateKey');
   if not assigned(PEM_read_DSAPrivateKey) then
+    {$if declared(LEGACY_PEM_read_DSAPrivateKey)}
+    PEM_read_DSAPrivateKey := @LEGACY_PEM_read_DSAPrivateKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_DSAPrivateKey');
+    {$ifend}
   Result := PEM_read_DSAPrivateKey(out_, x, cb, u);
 end;
 
@@ -1549,7 +1854,11 @@ function Load_PEM_write_bio_DSAPrivateKey(out_: PBIO; x: PDSA; enc: PEVP_CIPHER;
 begin
   PEM_write_bio_DSAPrivateKey := LoadLibCryptoFunction('PEM_write_bio_DSAPrivateKey');
   if not assigned(PEM_write_bio_DSAPrivateKey) then
+    {$if declared(LEGACY_PEM_write_bio_DSAPrivateKey)}
+    PEM_write_bio_DSAPrivateKey := @LEGACY_PEM_write_bio_DSAPrivateKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_bio_DSAPrivateKey');
+    {$ifend}
   Result := PEM_write_bio_DSAPrivateKey(out_, x, enc, kstr, klen, cb, u);
 end;
 
@@ -1557,7 +1866,11 @@ function Load_PEM_write_DSAPrivateKey(out_: PFILE; x: PDSA; enc: PEVP_CIPHER; ks
 begin
   PEM_write_DSAPrivateKey := LoadLibCryptoFunction('PEM_write_DSAPrivateKey');
   if not assigned(PEM_write_DSAPrivateKey) then
+    {$if declared(LEGACY_PEM_write_DSAPrivateKey)}
+    PEM_write_DSAPrivateKey := @LEGACY_PEM_write_DSAPrivateKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_DSAPrivateKey');
+    {$ifend}
   Result := PEM_write_DSAPrivateKey(out_, x, enc, kstr, klen, cb, u);
 end;
 
@@ -1565,7 +1878,11 @@ function Load_PEM_read_bio_DSA_PUBKEY(out_: PBIO; x: PPDSA; cb: Tpem_password_cb
 begin
   PEM_read_bio_DSA_PUBKEY := LoadLibCryptoFunction('PEM_read_bio_DSA_PUBKEY');
   if not assigned(PEM_read_bio_DSA_PUBKEY) then
+    {$if declared(LEGACY_PEM_read_bio_DSA_PUBKEY)}
+    PEM_read_bio_DSA_PUBKEY := @LEGACY_PEM_read_bio_DSA_PUBKEY;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_bio_DSA_PUBKEY');
+    {$ifend}
   Result := PEM_read_bio_DSA_PUBKEY(out_, x, cb, u);
 end;
 
@@ -1573,7 +1890,11 @@ function Load_PEM_read_DSA_PUBKEY(out_: PFILE; x: PPDSA; cb: Tpem_password_cb; u
 begin
   PEM_read_DSA_PUBKEY := LoadLibCryptoFunction('PEM_read_DSA_PUBKEY');
   if not assigned(PEM_read_DSA_PUBKEY) then
+    {$if declared(LEGACY_PEM_read_DSA_PUBKEY)}
+    PEM_read_DSA_PUBKEY := @LEGACY_PEM_read_DSA_PUBKEY;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_DSA_PUBKEY');
+    {$ifend}
   Result := PEM_read_DSA_PUBKEY(out_, x, cb, u);
 end;
 
@@ -1581,7 +1902,11 @@ function Load_PEM_write_bio_DSA_PUBKEY(out_: PBIO; x: PDSA): TOpenSSL_C_INT; cde
 begin
   PEM_write_bio_DSA_PUBKEY := LoadLibCryptoFunction('PEM_write_bio_DSA_PUBKEY');
   if not assigned(PEM_write_bio_DSA_PUBKEY) then
+    {$if declared(LEGACY_PEM_write_bio_DSA_PUBKEY)}
+    PEM_write_bio_DSA_PUBKEY := @LEGACY_PEM_write_bio_DSA_PUBKEY;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_bio_DSA_PUBKEY');
+    {$ifend}
   Result := PEM_write_bio_DSA_PUBKEY(out_, x);
 end;
 
@@ -1589,7 +1914,11 @@ function Load_PEM_write_DSA_PUBKEY(out_: PFILE; x: PDSA): TOpenSSL_C_INT; cdecl;
 begin
   PEM_write_DSA_PUBKEY := LoadLibCryptoFunction('PEM_write_DSA_PUBKEY');
   if not assigned(PEM_write_DSA_PUBKEY) then
+    {$if declared(LEGACY_PEM_write_DSA_PUBKEY)}
+    PEM_write_DSA_PUBKEY := @LEGACY_PEM_write_DSA_PUBKEY;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_DSA_PUBKEY');
+    {$ifend}
   Result := PEM_write_DSA_PUBKEY(out_, x);
 end;
 
@@ -1597,7 +1926,11 @@ function Load_PEM_read_bio_DSAparams(out_: PBIO; x: PPDSA; cb: Tpem_password_cb;
 begin
   PEM_read_bio_DSAparams := LoadLibCryptoFunction('PEM_read_bio_DSAparams');
   if not assigned(PEM_read_bio_DSAparams) then
+    {$if declared(LEGACY_PEM_read_bio_DSAparams)}
+    PEM_read_bio_DSAparams := @LEGACY_PEM_read_bio_DSAparams;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_bio_DSAparams');
+    {$ifend}
   Result := PEM_read_bio_DSAparams(out_, x, cb, u);
 end;
 
@@ -1605,7 +1938,11 @@ function Load_PEM_read_DSAparams(out_: PFILE; x: PPDSA; cb: Tpem_password_cb; u:
 begin
   PEM_read_DSAparams := LoadLibCryptoFunction('PEM_read_DSAparams');
   if not assigned(PEM_read_DSAparams) then
+    {$if declared(LEGACY_PEM_read_DSAparams)}
+    PEM_read_DSAparams := @LEGACY_PEM_read_DSAparams;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_DSAparams');
+    {$ifend}
   Result := PEM_read_DSAparams(out_, x, cb, u);
 end;
 
@@ -1613,7 +1950,11 @@ function Load_PEM_write_bio_DSAparams(out_: PBIO; x: PDSA): TOpenSSL_C_INT; cdec
 begin
   PEM_write_bio_DSAparams := LoadLibCryptoFunction('PEM_write_bio_DSAparams');
   if not assigned(PEM_write_bio_DSAparams) then
+    {$if declared(LEGACY_PEM_write_bio_DSAparams)}
+    PEM_write_bio_DSAparams := @LEGACY_PEM_write_bio_DSAparams;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_bio_DSAparams');
+    {$ifend}
   Result := PEM_write_bio_DSAparams(out_, x);
 end;
 
@@ -1621,7 +1962,11 @@ function Load_PEM_write_DSAparams(out_: PFILE; x: PDSA): TOpenSSL_C_INT; cdecl;
 begin
   PEM_write_DSAparams := LoadLibCryptoFunction('PEM_write_DSAparams');
   if not assigned(PEM_write_DSAparams) then
+    {$if declared(LEGACY_PEM_write_DSAparams)}
+    PEM_write_DSAparams := @LEGACY_PEM_write_DSAparams;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_DSAparams');
+    {$ifend}
   Result := PEM_write_DSAparams(out_, x);
 end;
 
@@ -1633,7 +1978,11 @@ function Load_PEM_read_bio_ECPKParameters(out_: PBIO; x: PPEC_GROUP; cb: Tpem_pa
 begin
   PEM_read_bio_ECPKParameters := LoadLibCryptoFunction('PEM_read_bio_ECPKParameters');
   if not assigned(PEM_read_bio_ECPKParameters) then
+    {$if declared(LEGACY_PEM_read_bio_ECPKParameters)}
+    PEM_read_bio_ECPKParameters := @LEGACY_PEM_read_bio_ECPKParameters;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_bio_ECPKParameters');
+    {$ifend}
   Result := PEM_read_bio_ECPKParameters(out_, x, cb, u);
 end;
 
@@ -1641,7 +1990,11 @@ function Load_PEM_read_ECPKParameters(out_: PFILE; x: PPEC_GROUP; cb: Tpem_passw
 begin
   PEM_read_ECPKParameters := LoadLibCryptoFunction('PEM_read_ECPKParameters');
   if not assigned(PEM_read_ECPKParameters) then
+    {$if declared(LEGACY_PEM_read_ECPKParameters)}
+    PEM_read_ECPKParameters := @LEGACY_PEM_read_ECPKParameters;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_ECPKParameters');
+    {$ifend}
   Result := PEM_read_ECPKParameters(out_, x, cb, u);
 end;
 
@@ -1649,7 +2002,11 @@ function Load_PEM_write_bio_ECPKParameters(out_: PBIO; x: PEC_GROUP): TOpenSSL_C
 begin
   PEM_write_bio_ECPKParameters := LoadLibCryptoFunction('PEM_write_bio_ECPKParameters');
   if not assigned(PEM_write_bio_ECPKParameters) then
+    {$if declared(LEGACY_PEM_write_bio_ECPKParameters)}
+    PEM_write_bio_ECPKParameters := @LEGACY_PEM_write_bio_ECPKParameters;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_bio_ECPKParameters');
+    {$ifend}
   Result := PEM_write_bio_ECPKParameters(out_, x);
 end;
 
@@ -1657,7 +2014,11 @@ function Load_PEM_write_ECPKParameters(out_: PFILE; x: PEC_GROUP): TOpenSSL_C_IN
 begin
   PEM_write_ECPKParameters := LoadLibCryptoFunction('PEM_write_ECPKParameters');
   if not assigned(PEM_write_ECPKParameters) then
+    {$if declared(LEGACY_PEM_write_ECPKParameters)}
+    PEM_write_ECPKParameters := @LEGACY_PEM_write_ECPKParameters;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_ECPKParameters');
+    {$ifend}
   Result := PEM_write_ECPKParameters(out_, x);
 end;
 
@@ -1665,7 +2026,11 @@ function Load_PEM_read_bio_ECPrivateKey(out_: PBIO; x: PPEC_KEY; cb: Tpem_passwo
 begin
   PEM_read_bio_ECPrivateKey := LoadLibCryptoFunction('PEM_read_bio_ECPrivateKey');
   if not assigned(PEM_read_bio_ECPrivateKey) then
+    {$if declared(LEGACY_PEM_read_bio_ECPrivateKey)}
+    PEM_read_bio_ECPrivateKey := @LEGACY_PEM_read_bio_ECPrivateKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_bio_ECPrivateKey');
+    {$ifend}
   Result := PEM_read_bio_ECPrivateKey(out_, x, cb, u);
 end;
 
@@ -1673,7 +2038,11 @@ function Load_PEM_read_ECPrivateKey(out_: PFILE; x: PPEC_KEY; cb: Tpem_password_
 begin
   PEM_read_ECPrivateKey := LoadLibCryptoFunction('PEM_read_ECPrivateKey');
   if not assigned(PEM_read_ECPrivateKey) then
+    {$if declared(LEGACY_PEM_read_ECPrivateKey)}
+    PEM_read_ECPrivateKey := @LEGACY_PEM_read_ECPrivateKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_ECPrivateKey');
+    {$ifend}
   Result := PEM_read_ECPrivateKey(out_, x, cb, u);
 end;
 
@@ -1681,7 +2050,11 @@ function Load_PEM_write_bio_ECPrivateKey(out_: PBIO; x: PEC_KEY; enc: PEVP_CIPHE
 begin
   PEM_write_bio_ECPrivateKey := LoadLibCryptoFunction('PEM_write_bio_ECPrivateKey');
   if not assigned(PEM_write_bio_ECPrivateKey) then
+    {$if declared(LEGACY_PEM_write_bio_ECPrivateKey)}
+    PEM_write_bio_ECPrivateKey := @LEGACY_PEM_write_bio_ECPrivateKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_bio_ECPrivateKey');
+    {$ifend}
   Result := PEM_write_bio_ECPrivateKey(out_, x, enc, kstr, klen, cb, u);
 end;
 
@@ -1689,7 +2062,11 @@ function Load_PEM_write_ECPrivateKey(out_: PFILE; x: PEC_KEY; enc: PEVP_CIPHER; 
 begin
   PEM_write_ECPrivateKey := LoadLibCryptoFunction('PEM_write_ECPrivateKey');
   if not assigned(PEM_write_ECPrivateKey) then
+    {$if declared(LEGACY_PEM_write_ECPrivateKey)}
+    PEM_write_ECPrivateKey := @LEGACY_PEM_write_ECPrivateKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_ECPrivateKey');
+    {$ifend}
   Result := PEM_write_ECPrivateKey(out_, x, enc, kstr, klen, cb, u);
 end;
 
@@ -1697,7 +2074,11 @@ function Load_PEM_read_bio_EC_PUBKEY(out_: PBIO; x: PPEC_KEY; cb: Tpem_password_
 begin
   PEM_read_bio_EC_PUBKEY := LoadLibCryptoFunction('PEM_read_bio_EC_PUBKEY');
   if not assigned(PEM_read_bio_EC_PUBKEY) then
+    {$if declared(LEGACY_PEM_read_bio_EC_PUBKEY)}
+    PEM_read_bio_EC_PUBKEY := @LEGACY_PEM_read_bio_EC_PUBKEY;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_bio_EC_PUBKEY');
+    {$ifend}
   Result := PEM_read_bio_EC_PUBKEY(out_, x, cb, u);
 end;
 
@@ -1705,7 +2086,11 @@ function Load_PEM_read_EC_PUBKEY(out_: PFILE; x: PPEC_KEY; cb: Tpem_password_cb;
 begin
   PEM_read_EC_PUBKEY := LoadLibCryptoFunction('PEM_read_EC_PUBKEY');
   if not assigned(PEM_read_EC_PUBKEY) then
+    {$if declared(LEGACY_PEM_read_EC_PUBKEY)}
+    PEM_read_EC_PUBKEY := @LEGACY_PEM_read_EC_PUBKEY;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_EC_PUBKEY');
+    {$ifend}
   Result := PEM_read_EC_PUBKEY(out_, x, cb, u);
 end;
 
@@ -1713,7 +2098,11 @@ function Load_PEM_write_bio_EC_PUBKEY(out_: PBIO; x: PEC_KEY): TOpenSSL_C_INT; c
 begin
   PEM_write_bio_EC_PUBKEY := LoadLibCryptoFunction('PEM_write_bio_EC_PUBKEY');
   if not assigned(PEM_write_bio_EC_PUBKEY) then
+    {$if declared(LEGACY_PEM_write_bio_EC_PUBKEY)}
+    PEM_write_bio_EC_PUBKEY := @LEGACY_PEM_write_bio_EC_PUBKEY;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_bio_EC_PUBKEY');
+    {$ifend}
   Result := PEM_write_bio_EC_PUBKEY(out_, x);
 end;
 
@@ -1721,7 +2110,11 @@ function Load_PEM_write_EC_PUBKEY(out_: PFILE; x: PEC_KEY): TOpenSSL_C_INT; cdec
 begin
   PEM_write_EC_PUBKEY := LoadLibCryptoFunction('PEM_write_EC_PUBKEY');
   if not assigned(PEM_write_EC_PUBKEY) then
+    {$if declared(LEGACY_PEM_write_EC_PUBKEY)}
+    PEM_write_EC_PUBKEY := @LEGACY_PEM_write_EC_PUBKEY;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_EC_PUBKEY');
+    {$ifend}
   Result := PEM_write_EC_PUBKEY(out_, x);
 end;
 
@@ -1733,7 +2126,11 @@ function Load_PEM_read_bio_DHparams(out_: PBIO; x: PPDH; cb: Tpem_password_cb; u
 begin
   PEM_read_bio_DHparams := LoadLibCryptoFunction('PEM_read_bio_DHparams');
   if not assigned(PEM_read_bio_DHparams) then
+    {$if declared(LEGACY_PEM_read_bio_DHparams)}
+    PEM_read_bio_DHparams := @LEGACY_PEM_read_bio_DHparams;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_bio_DHparams');
+    {$ifend}
   Result := PEM_read_bio_DHparams(out_, x, cb, u);
 end;
 
@@ -1741,7 +2138,11 @@ function Load_PEM_read_DHparams(out_: PFILE; x: PPDH; cb: Tpem_password_cb; u: p
 begin
   PEM_read_DHparams := LoadLibCryptoFunction('PEM_read_DHparams');
   if not assigned(PEM_read_DHparams) then
+    {$if declared(LEGACY_PEM_read_DHparams)}
+    PEM_read_DHparams := @LEGACY_PEM_read_DHparams;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_DHparams');
+    {$ifend}
   Result := PEM_read_DHparams(out_, x, cb, u);
 end;
 
@@ -1749,7 +2150,11 @@ function Load_PEM_write_bio_DHparams(out_: PBIO; x: PDH): TOpenSSL_C_INT; cdecl;
 begin
   PEM_write_bio_DHparams := LoadLibCryptoFunction('PEM_write_bio_DHparams');
   if not assigned(PEM_write_bio_DHparams) then
+    {$if declared(LEGACY_PEM_write_bio_DHparams)}
+    PEM_write_bio_DHparams := @LEGACY_PEM_write_bio_DHparams;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_bio_DHparams');
+    {$ifend}
   Result := PEM_write_bio_DHparams(out_, x);
 end;
 
@@ -1757,7 +2162,11 @@ function Load_PEM_write_DHparams(out_: PFILE; x: PDH): TOpenSSL_C_INT; cdecl;
 begin
   PEM_write_DHparams := LoadLibCryptoFunction('PEM_write_DHparams');
   if not assigned(PEM_write_DHparams) then
+    {$if declared(LEGACY_PEM_write_DHparams)}
+    PEM_write_DHparams := @LEGACY_PEM_write_DHparams;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_DHparams');
+    {$ifend}
   Result := PEM_write_DHparams(out_, x);
 end;
 
@@ -1765,7 +2174,11 @@ function Load_PEM_write_bio_DHxparams(out_: PBIO; x: PDH): TOpenSSL_C_INT; cdecl
 begin
   PEM_write_bio_DHxparams := LoadLibCryptoFunction('PEM_write_bio_DHxparams');
   if not assigned(PEM_write_bio_DHxparams) then
+    {$if declared(LEGACY_PEM_write_bio_DHxparams)}
+    PEM_write_bio_DHxparams := @LEGACY_PEM_write_bio_DHxparams;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_bio_DHxparams');
+    {$ifend}
   Result := PEM_write_bio_DHxparams(out_, x);
 end;
 
@@ -1773,7 +2186,11 @@ function Load_PEM_write_DHxparams(out_: PFILE; x: PDH): TOpenSSL_C_INT; cdecl;
 begin
   PEM_write_DHxparams := LoadLibCryptoFunction('PEM_write_DHxparams');
   if not assigned(PEM_write_DHxparams) then
+    {$if declared(LEGACY_PEM_write_DHxparams)}
+    PEM_write_DHxparams := @LEGACY_PEM_write_DHxparams;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_DHxparams');
+    {$ifend}
   Result := PEM_write_DHxparams(out_, x);
 end;
 
@@ -1783,7 +2200,11 @@ function Load_PEM_read_bio_PrivateKey(out_: PBIO; x: PPEVP_PKEY; cb: Tpem_passwo
 begin
   PEM_read_bio_PrivateKey := LoadLibCryptoFunction('PEM_read_bio_PrivateKey');
   if not assigned(PEM_read_bio_PrivateKey) then
+    {$if declared(LEGACY_PEM_read_bio_PrivateKey)}
+    PEM_read_bio_PrivateKey := @LEGACY_PEM_read_bio_PrivateKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_bio_PrivateKey');
+    {$ifend}
   Result := PEM_read_bio_PrivateKey(out_, x, cb, u);
 end;
 
@@ -1791,7 +2212,11 @@ function Load_PEM_read_bio_PrivateKey_ex(out_: PBIO; x: PPEVP_PKEY; cb: Tpem_pas
 begin
   PEM_read_bio_PrivateKey_ex := LoadLibCryptoFunction('PEM_read_bio_PrivateKey_ex');
   if not assigned(PEM_read_bio_PrivateKey_ex) then
+    {$if declared(LEGACY_PEM_read_bio_PrivateKey_ex)}
+    PEM_read_bio_PrivateKey_ex := @LEGACY_PEM_read_bio_PrivateKey_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_bio_PrivateKey_ex');
+    {$ifend}
   Result := PEM_read_bio_PrivateKey_ex(out_, x, cb, u, libctx, propq);
 end;
 
@@ -1799,7 +2224,11 @@ function Load_PEM_read_PrivateKey(out_: PFILE; x: PPEVP_PKEY; cb: Tpem_password_
 begin
   PEM_read_PrivateKey := LoadLibCryptoFunction('PEM_read_PrivateKey');
   if not assigned(PEM_read_PrivateKey) then
+    {$if declared(LEGACY_PEM_read_PrivateKey)}
+    PEM_read_PrivateKey := @LEGACY_PEM_read_PrivateKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_PrivateKey');
+    {$ifend}
   Result := PEM_read_PrivateKey(out_, x, cb, u);
 end;
 
@@ -1807,7 +2236,11 @@ function Load_PEM_read_PrivateKey_ex(out_: PFILE; x: PPEVP_PKEY; cb: Tpem_passwo
 begin
   PEM_read_PrivateKey_ex := LoadLibCryptoFunction('PEM_read_PrivateKey_ex');
   if not assigned(PEM_read_PrivateKey_ex) then
+    {$if declared(LEGACY_PEM_read_PrivateKey_ex)}
+    PEM_read_PrivateKey_ex := @LEGACY_PEM_read_PrivateKey_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_PrivateKey_ex');
+    {$ifend}
   Result := PEM_read_PrivateKey_ex(out_, x, cb, u, libctx, propq);
 end;
 
@@ -1815,7 +2248,11 @@ function Load_PEM_write_bio_PrivateKey(out_: PBIO; x: PEVP_PKEY; enc: PEVP_CIPHE
 begin
   PEM_write_bio_PrivateKey := LoadLibCryptoFunction('PEM_write_bio_PrivateKey');
   if not assigned(PEM_write_bio_PrivateKey) then
+    {$if declared(LEGACY_PEM_write_bio_PrivateKey)}
+    PEM_write_bio_PrivateKey := @LEGACY_PEM_write_bio_PrivateKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_bio_PrivateKey');
+    {$ifend}
   Result := PEM_write_bio_PrivateKey(out_, x, enc, kstr, klen, cb, u);
 end;
 
@@ -1823,7 +2260,11 @@ function Load_PEM_write_bio_PrivateKey_ex(out_: PBIO; x: PEVP_PKEY; enc: PEVP_CI
 begin
   PEM_write_bio_PrivateKey_ex := LoadLibCryptoFunction('PEM_write_bio_PrivateKey_ex');
   if not assigned(PEM_write_bio_PrivateKey_ex) then
+    {$if declared(LEGACY_PEM_write_bio_PrivateKey_ex)}
+    PEM_write_bio_PrivateKey_ex := @LEGACY_PEM_write_bio_PrivateKey_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_bio_PrivateKey_ex');
+    {$ifend}
   Result := PEM_write_bio_PrivateKey_ex(out_, x, enc, kstr, klen, cb, u, libctx, propq);
 end;
 
@@ -1831,7 +2272,11 @@ function Load_PEM_write_PrivateKey(out_: PFILE; x: PEVP_PKEY; enc: PEVP_CIPHER; 
 begin
   PEM_write_PrivateKey := LoadLibCryptoFunction('PEM_write_PrivateKey');
   if not assigned(PEM_write_PrivateKey) then
+    {$if declared(LEGACY_PEM_write_PrivateKey)}
+    PEM_write_PrivateKey := @LEGACY_PEM_write_PrivateKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_PrivateKey');
+    {$ifend}
   Result := PEM_write_PrivateKey(out_, x, enc, kstr, klen, cb, u);
 end;
 
@@ -1839,7 +2284,11 @@ function Load_PEM_write_PrivateKey_ex(out_: PFILE; x: PEVP_PKEY; enc: PEVP_CIPHE
 begin
   PEM_write_PrivateKey_ex := LoadLibCryptoFunction('PEM_write_PrivateKey_ex');
   if not assigned(PEM_write_PrivateKey_ex) then
+    {$if declared(LEGACY_PEM_write_PrivateKey_ex)}
+    PEM_write_PrivateKey_ex := @LEGACY_PEM_write_PrivateKey_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_PrivateKey_ex');
+    {$ifend}
   Result := PEM_write_PrivateKey_ex(out_, x, enc, kstr, klen, cb, u, libctx, propq);
 end;
 
@@ -1847,7 +2296,11 @@ function Load_PEM_read_bio_PUBKEY(out_: PBIO; x: PPEVP_PKEY; cb: Tpem_password_c
 begin
   PEM_read_bio_PUBKEY := LoadLibCryptoFunction('PEM_read_bio_PUBKEY');
   if not assigned(PEM_read_bio_PUBKEY) then
+    {$if declared(LEGACY_PEM_read_bio_PUBKEY)}
+    PEM_read_bio_PUBKEY := @LEGACY_PEM_read_bio_PUBKEY;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_bio_PUBKEY');
+    {$ifend}
   Result := PEM_read_bio_PUBKEY(out_, x, cb, u);
 end;
 
@@ -1855,7 +2308,11 @@ function Load_PEM_read_bio_PUBKEY_ex(out_: PBIO; x: PPEVP_PKEY; cb: Tpem_passwor
 begin
   PEM_read_bio_PUBKEY_ex := LoadLibCryptoFunction('PEM_read_bio_PUBKEY_ex');
   if not assigned(PEM_read_bio_PUBKEY_ex) then
+    {$if declared(LEGACY_PEM_read_bio_PUBKEY_ex)}
+    PEM_read_bio_PUBKEY_ex := @LEGACY_PEM_read_bio_PUBKEY_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_bio_PUBKEY_ex');
+    {$ifend}
   Result := PEM_read_bio_PUBKEY_ex(out_, x, cb, u, libctx, propq);
 end;
 
@@ -1863,7 +2320,11 @@ function Load_PEM_read_PUBKEY(out_: PFILE; x: PPEVP_PKEY; cb: Tpem_password_cb; 
 begin
   PEM_read_PUBKEY := LoadLibCryptoFunction('PEM_read_PUBKEY');
   if not assigned(PEM_read_PUBKEY) then
+    {$if declared(LEGACY_PEM_read_PUBKEY)}
+    PEM_read_PUBKEY := @LEGACY_PEM_read_PUBKEY;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_PUBKEY');
+    {$ifend}
   Result := PEM_read_PUBKEY(out_, x, cb, u);
 end;
 
@@ -1871,7 +2332,11 @@ function Load_PEM_read_PUBKEY_ex(out_: PFILE; x: PPEVP_PKEY; cb: Tpem_password_c
 begin
   PEM_read_PUBKEY_ex := LoadLibCryptoFunction('PEM_read_PUBKEY_ex');
   if not assigned(PEM_read_PUBKEY_ex) then
+    {$if declared(LEGACY_PEM_read_PUBKEY_ex)}
+    PEM_read_PUBKEY_ex := @LEGACY_PEM_read_PUBKEY_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_PUBKEY_ex');
+    {$ifend}
   Result := PEM_read_PUBKEY_ex(out_, x, cb, u, libctx, propq);
 end;
 
@@ -1879,7 +2344,11 @@ function Load_PEM_write_bio_PUBKEY(out_: PBIO; x: PEVP_PKEY): TOpenSSL_C_INT; cd
 begin
   PEM_write_bio_PUBKEY := LoadLibCryptoFunction('PEM_write_bio_PUBKEY');
   if not assigned(PEM_write_bio_PUBKEY) then
+    {$if declared(LEGACY_PEM_write_bio_PUBKEY)}
+    PEM_write_bio_PUBKEY := @LEGACY_PEM_write_bio_PUBKEY;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_bio_PUBKEY');
+    {$ifend}
   Result := PEM_write_bio_PUBKEY(out_, x);
 end;
 
@@ -1887,7 +2356,11 @@ function Load_PEM_write_bio_PUBKEY_ex(out_: PBIO; x: PEVP_PKEY; libctx: POSSL_LI
 begin
   PEM_write_bio_PUBKEY_ex := LoadLibCryptoFunction('PEM_write_bio_PUBKEY_ex');
   if not assigned(PEM_write_bio_PUBKEY_ex) then
+    {$if declared(LEGACY_PEM_write_bio_PUBKEY_ex)}
+    PEM_write_bio_PUBKEY_ex := @LEGACY_PEM_write_bio_PUBKEY_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_bio_PUBKEY_ex');
+    {$ifend}
   Result := PEM_write_bio_PUBKEY_ex(out_, x, libctx, propq);
 end;
 
@@ -1895,7 +2368,11 @@ function Load_PEM_write_PUBKEY(out_: PFILE; x: PEVP_PKEY): TOpenSSL_C_INT; cdecl
 begin
   PEM_write_PUBKEY := LoadLibCryptoFunction('PEM_write_PUBKEY');
   if not assigned(PEM_write_PUBKEY) then
+    {$if declared(LEGACY_PEM_write_PUBKEY)}
+    PEM_write_PUBKEY := @LEGACY_PEM_write_PUBKEY;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_PUBKEY');
+    {$ifend}
   Result := PEM_write_PUBKEY(out_, x);
 end;
 
@@ -1903,7 +2380,11 @@ function Load_PEM_write_PUBKEY_ex(out_: PFILE; x: PEVP_PKEY; libctx: POSSL_LIB_C
 begin
   PEM_write_PUBKEY_ex := LoadLibCryptoFunction('PEM_write_PUBKEY_ex');
   if not assigned(PEM_write_PUBKEY_ex) then
+    {$if declared(LEGACY_PEM_write_PUBKEY_ex)}
+    PEM_write_PUBKEY_ex := @LEGACY_PEM_write_PUBKEY_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_PUBKEY_ex');
+    {$ifend}
   Result := PEM_write_PUBKEY_ex(out_, x, libctx, propq);
 end;
 
@@ -1911,7 +2392,11 @@ function Load_PEM_write_bio_PrivateKey_traditional(bp: PBIO; x: PEVP_PKEY; enc: 
 begin
   PEM_write_bio_PrivateKey_traditional := LoadLibCryptoFunction('PEM_write_bio_PrivateKey_traditional');
   if not assigned(PEM_write_bio_PrivateKey_traditional) then
+    {$if declared(LEGACY_PEM_write_bio_PrivateKey_traditional)}
+    PEM_write_bio_PrivateKey_traditional := @LEGACY_PEM_write_bio_PrivateKey_traditional;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_bio_PrivateKey_traditional');
+    {$ifend}
   Result := PEM_write_bio_PrivateKey_traditional(bp, x, enc, kstr, klen, cb, u);
 end;
 
@@ -1919,7 +2404,11 @@ function Load_PEM_write_bio_PKCS8PrivateKey_nid(bp: PBIO; x: PEVP_PKEY; nid: TOp
 begin
   PEM_write_bio_PKCS8PrivateKey_nid := LoadLibCryptoFunction('PEM_write_bio_PKCS8PrivateKey_nid');
   if not assigned(PEM_write_bio_PKCS8PrivateKey_nid) then
+    {$if declared(LEGACY_PEM_write_bio_PKCS8PrivateKey_nid)}
+    PEM_write_bio_PKCS8PrivateKey_nid := @LEGACY_PEM_write_bio_PKCS8PrivateKey_nid;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_bio_PKCS8PrivateKey_nid');
+    {$ifend}
   Result := PEM_write_bio_PKCS8PrivateKey_nid(bp, x, nid, kstr, klen, cb, u);
 end;
 
@@ -1927,7 +2416,11 @@ function Load_PEM_write_bio_PKCS8PrivateKey(_param1: PBIO; _param2: PEVP_PKEY; _
 begin
   PEM_write_bio_PKCS8PrivateKey := LoadLibCryptoFunction('PEM_write_bio_PKCS8PrivateKey');
   if not assigned(PEM_write_bio_PKCS8PrivateKey) then
+    {$if declared(LEGACY_PEM_write_bio_PKCS8PrivateKey)}
+    PEM_write_bio_PKCS8PrivateKey := @LEGACY_PEM_write_bio_PKCS8PrivateKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_bio_PKCS8PrivateKey');
+    {$ifend}
   Result := PEM_write_bio_PKCS8PrivateKey(_param1, _param2, _param3, kstr, klen, cb, u);
 end;
 
@@ -1935,7 +2428,11 @@ function Load_i2d_PKCS8PrivateKey_bio(bp: PBIO; x: PEVP_PKEY; enc: PEVP_CIPHER; 
 begin
   i2d_PKCS8PrivateKey_bio := LoadLibCryptoFunction('i2d_PKCS8PrivateKey_bio');
   if not assigned(i2d_PKCS8PrivateKey_bio) then
+    {$if declared(LEGACY_i2d_PKCS8PrivateKey_bio)}
+    i2d_PKCS8PrivateKey_bio := @LEGACY_i2d_PKCS8PrivateKey_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_PKCS8PrivateKey_bio');
+    {$ifend}
   Result := i2d_PKCS8PrivateKey_bio(bp, x, enc, kstr, klen, cb, u);
 end;
 
@@ -1943,7 +2440,11 @@ function Load_i2d_PKCS8PrivateKey_nid_bio(bp: PBIO; x: PEVP_PKEY; nid: TOpenSSL_
 begin
   i2d_PKCS8PrivateKey_nid_bio := LoadLibCryptoFunction('i2d_PKCS8PrivateKey_nid_bio');
   if not assigned(i2d_PKCS8PrivateKey_nid_bio) then
+    {$if declared(LEGACY_i2d_PKCS8PrivateKey_nid_bio)}
+    i2d_PKCS8PrivateKey_nid_bio := @LEGACY_i2d_PKCS8PrivateKey_nid_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_PKCS8PrivateKey_nid_bio');
+    {$ifend}
   Result := i2d_PKCS8PrivateKey_nid_bio(bp, x, nid, kstr, klen, cb, u);
 end;
 
@@ -1951,7 +2452,11 @@ function Load_d2i_PKCS8PrivateKey_bio(bp: PBIO; x: PPEVP_PKEY; cb: Tpem_password
 begin
   d2i_PKCS8PrivateKey_bio := LoadLibCryptoFunction('d2i_PKCS8PrivateKey_bio');
   if not assigned(d2i_PKCS8PrivateKey_bio) then
+    {$if declared(LEGACY_d2i_PKCS8PrivateKey_bio)}
+    d2i_PKCS8PrivateKey_bio := @LEGACY_d2i_PKCS8PrivateKey_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_PKCS8PrivateKey_bio');
+    {$ifend}
   Result := d2i_PKCS8PrivateKey_bio(bp, x, cb, u);
 end;
 
@@ -1960,7 +2465,11 @@ function Load_i2d_PKCS8PrivateKey_fp(fp: PFILE; x: PEVP_PKEY; enc: PEVP_CIPHER; 
 begin
   i2d_PKCS8PrivateKey_fp := LoadLibCryptoFunction('i2d_PKCS8PrivateKey_fp');
   if not assigned(i2d_PKCS8PrivateKey_fp) then
+    {$if declared(LEGACY_i2d_PKCS8PrivateKey_fp)}
+    i2d_PKCS8PrivateKey_fp := @LEGACY_i2d_PKCS8PrivateKey_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_PKCS8PrivateKey_fp');
+    {$ifend}
   Result := i2d_PKCS8PrivateKey_fp(fp, x, enc, kstr, klen, cb, u);
 end;
 
@@ -1968,7 +2477,11 @@ function Load_i2d_PKCS8PrivateKey_nid_fp(fp: PFILE; x: PEVP_PKEY; nid: TOpenSSL_
 begin
   i2d_PKCS8PrivateKey_nid_fp := LoadLibCryptoFunction('i2d_PKCS8PrivateKey_nid_fp');
   if not assigned(i2d_PKCS8PrivateKey_nid_fp) then
+    {$if declared(LEGACY_i2d_PKCS8PrivateKey_nid_fp)}
+    i2d_PKCS8PrivateKey_nid_fp := @LEGACY_i2d_PKCS8PrivateKey_nid_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_PKCS8PrivateKey_nid_fp');
+    {$ifend}
   Result := i2d_PKCS8PrivateKey_nid_fp(fp, x, nid, kstr, klen, cb, u);
 end;
 
@@ -1976,7 +2489,11 @@ function Load_PEM_write_PKCS8PrivateKey_nid(fp: PFILE; x: PEVP_PKEY; nid: TOpenS
 begin
   PEM_write_PKCS8PrivateKey_nid := LoadLibCryptoFunction('PEM_write_PKCS8PrivateKey_nid');
   if not assigned(PEM_write_PKCS8PrivateKey_nid) then
+    {$if declared(LEGACY_PEM_write_PKCS8PrivateKey_nid)}
+    PEM_write_PKCS8PrivateKey_nid := @LEGACY_PEM_write_PKCS8PrivateKey_nid;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_PKCS8PrivateKey_nid');
+    {$ifend}
   Result := PEM_write_PKCS8PrivateKey_nid(fp, x, nid, kstr, klen, cb, u);
 end;
 
@@ -1984,7 +2501,11 @@ function Load_d2i_PKCS8PrivateKey_fp(fp: PFILE; x: PPEVP_PKEY; cb: Tpem_password
 begin
   d2i_PKCS8PrivateKey_fp := LoadLibCryptoFunction('d2i_PKCS8PrivateKey_fp');
   if not assigned(d2i_PKCS8PrivateKey_fp) then
+    {$if declared(LEGACY_d2i_PKCS8PrivateKey_fp)}
+    d2i_PKCS8PrivateKey_fp := @LEGACY_d2i_PKCS8PrivateKey_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_PKCS8PrivateKey_fp');
+    {$ifend}
   Result := d2i_PKCS8PrivateKey_fp(fp, x, cb, u);
 end;
 
@@ -1992,7 +2513,11 @@ function Load_PEM_write_PKCS8PrivateKey(fp: PFILE; x: PEVP_PKEY; enc: PEVP_CIPHE
 begin
   PEM_write_PKCS8PrivateKey := LoadLibCryptoFunction('PEM_write_PKCS8PrivateKey');
   if not assigned(PEM_write_PKCS8PrivateKey) then
+    {$if declared(LEGACY_PEM_write_PKCS8PrivateKey)}
+    PEM_write_PKCS8PrivateKey := @LEGACY_PEM_write_PKCS8PrivateKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_PKCS8PrivateKey');
+    {$ifend}
   Result := PEM_write_PKCS8PrivateKey(fp, x, enc, kstr, klen, cd, u);
 end;
 
@@ -2001,7 +2526,11 @@ function Load_PEM_read_bio_Parameters_ex(bp: PBIO; x: PPEVP_PKEY; libctx: POSSL_
 begin
   PEM_read_bio_Parameters_ex := LoadLibCryptoFunction('PEM_read_bio_Parameters_ex');
   if not assigned(PEM_read_bio_Parameters_ex) then
+    {$if declared(LEGACY_PEM_read_bio_Parameters_ex)}
+    PEM_read_bio_Parameters_ex := @LEGACY_PEM_read_bio_Parameters_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_bio_Parameters_ex');
+    {$ifend}
   Result := PEM_read_bio_Parameters_ex(bp, x, libctx, propq);
 end;
 
@@ -2009,7 +2538,11 @@ function Load_PEM_read_bio_Parameters(bp: PBIO; x: PPEVP_PKEY): PEVP_PKEY; cdecl
 begin
   PEM_read_bio_Parameters := LoadLibCryptoFunction('PEM_read_bio_Parameters');
   if not assigned(PEM_read_bio_Parameters) then
+    {$if declared(LEGACY_PEM_read_bio_Parameters)}
+    PEM_read_bio_Parameters := @LEGACY_PEM_read_bio_Parameters;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_read_bio_Parameters');
+    {$ifend}
   Result := PEM_read_bio_Parameters(bp, x);
 end;
 
@@ -2017,7 +2550,11 @@ function Load_PEM_write_bio_Parameters(bp: PBIO; x: PEVP_PKEY): TOpenSSL_C_INT; 
 begin
   PEM_write_bio_Parameters := LoadLibCryptoFunction('PEM_write_bio_Parameters');
   if not assigned(PEM_write_bio_Parameters) then
+    {$if declared(LEGACY_PEM_write_bio_Parameters)}
+    PEM_write_bio_Parameters := @LEGACY_PEM_write_bio_Parameters;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_bio_Parameters');
+    {$ifend}
   Result := PEM_write_bio_Parameters(bp, x);
 end;
 
@@ -2025,7 +2562,11 @@ function Load_b2i_PrivateKey(in_: PPbyte; length: TOpenSSL_C_INT): PEVP_PKEY; cd
 begin
   b2i_PrivateKey := LoadLibCryptoFunction('b2i_PrivateKey');
   if not assigned(b2i_PrivateKey) then
+    {$if declared(LEGACY_b2i_PrivateKey)}
+    b2i_PrivateKey := @LEGACY_b2i_PrivateKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('b2i_PrivateKey');
+    {$ifend}
   Result := b2i_PrivateKey(in_, length);
 end;
 
@@ -2033,7 +2574,11 @@ function Load_b2i_PublicKey(in_: PPbyte; length: TOpenSSL_C_INT): PEVP_PKEY; cde
 begin
   b2i_PublicKey := LoadLibCryptoFunction('b2i_PublicKey');
   if not assigned(b2i_PublicKey) then
+    {$if declared(LEGACY_b2i_PublicKey)}
+    b2i_PublicKey := @LEGACY_b2i_PublicKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('b2i_PublicKey');
+    {$ifend}
   Result := b2i_PublicKey(in_, length);
 end;
 
@@ -2041,7 +2586,11 @@ function Load_b2i_PrivateKey_bio(in_: PBIO): PEVP_PKEY; cdecl;
 begin
   b2i_PrivateKey_bio := LoadLibCryptoFunction('b2i_PrivateKey_bio');
   if not assigned(b2i_PrivateKey_bio) then
+    {$if declared(LEGACY_b2i_PrivateKey_bio)}
+    b2i_PrivateKey_bio := @LEGACY_b2i_PrivateKey_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('b2i_PrivateKey_bio');
+    {$ifend}
   Result := b2i_PrivateKey_bio(in_);
 end;
 
@@ -2049,7 +2598,11 @@ function Load_b2i_PublicKey_bio(in_: PBIO): PEVP_PKEY; cdecl;
 begin
   b2i_PublicKey_bio := LoadLibCryptoFunction('b2i_PublicKey_bio');
   if not assigned(b2i_PublicKey_bio) then
+    {$if declared(LEGACY_b2i_PublicKey_bio)}
+    b2i_PublicKey_bio := @LEGACY_b2i_PublicKey_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('b2i_PublicKey_bio');
+    {$ifend}
   Result := b2i_PublicKey_bio(in_);
 end;
 
@@ -2057,7 +2610,11 @@ function Load_i2b_PrivateKey_bio(out_: PBIO; pk: PEVP_PKEY): TOpenSSL_C_INT; cde
 begin
   i2b_PrivateKey_bio := LoadLibCryptoFunction('i2b_PrivateKey_bio');
   if not assigned(i2b_PrivateKey_bio) then
+    {$if declared(LEGACY_i2b_PrivateKey_bio)}
+    i2b_PrivateKey_bio := @LEGACY_i2b_PrivateKey_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2b_PrivateKey_bio');
+    {$ifend}
   Result := i2b_PrivateKey_bio(out_, pk);
 end;
 
@@ -2065,7 +2622,11 @@ function Load_i2b_PublicKey_bio(out_: PBIO; pk: PEVP_PKEY): TOpenSSL_C_INT; cdec
 begin
   i2b_PublicKey_bio := LoadLibCryptoFunction('i2b_PublicKey_bio');
   if not assigned(i2b_PublicKey_bio) then
+    {$if declared(LEGACY_i2b_PublicKey_bio)}
+    i2b_PublicKey_bio := @LEGACY_i2b_PublicKey_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2b_PublicKey_bio');
+    {$ifend}
   Result := i2b_PublicKey_bio(out_, pk);
 end;
 
@@ -2073,7 +2634,11 @@ function Load_b2i_PVK_bio(in_: PBIO; cb: Tpem_password_cb; u: pointer): PEVP_PKE
 begin
   b2i_PVK_bio := LoadLibCryptoFunction('b2i_PVK_bio');
   if not assigned(b2i_PVK_bio) then
+    {$if declared(LEGACY_b2i_PVK_bio)}
+    b2i_PVK_bio := @LEGACY_b2i_PVK_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('b2i_PVK_bio');
+    {$ifend}
   Result := b2i_PVK_bio(in_, cb, u);
 end;
 
@@ -2081,7 +2646,11 @@ function Load_b2i_PVK_bio_ex(in_: PBIO; cb: Tpem_password_cb; u: pointer; libctx
 begin
   b2i_PVK_bio_ex := LoadLibCryptoFunction('b2i_PVK_bio_ex');
   if not assigned(b2i_PVK_bio_ex) then
+    {$if declared(LEGACY_b2i_PVK_bio_ex)}
+    b2i_PVK_bio_ex := @LEGACY_b2i_PVK_bio_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('b2i_PVK_bio_ex');
+    {$ifend}
   Result := b2i_PVK_bio_ex(in_, cb, u, libctx, propq);
 end;
 
@@ -2089,7 +2658,11 @@ function Load_i2b_PVK_bio(out_: PBIO; pk: PEVP_PKEY; enclevel: TOpenSSL_C_INT; c
 begin
   i2b_PVK_bio := LoadLibCryptoFunction('i2b_PVK_bio');
   if not assigned(i2b_PVK_bio) then
+    {$if declared(LEGACY_i2b_PVK_bio)}
+    i2b_PVK_bio := @LEGACY_i2b_PVK_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2b_PVK_bio');
+    {$ifend}
   Result := i2b_PVK_bio(out_, pk, enclevel, cb, u);
 end;
 
@@ -2097,7 +2670,11 @@ function Load_i2b_PVK_bio_ex(out_: PBIO; pk: PEVP_PKEY; enclevel: TOpenSSL_C_INT
 begin
   i2b_PVK_bio_ex := LoadLibCryptoFunction('i2b_PVK_bio_ex');
   if not assigned(i2b_PVK_bio_ex) then
+    {$if declared(LEGACY_i2b_PVK_bio_ex)}
+    i2b_PVK_bio_ex := @LEGACY_i2b_PVK_bio_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2b_PVK_bio_ex');
+    {$ifend}
   Result := i2b_PVK_bio_ex(out_, pk, enclevel, cb, u, libctx, propq);
 end;
 

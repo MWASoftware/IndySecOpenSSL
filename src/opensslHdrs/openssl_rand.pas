@@ -18,7 +18,8 @@
 unit openssl_rand;
 
 {
-  Generated from OpenSSL 3.0.20 Header File rand.h - Wed  6 May 13:06:26 BST 2026
+  Generated from OpenSSL 3.0.20 Header File rand.h - Wed  6 May 13:15:35 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -345,7 +346,11 @@ function Load_RAND_set_rand_method(meth: PRAND_METHOD): TOpenSSL_C_INT; cdecl;
 begin
   RAND_set_rand_method := LoadLibCryptoFunction('RAND_set_rand_method');
   if not assigned(RAND_set_rand_method) then
+    {$if declared(LEGACY_RAND_set_rand_method)}
+    RAND_set_rand_method := @LEGACY_RAND_set_rand_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RAND_set_rand_method');
+    {$ifend}
   Result := RAND_set_rand_method(meth);
 end;
 
@@ -353,7 +358,11 @@ function Load_RAND_get_rand_method: PRAND_METHOD; cdecl;
 begin
   RAND_get_rand_method := LoadLibCryptoFunction('RAND_get_rand_method');
   if not assigned(RAND_get_rand_method) then
+    {$if declared(LEGACY_RAND_get_rand_method)}
+    RAND_get_rand_method := @LEGACY_RAND_get_rand_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RAND_get_rand_method');
+    {$ifend}
   Result := RAND_get_rand_method;
 end;
 
@@ -362,7 +371,11 @@ function Load_RAND_set_rand_engine(engine: PENGINE): TOpenSSL_C_INT; cdecl;
 begin
   RAND_set_rand_engine := LoadLibCryptoFunction('RAND_set_rand_engine');
   if not assigned(RAND_set_rand_engine) then
+    {$if declared(LEGACY_RAND_set_rand_engine)}
+    RAND_set_rand_engine := @LEGACY_RAND_set_rand_engine;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RAND_set_rand_engine');
+    {$ifend}
   Result := RAND_set_rand_engine(engine);
 end;
 
@@ -371,7 +384,11 @@ function Load_RAND_OpenSSL: PRAND_METHOD; cdecl;
 begin
   RAND_OpenSSL := LoadLibCryptoFunction('RAND_OpenSSL');
   if not assigned(RAND_OpenSSL) then
+    {$if declared(LEGACY_RAND_OpenSSL)}
+    RAND_OpenSSL := @LEGACY_RAND_OpenSSL;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RAND_OpenSSL');
+    {$ifend}
   Result := RAND_OpenSSL;
 end;
 
@@ -380,7 +397,11 @@ function Load_RAND_bytes(buf: Pbyte; num: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl
 begin
   RAND_bytes := LoadLibCryptoFunction('RAND_bytes');
   if not assigned(RAND_bytes) then
+    {$if declared(LEGACY_RAND_bytes)}
+    RAND_bytes := @LEGACY_RAND_bytes;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RAND_bytes');
+    {$ifend}
   Result := RAND_bytes(buf, num);
 end;
 
@@ -388,7 +409,11 @@ function Load_RAND_priv_bytes(buf: Pbyte; num: TOpenSSL_C_INT): TOpenSSL_C_INT; 
 begin
   RAND_priv_bytes := LoadLibCryptoFunction('RAND_priv_bytes');
   if not assigned(RAND_priv_bytes) then
+    {$if declared(LEGACY_RAND_priv_bytes)}
+    RAND_priv_bytes := @LEGACY_RAND_priv_bytes;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RAND_priv_bytes');
+    {$ifend}
   Result := RAND_priv_bytes(buf, num);
 end;
 
@@ -396,7 +421,11 @@ function Load_RAND_priv_bytes_ex(ctx: POSSL_LIB_CTX; buf: Pbyte; num: TOpenSSL_C
 begin
   RAND_priv_bytes_ex := LoadLibCryptoFunction('RAND_priv_bytes_ex');
   if not assigned(RAND_priv_bytes_ex) then
+    {$if declared(LEGACY_RAND_priv_bytes_ex)}
+    RAND_priv_bytes_ex := @LEGACY_RAND_priv_bytes_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RAND_priv_bytes_ex');
+    {$ifend}
   Result := RAND_priv_bytes_ex(ctx, buf, num, strength);
 end;
 
@@ -404,7 +433,11 @@ function Load_RAND_bytes_ex(ctx: POSSL_LIB_CTX; buf: Pbyte; num: TOpenSSL_C_SIZE
 begin
   RAND_bytes_ex := LoadLibCryptoFunction('RAND_bytes_ex');
   if not assigned(RAND_bytes_ex) then
+    {$if declared(LEGACY_RAND_bytes_ex)}
+    RAND_bytes_ex := @LEGACY_RAND_bytes_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RAND_bytes_ex');
+    {$ifend}
   Result := RAND_bytes_ex(ctx, buf, num, strength);
 end;
 
@@ -413,7 +446,11 @@ function Load_RAND_pseudo_bytes(buf: Pbyte; num: TOpenSSL_C_INT): TOpenSSL_C_INT
 begin
   RAND_pseudo_bytes := LoadLibCryptoFunction('RAND_pseudo_bytes');
   if not assigned(RAND_pseudo_bytes) then
+    {$if declared(LEGACY_RAND_pseudo_bytes)}
+    RAND_pseudo_bytes := @LEGACY_RAND_pseudo_bytes;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RAND_pseudo_bytes');
+    {$ifend}
   Result := RAND_pseudo_bytes(buf, num);
 end;
 
@@ -422,7 +459,11 @@ function Load_RAND_get0_primary(ctx: POSSL_LIB_CTX): PEVP_RAND_CTX; cdecl;
 begin
   RAND_get0_primary := LoadLibCryptoFunction('RAND_get0_primary');
   if not assigned(RAND_get0_primary) then
+    {$if declared(LEGACY_RAND_get0_primary)}
+    RAND_get0_primary := @LEGACY_RAND_get0_primary;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RAND_get0_primary');
+    {$ifend}
   Result := RAND_get0_primary(ctx);
 end;
 
@@ -430,7 +471,11 @@ function Load_RAND_get0_public(ctx: POSSL_LIB_CTX): PEVP_RAND_CTX; cdecl;
 begin
   RAND_get0_public := LoadLibCryptoFunction('RAND_get0_public');
   if not assigned(RAND_get0_public) then
+    {$if declared(LEGACY_RAND_get0_public)}
+    RAND_get0_public := @LEGACY_RAND_get0_public;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RAND_get0_public');
+    {$ifend}
   Result := RAND_get0_public(ctx);
 end;
 
@@ -438,7 +483,11 @@ function Load_RAND_get0_private(ctx: POSSL_LIB_CTX): PEVP_RAND_CTX; cdecl;
 begin
   RAND_get0_private := LoadLibCryptoFunction('RAND_get0_private');
   if not assigned(RAND_get0_private) then
+    {$if declared(LEGACY_RAND_get0_private)}
+    RAND_get0_private := @LEGACY_RAND_get0_private;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RAND_get0_private');
+    {$ifend}
   Result := RAND_get0_private(ctx);
 end;
 
@@ -446,7 +495,11 @@ function Load_RAND_set_DRBG_type(ctx: POSSL_LIB_CTX; drbg: PAnsiChar; propq: PAn
 begin
   RAND_set_DRBG_type := LoadLibCryptoFunction('RAND_set_DRBG_type');
   if not assigned(RAND_set_DRBG_type) then
+    {$if declared(LEGACY_RAND_set_DRBG_type)}
+    RAND_set_DRBG_type := @LEGACY_RAND_set_DRBG_type;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RAND_set_DRBG_type');
+    {$ifend}
   Result := RAND_set_DRBG_type(ctx, drbg, propq, cipher, digest);
 end;
 
@@ -454,7 +507,11 @@ function Load_RAND_set_seed_source_type(ctx: POSSL_LIB_CTX; seed: PAnsiChar; pro
 begin
   RAND_set_seed_source_type := LoadLibCryptoFunction('RAND_set_seed_source_type');
   if not assigned(RAND_set_seed_source_type) then
+    {$if declared(LEGACY_RAND_set_seed_source_type)}
+    RAND_set_seed_source_type := @LEGACY_RAND_set_seed_source_type;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RAND_set_seed_source_type');
+    {$ifend}
   Result := RAND_set_seed_source_type(ctx, seed, propq);
 end;
 
@@ -462,7 +519,11 @@ procedure Load_RAND_seed(buf: pointer; num: TOpenSSL_C_INT); cdecl;
 begin
   RAND_seed := LoadLibCryptoFunction('RAND_seed');
   if not assigned(RAND_seed) then
+    {$if declared(LEGACY_RAND_seed)}
+    RAND_seed := @LEGACY_RAND_seed;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RAND_seed');
+    {$ifend}
   RAND_seed(buf, num);
 end;
 
@@ -470,7 +531,11 @@ procedure Load_RAND_keep_random_devices_open(keep: TOpenSSL_C_INT); cdecl;
 begin
   RAND_keep_random_devices_open := LoadLibCryptoFunction('RAND_keep_random_devices_open');
   if not assigned(RAND_keep_random_devices_open) then
+    {$if declared(LEGACY_RAND_keep_random_devices_open)}
+    RAND_keep_random_devices_open := @LEGACY_RAND_keep_random_devices_open;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RAND_keep_random_devices_open');
+    {$ifend}
   RAND_keep_random_devices_open(keep);
 end;
 
@@ -478,7 +543,11 @@ procedure Load_RAND_add(buf: pointer; num: TOpenSSL_C_INT; randomness: TOpenSSL_
 begin
   RAND_add := LoadLibCryptoFunction('RAND_add');
   if not assigned(RAND_add) then
+    {$if declared(LEGACY_RAND_add)}
+    RAND_add := @LEGACY_RAND_add;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RAND_add');
+    {$ifend}
   RAND_add(buf, num, randomness);
 end;
 
@@ -486,7 +555,11 @@ function Load_RAND_load_file(file_: PAnsiChar; max_bytes: TOpenSSL_C_INT): TOpen
 begin
   RAND_load_file := LoadLibCryptoFunction('RAND_load_file');
   if not assigned(RAND_load_file) then
+    {$if declared(LEGACY_RAND_load_file)}
+    RAND_load_file := @LEGACY_RAND_load_file;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RAND_load_file');
+    {$ifend}
   Result := RAND_load_file(file_, max_bytes);
 end;
 
@@ -494,7 +567,11 @@ function Load_RAND_write_file(file_: PAnsiChar): TOpenSSL_C_INT; cdecl;
 begin
   RAND_write_file := LoadLibCryptoFunction('RAND_write_file');
   if not assigned(RAND_write_file) then
+    {$if declared(LEGACY_RAND_write_file)}
+    RAND_write_file := @LEGACY_RAND_write_file;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RAND_write_file');
+    {$ifend}
   Result := RAND_write_file(file_);
 end;
 
@@ -502,7 +579,11 @@ function Load_RAND_file_name(file_: PAnsiChar; num: TOpenSSL_C_SIZET): PAnsiChar
 begin
   RAND_file_name := LoadLibCryptoFunction('RAND_file_name');
   if not assigned(RAND_file_name) then
+    {$if declared(LEGACY_RAND_file_name)}
+    RAND_file_name := @LEGACY_RAND_file_name;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RAND_file_name');
+    {$ifend}
   Result := RAND_file_name(file_, num);
 end;
 
@@ -510,7 +591,11 @@ function Load_RAND_status: TOpenSSL_C_INT; cdecl;
 begin
   RAND_status := LoadLibCryptoFunction('RAND_status');
   if not assigned(RAND_status) then
+    {$if declared(LEGACY_RAND_status)}
+    RAND_status := @LEGACY_RAND_status;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RAND_status');
+    {$ifend}
   Result := RAND_status;
 end;
 
@@ -519,7 +604,11 @@ function Load_RAND_query_egd_bytes(path: PAnsiChar; buf: Pbyte; bytes: TOpenSSL_
 begin
   RAND_query_egd_bytes := LoadLibCryptoFunction('RAND_query_egd_bytes');
   if not assigned(RAND_query_egd_bytes) then
+    {$if declared(LEGACY_RAND_query_egd_bytes)}
+    RAND_query_egd_bytes := @LEGACY_RAND_query_egd_bytes;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RAND_query_egd_bytes');
+    {$ifend}
   Result := RAND_query_egd_bytes(path, buf, bytes);
 end;
 
@@ -527,7 +616,11 @@ function Load_RAND_egd(path: PAnsiChar): TOpenSSL_C_INT; cdecl;
 begin
   RAND_egd := LoadLibCryptoFunction('RAND_egd');
   if not assigned(RAND_egd) then
+    {$if declared(LEGACY_RAND_egd)}
+    RAND_egd := @LEGACY_RAND_egd;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RAND_egd');
+    {$ifend}
   Result := RAND_egd(path);
 end;
 
@@ -535,7 +628,11 @@ function Load_RAND_egd_bytes(path: PAnsiChar; bytes: TOpenSSL_C_INT): TOpenSSL_C
 begin
   RAND_egd_bytes := LoadLibCryptoFunction('RAND_egd_bytes');
   if not assigned(RAND_egd_bytes) then
+    {$if declared(LEGACY_RAND_egd_bytes)}
+    RAND_egd_bytes := @LEGACY_RAND_egd_bytes;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RAND_egd_bytes');
+    {$ifend}
   Result := RAND_egd_bytes(path, bytes);
 end;
 
@@ -544,7 +641,11 @@ function Load_RAND_poll: TOpenSSL_C_INT; cdecl;
 begin
   RAND_poll := LoadLibCryptoFunction('RAND_poll');
   if not assigned(RAND_poll) then
+    {$if declared(LEGACY_RAND_poll)}
+    RAND_poll := @LEGACY_RAND_poll;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RAND_poll');
+    {$ifend}
   Result := RAND_poll;
 end;
 
@@ -554,7 +655,11 @@ procedure Load_RAND_screen; cdecl;
 begin
   RAND_screen := LoadLibCryptoFunction('RAND_screen');
   if not assigned(RAND_screen) then
+    {$if declared(LEGACY_RAND_screen)}
+    RAND_screen := @LEGACY_RAND_screen;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RAND_screen');
+    {$ifend}
   RAND_screen;
 end;
 
@@ -562,7 +667,11 @@ function Load_RAND_event(_param1: TOpenSSL_C_UINT; _param2: TWPARAM; _param3: TL
 begin
   RAND_event := LoadLibCryptoFunction('RAND_event');
   if not assigned(RAND_event) then
+    {$if declared(LEGACY_RAND_event)}
+    RAND_event := @LEGACY_RAND_event;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RAND_event');
+    {$ifend}
   Result := RAND_event(_param1, _param2, _param3);
 end;
 

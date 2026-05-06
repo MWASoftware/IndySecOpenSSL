@@ -18,7 +18,8 @@
 unit openssl_srtp;
 
 {
-  Generated from OpenSSL 3.0.20 Header File srtp.h - Wed  6 May 13:06:32 BST 2026
+  Generated from OpenSSL 3.0.20 Header File srtp.h - Wed  6 May 13:15:42 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -186,7 +187,11 @@ function Load_SSL_CTX_set_tlsext_use_srtp(ctx: PSSL_CTX; profiles: PAnsiChar): T
 begin
   SSL_CTX_set_tlsext_use_srtp := LoadLibCryptoFunction('SSL_CTX_set_tlsext_use_srtp');
   if not assigned(SSL_CTX_set_tlsext_use_srtp) then
+    {$if declared(LEGACY_SSL_CTX_set_tlsext_use_srtp)}
+    SSL_CTX_set_tlsext_use_srtp := @LEGACY_SSL_CTX_set_tlsext_use_srtp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SSL_CTX_set_tlsext_use_srtp');
+    {$ifend}
   Result := SSL_CTX_set_tlsext_use_srtp(ctx, profiles);
 end;
 
@@ -194,7 +199,11 @@ function Load_SSL_set_tlsext_use_srtp(ssl: PSSL; profiles: PAnsiChar): TOpenSSL_
 begin
   SSL_set_tlsext_use_srtp := LoadLibCryptoFunction('SSL_set_tlsext_use_srtp');
   if not assigned(SSL_set_tlsext_use_srtp) then
+    {$if declared(LEGACY_SSL_set_tlsext_use_srtp)}
+    SSL_set_tlsext_use_srtp := @LEGACY_SSL_set_tlsext_use_srtp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SSL_set_tlsext_use_srtp');
+    {$ifend}
   Result := SSL_set_tlsext_use_srtp(ssl, profiles);
 end;
 
@@ -202,7 +211,11 @@ function Load_SSL_get_srtp_profiles(ssl: PSSL): Pstack_st_SRTP_PROTECTION_PROFIL
 begin
   SSL_get_srtp_profiles := LoadLibCryptoFunction('SSL_get_srtp_profiles');
   if not assigned(SSL_get_srtp_profiles) then
+    {$if declared(LEGACY_SSL_get_srtp_profiles)}
+    SSL_get_srtp_profiles := @LEGACY_SSL_get_srtp_profiles;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SSL_get_srtp_profiles');
+    {$ifend}
   Result := SSL_get_srtp_profiles(ssl);
 end;
 
@@ -210,7 +223,11 @@ function Load_SSL_get_selected_srtp_profile(s: PSSL): PSRTP_PROTECTION_PROFILE; 
 begin
   SSL_get_selected_srtp_profile := LoadLibCryptoFunction('SSL_get_selected_srtp_profile');
   if not assigned(SSL_get_selected_srtp_profile) then
+    {$if declared(LEGACY_SSL_get_selected_srtp_profile)}
+    SSL_get_selected_srtp_profile := @LEGACY_SSL_get_selected_srtp_profile;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SSL_get_selected_srtp_profile');
+    {$ifend}
   Result := SSL_get_selected_srtp_profile(s);
 end;
 

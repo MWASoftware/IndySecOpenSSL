@@ -18,7 +18,8 @@
 unit openssl_pkcs12err;
 
 {
-  Generated from OpenSSL 3.0.20 Header File pkcs12err.h - Wed  6 May 13:06:21 BST 2026
+  Generated from OpenSSL 3.0.20 Header File pkcs12err.h - Wed  6 May 13:15:30 BST 2026
+  With Legacy Support Option
 }
 
 interface

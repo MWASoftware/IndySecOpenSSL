@@ -18,7 +18,8 @@
 unit openssl_rsa;
 
 {
-  Generated from OpenSSL 3.0.20 Header File rsa.h - Wed  6 May 13:06:28 BST 2026
+  Generated from OpenSSL 3.0.20 Header File rsa.h - Wed  6 May 13:15:37 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -1432,7 +1433,11 @@ function Load_EVP_PKEY_CTX_set_rsa_padding(ctx: PEVP_PKEY_CTX; pad_mode: TOpenSS
 begin
   EVP_PKEY_CTX_set_rsa_padding := LoadLibCryptoFunction('EVP_PKEY_CTX_set_rsa_padding');
   if not assigned(EVP_PKEY_CTX_set_rsa_padding) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_rsa_padding)}
+    EVP_PKEY_CTX_set_rsa_padding := @LEGACY_EVP_PKEY_CTX_set_rsa_padding;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_rsa_padding');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_rsa_padding(ctx, pad_mode);
 end;
 
@@ -1440,7 +1445,11 @@ function Load_EVP_PKEY_CTX_get_rsa_padding(ctx: PEVP_PKEY_CTX; pad_mode: POpenSS
 begin
   EVP_PKEY_CTX_get_rsa_padding := LoadLibCryptoFunction('EVP_PKEY_CTX_get_rsa_padding');
   if not assigned(EVP_PKEY_CTX_get_rsa_padding) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_get_rsa_padding)}
+    EVP_PKEY_CTX_get_rsa_padding := @LEGACY_EVP_PKEY_CTX_get_rsa_padding;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_get_rsa_padding');
+    {$ifend}
   Result := EVP_PKEY_CTX_get_rsa_padding(ctx, pad_mode);
 end;
 
@@ -1448,7 +1457,11 @@ function Load_EVP_PKEY_CTX_set_rsa_pss_saltlen(ctx: PEVP_PKEY_CTX; saltlen: TOpe
 begin
   EVP_PKEY_CTX_set_rsa_pss_saltlen := LoadLibCryptoFunction('EVP_PKEY_CTX_set_rsa_pss_saltlen');
   if not assigned(EVP_PKEY_CTX_set_rsa_pss_saltlen) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_rsa_pss_saltlen)}
+    EVP_PKEY_CTX_set_rsa_pss_saltlen := @LEGACY_EVP_PKEY_CTX_set_rsa_pss_saltlen;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_rsa_pss_saltlen');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_rsa_pss_saltlen(ctx, saltlen);
 end;
 
@@ -1456,7 +1469,11 @@ function Load_EVP_PKEY_CTX_get_rsa_pss_saltlen(ctx: PEVP_PKEY_CTX; saltlen: POpe
 begin
   EVP_PKEY_CTX_get_rsa_pss_saltlen := LoadLibCryptoFunction('EVP_PKEY_CTX_get_rsa_pss_saltlen');
   if not assigned(EVP_PKEY_CTX_get_rsa_pss_saltlen) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_get_rsa_pss_saltlen)}
+    EVP_PKEY_CTX_get_rsa_pss_saltlen := @LEGACY_EVP_PKEY_CTX_get_rsa_pss_saltlen;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_get_rsa_pss_saltlen');
+    {$ifend}
   Result := EVP_PKEY_CTX_get_rsa_pss_saltlen(ctx, saltlen);
 end;
 
@@ -1464,7 +1481,11 @@ function Load_EVP_PKEY_CTX_set_rsa_keygen_bits(ctx: PEVP_PKEY_CTX; bits: TOpenSS
 begin
   EVP_PKEY_CTX_set_rsa_keygen_bits := LoadLibCryptoFunction('EVP_PKEY_CTX_set_rsa_keygen_bits');
   if not assigned(EVP_PKEY_CTX_set_rsa_keygen_bits) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_rsa_keygen_bits)}
+    EVP_PKEY_CTX_set_rsa_keygen_bits := @LEGACY_EVP_PKEY_CTX_set_rsa_keygen_bits;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_rsa_keygen_bits');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_rsa_keygen_bits(ctx, bits);
 end;
 
@@ -1472,7 +1493,11 @@ function Load_EVP_PKEY_CTX_set1_rsa_keygen_pubexp(ctx: PEVP_PKEY_CTX; pubexp: PB
 begin
   EVP_PKEY_CTX_set1_rsa_keygen_pubexp := LoadLibCryptoFunction('EVP_PKEY_CTX_set1_rsa_keygen_pubexp');
   if not assigned(EVP_PKEY_CTX_set1_rsa_keygen_pubexp) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set1_rsa_keygen_pubexp)}
+    EVP_PKEY_CTX_set1_rsa_keygen_pubexp := @LEGACY_EVP_PKEY_CTX_set1_rsa_keygen_pubexp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set1_rsa_keygen_pubexp');
+    {$ifend}
   Result := EVP_PKEY_CTX_set1_rsa_keygen_pubexp(ctx, pubexp);
 end;
 
@@ -1480,7 +1505,11 @@ function Load_EVP_PKEY_CTX_set_rsa_keygen_primes(ctx: PEVP_PKEY_CTX; primes: TOp
 begin
   EVP_PKEY_CTX_set_rsa_keygen_primes := LoadLibCryptoFunction('EVP_PKEY_CTX_set_rsa_keygen_primes');
   if not assigned(EVP_PKEY_CTX_set_rsa_keygen_primes) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_rsa_keygen_primes)}
+    EVP_PKEY_CTX_set_rsa_keygen_primes := @LEGACY_EVP_PKEY_CTX_set_rsa_keygen_primes;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_rsa_keygen_primes');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_rsa_keygen_primes(ctx, primes);
 end;
 
@@ -1488,7 +1517,11 @@ function Load_EVP_PKEY_CTX_set_rsa_pss_keygen_saltlen(ctx: PEVP_PKEY_CTX; saltle
 begin
   EVP_PKEY_CTX_set_rsa_pss_keygen_saltlen := LoadLibCryptoFunction('EVP_PKEY_CTX_set_rsa_pss_keygen_saltlen');
   if not assigned(EVP_PKEY_CTX_set_rsa_pss_keygen_saltlen) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_rsa_pss_keygen_saltlen)}
+    EVP_PKEY_CTX_set_rsa_pss_keygen_saltlen := @LEGACY_EVP_PKEY_CTX_set_rsa_pss_keygen_saltlen;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_rsa_pss_keygen_saltlen');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_rsa_pss_keygen_saltlen(ctx, saltlen);
 end;
 
@@ -1497,7 +1530,11 @@ function Load_EVP_PKEY_CTX_set_rsa_keygen_pubexp(ctx: PEVP_PKEY_CTX; pubexp: PBI
 begin
   EVP_PKEY_CTX_set_rsa_keygen_pubexp := LoadLibCryptoFunction('EVP_PKEY_CTX_set_rsa_keygen_pubexp');
   if not assigned(EVP_PKEY_CTX_set_rsa_keygen_pubexp) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_rsa_keygen_pubexp)}
+    EVP_PKEY_CTX_set_rsa_keygen_pubexp := @LEGACY_EVP_PKEY_CTX_set_rsa_keygen_pubexp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_rsa_keygen_pubexp');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_rsa_keygen_pubexp(ctx, pubexp);
 end;
 
@@ -1506,7 +1543,11 @@ function Load_EVP_PKEY_CTX_set_rsa_mgf1_md(ctx: PEVP_PKEY_CTX; md: PEVP_MD): TOp
 begin
   EVP_PKEY_CTX_set_rsa_mgf1_md := LoadLibCryptoFunction('EVP_PKEY_CTX_set_rsa_mgf1_md');
   if not assigned(EVP_PKEY_CTX_set_rsa_mgf1_md) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_rsa_mgf1_md)}
+    EVP_PKEY_CTX_set_rsa_mgf1_md := @LEGACY_EVP_PKEY_CTX_set_rsa_mgf1_md;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_rsa_mgf1_md');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_rsa_mgf1_md(ctx, md);
 end;
 
@@ -1514,7 +1555,11 @@ function Load_EVP_PKEY_CTX_set_rsa_mgf1_md_name(ctx: PEVP_PKEY_CTX; mdname: PAns
 begin
   EVP_PKEY_CTX_set_rsa_mgf1_md_name := LoadLibCryptoFunction('EVP_PKEY_CTX_set_rsa_mgf1_md_name');
   if not assigned(EVP_PKEY_CTX_set_rsa_mgf1_md_name) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_rsa_mgf1_md_name)}
+    EVP_PKEY_CTX_set_rsa_mgf1_md_name := @LEGACY_EVP_PKEY_CTX_set_rsa_mgf1_md_name;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_rsa_mgf1_md_name');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_rsa_mgf1_md_name(ctx, mdname, mdprops);
 end;
 
@@ -1522,7 +1567,11 @@ function Load_EVP_PKEY_CTX_get_rsa_mgf1_md(ctx: PEVP_PKEY_CTX; md: PPEVP_MD): TO
 begin
   EVP_PKEY_CTX_get_rsa_mgf1_md := LoadLibCryptoFunction('EVP_PKEY_CTX_get_rsa_mgf1_md');
   if not assigned(EVP_PKEY_CTX_get_rsa_mgf1_md) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_get_rsa_mgf1_md)}
+    EVP_PKEY_CTX_get_rsa_mgf1_md := @LEGACY_EVP_PKEY_CTX_get_rsa_mgf1_md;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_get_rsa_mgf1_md');
+    {$ifend}
   Result := EVP_PKEY_CTX_get_rsa_mgf1_md(ctx, md);
 end;
 
@@ -1530,7 +1579,11 @@ function Load_EVP_PKEY_CTX_get_rsa_mgf1_md_name(ctx: PEVP_PKEY_CTX; name: PAnsiC
 begin
   EVP_PKEY_CTX_get_rsa_mgf1_md_name := LoadLibCryptoFunction('EVP_PKEY_CTX_get_rsa_mgf1_md_name');
   if not assigned(EVP_PKEY_CTX_get_rsa_mgf1_md_name) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_get_rsa_mgf1_md_name)}
+    EVP_PKEY_CTX_get_rsa_mgf1_md_name := @LEGACY_EVP_PKEY_CTX_get_rsa_mgf1_md_name;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_get_rsa_mgf1_md_name');
+    {$ifend}
   Result := EVP_PKEY_CTX_get_rsa_mgf1_md_name(ctx, name, namelen);
 end;
 
@@ -1538,7 +1591,11 @@ function Load_EVP_PKEY_CTX_set_rsa_pss_keygen_mgf1_md(ctx: PEVP_PKEY_CTX; md: PE
 begin
   EVP_PKEY_CTX_set_rsa_pss_keygen_mgf1_md := LoadLibCryptoFunction('EVP_PKEY_CTX_set_rsa_pss_keygen_mgf1_md');
   if not assigned(EVP_PKEY_CTX_set_rsa_pss_keygen_mgf1_md) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_rsa_pss_keygen_mgf1_md)}
+    EVP_PKEY_CTX_set_rsa_pss_keygen_mgf1_md := @LEGACY_EVP_PKEY_CTX_set_rsa_pss_keygen_mgf1_md;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_rsa_pss_keygen_mgf1_md');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_rsa_pss_keygen_mgf1_md(ctx, md);
 end;
 
@@ -1546,7 +1603,11 @@ function Load_EVP_PKEY_CTX_set_rsa_pss_keygen_mgf1_md_name(ctx: PEVP_PKEY_CTX; m
 begin
   EVP_PKEY_CTX_set_rsa_pss_keygen_mgf1_md_name := LoadLibCryptoFunction('EVP_PKEY_CTX_set_rsa_pss_keygen_mgf1_md_name');
   if not assigned(EVP_PKEY_CTX_set_rsa_pss_keygen_mgf1_md_name) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_rsa_pss_keygen_mgf1_md_name)}
+    EVP_PKEY_CTX_set_rsa_pss_keygen_mgf1_md_name := @LEGACY_EVP_PKEY_CTX_set_rsa_pss_keygen_mgf1_md_name;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_rsa_pss_keygen_mgf1_md_name');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_rsa_pss_keygen_mgf1_md_name(ctx, mdname);
 end;
 
@@ -1554,7 +1615,11 @@ function Load_EVP_PKEY_CTX_set_rsa_pss_keygen_md(ctx: PEVP_PKEY_CTX; md: PEVP_MD
 begin
   EVP_PKEY_CTX_set_rsa_pss_keygen_md := LoadLibCryptoFunction('EVP_PKEY_CTX_set_rsa_pss_keygen_md');
   if not assigned(EVP_PKEY_CTX_set_rsa_pss_keygen_md) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_rsa_pss_keygen_md)}
+    EVP_PKEY_CTX_set_rsa_pss_keygen_md := @LEGACY_EVP_PKEY_CTX_set_rsa_pss_keygen_md;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_rsa_pss_keygen_md');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_rsa_pss_keygen_md(ctx, md);
 end;
 
@@ -1562,7 +1627,11 @@ function Load_EVP_PKEY_CTX_set_rsa_pss_keygen_md_name(ctx: PEVP_PKEY_CTX; mdname
 begin
   EVP_PKEY_CTX_set_rsa_pss_keygen_md_name := LoadLibCryptoFunction('EVP_PKEY_CTX_set_rsa_pss_keygen_md_name');
   if not assigned(EVP_PKEY_CTX_set_rsa_pss_keygen_md_name) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_rsa_pss_keygen_md_name)}
+    EVP_PKEY_CTX_set_rsa_pss_keygen_md_name := @LEGACY_EVP_PKEY_CTX_set_rsa_pss_keygen_md_name;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_rsa_pss_keygen_md_name');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_rsa_pss_keygen_md_name(ctx, mdname, mdprops);
 end;
 
@@ -1570,7 +1639,11 @@ function Load_EVP_PKEY_CTX_set_rsa_oaep_md(ctx: PEVP_PKEY_CTX; md: PEVP_MD): TOp
 begin
   EVP_PKEY_CTX_set_rsa_oaep_md := LoadLibCryptoFunction('EVP_PKEY_CTX_set_rsa_oaep_md');
   if not assigned(EVP_PKEY_CTX_set_rsa_oaep_md) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_rsa_oaep_md)}
+    EVP_PKEY_CTX_set_rsa_oaep_md := @LEGACY_EVP_PKEY_CTX_set_rsa_oaep_md;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_rsa_oaep_md');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_rsa_oaep_md(ctx, md);
 end;
 
@@ -1578,7 +1651,11 @@ function Load_EVP_PKEY_CTX_set_rsa_oaep_md_name(ctx: PEVP_PKEY_CTX; mdname: PAns
 begin
   EVP_PKEY_CTX_set_rsa_oaep_md_name := LoadLibCryptoFunction('EVP_PKEY_CTX_set_rsa_oaep_md_name');
   if not assigned(EVP_PKEY_CTX_set_rsa_oaep_md_name) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_rsa_oaep_md_name)}
+    EVP_PKEY_CTX_set_rsa_oaep_md_name := @LEGACY_EVP_PKEY_CTX_set_rsa_oaep_md_name;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_rsa_oaep_md_name');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_rsa_oaep_md_name(ctx, mdname, mdprops);
 end;
 
@@ -1586,7 +1663,11 @@ function Load_EVP_PKEY_CTX_get_rsa_oaep_md(ctx: PEVP_PKEY_CTX; md: PPEVP_MD): TO
 begin
   EVP_PKEY_CTX_get_rsa_oaep_md := LoadLibCryptoFunction('EVP_PKEY_CTX_get_rsa_oaep_md');
   if not assigned(EVP_PKEY_CTX_get_rsa_oaep_md) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_get_rsa_oaep_md)}
+    EVP_PKEY_CTX_get_rsa_oaep_md := @LEGACY_EVP_PKEY_CTX_get_rsa_oaep_md;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_get_rsa_oaep_md');
+    {$ifend}
   Result := EVP_PKEY_CTX_get_rsa_oaep_md(ctx, md);
 end;
 
@@ -1594,7 +1675,11 @@ function Load_EVP_PKEY_CTX_get_rsa_oaep_md_name(ctx: PEVP_PKEY_CTX; name: PAnsiC
 begin
   EVP_PKEY_CTX_get_rsa_oaep_md_name := LoadLibCryptoFunction('EVP_PKEY_CTX_get_rsa_oaep_md_name');
   if not assigned(EVP_PKEY_CTX_get_rsa_oaep_md_name) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_get_rsa_oaep_md_name)}
+    EVP_PKEY_CTX_get_rsa_oaep_md_name := @LEGACY_EVP_PKEY_CTX_get_rsa_oaep_md_name;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_get_rsa_oaep_md_name');
+    {$ifend}
   Result := EVP_PKEY_CTX_get_rsa_oaep_md_name(ctx, name, namelen);
 end;
 
@@ -1602,7 +1687,11 @@ function Load_EVP_PKEY_CTX_set0_rsa_oaep_label(ctx: PEVP_PKEY_CTX; label_: point
 begin
   EVP_PKEY_CTX_set0_rsa_oaep_label := LoadLibCryptoFunction('EVP_PKEY_CTX_set0_rsa_oaep_label');
   if not assigned(EVP_PKEY_CTX_set0_rsa_oaep_label) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set0_rsa_oaep_label)}
+    EVP_PKEY_CTX_set0_rsa_oaep_label := @LEGACY_EVP_PKEY_CTX_set0_rsa_oaep_label;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set0_rsa_oaep_label');
+    {$ifend}
   Result := EVP_PKEY_CTX_set0_rsa_oaep_label(ctx, label_, llen);
 end;
 
@@ -1610,7 +1699,11 @@ function Load_EVP_PKEY_CTX_get0_rsa_oaep_label(ctx: PEVP_PKEY_CTX; label_: PPbyt
 begin
   EVP_PKEY_CTX_get0_rsa_oaep_label := LoadLibCryptoFunction('EVP_PKEY_CTX_get0_rsa_oaep_label');
   if not assigned(EVP_PKEY_CTX_get0_rsa_oaep_label) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_get0_rsa_oaep_label)}
+    EVP_PKEY_CTX_get0_rsa_oaep_label := @LEGACY_EVP_PKEY_CTX_get0_rsa_oaep_label;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_get0_rsa_oaep_label');
+    {$ifend}
   Result := EVP_PKEY_CTX_get0_rsa_oaep_label(ctx, label_);
 end;
 
@@ -1619,7 +1712,11 @@ function Load_RSA_new: PRSA; cdecl;
 begin
   RSA_new := LoadLibCryptoFunction('RSA_new');
   if not assigned(RSA_new) then
+    {$if declared(LEGACY_RSA_new)}
+    RSA_new := @LEGACY_RSA_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_new');
+    {$ifend}
   Result := RSA_new;
 end;
 
@@ -1627,7 +1724,11 @@ function Load_RSA_new_method(engine: PENGINE): PRSA; cdecl;
 begin
   RSA_new_method := LoadLibCryptoFunction('RSA_new_method');
   if not assigned(RSA_new_method) then
+    {$if declared(LEGACY_RSA_new_method)}
+    RSA_new_method := @LEGACY_RSA_new_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_new_method');
+    {$ifend}
   Result := RSA_new_method(engine);
 end;
 
@@ -1635,7 +1736,11 @@ function Load_RSA_bits(rsa: PRSA): TOpenSSL_C_INT; cdecl;
 begin
   RSA_bits := LoadLibCryptoFunction('RSA_bits');
   if not assigned(RSA_bits) then
+    {$if declared(LEGACY_RSA_bits)}
+    RSA_bits := @LEGACY_RSA_bits;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_bits');
+    {$ifend}
   Result := RSA_bits(rsa);
 end;
 
@@ -1643,7 +1748,11 @@ function Load_RSA_size(rsa: PRSA): TOpenSSL_C_INT; cdecl;
 begin
   RSA_size := LoadLibCryptoFunction('RSA_size');
   if not assigned(RSA_size) then
+    {$if declared(LEGACY_RSA_size)}
+    RSA_size := @LEGACY_RSA_size;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_size');
+    {$ifend}
   Result := RSA_size(rsa);
 end;
 
@@ -1651,7 +1760,11 @@ function Load_RSA_security_bits(rsa: PRSA): TOpenSSL_C_INT; cdecl;
 begin
   RSA_security_bits := LoadLibCryptoFunction('RSA_security_bits');
   if not assigned(RSA_security_bits) then
+    {$if declared(LEGACY_RSA_security_bits)}
+    RSA_security_bits := @LEGACY_RSA_security_bits;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_security_bits');
+    {$ifend}
   Result := RSA_security_bits(rsa);
 end;
 
@@ -1659,7 +1772,11 @@ function Load_RSA_set0_key(r: PRSA; n: PBIGNUM; e: PBIGNUM; d: PBIGNUM): TOpenSS
 begin
   RSA_set0_key := LoadLibCryptoFunction('RSA_set0_key');
   if not assigned(RSA_set0_key) then
+    {$if declared(LEGACY_RSA_set0_key)}
+    RSA_set0_key := @LEGACY_RSA_set0_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_set0_key');
+    {$ifend}
   Result := RSA_set0_key(r, n, e, d);
 end;
 
@@ -1667,7 +1784,11 @@ function Load_RSA_set0_factors(r: PRSA; p: PBIGNUM; q: PBIGNUM): TOpenSSL_C_INT;
 begin
   RSA_set0_factors := LoadLibCryptoFunction('RSA_set0_factors');
   if not assigned(RSA_set0_factors) then
+    {$if declared(LEGACY_RSA_set0_factors)}
+    RSA_set0_factors := @LEGACY_RSA_set0_factors;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_set0_factors');
+    {$ifend}
   Result := RSA_set0_factors(r, p, q);
 end;
 
@@ -1675,7 +1796,11 @@ function Load_RSA_set0_crt_params(r: PRSA; dmp1: PBIGNUM; dmq1: PBIGNUM; iqmp: P
 begin
   RSA_set0_crt_params := LoadLibCryptoFunction('RSA_set0_crt_params');
   if not assigned(RSA_set0_crt_params) then
+    {$if declared(LEGACY_RSA_set0_crt_params)}
+    RSA_set0_crt_params := @LEGACY_RSA_set0_crt_params;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_set0_crt_params');
+    {$ifend}
   Result := RSA_set0_crt_params(r, dmp1, dmq1, iqmp);
 end;
 
@@ -1683,7 +1808,11 @@ function Load_RSA_set0_multi_prime_params(r: PRSA; primes: PPBIGNUM; exps: PPBIG
 begin
   RSA_set0_multi_prime_params := LoadLibCryptoFunction('RSA_set0_multi_prime_params');
   if not assigned(RSA_set0_multi_prime_params) then
+    {$if declared(LEGACY_RSA_set0_multi_prime_params)}
+    RSA_set0_multi_prime_params := @LEGACY_RSA_set0_multi_prime_params;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_set0_multi_prime_params');
+    {$ifend}
   Result := RSA_set0_multi_prime_params(r, primes, exps, coeffs, pnum);
 end;
 
@@ -1691,7 +1820,11 @@ procedure Load_RSA_get0_key(r: PRSA; n: PPBIGNUM; e: PPBIGNUM; d: PPBIGNUM); cde
 begin
   RSA_get0_key := LoadLibCryptoFunction('RSA_get0_key');
   if not assigned(RSA_get0_key) then
+    {$if declared(LEGACY_RSA_get0_key)}
+    RSA_get0_key := @LEGACY_RSA_get0_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_get0_key');
+    {$ifend}
   RSA_get0_key(r, n, e, d);
 end;
 
@@ -1699,7 +1832,11 @@ procedure Load_RSA_get0_factors(r: PRSA; p: PPBIGNUM; q: PPBIGNUM); cdecl;
 begin
   RSA_get0_factors := LoadLibCryptoFunction('RSA_get0_factors');
   if not assigned(RSA_get0_factors) then
+    {$if declared(LEGACY_RSA_get0_factors)}
+    RSA_get0_factors := @LEGACY_RSA_get0_factors;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_get0_factors');
+    {$ifend}
   RSA_get0_factors(r, p, q);
 end;
 
@@ -1707,7 +1844,11 @@ function Load_RSA_get_multi_prime_extra_count(r: PRSA): TOpenSSL_C_INT; cdecl;
 begin
   RSA_get_multi_prime_extra_count := LoadLibCryptoFunction('RSA_get_multi_prime_extra_count');
   if not assigned(RSA_get_multi_prime_extra_count) then
+    {$if declared(LEGACY_RSA_get_multi_prime_extra_count)}
+    RSA_get_multi_prime_extra_count := @LEGACY_RSA_get_multi_prime_extra_count;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_get_multi_prime_extra_count');
+    {$ifend}
   Result := RSA_get_multi_prime_extra_count(r);
 end;
 
@@ -1715,7 +1856,11 @@ function Load_RSA_get0_multi_prime_factors(r: PRSA; primes: PPBIGNUM): TOpenSSL_
 begin
   RSA_get0_multi_prime_factors := LoadLibCryptoFunction('RSA_get0_multi_prime_factors');
   if not assigned(RSA_get0_multi_prime_factors) then
+    {$if declared(LEGACY_RSA_get0_multi_prime_factors)}
+    RSA_get0_multi_prime_factors := @LEGACY_RSA_get0_multi_prime_factors;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_get0_multi_prime_factors');
+    {$ifend}
   Result := RSA_get0_multi_prime_factors(r, primes);
 end;
 
@@ -1723,7 +1868,11 @@ procedure Load_RSA_get0_crt_params(r: PRSA; dmp1: PPBIGNUM; dmq1: PPBIGNUM; iqmp
 begin
   RSA_get0_crt_params := LoadLibCryptoFunction('RSA_get0_crt_params');
   if not assigned(RSA_get0_crt_params) then
+    {$if declared(LEGACY_RSA_get0_crt_params)}
+    RSA_get0_crt_params := @LEGACY_RSA_get0_crt_params;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_get0_crt_params');
+    {$ifend}
   RSA_get0_crt_params(r, dmp1, dmq1, iqmp);
 end;
 
@@ -1731,7 +1880,11 @@ function Load_RSA_get0_multi_prime_crt_params(r: PRSA; exps: PPBIGNUM; coeffs: P
 begin
   RSA_get0_multi_prime_crt_params := LoadLibCryptoFunction('RSA_get0_multi_prime_crt_params');
   if not assigned(RSA_get0_multi_prime_crt_params) then
+    {$if declared(LEGACY_RSA_get0_multi_prime_crt_params)}
+    RSA_get0_multi_prime_crt_params := @LEGACY_RSA_get0_multi_prime_crt_params;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_get0_multi_prime_crt_params');
+    {$ifend}
   Result := RSA_get0_multi_prime_crt_params(r, exps, coeffs);
 end;
 
@@ -1739,7 +1892,11 @@ function Load_RSA_get0_n(d: PRSA): PBIGNUM; cdecl;
 begin
   RSA_get0_n := LoadLibCryptoFunction('RSA_get0_n');
   if not assigned(RSA_get0_n) then
+    {$if declared(LEGACY_RSA_get0_n)}
+    RSA_get0_n := @LEGACY_RSA_get0_n;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_get0_n');
+    {$ifend}
   Result := RSA_get0_n(d);
 end;
 
@@ -1747,7 +1904,11 @@ function Load_RSA_get0_e(d: PRSA): PBIGNUM; cdecl;
 begin
   RSA_get0_e := LoadLibCryptoFunction('RSA_get0_e');
   if not assigned(RSA_get0_e) then
+    {$if declared(LEGACY_RSA_get0_e)}
+    RSA_get0_e := @LEGACY_RSA_get0_e;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_get0_e');
+    {$ifend}
   Result := RSA_get0_e(d);
 end;
 
@@ -1755,7 +1916,11 @@ function Load_RSA_get0_d(d: PRSA): PBIGNUM; cdecl;
 begin
   RSA_get0_d := LoadLibCryptoFunction('RSA_get0_d');
   if not assigned(RSA_get0_d) then
+    {$if declared(LEGACY_RSA_get0_d)}
+    RSA_get0_d := @LEGACY_RSA_get0_d;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_get0_d');
+    {$ifend}
   Result := RSA_get0_d(d);
 end;
 
@@ -1763,7 +1928,11 @@ function Load_RSA_get0_p(d: PRSA): PBIGNUM; cdecl;
 begin
   RSA_get0_p := LoadLibCryptoFunction('RSA_get0_p');
   if not assigned(RSA_get0_p) then
+    {$if declared(LEGACY_RSA_get0_p)}
+    RSA_get0_p := @LEGACY_RSA_get0_p;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_get0_p');
+    {$ifend}
   Result := RSA_get0_p(d);
 end;
 
@@ -1771,7 +1940,11 @@ function Load_RSA_get0_q(d: PRSA): PBIGNUM; cdecl;
 begin
   RSA_get0_q := LoadLibCryptoFunction('RSA_get0_q');
   if not assigned(RSA_get0_q) then
+    {$if declared(LEGACY_RSA_get0_q)}
+    RSA_get0_q := @LEGACY_RSA_get0_q;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_get0_q');
+    {$ifend}
   Result := RSA_get0_q(d);
 end;
 
@@ -1779,7 +1952,11 @@ function Load_RSA_get0_dmp1(r: PRSA): PBIGNUM; cdecl;
 begin
   RSA_get0_dmp1 := LoadLibCryptoFunction('RSA_get0_dmp1');
   if not assigned(RSA_get0_dmp1) then
+    {$if declared(LEGACY_RSA_get0_dmp1)}
+    RSA_get0_dmp1 := @LEGACY_RSA_get0_dmp1;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_get0_dmp1');
+    {$ifend}
   Result := RSA_get0_dmp1(r);
 end;
 
@@ -1787,7 +1964,11 @@ function Load_RSA_get0_dmq1(r: PRSA): PBIGNUM; cdecl;
 begin
   RSA_get0_dmq1 := LoadLibCryptoFunction('RSA_get0_dmq1');
   if not assigned(RSA_get0_dmq1) then
+    {$if declared(LEGACY_RSA_get0_dmq1)}
+    RSA_get0_dmq1 := @LEGACY_RSA_get0_dmq1;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_get0_dmq1');
+    {$ifend}
   Result := RSA_get0_dmq1(r);
 end;
 
@@ -1795,7 +1976,11 @@ function Load_RSA_get0_iqmp(r: PRSA): PBIGNUM; cdecl;
 begin
   RSA_get0_iqmp := LoadLibCryptoFunction('RSA_get0_iqmp');
   if not assigned(RSA_get0_iqmp) then
+    {$if declared(LEGACY_RSA_get0_iqmp)}
+    RSA_get0_iqmp := @LEGACY_RSA_get0_iqmp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_get0_iqmp');
+    {$ifend}
   Result := RSA_get0_iqmp(r);
 end;
 
@@ -1803,7 +1988,11 @@ function Load_RSA_get0_pss_params(r: PRSA): PRSA_PSS_PARAMS; cdecl;
 begin
   RSA_get0_pss_params := LoadLibCryptoFunction('RSA_get0_pss_params');
   if not assigned(RSA_get0_pss_params) then
+    {$if declared(LEGACY_RSA_get0_pss_params)}
+    RSA_get0_pss_params := @LEGACY_RSA_get0_pss_params;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_get0_pss_params');
+    {$ifend}
   Result := RSA_get0_pss_params(r);
 end;
 
@@ -1811,7 +2000,11 @@ procedure Load_RSA_clear_flags(r: PRSA; flags: TOpenSSL_C_INT); cdecl;
 begin
   RSA_clear_flags := LoadLibCryptoFunction('RSA_clear_flags');
   if not assigned(RSA_clear_flags) then
+    {$if declared(LEGACY_RSA_clear_flags)}
+    RSA_clear_flags := @LEGACY_RSA_clear_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_clear_flags');
+    {$ifend}
   RSA_clear_flags(r, flags);
 end;
 
@@ -1819,7 +2012,11 @@ function Load_RSA_test_flags(r: PRSA; flags: TOpenSSL_C_INT): TOpenSSL_C_INT; cd
 begin
   RSA_test_flags := LoadLibCryptoFunction('RSA_test_flags');
   if not assigned(RSA_test_flags) then
+    {$if declared(LEGACY_RSA_test_flags)}
+    RSA_test_flags := @LEGACY_RSA_test_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_test_flags');
+    {$ifend}
   Result := RSA_test_flags(r, flags);
 end;
 
@@ -1827,7 +2024,11 @@ procedure Load_RSA_set_flags(r: PRSA; flags: TOpenSSL_C_INT); cdecl;
 begin
   RSA_set_flags := LoadLibCryptoFunction('RSA_set_flags');
   if not assigned(RSA_set_flags) then
+    {$if declared(LEGACY_RSA_set_flags)}
+    RSA_set_flags := @LEGACY_RSA_set_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_set_flags');
+    {$ifend}
   RSA_set_flags(r, flags);
 end;
 
@@ -1835,7 +2036,11 @@ function Load_RSA_get_version(r: PRSA): TOpenSSL_C_INT; cdecl;
 begin
   RSA_get_version := LoadLibCryptoFunction('RSA_get_version');
   if not assigned(RSA_get_version) then
+    {$if declared(LEGACY_RSA_get_version)}
+    RSA_get_version := @LEGACY_RSA_get_version;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_get_version');
+    {$ifend}
   Result := RSA_get_version(r);
 end;
 
@@ -1843,7 +2048,11 @@ function Load_RSA_get0_engine(r: PRSA): PENGINE; cdecl;
 begin
   RSA_get0_engine := LoadLibCryptoFunction('RSA_get0_engine');
   if not assigned(RSA_get0_engine) then
+    {$if declared(LEGACY_RSA_get0_engine)}
+    RSA_get0_engine := @LEGACY_RSA_get0_engine;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_get0_engine');
+    {$ifend}
   Result := RSA_get0_engine(r);
 end;
 
@@ -1853,7 +2062,11 @@ function Load_RSA_generate_key(bits: TOpenSSL_C_INT; e: TOpenSSL_C_UINT; callbac
 begin
   RSA_generate_key := LoadLibCryptoFunction('RSA_generate_key');
   if not assigned(RSA_generate_key) then
+    {$if declared(LEGACY_RSA_generate_key)}
+    RSA_generate_key := @LEGACY_RSA_generate_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_generate_key');
+    {$ifend}
   Result := RSA_generate_key(bits, e, callback, cb_arg);
 end;
 
@@ -1863,7 +2076,11 @@ function Load_RSA_generate_key_ex(rsa: PRSA; bits: TOpenSSL_C_INT; e: PBIGNUM; c
 begin
   RSA_generate_key_ex := LoadLibCryptoFunction('RSA_generate_key_ex');
   if not assigned(RSA_generate_key_ex) then
+    {$if declared(LEGACY_RSA_generate_key_ex)}
+    RSA_generate_key_ex := @LEGACY_RSA_generate_key_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_generate_key_ex');
+    {$ifend}
   Result := RSA_generate_key_ex(rsa, bits, e, cb);
 end;
 
@@ -1871,7 +2088,11 @@ function Load_RSA_generate_multi_prime_key(rsa: PRSA; bits: TOpenSSL_C_INT; prim
 begin
   RSA_generate_multi_prime_key := LoadLibCryptoFunction('RSA_generate_multi_prime_key');
   if not assigned(RSA_generate_multi_prime_key) then
+    {$if declared(LEGACY_RSA_generate_multi_prime_key)}
+    RSA_generate_multi_prime_key := @LEGACY_RSA_generate_multi_prime_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_generate_multi_prime_key');
+    {$ifend}
   Result := RSA_generate_multi_prime_key(rsa, bits, primes, e, cb);
 end;
 
@@ -1879,7 +2100,11 @@ function Load_RSA_X931_derive_ex(rsa: PRSA; p1: PBIGNUM; p2: PBIGNUM; q1: PBIGNU
 begin
   RSA_X931_derive_ex := LoadLibCryptoFunction('RSA_X931_derive_ex');
   if not assigned(RSA_X931_derive_ex) then
+    {$if declared(LEGACY_RSA_X931_derive_ex)}
+    RSA_X931_derive_ex := @LEGACY_RSA_X931_derive_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_X931_derive_ex');
+    {$ifend}
   Result := RSA_X931_derive_ex(rsa, p1, p2, q1, q2, Xp1, Xp2, Xp, Xq1, Xq2, Xq, e, cb);
 end;
 
@@ -1887,7 +2112,11 @@ function Load_RSA_X931_generate_key_ex(rsa: PRSA; bits: TOpenSSL_C_INT; e: PBIGN
 begin
   RSA_X931_generate_key_ex := LoadLibCryptoFunction('RSA_X931_generate_key_ex');
   if not assigned(RSA_X931_generate_key_ex) then
+    {$if declared(LEGACY_RSA_X931_generate_key_ex)}
+    RSA_X931_generate_key_ex := @LEGACY_RSA_X931_generate_key_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_X931_generate_key_ex');
+    {$ifend}
   Result := RSA_X931_generate_key_ex(rsa, bits, e, cb);
 end;
 
@@ -1895,7 +2124,11 @@ function Load_RSA_check_key(_param1: PRSA): TOpenSSL_C_INT; cdecl;
 begin
   RSA_check_key := LoadLibCryptoFunction('RSA_check_key');
   if not assigned(RSA_check_key) then
+    {$if declared(LEGACY_RSA_check_key)}
+    RSA_check_key := @LEGACY_RSA_check_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_check_key');
+    {$ifend}
   Result := RSA_check_key(_param1);
 end;
 
@@ -1903,7 +2136,11 @@ function Load_RSA_check_key_ex(_param1: PRSA; cb: PBN_GENCB): TOpenSSL_C_INT; cd
 begin
   RSA_check_key_ex := LoadLibCryptoFunction('RSA_check_key_ex');
   if not assigned(RSA_check_key_ex) then
+    {$if declared(LEGACY_RSA_check_key_ex)}
+    RSA_check_key_ex := @LEGACY_RSA_check_key_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_check_key_ex');
+    {$ifend}
   Result := RSA_check_key_ex(_param1, cb);
 end;
 
@@ -1911,7 +2148,11 @@ function Load_RSA_public_encrypt(flen: TOpenSSL_C_INT; from_: Pbyte; to_: Pbyte;
 begin
   RSA_public_encrypt := LoadLibCryptoFunction('RSA_public_encrypt');
   if not assigned(RSA_public_encrypt) then
+    {$if declared(LEGACY_RSA_public_encrypt)}
+    RSA_public_encrypt := @LEGACY_RSA_public_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_public_encrypt');
+    {$ifend}
   Result := RSA_public_encrypt(flen, from_, to_, rsa, padding);
 end;
 
@@ -1919,7 +2160,11 @@ function Load_RSA_private_encrypt(flen: TOpenSSL_C_INT; from_: Pbyte; to_: Pbyte
 begin
   RSA_private_encrypt := LoadLibCryptoFunction('RSA_private_encrypt');
   if not assigned(RSA_private_encrypt) then
+    {$if declared(LEGACY_RSA_private_encrypt)}
+    RSA_private_encrypt := @LEGACY_RSA_private_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_private_encrypt');
+    {$ifend}
   Result := RSA_private_encrypt(flen, from_, to_, rsa, padding);
 end;
 
@@ -1927,7 +2172,11 @@ function Load_RSA_public_decrypt(flen: TOpenSSL_C_INT; from_: Pbyte; to_: Pbyte;
 begin
   RSA_public_decrypt := LoadLibCryptoFunction('RSA_public_decrypt');
   if not assigned(RSA_public_decrypt) then
+    {$if declared(LEGACY_RSA_public_decrypt)}
+    RSA_public_decrypt := @LEGACY_RSA_public_decrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_public_decrypt');
+    {$ifend}
   Result := RSA_public_decrypt(flen, from_, to_, rsa, padding);
 end;
 
@@ -1935,7 +2184,11 @@ function Load_RSA_private_decrypt(flen: TOpenSSL_C_INT; from_: Pbyte; to_: Pbyte
 begin
   RSA_private_decrypt := LoadLibCryptoFunction('RSA_private_decrypt');
   if not assigned(RSA_private_decrypt) then
+    {$if declared(LEGACY_RSA_private_decrypt)}
+    RSA_private_decrypt := @LEGACY_RSA_private_decrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_private_decrypt');
+    {$ifend}
   Result := RSA_private_decrypt(flen, from_, to_, rsa, padding);
 end;
 
@@ -1943,7 +2196,11 @@ procedure Load_RSA_free(r: PRSA); cdecl;
 begin
   RSA_free := LoadLibCryptoFunction('RSA_free');
   if not assigned(RSA_free) then
+    {$if declared(LEGACY_RSA_free)}
+    RSA_free := @LEGACY_RSA_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_free');
+    {$ifend}
   RSA_free(r);
 end;
 
@@ -1951,7 +2208,11 @@ function Load_RSA_up_ref(r: PRSA): TOpenSSL_C_INT; cdecl;
 begin
   RSA_up_ref := LoadLibCryptoFunction('RSA_up_ref');
   if not assigned(RSA_up_ref) then
+    {$if declared(LEGACY_RSA_up_ref)}
+    RSA_up_ref := @LEGACY_RSA_up_ref;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_up_ref');
+    {$ifend}
   Result := RSA_up_ref(r);
 end;
 
@@ -1959,7 +2220,11 @@ function Load_RSA_flags(r: PRSA): TOpenSSL_C_INT; cdecl;
 begin
   RSA_flags := LoadLibCryptoFunction('RSA_flags');
   if not assigned(RSA_flags) then
+    {$if declared(LEGACY_RSA_flags)}
+    RSA_flags := @LEGACY_RSA_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_flags');
+    {$ifend}
   Result := RSA_flags(r);
 end;
 
@@ -1967,7 +2232,11 @@ procedure Load_RSA_set_default_method(meth: PRSA_METHOD); cdecl;
 begin
   RSA_set_default_method := LoadLibCryptoFunction('RSA_set_default_method');
   if not assigned(RSA_set_default_method) then
+    {$if declared(LEGACY_RSA_set_default_method)}
+    RSA_set_default_method := @LEGACY_RSA_set_default_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_set_default_method');
+    {$ifend}
   RSA_set_default_method(meth);
 end;
 
@@ -1975,7 +2244,11 @@ function Load_RSA_get_default_method: PRSA_METHOD; cdecl;
 begin
   RSA_get_default_method := LoadLibCryptoFunction('RSA_get_default_method');
   if not assigned(RSA_get_default_method) then
+    {$if declared(LEGACY_RSA_get_default_method)}
+    RSA_get_default_method := @LEGACY_RSA_get_default_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_get_default_method');
+    {$ifend}
   Result := RSA_get_default_method;
 end;
 
@@ -1983,7 +2256,11 @@ function Load_RSA_null_method: PRSA_METHOD; cdecl;
 begin
   RSA_null_method := LoadLibCryptoFunction('RSA_null_method');
   if not assigned(RSA_null_method) then
+    {$if declared(LEGACY_RSA_null_method)}
+    RSA_null_method := @LEGACY_RSA_null_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_null_method');
+    {$ifend}
   Result := RSA_null_method;
 end;
 
@@ -1991,7 +2268,11 @@ function Load_RSA_get_method(rsa: PRSA): PRSA_METHOD; cdecl;
 begin
   RSA_get_method := LoadLibCryptoFunction('RSA_get_method');
   if not assigned(RSA_get_method) then
+    {$if declared(LEGACY_RSA_get_method)}
+    RSA_get_method := @LEGACY_RSA_get_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_get_method');
+    {$ifend}
   Result := RSA_get_method(rsa);
 end;
 
@@ -1999,7 +2280,11 @@ function Load_RSA_set_method(rsa: PRSA; meth: PRSA_METHOD): TOpenSSL_C_INT; cdec
 begin
   RSA_set_method := LoadLibCryptoFunction('RSA_set_method');
   if not assigned(RSA_set_method) then
+    {$if declared(LEGACY_RSA_set_method)}
+    RSA_set_method := @LEGACY_RSA_set_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_set_method');
+    {$ifend}
   Result := RSA_set_method(rsa, meth);
 end;
 
@@ -2007,7 +2292,11 @@ function Load_RSA_PKCS1_OpenSSL: PRSA_METHOD; cdecl;
 begin
   RSA_PKCS1_OpenSSL := LoadLibCryptoFunction('RSA_PKCS1_OpenSSL');
   if not assigned(RSA_PKCS1_OpenSSL) then
+    {$if declared(LEGACY_RSA_PKCS1_OpenSSL)}
+    RSA_PKCS1_OpenSSL := @LEGACY_RSA_PKCS1_OpenSSL;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_PKCS1_OpenSSL');
+    {$ifend}
   Result := RSA_PKCS1_OpenSSL;
 end;
 
@@ -2015,7 +2304,11 @@ function Load_d2i_RSAPublicKey(a: PPRSA; in_: PPbyte; len: TOpenSSL_C_INT): PRSA
 begin
   d2i_RSAPublicKey := LoadLibCryptoFunction('d2i_RSAPublicKey');
   if not assigned(d2i_RSAPublicKey) then
+    {$if declared(LEGACY_d2i_RSAPublicKey)}
+    d2i_RSAPublicKey := @LEGACY_d2i_RSAPublicKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_RSAPublicKey');
+    {$ifend}
   Result := d2i_RSAPublicKey(a, in_, len);
 end;
 
@@ -2023,7 +2316,11 @@ function Load_i2d_RSAPublicKey(a: PRSA; out_: PPbyte): TOpenSSL_C_INT; cdecl;
 begin
   i2d_RSAPublicKey := LoadLibCryptoFunction('i2d_RSAPublicKey');
   if not assigned(i2d_RSAPublicKey) then
+    {$if declared(LEGACY_i2d_RSAPublicKey)}
+    i2d_RSAPublicKey := @LEGACY_i2d_RSAPublicKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_RSAPublicKey');
+    {$ifend}
   Result := i2d_RSAPublicKey(a, out_);
 end;
 
@@ -2031,7 +2328,11 @@ function Load_RSAPublicKey_it: PASN1_ITEM; cdecl;
 begin
   RSAPublicKey_it := LoadLibCryptoFunction('RSAPublicKey_it');
   if not assigned(RSAPublicKey_it) then
+    {$if declared(LEGACY_RSAPublicKey_it)}
+    RSAPublicKey_it := @LEGACY_RSAPublicKey_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSAPublicKey_it');
+    {$ifend}
   Result := RSAPublicKey_it;
 end;
 
@@ -2039,7 +2340,11 @@ function Load_d2i_RSAPrivateKey(a: PPRSA; in_: PPbyte; len: TOpenSSL_C_INT): PRS
 begin
   d2i_RSAPrivateKey := LoadLibCryptoFunction('d2i_RSAPrivateKey');
   if not assigned(d2i_RSAPrivateKey) then
+    {$if declared(LEGACY_d2i_RSAPrivateKey)}
+    d2i_RSAPrivateKey := @LEGACY_d2i_RSAPrivateKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_RSAPrivateKey');
+    {$ifend}
   Result := d2i_RSAPrivateKey(a, in_, len);
 end;
 
@@ -2047,7 +2352,11 @@ function Load_i2d_RSAPrivateKey(a: PRSA; out_: PPbyte): TOpenSSL_C_INT; cdecl;
 begin
   i2d_RSAPrivateKey := LoadLibCryptoFunction('i2d_RSAPrivateKey');
   if not assigned(i2d_RSAPrivateKey) then
+    {$if declared(LEGACY_i2d_RSAPrivateKey)}
+    i2d_RSAPrivateKey := @LEGACY_i2d_RSAPrivateKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_RSAPrivateKey');
+    {$ifend}
   Result := i2d_RSAPrivateKey(a, out_);
 end;
 
@@ -2055,7 +2364,11 @@ function Load_RSAPrivateKey_it: PASN1_ITEM; cdecl;
 begin
   RSAPrivateKey_it := LoadLibCryptoFunction('RSAPrivateKey_it');
   if not assigned(RSAPrivateKey_it) then
+    {$if declared(LEGACY_RSAPrivateKey_it)}
+    RSAPrivateKey_it := @LEGACY_RSAPrivateKey_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSAPrivateKey_it');
+    {$ifend}
   Result := RSAPrivateKey_it;
 end;
 
@@ -2064,7 +2377,11 @@ function Load_RSA_pkey_ctx_ctrl(ctx: PEVP_PKEY_CTX; optype: TOpenSSL_C_INT; cmd:
 begin
   RSA_pkey_ctx_ctrl := LoadLibCryptoFunction('RSA_pkey_ctx_ctrl');
   if not assigned(RSA_pkey_ctx_ctrl) then
+    {$if declared(LEGACY_RSA_pkey_ctx_ctrl)}
+    RSA_pkey_ctx_ctrl := @LEGACY_RSA_pkey_ctx_ctrl;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_pkey_ctx_ctrl');
+    {$ifend}
   Result := RSA_pkey_ctx_ctrl(ctx, optype, cmd, p1, p2);
 end;
 
@@ -2072,7 +2389,11 @@ function Load_RSA_PSS_PARAMS_new: PRSA_PSS_PARAMS; cdecl;
 begin
   RSA_PSS_PARAMS_new := LoadLibCryptoFunction('RSA_PSS_PARAMS_new');
   if not assigned(RSA_PSS_PARAMS_new) then
+    {$if declared(LEGACY_RSA_PSS_PARAMS_new)}
+    RSA_PSS_PARAMS_new := @LEGACY_RSA_PSS_PARAMS_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_PSS_PARAMS_new');
+    {$ifend}
   Result := RSA_PSS_PARAMS_new;
 end;
 
@@ -2080,7 +2401,11 @@ procedure Load_RSA_PSS_PARAMS_free(a: PRSA_PSS_PARAMS); cdecl;
 begin
   RSA_PSS_PARAMS_free := LoadLibCryptoFunction('RSA_PSS_PARAMS_free');
   if not assigned(RSA_PSS_PARAMS_free) then
+    {$if declared(LEGACY_RSA_PSS_PARAMS_free)}
+    RSA_PSS_PARAMS_free := @LEGACY_RSA_PSS_PARAMS_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_PSS_PARAMS_free');
+    {$ifend}
   RSA_PSS_PARAMS_free(a);
 end;
 
@@ -2088,7 +2413,11 @@ function Load_d2i_RSA_PSS_PARAMS(a: PPRSA_PSS_PARAMS; in_: PPbyte; len: TOpenSSL
 begin
   d2i_RSA_PSS_PARAMS := LoadLibCryptoFunction('d2i_RSA_PSS_PARAMS');
   if not assigned(d2i_RSA_PSS_PARAMS) then
+    {$if declared(LEGACY_d2i_RSA_PSS_PARAMS)}
+    d2i_RSA_PSS_PARAMS := @LEGACY_d2i_RSA_PSS_PARAMS;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_RSA_PSS_PARAMS');
+    {$ifend}
   Result := d2i_RSA_PSS_PARAMS(a, in_, len);
 end;
 
@@ -2096,7 +2425,11 @@ function Load_i2d_RSA_PSS_PARAMS(a: PRSA_PSS_PARAMS; out_: PPbyte): TOpenSSL_C_I
 begin
   i2d_RSA_PSS_PARAMS := LoadLibCryptoFunction('i2d_RSA_PSS_PARAMS');
   if not assigned(i2d_RSA_PSS_PARAMS) then
+    {$if declared(LEGACY_i2d_RSA_PSS_PARAMS)}
+    i2d_RSA_PSS_PARAMS := @LEGACY_i2d_RSA_PSS_PARAMS;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_RSA_PSS_PARAMS');
+    {$ifend}
   Result := i2d_RSA_PSS_PARAMS(a, out_);
 end;
 
@@ -2104,7 +2437,11 @@ function Load_RSA_PSS_PARAMS_it: PASN1_ITEM; cdecl;
 begin
   RSA_PSS_PARAMS_it := LoadLibCryptoFunction('RSA_PSS_PARAMS_it');
   if not assigned(RSA_PSS_PARAMS_it) then
+    {$if declared(LEGACY_RSA_PSS_PARAMS_it)}
+    RSA_PSS_PARAMS_it := @LEGACY_RSA_PSS_PARAMS_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_PSS_PARAMS_it');
+    {$ifend}
   Result := RSA_PSS_PARAMS_it;
 end;
 
@@ -2112,7 +2449,11 @@ function Load_RSA_PSS_PARAMS_dup(a: PRSA_PSS_PARAMS): PRSA_PSS_PARAMS; cdecl;
 begin
   RSA_PSS_PARAMS_dup := LoadLibCryptoFunction('RSA_PSS_PARAMS_dup');
   if not assigned(RSA_PSS_PARAMS_dup) then
+    {$if declared(LEGACY_RSA_PSS_PARAMS_dup)}
+    RSA_PSS_PARAMS_dup := @LEGACY_RSA_PSS_PARAMS_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_PSS_PARAMS_dup');
+    {$ifend}
   Result := RSA_PSS_PARAMS_dup(a);
 end;
 
@@ -2120,7 +2461,11 @@ function Load_RSA_OAEP_PARAMS_new: PRSA_OAEP_PARAMS; cdecl;
 begin
   RSA_OAEP_PARAMS_new := LoadLibCryptoFunction('RSA_OAEP_PARAMS_new');
   if not assigned(RSA_OAEP_PARAMS_new) then
+    {$if declared(LEGACY_RSA_OAEP_PARAMS_new)}
+    RSA_OAEP_PARAMS_new := @LEGACY_RSA_OAEP_PARAMS_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_OAEP_PARAMS_new');
+    {$ifend}
   Result := RSA_OAEP_PARAMS_new;
 end;
 
@@ -2128,7 +2473,11 @@ procedure Load_RSA_OAEP_PARAMS_free(a: PRSA_OAEP_PARAMS); cdecl;
 begin
   RSA_OAEP_PARAMS_free := LoadLibCryptoFunction('RSA_OAEP_PARAMS_free');
   if not assigned(RSA_OAEP_PARAMS_free) then
+    {$if declared(LEGACY_RSA_OAEP_PARAMS_free)}
+    RSA_OAEP_PARAMS_free := @LEGACY_RSA_OAEP_PARAMS_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_OAEP_PARAMS_free');
+    {$ifend}
   RSA_OAEP_PARAMS_free(a);
 end;
 
@@ -2136,7 +2485,11 @@ function Load_d2i_RSA_OAEP_PARAMS(a: PPRSA_OAEP_PARAMS; in_: PPbyte; len: TOpenS
 begin
   d2i_RSA_OAEP_PARAMS := LoadLibCryptoFunction('d2i_RSA_OAEP_PARAMS');
   if not assigned(d2i_RSA_OAEP_PARAMS) then
+    {$if declared(LEGACY_d2i_RSA_OAEP_PARAMS)}
+    d2i_RSA_OAEP_PARAMS := @LEGACY_d2i_RSA_OAEP_PARAMS;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_RSA_OAEP_PARAMS');
+    {$ifend}
   Result := d2i_RSA_OAEP_PARAMS(a, in_, len);
 end;
 
@@ -2144,7 +2497,11 @@ function Load_i2d_RSA_OAEP_PARAMS(a: PRSA_OAEP_PARAMS; out_: PPbyte): TOpenSSL_C
 begin
   i2d_RSA_OAEP_PARAMS := LoadLibCryptoFunction('i2d_RSA_OAEP_PARAMS');
   if not assigned(i2d_RSA_OAEP_PARAMS) then
+    {$if declared(LEGACY_i2d_RSA_OAEP_PARAMS)}
+    i2d_RSA_OAEP_PARAMS := @LEGACY_i2d_RSA_OAEP_PARAMS;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_RSA_OAEP_PARAMS');
+    {$ifend}
   Result := i2d_RSA_OAEP_PARAMS(a, out_);
 end;
 
@@ -2152,7 +2509,11 @@ function Load_RSA_OAEP_PARAMS_it: PASN1_ITEM; cdecl;
 begin
   RSA_OAEP_PARAMS_it := LoadLibCryptoFunction('RSA_OAEP_PARAMS_it');
   if not assigned(RSA_OAEP_PARAMS_it) then
+    {$if declared(LEGACY_RSA_OAEP_PARAMS_it)}
+    RSA_OAEP_PARAMS_it := @LEGACY_RSA_OAEP_PARAMS_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_OAEP_PARAMS_it');
+    {$ifend}
   Result := RSA_OAEP_PARAMS_it;
 end;
 
@@ -2162,7 +2523,11 @@ function Load_RSA_print_fp(fp: PFILE; r: PRSA; offset: TOpenSSL_C_INT): TOpenSSL
 begin
   RSA_print_fp := LoadLibCryptoFunction('RSA_print_fp');
   if not assigned(RSA_print_fp) then
+    {$if declared(LEGACY_RSA_print_fp)}
+    RSA_print_fp := @LEGACY_RSA_print_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_print_fp');
+    {$ifend}
   Result := RSA_print_fp(fp, r, offset);
 end;
 
@@ -2171,7 +2536,11 @@ function Load_RSA_print(bp: PBIO; r: PRSA; offset: TOpenSSL_C_INT): TOpenSSL_C_I
 begin
   RSA_print := LoadLibCryptoFunction('RSA_print');
   if not assigned(RSA_print) then
+    {$if declared(LEGACY_RSA_print)}
+    RSA_print := @LEGACY_RSA_print;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_print');
+    {$ifend}
   Result := RSA_print(bp, r, offset);
 end;
 
@@ -2179,7 +2548,11 @@ function Load_RSA_sign(type_: TOpenSSL_C_INT; m: Pbyte; m_length: TOpenSSL_C_UIN
 begin
   RSA_sign := LoadLibCryptoFunction('RSA_sign');
   if not assigned(RSA_sign) then
+    {$if declared(LEGACY_RSA_sign)}
+    RSA_sign := @LEGACY_RSA_sign;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_sign');
+    {$ifend}
   Result := RSA_sign(type_, m, m_length, sigret, siglen, rsa);
 end;
 
@@ -2187,7 +2560,11 @@ function Load_RSA_verify(type_: TOpenSSL_C_INT; m: Pbyte; m_length: TOpenSSL_C_U
 begin
   RSA_verify := LoadLibCryptoFunction('RSA_verify');
   if not assigned(RSA_verify) then
+    {$if declared(LEGACY_RSA_verify)}
+    RSA_verify := @LEGACY_RSA_verify;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_verify');
+    {$ifend}
   Result := RSA_verify(type_, m, m_length, sigbuf, siglen, rsa);
 end;
 
@@ -2195,7 +2572,11 @@ function Load_RSA_sign_ASN1_OCTET_STRING(type_: TOpenSSL_C_INT; m: Pbyte; m_leng
 begin
   RSA_sign_ASN1_OCTET_STRING := LoadLibCryptoFunction('RSA_sign_ASN1_OCTET_STRING');
   if not assigned(RSA_sign_ASN1_OCTET_STRING) then
+    {$if declared(LEGACY_RSA_sign_ASN1_OCTET_STRING)}
+    RSA_sign_ASN1_OCTET_STRING := @LEGACY_RSA_sign_ASN1_OCTET_STRING;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_sign_ASN1_OCTET_STRING');
+    {$ifend}
   Result := RSA_sign_ASN1_OCTET_STRING(type_, m, m_length, sigret, siglen, rsa);
 end;
 
@@ -2203,7 +2584,11 @@ function Load_RSA_verify_ASN1_OCTET_STRING(type_: TOpenSSL_C_INT; m: Pbyte; m_le
 begin
   RSA_verify_ASN1_OCTET_STRING := LoadLibCryptoFunction('RSA_verify_ASN1_OCTET_STRING');
   if not assigned(RSA_verify_ASN1_OCTET_STRING) then
+    {$if declared(LEGACY_RSA_verify_ASN1_OCTET_STRING)}
+    RSA_verify_ASN1_OCTET_STRING := @LEGACY_RSA_verify_ASN1_OCTET_STRING;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_verify_ASN1_OCTET_STRING');
+    {$ifend}
   Result := RSA_verify_ASN1_OCTET_STRING(type_, m, m_length, sigbuf, siglen, rsa);
 end;
 
@@ -2211,7 +2596,11 @@ function Load_RSA_blinding_on(rsa: PRSA; ctx: PBN_CTX): TOpenSSL_C_INT; cdecl;
 begin
   RSA_blinding_on := LoadLibCryptoFunction('RSA_blinding_on');
   if not assigned(RSA_blinding_on) then
+    {$if declared(LEGACY_RSA_blinding_on)}
+    RSA_blinding_on := @LEGACY_RSA_blinding_on;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_blinding_on');
+    {$ifend}
   Result := RSA_blinding_on(rsa, ctx);
 end;
 
@@ -2219,7 +2608,11 @@ procedure Load_RSA_blinding_off(rsa: PRSA); cdecl;
 begin
   RSA_blinding_off := LoadLibCryptoFunction('RSA_blinding_off');
   if not assigned(RSA_blinding_off) then
+    {$if declared(LEGACY_RSA_blinding_off)}
+    RSA_blinding_off := @LEGACY_RSA_blinding_off;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_blinding_off');
+    {$ifend}
   RSA_blinding_off(rsa);
 end;
 
@@ -2227,7 +2620,11 @@ function Load_RSA_setup_blinding(rsa: PRSA; ctx: PBN_CTX): PBN_BLINDING; cdecl;
 begin
   RSA_setup_blinding := LoadLibCryptoFunction('RSA_setup_blinding');
   if not assigned(RSA_setup_blinding) then
+    {$if declared(LEGACY_RSA_setup_blinding)}
+    RSA_setup_blinding := @LEGACY_RSA_setup_blinding;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_setup_blinding');
+    {$ifend}
   Result := RSA_setup_blinding(rsa, ctx);
 end;
 
@@ -2235,7 +2632,11 @@ function Load_RSA_padding_add_PKCS1_type_1(to_: Pbyte; tlen: TOpenSSL_C_INT; f: 
 begin
   RSA_padding_add_PKCS1_type_1 := LoadLibCryptoFunction('RSA_padding_add_PKCS1_type_1');
   if not assigned(RSA_padding_add_PKCS1_type_1) then
+    {$if declared(LEGACY_RSA_padding_add_PKCS1_type_1)}
+    RSA_padding_add_PKCS1_type_1 := @LEGACY_RSA_padding_add_PKCS1_type_1;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_padding_add_PKCS1_type_1');
+    {$ifend}
   Result := RSA_padding_add_PKCS1_type_1(to_, tlen, f, fl);
 end;
 
@@ -2243,7 +2644,11 @@ function Load_RSA_padding_check_PKCS1_type_1(to_: Pbyte; tlen: TOpenSSL_C_INT; f
 begin
   RSA_padding_check_PKCS1_type_1 := LoadLibCryptoFunction('RSA_padding_check_PKCS1_type_1');
   if not assigned(RSA_padding_check_PKCS1_type_1) then
+    {$if declared(LEGACY_RSA_padding_check_PKCS1_type_1)}
+    RSA_padding_check_PKCS1_type_1 := @LEGACY_RSA_padding_check_PKCS1_type_1;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_padding_check_PKCS1_type_1');
+    {$ifend}
   Result := RSA_padding_check_PKCS1_type_1(to_, tlen, f, fl, rsa_len);
 end;
 
@@ -2251,7 +2656,11 @@ function Load_RSA_padding_add_PKCS1_type_2(to_: Pbyte; tlen: TOpenSSL_C_INT; f: 
 begin
   RSA_padding_add_PKCS1_type_2 := LoadLibCryptoFunction('RSA_padding_add_PKCS1_type_2');
   if not assigned(RSA_padding_add_PKCS1_type_2) then
+    {$if declared(LEGACY_RSA_padding_add_PKCS1_type_2)}
+    RSA_padding_add_PKCS1_type_2 := @LEGACY_RSA_padding_add_PKCS1_type_2;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_padding_add_PKCS1_type_2');
+    {$ifend}
   Result := RSA_padding_add_PKCS1_type_2(to_, tlen, f, fl);
 end;
 
@@ -2259,7 +2668,11 @@ function Load_RSA_padding_check_PKCS1_type_2(to_: Pbyte; tlen: TOpenSSL_C_INT; f
 begin
   RSA_padding_check_PKCS1_type_2 := LoadLibCryptoFunction('RSA_padding_check_PKCS1_type_2');
   if not assigned(RSA_padding_check_PKCS1_type_2) then
+    {$if declared(LEGACY_RSA_padding_check_PKCS1_type_2)}
+    RSA_padding_check_PKCS1_type_2 := @LEGACY_RSA_padding_check_PKCS1_type_2;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_padding_check_PKCS1_type_2');
+    {$ifend}
   Result := RSA_padding_check_PKCS1_type_2(to_, tlen, f, fl, rsa_len);
 end;
 
@@ -2267,7 +2680,11 @@ function Load_PKCS1_MGF1(mask: Pbyte; len: TOpenSSL_C_INT; seed: Pbyte; seedlen:
 begin
   PKCS1_MGF1 := LoadLibCryptoFunction('PKCS1_MGF1');
   if not assigned(PKCS1_MGF1) then
+    {$if declared(LEGACY_PKCS1_MGF1)}
+    PKCS1_MGF1 := @LEGACY_PKCS1_MGF1;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS1_MGF1');
+    {$ifend}
   Result := PKCS1_MGF1(mask, len, seed, seedlen, dgst);
 end;
 
@@ -2275,7 +2692,11 @@ function Load_RSA_padding_add_PKCS1_OAEP(to_: Pbyte; tlen: TOpenSSL_C_INT; f: Pb
 begin
   RSA_padding_add_PKCS1_OAEP := LoadLibCryptoFunction('RSA_padding_add_PKCS1_OAEP');
   if not assigned(RSA_padding_add_PKCS1_OAEP) then
+    {$if declared(LEGACY_RSA_padding_add_PKCS1_OAEP)}
+    RSA_padding_add_PKCS1_OAEP := @LEGACY_RSA_padding_add_PKCS1_OAEP;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_padding_add_PKCS1_OAEP');
+    {$ifend}
   Result := RSA_padding_add_PKCS1_OAEP(to_, tlen, f, fl, p, pl);
 end;
 
@@ -2283,7 +2704,11 @@ function Load_RSA_padding_check_PKCS1_OAEP(to_: Pbyte; tlen: TOpenSSL_C_INT; f: 
 begin
   RSA_padding_check_PKCS1_OAEP := LoadLibCryptoFunction('RSA_padding_check_PKCS1_OAEP');
   if not assigned(RSA_padding_check_PKCS1_OAEP) then
+    {$if declared(LEGACY_RSA_padding_check_PKCS1_OAEP)}
+    RSA_padding_check_PKCS1_OAEP := @LEGACY_RSA_padding_check_PKCS1_OAEP;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_padding_check_PKCS1_OAEP');
+    {$ifend}
   Result := RSA_padding_check_PKCS1_OAEP(to_, tlen, f, fl, rsa_len, p, pl);
 end;
 
@@ -2291,7 +2716,11 @@ function Load_RSA_padding_add_PKCS1_OAEP_mgf1(to_: Pbyte; tlen: TOpenSSL_C_INT; 
 begin
   RSA_padding_add_PKCS1_OAEP_mgf1 := LoadLibCryptoFunction('RSA_padding_add_PKCS1_OAEP_mgf1');
   if not assigned(RSA_padding_add_PKCS1_OAEP_mgf1) then
+    {$if declared(LEGACY_RSA_padding_add_PKCS1_OAEP_mgf1)}
+    RSA_padding_add_PKCS1_OAEP_mgf1 := @LEGACY_RSA_padding_add_PKCS1_OAEP_mgf1;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_padding_add_PKCS1_OAEP_mgf1');
+    {$ifend}
   Result := RSA_padding_add_PKCS1_OAEP_mgf1(to_, tlen, from_, flen, param, plen, md, mgf1md);
 end;
 
@@ -2299,7 +2728,11 @@ function Load_RSA_padding_check_PKCS1_OAEP_mgf1(to_: Pbyte; tlen: TOpenSSL_C_INT
 begin
   RSA_padding_check_PKCS1_OAEP_mgf1 := LoadLibCryptoFunction('RSA_padding_check_PKCS1_OAEP_mgf1');
   if not assigned(RSA_padding_check_PKCS1_OAEP_mgf1) then
+    {$if declared(LEGACY_RSA_padding_check_PKCS1_OAEP_mgf1)}
+    RSA_padding_check_PKCS1_OAEP_mgf1 := @LEGACY_RSA_padding_check_PKCS1_OAEP_mgf1;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_padding_check_PKCS1_OAEP_mgf1');
+    {$ifend}
   Result := RSA_padding_check_PKCS1_OAEP_mgf1(to_, tlen, from_, flen, num, param, plen, md, mgf1md);
 end;
 
@@ -2307,7 +2740,11 @@ function Load_RSA_padding_add_none(to_: Pbyte; tlen: TOpenSSL_C_INT; f: Pbyte; f
 begin
   RSA_padding_add_none := LoadLibCryptoFunction('RSA_padding_add_none');
   if not assigned(RSA_padding_add_none) then
+    {$if declared(LEGACY_RSA_padding_add_none)}
+    RSA_padding_add_none := @LEGACY_RSA_padding_add_none;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_padding_add_none');
+    {$ifend}
   Result := RSA_padding_add_none(to_, tlen, f, fl);
 end;
 
@@ -2315,7 +2752,11 @@ function Load_RSA_padding_check_none(to_: Pbyte; tlen: TOpenSSL_C_INT; f: Pbyte;
 begin
   RSA_padding_check_none := LoadLibCryptoFunction('RSA_padding_check_none');
   if not assigned(RSA_padding_check_none) then
+    {$if declared(LEGACY_RSA_padding_check_none)}
+    RSA_padding_check_none := @LEGACY_RSA_padding_check_none;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_padding_check_none');
+    {$ifend}
   Result := RSA_padding_check_none(to_, tlen, f, fl, rsa_len);
 end;
 
@@ -2323,7 +2764,11 @@ function Load_RSA_padding_add_X931(to_: Pbyte; tlen: TOpenSSL_C_INT; f: Pbyte; f
 begin
   RSA_padding_add_X931 := LoadLibCryptoFunction('RSA_padding_add_X931');
   if not assigned(RSA_padding_add_X931) then
+    {$if declared(LEGACY_RSA_padding_add_X931)}
+    RSA_padding_add_X931 := @LEGACY_RSA_padding_add_X931;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_padding_add_X931');
+    {$ifend}
   Result := RSA_padding_add_X931(to_, tlen, f, fl);
 end;
 
@@ -2331,7 +2776,11 @@ function Load_RSA_padding_check_X931(to_: Pbyte; tlen: TOpenSSL_C_INT; f: Pbyte;
 begin
   RSA_padding_check_X931 := LoadLibCryptoFunction('RSA_padding_check_X931');
   if not assigned(RSA_padding_check_X931) then
+    {$if declared(LEGACY_RSA_padding_check_X931)}
+    RSA_padding_check_X931 := @LEGACY_RSA_padding_check_X931;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_padding_check_X931');
+    {$ifend}
   Result := RSA_padding_check_X931(to_, tlen, f, fl, rsa_len);
 end;
 
@@ -2339,7 +2788,11 @@ function Load_RSA_X931_hash_id(nid: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
 begin
   RSA_X931_hash_id := LoadLibCryptoFunction('RSA_X931_hash_id');
   if not assigned(RSA_X931_hash_id) then
+    {$if declared(LEGACY_RSA_X931_hash_id)}
+    RSA_X931_hash_id := @LEGACY_RSA_X931_hash_id;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_X931_hash_id');
+    {$ifend}
   Result := RSA_X931_hash_id(nid);
 end;
 
@@ -2347,7 +2800,11 @@ function Load_RSA_verify_PKCS1_PSS(rsa: PRSA; mHash: Pbyte; Hash: PEVP_MD; EM: P
 begin
   RSA_verify_PKCS1_PSS := LoadLibCryptoFunction('RSA_verify_PKCS1_PSS');
   if not assigned(RSA_verify_PKCS1_PSS) then
+    {$if declared(LEGACY_RSA_verify_PKCS1_PSS)}
+    RSA_verify_PKCS1_PSS := @LEGACY_RSA_verify_PKCS1_PSS;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_verify_PKCS1_PSS');
+    {$ifend}
   Result := RSA_verify_PKCS1_PSS(rsa, mHash, Hash, EM, sLen);
 end;
 
@@ -2355,7 +2812,11 @@ function Load_RSA_padding_add_PKCS1_PSS(rsa: PRSA; EM: Pbyte; mHash: Pbyte; Hash
 begin
   RSA_padding_add_PKCS1_PSS := LoadLibCryptoFunction('RSA_padding_add_PKCS1_PSS');
   if not assigned(RSA_padding_add_PKCS1_PSS) then
+    {$if declared(LEGACY_RSA_padding_add_PKCS1_PSS)}
+    RSA_padding_add_PKCS1_PSS := @LEGACY_RSA_padding_add_PKCS1_PSS;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_padding_add_PKCS1_PSS');
+    {$ifend}
   Result := RSA_padding_add_PKCS1_PSS(rsa, EM, mHash, Hash, sLen);
 end;
 
@@ -2363,7 +2824,11 @@ function Load_RSA_verify_PKCS1_PSS_mgf1(rsa: PRSA; mHash: Pbyte; Hash: PEVP_MD; 
 begin
   RSA_verify_PKCS1_PSS_mgf1 := LoadLibCryptoFunction('RSA_verify_PKCS1_PSS_mgf1');
   if not assigned(RSA_verify_PKCS1_PSS_mgf1) then
+    {$if declared(LEGACY_RSA_verify_PKCS1_PSS_mgf1)}
+    RSA_verify_PKCS1_PSS_mgf1 := @LEGACY_RSA_verify_PKCS1_PSS_mgf1;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_verify_PKCS1_PSS_mgf1');
+    {$ifend}
   Result := RSA_verify_PKCS1_PSS_mgf1(rsa, mHash, Hash, mgf1Hash, EM, sLen);
 end;
 
@@ -2371,7 +2836,11 @@ function Load_RSA_padding_add_PKCS1_PSS_mgf1(rsa: PRSA; EM: Pbyte; mHash: Pbyte;
 begin
   RSA_padding_add_PKCS1_PSS_mgf1 := LoadLibCryptoFunction('RSA_padding_add_PKCS1_PSS_mgf1');
   if not assigned(RSA_padding_add_PKCS1_PSS_mgf1) then
+    {$if declared(LEGACY_RSA_padding_add_PKCS1_PSS_mgf1)}
+    RSA_padding_add_PKCS1_PSS_mgf1 := @LEGACY_RSA_padding_add_PKCS1_PSS_mgf1;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_padding_add_PKCS1_PSS_mgf1');
+    {$ifend}
   Result := RSA_padding_add_PKCS1_PSS_mgf1(rsa, EM, mHash, Hash, mgf1Hash, sLen);
 end;
 
@@ -2379,7 +2848,11 @@ function Load_RSA_set_ex_data(r: PRSA; idx: TOpenSSL_C_INT; arg: pointer): TOpen
 begin
   RSA_set_ex_data := LoadLibCryptoFunction('RSA_set_ex_data');
   if not assigned(RSA_set_ex_data) then
+    {$if declared(LEGACY_RSA_set_ex_data)}
+    RSA_set_ex_data := @LEGACY_RSA_set_ex_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_set_ex_data');
+    {$ifend}
   Result := RSA_set_ex_data(r, idx, arg);
 end;
 
@@ -2387,7 +2860,11 @@ function Load_RSA_get_ex_data(r: PRSA; idx: TOpenSSL_C_INT): pointer; cdecl;
 begin
   RSA_get_ex_data := LoadLibCryptoFunction('RSA_get_ex_data');
   if not assigned(RSA_get_ex_data) then
+    {$if declared(LEGACY_RSA_get_ex_data)}
+    RSA_get_ex_data := @LEGACY_RSA_get_ex_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_get_ex_data');
+    {$ifend}
   Result := RSA_get_ex_data(r, idx);
 end;
 
@@ -2395,7 +2872,11 @@ function Load_RSAPublicKey_dup(a: PRSA): PRSA; cdecl;
 begin
   RSAPublicKey_dup := LoadLibCryptoFunction('RSAPublicKey_dup');
   if not assigned(RSAPublicKey_dup) then
+    {$if declared(LEGACY_RSAPublicKey_dup)}
+    RSAPublicKey_dup := @LEGACY_RSAPublicKey_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSAPublicKey_dup');
+    {$ifend}
   Result := RSAPublicKey_dup(a);
 end;
 
@@ -2403,7 +2884,11 @@ function Load_RSAPrivateKey_dup(a: PRSA): PRSA; cdecl;
 begin
   RSAPrivateKey_dup := LoadLibCryptoFunction('RSAPrivateKey_dup');
   if not assigned(RSAPrivateKey_dup) then
+    {$if declared(LEGACY_RSAPrivateKey_dup)}
+    RSAPrivateKey_dup := @LEGACY_RSAPrivateKey_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSAPrivateKey_dup');
+    {$ifend}
   Result := RSAPrivateKey_dup(a);
 end;
 
@@ -2411,7 +2896,11 @@ function Load_RSA_meth_new(name: PAnsiChar; flags: TOpenSSL_C_INT): PRSA_METHOD;
 begin
   RSA_meth_new := LoadLibCryptoFunction('RSA_meth_new');
   if not assigned(RSA_meth_new) then
+    {$if declared(LEGACY_RSA_meth_new)}
+    RSA_meth_new := @LEGACY_RSA_meth_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_meth_new');
+    {$ifend}
   Result := RSA_meth_new(name, flags);
 end;
 
@@ -2419,7 +2908,11 @@ procedure Load_RSA_meth_free(meth: PRSA_METHOD); cdecl;
 begin
   RSA_meth_free := LoadLibCryptoFunction('RSA_meth_free');
   if not assigned(RSA_meth_free) then
+    {$if declared(LEGACY_RSA_meth_free)}
+    RSA_meth_free := @LEGACY_RSA_meth_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_meth_free');
+    {$ifend}
   RSA_meth_free(meth);
 end;
 
@@ -2427,7 +2920,11 @@ function Load_RSA_meth_dup(meth: PRSA_METHOD): PRSA_METHOD; cdecl;
 begin
   RSA_meth_dup := LoadLibCryptoFunction('RSA_meth_dup');
   if not assigned(RSA_meth_dup) then
+    {$if declared(LEGACY_RSA_meth_dup)}
+    RSA_meth_dup := @LEGACY_RSA_meth_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_meth_dup');
+    {$ifend}
   Result := RSA_meth_dup(meth);
 end;
 
@@ -2435,7 +2932,11 @@ function Load_RSA_meth_get0_name(meth: PRSA_METHOD): PAnsiChar; cdecl;
 begin
   RSA_meth_get0_name := LoadLibCryptoFunction('RSA_meth_get0_name');
   if not assigned(RSA_meth_get0_name) then
+    {$if declared(LEGACY_RSA_meth_get0_name)}
+    RSA_meth_get0_name := @LEGACY_RSA_meth_get0_name;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_meth_get0_name');
+    {$ifend}
   Result := RSA_meth_get0_name(meth);
 end;
 
@@ -2443,7 +2944,11 @@ function Load_RSA_meth_set1_name(meth: PRSA_METHOD; name: PAnsiChar): TOpenSSL_C
 begin
   RSA_meth_set1_name := LoadLibCryptoFunction('RSA_meth_set1_name');
   if not assigned(RSA_meth_set1_name) then
+    {$if declared(LEGACY_RSA_meth_set1_name)}
+    RSA_meth_set1_name := @LEGACY_RSA_meth_set1_name;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_meth_set1_name');
+    {$ifend}
   Result := RSA_meth_set1_name(meth, name);
 end;
 
@@ -2451,7 +2956,11 @@ function Load_RSA_meth_get_flags(meth: PRSA_METHOD): TOpenSSL_C_INT; cdecl;
 begin
   RSA_meth_get_flags := LoadLibCryptoFunction('RSA_meth_get_flags');
   if not assigned(RSA_meth_get_flags) then
+    {$if declared(LEGACY_RSA_meth_get_flags)}
+    RSA_meth_get_flags := @LEGACY_RSA_meth_get_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_meth_get_flags');
+    {$ifend}
   Result := RSA_meth_get_flags(meth);
 end;
 
@@ -2459,7 +2968,11 @@ function Load_RSA_meth_set_flags(meth: PRSA_METHOD; flags: TOpenSSL_C_INT): TOpe
 begin
   RSA_meth_set_flags := LoadLibCryptoFunction('RSA_meth_set_flags');
   if not assigned(RSA_meth_set_flags) then
+    {$if declared(LEGACY_RSA_meth_set_flags)}
+    RSA_meth_set_flags := @LEGACY_RSA_meth_set_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_meth_set_flags');
+    {$ifend}
   Result := RSA_meth_set_flags(meth, flags);
 end;
 
@@ -2467,7 +2980,11 @@ function Load_RSA_meth_get0_app_data(meth: PRSA_METHOD): pointer; cdecl;
 begin
   RSA_meth_get0_app_data := LoadLibCryptoFunction('RSA_meth_get0_app_data');
   if not assigned(RSA_meth_get0_app_data) then
+    {$if declared(LEGACY_RSA_meth_get0_app_data)}
+    RSA_meth_get0_app_data := @LEGACY_RSA_meth_get0_app_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_meth_get0_app_data');
+    {$ifend}
   Result := RSA_meth_get0_app_data(meth);
 end;
 
@@ -2475,7 +2992,11 @@ function Load_RSA_meth_set0_app_data(meth: PRSA_METHOD; app_data: pointer): TOpe
 begin
   RSA_meth_set0_app_data := LoadLibCryptoFunction('RSA_meth_set0_app_data');
   if not assigned(RSA_meth_set0_app_data) then
+    {$if declared(LEGACY_RSA_meth_set0_app_data)}
+    RSA_meth_set0_app_data := @LEGACY_RSA_meth_set0_app_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_meth_set0_app_data');
+    {$ifend}
   Result := RSA_meth_set0_app_data(meth, app_data);
 end;
 
@@ -2483,7 +3004,11 @@ function Load_RSA_meth_get_pub_enc(meth: PRSA_METHOD): TFuncType001; cdecl;
 begin
   RSA_meth_get_pub_enc := LoadLibCryptoFunction('RSA_meth_get_pub_enc');
   if not assigned(RSA_meth_get_pub_enc) then
+    {$if declared(LEGACY_RSA_meth_get_pub_enc)}
+    RSA_meth_get_pub_enc := @LEGACY_RSA_meth_get_pub_enc;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_meth_get_pub_enc');
+    {$ifend}
   Result := RSA_meth_get_pub_enc(meth);
 end;
 
@@ -2491,7 +3016,11 @@ function Load_RSA_meth_set_pub_enc(rsa: PRSA_METHOD; pub_enc: TFuncType002): TOp
 begin
   RSA_meth_set_pub_enc := LoadLibCryptoFunction('RSA_meth_set_pub_enc');
   if not assigned(RSA_meth_set_pub_enc) then
+    {$if declared(LEGACY_RSA_meth_set_pub_enc)}
+    RSA_meth_set_pub_enc := @LEGACY_RSA_meth_set_pub_enc;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_meth_set_pub_enc');
+    {$ifend}
   Result := RSA_meth_set_pub_enc(rsa, pub_enc);
 end;
 
@@ -2499,7 +3028,11 @@ function Load_RSA_meth_get_pub_dec(meth: PRSA_METHOD): TFuncType003; cdecl;
 begin
   RSA_meth_get_pub_dec := LoadLibCryptoFunction('RSA_meth_get_pub_dec');
   if not assigned(RSA_meth_get_pub_dec) then
+    {$if declared(LEGACY_RSA_meth_get_pub_dec)}
+    RSA_meth_get_pub_dec := @LEGACY_RSA_meth_get_pub_dec;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_meth_get_pub_dec');
+    {$ifend}
   Result := RSA_meth_get_pub_dec(meth);
 end;
 
@@ -2507,7 +3040,11 @@ function Load_RSA_meth_set_pub_dec(rsa: PRSA_METHOD; pub_dec: TFuncType004): TOp
 begin
   RSA_meth_set_pub_dec := LoadLibCryptoFunction('RSA_meth_set_pub_dec');
   if not assigned(RSA_meth_set_pub_dec) then
+    {$if declared(LEGACY_RSA_meth_set_pub_dec)}
+    RSA_meth_set_pub_dec := @LEGACY_RSA_meth_set_pub_dec;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_meth_set_pub_dec');
+    {$ifend}
   Result := RSA_meth_set_pub_dec(rsa, pub_dec);
 end;
 
@@ -2515,7 +3052,11 @@ function Load_RSA_meth_get_priv_enc(meth: PRSA_METHOD): TFuncType005; cdecl;
 begin
   RSA_meth_get_priv_enc := LoadLibCryptoFunction('RSA_meth_get_priv_enc');
   if not assigned(RSA_meth_get_priv_enc) then
+    {$if declared(LEGACY_RSA_meth_get_priv_enc)}
+    RSA_meth_get_priv_enc := @LEGACY_RSA_meth_get_priv_enc;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_meth_get_priv_enc');
+    {$ifend}
   Result := RSA_meth_get_priv_enc(meth);
 end;
 
@@ -2523,7 +3064,11 @@ function Load_RSA_meth_set_priv_enc(rsa: PRSA_METHOD; priv_enc: TFuncType006): T
 begin
   RSA_meth_set_priv_enc := LoadLibCryptoFunction('RSA_meth_set_priv_enc');
   if not assigned(RSA_meth_set_priv_enc) then
+    {$if declared(LEGACY_RSA_meth_set_priv_enc)}
+    RSA_meth_set_priv_enc := @LEGACY_RSA_meth_set_priv_enc;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_meth_set_priv_enc');
+    {$ifend}
   Result := RSA_meth_set_priv_enc(rsa, priv_enc);
 end;
 
@@ -2531,7 +3076,11 @@ function Load_RSA_meth_get_priv_dec(meth: PRSA_METHOD): TFuncType007; cdecl;
 begin
   RSA_meth_get_priv_dec := LoadLibCryptoFunction('RSA_meth_get_priv_dec');
   if not assigned(RSA_meth_get_priv_dec) then
+    {$if declared(LEGACY_RSA_meth_get_priv_dec)}
+    RSA_meth_get_priv_dec := @LEGACY_RSA_meth_get_priv_dec;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_meth_get_priv_dec');
+    {$ifend}
   Result := RSA_meth_get_priv_dec(meth);
 end;
 
@@ -2539,7 +3088,11 @@ function Load_RSA_meth_set_priv_dec(rsa: PRSA_METHOD; priv_dec: TFuncType008): T
 begin
   RSA_meth_set_priv_dec := LoadLibCryptoFunction('RSA_meth_set_priv_dec');
   if not assigned(RSA_meth_set_priv_dec) then
+    {$if declared(LEGACY_RSA_meth_set_priv_dec)}
+    RSA_meth_set_priv_dec := @LEGACY_RSA_meth_set_priv_dec;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_meth_set_priv_dec');
+    {$ifend}
   Result := RSA_meth_set_priv_dec(rsa, priv_dec);
 end;
 
@@ -2547,7 +3100,11 @@ function Load_RSA_meth_get_mod_exp(meth: PRSA_METHOD): TFuncType009; cdecl;
 begin
   RSA_meth_get_mod_exp := LoadLibCryptoFunction('RSA_meth_get_mod_exp');
   if not assigned(RSA_meth_get_mod_exp) then
+    {$if declared(LEGACY_RSA_meth_get_mod_exp)}
+    RSA_meth_get_mod_exp := @LEGACY_RSA_meth_get_mod_exp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_meth_get_mod_exp');
+    {$ifend}
   Result := RSA_meth_get_mod_exp(meth);
 end;
 
@@ -2555,7 +3112,11 @@ function Load_RSA_meth_set_mod_exp(rsa: PRSA_METHOD; mod_exp: TFuncType010): TOp
 begin
   RSA_meth_set_mod_exp := LoadLibCryptoFunction('RSA_meth_set_mod_exp');
   if not assigned(RSA_meth_set_mod_exp) then
+    {$if declared(LEGACY_RSA_meth_set_mod_exp)}
+    RSA_meth_set_mod_exp := @LEGACY_RSA_meth_set_mod_exp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_meth_set_mod_exp');
+    {$ifend}
   Result := RSA_meth_set_mod_exp(rsa, mod_exp);
 end;
 
@@ -2563,7 +3124,11 @@ function Load_RSA_meth_get_bn_mod_exp(meth: PRSA_METHOD): TFuncType011; cdecl;
 begin
   RSA_meth_get_bn_mod_exp := LoadLibCryptoFunction('RSA_meth_get_bn_mod_exp');
   if not assigned(RSA_meth_get_bn_mod_exp) then
+    {$if declared(LEGACY_RSA_meth_get_bn_mod_exp)}
+    RSA_meth_get_bn_mod_exp := @LEGACY_RSA_meth_get_bn_mod_exp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_meth_get_bn_mod_exp');
+    {$ifend}
   Result := RSA_meth_get_bn_mod_exp(meth);
 end;
 
@@ -2571,7 +3136,11 @@ function Load_RSA_meth_set_bn_mod_exp(rsa: PRSA_METHOD; bn_mod_exp: TFuncType012
 begin
   RSA_meth_set_bn_mod_exp := LoadLibCryptoFunction('RSA_meth_set_bn_mod_exp');
   if not assigned(RSA_meth_set_bn_mod_exp) then
+    {$if declared(LEGACY_RSA_meth_set_bn_mod_exp)}
+    RSA_meth_set_bn_mod_exp := @LEGACY_RSA_meth_set_bn_mod_exp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_meth_set_bn_mod_exp');
+    {$ifend}
   Result := RSA_meth_set_bn_mod_exp(rsa, bn_mod_exp);
 end;
 
@@ -2579,7 +3148,11 @@ function Load_RSA_meth_get_init(meth: PRSA_METHOD): TFuncType013; cdecl;
 begin
   RSA_meth_get_init := LoadLibCryptoFunction('RSA_meth_get_init');
   if not assigned(RSA_meth_get_init) then
+    {$if declared(LEGACY_RSA_meth_get_init)}
+    RSA_meth_get_init := @LEGACY_RSA_meth_get_init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_meth_get_init');
+    {$ifend}
   Result := RSA_meth_get_init(meth);
 end;
 
@@ -2587,7 +3160,11 @@ function Load_RSA_meth_set_init(rsa: PRSA_METHOD; init: TFuncType014): TOpenSSL_
 begin
   RSA_meth_set_init := LoadLibCryptoFunction('RSA_meth_set_init');
   if not assigned(RSA_meth_set_init) then
+    {$if declared(LEGACY_RSA_meth_set_init)}
+    RSA_meth_set_init := @LEGACY_RSA_meth_set_init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_meth_set_init');
+    {$ifend}
   Result := RSA_meth_set_init(rsa, init);
 end;
 
@@ -2595,7 +3172,11 @@ function Load_RSA_meth_get_finish(meth: PRSA_METHOD): TFuncType015; cdecl;
 begin
   RSA_meth_get_finish := LoadLibCryptoFunction('RSA_meth_get_finish');
   if not assigned(RSA_meth_get_finish) then
+    {$if declared(LEGACY_RSA_meth_get_finish)}
+    RSA_meth_get_finish := @LEGACY_RSA_meth_get_finish;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_meth_get_finish');
+    {$ifend}
   Result := RSA_meth_get_finish(meth);
 end;
 
@@ -2603,7 +3184,11 @@ function Load_RSA_meth_set_finish(rsa: PRSA_METHOD; finish: TFuncType016): TOpen
 begin
   RSA_meth_set_finish := LoadLibCryptoFunction('RSA_meth_set_finish');
   if not assigned(RSA_meth_set_finish) then
+    {$if declared(LEGACY_RSA_meth_set_finish)}
+    RSA_meth_set_finish := @LEGACY_RSA_meth_set_finish;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_meth_set_finish');
+    {$ifend}
   Result := RSA_meth_set_finish(rsa, finish);
 end;
 
@@ -2611,7 +3196,11 @@ function Load_RSA_meth_get_sign(meth: PRSA_METHOD): TFuncType017; cdecl;
 begin
   RSA_meth_get_sign := LoadLibCryptoFunction('RSA_meth_get_sign');
   if not assigned(RSA_meth_get_sign) then
+    {$if declared(LEGACY_RSA_meth_get_sign)}
+    RSA_meth_get_sign := @LEGACY_RSA_meth_get_sign;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_meth_get_sign');
+    {$ifend}
   Result := RSA_meth_get_sign(meth);
 end;
 
@@ -2619,7 +3208,11 @@ function Load_RSA_meth_set_sign(rsa: PRSA_METHOD; sign: TFuncType018): TOpenSSL_
 begin
   RSA_meth_set_sign := LoadLibCryptoFunction('RSA_meth_set_sign');
   if not assigned(RSA_meth_set_sign) then
+    {$if declared(LEGACY_RSA_meth_set_sign)}
+    RSA_meth_set_sign := @LEGACY_RSA_meth_set_sign;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_meth_set_sign');
+    {$ifend}
   Result := RSA_meth_set_sign(rsa, sign);
 end;
 
@@ -2627,7 +3220,11 @@ function Load_RSA_meth_get_verify(meth: PRSA_METHOD): TFuncType019; cdecl;
 begin
   RSA_meth_get_verify := LoadLibCryptoFunction('RSA_meth_get_verify');
   if not assigned(RSA_meth_get_verify) then
+    {$if declared(LEGACY_RSA_meth_get_verify)}
+    RSA_meth_get_verify := @LEGACY_RSA_meth_get_verify;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_meth_get_verify');
+    {$ifend}
   Result := RSA_meth_get_verify(meth);
 end;
 
@@ -2635,7 +3232,11 @@ function Load_RSA_meth_set_verify(rsa: PRSA_METHOD; verify: TFuncType020): TOpen
 begin
   RSA_meth_set_verify := LoadLibCryptoFunction('RSA_meth_set_verify');
   if not assigned(RSA_meth_set_verify) then
+    {$if declared(LEGACY_RSA_meth_set_verify)}
+    RSA_meth_set_verify := @LEGACY_RSA_meth_set_verify;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_meth_set_verify');
+    {$ifend}
   Result := RSA_meth_set_verify(rsa, verify);
 end;
 
@@ -2643,7 +3244,11 @@ function Load_RSA_meth_get_keygen(meth: PRSA_METHOD): TFuncType021; cdecl;
 begin
   RSA_meth_get_keygen := LoadLibCryptoFunction('RSA_meth_get_keygen');
   if not assigned(RSA_meth_get_keygen) then
+    {$if declared(LEGACY_RSA_meth_get_keygen)}
+    RSA_meth_get_keygen := @LEGACY_RSA_meth_get_keygen;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_meth_get_keygen');
+    {$ifend}
   Result := RSA_meth_get_keygen(meth);
 end;
 
@@ -2651,7 +3256,11 @@ function Load_RSA_meth_set_keygen(rsa: PRSA_METHOD; keygen: TFuncType022): TOpen
 begin
   RSA_meth_set_keygen := LoadLibCryptoFunction('RSA_meth_set_keygen');
   if not assigned(RSA_meth_set_keygen) then
+    {$if declared(LEGACY_RSA_meth_set_keygen)}
+    RSA_meth_set_keygen := @LEGACY_RSA_meth_set_keygen;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_meth_set_keygen');
+    {$ifend}
   Result := RSA_meth_set_keygen(rsa, keygen);
 end;
 
@@ -2659,7 +3268,11 @@ function Load_RSA_meth_get_multi_prime_keygen(meth: PRSA_METHOD): TFuncType023; 
 begin
   RSA_meth_get_multi_prime_keygen := LoadLibCryptoFunction('RSA_meth_get_multi_prime_keygen');
   if not assigned(RSA_meth_get_multi_prime_keygen) then
+    {$if declared(LEGACY_RSA_meth_get_multi_prime_keygen)}
+    RSA_meth_get_multi_prime_keygen := @LEGACY_RSA_meth_get_multi_prime_keygen;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_meth_get_multi_prime_keygen');
+    {$ifend}
   Result := RSA_meth_get_multi_prime_keygen(meth);
 end;
 
@@ -2667,7 +3280,11 @@ function Load_RSA_meth_set_multi_prime_keygen(meth: PRSA_METHOD; keygen: TFuncTy
 begin
   RSA_meth_set_multi_prime_keygen := LoadLibCryptoFunction('RSA_meth_set_multi_prime_keygen');
   if not assigned(RSA_meth_set_multi_prime_keygen) then
+    {$if declared(LEGACY_RSA_meth_set_multi_prime_keygen)}
+    RSA_meth_set_multi_prime_keygen := @LEGACY_RSA_meth_set_multi_prime_keygen;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_meth_set_multi_prime_keygen');
+    {$ifend}
   Result := RSA_meth_set_multi_prime_keygen(meth, keygen);
 end;
 

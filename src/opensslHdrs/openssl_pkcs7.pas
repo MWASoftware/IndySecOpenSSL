@@ -18,7 +18,8 @@
 unit openssl_pkcs7;
 
 {
-  Generated from OpenSSL 3.0.20 Header File pkcs7.h - Wed  6 May 13:06:24 BST 2026
+  Generated from OpenSSL 3.0.20 Header File pkcs7.h - Wed  6 May 13:15:33 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -1305,7 +1306,11 @@ function Load_sk_PKCS7_SIGNER_INFO_num(_para: Pstack_st_PKCS7_SIGNER_INFO): TOpe
 begin
   sk_PKCS7_SIGNER_INFO_num := LoadLibCryptoFunction('OPENSSL_sk_num');
   if not assigned(sk_PKCS7_SIGNER_INFO_num) then
+    {$if declared(LEGACY_OPENSSL_sk_num)}
+    sk_PKCS7_SIGNER_INFO_num := @LEGACY_OPENSSL_sk_num;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_num');
+    {$ifend}
   Result := sk_PKCS7_SIGNER_INFO_num(_para);
 end;
 
@@ -1313,7 +1318,11 @@ function Load_sk_PKCS7_SIGNER_INFO_value(_para: Pstack_st_PKCS7_SIGNER_INFO; _pa
 begin
   sk_PKCS7_SIGNER_INFO_value := LoadLibCryptoFunction('OPENSSL_sk_value');
   if not assigned(sk_PKCS7_SIGNER_INFO_value) then
+    {$if declared(LEGACY_OPENSSL_sk_value)}
+    sk_PKCS7_SIGNER_INFO_value := @LEGACY_OPENSSL_sk_value;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_value');
+    {$ifend}
   Result := sk_PKCS7_SIGNER_INFO_value(_para, _para2);
 end;
 
@@ -1321,7 +1330,11 @@ function Load_sk_PKCS7_SIGNER_INFO_new(cmp: Tsk_PKCS7_SIGNER_INFO_compfunc): Pst
 begin
   sk_PKCS7_SIGNER_INFO_new := LoadLibCryptoFunction('OPENSSL_sk_new');
   if not assigned(sk_PKCS7_SIGNER_INFO_new) then
+    {$if declared(LEGACY_OPENSSL_sk_new)}
+    sk_PKCS7_SIGNER_INFO_new := @LEGACY_OPENSSL_sk_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new');
+    {$ifend}
   Result := sk_PKCS7_SIGNER_INFO_new(cmp);
 end;
 
@@ -1329,7 +1342,11 @@ function Load_sk_PKCS7_SIGNER_INFO_new_null: Pstack_st_PKCS7_SIGNER_INFO; cdecl;
 begin
   sk_PKCS7_SIGNER_INFO_new_null := LoadLibCryptoFunction('OPENSSL_sk_new_null');
   if not assigned(sk_PKCS7_SIGNER_INFO_new_null) then
+    {$if declared(LEGACY_OPENSSL_sk_new_null)}
+    sk_PKCS7_SIGNER_INFO_new_null := @LEGACY_OPENSSL_sk_new_null;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_null');
+    {$ifend}
   Result := sk_PKCS7_SIGNER_INFO_new_null;
 end;
 
@@ -1337,7 +1354,11 @@ function Load_sk_PKCS7_SIGNER_INFO_new_reserve(cmp: Tsk_PKCS7_SIGNER_INFO_compfu
 begin
   sk_PKCS7_SIGNER_INFO_new_reserve := LoadLibCryptoFunction('OPENSSL_sk_new_reserve');
   if not assigned(sk_PKCS7_SIGNER_INFO_new_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_new_reserve)}
+    sk_PKCS7_SIGNER_INFO_new_reserve := @LEGACY_OPENSSL_sk_new_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_reserve');
+    {$ifend}
   Result := sk_PKCS7_SIGNER_INFO_new_reserve(cmp, n);
 end;
 
@@ -1345,7 +1366,11 @@ function Load_sk_PKCS7_SIGNER_INFO_reserve(_para: Pstack_st_PKCS7_SIGNER_INFO; n
 begin
   sk_PKCS7_SIGNER_INFO_reserve := LoadLibCryptoFunction('OPENSSL_sk_reserve');
   if not assigned(sk_PKCS7_SIGNER_INFO_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_reserve)}
+    sk_PKCS7_SIGNER_INFO_reserve := @LEGACY_OPENSSL_sk_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_reserve');
+    {$ifend}
   Result := sk_PKCS7_SIGNER_INFO_reserve(_para, n);
 end;
 
@@ -1353,7 +1378,11 @@ function Load_sk_PKCS7_SIGNER_INFO_free(_para: Pstack_st_PKCS7_SIGNER_INFO): TOp
 begin
   sk_PKCS7_SIGNER_INFO_free := LoadLibCryptoFunction('OPENSSL_sk_free');
   if not assigned(sk_PKCS7_SIGNER_INFO_free) then
+    {$if declared(LEGACY_OPENSSL_sk_free)}
+    sk_PKCS7_SIGNER_INFO_free := @LEGACY_OPENSSL_sk_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_free');
+    {$ifend}
   Result := sk_PKCS7_SIGNER_INFO_free(_para);
 end;
 
@@ -1361,7 +1390,11 @@ function Load_sk_PKCS7_SIGNER_INFO_zero(_para: Pstack_st_PKCS7_SIGNER_INFO): TOp
 begin
   sk_PKCS7_SIGNER_INFO_zero := LoadLibCryptoFunction('OPENSSL_sk_zero');
   if not assigned(sk_PKCS7_SIGNER_INFO_zero) then
+    {$if declared(LEGACY_OPENSSL_sk_zero)}
+    sk_PKCS7_SIGNER_INFO_zero := @LEGACY_OPENSSL_sk_zero;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_zero');
+    {$ifend}
   Result := sk_PKCS7_SIGNER_INFO_zero(_para);
 end;
 
@@ -1369,7 +1402,11 @@ function Load_sk_PKCS7_SIGNER_INFO_delete(st: Pstack_st_PKCS7_SIGNER_INFO; loc: 
 begin
   sk_PKCS7_SIGNER_INFO_delete := LoadLibCryptoFunction('OPENSSL_sk_delete');
   if not assigned(sk_PKCS7_SIGNER_INFO_delete) then
+    {$if declared(LEGACY_OPENSSL_sk_delete)}
+    sk_PKCS7_SIGNER_INFO_delete := @LEGACY_OPENSSL_sk_delete;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete');
+    {$ifend}
   Result := sk_PKCS7_SIGNER_INFO_delete(st, loc);
 end;
 
@@ -1377,7 +1414,11 @@ function Load_sk_PKCS7_SIGNER_INFO_delete_ptr(st: Pstack_st_PKCS7_SIGNER_INFO; p
 begin
   sk_PKCS7_SIGNER_INFO_delete_ptr := LoadLibCryptoFunction('OPENSSL_sk_delete_ptr');
   if not assigned(sk_PKCS7_SIGNER_INFO_delete_ptr) then
+    {$if declared(LEGACY_OPENSSL_sk_delete_ptr)}
+    sk_PKCS7_SIGNER_INFO_delete_ptr := @LEGACY_OPENSSL_sk_delete_ptr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete_ptr');
+    {$ifend}
   Result := sk_PKCS7_SIGNER_INFO_delete_ptr(st, ptr);
 end;
 
@@ -1385,7 +1426,11 @@ function Load_sk_PKCS7_SIGNER_INFO_push(st: Pstack_st_PKCS7_SIGNER_INFO; data: p
 begin
   sk_PKCS7_SIGNER_INFO_push := LoadLibCryptoFunction('OPENSSL_sk_push');
   if not assigned(sk_PKCS7_SIGNER_INFO_push) then
+    {$if declared(LEGACY_OPENSSL_sk_push)}
+    sk_PKCS7_SIGNER_INFO_push := @LEGACY_OPENSSL_sk_push;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_push');
+    {$ifend}
   Result := sk_PKCS7_SIGNER_INFO_push(st, data);
 end;
 
@@ -1393,7 +1438,11 @@ function Load_sk_PKCS7_SIGNER_INFO_unshift(st: Pstack_st_PKCS7_SIGNER_INFO; data
 begin
   sk_PKCS7_SIGNER_INFO_unshift := LoadLibCryptoFunction('OPENSSL_sk_unshift');
   if not assigned(sk_PKCS7_SIGNER_INFO_unshift) then
+    {$if declared(LEGACY_OPENSSL_sk_unshift)}
+    sk_PKCS7_SIGNER_INFO_unshift := @LEGACY_OPENSSL_sk_unshift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_unshift');
+    {$ifend}
   Result := sk_PKCS7_SIGNER_INFO_unshift(st, data);
 end;
 
@@ -1401,7 +1450,11 @@ function Load_sk_PKCS7_SIGNER_INFO_pop(_para: Pstack_st_PKCS7_SIGNER_INFO): Psta
 begin
   sk_PKCS7_SIGNER_INFO_pop := LoadLibCryptoFunction('OPENSSL_sk_pop');
   if not assigned(sk_PKCS7_SIGNER_INFO_pop) then
+    {$if declared(LEGACY_OPENSSL_sk_pop)}
+    sk_PKCS7_SIGNER_INFO_pop := @LEGACY_OPENSSL_sk_pop;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop');
+    {$ifend}
   Result := sk_PKCS7_SIGNER_INFO_pop(_para);
 end;
 
@@ -1409,7 +1462,11 @@ function Load_sk_PKCS7_SIGNER_INFO_shift(_para: Pstack_st_PKCS7_SIGNER_INFO): Ps
 begin
   sk_PKCS7_SIGNER_INFO_shift := LoadLibCryptoFunction('OPENSSL_sk_shift');
   if not assigned(sk_PKCS7_SIGNER_INFO_shift) then
+    {$if declared(LEGACY_OPENSSL_sk_shift)}
+    sk_PKCS7_SIGNER_INFO_shift := @LEGACY_OPENSSL_sk_shift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_shift');
+    {$ifend}
   Result := sk_PKCS7_SIGNER_INFO_shift(_para);
 end;
 
@@ -1417,7 +1474,11 @@ procedure Load_sk_PKCS7_SIGNER_INFO_pop_free(st: Pstack_st_PKCS7_SIGNER_INFO; fu
 begin
   sk_PKCS7_SIGNER_INFO_pop_free := LoadLibCryptoFunction('OPENSSL_sk_pop_free');
   if not assigned(sk_PKCS7_SIGNER_INFO_pop_free) then
+    {$if declared(LEGACY_OPENSSL_sk_pop_free)}
+    sk_PKCS7_SIGNER_INFO_pop_free := @LEGACY_OPENSSL_sk_pop_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop_free');
+    {$ifend}
   sk_PKCS7_SIGNER_INFO_pop_free(st, func);
 end;
 
@@ -1425,7 +1486,11 @@ function Load_sk_PKCS7_SIGNER_INFO_insert(st: Pstack_st_PKCS7_SIGNER_INFO; data:
 begin
   sk_PKCS7_SIGNER_INFO_insert := LoadLibCryptoFunction('OPENSSL_sk_insert');
   if not assigned(sk_PKCS7_SIGNER_INFO_insert) then
+    {$if declared(LEGACY_OPENSSL_sk_insert)}
+    sk_PKCS7_SIGNER_INFO_insert := @LEGACY_OPENSSL_sk_insert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_insert');
+    {$ifend}
   Result := sk_PKCS7_SIGNER_INFO_insert(st, data, where);
 end;
 
@@ -1433,7 +1498,11 @@ function Load_sk_PKCS7_SIGNER_INFO_set(st: Pstack_st_PKCS7_SIGNER_INFO; i: TOpen
 begin
   sk_PKCS7_SIGNER_INFO_set := LoadLibCryptoFunction('OPENSSL_sk_set');
   if not assigned(sk_PKCS7_SIGNER_INFO_set) then
+    {$if declared(LEGACY_OPENSSL_sk_set)}
+    sk_PKCS7_SIGNER_INFO_set := @LEGACY_OPENSSL_sk_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set');
+    {$ifend}
   Result := sk_PKCS7_SIGNER_INFO_set(st, i, data);
 end;
 
@@ -1441,7 +1510,11 @@ function Load_sk_PKCS7_SIGNER_INFO_find(st: Pstack_st_PKCS7_SIGNER_INFO; data: p
 begin
   sk_PKCS7_SIGNER_INFO_find := LoadLibCryptoFunction('OPENSSL_sk_find');
   if not assigned(sk_PKCS7_SIGNER_INFO_find) then
+    {$if declared(LEGACY_OPENSSL_sk_find)}
+    sk_PKCS7_SIGNER_INFO_find := @LEGACY_OPENSSL_sk_find;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find');
+    {$ifend}
   Result := sk_PKCS7_SIGNER_INFO_find(st, data);
 end;
 
@@ -1449,7 +1522,11 @@ function Load_sk_PKCS7_SIGNER_INFO_find_ex(st: Pstack_st_PKCS7_SIGNER_INFO; data
 begin
   sk_PKCS7_SIGNER_INFO_find_ex := LoadLibCryptoFunction('OPENSSL_sk_find_ex');
   if not assigned(sk_PKCS7_SIGNER_INFO_find_ex) then
+    {$if declared(LEGACY_OPENSSL_sk_find_ex)}
+    sk_PKCS7_SIGNER_INFO_find_ex := @LEGACY_OPENSSL_sk_find_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_ex');
+    {$ifend}
   Result := sk_PKCS7_SIGNER_INFO_find_ex(st, data);
 end;
 
@@ -1457,7 +1534,11 @@ function Load_sk_PKCS7_SIGNER_INFO_find_all(st: Pstack_st_PKCS7_SIGNER_INFO; dat
 begin
   sk_PKCS7_SIGNER_INFO_find_all := LoadLibCryptoFunction('OPENSSL_sk_find_all');
   if not assigned(sk_PKCS7_SIGNER_INFO_find_all) then
+    {$if declared(LEGACY_OPENSSL_sk_find_all)}
+    sk_PKCS7_SIGNER_INFO_find_all := @LEGACY_OPENSSL_sk_find_all;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_all');
+    {$ifend}
   Result := sk_PKCS7_SIGNER_INFO_find_all(st, data, pnum);
 end;
 
@@ -1465,7 +1546,11 @@ function Load_sk_PKCS7_SIGNER_INFO_sort(_para: Pstack_st_PKCS7_SIGNER_INFO): TOp
 begin
   sk_PKCS7_SIGNER_INFO_sort := LoadLibCryptoFunction('OPENSSL_sk_sort');
   if not assigned(sk_PKCS7_SIGNER_INFO_sort) then
+    {$if declared(LEGACY_OPENSSL_sk_sort)}
+    sk_PKCS7_SIGNER_INFO_sort := @LEGACY_OPENSSL_sk_sort;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_sort');
+    {$ifend}
   Result := sk_PKCS7_SIGNER_INFO_sort(_para);
 end;
 
@@ -1473,7 +1558,11 @@ function Load_sk_PKCS7_SIGNER_INFO_is_sorted(_para: Pstack_st_PKCS7_SIGNER_INFO)
 begin
   sk_PKCS7_SIGNER_INFO_is_sorted := LoadLibCryptoFunction('OPENSSL_sk_is_sorted');
   if not assigned(sk_PKCS7_SIGNER_INFO_is_sorted) then
+    {$if declared(LEGACY_OPENSSL_sk_is_sorted)}
+    sk_PKCS7_SIGNER_INFO_is_sorted := @LEGACY_OPENSSL_sk_is_sorted;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_is_sorted');
+    {$ifend}
   Result := sk_PKCS7_SIGNER_INFO_is_sorted(_para);
 end;
 
@@ -1481,7 +1570,11 @@ function Load_sk_PKCS7_SIGNER_INFO_dup(st: Pstack_st_PKCS7_SIGNER_INFO): Pstack_
 begin
   sk_PKCS7_SIGNER_INFO_dup := LoadLibCryptoFunction('OPENSSL_sk_dup');
   if not assigned(sk_PKCS7_SIGNER_INFO_dup) then
+    {$if declared(LEGACY_OPENSSL_sk_dup)}
+    sk_PKCS7_SIGNER_INFO_dup := @LEGACY_OPENSSL_sk_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_dup');
+    {$ifend}
   Result := sk_PKCS7_SIGNER_INFO_dup(st);
 end;
 
@@ -1489,7 +1582,11 @@ function Load_sk_PKCS7_SIGNER_INFO_deep_copy(st: Pstack_st_PKCS7_SIGNER_INFO; c:
 begin
   sk_PKCS7_SIGNER_INFO_deep_copy := LoadLibCryptoFunction('OPENSSL_sk_deep_copy');
   if not assigned(sk_PKCS7_SIGNER_INFO_deep_copy) then
+    {$if declared(LEGACY_OPENSSL_sk_deep_copy)}
+    sk_PKCS7_SIGNER_INFO_deep_copy := @LEGACY_OPENSSL_sk_deep_copy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_deep_copy');
+    {$ifend}
   Result := sk_PKCS7_SIGNER_INFO_deep_copy(st, c, f);
 end;
 
@@ -1497,7 +1594,11 @@ function Load_sk_PKCS7_SIGNER_INFO_set_cmp_func(st: Pstack_st_PKCS7_SIGNER_INFO;
 begin
   sk_PKCS7_SIGNER_INFO_set_cmp_func := LoadLibCryptoFunction('OPENSSL_sk_set_cmp_func');
   if not assigned(sk_PKCS7_SIGNER_INFO_set_cmp_func) then
+    {$if declared(LEGACY_OPENSSL_sk_set_cmp_func)}
+    sk_PKCS7_SIGNER_INFO_set_cmp_func := @LEGACY_OPENSSL_sk_set_cmp_func;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set_cmp_func');
+    {$ifend}
   Result := sk_PKCS7_SIGNER_INFO_set_cmp_func(st, cmp);
 end;
 
@@ -1505,7 +1606,11 @@ function Load_sk_PKCS7_RECIP_INFO_num(_para: Pstack_st_PKCS7_RECIP_INFO): TOpenS
 begin
   sk_PKCS7_RECIP_INFO_num := LoadLibCryptoFunction('OPENSSL_sk_num');
   if not assigned(sk_PKCS7_RECIP_INFO_num) then
+    {$if declared(LEGACY_OPENSSL_sk_num)}
+    sk_PKCS7_RECIP_INFO_num := @LEGACY_OPENSSL_sk_num;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_num');
+    {$ifend}
   Result := sk_PKCS7_RECIP_INFO_num(_para);
 end;
 
@@ -1513,7 +1618,11 @@ function Load_sk_PKCS7_RECIP_INFO_value(_para: Pstack_st_PKCS7_RECIP_INFO; _para
 begin
   sk_PKCS7_RECIP_INFO_value := LoadLibCryptoFunction('OPENSSL_sk_value');
   if not assigned(sk_PKCS7_RECIP_INFO_value) then
+    {$if declared(LEGACY_OPENSSL_sk_value)}
+    sk_PKCS7_RECIP_INFO_value := @LEGACY_OPENSSL_sk_value;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_value');
+    {$ifend}
   Result := sk_PKCS7_RECIP_INFO_value(_para, _para2);
 end;
 
@@ -1521,7 +1630,11 @@ function Load_sk_PKCS7_RECIP_INFO_new(cmp: Tsk_PKCS7_RECIP_INFO_compfunc): Pstac
 begin
   sk_PKCS7_RECIP_INFO_new := LoadLibCryptoFunction('OPENSSL_sk_new');
   if not assigned(sk_PKCS7_RECIP_INFO_new) then
+    {$if declared(LEGACY_OPENSSL_sk_new)}
+    sk_PKCS7_RECIP_INFO_new := @LEGACY_OPENSSL_sk_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new');
+    {$ifend}
   Result := sk_PKCS7_RECIP_INFO_new(cmp);
 end;
 
@@ -1529,7 +1642,11 @@ function Load_sk_PKCS7_RECIP_INFO_new_null: Pstack_st_PKCS7_RECIP_INFO; cdecl;
 begin
   sk_PKCS7_RECIP_INFO_new_null := LoadLibCryptoFunction('OPENSSL_sk_new_null');
   if not assigned(sk_PKCS7_RECIP_INFO_new_null) then
+    {$if declared(LEGACY_OPENSSL_sk_new_null)}
+    sk_PKCS7_RECIP_INFO_new_null := @LEGACY_OPENSSL_sk_new_null;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_null');
+    {$ifend}
   Result := sk_PKCS7_RECIP_INFO_new_null;
 end;
 
@@ -1537,7 +1654,11 @@ function Load_sk_PKCS7_RECIP_INFO_new_reserve(cmp: Tsk_PKCS7_RECIP_INFO_compfunc
 begin
   sk_PKCS7_RECIP_INFO_new_reserve := LoadLibCryptoFunction('OPENSSL_sk_new_reserve');
   if not assigned(sk_PKCS7_RECIP_INFO_new_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_new_reserve)}
+    sk_PKCS7_RECIP_INFO_new_reserve := @LEGACY_OPENSSL_sk_new_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_reserve');
+    {$ifend}
   Result := sk_PKCS7_RECIP_INFO_new_reserve(cmp, n);
 end;
 
@@ -1545,7 +1666,11 @@ function Load_sk_PKCS7_RECIP_INFO_reserve(_para: Pstack_st_PKCS7_RECIP_INFO; n: 
 begin
   sk_PKCS7_RECIP_INFO_reserve := LoadLibCryptoFunction('OPENSSL_sk_reserve');
   if not assigned(sk_PKCS7_RECIP_INFO_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_reserve)}
+    sk_PKCS7_RECIP_INFO_reserve := @LEGACY_OPENSSL_sk_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_reserve');
+    {$ifend}
   Result := sk_PKCS7_RECIP_INFO_reserve(_para, n);
 end;
 
@@ -1553,7 +1678,11 @@ function Load_sk_PKCS7_RECIP_INFO_free(_para: Pstack_st_PKCS7_RECIP_INFO): TOpen
 begin
   sk_PKCS7_RECIP_INFO_free := LoadLibCryptoFunction('OPENSSL_sk_free');
   if not assigned(sk_PKCS7_RECIP_INFO_free) then
+    {$if declared(LEGACY_OPENSSL_sk_free)}
+    sk_PKCS7_RECIP_INFO_free := @LEGACY_OPENSSL_sk_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_free');
+    {$ifend}
   Result := sk_PKCS7_RECIP_INFO_free(_para);
 end;
 
@@ -1561,7 +1690,11 @@ function Load_sk_PKCS7_RECIP_INFO_zero(_para: Pstack_st_PKCS7_RECIP_INFO): TOpen
 begin
   sk_PKCS7_RECIP_INFO_zero := LoadLibCryptoFunction('OPENSSL_sk_zero');
   if not assigned(sk_PKCS7_RECIP_INFO_zero) then
+    {$if declared(LEGACY_OPENSSL_sk_zero)}
+    sk_PKCS7_RECIP_INFO_zero := @LEGACY_OPENSSL_sk_zero;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_zero');
+    {$ifend}
   Result := sk_PKCS7_RECIP_INFO_zero(_para);
 end;
 
@@ -1569,7 +1702,11 @@ function Load_sk_PKCS7_RECIP_INFO_delete(st: Pstack_st_PKCS7_RECIP_INFO; loc: TO
 begin
   sk_PKCS7_RECIP_INFO_delete := LoadLibCryptoFunction('OPENSSL_sk_delete');
   if not assigned(sk_PKCS7_RECIP_INFO_delete) then
+    {$if declared(LEGACY_OPENSSL_sk_delete)}
+    sk_PKCS7_RECIP_INFO_delete := @LEGACY_OPENSSL_sk_delete;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete');
+    {$ifend}
   Result := sk_PKCS7_RECIP_INFO_delete(st, loc);
 end;
 
@@ -1577,7 +1714,11 @@ function Load_sk_PKCS7_RECIP_INFO_delete_ptr(st: Pstack_st_PKCS7_RECIP_INFO; ptr
 begin
   sk_PKCS7_RECIP_INFO_delete_ptr := LoadLibCryptoFunction('OPENSSL_sk_delete_ptr');
   if not assigned(sk_PKCS7_RECIP_INFO_delete_ptr) then
+    {$if declared(LEGACY_OPENSSL_sk_delete_ptr)}
+    sk_PKCS7_RECIP_INFO_delete_ptr := @LEGACY_OPENSSL_sk_delete_ptr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete_ptr');
+    {$ifend}
   Result := sk_PKCS7_RECIP_INFO_delete_ptr(st, ptr);
 end;
 
@@ -1585,7 +1726,11 @@ function Load_sk_PKCS7_RECIP_INFO_push(st: Pstack_st_PKCS7_RECIP_INFO; data: poi
 begin
   sk_PKCS7_RECIP_INFO_push := LoadLibCryptoFunction('OPENSSL_sk_push');
   if not assigned(sk_PKCS7_RECIP_INFO_push) then
+    {$if declared(LEGACY_OPENSSL_sk_push)}
+    sk_PKCS7_RECIP_INFO_push := @LEGACY_OPENSSL_sk_push;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_push');
+    {$ifend}
   Result := sk_PKCS7_RECIP_INFO_push(st, data);
 end;
 
@@ -1593,7 +1738,11 @@ function Load_sk_PKCS7_RECIP_INFO_unshift(st: Pstack_st_PKCS7_RECIP_INFO; data: 
 begin
   sk_PKCS7_RECIP_INFO_unshift := LoadLibCryptoFunction('OPENSSL_sk_unshift');
   if not assigned(sk_PKCS7_RECIP_INFO_unshift) then
+    {$if declared(LEGACY_OPENSSL_sk_unshift)}
+    sk_PKCS7_RECIP_INFO_unshift := @LEGACY_OPENSSL_sk_unshift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_unshift');
+    {$ifend}
   Result := sk_PKCS7_RECIP_INFO_unshift(st, data);
 end;
 
@@ -1601,7 +1750,11 @@ function Load_sk_PKCS7_RECIP_INFO_pop(_para: Pstack_st_PKCS7_RECIP_INFO): Pstack
 begin
   sk_PKCS7_RECIP_INFO_pop := LoadLibCryptoFunction('OPENSSL_sk_pop');
   if not assigned(sk_PKCS7_RECIP_INFO_pop) then
+    {$if declared(LEGACY_OPENSSL_sk_pop)}
+    sk_PKCS7_RECIP_INFO_pop := @LEGACY_OPENSSL_sk_pop;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop');
+    {$ifend}
   Result := sk_PKCS7_RECIP_INFO_pop(_para);
 end;
 
@@ -1609,7 +1762,11 @@ function Load_sk_PKCS7_RECIP_INFO_shift(_para: Pstack_st_PKCS7_RECIP_INFO): Psta
 begin
   sk_PKCS7_RECIP_INFO_shift := LoadLibCryptoFunction('OPENSSL_sk_shift');
   if not assigned(sk_PKCS7_RECIP_INFO_shift) then
+    {$if declared(LEGACY_OPENSSL_sk_shift)}
+    sk_PKCS7_RECIP_INFO_shift := @LEGACY_OPENSSL_sk_shift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_shift');
+    {$ifend}
   Result := sk_PKCS7_RECIP_INFO_shift(_para);
 end;
 
@@ -1617,7 +1774,11 @@ procedure Load_sk_PKCS7_RECIP_INFO_pop_free(st: Pstack_st_PKCS7_RECIP_INFO; func
 begin
   sk_PKCS7_RECIP_INFO_pop_free := LoadLibCryptoFunction('OPENSSL_sk_pop_free');
   if not assigned(sk_PKCS7_RECIP_INFO_pop_free) then
+    {$if declared(LEGACY_OPENSSL_sk_pop_free)}
+    sk_PKCS7_RECIP_INFO_pop_free := @LEGACY_OPENSSL_sk_pop_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop_free');
+    {$ifend}
   sk_PKCS7_RECIP_INFO_pop_free(st, func);
 end;
 
@@ -1625,7 +1786,11 @@ function Load_sk_PKCS7_RECIP_INFO_insert(st: Pstack_st_PKCS7_RECIP_INFO; data: p
 begin
   sk_PKCS7_RECIP_INFO_insert := LoadLibCryptoFunction('OPENSSL_sk_insert');
   if not assigned(sk_PKCS7_RECIP_INFO_insert) then
+    {$if declared(LEGACY_OPENSSL_sk_insert)}
+    sk_PKCS7_RECIP_INFO_insert := @LEGACY_OPENSSL_sk_insert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_insert');
+    {$ifend}
   Result := sk_PKCS7_RECIP_INFO_insert(st, data, where);
 end;
 
@@ -1633,7 +1798,11 @@ function Load_sk_PKCS7_RECIP_INFO_set(st: Pstack_st_PKCS7_RECIP_INFO; i: TOpenSS
 begin
   sk_PKCS7_RECIP_INFO_set := LoadLibCryptoFunction('OPENSSL_sk_set');
   if not assigned(sk_PKCS7_RECIP_INFO_set) then
+    {$if declared(LEGACY_OPENSSL_sk_set)}
+    sk_PKCS7_RECIP_INFO_set := @LEGACY_OPENSSL_sk_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set');
+    {$ifend}
   Result := sk_PKCS7_RECIP_INFO_set(st, i, data);
 end;
 
@@ -1641,7 +1810,11 @@ function Load_sk_PKCS7_RECIP_INFO_find(st: Pstack_st_PKCS7_RECIP_INFO; data: poi
 begin
   sk_PKCS7_RECIP_INFO_find := LoadLibCryptoFunction('OPENSSL_sk_find');
   if not assigned(sk_PKCS7_RECIP_INFO_find) then
+    {$if declared(LEGACY_OPENSSL_sk_find)}
+    sk_PKCS7_RECIP_INFO_find := @LEGACY_OPENSSL_sk_find;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find');
+    {$ifend}
   Result := sk_PKCS7_RECIP_INFO_find(st, data);
 end;
 
@@ -1649,7 +1822,11 @@ function Load_sk_PKCS7_RECIP_INFO_find_ex(st: Pstack_st_PKCS7_RECIP_INFO; data: 
 begin
   sk_PKCS7_RECIP_INFO_find_ex := LoadLibCryptoFunction('OPENSSL_sk_find_ex');
   if not assigned(sk_PKCS7_RECIP_INFO_find_ex) then
+    {$if declared(LEGACY_OPENSSL_sk_find_ex)}
+    sk_PKCS7_RECIP_INFO_find_ex := @LEGACY_OPENSSL_sk_find_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_ex');
+    {$ifend}
   Result := sk_PKCS7_RECIP_INFO_find_ex(st, data);
 end;
 
@@ -1657,7 +1834,11 @@ function Load_sk_PKCS7_RECIP_INFO_find_all(st: Pstack_st_PKCS7_RECIP_INFO; data:
 begin
   sk_PKCS7_RECIP_INFO_find_all := LoadLibCryptoFunction('OPENSSL_sk_find_all');
   if not assigned(sk_PKCS7_RECIP_INFO_find_all) then
+    {$if declared(LEGACY_OPENSSL_sk_find_all)}
+    sk_PKCS7_RECIP_INFO_find_all := @LEGACY_OPENSSL_sk_find_all;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_all');
+    {$ifend}
   Result := sk_PKCS7_RECIP_INFO_find_all(st, data, pnum);
 end;
 
@@ -1665,7 +1846,11 @@ function Load_sk_PKCS7_RECIP_INFO_sort(_para: Pstack_st_PKCS7_RECIP_INFO): TOpen
 begin
   sk_PKCS7_RECIP_INFO_sort := LoadLibCryptoFunction('OPENSSL_sk_sort');
   if not assigned(sk_PKCS7_RECIP_INFO_sort) then
+    {$if declared(LEGACY_OPENSSL_sk_sort)}
+    sk_PKCS7_RECIP_INFO_sort := @LEGACY_OPENSSL_sk_sort;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_sort');
+    {$ifend}
   Result := sk_PKCS7_RECIP_INFO_sort(_para);
 end;
 
@@ -1673,7 +1858,11 @@ function Load_sk_PKCS7_RECIP_INFO_is_sorted(_para: Pstack_st_PKCS7_RECIP_INFO): 
 begin
   sk_PKCS7_RECIP_INFO_is_sorted := LoadLibCryptoFunction('OPENSSL_sk_is_sorted');
   if not assigned(sk_PKCS7_RECIP_INFO_is_sorted) then
+    {$if declared(LEGACY_OPENSSL_sk_is_sorted)}
+    sk_PKCS7_RECIP_INFO_is_sorted := @LEGACY_OPENSSL_sk_is_sorted;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_is_sorted');
+    {$ifend}
   Result := sk_PKCS7_RECIP_INFO_is_sorted(_para);
 end;
 
@@ -1681,7 +1870,11 @@ function Load_sk_PKCS7_RECIP_INFO_dup(st: Pstack_st_PKCS7_RECIP_INFO): Pstack_st
 begin
   sk_PKCS7_RECIP_INFO_dup := LoadLibCryptoFunction('OPENSSL_sk_dup');
   if not assigned(sk_PKCS7_RECIP_INFO_dup) then
+    {$if declared(LEGACY_OPENSSL_sk_dup)}
+    sk_PKCS7_RECIP_INFO_dup := @LEGACY_OPENSSL_sk_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_dup');
+    {$ifend}
   Result := sk_PKCS7_RECIP_INFO_dup(st);
 end;
 
@@ -1689,7 +1882,11 @@ function Load_sk_PKCS7_RECIP_INFO_deep_copy(st: Pstack_st_PKCS7_RECIP_INFO; c: T
 begin
   sk_PKCS7_RECIP_INFO_deep_copy := LoadLibCryptoFunction('OPENSSL_sk_deep_copy');
   if not assigned(sk_PKCS7_RECIP_INFO_deep_copy) then
+    {$if declared(LEGACY_OPENSSL_sk_deep_copy)}
+    sk_PKCS7_RECIP_INFO_deep_copy := @LEGACY_OPENSSL_sk_deep_copy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_deep_copy');
+    {$ifend}
   Result := sk_PKCS7_RECIP_INFO_deep_copy(st, c, f);
 end;
 
@@ -1697,7 +1894,11 @@ function Load_sk_PKCS7_RECIP_INFO_set_cmp_func(st: Pstack_st_PKCS7_RECIP_INFO; c
 begin
   sk_PKCS7_RECIP_INFO_set_cmp_func := LoadLibCryptoFunction('OPENSSL_sk_set_cmp_func');
   if not assigned(sk_PKCS7_RECIP_INFO_set_cmp_func) then
+    {$if declared(LEGACY_OPENSSL_sk_set_cmp_func)}
+    sk_PKCS7_RECIP_INFO_set_cmp_func := @LEGACY_OPENSSL_sk_set_cmp_func;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set_cmp_func');
+    {$ifend}
   Result := sk_PKCS7_RECIP_INFO_set_cmp_func(st, cmp);
 end;
 
@@ -1705,7 +1906,11 @@ function Load_sk_PKCS7_num(_para: Pstack_st_PKCS7): TOpenSSL_C_INT; cdecl;
 begin
   sk_PKCS7_num := LoadLibCryptoFunction('OPENSSL_sk_num');
   if not assigned(sk_PKCS7_num) then
+    {$if declared(LEGACY_OPENSSL_sk_num)}
+    sk_PKCS7_num := @LEGACY_OPENSSL_sk_num;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_num');
+    {$ifend}
   Result := sk_PKCS7_num(_para);
 end;
 
@@ -1713,7 +1918,11 @@ function Load_sk_PKCS7_value(_para: Pstack_st_PKCS7; _para2: TOpenSSL_C_INT): Ps
 begin
   sk_PKCS7_value := LoadLibCryptoFunction('OPENSSL_sk_value');
   if not assigned(sk_PKCS7_value) then
+    {$if declared(LEGACY_OPENSSL_sk_value)}
+    sk_PKCS7_value := @LEGACY_OPENSSL_sk_value;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_value');
+    {$ifend}
   Result := sk_PKCS7_value(_para, _para2);
 end;
 
@@ -1721,7 +1930,11 @@ function Load_sk_PKCS7_new(cmp: Tsk_PKCS7_compfunc): Pstack_st_PKCS7; cdecl;
 begin
   sk_PKCS7_new := LoadLibCryptoFunction('OPENSSL_sk_new');
   if not assigned(sk_PKCS7_new) then
+    {$if declared(LEGACY_OPENSSL_sk_new)}
+    sk_PKCS7_new := @LEGACY_OPENSSL_sk_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new');
+    {$ifend}
   Result := sk_PKCS7_new(cmp);
 end;
 
@@ -1729,7 +1942,11 @@ function Load_sk_PKCS7_new_null: Pstack_st_PKCS7; cdecl;
 begin
   sk_PKCS7_new_null := LoadLibCryptoFunction('OPENSSL_sk_new_null');
   if not assigned(sk_PKCS7_new_null) then
+    {$if declared(LEGACY_OPENSSL_sk_new_null)}
+    sk_PKCS7_new_null := @LEGACY_OPENSSL_sk_new_null;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_null');
+    {$ifend}
   Result := sk_PKCS7_new_null;
 end;
 
@@ -1737,7 +1954,11 @@ function Load_sk_PKCS7_new_reserve(cmp: Tsk_PKCS7_compfunc; n: TOpenSSL_C_INT): 
 begin
   sk_PKCS7_new_reserve := LoadLibCryptoFunction('OPENSSL_sk_new_reserve');
   if not assigned(sk_PKCS7_new_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_new_reserve)}
+    sk_PKCS7_new_reserve := @LEGACY_OPENSSL_sk_new_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_reserve');
+    {$ifend}
   Result := sk_PKCS7_new_reserve(cmp, n);
 end;
 
@@ -1745,7 +1966,11 @@ function Load_sk_PKCS7_reserve(_para: Pstack_st_PKCS7; n: TOpenSSL_C_INT): TOpen
 begin
   sk_PKCS7_reserve := LoadLibCryptoFunction('OPENSSL_sk_reserve');
   if not assigned(sk_PKCS7_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_reserve)}
+    sk_PKCS7_reserve := @LEGACY_OPENSSL_sk_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_reserve');
+    {$ifend}
   Result := sk_PKCS7_reserve(_para, n);
 end;
 
@@ -1753,7 +1978,11 @@ function Load_sk_PKCS7_free(_para: Pstack_st_PKCS7): TOpenSSL_C_INT; cdecl;
 begin
   sk_PKCS7_free := LoadLibCryptoFunction('OPENSSL_sk_free');
   if not assigned(sk_PKCS7_free) then
+    {$if declared(LEGACY_OPENSSL_sk_free)}
+    sk_PKCS7_free := @LEGACY_OPENSSL_sk_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_free');
+    {$ifend}
   Result := sk_PKCS7_free(_para);
 end;
 
@@ -1761,7 +1990,11 @@ function Load_sk_PKCS7_zero(_para: Pstack_st_PKCS7): TOpenSSL_C_INT; cdecl;
 begin
   sk_PKCS7_zero := LoadLibCryptoFunction('OPENSSL_sk_zero');
   if not assigned(sk_PKCS7_zero) then
+    {$if declared(LEGACY_OPENSSL_sk_zero)}
+    sk_PKCS7_zero := @LEGACY_OPENSSL_sk_zero;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_zero');
+    {$ifend}
   Result := sk_PKCS7_zero(_para);
 end;
 
@@ -1769,7 +2002,11 @@ function Load_sk_PKCS7_delete(st: Pstack_st_PKCS7; loc: TOpenSSL_C_INT): Pstack_
 begin
   sk_PKCS7_delete := LoadLibCryptoFunction('OPENSSL_sk_delete');
   if not assigned(sk_PKCS7_delete) then
+    {$if declared(LEGACY_OPENSSL_sk_delete)}
+    sk_PKCS7_delete := @LEGACY_OPENSSL_sk_delete;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete');
+    {$ifend}
   Result := sk_PKCS7_delete(st, loc);
 end;
 
@@ -1777,7 +2014,11 @@ function Load_sk_PKCS7_delete_ptr(st: Pstack_st_PKCS7; ptr: Pstack_st_PKCS7): Ps
 begin
   sk_PKCS7_delete_ptr := LoadLibCryptoFunction('OPENSSL_sk_delete_ptr');
   if not assigned(sk_PKCS7_delete_ptr) then
+    {$if declared(LEGACY_OPENSSL_sk_delete_ptr)}
+    sk_PKCS7_delete_ptr := @LEGACY_OPENSSL_sk_delete_ptr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete_ptr');
+    {$ifend}
   Result := sk_PKCS7_delete_ptr(st, ptr);
 end;
 
@@ -1785,7 +2026,11 @@ function Load_sk_PKCS7_push(st: Pstack_st_PKCS7; data: pointer): TOpenSSL_C_INT;
 begin
   sk_PKCS7_push := LoadLibCryptoFunction('OPENSSL_sk_push');
   if not assigned(sk_PKCS7_push) then
+    {$if declared(LEGACY_OPENSSL_sk_push)}
+    sk_PKCS7_push := @LEGACY_OPENSSL_sk_push;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_push');
+    {$ifend}
   Result := sk_PKCS7_push(st, data);
 end;
 
@@ -1793,7 +2038,11 @@ function Load_sk_PKCS7_unshift(st: Pstack_st_PKCS7; data: pointer): TOpenSSL_C_I
 begin
   sk_PKCS7_unshift := LoadLibCryptoFunction('OPENSSL_sk_unshift');
   if not assigned(sk_PKCS7_unshift) then
+    {$if declared(LEGACY_OPENSSL_sk_unshift)}
+    sk_PKCS7_unshift := @LEGACY_OPENSSL_sk_unshift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_unshift');
+    {$ifend}
   Result := sk_PKCS7_unshift(st, data);
 end;
 
@@ -1801,7 +2050,11 @@ function Load_sk_PKCS7_pop(_para: Pstack_st_PKCS7): Pstack_st_PKCS7; cdecl;
 begin
   sk_PKCS7_pop := LoadLibCryptoFunction('OPENSSL_sk_pop');
   if not assigned(sk_PKCS7_pop) then
+    {$if declared(LEGACY_OPENSSL_sk_pop)}
+    sk_PKCS7_pop := @LEGACY_OPENSSL_sk_pop;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop');
+    {$ifend}
   Result := sk_PKCS7_pop(_para);
 end;
 
@@ -1809,7 +2062,11 @@ function Load_sk_PKCS7_shift(_para: Pstack_st_PKCS7): Pstack_st_PKCS7; cdecl;
 begin
   sk_PKCS7_shift := LoadLibCryptoFunction('OPENSSL_sk_shift');
   if not assigned(sk_PKCS7_shift) then
+    {$if declared(LEGACY_OPENSSL_sk_shift)}
+    sk_PKCS7_shift := @LEGACY_OPENSSL_sk_shift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_shift');
+    {$ifend}
   Result := sk_PKCS7_shift(_para);
 end;
 
@@ -1817,7 +2074,11 @@ procedure Load_sk_PKCS7_pop_free(st: Pstack_st_PKCS7; func: Tsk_PKCS7_freefunc);
 begin
   sk_PKCS7_pop_free := LoadLibCryptoFunction('OPENSSL_sk_pop_free');
   if not assigned(sk_PKCS7_pop_free) then
+    {$if declared(LEGACY_OPENSSL_sk_pop_free)}
+    sk_PKCS7_pop_free := @LEGACY_OPENSSL_sk_pop_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop_free');
+    {$ifend}
   sk_PKCS7_pop_free(st, func);
 end;
 
@@ -1825,7 +2086,11 @@ function Load_sk_PKCS7_insert(st: Pstack_st_PKCS7; data: pointer; where: TOpenSS
 begin
   sk_PKCS7_insert := LoadLibCryptoFunction('OPENSSL_sk_insert');
   if not assigned(sk_PKCS7_insert) then
+    {$if declared(LEGACY_OPENSSL_sk_insert)}
+    sk_PKCS7_insert := @LEGACY_OPENSSL_sk_insert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_insert');
+    {$ifend}
   Result := sk_PKCS7_insert(st, data, where);
 end;
 
@@ -1833,7 +2098,11 @@ function Load_sk_PKCS7_set(st: Pstack_st_PKCS7; i: TOpenSSL_C_INT; data: pointer
 begin
   sk_PKCS7_set := LoadLibCryptoFunction('OPENSSL_sk_set');
   if not assigned(sk_PKCS7_set) then
+    {$if declared(LEGACY_OPENSSL_sk_set)}
+    sk_PKCS7_set := @LEGACY_OPENSSL_sk_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set');
+    {$ifend}
   Result := sk_PKCS7_set(st, i, data);
 end;
 
@@ -1841,7 +2110,11 @@ function Load_sk_PKCS7_find(st: Pstack_st_PKCS7; data: pointer): TOpenSSL_C_INT;
 begin
   sk_PKCS7_find := LoadLibCryptoFunction('OPENSSL_sk_find');
   if not assigned(sk_PKCS7_find) then
+    {$if declared(LEGACY_OPENSSL_sk_find)}
+    sk_PKCS7_find := @LEGACY_OPENSSL_sk_find;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find');
+    {$ifend}
   Result := sk_PKCS7_find(st, data);
 end;
 
@@ -1849,7 +2122,11 @@ function Load_sk_PKCS7_find_ex(st: Pstack_st_PKCS7; data: pointer): TOpenSSL_C_I
 begin
   sk_PKCS7_find_ex := LoadLibCryptoFunction('OPENSSL_sk_find_ex');
   if not assigned(sk_PKCS7_find_ex) then
+    {$if declared(LEGACY_OPENSSL_sk_find_ex)}
+    sk_PKCS7_find_ex := @LEGACY_OPENSSL_sk_find_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_ex');
+    {$ifend}
   Result := sk_PKCS7_find_ex(st, data);
 end;
 
@@ -1857,7 +2134,11 @@ function Load_sk_PKCS7_find_all(st: Pstack_st_PKCS7; data: pointer; pnum: POpenS
 begin
   sk_PKCS7_find_all := LoadLibCryptoFunction('OPENSSL_sk_find_all');
   if not assigned(sk_PKCS7_find_all) then
+    {$if declared(LEGACY_OPENSSL_sk_find_all)}
+    sk_PKCS7_find_all := @LEGACY_OPENSSL_sk_find_all;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_all');
+    {$ifend}
   Result := sk_PKCS7_find_all(st, data, pnum);
 end;
 
@@ -1865,7 +2146,11 @@ function Load_sk_PKCS7_sort(_para: Pstack_st_PKCS7): TOpenSSL_C_INT; cdecl;
 begin
   sk_PKCS7_sort := LoadLibCryptoFunction('OPENSSL_sk_sort');
   if not assigned(sk_PKCS7_sort) then
+    {$if declared(LEGACY_OPENSSL_sk_sort)}
+    sk_PKCS7_sort := @LEGACY_OPENSSL_sk_sort;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_sort');
+    {$ifend}
   Result := sk_PKCS7_sort(_para);
 end;
 
@@ -1873,7 +2158,11 @@ function Load_sk_PKCS7_is_sorted(_para: Pstack_st_PKCS7): TOpenSSL_C_INT; cdecl;
 begin
   sk_PKCS7_is_sorted := LoadLibCryptoFunction('OPENSSL_sk_is_sorted');
   if not assigned(sk_PKCS7_is_sorted) then
+    {$if declared(LEGACY_OPENSSL_sk_is_sorted)}
+    sk_PKCS7_is_sorted := @LEGACY_OPENSSL_sk_is_sorted;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_is_sorted');
+    {$ifend}
   Result := sk_PKCS7_is_sorted(_para);
 end;
 
@@ -1881,7 +2170,11 @@ function Load_sk_PKCS7_dup(st: Pstack_st_PKCS7): Pstack_st_PKCS7; cdecl;
 begin
   sk_PKCS7_dup := LoadLibCryptoFunction('OPENSSL_sk_dup');
   if not assigned(sk_PKCS7_dup) then
+    {$if declared(LEGACY_OPENSSL_sk_dup)}
+    sk_PKCS7_dup := @LEGACY_OPENSSL_sk_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_dup');
+    {$ifend}
   Result := sk_PKCS7_dup(st);
 end;
 
@@ -1889,7 +2182,11 @@ function Load_sk_PKCS7_deep_copy(st: Pstack_st_PKCS7; c: Tsk_PKCS7_compfunc; f: 
 begin
   sk_PKCS7_deep_copy := LoadLibCryptoFunction('OPENSSL_sk_deep_copy');
   if not assigned(sk_PKCS7_deep_copy) then
+    {$if declared(LEGACY_OPENSSL_sk_deep_copy)}
+    sk_PKCS7_deep_copy := @LEGACY_OPENSSL_sk_deep_copy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_deep_copy');
+    {$ifend}
   Result := sk_PKCS7_deep_copy(st, c, f);
 end;
 
@@ -1897,7 +2194,11 @@ function Load_sk_PKCS7_set_cmp_func(st: Pstack_st_PKCS7; cmp: Tsk_PKCS7_compfunc
 begin
   sk_PKCS7_set_cmp_func := LoadLibCryptoFunction('OPENSSL_sk_set_cmp_func');
   if not assigned(sk_PKCS7_set_cmp_func) then
+    {$if declared(LEGACY_OPENSSL_sk_set_cmp_func)}
+    sk_PKCS7_set_cmp_func := @LEGACY_OPENSSL_sk_set_cmp_func;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set_cmp_func');
+    {$ifend}
   Result := sk_PKCS7_set_cmp_func(st, cmp);
 end;
 
@@ -1905,7 +2206,11 @@ function Load_PKCS7_ISSUER_AND_SERIAL_new: PPKCS7_ISSUER_AND_SERIAL; cdecl;
 begin
   PKCS7_ISSUER_AND_SERIAL_new := LoadLibCryptoFunction('PKCS7_ISSUER_AND_SERIAL_new');
   if not assigned(PKCS7_ISSUER_AND_SERIAL_new) then
+    {$if declared(LEGACY_PKCS7_ISSUER_AND_SERIAL_new)}
+    PKCS7_ISSUER_AND_SERIAL_new := @LEGACY_PKCS7_ISSUER_AND_SERIAL_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_ISSUER_AND_SERIAL_new');
+    {$ifend}
   Result := PKCS7_ISSUER_AND_SERIAL_new;
 end;
 
@@ -1913,7 +2218,11 @@ procedure Load_PKCS7_ISSUER_AND_SERIAL_free(a: PPKCS7_ISSUER_AND_SERIAL); cdecl;
 begin
   PKCS7_ISSUER_AND_SERIAL_free := LoadLibCryptoFunction('PKCS7_ISSUER_AND_SERIAL_free');
   if not assigned(PKCS7_ISSUER_AND_SERIAL_free) then
+    {$if declared(LEGACY_PKCS7_ISSUER_AND_SERIAL_free)}
+    PKCS7_ISSUER_AND_SERIAL_free := @LEGACY_PKCS7_ISSUER_AND_SERIAL_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_ISSUER_AND_SERIAL_free');
+    {$ifend}
   PKCS7_ISSUER_AND_SERIAL_free(a);
 end;
 
@@ -1921,7 +2230,11 @@ function Load_d2i_PKCS7_ISSUER_AND_SERIAL(a: PPPKCS7_ISSUER_AND_SERIAL; in_: PPb
 begin
   d2i_PKCS7_ISSUER_AND_SERIAL := LoadLibCryptoFunction('d2i_PKCS7_ISSUER_AND_SERIAL');
   if not assigned(d2i_PKCS7_ISSUER_AND_SERIAL) then
+    {$if declared(LEGACY_d2i_PKCS7_ISSUER_AND_SERIAL)}
+    d2i_PKCS7_ISSUER_AND_SERIAL := @LEGACY_d2i_PKCS7_ISSUER_AND_SERIAL;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_PKCS7_ISSUER_AND_SERIAL');
+    {$ifend}
   Result := d2i_PKCS7_ISSUER_AND_SERIAL(a, in_, len);
 end;
 
@@ -1929,7 +2242,11 @@ function Load_i2d_PKCS7_ISSUER_AND_SERIAL(a: PPKCS7_ISSUER_AND_SERIAL; out_: PPb
 begin
   i2d_PKCS7_ISSUER_AND_SERIAL := LoadLibCryptoFunction('i2d_PKCS7_ISSUER_AND_SERIAL');
   if not assigned(i2d_PKCS7_ISSUER_AND_SERIAL) then
+    {$if declared(LEGACY_i2d_PKCS7_ISSUER_AND_SERIAL)}
+    i2d_PKCS7_ISSUER_AND_SERIAL := @LEGACY_i2d_PKCS7_ISSUER_AND_SERIAL;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_PKCS7_ISSUER_AND_SERIAL');
+    {$ifend}
   Result := i2d_PKCS7_ISSUER_AND_SERIAL(a, out_);
 end;
 
@@ -1937,7 +2254,11 @@ function Load_PKCS7_ISSUER_AND_SERIAL_it: PASN1_ITEM; cdecl;
 begin
   PKCS7_ISSUER_AND_SERIAL_it := LoadLibCryptoFunction('PKCS7_ISSUER_AND_SERIAL_it');
   if not assigned(PKCS7_ISSUER_AND_SERIAL_it) then
+    {$if declared(LEGACY_PKCS7_ISSUER_AND_SERIAL_it)}
+    PKCS7_ISSUER_AND_SERIAL_it := @LEGACY_PKCS7_ISSUER_AND_SERIAL_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_ISSUER_AND_SERIAL_it');
+    {$ifend}
   Result := PKCS7_ISSUER_AND_SERIAL_it;
 end;
 
@@ -1945,7 +2266,11 @@ function Load_PKCS7_ISSUER_AND_SERIAL_digest(data: PPKCS7_ISSUER_AND_SERIAL; typ
 begin
   PKCS7_ISSUER_AND_SERIAL_digest := LoadLibCryptoFunction('PKCS7_ISSUER_AND_SERIAL_digest');
   if not assigned(PKCS7_ISSUER_AND_SERIAL_digest) then
+    {$if declared(LEGACY_PKCS7_ISSUER_AND_SERIAL_digest)}
+    PKCS7_ISSUER_AND_SERIAL_digest := @LEGACY_PKCS7_ISSUER_AND_SERIAL_digest;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_ISSUER_AND_SERIAL_digest');
+    {$ifend}
   Result := PKCS7_ISSUER_AND_SERIAL_digest(data, type_, md, len);
 end;
 
@@ -1954,7 +2279,11 @@ function Load_d2i_PKCS7_fp(fp: PFILE; p7: PPPKCS7): PPKCS7; cdecl;
 begin
   d2i_PKCS7_fp := LoadLibCryptoFunction('d2i_PKCS7_fp');
   if not assigned(d2i_PKCS7_fp) then
+    {$if declared(LEGACY_d2i_PKCS7_fp)}
+    d2i_PKCS7_fp := @LEGACY_d2i_PKCS7_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_PKCS7_fp');
+    {$ifend}
   Result := d2i_PKCS7_fp(fp, p7);
 end;
 
@@ -1962,7 +2291,11 @@ function Load_i2d_PKCS7_fp(fp: PFILE; p7: PPKCS7): TOpenSSL_C_INT; cdecl;
 begin
   i2d_PKCS7_fp := LoadLibCryptoFunction('i2d_PKCS7_fp');
   if not assigned(i2d_PKCS7_fp) then
+    {$if declared(LEGACY_i2d_PKCS7_fp)}
+    i2d_PKCS7_fp := @LEGACY_i2d_PKCS7_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_PKCS7_fp');
+    {$ifend}
   Result := i2d_PKCS7_fp(fp, p7);
 end;
 
@@ -1971,7 +2304,11 @@ function Load_PKCS7_dup(a: PPKCS7): PPKCS7; cdecl;
 begin
   PKCS7_dup := LoadLibCryptoFunction('PKCS7_dup');
   if not assigned(PKCS7_dup) then
+    {$if declared(LEGACY_PKCS7_dup)}
+    PKCS7_dup := @LEGACY_PKCS7_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_dup');
+    {$ifend}
   Result := PKCS7_dup(a);
 end;
 
@@ -1979,7 +2316,11 @@ function Load_d2i_PKCS7_bio(bp: PBIO; p7: PPPKCS7): PPKCS7; cdecl;
 begin
   d2i_PKCS7_bio := LoadLibCryptoFunction('d2i_PKCS7_bio');
   if not assigned(d2i_PKCS7_bio) then
+    {$if declared(LEGACY_d2i_PKCS7_bio)}
+    d2i_PKCS7_bio := @LEGACY_d2i_PKCS7_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_PKCS7_bio');
+    {$ifend}
   Result := d2i_PKCS7_bio(bp, p7);
 end;
 
@@ -1987,7 +2328,11 @@ function Load_i2d_PKCS7_bio(bp: PBIO; p7: PPKCS7): TOpenSSL_C_INT; cdecl;
 begin
   i2d_PKCS7_bio := LoadLibCryptoFunction('i2d_PKCS7_bio');
   if not assigned(i2d_PKCS7_bio) then
+    {$if declared(LEGACY_i2d_PKCS7_bio)}
+    i2d_PKCS7_bio := @LEGACY_i2d_PKCS7_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_PKCS7_bio');
+    {$ifend}
   Result := i2d_PKCS7_bio(bp, p7);
 end;
 
@@ -1995,7 +2340,11 @@ function Load_i2d_PKCS7_bio_stream(out_: PBIO; p7: PPKCS7; in_: PBIO; flags: TOp
 begin
   i2d_PKCS7_bio_stream := LoadLibCryptoFunction('i2d_PKCS7_bio_stream');
   if not assigned(i2d_PKCS7_bio_stream) then
+    {$if declared(LEGACY_i2d_PKCS7_bio_stream)}
+    i2d_PKCS7_bio_stream := @LEGACY_i2d_PKCS7_bio_stream;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_PKCS7_bio_stream');
+    {$ifend}
   Result := i2d_PKCS7_bio_stream(out_, p7, in_, flags);
 end;
 
@@ -2003,7 +2352,11 @@ function Load_PEM_write_bio_PKCS7_stream(out_: PBIO; p7: PPKCS7; in_: PBIO; flag
 begin
   PEM_write_bio_PKCS7_stream := LoadLibCryptoFunction('PEM_write_bio_PKCS7_stream');
   if not assigned(PEM_write_bio_PKCS7_stream) then
+    {$if declared(LEGACY_PEM_write_bio_PKCS7_stream)}
+    PEM_write_bio_PKCS7_stream := @LEGACY_PEM_write_bio_PKCS7_stream;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_bio_PKCS7_stream');
+    {$ifend}
   Result := PEM_write_bio_PKCS7_stream(out_, p7, in_, flags);
 end;
 
@@ -2011,7 +2364,11 @@ function Load_PKCS7_SIGNER_INFO_new: PPKCS7_SIGNER_INFO; cdecl;
 begin
   PKCS7_SIGNER_INFO_new := LoadLibCryptoFunction('PKCS7_SIGNER_INFO_new');
   if not assigned(PKCS7_SIGNER_INFO_new) then
+    {$if declared(LEGACY_PKCS7_SIGNER_INFO_new)}
+    PKCS7_SIGNER_INFO_new := @LEGACY_PKCS7_SIGNER_INFO_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_SIGNER_INFO_new');
+    {$ifend}
   Result := PKCS7_SIGNER_INFO_new;
 end;
 
@@ -2019,7 +2376,11 @@ procedure Load_PKCS7_SIGNER_INFO_free(a: PPKCS7_SIGNER_INFO); cdecl;
 begin
   PKCS7_SIGNER_INFO_free := LoadLibCryptoFunction('PKCS7_SIGNER_INFO_free');
   if not assigned(PKCS7_SIGNER_INFO_free) then
+    {$if declared(LEGACY_PKCS7_SIGNER_INFO_free)}
+    PKCS7_SIGNER_INFO_free := @LEGACY_PKCS7_SIGNER_INFO_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_SIGNER_INFO_free');
+    {$ifend}
   PKCS7_SIGNER_INFO_free(a);
 end;
 
@@ -2027,7 +2388,11 @@ function Load_d2i_PKCS7_SIGNER_INFO(a: PPPKCS7_SIGNER_INFO; in_: PPbyte; len: TO
 begin
   d2i_PKCS7_SIGNER_INFO := LoadLibCryptoFunction('d2i_PKCS7_SIGNER_INFO');
   if not assigned(d2i_PKCS7_SIGNER_INFO) then
+    {$if declared(LEGACY_d2i_PKCS7_SIGNER_INFO)}
+    d2i_PKCS7_SIGNER_INFO := @LEGACY_d2i_PKCS7_SIGNER_INFO;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_PKCS7_SIGNER_INFO');
+    {$ifend}
   Result := d2i_PKCS7_SIGNER_INFO(a, in_, len);
 end;
 
@@ -2035,7 +2400,11 @@ function Load_i2d_PKCS7_SIGNER_INFO(a: PPKCS7_SIGNER_INFO; out_: PPbyte): TOpenS
 begin
   i2d_PKCS7_SIGNER_INFO := LoadLibCryptoFunction('i2d_PKCS7_SIGNER_INFO');
   if not assigned(i2d_PKCS7_SIGNER_INFO) then
+    {$if declared(LEGACY_i2d_PKCS7_SIGNER_INFO)}
+    i2d_PKCS7_SIGNER_INFO := @LEGACY_i2d_PKCS7_SIGNER_INFO;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_PKCS7_SIGNER_INFO');
+    {$ifend}
   Result := i2d_PKCS7_SIGNER_INFO(a, out_);
 end;
 
@@ -2043,7 +2412,11 @@ function Load_PKCS7_SIGNER_INFO_it: PASN1_ITEM; cdecl;
 begin
   PKCS7_SIGNER_INFO_it := LoadLibCryptoFunction('PKCS7_SIGNER_INFO_it');
   if not assigned(PKCS7_SIGNER_INFO_it) then
+    {$if declared(LEGACY_PKCS7_SIGNER_INFO_it)}
+    PKCS7_SIGNER_INFO_it := @LEGACY_PKCS7_SIGNER_INFO_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_SIGNER_INFO_it');
+    {$ifend}
   Result := PKCS7_SIGNER_INFO_it;
 end;
 
@@ -2051,7 +2424,11 @@ function Load_PKCS7_RECIP_INFO_new: PPKCS7_RECIP_INFO; cdecl;
 begin
   PKCS7_RECIP_INFO_new := LoadLibCryptoFunction('PKCS7_RECIP_INFO_new');
   if not assigned(PKCS7_RECIP_INFO_new) then
+    {$if declared(LEGACY_PKCS7_RECIP_INFO_new)}
+    PKCS7_RECIP_INFO_new := @LEGACY_PKCS7_RECIP_INFO_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_RECIP_INFO_new');
+    {$ifend}
   Result := PKCS7_RECIP_INFO_new;
 end;
 
@@ -2059,7 +2436,11 @@ procedure Load_PKCS7_RECIP_INFO_free(a: PPKCS7_RECIP_INFO); cdecl;
 begin
   PKCS7_RECIP_INFO_free := LoadLibCryptoFunction('PKCS7_RECIP_INFO_free');
   if not assigned(PKCS7_RECIP_INFO_free) then
+    {$if declared(LEGACY_PKCS7_RECIP_INFO_free)}
+    PKCS7_RECIP_INFO_free := @LEGACY_PKCS7_RECIP_INFO_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_RECIP_INFO_free');
+    {$ifend}
   PKCS7_RECIP_INFO_free(a);
 end;
 
@@ -2067,7 +2448,11 @@ function Load_d2i_PKCS7_RECIP_INFO(a: PPPKCS7_RECIP_INFO; in_: PPbyte; len: TOpe
 begin
   d2i_PKCS7_RECIP_INFO := LoadLibCryptoFunction('d2i_PKCS7_RECIP_INFO');
   if not assigned(d2i_PKCS7_RECIP_INFO) then
+    {$if declared(LEGACY_d2i_PKCS7_RECIP_INFO)}
+    d2i_PKCS7_RECIP_INFO := @LEGACY_d2i_PKCS7_RECIP_INFO;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_PKCS7_RECIP_INFO');
+    {$ifend}
   Result := d2i_PKCS7_RECIP_INFO(a, in_, len);
 end;
 
@@ -2075,7 +2460,11 @@ function Load_i2d_PKCS7_RECIP_INFO(a: PPKCS7_RECIP_INFO; out_: PPbyte): TOpenSSL
 begin
   i2d_PKCS7_RECIP_INFO := LoadLibCryptoFunction('i2d_PKCS7_RECIP_INFO');
   if not assigned(i2d_PKCS7_RECIP_INFO) then
+    {$if declared(LEGACY_i2d_PKCS7_RECIP_INFO)}
+    i2d_PKCS7_RECIP_INFO := @LEGACY_i2d_PKCS7_RECIP_INFO;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_PKCS7_RECIP_INFO');
+    {$ifend}
   Result := i2d_PKCS7_RECIP_INFO(a, out_);
 end;
 
@@ -2083,7 +2472,11 @@ function Load_PKCS7_RECIP_INFO_it: PASN1_ITEM; cdecl;
 begin
   PKCS7_RECIP_INFO_it := LoadLibCryptoFunction('PKCS7_RECIP_INFO_it');
   if not assigned(PKCS7_RECIP_INFO_it) then
+    {$if declared(LEGACY_PKCS7_RECIP_INFO_it)}
+    PKCS7_RECIP_INFO_it := @LEGACY_PKCS7_RECIP_INFO_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_RECIP_INFO_it');
+    {$ifend}
   Result := PKCS7_RECIP_INFO_it;
 end;
 
@@ -2091,7 +2484,11 @@ function Load_PKCS7_SIGNED_new: PPKCS7_SIGNED; cdecl;
 begin
   PKCS7_SIGNED_new := LoadLibCryptoFunction('PKCS7_SIGNED_new');
   if not assigned(PKCS7_SIGNED_new) then
+    {$if declared(LEGACY_PKCS7_SIGNED_new)}
+    PKCS7_SIGNED_new := @LEGACY_PKCS7_SIGNED_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_SIGNED_new');
+    {$ifend}
   Result := PKCS7_SIGNED_new;
 end;
 
@@ -2099,7 +2496,11 @@ procedure Load_PKCS7_SIGNED_free(a: PPKCS7_SIGNED); cdecl;
 begin
   PKCS7_SIGNED_free := LoadLibCryptoFunction('PKCS7_SIGNED_free');
   if not assigned(PKCS7_SIGNED_free) then
+    {$if declared(LEGACY_PKCS7_SIGNED_free)}
+    PKCS7_SIGNED_free := @LEGACY_PKCS7_SIGNED_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_SIGNED_free');
+    {$ifend}
   PKCS7_SIGNED_free(a);
 end;
 
@@ -2107,7 +2508,11 @@ function Load_d2i_PKCS7_SIGNED(a: PPPKCS7_SIGNED; in_: PPbyte; len: TOpenSSL_C_I
 begin
   d2i_PKCS7_SIGNED := LoadLibCryptoFunction('d2i_PKCS7_SIGNED');
   if not assigned(d2i_PKCS7_SIGNED) then
+    {$if declared(LEGACY_d2i_PKCS7_SIGNED)}
+    d2i_PKCS7_SIGNED := @LEGACY_d2i_PKCS7_SIGNED;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_PKCS7_SIGNED');
+    {$ifend}
   Result := d2i_PKCS7_SIGNED(a, in_, len);
 end;
 
@@ -2115,7 +2520,11 @@ function Load_i2d_PKCS7_SIGNED(a: PPKCS7_SIGNED; out_: PPbyte): TOpenSSL_C_INT; 
 begin
   i2d_PKCS7_SIGNED := LoadLibCryptoFunction('i2d_PKCS7_SIGNED');
   if not assigned(i2d_PKCS7_SIGNED) then
+    {$if declared(LEGACY_i2d_PKCS7_SIGNED)}
+    i2d_PKCS7_SIGNED := @LEGACY_i2d_PKCS7_SIGNED;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_PKCS7_SIGNED');
+    {$ifend}
   Result := i2d_PKCS7_SIGNED(a, out_);
 end;
 
@@ -2123,7 +2532,11 @@ function Load_PKCS7_SIGNED_it: PASN1_ITEM; cdecl;
 begin
   PKCS7_SIGNED_it := LoadLibCryptoFunction('PKCS7_SIGNED_it');
   if not assigned(PKCS7_SIGNED_it) then
+    {$if declared(LEGACY_PKCS7_SIGNED_it)}
+    PKCS7_SIGNED_it := @LEGACY_PKCS7_SIGNED_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_SIGNED_it');
+    {$ifend}
   Result := PKCS7_SIGNED_it;
 end;
 
@@ -2131,7 +2544,11 @@ function Load_PKCS7_ENC_CONTENT_new: PPKCS7_ENC_CONTENT; cdecl;
 begin
   PKCS7_ENC_CONTENT_new := LoadLibCryptoFunction('PKCS7_ENC_CONTENT_new');
   if not assigned(PKCS7_ENC_CONTENT_new) then
+    {$if declared(LEGACY_PKCS7_ENC_CONTENT_new)}
+    PKCS7_ENC_CONTENT_new := @LEGACY_PKCS7_ENC_CONTENT_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_ENC_CONTENT_new');
+    {$ifend}
   Result := PKCS7_ENC_CONTENT_new;
 end;
 
@@ -2139,7 +2556,11 @@ procedure Load_PKCS7_ENC_CONTENT_free(a: PPKCS7_ENC_CONTENT); cdecl;
 begin
   PKCS7_ENC_CONTENT_free := LoadLibCryptoFunction('PKCS7_ENC_CONTENT_free');
   if not assigned(PKCS7_ENC_CONTENT_free) then
+    {$if declared(LEGACY_PKCS7_ENC_CONTENT_free)}
+    PKCS7_ENC_CONTENT_free := @LEGACY_PKCS7_ENC_CONTENT_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_ENC_CONTENT_free');
+    {$ifend}
   PKCS7_ENC_CONTENT_free(a);
 end;
 
@@ -2147,7 +2568,11 @@ function Load_d2i_PKCS7_ENC_CONTENT(a: PPPKCS7_ENC_CONTENT; in_: PPbyte; len: TO
 begin
   d2i_PKCS7_ENC_CONTENT := LoadLibCryptoFunction('d2i_PKCS7_ENC_CONTENT');
   if not assigned(d2i_PKCS7_ENC_CONTENT) then
+    {$if declared(LEGACY_d2i_PKCS7_ENC_CONTENT)}
+    d2i_PKCS7_ENC_CONTENT := @LEGACY_d2i_PKCS7_ENC_CONTENT;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_PKCS7_ENC_CONTENT');
+    {$ifend}
   Result := d2i_PKCS7_ENC_CONTENT(a, in_, len);
 end;
 
@@ -2155,7 +2580,11 @@ function Load_i2d_PKCS7_ENC_CONTENT(a: PPKCS7_ENC_CONTENT; out_: PPbyte): TOpenS
 begin
   i2d_PKCS7_ENC_CONTENT := LoadLibCryptoFunction('i2d_PKCS7_ENC_CONTENT');
   if not assigned(i2d_PKCS7_ENC_CONTENT) then
+    {$if declared(LEGACY_i2d_PKCS7_ENC_CONTENT)}
+    i2d_PKCS7_ENC_CONTENT := @LEGACY_i2d_PKCS7_ENC_CONTENT;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_PKCS7_ENC_CONTENT');
+    {$ifend}
   Result := i2d_PKCS7_ENC_CONTENT(a, out_);
 end;
 
@@ -2163,7 +2592,11 @@ function Load_PKCS7_ENC_CONTENT_it: PASN1_ITEM; cdecl;
 begin
   PKCS7_ENC_CONTENT_it := LoadLibCryptoFunction('PKCS7_ENC_CONTENT_it');
   if not assigned(PKCS7_ENC_CONTENT_it) then
+    {$if declared(LEGACY_PKCS7_ENC_CONTENT_it)}
+    PKCS7_ENC_CONTENT_it := @LEGACY_PKCS7_ENC_CONTENT_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_ENC_CONTENT_it');
+    {$ifend}
   Result := PKCS7_ENC_CONTENT_it;
 end;
 
@@ -2171,7 +2604,11 @@ function Load_PKCS7_ENVELOPE_new: PPKCS7_ENVELOPE; cdecl;
 begin
   PKCS7_ENVELOPE_new := LoadLibCryptoFunction('PKCS7_ENVELOPE_new');
   if not assigned(PKCS7_ENVELOPE_new) then
+    {$if declared(LEGACY_PKCS7_ENVELOPE_new)}
+    PKCS7_ENVELOPE_new := @LEGACY_PKCS7_ENVELOPE_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_ENVELOPE_new');
+    {$ifend}
   Result := PKCS7_ENVELOPE_new;
 end;
 
@@ -2179,7 +2616,11 @@ procedure Load_PKCS7_ENVELOPE_free(a: PPKCS7_ENVELOPE); cdecl;
 begin
   PKCS7_ENVELOPE_free := LoadLibCryptoFunction('PKCS7_ENVELOPE_free');
   if not assigned(PKCS7_ENVELOPE_free) then
+    {$if declared(LEGACY_PKCS7_ENVELOPE_free)}
+    PKCS7_ENVELOPE_free := @LEGACY_PKCS7_ENVELOPE_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_ENVELOPE_free');
+    {$ifend}
   PKCS7_ENVELOPE_free(a);
 end;
 
@@ -2187,7 +2628,11 @@ function Load_d2i_PKCS7_ENVELOPE(a: PPPKCS7_ENVELOPE; in_: PPbyte; len: TOpenSSL
 begin
   d2i_PKCS7_ENVELOPE := LoadLibCryptoFunction('d2i_PKCS7_ENVELOPE');
   if not assigned(d2i_PKCS7_ENVELOPE) then
+    {$if declared(LEGACY_d2i_PKCS7_ENVELOPE)}
+    d2i_PKCS7_ENVELOPE := @LEGACY_d2i_PKCS7_ENVELOPE;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_PKCS7_ENVELOPE');
+    {$ifend}
   Result := d2i_PKCS7_ENVELOPE(a, in_, len);
 end;
 
@@ -2195,7 +2640,11 @@ function Load_i2d_PKCS7_ENVELOPE(a: PPKCS7_ENVELOPE; out_: PPbyte): TOpenSSL_C_I
 begin
   i2d_PKCS7_ENVELOPE := LoadLibCryptoFunction('i2d_PKCS7_ENVELOPE');
   if not assigned(i2d_PKCS7_ENVELOPE) then
+    {$if declared(LEGACY_i2d_PKCS7_ENVELOPE)}
+    i2d_PKCS7_ENVELOPE := @LEGACY_i2d_PKCS7_ENVELOPE;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_PKCS7_ENVELOPE');
+    {$ifend}
   Result := i2d_PKCS7_ENVELOPE(a, out_);
 end;
 
@@ -2203,7 +2652,11 @@ function Load_PKCS7_ENVELOPE_it: PASN1_ITEM; cdecl;
 begin
   PKCS7_ENVELOPE_it := LoadLibCryptoFunction('PKCS7_ENVELOPE_it');
   if not assigned(PKCS7_ENVELOPE_it) then
+    {$if declared(LEGACY_PKCS7_ENVELOPE_it)}
+    PKCS7_ENVELOPE_it := @LEGACY_PKCS7_ENVELOPE_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_ENVELOPE_it');
+    {$ifend}
   Result := PKCS7_ENVELOPE_it;
 end;
 
@@ -2211,7 +2664,11 @@ function Load_PKCS7_SIGN_ENVELOPE_new: PPKCS7_SIGN_ENVELOPE; cdecl;
 begin
   PKCS7_SIGN_ENVELOPE_new := LoadLibCryptoFunction('PKCS7_SIGN_ENVELOPE_new');
   if not assigned(PKCS7_SIGN_ENVELOPE_new) then
+    {$if declared(LEGACY_PKCS7_SIGN_ENVELOPE_new)}
+    PKCS7_SIGN_ENVELOPE_new := @LEGACY_PKCS7_SIGN_ENVELOPE_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_SIGN_ENVELOPE_new');
+    {$ifend}
   Result := PKCS7_SIGN_ENVELOPE_new;
 end;
 
@@ -2219,7 +2676,11 @@ procedure Load_PKCS7_SIGN_ENVELOPE_free(a: PPKCS7_SIGN_ENVELOPE); cdecl;
 begin
   PKCS7_SIGN_ENVELOPE_free := LoadLibCryptoFunction('PKCS7_SIGN_ENVELOPE_free');
   if not assigned(PKCS7_SIGN_ENVELOPE_free) then
+    {$if declared(LEGACY_PKCS7_SIGN_ENVELOPE_free)}
+    PKCS7_SIGN_ENVELOPE_free := @LEGACY_PKCS7_SIGN_ENVELOPE_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_SIGN_ENVELOPE_free');
+    {$ifend}
   PKCS7_SIGN_ENVELOPE_free(a);
 end;
 
@@ -2227,7 +2688,11 @@ function Load_d2i_PKCS7_SIGN_ENVELOPE(a: PPPKCS7_SIGN_ENVELOPE; in_: PPbyte; len
 begin
   d2i_PKCS7_SIGN_ENVELOPE := LoadLibCryptoFunction('d2i_PKCS7_SIGN_ENVELOPE');
   if not assigned(d2i_PKCS7_SIGN_ENVELOPE) then
+    {$if declared(LEGACY_d2i_PKCS7_SIGN_ENVELOPE)}
+    d2i_PKCS7_SIGN_ENVELOPE := @LEGACY_d2i_PKCS7_SIGN_ENVELOPE;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_PKCS7_SIGN_ENVELOPE');
+    {$ifend}
   Result := d2i_PKCS7_SIGN_ENVELOPE(a, in_, len);
 end;
 
@@ -2235,7 +2700,11 @@ function Load_i2d_PKCS7_SIGN_ENVELOPE(a: PPKCS7_SIGN_ENVELOPE; out_: PPbyte): TO
 begin
   i2d_PKCS7_SIGN_ENVELOPE := LoadLibCryptoFunction('i2d_PKCS7_SIGN_ENVELOPE');
   if not assigned(i2d_PKCS7_SIGN_ENVELOPE) then
+    {$if declared(LEGACY_i2d_PKCS7_SIGN_ENVELOPE)}
+    i2d_PKCS7_SIGN_ENVELOPE := @LEGACY_i2d_PKCS7_SIGN_ENVELOPE;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_PKCS7_SIGN_ENVELOPE');
+    {$ifend}
   Result := i2d_PKCS7_SIGN_ENVELOPE(a, out_);
 end;
 
@@ -2243,7 +2712,11 @@ function Load_PKCS7_SIGN_ENVELOPE_it: PASN1_ITEM; cdecl;
 begin
   PKCS7_SIGN_ENVELOPE_it := LoadLibCryptoFunction('PKCS7_SIGN_ENVELOPE_it');
   if not assigned(PKCS7_SIGN_ENVELOPE_it) then
+    {$if declared(LEGACY_PKCS7_SIGN_ENVELOPE_it)}
+    PKCS7_SIGN_ENVELOPE_it := @LEGACY_PKCS7_SIGN_ENVELOPE_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_SIGN_ENVELOPE_it');
+    {$ifend}
   Result := PKCS7_SIGN_ENVELOPE_it;
 end;
 
@@ -2251,7 +2724,11 @@ function Load_PKCS7_DIGEST_new: PPKCS7_DIGEST; cdecl;
 begin
   PKCS7_DIGEST_new := LoadLibCryptoFunction('PKCS7_DIGEST_new');
   if not assigned(PKCS7_DIGEST_new) then
+    {$if declared(LEGACY_PKCS7_DIGEST_new)}
+    PKCS7_DIGEST_new := @LEGACY_PKCS7_DIGEST_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_DIGEST_new');
+    {$ifend}
   Result := PKCS7_DIGEST_new;
 end;
 
@@ -2259,7 +2736,11 @@ procedure Load_PKCS7_DIGEST_free(a: PPKCS7_DIGEST); cdecl;
 begin
   PKCS7_DIGEST_free := LoadLibCryptoFunction('PKCS7_DIGEST_free');
   if not assigned(PKCS7_DIGEST_free) then
+    {$if declared(LEGACY_PKCS7_DIGEST_free)}
+    PKCS7_DIGEST_free := @LEGACY_PKCS7_DIGEST_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_DIGEST_free');
+    {$ifend}
   PKCS7_DIGEST_free(a);
 end;
 
@@ -2267,7 +2748,11 @@ function Load_d2i_PKCS7_DIGEST(a: PPPKCS7_DIGEST; in_: PPbyte; len: TOpenSSL_C_I
 begin
   d2i_PKCS7_DIGEST := LoadLibCryptoFunction('d2i_PKCS7_DIGEST');
   if not assigned(d2i_PKCS7_DIGEST) then
+    {$if declared(LEGACY_d2i_PKCS7_DIGEST)}
+    d2i_PKCS7_DIGEST := @LEGACY_d2i_PKCS7_DIGEST;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_PKCS7_DIGEST');
+    {$ifend}
   Result := d2i_PKCS7_DIGEST(a, in_, len);
 end;
 
@@ -2275,7 +2760,11 @@ function Load_i2d_PKCS7_DIGEST(a: PPKCS7_DIGEST; out_: PPbyte): TOpenSSL_C_INT; 
 begin
   i2d_PKCS7_DIGEST := LoadLibCryptoFunction('i2d_PKCS7_DIGEST');
   if not assigned(i2d_PKCS7_DIGEST) then
+    {$if declared(LEGACY_i2d_PKCS7_DIGEST)}
+    i2d_PKCS7_DIGEST := @LEGACY_i2d_PKCS7_DIGEST;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_PKCS7_DIGEST');
+    {$ifend}
   Result := i2d_PKCS7_DIGEST(a, out_);
 end;
 
@@ -2283,7 +2772,11 @@ function Load_PKCS7_DIGEST_it: PASN1_ITEM; cdecl;
 begin
   PKCS7_DIGEST_it := LoadLibCryptoFunction('PKCS7_DIGEST_it');
   if not assigned(PKCS7_DIGEST_it) then
+    {$if declared(LEGACY_PKCS7_DIGEST_it)}
+    PKCS7_DIGEST_it := @LEGACY_PKCS7_DIGEST_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_DIGEST_it');
+    {$ifend}
   Result := PKCS7_DIGEST_it;
 end;
 
@@ -2291,7 +2784,11 @@ function Load_PKCS7_ENCRYPT_new: PPKCS7_ENCRYPT; cdecl;
 begin
   PKCS7_ENCRYPT_new := LoadLibCryptoFunction('PKCS7_ENCRYPT_new');
   if not assigned(PKCS7_ENCRYPT_new) then
+    {$if declared(LEGACY_PKCS7_ENCRYPT_new)}
+    PKCS7_ENCRYPT_new := @LEGACY_PKCS7_ENCRYPT_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_ENCRYPT_new');
+    {$ifend}
   Result := PKCS7_ENCRYPT_new;
 end;
 
@@ -2299,7 +2796,11 @@ procedure Load_PKCS7_ENCRYPT_free(a: PPKCS7_ENCRYPT); cdecl;
 begin
   PKCS7_ENCRYPT_free := LoadLibCryptoFunction('PKCS7_ENCRYPT_free');
   if not assigned(PKCS7_ENCRYPT_free) then
+    {$if declared(LEGACY_PKCS7_ENCRYPT_free)}
+    PKCS7_ENCRYPT_free := @LEGACY_PKCS7_ENCRYPT_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_ENCRYPT_free');
+    {$ifend}
   PKCS7_ENCRYPT_free(a);
 end;
 
@@ -2307,7 +2808,11 @@ function Load_d2i_PKCS7_ENCRYPT(a: PPPKCS7_ENCRYPT; in_: PPbyte; len: TOpenSSL_C
 begin
   d2i_PKCS7_ENCRYPT := LoadLibCryptoFunction('d2i_PKCS7_ENCRYPT');
   if not assigned(d2i_PKCS7_ENCRYPT) then
+    {$if declared(LEGACY_d2i_PKCS7_ENCRYPT)}
+    d2i_PKCS7_ENCRYPT := @LEGACY_d2i_PKCS7_ENCRYPT;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_PKCS7_ENCRYPT');
+    {$ifend}
   Result := d2i_PKCS7_ENCRYPT(a, in_, len);
 end;
 
@@ -2315,7 +2820,11 @@ function Load_i2d_PKCS7_ENCRYPT(a: PPKCS7_ENCRYPT; out_: PPbyte): TOpenSSL_C_INT
 begin
   i2d_PKCS7_ENCRYPT := LoadLibCryptoFunction('i2d_PKCS7_ENCRYPT');
   if not assigned(i2d_PKCS7_ENCRYPT) then
+    {$if declared(LEGACY_i2d_PKCS7_ENCRYPT)}
+    i2d_PKCS7_ENCRYPT := @LEGACY_i2d_PKCS7_ENCRYPT;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_PKCS7_ENCRYPT');
+    {$ifend}
   Result := i2d_PKCS7_ENCRYPT(a, out_);
 end;
 
@@ -2323,7 +2832,11 @@ function Load_PKCS7_ENCRYPT_it: PASN1_ITEM; cdecl;
 begin
   PKCS7_ENCRYPT_it := LoadLibCryptoFunction('PKCS7_ENCRYPT_it');
   if not assigned(PKCS7_ENCRYPT_it) then
+    {$if declared(LEGACY_PKCS7_ENCRYPT_it)}
+    PKCS7_ENCRYPT_it := @LEGACY_PKCS7_ENCRYPT_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_ENCRYPT_it');
+    {$ifend}
   Result := PKCS7_ENCRYPT_it;
 end;
 
@@ -2331,7 +2844,11 @@ function Load_PKCS7_new: PPKCS7; cdecl;
 begin
   PKCS7_new := LoadLibCryptoFunction('PKCS7_new');
   if not assigned(PKCS7_new) then
+    {$if declared(LEGACY_PKCS7_new)}
+    PKCS7_new := @LEGACY_PKCS7_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_new');
+    {$ifend}
   Result := PKCS7_new;
 end;
 
@@ -2339,7 +2856,11 @@ procedure Load_PKCS7_free(a: PPKCS7); cdecl;
 begin
   PKCS7_free := LoadLibCryptoFunction('PKCS7_free');
   if not assigned(PKCS7_free) then
+    {$if declared(LEGACY_PKCS7_free)}
+    PKCS7_free := @LEGACY_PKCS7_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_free');
+    {$ifend}
   PKCS7_free(a);
 end;
 
@@ -2347,7 +2868,11 @@ function Load_d2i_PKCS7(a: PPPKCS7; in_: PPbyte; len: TOpenSSL_C_INT): PPKCS7; c
 begin
   d2i_PKCS7 := LoadLibCryptoFunction('d2i_PKCS7');
   if not assigned(d2i_PKCS7) then
+    {$if declared(LEGACY_d2i_PKCS7)}
+    d2i_PKCS7 := @LEGACY_d2i_PKCS7;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_PKCS7');
+    {$ifend}
   Result := d2i_PKCS7(a, in_, len);
 end;
 
@@ -2355,7 +2880,11 @@ function Load_i2d_PKCS7(a: PPKCS7; out_: PPbyte): TOpenSSL_C_INT; cdecl;
 begin
   i2d_PKCS7 := LoadLibCryptoFunction('i2d_PKCS7');
   if not assigned(i2d_PKCS7) then
+    {$if declared(LEGACY_i2d_PKCS7)}
+    i2d_PKCS7 := @LEGACY_i2d_PKCS7;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_PKCS7');
+    {$ifend}
   Result := i2d_PKCS7(a, out_);
 end;
 
@@ -2363,7 +2892,11 @@ function Load_PKCS7_it: PASN1_ITEM; cdecl;
 begin
   PKCS7_it := LoadLibCryptoFunction('PKCS7_it');
   if not assigned(PKCS7_it) then
+    {$if declared(LEGACY_PKCS7_it)}
+    PKCS7_it := @LEGACY_PKCS7_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_it');
+    {$ifend}
   Result := PKCS7_it;
 end;
 
@@ -2371,7 +2904,11 @@ function Load_PKCS7_new_ex(libctx: POSSL_LIB_CTX; propq: PAnsiChar): PPKCS7; cde
 begin
   PKCS7_new_ex := LoadLibCryptoFunction('PKCS7_new_ex');
   if not assigned(PKCS7_new_ex) then
+    {$if declared(LEGACY_PKCS7_new_ex)}
+    PKCS7_new_ex := @LEGACY_PKCS7_new_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_new_ex');
+    {$ifend}
   Result := PKCS7_new_ex(libctx, propq);
 end;
 
@@ -2379,7 +2916,11 @@ function Load_PKCS7_ATTR_SIGN_it: PASN1_ITEM; cdecl;
 begin
   PKCS7_ATTR_SIGN_it := LoadLibCryptoFunction('PKCS7_ATTR_SIGN_it');
   if not assigned(PKCS7_ATTR_SIGN_it) then
+    {$if declared(LEGACY_PKCS7_ATTR_SIGN_it)}
+    PKCS7_ATTR_SIGN_it := @LEGACY_PKCS7_ATTR_SIGN_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_ATTR_SIGN_it');
+    {$ifend}
   Result := PKCS7_ATTR_SIGN_it;
 end;
 
@@ -2387,7 +2928,11 @@ function Load_PKCS7_ATTR_VERIFY_it: PASN1_ITEM; cdecl;
 begin
   PKCS7_ATTR_VERIFY_it := LoadLibCryptoFunction('PKCS7_ATTR_VERIFY_it');
   if not assigned(PKCS7_ATTR_VERIFY_it) then
+    {$if declared(LEGACY_PKCS7_ATTR_VERIFY_it)}
+    PKCS7_ATTR_VERIFY_it := @LEGACY_PKCS7_ATTR_VERIFY_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_ATTR_VERIFY_it');
+    {$ifend}
   Result := PKCS7_ATTR_VERIFY_it;
 end;
 
@@ -2395,7 +2940,11 @@ function Load_i2d_PKCS7_NDEF(a: PPKCS7; out_: PPbyte): TOpenSSL_C_INT; cdecl;
 begin
   i2d_PKCS7_NDEF := LoadLibCryptoFunction('i2d_PKCS7_NDEF');
   if not assigned(i2d_PKCS7_NDEF) then
+    {$if declared(LEGACY_i2d_PKCS7_NDEF)}
+    i2d_PKCS7_NDEF := @LEGACY_i2d_PKCS7_NDEF;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_PKCS7_NDEF');
+    {$ifend}
   Result := i2d_PKCS7_NDEF(a, out_);
 end;
 
@@ -2403,7 +2952,11 @@ function Load_PKCS7_print_ctx(out_: PBIO; x: PPKCS7; indent: TOpenSSL_C_INT; pct
 begin
   PKCS7_print_ctx := LoadLibCryptoFunction('PKCS7_print_ctx');
   if not assigned(PKCS7_print_ctx) then
+    {$if declared(LEGACY_PKCS7_print_ctx)}
+    PKCS7_print_ctx := @LEGACY_PKCS7_print_ctx;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_print_ctx');
+    {$ifend}
   Result := PKCS7_print_ctx(out_, x, indent, pctx);
 end;
 
@@ -2411,7 +2964,11 @@ function Load_PKCS7_ctrl(p7: PPKCS7; cmd: TOpenSSL_C_INT; larg: TOpenSSL_C_INT; 
 begin
   PKCS7_ctrl := LoadLibCryptoFunction('PKCS7_ctrl');
   if not assigned(PKCS7_ctrl) then
+    {$if declared(LEGACY_PKCS7_ctrl)}
+    PKCS7_ctrl := @LEGACY_PKCS7_ctrl;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_ctrl');
+    {$ifend}
   Result := PKCS7_ctrl(p7, cmd, larg, parg);
 end;
 
@@ -2419,7 +2976,11 @@ function Load_PKCS7_type_is_other(p7: PPKCS7): TOpenSSL_C_INT; cdecl;
 begin
   PKCS7_type_is_other := LoadLibCryptoFunction('PKCS7_type_is_other');
   if not assigned(PKCS7_type_is_other) then
+    {$if declared(LEGACY_PKCS7_type_is_other)}
+    PKCS7_type_is_other := @LEGACY_PKCS7_type_is_other;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_type_is_other');
+    {$ifend}
   Result := PKCS7_type_is_other(p7);
 end;
 
@@ -2427,7 +2988,11 @@ function Load_PKCS7_set_type(p7: PPKCS7; type_: TOpenSSL_C_INT): TOpenSSL_C_INT;
 begin
   PKCS7_set_type := LoadLibCryptoFunction('PKCS7_set_type');
   if not assigned(PKCS7_set_type) then
+    {$if declared(LEGACY_PKCS7_set_type)}
+    PKCS7_set_type := @LEGACY_PKCS7_set_type;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_set_type');
+    {$ifend}
   Result := PKCS7_set_type(p7, type_);
 end;
 
@@ -2435,7 +3000,11 @@ function Load_PKCS7_set0_type_other(p7: PPKCS7; type_: TOpenSSL_C_INT; other: PA
 begin
   PKCS7_set0_type_other := LoadLibCryptoFunction('PKCS7_set0_type_other');
   if not assigned(PKCS7_set0_type_other) then
+    {$if declared(LEGACY_PKCS7_set0_type_other)}
+    PKCS7_set0_type_other := @LEGACY_PKCS7_set0_type_other;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_set0_type_other');
+    {$ifend}
   Result := PKCS7_set0_type_other(p7, type_, other);
 end;
 
@@ -2443,7 +3012,11 @@ function Load_PKCS7_set_content(p7: PPKCS7; p7_data: PPKCS7): TOpenSSL_C_INT; cd
 begin
   PKCS7_set_content := LoadLibCryptoFunction('PKCS7_set_content');
   if not assigned(PKCS7_set_content) then
+    {$if declared(LEGACY_PKCS7_set_content)}
+    PKCS7_set_content := @LEGACY_PKCS7_set_content;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_set_content');
+    {$ifend}
   Result := PKCS7_set_content(p7, p7_data);
 end;
 
@@ -2451,7 +3024,11 @@ function Load_PKCS7_SIGNER_INFO_set(p7i: PPKCS7_SIGNER_INFO; x509: PX509; pkey: 
 begin
   PKCS7_SIGNER_INFO_set := LoadLibCryptoFunction('PKCS7_SIGNER_INFO_set');
   if not assigned(PKCS7_SIGNER_INFO_set) then
+    {$if declared(LEGACY_PKCS7_SIGNER_INFO_set)}
+    PKCS7_SIGNER_INFO_set := @LEGACY_PKCS7_SIGNER_INFO_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_SIGNER_INFO_set');
+    {$ifend}
   Result := PKCS7_SIGNER_INFO_set(p7i, x509, pkey, dgst);
 end;
 
@@ -2459,7 +3036,11 @@ function Load_PKCS7_SIGNER_INFO_sign(si: PPKCS7_SIGNER_INFO): TOpenSSL_C_INT; cd
 begin
   PKCS7_SIGNER_INFO_sign := LoadLibCryptoFunction('PKCS7_SIGNER_INFO_sign');
   if not assigned(PKCS7_SIGNER_INFO_sign) then
+    {$if declared(LEGACY_PKCS7_SIGNER_INFO_sign)}
+    PKCS7_SIGNER_INFO_sign := @LEGACY_PKCS7_SIGNER_INFO_sign;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_SIGNER_INFO_sign');
+    {$ifend}
   Result := PKCS7_SIGNER_INFO_sign(si);
 end;
 
@@ -2467,7 +3048,11 @@ function Load_PKCS7_add_signer(p7: PPKCS7; p7i: PPKCS7_SIGNER_INFO): TOpenSSL_C_
 begin
   PKCS7_add_signer := LoadLibCryptoFunction('PKCS7_add_signer');
   if not assigned(PKCS7_add_signer) then
+    {$if declared(LEGACY_PKCS7_add_signer)}
+    PKCS7_add_signer := @LEGACY_PKCS7_add_signer;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_add_signer');
+    {$ifend}
   Result := PKCS7_add_signer(p7, p7i);
 end;
 
@@ -2475,7 +3060,11 @@ function Load_PKCS7_add_certificate(p7: PPKCS7; x509: PX509): TOpenSSL_C_INT; cd
 begin
   PKCS7_add_certificate := LoadLibCryptoFunction('PKCS7_add_certificate');
   if not assigned(PKCS7_add_certificate) then
+    {$if declared(LEGACY_PKCS7_add_certificate)}
+    PKCS7_add_certificate := @LEGACY_PKCS7_add_certificate;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_add_certificate');
+    {$ifend}
   Result := PKCS7_add_certificate(p7, x509);
 end;
 
@@ -2483,7 +3072,11 @@ function Load_PKCS7_add_crl(p7: PPKCS7; x509: PX509_CRL): TOpenSSL_C_INT; cdecl;
 begin
   PKCS7_add_crl := LoadLibCryptoFunction('PKCS7_add_crl');
   if not assigned(PKCS7_add_crl) then
+    {$if declared(LEGACY_PKCS7_add_crl)}
+    PKCS7_add_crl := @LEGACY_PKCS7_add_crl;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_add_crl');
+    {$ifend}
   Result := PKCS7_add_crl(p7, x509);
 end;
 
@@ -2491,7 +3084,11 @@ function Load_PKCS7_content_new(p7: PPKCS7; nid: TOpenSSL_C_INT): TOpenSSL_C_INT
 begin
   PKCS7_content_new := LoadLibCryptoFunction('PKCS7_content_new');
   if not assigned(PKCS7_content_new) then
+    {$if declared(LEGACY_PKCS7_content_new)}
+    PKCS7_content_new := @LEGACY_PKCS7_content_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_content_new');
+    {$ifend}
   Result := PKCS7_content_new(p7, nid);
 end;
 
@@ -2499,7 +3096,11 @@ function Load_PKCS7_dataVerify(cert_store: PX509_STORE; ctx: PX509_STORE_CTX; bi
 begin
   PKCS7_dataVerify := LoadLibCryptoFunction('PKCS7_dataVerify');
   if not assigned(PKCS7_dataVerify) then
+    {$if declared(LEGACY_PKCS7_dataVerify)}
+    PKCS7_dataVerify := @LEGACY_PKCS7_dataVerify;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_dataVerify');
+    {$ifend}
   Result := PKCS7_dataVerify(cert_store, ctx, bio, p7, si);
 end;
 
@@ -2507,7 +3108,11 @@ function Load_PKCS7_signatureVerify(bio: PBIO; p7: PPKCS7; si: PPKCS7_SIGNER_INF
 begin
   PKCS7_signatureVerify := LoadLibCryptoFunction('PKCS7_signatureVerify');
   if not assigned(PKCS7_signatureVerify) then
+    {$if declared(LEGACY_PKCS7_signatureVerify)}
+    PKCS7_signatureVerify := @LEGACY_PKCS7_signatureVerify;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_signatureVerify');
+    {$ifend}
   Result := PKCS7_signatureVerify(bio, p7, si, x509);
 end;
 
@@ -2515,7 +3120,11 @@ function Load_PKCS7_dataInit(p7: PPKCS7; bio: PBIO): PBIO; cdecl;
 begin
   PKCS7_dataInit := LoadLibCryptoFunction('PKCS7_dataInit');
   if not assigned(PKCS7_dataInit) then
+    {$if declared(LEGACY_PKCS7_dataInit)}
+    PKCS7_dataInit := @LEGACY_PKCS7_dataInit;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_dataInit');
+    {$ifend}
   Result := PKCS7_dataInit(p7, bio);
 end;
 
@@ -2523,7 +3132,11 @@ function Load_PKCS7_dataFinal(p7: PPKCS7; bio: PBIO): TOpenSSL_C_INT; cdecl;
 begin
   PKCS7_dataFinal := LoadLibCryptoFunction('PKCS7_dataFinal');
   if not assigned(PKCS7_dataFinal) then
+    {$if declared(LEGACY_PKCS7_dataFinal)}
+    PKCS7_dataFinal := @LEGACY_PKCS7_dataFinal;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_dataFinal');
+    {$ifend}
   Result := PKCS7_dataFinal(p7, bio);
 end;
 
@@ -2531,7 +3144,11 @@ function Load_PKCS7_dataDecode(p7: PPKCS7; pkey: PEVP_PKEY; in_bio: PBIO; pcert:
 begin
   PKCS7_dataDecode := LoadLibCryptoFunction('PKCS7_dataDecode');
   if not assigned(PKCS7_dataDecode) then
+    {$if declared(LEGACY_PKCS7_dataDecode)}
+    PKCS7_dataDecode := @LEGACY_PKCS7_dataDecode;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_dataDecode');
+    {$ifend}
   Result := PKCS7_dataDecode(p7, pkey, in_bio, pcert);
 end;
 
@@ -2539,7 +3156,11 @@ function Load_PKCS7_add_signature(p7: PPKCS7; x509: PX509; pkey: PEVP_PKEY; dgst
 begin
   PKCS7_add_signature := LoadLibCryptoFunction('PKCS7_add_signature');
   if not assigned(PKCS7_add_signature) then
+    {$if declared(LEGACY_PKCS7_add_signature)}
+    PKCS7_add_signature := @LEGACY_PKCS7_add_signature;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_add_signature');
+    {$ifend}
   Result := PKCS7_add_signature(p7, x509, pkey, dgst);
 end;
 
@@ -2547,7 +3168,11 @@ function Load_PKCS7_cert_from_signer_info(p7: PPKCS7; si: PPKCS7_SIGNER_INFO): P
 begin
   PKCS7_cert_from_signer_info := LoadLibCryptoFunction('PKCS7_cert_from_signer_info');
   if not assigned(PKCS7_cert_from_signer_info) then
+    {$if declared(LEGACY_PKCS7_cert_from_signer_info)}
+    PKCS7_cert_from_signer_info := @LEGACY_PKCS7_cert_from_signer_info;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_cert_from_signer_info');
+    {$ifend}
   Result := PKCS7_cert_from_signer_info(p7, si);
 end;
 
@@ -2555,7 +3180,11 @@ function Load_PKCS7_set_digest(p7: PPKCS7; md: PEVP_MD): TOpenSSL_C_INT; cdecl;
 begin
   PKCS7_set_digest := LoadLibCryptoFunction('PKCS7_set_digest');
   if not assigned(PKCS7_set_digest) then
+    {$if declared(LEGACY_PKCS7_set_digest)}
+    PKCS7_set_digest := @LEGACY_PKCS7_set_digest;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_set_digest');
+    {$ifend}
   Result := PKCS7_set_digest(p7, md);
 end;
 
@@ -2563,7 +3192,11 @@ function Load_PKCS7_get_signer_info(p7: PPKCS7): Pstack_st_PKCS7_SIGNER_INFO; cd
 begin
   PKCS7_get_signer_info := LoadLibCryptoFunction('PKCS7_get_signer_info');
   if not assigned(PKCS7_get_signer_info) then
+    {$if declared(LEGACY_PKCS7_get_signer_info)}
+    PKCS7_get_signer_info := @LEGACY_PKCS7_get_signer_info;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_get_signer_info');
+    {$ifend}
   Result := PKCS7_get_signer_info(p7);
 end;
 
@@ -2571,7 +3204,11 @@ function Load_PKCS7_add_recipient(p7: PPKCS7; x509: PX509): PPKCS7_RECIP_INFO; c
 begin
   PKCS7_add_recipient := LoadLibCryptoFunction('PKCS7_add_recipient');
   if not assigned(PKCS7_add_recipient) then
+    {$if declared(LEGACY_PKCS7_add_recipient)}
+    PKCS7_add_recipient := @LEGACY_PKCS7_add_recipient;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_add_recipient');
+    {$ifend}
   Result := PKCS7_add_recipient(p7, x509);
 end;
 
@@ -2579,7 +3216,11 @@ procedure Load_PKCS7_SIGNER_INFO_get0_algs(si: PPKCS7_SIGNER_INFO; pk: PPEVP_PKE
 begin
   PKCS7_SIGNER_INFO_get0_algs := LoadLibCryptoFunction('PKCS7_SIGNER_INFO_get0_algs');
   if not assigned(PKCS7_SIGNER_INFO_get0_algs) then
+    {$if declared(LEGACY_PKCS7_SIGNER_INFO_get0_algs)}
+    PKCS7_SIGNER_INFO_get0_algs := @LEGACY_PKCS7_SIGNER_INFO_get0_algs;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_SIGNER_INFO_get0_algs');
+    {$ifend}
   PKCS7_SIGNER_INFO_get0_algs(si, pk, pdig, psig);
 end;
 
@@ -2587,7 +3228,11 @@ procedure Load_PKCS7_RECIP_INFO_get0_alg(ri: PPKCS7_RECIP_INFO; penc: PPX509_ALG
 begin
   PKCS7_RECIP_INFO_get0_alg := LoadLibCryptoFunction('PKCS7_RECIP_INFO_get0_alg');
   if not assigned(PKCS7_RECIP_INFO_get0_alg) then
+    {$if declared(LEGACY_PKCS7_RECIP_INFO_get0_alg)}
+    PKCS7_RECIP_INFO_get0_alg := @LEGACY_PKCS7_RECIP_INFO_get0_alg;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_RECIP_INFO_get0_alg');
+    {$ifend}
   PKCS7_RECIP_INFO_get0_alg(ri, penc);
 end;
 
@@ -2595,7 +3240,11 @@ function Load_PKCS7_add_recipient_info(p7: PPKCS7; ri: PPKCS7_RECIP_INFO): TOpen
 begin
   PKCS7_add_recipient_info := LoadLibCryptoFunction('PKCS7_add_recipient_info');
   if not assigned(PKCS7_add_recipient_info) then
+    {$if declared(LEGACY_PKCS7_add_recipient_info)}
+    PKCS7_add_recipient_info := @LEGACY_PKCS7_add_recipient_info;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_add_recipient_info');
+    {$ifend}
   Result := PKCS7_add_recipient_info(p7, ri);
 end;
 
@@ -2603,7 +3252,11 @@ function Load_PKCS7_RECIP_INFO_set(p7i: PPKCS7_RECIP_INFO; x509: PX509): TOpenSS
 begin
   PKCS7_RECIP_INFO_set := LoadLibCryptoFunction('PKCS7_RECIP_INFO_set');
   if not assigned(PKCS7_RECIP_INFO_set) then
+    {$if declared(LEGACY_PKCS7_RECIP_INFO_set)}
+    PKCS7_RECIP_INFO_set := @LEGACY_PKCS7_RECIP_INFO_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_RECIP_INFO_set');
+    {$ifend}
   Result := PKCS7_RECIP_INFO_set(p7i, x509);
 end;
 
@@ -2611,7 +3264,11 @@ function Load_PKCS7_set_cipher(p7: PPKCS7; cipher: PEVP_CIPHER): TOpenSSL_C_INT;
 begin
   PKCS7_set_cipher := LoadLibCryptoFunction('PKCS7_set_cipher');
   if not assigned(PKCS7_set_cipher) then
+    {$if declared(LEGACY_PKCS7_set_cipher)}
+    PKCS7_set_cipher := @LEGACY_PKCS7_set_cipher;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_set_cipher');
+    {$ifend}
   Result := PKCS7_set_cipher(p7, cipher);
 end;
 
@@ -2619,7 +3276,11 @@ function Load_PKCS7_stream(boundary: PPPbyte; p7: PPKCS7): TOpenSSL_C_INT; cdecl
 begin
   PKCS7_stream := LoadLibCryptoFunction('PKCS7_stream');
   if not assigned(PKCS7_stream) then
+    {$if declared(LEGACY_PKCS7_stream)}
+    PKCS7_stream := @LEGACY_PKCS7_stream;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_stream');
+    {$ifend}
   Result := PKCS7_stream(boundary, p7);
 end;
 
@@ -2627,7 +3288,11 @@ function Load_PKCS7_get_issuer_and_serial(p7: PPKCS7; idx: TOpenSSL_C_INT): PPKC
 begin
   PKCS7_get_issuer_and_serial := LoadLibCryptoFunction('PKCS7_get_issuer_and_serial');
   if not assigned(PKCS7_get_issuer_and_serial) then
+    {$if declared(LEGACY_PKCS7_get_issuer_and_serial)}
+    PKCS7_get_issuer_and_serial := @LEGACY_PKCS7_get_issuer_and_serial;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_get_issuer_and_serial');
+    {$ifend}
   Result := PKCS7_get_issuer_and_serial(p7, idx);
 end;
 
@@ -2635,7 +3300,11 @@ function Load_PKCS7_get_octet_string(p7: PPKCS7): PASN1_OCTET_STRING; cdecl;
 begin
   PKCS7_get_octet_string := LoadLibCryptoFunction('PKCS7_get_octet_string');
   if not assigned(PKCS7_get_octet_string) then
+    {$if declared(LEGACY_PKCS7_get_octet_string)}
+    PKCS7_get_octet_string := @LEGACY_PKCS7_get_octet_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_get_octet_string');
+    {$ifend}
   Result := PKCS7_get_octet_string(p7);
 end;
 
@@ -2643,7 +3312,11 @@ function Load_PKCS7_digest_from_attributes(sk: Pstack_st_X509_ATTRIBUTE): PASN1_
 begin
   PKCS7_digest_from_attributes := LoadLibCryptoFunction('PKCS7_digest_from_attributes');
   if not assigned(PKCS7_digest_from_attributes) then
+    {$if declared(LEGACY_PKCS7_digest_from_attributes)}
+    PKCS7_digest_from_attributes := @LEGACY_PKCS7_digest_from_attributes;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_digest_from_attributes');
+    {$ifend}
   Result := PKCS7_digest_from_attributes(sk);
 end;
 
@@ -2651,7 +3324,11 @@ function Load_PKCS7_add_signed_attribute(p7si: PPKCS7_SIGNER_INFO; nid: TOpenSSL
 begin
   PKCS7_add_signed_attribute := LoadLibCryptoFunction('PKCS7_add_signed_attribute');
   if not assigned(PKCS7_add_signed_attribute) then
+    {$if declared(LEGACY_PKCS7_add_signed_attribute)}
+    PKCS7_add_signed_attribute := @LEGACY_PKCS7_add_signed_attribute;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_add_signed_attribute');
+    {$ifend}
   Result := PKCS7_add_signed_attribute(p7si, nid, type_, data);
 end;
 
@@ -2659,7 +3336,11 @@ function Load_PKCS7_add_attribute(p7si: PPKCS7_SIGNER_INFO; nid: TOpenSSL_C_INT;
 begin
   PKCS7_add_attribute := LoadLibCryptoFunction('PKCS7_add_attribute');
   if not assigned(PKCS7_add_attribute) then
+    {$if declared(LEGACY_PKCS7_add_attribute)}
+    PKCS7_add_attribute := @LEGACY_PKCS7_add_attribute;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_add_attribute');
+    {$ifend}
   Result := PKCS7_add_attribute(p7si, nid, atrtype, value);
 end;
 
@@ -2667,7 +3348,11 @@ function Load_PKCS7_get_attribute(si: PPKCS7_SIGNER_INFO; nid: TOpenSSL_C_INT): 
 begin
   PKCS7_get_attribute := LoadLibCryptoFunction('PKCS7_get_attribute');
   if not assigned(PKCS7_get_attribute) then
+    {$if declared(LEGACY_PKCS7_get_attribute)}
+    PKCS7_get_attribute := @LEGACY_PKCS7_get_attribute;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_get_attribute');
+    {$ifend}
   Result := PKCS7_get_attribute(si, nid);
 end;
 
@@ -2675,7 +3360,11 @@ function Load_PKCS7_get_signed_attribute(si: PPKCS7_SIGNER_INFO; nid: TOpenSSL_C
 begin
   PKCS7_get_signed_attribute := LoadLibCryptoFunction('PKCS7_get_signed_attribute');
   if not assigned(PKCS7_get_signed_attribute) then
+    {$if declared(LEGACY_PKCS7_get_signed_attribute)}
+    PKCS7_get_signed_attribute := @LEGACY_PKCS7_get_signed_attribute;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_get_signed_attribute');
+    {$ifend}
   Result := PKCS7_get_signed_attribute(si, nid);
 end;
 
@@ -2683,7 +3372,11 @@ function Load_PKCS7_set_signed_attributes(p7si: PPKCS7_SIGNER_INFO; sk: Pstack_s
 begin
   PKCS7_set_signed_attributes := LoadLibCryptoFunction('PKCS7_set_signed_attributes');
   if not assigned(PKCS7_set_signed_attributes) then
+    {$if declared(LEGACY_PKCS7_set_signed_attributes)}
+    PKCS7_set_signed_attributes := @LEGACY_PKCS7_set_signed_attributes;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_set_signed_attributes');
+    {$ifend}
   Result := PKCS7_set_signed_attributes(p7si, sk);
 end;
 
@@ -2691,7 +3384,11 @@ function Load_PKCS7_set_attributes(p7si: PPKCS7_SIGNER_INFO; sk: Pstack_st_X509_
 begin
   PKCS7_set_attributes := LoadLibCryptoFunction('PKCS7_set_attributes');
   if not assigned(PKCS7_set_attributes) then
+    {$if declared(LEGACY_PKCS7_set_attributes)}
+    PKCS7_set_attributes := @LEGACY_PKCS7_set_attributes;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_set_attributes');
+    {$ifend}
   Result := PKCS7_set_attributes(p7si, sk);
 end;
 
@@ -2699,7 +3396,11 @@ function Load_PKCS7_sign(signcert: PX509; pkey: PEVP_PKEY; certs: Pstack_st_X509
 begin
   PKCS7_sign := LoadLibCryptoFunction('PKCS7_sign');
   if not assigned(PKCS7_sign) then
+    {$if declared(LEGACY_PKCS7_sign)}
+    PKCS7_sign := @LEGACY_PKCS7_sign;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_sign');
+    {$ifend}
   Result := PKCS7_sign(signcert, pkey, certs, data, flags);
 end;
 
@@ -2707,7 +3408,11 @@ function Load_PKCS7_sign_ex(signcert: PX509; pkey: PEVP_PKEY; certs: Pstack_st_X
 begin
   PKCS7_sign_ex := LoadLibCryptoFunction('PKCS7_sign_ex');
   if not assigned(PKCS7_sign_ex) then
+    {$if declared(LEGACY_PKCS7_sign_ex)}
+    PKCS7_sign_ex := @LEGACY_PKCS7_sign_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_sign_ex');
+    {$ifend}
   Result := PKCS7_sign_ex(signcert, pkey, certs, data, flags, libctx, propq);
 end;
 
@@ -2715,7 +3420,11 @@ function Load_PKCS7_sign_add_signer(p7: PPKCS7; signcert: PX509; pkey: PEVP_PKEY
 begin
   PKCS7_sign_add_signer := LoadLibCryptoFunction('PKCS7_sign_add_signer');
   if not assigned(PKCS7_sign_add_signer) then
+    {$if declared(LEGACY_PKCS7_sign_add_signer)}
+    PKCS7_sign_add_signer := @LEGACY_PKCS7_sign_add_signer;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_sign_add_signer');
+    {$ifend}
   Result := PKCS7_sign_add_signer(p7, signcert, pkey, md, flags);
 end;
 
@@ -2723,7 +3432,11 @@ function Load_PKCS7_final(p7: PPKCS7; data: PBIO; flags: TOpenSSL_C_INT): TOpenS
 begin
   PKCS7_final := LoadLibCryptoFunction('PKCS7_final');
   if not assigned(PKCS7_final) then
+    {$if declared(LEGACY_PKCS7_final)}
+    PKCS7_final := @LEGACY_PKCS7_final;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_final');
+    {$ifend}
   Result := PKCS7_final(p7, data, flags);
 end;
 
@@ -2731,7 +3444,11 @@ function Load_PKCS7_verify(p7: PPKCS7; certs: Pstack_st_X509; store: PX509_STORE
 begin
   PKCS7_verify := LoadLibCryptoFunction('PKCS7_verify');
   if not assigned(PKCS7_verify) then
+    {$if declared(LEGACY_PKCS7_verify)}
+    PKCS7_verify := @LEGACY_PKCS7_verify;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_verify');
+    {$ifend}
   Result := PKCS7_verify(p7, certs, store, indata, out_, flags);
 end;
 
@@ -2739,7 +3456,11 @@ function Load_PKCS7_get0_signers(p7: PPKCS7; certs: Pstack_st_X509; flags: TOpen
 begin
   PKCS7_get0_signers := LoadLibCryptoFunction('PKCS7_get0_signers');
   if not assigned(PKCS7_get0_signers) then
+    {$if declared(LEGACY_PKCS7_get0_signers)}
+    PKCS7_get0_signers := @LEGACY_PKCS7_get0_signers;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_get0_signers');
+    {$ifend}
   Result := PKCS7_get0_signers(p7, certs, flags);
 end;
 
@@ -2747,7 +3468,11 @@ function Load_PKCS7_encrypt(certs: Pstack_st_X509; in_: PBIO; cipher: PEVP_CIPHE
 begin
   PKCS7_encrypt := LoadLibCryptoFunction('PKCS7_encrypt');
   if not assigned(PKCS7_encrypt) then
+    {$if declared(LEGACY_PKCS7_encrypt)}
+    PKCS7_encrypt := @LEGACY_PKCS7_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_encrypt');
+    {$ifend}
   Result := PKCS7_encrypt(certs, in_, cipher, flags);
 end;
 
@@ -2755,7 +3480,11 @@ function Load_PKCS7_encrypt_ex(certs: Pstack_st_X509; in_: PBIO; cipher: PEVP_CI
 begin
   PKCS7_encrypt_ex := LoadLibCryptoFunction('PKCS7_encrypt_ex');
   if not assigned(PKCS7_encrypt_ex) then
+    {$if declared(LEGACY_PKCS7_encrypt_ex)}
+    PKCS7_encrypt_ex := @LEGACY_PKCS7_encrypt_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_encrypt_ex');
+    {$ifend}
   Result := PKCS7_encrypt_ex(certs, in_, cipher, flags, libctx, propq);
 end;
 
@@ -2763,7 +3492,11 @@ function Load_PKCS7_decrypt(p7: PPKCS7; pkey: PEVP_PKEY; cert: PX509; data: PBIO
 begin
   PKCS7_decrypt := LoadLibCryptoFunction('PKCS7_decrypt');
   if not assigned(PKCS7_decrypt) then
+    {$if declared(LEGACY_PKCS7_decrypt)}
+    PKCS7_decrypt := @LEGACY_PKCS7_decrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_decrypt');
+    {$ifend}
   Result := PKCS7_decrypt(p7, pkey, cert, data, flags);
 end;
 
@@ -2771,7 +3504,11 @@ function Load_PKCS7_add_attrib_smimecap(si: PPKCS7_SIGNER_INFO; cap: Pstack_st_X
 begin
   PKCS7_add_attrib_smimecap := LoadLibCryptoFunction('PKCS7_add_attrib_smimecap');
   if not assigned(PKCS7_add_attrib_smimecap) then
+    {$if declared(LEGACY_PKCS7_add_attrib_smimecap)}
+    PKCS7_add_attrib_smimecap := @LEGACY_PKCS7_add_attrib_smimecap;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_add_attrib_smimecap');
+    {$ifend}
   Result := PKCS7_add_attrib_smimecap(si, cap);
 end;
 
@@ -2779,7 +3516,11 @@ function Load_PKCS7_get_smimecap(si: PPKCS7_SIGNER_INFO): Pstack_st_X509_ALGOR; 
 begin
   PKCS7_get_smimecap := LoadLibCryptoFunction('PKCS7_get_smimecap');
   if not assigned(PKCS7_get_smimecap) then
+    {$if declared(LEGACY_PKCS7_get_smimecap)}
+    PKCS7_get_smimecap := @LEGACY_PKCS7_get_smimecap;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_get_smimecap');
+    {$ifend}
   Result := PKCS7_get_smimecap(si);
 end;
 
@@ -2787,7 +3528,11 @@ function Load_PKCS7_simple_smimecap(sk: Pstack_st_X509_ALGOR; nid: TOpenSSL_C_IN
 begin
   PKCS7_simple_smimecap := LoadLibCryptoFunction('PKCS7_simple_smimecap');
   if not assigned(PKCS7_simple_smimecap) then
+    {$if declared(LEGACY_PKCS7_simple_smimecap)}
+    PKCS7_simple_smimecap := @LEGACY_PKCS7_simple_smimecap;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_simple_smimecap');
+    {$ifend}
   Result := PKCS7_simple_smimecap(sk, nid, arg);
 end;
 
@@ -2795,7 +3540,11 @@ function Load_PKCS7_add_attrib_content_type(si: PPKCS7_SIGNER_INFO; coid: PASN1_
 begin
   PKCS7_add_attrib_content_type := LoadLibCryptoFunction('PKCS7_add_attrib_content_type');
   if not assigned(PKCS7_add_attrib_content_type) then
+    {$if declared(LEGACY_PKCS7_add_attrib_content_type)}
+    PKCS7_add_attrib_content_type := @LEGACY_PKCS7_add_attrib_content_type;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_add_attrib_content_type');
+    {$ifend}
   Result := PKCS7_add_attrib_content_type(si, coid);
 end;
 
@@ -2803,7 +3552,11 @@ function Load_PKCS7_add0_attrib_signing_time(si: PPKCS7_SIGNER_INFO; t: PASN1_TI
 begin
   PKCS7_add0_attrib_signing_time := LoadLibCryptoFunction('PKCS7_add0_attrib_signing_time');
   if not assigned(PKCS7_add0_attrib_signing_time) then
+    {$if declared(LEGACY_PKCS7_add0_attrib_signing_time)}
+    PKCS7_add0_attrib_signing_time := @LEGACY_PKCS7_add0_attrib_signing_time;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_add0_attrib_signing_time');
+    {$ifend}
   Result := PKCS7_add0_attrib_signing_time(si, t);
 end;
 
@@ -2811,7 +3564,11 @@ function Load_PKCS7_add1_attrib_digest(si: PPKCS7_SIGNER_INFO; md: Pbyte; mdlen:
 begin
   PKCS7_add1_attrib_digest := LoadLibCryptoFunction('PKCS7_add1_attrib_digest');
   if not assigned(PKCS7_add1_attrib_digest) then
+    {$if declared(LEGACY_PKCS7_add1_attrib_digest)}
+    PKCS7_add1_attrib_digest := @LEGACY_PKCS7_add1_attrib_digest;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_add1_attrib_digest');
+    {$ifend}
   Result := PKCS7_add1_attrib_digest(si, md, mdlen);
 end;
 
@@ -2819,7 +3576,11 @@ function Load_SMIME_write_PKCS7(bio: PBIO; p7: PPKCS7; data: PBIO; flags: TOpenS
 begin
   SMIME_write_PKCS7 := LoadLibCryptoFunction('SMIME_write_PKCS7');
   if not assigned(SMIME_write_PKCS7) then
+    {$if declared(LEGACY_SMIME_write_PKCS7)}
+    SMIME_write_PKCS7 := @LEGACY_SMIME_write_PKCS7;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SMIME_write_PKCS7');
+    {$ifend}
   Result := SMIME_write_PKCS7(bio, p7, data, flags);
 end;
 
@@ -2827,7 +3588,11 @@ function Load_SMIME_read_PKCS7_ex(bio: PBIO; bcont: PPBIO; p7: PPPKCS7): PPKCS7;
 begin
   SMIME_read_PKCS7_ex := LoadLibCryptoFunction('SMIME_read_PKCS7_ex');
   if not assigned(SMIME_read_PKCS7_ex) then
+    {$if declared(LEGACY_SMIME_read_PKCS7_ex)}
+    SMIME_read_PKCS7_ex := @LEGACY_SMIME_read_PKCS7_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SMIME_read_PKCS7_ex');
+    {$ifend}
   Result := SMIME_read_PKCS7_ex(bio, bcont, p7);
 end;
 
@@ -2835,7 +3600,11 @@ function Load_SMIME_read_PKCS7(bio: PBIO; bcont: PPBIO): PPKCS7; cdecl;
 begin
   SMIME_read_PKCS7 := LoadLibCryptoFunction('SMIME_read_PKCS7');
   if not assigned(SMIME_read_PKCS7) then
+    {$if declared(LEGACY_SMIME_read_PKCS7)}
+    SMIME_read_PKCS7 := @LEGACY_SMIME_read_PKCS7;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SMIME_read_PKCS7');
+    {$ifend}
   Result := SMIME_read_PKCS7(bio, bcont);
 end;
 
@@ -2843,7 +3612,11 @@ function Load_BIO_new_PKCS7(out_: PBIO; p7: PPKCS7): PBIO; cdecl;
 begin
   BIO_new_PKCS7 := LoadLibCryptoFunction('BIO_new_PKCS7');
   if not assigned(BIO_new_PKCS7) then
+    {$if declared(LEGACY_BIO_new_PKCS7)}
+    BIO_new_PKCS7 := @LEGACY_BIO_new_PKCS7;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_new_PKCS7');
+    {$ifend}
   Result := BIO_new_PKCS7(out_, p7);
 end;
 

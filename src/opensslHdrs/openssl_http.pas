@@ -18,7 +18,8 @@
 unit openssl_http;
 
 {
-  Generated from OpenSSL 3.0.20 Header File http.h - Wed  6 May 13:06:09 BST 2026
+  Generated from OpenSSL 3.0.20 Header File http.h - Wed  6 May 13:15:18 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -210,7 +211,11 @@ function Load_OSSL_HTTP_REQ_CTX_new(wbio: PBIO; rbio: PBIO; buf_size: TOpenSSL_C
 begin
   OSSL_HTTP_REQ_CTX_new := LoadLibCryptoFunction('OSSL_HTTP_REQ_CTX_new');
   if not assigned(OSSL_HTTP_REQ_CTX_new) then
+    {$if declared(LEGACY_OSSL_HTTP_REQ_CTX_new)}
+    OSSL_HTTP_REQ_CTX_new := @LEGACY_OSSL_HTTP_REQ_CTX_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_HTTP_REQ_CTX_new');
+    {$ifend}
   Result := OSSL_HTTP_REQ_CTX_new(wbio, rbio, buf_size);
 end;
 
@@ -218,7 +223,11 @@ procedure Load_OSSL_HTTP_REQ_CTX_free(rctx: POSSL_HTTP_REQ_CTX); cdecl;
 begin
   OSSL_HTTP_REQ_CTX_free := LoadLibCryptoFunction('OSSL_HTTP_REQ_CTX_free');
   if not assigned(OSSL_HTTP_REQ_CTX_free) then
+    {$if declared(LEGACY_OSSL_HTTP_REQ_CTX_free)}
+    OSSL_HTTP_REQ_CTX_free := @LEGACY_OSSL_HTTP_REQ_CTX_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_HTTP_REQ_CTX_free');
+    {$ifend}
   OSSL_HTTP_REQ_CTX_free(rctx);
 end;
 
@@ -226,7 +235,11 @@ function Load_OSSL_HTTP_REQ_CTX_set_request_line(rctx: POSSL_HTTP_REQ_CTX; metho
 begin
   OSSL_HTTP_REQ_CTX_set_request_line := LoadLibCryptoFunction('OSSL_HTTP_REQ_CTX_set_request_line');
   if not assigned(OSSL_HTTP_REQ_CTX_set_request_line) then
+    {$if declared(LEGACY_OSSL_HTTP_REQ_CTX_set_request_line)}
+    OSSL_HTTP_REQ_CTX_set_request_line := @LEGACY_OSSL_HTTP_REQ_CTX_set_request_line;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_HTTP_REQ_CTX_set_request_line');
+    {$ifend}
   Result := OSSL_HTTP_REQ_CTX_set_request_line(rctx, method_POST, server, port, path);
 end;
 
@@ -234,7 +247,11 @@ function Load_OSSL_HTTP_REQ_CTX_add1_header(rctx: POSSL_HTTP_REQ_CTX; name: PAns
 begin
   OSSL_HTTP_REQ_CTX_add1_header := LoadLibCryptoFunction('OSSL_HTTP_REQ_CTX_add1_header');
   if not assigned(OSSL_HTTP_REQ_CTX_add1_header) then
+    {$if declared(LEGACY_OSSL_HTTP_REQ_CTX_add1_header)}
+    OSSL_HTTP_REQ_CTX_add1_header := @LEGACY_OSSL_HTTP_REQ_CTX_add1_header;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_HTTP_REQ_CTX_add1_header');
+    {$ifend}
   Result := OSSL_HTTP_REQ_CTX_add1_header(rctx, name, value);
 end;
 
@@ -242,7 +259,11 @@ function Load_OSSL_HTTP_REQ_CTX_set_expected(rctx: POSSL_HTTP_REQ_CTX; content_t
 begin
   OSSL_HTTP_REQ_CTX_set_expected := LoadLibCryptoFunction('OSSL_HTTP_REQ_CTX_set_expected');
   if not assigned(OSSL_HTTP_REQ_CTX_set_expected) then
+    {$if declared(LEGACY_OSSL_HTTP_REQ_CTX_set_expected)}
+    OSSL_HTTP_REQ_CTX_set_expected := @LEGACY_OSSL_HTTP_REQ_CTX_set_expected;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_HTTP_REQ_CTX_set_expected');
+    {$ifend}
   Result := OSSL_HTTP_REQ_CTX_set_expected(rctx, content_type, asn1, timeout, keep_alive);
 end;
 
@@ -250,7 +271,11 @@ function Load_OSSL_HTTP_REQ_CTX_set1_req(rctx: POSSL_HTTP_REQ_CTX; content_type:
 begin
   OSSL_HTTP_REQ_CTX_set1_req := LoadLibCryptoFunction('OSSL_HTTP_REQ_CTX_set1_req');
   if not assigned(OSSL_HTTP_REQ_CTX_set1_req) then
+    {$if declared(LEGACY_OSSL_HTTP_REQ_CTX_set1_req)}
+    OSSL_HTTP_REQ_CTX_set1_req := @LEGACY_OSSL_HTTP_REQ_CTX_set1_req;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_HTTP_REQ_CTX_set1_req');
+    {$ifend}
   Result := OSSL_HTTP_REQ_CTX_set1_req(rctx, content_type, it, req);
 end;
 
@@ -258,7 +283,11 @@ function Load_OSSL_HTTP_REQ_CTX_nbio(rctx: POSSL_HTTP_REQ_CTX): TOpenSSL_C_INT; 
 begin
   OSSL_HTTP_REQ_CTX_nbio := LoadLibCryptoFunction('OSSL_HTTP_REQ_CTX_nbio');
   if not assigned(OSSL_HTTP_REQ_CTX_nbio) then
+    {$if declared(LEGACY_OSSL_HTTP_REQ_CTX_nbio)}
+    OSSL_HTTP_REQ_CTX_nbio := @LEGACY_OSSL_HTTP_REQ_CTX_nbio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_HTTP_REQ_CTX_nbio');
+    {$ifend}
   Result := OSSL_HTTP_REQ_CTX_nbio(rctx);
 end;
 
@@ -266,7 +295,11 @@ function Load_OSSL_HTTP_REQ_CTX_nbio_d2i(rctx: POSSL_HTTP_REQ_CTX; pval: PPASN1_
 begin
   OSSL_HTTP_REQ_CTX_nbio_d2i := LoadLibCryptoFunction('OSSL_HTTP_REQ_CTX_nbio_d2i');
   if not assigned(OSSL_HTTP_REQ_CTX_nbio_d2i) then
+    {$if declared(LEGACY_OSSL_HTTP_REQ_CTX_nbio_d2i)}
+    OSSL_HTTP_REQ_CTX_nbio_d2i := @LEGACY_OSSL_HTTP_REQ_CTX_nbio_d2i;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_HTTP_REQ_CTX_nbio_d2i');
+    {$ifend}
   Result := OSSL_HTTP_REQ_CTX_nbio_d2i(rctx, pval, it);
 end;
 
@@ -274,7 +307,11 @@ function Load_OSSL_HTTP_REQ_CTX_exchange(rctx: POSSL_HTTP_REQ_CTX): PBIO; cdecl;
 begin
   OSSL_HTTP_REQ_CTX_exchange := LoadLibCryptoFunction('OSSL_HTTP_REQ_CTX_exchange');
   if not assigned(OSSL_HTTP_REQ_CTX_exchange) then
+    {$if declared(LEGACY_OSSL_HTTP_REQ_CTX_exchange)}
+    OSSL_HTTP_REQ_CTX_exchange := @LEGACY_OSSL_HTTP_REQ_CTX_exchange;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_HTTP_REQ_CTX_exchange');
+    {$ifend}
   Result := OSSL_HTTP_REQ_CTX_exchange(rctx);
 end;
 
@@ -282,7 +319,11 @@ function Load_OSSL_HTTP_REQ_CTX_get0_mem_bio(rctx: POSSL_HTTP_REQ_CTX): PBIO; cd
 begin
   OSSL_HTTP_REQ_CTX_get0_mem_bio := LoadLibCryptoFunction('OSSL_HTTP_REQ_CTX_get0_mem_bio');
   if not assigned(OSSL_HTTP_REQ_CTX_get0_mem_bio) then
+    {$if declared(LEGACY_OSSL_HTTP_REQ_CTX_get0_mem_bio)}
+    OSSL_HTTP_REQ_CTX_get0_mem_bio := @LEGACY_OSSL_HTTP_REQ_CTX_get0_mem_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_HTTP_REQ_CTX_get0_mem_bio');
+    {$ifend}
   Result := OSSL_HTTP_REQ_CTX_get0_mem_bio(rctx);
 end;
 
@@ -290,7 +331,11 @@ function Load_OSSL_HTTP_REQ_CTX_get_resp_len(rctx: POSSL_HTTP_REQ_CTX): TOpenSSL
 begin
   OSSL_HTTP_REQ_CTX_get_resp_len := LoadLibCryptoFunction('OSSL_HTTP_REQ_CTX_get_resp_len');
   if not assigned(OSSL_HTTP_REQ_CTX_get_resp_len) then
+    {$if declared(LEGACY_OSSL_HTTP_REQ_CTX_get_resp_len)}
+    OSSL_HTTP_REQ_CTX_get_resp_len := @LEGACY_OSSL_HTTP_REQ_CTX_get_resp_len;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_HTTP_REQ_CTX_get_resp_len');
+    {$ifend}
   Result := OSSL_HTTP_REQ_CTX_get_resp_len(rctx);
 end;
 
@@ -298,7 +343,11 @@ procedure Load_OSSL_HTTP_REQ_CTX_set_max_response_length(rctx: POSSL_HTTP_REQ_CT
 begin
   OSSL_HTTP_REQ_CTX_set_max_response_length := LoadLibCryptoFunction('OSSL_HTTP_REQ_CTX_set_max_response_length');
   if not assigned(OSSL_HTTP_REQ_CTX_set_max_response_length) then
+    {$if declared(LEGACY_OSSL_HTTP_REQ_CTX_set_max_response_length)}
+    OSSL_HTTP_REQ_CTX_set_max_response_length := @LEGACY_OSSL_HTTP_REQ_CTX_set_max_response_length;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_HTTP_REQ_CTX_set_max_response_length');
+    {$ifend}
   OSSL_HTTP_REQ_CTX_set_max_response_length(rctx, len);
 end;
 
@@ -306,7 +355,11 @@ function Load_OSSL_HTTP_is_alive(rctx: POSSL_HTTP_REQ_CTX): TOpenSSL_C_INT; cdec
 begin
   OSSL_HTTP_is_alive := LoadLibCryptoFunction('OSSL_HTTP_is_alive');
   if not assigned(OSSL_HTTP_is_alive) then
+    {$if declared(LEGACY_OSSL_HTTP_is_alive)}
+    OSSL_HTTP_is_alive := @LEGACY_OSSL_HTTP_is_alive;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_HTTP_is_alive');
+    {$ifend}
   Result := OSSL_HTTP_is_alive(rctx);
 end;
 
@@ -314,7 +367,11 @@ function Load_OSSL_HTTP_open(server: PAnsiChar; port: PAnsiChar; proxy: PAnsiCha
 begin
   OSSL_HTTP_open := LoadLibCryptoFunction('OSSL_HTTP_open');
   if not assigned(OSSL_HTTP_open) then
+    {$if declared(LEGACY_OSSL_HTTP_open)}
+    OSSL_HTTP_open := @LEGACY_OSSL_HTTP_open;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_HTTP_open');
+    {$ifend}
   Result := OSSL_HTTP_open(server, port, proxy, no_proxy, use_ssl, bio, rbio, bio_update_fn, arg, buf_size, overall_timeout);
 end;
 
@@ -322,7 +379,11 @@ function Load_OSSL_HTTP_proxy_connect(bio: PBIO; server: PAnsiChar; port: PAnsiC
 begin
   OSSL_HTTP_proxy_connect := LoadLibCryptoFunction('OSSL_HTTP_proxy_connect');
   if not assigned(OSSL_HTTP_proxy_connect) then
+    {$if declared(LEGACY_OSSL_HTTP_proxy_connect)}
+    OSSL_HTTP_proxy_connect := @LEGACY_OSSL_HTTP_proxy_connect;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_HTTP_proxy_connect');
+    {$ifend}
   Result := OSSL_HTTP_proxy_connect(bio, server, port, proxyuser, proxypass, timeout, bio_err, prog);
 end;
 
@@ -330,7 +391,11 @@ function Load_OSSL_HTTP_set1_request(rctx: POSSL_HTTP_REQ_CTX; path: PAnsiChar; 
 begin
   OSSL_HTTP_set1_request := LoadLibCryptoFunction('OSSL_HTTP_set1_request');
   if not assigned(OSSL_HTTP_set1_request) then
+    {$if declared(LEGACY_OSSL_HTTP_set1_request)}
+    OSSL_HTTP_set1_request := @LEGACY_OSSL_HTTP_set1_request;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_HTTP_set1_request');
+    {$ifend}
   Result := OSSL_HTTP_set1_request(rctx, path, headers, content_type, req, expected_content_type, expect_asn1, max_resp_len, timeout, keep_alive);
 end;
 
@@ -338,7 +403,11 @@ function Load_OSSL_HTTP_exchange(rctx: POSSL_HTTP_REQ_CTX; redirection_url: PPAn
 begin
   OSSL_HTTP_exchange := LoadLibCryptoFunction('OSSL_HTTP_exchange');
   if not assigned(OSSL_HTTP_exchange) then
+    {$if declared(LEGACY_OSSL_HTTP_exchange)}
+    OSSL_HTTP_exchange := @LEGACY_OSSL_HTTP_exchange;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_HTTP_exchange');
+    {$ifend}
   Result := OSSL_HTTP_exchange(rctx, redirection_url);
 end;
 
@@ -346,7 +415,11 @@ function Load_OSSL_HTTP_get(url: PAnsiChar; proxy: PAnsiChar; no_proxy: PAnsiCha
 begin
   OSSL_HTTP_get := LoadLibCryptoFunction('OSSL_HTTP_get');
   if not assigned(OSSL_HTTP_get) then
+    {$if declared(LEGACY_OSSL_HTTP_get)}
+    OSSL_HTTP_get := @LEGACY_OSSL_HTTP_get;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_HTTP_get');
+    {$ifend}
   Result := OSSL_HTTP_get(url, proxy, no_proxy, bio, rbio, bio_update_fn, arg, buf_size, headers, expected_content_type, expect_asn1, max_resp_len, timeout);
 end;
 
@@ -354,7 +427,11 @@ function Load_OSSL_HTTP_transfer(prctx: PPOSSL_HTTP_REQ_CTX; server: PAnsiChar; 
 begin
   OSSL_HTTP_transfer := LoadLibCryptoFunction('OSSL_HTTP_transfer');
   if not assigned(OSSL_HTTP_transfer) then
+    {$if declared(LEGACY_OSSL_HTTP_transfer)}
+    OSSL_HTTP_transfer := @LEGACY_OSSL_HTTP_transfer;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_HTTP_transfer');
+    {$ifend}
   Result := OSSL_HTTP_transfer(prctx, server, port, path, use_ssl, proxy, no_proxy, bio, rbio, bio_update_fn, arg, buf_size, headers, content_type, req, expected_content_type, expect_asn1, max_resp_len, timeout, keep_alive);
 end;
 
@@ -362,7 +439,11 @@ function Load_OSSL_HTTP_close(rctx: POSSL_HTTP_REQ_CTX; ok: TOpenSSL_C_INT): TOp
 begin
   OSSL_HTTP_close := LoadLibCryptoFunction('OSSL_HTTP_close');
   if not assigned(OSSL_HTTP_close) then
+    {$if declared(LEGACY_OSSL_HTTP_close)}
+    OSSL_HTTP_close := @LEGACY_OSSL_HTTP_close;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_HTTP_close');
+    {$ifend}
   Result := OSSL_HTTP_close(rctx, ok);
 end;
 
@@ -370,7 +451,11 @@ function Load_OSSL_parse_url(url: PAnsiChar; pscheme: PPAnsiChar; puser: PPAnsiC
 begin
   OSSL_parse_url := LoadLibCryptoFunction('OSSL_parse_url');
   if not assigned(OSSL_parse_url) then
+    {$if declared(LEGACY_OSSL_parse_url)}
+    OSSL_parse_url := @LEGACY_OSSL_parse_url;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_parse_url');
+    {$ifend}
   Result := OSSL_parse_url(url, pscheme, puser, phost, pport, pport_num, ppath, pquery, pfrag);
 end;
 
@@ -378,7 +463,11 @@ function Load_OSSL_HTTP_parse_url(url: PAnsiChar; pssl: POpenSSL_C_INT; puser: P
 begin
   OSSL_HTTP_parse_url := LoadLibCryptoFunction('OSSL_HTTP_parse_url');
   if not assigned(OSSL_HTTP_parse_url) then
+    {$if declared(LEGACY_OSSL_HTTP_parse_url)}
+    OSSL_HTTP_parse_url := @LEGACY_OSSL_HTTP_parse_url;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_HTTP_parse_url');
+    {$ifend}
   Result := OSSL_HTTP_parse_url(url, pssl, puser, phost, pport, pport_num, ppath, pquery, pfrag);
 end;
 
@@ -386,7 +475,11 @@ function Load_OSSL_HTTP_adapt_proxy(proxy: PAnsiChar; no_proxy: PAnsiChar; serve
 begin
   OSSL_HTTP_adapt_proxy := LoadLibCryptoFunction('OSSL_HTTP_adapt_proxy');
   if not assigned(OSSL_HTTP_adapt_proxy) then
+    {$if declared(LEGACY_OSSL_HTTP_adapt_proxy)}
+    OSSL_HTTP_adapt_proxy := @LEGACY_OSSL_HTTP_adapt_proxy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_HTTP_adapt_proxy');
+    {$ifend}
   Result := OSSL_HTTP_adapt_proxy(proxy, no_proxy, server, use_ssl);
 end;
 

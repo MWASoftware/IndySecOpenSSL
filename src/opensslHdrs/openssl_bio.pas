@@ -18,7 +18,8 @@
 unit openssl_bio;
 
 {
-  Generated from OpenSSL 3.0.20 Header File bio.h - Wed  6 May 13:05:31 BST 2026
+  Generated from OpenSSL 3.0.20 Header File bio.h - Wed  6 May 13:14:40 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -2786,7 +2787,11 @@ function Load_BIO_get_new_index: TOpenSSL_C_INT; cdecl;
 begin
   BIO_get_new_index := LoadLibCryptoFunction('BIO_get_new_index');
   if not assigned(BIO_get_new_index) then
+    {$if declared(LEGACY_BIO_get_new_index)}
+    BIO_get_new_index := @LEGACY_BIO_get_new_index;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_get_new_index');
+    {$ifend}
   Result := BIO_get_new_index;
 end;
 
@@ -2794,7 +2799,11 @@ procedure Load_BIO_set_flags(b: PBIO; flags: TOpenSSL_C_INT); cdecl;
 begin
   BIO_set_flags := LoadLibCryptoFunction('BIO_set_flags');
   if not assigned(BIO_set_flags) then
+    {$if declared(LEGACY_BIO_set_flags)}
+    BIO_set_flags := @LEGACY_BIO_set_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_set_flags');
+    {$ifend}
   BIO_set_flags(b, flags);
 end;
 
@@ -2802,7 +2811,11 @@ function Load_BIO_test_flags(b: PBIO; flags: TOpenSSL_C_INT): TOpenSSL_C_INT; cd
 begin
   BIO_test_flags := LoadLibCryptoFunction('BIO_test_flags');
   if not assigned(BIO_test_flags) then
+    {$if declared(LEGACY_BIO_test_flags)}
+    BIO_test_flags := @LEGACY_BIO_test_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_test_flags');
+    {$ifend}
   Result := BIO_test_flags(b, flags);
 end;
 
@@ -2810,7 +2823,11 @@ procedure Load_BIO_clear_flags(b: PBIO; flags: TOpenSSL_C_INT); cdecl;
 begin
   BIO_clear_flags := LoadLibCryptoFunction('BIO_clear_flags');
   if not assigned(BIO_clear_flags) then
+    {$if declared(LEGACY_BIO_clear_flags)}
+    BIO_clear_flags := @LEGACY_BIO_clear_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_clear_flags');
+    {$ifend}
   BIO_clear_flags(b, flags);
 end;
 
@@ -2819,7 +2836,11 @@ function Load_BIO_get_callback(b: PBIO): TBIO_callback_fn; cdecl;
 begin
   BIO_get_callback := LoadLibCryptoFunction('BIO_get_callback');
   if not assigned(BIO_get_callback) then
+    {$if declared(LEGACY_BIO_get_callback)}
+    BIO_get_callback := @LEGACY_BIO_get_callback;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_get_callback');
+    {$ifend}
   Result := BIO_get_callback(b);
 end;
 
@@ -2827,7 +2848,11 @@ procedure Load_BIO_set_callback(b: PBIO; callback: TBIO_callback_fn); cdecl;
 begin
   BIO_set_callback := LoadLibCryptoFunction('BIO_set_callback');
   if not assigned(BIO_set_callback) then
+    {$if declared(LEGACY_BIO_set_callback)}
+    BIO_set_callback := @LEGACY_BIO_set_callback;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_set_callback');
+    {$ifend}
   BIO_set_callback(b, callback);
 end;
 
@@ -2835,7 +2860,11 @@ function Load_BIO_debug_callback(bio: PBIO; cmd: TOpenSSL_C_INT; argp: PAnsiChar
 begin
   BIO_debug_callback := LoadLibCryptoFunction('BIO_debug_callback');
   if not assigned(BIO_debug_callback) then
+    {$if declared(LEGACY_BIO_debug_callback)}
+    BIO_debug_callback := @LEGACY_BIO_debug_callback;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_debug_callback');
+    {$ifend}
   Result := BIO_debug_callback(bio, cmd, argp, argi, argl, ret);
 end;
 
@@ -2844,7 +2873,11 @@ function Load_BIO_get_callback_ex(b: PBIO): TBIO_callback_fn_ex; cdecl;
 begin
   BIO_get_callback_ex := LoadLibCryptoFunction('BIO_get_callback_ex');
   if not assigned(BIO_get_callback_ex) then
+    {$if declared(LEGACY_BIO_get_callback_ex)}
+    BIO_get_callback_ex := @LEGACY_BIO_get_callback_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_get_callback_ex');
+    {$ifend}
   Result := BIO_get_callback_ex(b);
 end;
 
@@ -2852,7 +2885,11 @@ procedure Load_BIO_set_callback_ex(b: PBIO; callback: TBIO_callback_fn_ex); cdec
 begin
   BIO_set_callback_ex := LoadLibCryptoFunction('BIO_set_callback_ex');
   if not assigned(BIO_set_callback_ex) then
+    {$if declared(LEGACY_BIO_set_callback_ex)}
+    BIO_set_callback_ex := @LEGACY_BIO_set_callback_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_set_callback_ex');
+    {$ifend}
   BIO_set_callback_ex(b, callback);
 end;
 
@@ -2860,7 +2897,11 @@ function Load_BIO_debug_callback_ex(bio: PBIO; oper: TOpenSSL_C_INT; argp: PAnsi
 begin
   BIO_debug_callback_ex := LoadLibCryptoFunction('BIO_debug_callback_ex');
   if not assigned(BIO_debug_callback_ex) then
+    {$if declared(LEGACY_BIO_debug_callback_ex)}
+    BIO_debug_callback_ex := @LEGACY_BIO_debug_callback_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_debug_callback_ex');
+    {$ifend}
   Result := BIO_debug_callback_ex(bio, oper, argp, len, argi, argl, ret, processed);
 end;
 
@@ -2868,7 +2909,11 @@ function Load_BIO_get_callback_arg(b: PBIO): PAnsiChar; cdecl;
 begin
   BIO_get_callback_arg := LoadLibCryptoFunction('BIO_get_callback_arg');
   if not assigned(BIO_get_callback_arg) then
+    {$if declared(LEGACY_BIO_get_callback_arg)}
+    BIO_get_callback_arg := @LEGACY_BIO_get_callback_arg;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_get_callback_arg');
+    {$ifend}
   Result := BIO_get_callback_arg(b);
 end;
 
@@ -2876,7 +2921,11 @@ procedure Load_BIO_set_callback_arg(b: PBIO; arg: PAnsiChar); cdecl;
 begin
   BIO_set_callback_arg := LoadLibCryptoFunction('BIO_set_callback_arg');
   if not assigned(BIO_set_callback_arg) then
+    {$if declared(LEGACY_BIO_set_callback_arg)}
+    BIO_set_callback_arg := @LEGACY_BIO_set_callback_arg;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_set_callback_arg');
+    {$ifend}
   BIO_set_callback_arg(b, arg);
 end;
 
@@ -2884,7 +2933,11 @@ function Load_BIO_method_name(b: PBIO): PAnsiChar; cdecl;
 begin
   BIO_method_name := LoadLibCryptoFunction('BIO_method_name');
   if not assigned(BIO_method_name) then
+    {$if declared(LEGACY_BIO_method_name)}
+    BIO_method_name := @LEGACY_BIO_method_name;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_method_name');
+    {$ifend}
   Result := BIO_method_name(b);
 end;
 
@@ -2892,7 +2945,11 @@ function Load_BIO_method_type(b: PBIO): TOpenSSL_C_INT; cdecl;
 begin
   BIO_method_type := LoadLibCryptoFunction('BIO_method_type');
   if not assigned(BIO_method_type) then
+    {$if declared(LEGACY_BIO_method_type)}
+    BIO_method_type := @LEGACY_BIO_method_type;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_method_type');
+    {$ifend}
   Result := BIO_method_type(b);
 end;
 
@@ -2900,7 +2957,11 @@ function Load_sk_BIO_num(_para: Pstack_st_BIO): TOpenSSL_C_INT; cdecl;
 begin
   sk_BIO_num := LoadLibCryptoFunction('OPENSSL_sk_num');
   if not assigned(sk_BIO_num) then
+    {$if declared(LEGACY_OPENSSL_sk_num)}
+    sk_BIO_num := @LEGACY_OPENSSL_sk_num;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_num');
+    {$ifend}
   Result := sk_BIO_num(_para);
 end;
 
@@ -2908,7 +2969,11 @@ function Load_sk_BIO_value(_para: Pstack_st_BIO; _para2: TOpenSSL_C_INT): Pstack
 begin
   sk_BIO_value := LoadLibCryptoFunction('OPENSSL_sk_value');
   if not assigned(sk_BIO_value) then
+    {$if declared(LEGACY_OPENSSL_sk_value)}
+    sk_BIO_value := @LEGACY_OPENSSL_sk_value;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_value');
+    {$ifend}
   Result := sk_BIO_value(_para, _para2);
 end;
 
@@ -2916,7 +2981,11 @@ function Load_sk_BIO_new(cmp: Tsk_BIO_compfunc): Pstack_st_BIO; cdecl;
 begin
   sk_BIO_new := LoadLibCryptoFunction('OPENSSL_sk_new');
   if not assigned(sk_BIO_new) then
+    {$if declared(LEGACY_OPENSSL_sk_new)}
+    sk_BIO_new := @LEGACY_OPENSSL_sk_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new');
+    {$ifend}
   Result := sk_BIO_new(cmp);
 end;
 
@@ -2924,7 +2993,11 @@ function Load_sk_BIO_new_null: Pstack_st_BIO; cdecl;
 begin
   sk_BIO_new_null := LoadLibCryptoFunction('OPENSSL_sk_new_null');
   if not assigned(sk_BIO_new_null) then
+    {$if declared(LEGACY_OPENSSL_sk_new_null)}
+    sk_BIO_new_null := @LEGACY_OPENSSL_sk_new_null;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_null');
+    {$ifend}
   Result := sk_BIO_new_null;
 end;
 
@@ -2932,7 +3005,11 @@ function Load_sk_BIO_new_reserve(cmp: Tsk_BIO_compfunc; n: TOpenSSL_C_INT): Psta
 begin
   sk_BIO_new_reserve := LoadLibCryptoFunction('OPENSSL_sk_new_reserve');
   if not assigned(sk_BIO_new_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_new_reserve)}
+    sk_BIO_new_reserve := @LEGACY_OPENSSL_sk_new_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_reserve');
+    {$ifend}
   Result := sk_BIO_new_reserve(cmp, n);
 end;
 
@@ -2940,7 +3017,11 @@ function Load_sk_BIO_reserve(_para: Pstack_st_BIO; n: TOpenSSL_C_INT): TOpenSSL_
 begin
   sk_BIO_reserve := LoadLibCryptoFunction('OPENSSL_sk_reserve');
   if not assigned(sk_BIO_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_reserve)}
+    sk_BIO_reserve := @LEGACY_OPENSSL_sk_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_reserve');
+    {$ifend}
   Result := sk_BIO_reserve(_para, n);
 end;
 
@@ -2948,7 +3029,11 @@ function Load_sk_BIO_free(_para: Pstack_st_BIO): TOpenSSL_C_INT; cdecl;
 begin
   sk_BIO_free := LoadLibCryptoFunction('OPENSSL_sk_free');
   if not assigned(sk_BIO_free) then
+    {$if declared(LEGACY_OPENSSL_sk_free)}
+    sk_BIO_free := @LEGACY_OPENSSL_sk_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_free');
+    {$ifend}
   Result := sk_BIO_free(_para);
 end;
 
@@ -2956,7 +3041,11 @@ function Load_sk_BIO_zero(_para: Pstack_st_BIO): TOpenSSL_C_INT; cdecl;
 begin
   sk_BIO_zero := LoadLibCryptoFunction('OPENSSL_sk_zero');
   if not assigned(sk_BIO_zero) then
+    {$if declared(LEGACY_OPENSSL_sk_zero)}
+    sk_BIO_zero := @LEGACY_OPENSSL_sk_zero;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_zero');
+    {$ifend}
   Result := sk_BIO_zero(_para);
 end;
 
@@ -2964,7 +3053,11 @@ function Load_sk_BIO_delete(st: Pstack_st_BIO; loc: TOpenSSL_C_INT): Pstack_st_B
 begin
   sk_BIO_delete := LoadLibCryptoFunction('OPENSSL_sk_delete');
   if not assigned(sk_BIO_delete) then
+    {$if declared(LEGACY_OPENSSL_sk_delete)}
+    sk_BIO_delete := @LEGACY_OPENSSL_sk_delete;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete');
+    {$ifend}
   Result := sk_BIO_delete(st, loc);
 end;
 
@@ -2972,7 +3065,11 @@ function Load_sk_BIO_delete_ptr(st: Pstack_st_BIO; ptr: Pstack_st_BIO): Pstack_s
 begin
   sk_BIO_delete_ptr := LoadLibCryptoFunction('OPENSSL_sk_delete_ptr');
   if not assigned(sk_BIO_delete_ptr) then
+    {$if declared(LEGACY_OPENSSL_sk_delete_ptr)}
+    sk_BIO_delete_ptr := @LEGACY_OPENSSL_sk_delete_ptr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete_ptr');
+    {$ifend}
   Result := sk_BIO_delete_ptr(st, ptr);
 end;
 
@@ -2980,7 +3077,11 @@ function Load_sk_BIO_push(st: Pstack_st_BIO; data: pointer): TOpenSSL_C_INT; cde
 begin
   sk_BIO_push := LoadLibCryptoFunction('OPENSSL_sk_push');
   if not assigned(sk_BIO_push) then
+    {$if declared(LEGACY_OPENSSL_sk_push)}
+    sk_BIO_push := @LEGACY_OPENSSL_sk_push;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_push');
+    {$ifend}
   Result := sk_BIO_push(st, data);
 end;
 
@@ -2988,7 +3089,11 @@ function Load_sk_BIO_unshift(st: Pstack_st_BIO; data: pointer): TOpenSSL_C_INT; 
 begin
   sk_BIO_unshift := LoadLibCryptoFunction('OPENSSL_sk_unshift');
   if not assigned(sk_BIO_unshift) then
+    {$if declared(LEGACY_OPENSSL_sk_unshift)}
+    sk_BIO_unshift := @LEGACY_OPENSSL_sk_unshift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_unshift');
+    {$ifend}
   Result := sk_BIO_unshift(st, data);
 end;
 
@@ -2996,7 +3101,11 @@ function Load_sk_BIO_pop(_para: Pstack_st_BIO): Pstack_st_BIO; cdecl;
 begin
   sk_BIO_pop := LoadLibCryptoFunction('OPENSSL_sk_pop');
   if not assigned(sk_BIO_pop) then
+    {$if declared(LEGACY_OPENSSL_sk_pop)}
+    sk_BIO_pop := @LEGACY_OPENSSL_sk_pop;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop');
+    {$ifend}
   Result := sk_BIO_pop(_para);
 end;
 
@@ -3004,7 +3113,11 @@ function Load_sk_BIO_shift(_para: Pstack_st_BIO): Pstack_st_BIO; cdecl;
 begin
   sk_BIO_shift := LoadLibCryptoFunction('OPENSSL_sk_shift');
   if not assigned(sk_BIO_shift) then
+    {$if declared(LEGACY_OPENSSL_sk_shift)}
+    sk_BIO_shift := @LEGACY_OPENSSL_sk_shift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_shift');
+    {$ifend}
   Result := sk_BIO_shift(_para);
 end;
 
@@ -3012,7 +3125,11 @@ procedure Load_sk_BIO_pop_free(st: Pstack_st_BIO; func: Tsk_BIO_freefunc); cdecl
 begin
   sk_BIO_pop_free := LoadLibCryptoFunction('OPENSSL_sk_pop_free');
   if not assigned(sk_BIO_pop_free) then
+    {$if declared(LEGACY_OPENSSL_sk_pop_free)}
+    sk_BIO_pop_free := @LEGACY_OPENSSL_sk_pop_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop_free');
+    {$ifend}
   sk_BIO_pop_free(st, func);
 end;
 
@@ -3020,7 +3137,11 @@ function Load_sk_BIO_insert(st: Pstack_st_BIO; data: pointer; where: TOpenSSL_C_
 begin
   sk_BIO_insert := LoadLibCryptoFunction('OPENSSL_sk_insert');
   if not assigned(sk_BIO_insert) then
+    {$if declared(LEGACY_OPENSSL_sk_insert)}
+    sk_BIO_insert := @LEGACY_OPENSSL_sk_insert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_insert');
+    {$ifend}
   Result := sk_BIO_insert(st, data, where);
 end;
 
@@ -3028,7 +3149,11 @@ function Load_sk_BIO_set(st: Pstack_st_BIO; i: TOpenSSL_C_INT; data: pointer): P
 begin
   sk_BIO_set := LoadLibCryptoFunction('OPENSSL_sk_set');
   if not assigned(sk_BIO_set) then
+    {$if declared(LEGACY_OPENSSL_sk_set)}
+    sk_BIO_set := @LEGACY_OPENSSL_sk_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set');
+    {$ifend}
   Result := sk_BIO_set(st, i, data);
 end;
 
@@ -3036,7 +3161,11 @@ function Load_sk_BIO_find(st: Pstack_st_BIO; data: pointer): TOpenSSL_C_INT; cde
 begin
   sk_BIO_find := LoadLibCryptoFunction('OPENSSL_sk_find');
   if not assigned(sk_BIO_find) then
+    {$if declared(LEGACY_OPENSSL_sk_find)}
+    sk_BIO_find := @LEGACY_OPENSSL_sk_find;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find');
+    {$ifend}
   Result := sk_BIO_find(st, data);
 end;
 
@@ -3044,7 +3173,11 @@ function Load_sk_BIO_find_ex(st: Pstack_st_BIO; data: pointer): TOpenSSL_C_INT; 
 begin
   sk_BIO_find_ex := LoadLibCryptoFunction('OPENSSL_sk_find_ex');
   if not assigned(sk_BIO_find_ex) then
+    {$if declared(LEGACY_OPENSSL_sk_find_ex)}
+    sk_BIO_find_ex := @LEGACY_OPENSSL_sk_find_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_ex');
+    {$ifend}
   Result := sk_BIO_find_ex(st, data);
 end;
 
@@ -3052,7 +3185,11 @@ function Load_sk_BIO_find_all(st: Pstack_st_BIO; data: pointer; pnum: POpenSSL_C
 begin
   sk_BIO_find_all := LoadLibCryptoFunction('OPENSSL_sk_find_all');
   if not assigned(sk_BIO_find_all) then
+    {$if declared(LEGACY_OPENSSL_sk_find_all)}
+    sk_BIO_find_all := @LEGACY_OPENSSL_sk_find_all;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_all');
+    {$ifend}
   Result := sk_BIO_find_all(st, data, pnum);
 end;
 
@@ -3060,7 +3197,11 @@ function Load_sk_BIO_sort(_para: Pstack_st_BIO): TOpenSSL_C_INT; cdecl;
 begin
   sk_BIO_sort := LoadLibCryptoFunction('OPENSSL_sk_sort');
   if not assigned(sk_BIO_sort) then
+    {$if declared(LEGACY_OPENSSL_sk_sort)}
+    sk_BIO_sort := @LEGACY_OPENSSL_sk_sort;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_sort');
+    {$ifend}
   Result := sk_BIO_sort(_para);
 end;
 
@@ -3068,7 +3209,11 @@ function Load_sk_BIO_is_sorted(_para: Pstack_st_BIO): TOpenSSL_C_INT; cdecl;
 begin
   sk_BIO_is_sorted := LoadLibCryptoFunction('OPENSSL_sk_is_sorted');
   if not assigned(sk_BIO_is_sorted) then
+    {$if declared(LEGACY_OPENSSL_sk_is_sorted)}
+    sk_BIO_is_sorted := @LEGACY_OPENSSL_sk_is_sorted;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_is_sorted');
+    {$ifend}
   Result := sk_BIO_is_sorted(_para);
 end;
 
@@ -3076,7 +3221,11 @@ function Load_sk_BIO_dup(st: Pstack_st_BIO): Pstack_st_BIO; cdecl;
 begin
   sk_BIO_dup := LoadLibCryptoFunction('OPENSSL_sk_dup');
   if not assigned(sk_BIO_dup) then
+    {$if declared(LEGACY_OPENSSL_sk_dup)}
+    sk_BIO_dup := @LEGACY_OPENSSL_sk_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_dup');
+    {$ifend}
   Result := sk_BIO_dup(st);
 end;
 
@@ -3084,7 +3233,11 @@ function Load_sk_BIO_deep_copy(st: Pstack_st_BIO; c: Tsk_BIO_compfunc; f: Tsk_BI
 begin
   sk_BIO_deep_copy := LoadLibCryptoFunction('OPENSSL_sk_deep_copy');
   if not assigned(sk_BIO_deep_copy) then
+    {$if declared(LEGACY_OPENSSL_sk_deep_copy)}
+    sk_BIO_deep_copy := @LEGACY_OPENSSL_sk_deep_copy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_deep_copy');
+    {$ifend}
   Result := sk_BIO_deep_copy(st, c, f);
 end;
 
@@ -3092,7 +3245,11 @@ function Load_sk_BIO_set_cmp_func(st: Pstack_st_BIO; cmp: Tsk_BIO_compfunc): Tsk
 begin
   sk_BIO_set_cmp_func := LoadLibCryptoFunction('OPENSSL_sk_set_cmp_func');
   if not assigned(sk_BIO_set_cmp_func) then
+    {$if declared(LEGACY_OPENSSL_sk_set_cmp_func)}
+    sk_BIO_set_cmp_func := @LEGACY_OPENSSL_sk_set_cmp_func;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set_cmp_func');
+    {$ifend}
   Result := sk_BIO_set_cmp_func(st, cmp);
 end;
 
@@ -3101,7 +3258,11 @@ function Load_BIO_read_filename(b: PBIO; name: PAnsiChar): TOpenSSL_C_INT; cdecl
 begin
   BIO_read_filename := LoadLibCryptoFunction('BIO_read_filename');
   if not assigned(BIO_read_filename) then
+    {$if declared(LEGACY_BIO_read_filename)}
+    BIO_read_filename := @LEGACY_BIO_read_filename;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_read_filename');
+    {$ifend}
   Result := BIO_read_filename(b, name);
 end;
 
@@ -3110,7 +3271,11 @@ function Load_BIO_ctrl_pending(b: PBIO): TOpenSSL_C_SIZET; cdecl;
 begin
   BIO_ctrl_pending := LoadLibCryptoFunction('BIO_ctrl_pending');
   if not assigned(BIO_ctrl_pending) then
+    {$if declared(LEGACY_BIO_ctrl_pending)}
+    BIO_ctrl_pending := @LEGACY_BIO_ctrl_pending;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_ctrl_pending');
+    {$ifend}
   Result := BIO_ctrl_pending(b);
 end;
 
@@ -3118,7 +3283,11 @@ function Load_BIO_ctrl_wpending(b: PBIO): TOpenSSL_C_SIZET; cdecl;
 begin
   BIO_ctrl_wpending := LoadLibCryptoFunction('BIO_ctrl_wpending');
   if not assigned(BIO_ctrl_wpending) then
+    {$if declared(LEGACY_BIO_ctrl_wpending)}
+    BIO_ctrl_wpending := @LEGACY_BIO_ctrl_wpending;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_ctrl_wpending');
+    {$ifend}
   Result := BIO_ctrl_wpending(b);
 end;
 
@@ -3126,7 +3295,11 @@ function Load_BIO_ctrl_get_write_guarantee(b: PBIO): TOpenSSL_C_SIZET; cdecl;
 begin
   BIO_ctrl_get_write_guarantee := LoadLibCryptoFunction('BIO_ctrl_get_write_guarantee');
   if not assigned(BIO_ctrl_get_write_guarantee) then
+    {$if declared(LEGACY_BIO_ctrl_get_write_guarantee)}
+    BIO_ctrl_get_write_guarantee := @LEGACY_BIO_ctrl_get_write_guarantee;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_ctrl_get_write_guarantee');
+    {$ifend}
   Result := BIO_ctrl_get_write_guarantee(b);
 end;
 
@@ -3134,7 +3307,11 @@ function Load_BIO_ctrl_get_read_request(b: PBIO): TOpenSSL_C_SIZET; cdecl;
 begin
   BIO_ctrl_get_read_request := LoadLibCryptoFunction('BIO_ctrl_get_read_request');
   if not assigned(BIO_ctrl_get_read_request) then
+    {$if declared(LEGACY_BIO_ctrl_get_read_request)}
+    BIO_ctrl_get_read_request := @LEGACY_BIO_ctrl_get_read_request;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_ctrl_get_read_request');
+    {$ifend}
   Result := BIO_ctrl_get_read_request(b);
 end;
 
@@ -3142,7 +3319,11 @@ function Load_BIO_ctrl_reset_read_request(b: PBIO): TOpenSSL_C_INT; cdecl;
 begin
   BIO_ctrl_reset_read_request := LoadLibCryptoFunction('BIO_ctrl_reset_read_request');
   if not assigned(BIO_ctrl_reset_read_request) then
+    {$if declared(LEGACY_BIO_ctrl_reset_read_request)}
+    BIO_ctrl_reset_read_request := @LEGACY_BIO_ctrl_reset_read_request;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_ctrl_reset_read_request');
+    {$ifend}
   Result := BIO_ctrl_reset_read_request(b);
 end;
 
@@ -3150,7 +3331,11 @@ function Load_BIO_set_ex_data(bio: PBIO; idx: TOpenSSL_C_INT; data: pointer): TO
 begin
   BIO_set_ex_data := LoadLibCryptoFunction('BIO_set_ex_data');
   if not assigned(BIO_set_ex_data) then
+    {$if declared(LEGACY_BIO_set_ex_data)}
+    BIO_set_ex_data := @LEGACY_BIO_set_ex_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_set_ex_data');
+    {$ifend}
   Result := BIO_set_ex_data(bio, idx, data);
 end;
 
@@ -3158,7 +3343,11 @@ function Load_BIO_get_ex_data(bio: PBIO; idx: TOpenSSL_C_INT): pointer; cdecl;
 begin
   BIO_get_ex_data := LoadLibCryptoFunction('BIO_get_ex_data');
   if not assigned(BIO_get_ex_data) then
+    {$if declared(LEGACY_BIO_get_ex_data)}
+    BIO_get_ex_data := @LEGACY_BIO_get_ex_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_get_ex_data');
+    {$ifend}
   Result := BIO_get_ex_data(bio, idx);
 end;
 
@@ -3166,7 +3355,11 @@ function Load_BIO_number_read(bio: PBIO): qword; cdecl;
 begin
   BIO_number_read := LoadLibCryptoFunction('BIO_number_read');
   if not assigned(BIO_number_read) then
+    {$if declared(LEGACY_BIO_number_read)}
+    BIO_number_read := @LEGACY_BIO_number_read;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_number_read');
+    {$ifend}
   Result := BIO_number_read(bio);
 end;
 
@@ -3174,7 +3367,11 @@ function Load_BIO_number_written(bio: PBIO): qword; cdecl;
 begin
   BIO_number_written := LoadLibCryptoFunction('BIO_number_written');
   if not assigned(BIO_number_written) then
+    {$if declared(LEGACY_BIO_number_written)}
+    BIO_number_written := @LEGACY_BIO_number_written;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_number_written');
+    {$ifend}
   Result := BIO_number_written(bio);
 end;
 
@@ -3182,7 +3379,11 @@ function Load_BIO_asn1_set_prefix(b: PBIO; prefix: Pasn1_ps_func; prefix_free: P
 begin
   BIO_asn1_set_prefix := LoadLibCryptoFunction('BIO_asn1_set_prefix');
   if not assigned(BIO_asn1_set_prefix) then
+    {$if declared(LEGACY_BIO_asn1_set_prefix)}
+    BIO_asn1_set_prefix := @LEGACY_BIO_asn1_set_prefix;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_asn1_set_prefix');
+    {$ifend}
   Result := BIO_asn1_set_prefix(b, prefix, prefix_free);
 end;
 
@@ -3190,7 +3391,11 @@ function Load_BIO_asn1_get_prefix(b: PBIO; pprefix: PPasn1_ps_func; pprefix_free
 begin
   BIO_asn1_get_prefix := LoadLibCryptoFunction('BIO_asn1_get_prefix');
   if not assigned(BIO_asn1_get_prefix) then
+    {$if declared(LEGACY_BIO_asn1_get_prefix)}
+    BIO_asn1_get_prefix := @LEGACY_BIO_asn1_get_prefix;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_asn1_get_prefix');
+    {$ifend}
   Result := BIO_asn1_get_prefix(b, pprefix, pprefix_free);
 end;
 
@@ -3198,7 +3403,11 @@ function Load_BIO_asn1_set_suffix(b: PBIO; suffix: Pasn1_ps_func; suffix_free: P
 begin
   BIO_asn1_set_suffix := LoadLibCryptoFunction('BIO_asn1_set_suffix');
   if not assigned(BIO_asn1_set_suffix) then
+    {$if declared(LEGACY_BIO_asn1_set_suffix)}
+    BIO_asn1_set_suffix := @LEGACY_BIO_asn1_set_suffix;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_asn1_set_suffix');
+    {$ifend}
   Result := BIO_asn1_set_suffix(b, suffix, suffix_free);
 end;
 
@@ -3206,7 +3415,11 @@ function Load_BIO_asn1_get_suffix(b: PBIO; psuffix: PPasn1_ps_func; psuffix_free
 begin
   BIO_asn1_get_suffix := LoadLibCryptoFunction('BIO_asn1_get_suffix');
   if not assigned(BIO_asn1_get_suffix) then
+    {$if declared(LEGACY_BIO_asn1_get_suffix)}
+    BIO_asn1_get_suffix := @LEGACY_BIO_asn1_get_suffix;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_asn1_get_suffix');
+    {$ifend}
   Result := BIO_asn1_get_suffix(b, psuffix, psuffix_free);
 end;
 
@@ -3214,7 +3427,11 @@ function Load_BIO_s_file: PBIO_METHOD; cdecl;
 begin
   BIO_s_file := LoadLibCryptoFunction('BIO_s_file');
   if not assigned(BIO_s_file) then
+    {$if declared(LEGACY_BIO_s_file)}
+    BIO_s_file := @LEGACY_BIO_s_file;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_s_file');
+    {$ifend}
   Result := BIO_s_file;
 end;
 
@@ -3222,7 +3439,11 @@ function Load_BIO_new_file(filename: PAnsiChar; mode: PAnsiChar): PBIO; cdecl;
 begin
   BIO_new_file := LoadLibCryptoFunction('BIO_new_file');
   if not assigned(BIO_new_file) then
+    {$if declared(LEGACY_BIO_new_file)}
+    BIO_new_file := @LEGACY_BIO_new_file;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_new_file');
+    {$ifend}
   Result := BIO_new_file(filename, mode);
 end;
 
@@ -3230,7 +3451,11 @@ function Load_BIO_new_from_core_bio(libctx: POSSL_LIB_CTX; corebio: POSSL_CORE_B
 begin
   BIO_new_from_core_bio := LoadLibCryptoFunction('BIO_new_from_core_bio');
   if not assigned(BIO_new_from_core_bio) then
+    {$if declared(LEGACY_BIO_new_from_core_bio)}
+    BIO_new_from_core_bio := @LEGACY_BIO_new_from_core_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_new_from_core_bio');
+    {$ifend}
   Result := BIO_new_from_core_bio(libctx, corebio);
 end;
 
@@ -3239,7 +3464,11 @@ function Load_BIO_new_fp(stream: PFILE; close_flag: TOpenSSL_C_INT): PBIO; cdecl
 begin
   BIO_new_fp := LoadLibCryptoFunction('BIO_new_fp');
   if not assigned(BIO_new_fp) then
+    {$if declared(LEGACY_BIO_new_fp)}
+    BIO_new_fp := @LEGACY_BIO_new_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_new_fp');
+    {$ifend}
   Result := BIO_new_fp(stream, close_flag);
 end;
 
@@ -3248,7 +3477,11 @@ function Load_BIO_new_ex(libctx: POSSL_LIB_CTX; method: PBIO_METHOD): PBIO; cdec
 begin
   BIO_new_ex := LoadLibCryptoFunction('BIO_new_ex');
   if not assigned(BIO_new_ex) then
+    {$if declared(LEGACY_BIO_new_ex)}
+    BIO_new_ex := @LEGACY_BIO_new_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_new_ex');
+    {$ifend}
   Result := BIO_new_ex(libctx, method);
 end;
 
@@ -3256,7 +3489,11 @@ function Load_BIO_new(type_: PBIO_METHOD): PBIO; cdecl;
 begin
   BIO_new := LoadLibCryptoFunction('BIO_new');
   if not assigned(BIO_new) then
+    {$if declared(LEGACY_BIO_new)}
+    BIO_new := @LEGACY_BIO_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_new');
+    {$ifend}
   Result := BIO_new(type_);
 end;
 
@@ -3264,7 +3501,11 @@ function Load_BIO_free(a: PBIO): TOpenSSL_C_INT; cdecl;
 begin
   BIO_free := LoadLibCryptoFunction('BIO_free');
   if not assigned(BIO_free) then
+    {$if declared(LEGACY_BIO_free)}
+    BIO_free := @LEGACY_BIO_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_free');
+    {$ifend}
   Result := BIO_free(a);
 end;
 
@@ -3272,7 +3513,11 @@ procedure Load_BIO_set_data(a: PBIO; ptr: pointer); cdecl;
 begin
   BIO_set_data := LoadLibCryptoFunction('BIO_set_data');
   if not assigned(BIO_set_data) then
+    {$if declared(LEGACY_BIO_set_data)}
+    BIO_set_data := @LEGACY_BIO_set_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_set_data');
+    {$ifend}
   BIO_set_data(a, ptr);
 end;
 
@@ -3280,7 +3525,11 @@ function Load_BIO_get_data(a: PBIO): pointer; cdecl;
 begin
   BIO_get_data := LoadLibCryptoFunction('BIO_get_data');
   if not assigned(BIO_get_data) then
+    {$if declared(LEGACY_BIO_get_data)}
+    BIO_get_data := @LEGACY_BIO_get_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_get_data');
+    {$ifend}
   Result := BIO_get_data(a);
 end;
 
@@ -3288,7 +3537,11 @@ procedure Load_BIO_set_init(a: PBIO; init: TOpenSSL_C_INT); cdecl;
 begin
   BIO_set_init := LoadLibCryptoFunction('BIO_set_init');
   if not assigned(BIO_set_init) then
+    {$if declared(LEGACY_BIO_set_init)}
+    BIO_set_init := @LEGACY_BIO_set_init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_set_init');
+    {$ifend}
   BIO_set_init(a, init);
 end;
 
@@ -3296,7 +3549,11 @@ function Load_BIO_get_init(a: PBIO): TOpenSSL_C_INT; cdecl;
 begin
   BIO_get_init := LoadLibCryptoFunction('BIO_get_init');
   if not assigned(BIO_get_init) then
+    {$if declared(LEGACY_BIO_get_init)}
+    BIO_get_init := @LEGACY_BIO_get_init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_get_init');
+    {$ifend}
   Result := BIO_get_init(a);
 end;
 
@@ -3304,7 +3561,11 @@ procedure Load_BIO_set_shutdown(a: PBIO; shut: TOpenSSL_C_INT); cdecl;
 begin
   BIO_set_shutdown := LoadLibCryptoFunction('BIO_set_shutdown');
   if not assigned(BIO_set_shutdown) then
+    {$if declared(LEGACY_BIO_set_shutdown)}
+    BIO_set_shutdown := @LEGACY_BIO_set_shutdown;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_set_shutdown');
+    {$ifend}
   BIO_set_shutdown(a, shut);
 end;
 
@@ -3312,7 +3573,11 @@ function Load_BIO_get_shutdown(a: PBIO): TOpenSSL_C_INT; cdecl;
 begin
   BIO_get_shutdown := LoadLibCryptoFunction('BIO_get_shutdown');
   if not assigned(BIO_get_shutdown) then
+    {$if declared(LEGACY_BIO_get_shutdown)}
+    BIO_get_shutdown := @LEGACY_BIO_get_shutdown;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_get_shutdown');
+    {$ifend}
   Result := BIO_get_shutdown(a);
 end;
 
@@ -3320,7 +3585,11 @@ procedure Load_BIO_vfree(a: PBIO); cdecl;
 begin
   BIO_vfree := LoadLibCryptoFunction('BIO_vfree');
   if not assigned(BIO_vfree) then
+    {$if declared(LEGACY_BIO_vfree)}
+    BIO_vfree := @LEGACY_BIO_vfree;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_vfree');
+    {$ifend}
   BIO_vfree(a);
 end;
 
@@ -3328,7 +3597,11 @@ function Load_BIO_up_ref(a: PBIO): TOpenSSL_C_INT; cdecl;
 begin
   BIO_up_ref := LoadLibCryptoFunction('BIO_up_ref');
   if not assigned(BIO_up_ref) then
+    {$if declared(LEGACY_BIO_up_ref)}
+    BIO_up_ref := @LEGACY_BIO_up_ref;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_up_ref');
+    {$ifend}
   Result := BIO_up_ref(a);
 end;
 
@@ -3336,7 +3609,11 @@ function Load_BIO_read(b: PBIO; data: pointer; dlen: TOpenSSL_C_INT): TOpenSSL_C
 begin
   BIO_read := LoadLibCryptoFunction('BIO_read');
   if not assigned(BIO_read) then
+    {$if declared(LEGACY_BIO_read)}
+    BIO_read := @LEGACY_BIO_read;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_read');
+    {$ifend}
   Result := BIO_read(b, data, dlen);
 end;
 
@@ -3344,7 +3621,11 @@ function Load_BIO_read_ex(b: PBIO; data: pointer; dlen: TOpenSSL_C_SIZET; readby
 begin
   BIO_read_ex := LoadLibCryptoFunction('BIO_read_ex');
   if not assigned(BIO_read_ex) then
+    {$if declared(LEGACY_BIO_read_ex)}
+    BIO_read_ex := @LEGACY_BIO_read_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_read_ex');
+    {$ifend}
   Result := BIO_read_ex(b, data, dlen, readbytes);
 end;
 
@@ -3352,7 +3633,11 @@ function Load_BIO_gets(bp: PBIO; buf: PAnsiChar; size: TOpenSSL_C_INT): TOpenSSL
 begin
   BIO_gets := LoadLibCryptoFunction('BIO_gets');
   if not assigned(BIO_gets) then
+    {$if declared(LEGACY_BIO_gets)}
+    BIO_gets := @LEGACY_BIO_gets;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_gets');
+    {$ifend}
   Result := BIO_gets(bp, buf, size);
 end;
 
@@ -3360,7 +3645,11 @@ function Load_BIO_get_line(bio: PBIO; buf: PAnsiChar; size: TOpenSSL_C_INT): TOp
 begin
   BIO_get_line := LoadLibCryptoFunction('BIO_get_line');
   if not assigned(BIO_get_line) then
+    {$if declared(LEGACY_BIO_get_line)}
+    BIO_get_line := @LEGACY_BIO_get_line;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_get_line');
+    {$ifend}
   Result := BIO_get_line(bio, buf, size);
 end;
 
@@ -3368,7 +3657,11 @@ function Load_BIO_write(b: PBIO; data: pointer; dlen: TOpenSSL_C_INT): TOpenSSL_
 begin
   BIO_write := LoadLibCryptoFunction('BIO_write');
   if not assigned(BIO_write) then
+    {$if declared(LEGACY_BIO_write)}
+    BIO_write := @LEGACY_BIO_write;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_write');
+    {$ifend}
   Result := BIO_write(b, data, dlen);
 end;
 
@@ -3376,7 +3669,11 @@ function Load_BIO_write_ex(b: PBIO; data: pointer; dlen: TOpenSSL_C_SIZET; writt
 begin
   BIO_write_ex := LoadLibCryptoFunction('BIO_write_ex');
   if not assigned(BIO_write_ex) then
+    {$if declared(LEGACY_BIO_write_ex)}
+    BIO_write_ex := @LEGACY_BIO_write_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_write_ex');
+    {$ifend}
   Result := BIO_write_ex(b, data, dlen, written);
 end;
 
@@ -3384,7 +3681,11 @@ function Load_BIO_puts(bp: PBIO; buf: PAnsiChar): TOpenSSL_C_INT; cdecl;
 begin
   BIO_puts := LoadLibCryptoFunction('BIO_puts');
   if not assigned(BIO_puts) then
+    {$if declared(LEGACY_BIO_puts)}
+    BIO_puts := @LEGACY_BIO_puts;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_puts');
+    {$ifend}
   Result := BIO_puts(bp, buf);
 end;
 
@@ -3392,7 +3693,11 @@ function Load_BIO_indent(b: PBIO; indent: TOpenSSL_C_INT; max: TOpenSSL_C_INT): 
 begin
   BIO_indent := LoadLibCryptoFunction('BIO_indent');
   if not assigned(BIO_indent) then
+    {$if declared(LEGACY_BIO_indent)}
+    BIO_indent := @LEGACY_BIO_indent;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_indent');
+    {$ifend}
   Result := BIO_indent(b, indent, max);
 end;
 
@@ -3400,7 +3705,11 @@ function Load_BIO_ctrl(bp: PBIO; cmd: TOpenSSL_C_INT; larg: TOpenSSL_C_INT; parg
 begin
   BIO_ctrl := LoadLibCryptoFunction('BIO_ctrl');
   if not assigned(BIO_ctrl) then
+    {$if declared(LEGACY_BIO_ctrl)}
+    BIO_ctrl := @LEGACY_BIO_ctrl;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_ctrl');
+    {$ifend}
   Result := BIO_ctrl(bp, cmd, larg, parg);
 end;
 
@@ -3408,7 +3717,11 @@ function Load_BIO_callback_ctrl(b: PBIO; cmd: TOpenSSL_C_INT; fp: PBIO_info_cb):
 begin
   BIO_callback_ctrl := LoadLibCryptoFunction('BIO_callback_ctrl');
   if not assigned(BIO_callback_ctrl) then
+    {$if declared(LEGACY_BIO_callback_ctrl)}
+    BIO_callback_ctrl := @LEGACY_BIO_callback_ctrl;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_callback_ctrl');
+    {$ifend}
   Result := BIO_callback_ctrl(b, cmd, fp);
 end;
 
@@ -3416,7 +3729,11 @@ function Load_BIO_ptr_ctrl(bp: PBIO; cmd: TOpenSSL_C_INT; larg: TOpenSSL_C_INT):
 begin
   BIO_ptr_ctrl := LoadLibCryptoFunction('BIO_ptr_ctrl');
   if not assigned(BIO_ptr_ctrl) then
+    {$if declared(LEGACY_BIO_ptr_ctrl)}
+    BIO_ptr_ctrl := @LEGACY_BIO_ptr_ctrl;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_ptr_ctrl');
+    {$ifend}
   Result := BIO_ptr_ctrl(bp, cmd, larg);
 end;
 
@@ -3424,7 +3741,11 @@ function Load_BIO_int_ctrl(bp: PBIO; cmd: TOpenSSL_C_INT; larg: TOpenSSL_C_INT; 
 begin
   BIO_int_ctrl := LoadLibCryptoFunction('BIO_int_ctrl');
   if not assigned(BIO_int_ctrl) then
+    {$if declared(LEGACY_BIO_int_ctrl)}
+    BIO_int_ctrl := @LEGACY_BIO_int_ctrl;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_int_ctrl');
+    {$ifend}
   Result := BIO_int_ctrl(bp, cmd, larg, iarg);
 end;
 
@@ -3432,7 +3753,11 @@ function Load_BIO_push(b: PBIO; append: PBIO): PBIO; cdecl;
 begin
   BIO_push := LoadLibCryptoFunction('BIO_push');
   if not assigned(BIO_push) then
+    {$if declared(LEGACY_BIO_push)}
+    BIO_push := @LEGACY_BIO_push;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_push');
+    {$ifend}
   Result := BIO_push(b, append);
 end;
 
@@ -3440,7 +3765,11 @@ function Load_BIO_pop(b: PBIO): PBIO; cdecl;
 begin
   BIO_pop := LoadLibCryptoFunction('BIO_pop');
   if not assigned(BIO_pop) then
+    {$if declared(LEGACY_BIO_pop)}
+    BIO_pop := @LEGACY_BIO_pop;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_pop');
+    {$ifend}
   Result := BIO_pop(b);
 end;
 
@@ -3448,7 +3777,11 @@ procedure Load_BIO_free_all(a: PBIO); cdecl;
 begin
   BIO_free_all := LoadLibCryptoFunction('BIO_free_all');
   if not assigned(BIO_free_all) then
+    {$if declared(LEGACY_BIO_free_all)}
+    BIO_free_all := @LEGACY_BIO_free_all;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_free_all');
+    {$ifend}
   BIO_free_all(a);
 end;
 
@@ -3456,7 +3789,11 @@ function Load_BIO_find_type(b: PBIO; bio_type: TOpenSSL_C_INT): PBIO; cdecl;
 begin
   BIO_find_type := LoadLibCryptoFunction('BIO_find_type');
   if not assigned(BIO_find_type) then
+    {$if declared(LEGACY_BIO_find_type)}
+    BIO_find_type := @LEGACY_BIO_find_type;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_find_type');
+    {$ifend}
   Result := BIO_find_type(b, bio_type);
 end;
 
@@ -3464,7 +3801,11 @@ function Load_BIO_next(b: PBIO): PBIO; cdecl;
 begin
   BIO_next := LoadLibCryptoFunction('BIO_next');
   if not assigned(BIO_next) then
+    {$if declared(LEGACY_BIO_next)}
+    BIO_next := @LEGACY_BIO_next;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_next');
+    {$ifend}
   Result := BIO_next(b);
 end;
 
@@ -3472,7 +3813,11 @@ procedure Load_BIO_set_next(b: PBIO; next: PBIO); cdecl;
 begin
   BIO_set_next := LoadLibCryptoFunction('BIO_set_next');
   if not assigned(BIO_set_next) then
+    {$if declared(LEGACY_BIO_set_next)}
+    BIO_set_next := @LEGACY_BIO_set_next;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_set_next');
+    {$ifend}
   BIO_set_next(b, next);
 end;
 
@@ -3480,7 +3825,11 @@ function Load_BIO_get_retry_BIO(bio: PBIO; reason: POpenSSL_C_INT): PBIO; cdecl;
 begin
   BIO_get_retry_BIO := LoadLibCryptoFunction('BIO_get_retry_BIO');
   if not assigned(BIO_get_retry_BIO) then
+    {$if declared(LEGACY_BIO_get_retry_BIO)}
+    BIO_get_retry_BIO := @LEGACY_BIO_get_retry_BIO;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_get_retry_BIO');
+    {$ifend}
   Result := BIO_get_retry_BIO(bio, reason);
 end;
 
@@ -3488,7 +3837,11 @@ function Load_BIO_get_retry_reason(bio: PBIO): TOpenSSL_C_INT; cdecl;
 begin
   BIO_get_retry_reason := LoadLibCryptoFunction('BIO_get_retry_reason');
   if not assigned(BIO_get_retry_reason) then
+    {$if declared(LEGACY_BIO_get_retry_reason)}
+    BIO_get_retry_reason := @LEGACY_BIO_get_retry_reason;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_get_retry_reason');
+    {$ifend}
   Result := BIO_get_retry_reason(bio);
 end;
 
@@ -3496,7 +3849,11 @@ procedure Load_BIO_set_retry_reason(bio: PBIO; reason: TOpenSSL_C_INT); cdecl;
 begin
   BIO_set_retry_reason := LoadLibCryptoFunction('BIO_set_retry_reason');
   if not assigned(BIO_set_retry_reason) then
+    {$if declared(LEGACY_BIO_set_retry_reason)}
+    BIO_set_retry_reason := @LEGACY_BIO_set_retry_reason;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_set_retry_reason');
+    {$ifend}
   BIO_set_retry_reason(bio, reason);
 end;
 
@@ -3504,7 +3861,11 @@ function Load_BIO_dup_chain(in_: PBIO): PBIO; cdecl;
 begin
   BIO_dup_chain := LoadLibCryptoFunction('BIO_dup_chain');
   if not assigned(BIO_dup_chain) then
+    {$if declared(LEGACY_BIO_dup_chain)}
+    BIO_dup_chain := @LEGACY_BIO_dup_chain;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_dup_chain');
+    {$ifend}
   Result := BIO_dup_chain(in_);
 end;
 
@@ -3512,7 +3873,11 @@ function Load_BIO_nread0(bio: PBIO; buf: PPAnsiChar): TOpenSSL_C_INT; cdecl;
 begin
   BIO_nread0 := LoadLibCryptoFunction('BIO_nread0');
   if not assigned(BIO_nread0) then
+    {$if declared(LEGACY_BIO_nread0)}
+    BIO_nread0 := @LEGACY_BIO_nread0;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_nread0');
+    {$ifend}
   Result := BIO_nread0(bio, buf);
 end;
 
@@ -3520,7 +3885,11 @@ function Load_BIO_nread(bio: PBIO; buf: PPAnsiChar; num: TOpenSSL_C_INT): TOpenS
 begin
   BIO_nread := LoadLibCryptoFunction('BIO_nread');
   if not assigned(BIO_nread) then
+    {$if declared(LEGACY_BIO_nread)}
+    BIO_nread := @LEGACY_BIO_nread;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_nread');
+    {$ifend}
   Result := BIO_nread(bio, buf, num);
 end;
 
@@ -3528,7 +3897,11 @@ function Load_BIO_nwrite0(bio: PBIO; buf: PPAnsiChar): TOpenSSL_C_INT; cdecl;
 begin
   BIO_nwrite0 := LoadLibCryptoFunction('BIO_nwrite0');
   if not assigned(BIO_nwrite0) then
+    {$if declared(LEGACY_BIO_nwrite0)}
+    BIO_nwrite0 := @LEGACY_BIO_nwrite0;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_nwrite0');
+    {$ifend}
   Result := BIO_nwrite0(bio, buf);
 end;
 
@@ -3536,7 +3909,11 @@ function Load_BIO_nwrite(bio: PBIO; buf: PPAnsiChar; num: TOpenSSL_C_INT): TOpen
 begin
   BIO_nwrite := LoadLibCryptoFunction('BIO_nwrite');
   if not assigned(BIO_nwrite) then
+    {$if declared(LEGACY_BIO_nwrite)}
+    BIO_nwrite := @LEGACY_BIO_nwrite;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_nwrite');
+    {$ifend}
   Result := BIO_nwrite(bio, buf, num);
 end;
 
@@ -3544,7 +3921,11 @@ function Load_BIO_s_mem: PBIO_METHOD; cdecl;
 begin
   BIO_s_mem := LoadLibCryptoFunction('BIO_s_mem');
   if not assigned(BIO_s_mem) then
+    {$if declared(LEGACY_BIO_s_mem)}
+    BIO_s_mem := @LEGACY_BIO_s_mem;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_s_mem');
+    {$ifend}
   Result := BIO_s_mem;
 end;
 
@@ -3552,7 +3933,11 @@ function Load_BIO_s_secmem: PBIO_METHOD; cdecl;
 begin
   BIO_s_secmem := LoadLibCryptoFunction('BIO_s_secmem');
   if not assigned(BIO_s_secmem) then
+    {$if declared(LEGACY_BIO_s_secmem)}
+    BIO_s_secmem := @LEGACY_BIO_s_secmem;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_s_secmem');
+    {$ifend}
   Result := BIO_s_secmem;
 end;
 
@@ -3560,7 +3945,11 @@ function Load_BIO_new_mem_buf(buf: pointer; len: TOpenSSL_C_INT): PBIO; cdecl;
 begin
   BIO_new_mem_buf := LoadLibCryptoFunction('BIO_new_mem_buf');
   if not assigned(BIO_new_mem_buf) then
+    {$if declared(LEGACY_BIO_new_mem_buf)}
+    BIO_new_mem_buf := @LEGACY_BIO_new_mem_buf;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_new_mem_buf');
+    {$ifend}
   Result := BIO_new_mem_buf(buf, len);
 end;
 
@@ -3569,7 +3958,11 @@ function Load_BIO_s_socket: PBIO_METHOD; cdecl;
 begin
   BIO_s_socket := LoadLibCryptoFunction('BIO_s_socket');
   if not assigned(BIO_s_socket) then
+    {$if declared(LEGACY_BIO_s_socket)}
+    BIO_s_socket := @LEGACY_BIO_s_socket;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_s_socket');
+    {$ifend}
   Result := BIO_s_socket;
 end;
 
@@ -3577,7 +3970,11 @@ function Load_BIO_s_connect: PBIO_METHOD; cdecl;
 begin
   BIO_s_connect := LoadLibCryptoFunction('BIO_s_connect');
   if not assigned(BIO_s_connect) then
+    {$if declared(LEGACY_BIO_s_connect)}
+    BIO_s_connect := @LEGACY_BIO_s_connect;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_s_connect');
+    {$ifend}
   Result := BIO_s_connect;
 end;
 
@@ -3585,7 +3982,11 @@ function Load_BIO_s_accept: PBIO_METHOD; cdecl;
 begin
   BIO_s_accept := LoadLibCryptoFunction('BIO_s_accept');
   if not assigned(BIO_s_accept) then
+    {$if declared(LEGACY_BIO_s_accept)}
+    BIO_s_accept := @LEGACY_BIO_s_accept;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_s_accept');
+    {$ifend}
   Result := BIO_s_accept;
 end;
 
@@ -3594,7 +3995,11 @@ function Load_BIO_s_fd: PBIO_METHOD; cdecl;
 begin
   BIO_s_fd := LoadLibCryptoFunction('BIO_s_fd');
   if not assigned(BIO_s_fd) then
+    {$if declared(LEGACY_BIO_s_fd)}
+    BIO_s_fd := @LEGACY_BIO_s_fd;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_s_fd');
+    {$ifend}
   Result := BIO_s_fd;
 end;
 
@@ -3602,7 +4007,11 @@ function Load_BIO_s_log: PBIO_METHOD; cdecl;
 begin
   BIO_s_log := LoadLibCryptoFunction('BIO_s_log');
   if not assigned(BIO_s_log) then
+    {$if declared(LEGACY_BIO_s_log)}
+    BIO_s_log := @LEGACY_BIO_s_log;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_s_log');
+    {$ifend}
   Result := BIO_s_log;
 end;
 
@@ -3610,7 +4019,11 @@ function Load_BIO_s_bio: PBIO_METHOD; cdecl;
 begin
   BIO_s_bio := LoadLibCryptoFunction('BIO_s_bio');
   if not assigned(BIO_s_bio) then
+    {$if declared(LEGACY_BIO_s_bio)}
+    BIO_s_bio := @LEGACY_BIO_s_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_s_bio');
+    {$ifend}
   Result := BIO_s_bio;
 end;
 
@@ -3618,7 +4031,11 @@ function Load_BIO_s_null: PBIO_METHOD; cdecl;
 begin
   BIO_s_null := LoadLibCryptoFunction('BIO_s_null');
   if not assigned(BIO_s_null) then
+    {$if declared(LEGACY_BIO_s_null)}
+    BIO_s_null := @LEGACY_BIO_s_null;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_s_null');
+    {$ifend}
   Result := BIO_s_null;
 end;
 
@@ -3626,7 +4043,11 @@ function Load_BIO_f_null: PBIO_METHOD; cdecl;
 begin
   BIO_f_null := LoadLibCryptoFunction('BIO_f_null');
   if not assigned(BIO_f_null) then
+    {$if declared(LEGACY_BIO_f_null)}
+    BIO_f_null := @LEGACY_BIO_f_null;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_f_null');
+    {$ifend}
   Result := BIO_f_null;
 end;
 
@@ -3634,7 +4055,11 @@ function Load_BIO_f_buffer: PBIO_METHOD; cdecl;
 begin
   BIO_f_buffer := LoadLibCryptoFunction('BIO_f_buffer');
   if not assigned(BIO_f_buffer) then
+    {$if declared(LEGACY_BIO_f_buffer)}
+    BIO_f_buffer := @LEGACY_BIO_f_buffer;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_f_buffer');
+    {$ifend}
   Result := BIO_f_buffer;
 end;
 
@@ -3642,7 +4067,11 @@ function Load_BIO_f_readbuffer: PBIO_METHOD; cdecl;
 begin
   BIO_f_readbuffer := LoadLibCryptoFunction('BIO_f_readbuffer');
   if not assigned(BIO_f_readbuffer) then
+    {$if declared(LEGACY_BIO_f_readbuffer)}
+    BIO_f_readbuffer := @LEGACY_BIO_f_readbuffer;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_f_readbuffer');
+    {$ifend}
   Result := BIO_f_readbuffer;
 end;
 
@@ -3650,7 +4079,11 @@ function Load_BIO_f_linebuffer: PBIO_METHOD; cdecl;
 begin
   BIO_f_linebuffer := LoadLibCryptoFunction('BIO_f_linebuffer');
   if not assigned(BIO_f_linebuffer) then
+    {$if declared(LEGACY_BIO_f_linebuffer)}
+    BIO_f_linebuffer := @LEGACY_BIO_f_linebuffer;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_f_linebuffer');
+    {$ifend}
   Result := BIO_f_linebuffer;
 end;
 
@@ -3658,7 +4091,11 @@ function Load_BIO_f_nbio_test: PBIO_METHOD; cdecl;
 begin
   BIO_f_nbio_test := LoadLibCryptoFunction('BIO_f_nbio_test');
   if not assigned(BIO_f_nbio_test) then
+    {$if declared(LEGACY_BIO_f_nbio_test)}
+    BIO_f_nbio_test := @LEGACY_BIO_f_nbio_test;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_f_nbio_test');
+    {$ifend}
   Result := BIO_f_nbio_test;
 end;
 
@@ -3666,7 +4103,11 @@ function Load_BIO_f_prefix: PBIO_METHOD; cdecl;
 begin
   BIO_f_prefix := LoadLibCryptoFunction('BIO_f_prefix');
   if not assigned(BIO_f_prefix) then
+    {$if declared(LEGACY_BIO_f_prefix)}
+    BIO_f_prefix := @LEGACY_BIO_f_prefix;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_f_prefix');
+    {$ifend}
   Result := BIO_f_prefix;
 end;
 
@@ -3674,7 +4115,11 @@ function Load_BIO_s_core: PBIO_METHOD; cdecl;
 begin
   BIO_s_core := LoadLibCryptoFunction('BIO_s_core');
   if not assigned(BIO_s_core) then
+    {$if declared(LEGACY_BIO_s_core)}
+    BIO_s_core := @LEGACY_BIO_s_core;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_s_core');
+    {$ifend}
   Result := BIO_s_core;
 end;
 
@@ -3683,7 +4128,11 @@ function Load_BIO_s_datagram: PBIO_METHOD; cdecl;
 begin
   BIO_s_datagram := LoadLibCryptoFunction('BIO_s_datagram');
   if not assigned(BIO_s_datagram) then
+    {$if declared(LEGACY_BIO_s_datagram)}
+    BIO_s_datagram := @LEGACY_BIO_s_datagram;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_s_datagram');
+    {$ifend}
   Result := BIO_s_datagram;
 end;
 
@@ -3691,7 +4140,11 @@ function Load_BIO_dgram_non_fatal_error(error: TOpenSSL_C_INT): TOpenSSL_C_INT; 
 begin
   BIO_dgram_non_fatal_error := LoadLibCryptoFunction('BIO_dgram_non_fatal_error');
   if not assigned(BIO_dgram_non_fatal_error) then
+    {$if declared(LEGACY_BIO_dgram_non_fatal_error)}
+    BIO_dgram_non_fatal_error := @LEGACY_BIO_dgram_non_fatal_error;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_dgram_non_fatal_error');
+    {$ifend}
   Result := BIO_dgram_non_fatal_error(error);
 end;
 
@@ -3699,7 +4152,11 @@ function Load_BIO_new_dgram(fd: TOpenSSL_C_INT; close_flag: TOpenSSL_C_INT): PBI
 begin
   BIO_new_dgram := LoadLibCryptoFunction('BIO_new_dgram');
   if not assigned(BIO_new_dgram) then
+    {$if declared(LEGACY_BIO_new_dgram)}
+    BIO_new_dgram := @LEGACY_BIO_new_dgram;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_new_dgram');
+    {$ifend}
   Result := BIO_new_dgram(fd, close_flag);
 end;
 
@@ -3708,7 +4165,11 @@ function Load_BIO_s_datagram_sctp: PBIO_METHOD; cdecl;
 begin
   BIO_s_datagram_sctp := LoadLibCryptoFunction('BIO_s_datagram_sctp');
   if not assigned(BIO_s_datagram_sctp) then
+    {$if declared(LEGACY_BIO_s_datagram_sctp)}
+    BIO_s_datagram_sctp := @LEGACY_BIO_s_datagram_sctp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_s_datagram_sctp');
+    {$ifend}
   Result := BIO_s_datagram_sctp;
 end;
 
@@ -3716,7 +4177,11 @@ function Load_BIO_new_dgram_sctp(fd: TOpenSSL_C_INT; close_flag: TOpenSSL_C_INT)
 begin
   BIO_new_dgram_sctp := LoadLibCryptoFunction('BIO_new_dgram_sctp');
   if not assigned(BIO_new_dgram_sctp) then
+    {$if declared(LEGACY_BIO_new_dgram_sctp)}
+    BIO_new_dgram_sctp := @LEGACY_BIO_new_dgram_sctp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_new_dgram_sctp');
+    {$ifend}
   Result := BIO_new_dgram_sctp(fd, close_flag);
 end;
 
@@ -3724,7 +4189,11 @@ function Load_BIO_dgram_is_sctp(bio: PBIO): TOpenSSL_C_INT; cdecl;
 begin
   BIO_dgram_is_sctp := LoadLibCryptoFunction('BIO_dgram_is_sctp');
   if not assigned(BIO_dgram_is_sctp) then
+    {$if declared(LEGACY_BIO_dgram_is_sctp)}
+    BIO_dgram_is_sctp := @LEGACY_BIO_dgram_is_sctp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_dgram_is_sctp');
+    {$ifend}
   Result := BIO_dgram_is_sctp(bio);
 end;
 
@@ -3732,7 +4201,11 @@ function Load_BIO_dgram_sctp_notification_cb(b: PBIO; handle_notifications: TBIO
 begin
   BIO_dgram_sctp_notification_cb := LoadLibCryptoFunction('BIO_dgram_sctp_notification_cb');
   if not assigned(BIO_dgram_sctp_notification_cb) then
+    {$if declared(LEGACY_BIO_dgram_sctp_notification_cb)}
+    BIO_dgram_sctp_notification_cb := @LEGACY_BIO_dgram_sctp_notification_cb;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_dgram_sctp_notification_cb');
+    {$ifend}
   Result := BIO_dgram_sctp_notification_cb(b, handle_notifications, context);
 end;
 
@@ -3740,7 +4213,11 @@ function Load_BIO_dgram_sctp_wait_for_dry(b: PBIO): TOpenSSL_C_INT; cdecl;
 begin
   BIO_dgram_sctp_wait_for_dry := LoadLibCryptoFunction('BIO_dgram_sctp_wait_for_dry');
   if not assigned(BIO_dgram_sctp_wait_for_dry) then
+    {$if declared(LEGACY_BIO_dgram_sctp_wait_for_dry)}
+    BIO_dgram_sctp_wait_for_dry := @LEGACY_BIO_dgram_sctp_wait_for_dry;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_dgram_sctp_wait_for_dry');
+    {$ifend}
   Result := BIO_dgram_sctp_wait_for_dry(b);
 end;
 
@@ -3748,7 +4225,11 @@ function Load_BIO_dgram_sctp_msg_waiting(b: PBIO): TOpenSSL_C_INT; cdecl;
 begin
   BIO_dgram_sctp_msg_waiting := LoadLibCryptoFunction('BIO_dgram_sctp_msg_waiting');
   if not assigned(BIO_dgram_sctp_msg_waiting) then
+    {$if declared(LEGACY_BIO_dgram_sctp_msg_waiting)}
+    BIO_dgram_sctp_msg_waiting := @LEGACY_BIO_dgram_sctp_msg_waiting;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_dgram_sctp_msg_waiting');
+    {$ifend}
   Result := BIO_dgram_sctp_msg_waiting(b);
 end;
 
@@ -3759,7 +4240,11 @@ function Load_BIO_sock_should_retry(i: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
 begin
   BIO_sock_should_retry := LoadLibCryptoFunction('BIO_sock_should_retry');
   if not assigned(BIO_sock_should_retry) then
+    {$if declared(LEGACY_BIO_sock_should_retry)}
+    BIO_sock_should_retry := @LEGACY_BIO_sock_should_retry;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_sock_should_retry');
+    {$ifend}
   Result := BIO_sock_should_retry(i);
 end;
 
@@ -3767,7 +4252,11 @@ function Load_BIO_sock_non_fatal_error(error: TOpenSSL_C_INT): TOpenSSL_C_INT; c
 begin
   BIO_sock_non_fatal_error := LoadLibCryptoFunction('BIO_sock_non_fatal_error');
   if not assigned(BIO_sock_non_fatal_error) then
+    {$if declared(LEGACY_BIO_sock_non_fatal_error)}
+    BIO_sock_non_fatal_error := @LEGACY_BIO_sock_non_fatal_error;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_sock_non_fatal_error');
+    {$ifend}
   Result := BIO_sock_non_fatal_error(error);
 end;
 
@@ -3775,7 +4264,11 @@ function Load_BIO_socket_wait(fd: TOpenSSL_C_INT; for_read: TOpenSSL_C_INT; max_
 begin
   BIO_socket_wait := LoadLibCryptoFunction('BIO_socket_wait');
   if not assigned(BIO_socket_wait) then
+    {$if declared(LEGACY_BIO_socket_wait)}
+    BIO_socket_wait := @LEGACY_BIO_socket_wait;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_socket_wait');
+    {$ifend}
   Result := BIO_socket_wait(fd, for_read, max_time);
 end;
 
@@ -3784,7 +4277,11 @@ function Load_BIO_wait(bio: PBIO; max_time: TOpenSSL_C_TIMET; nap_milliseconds: 
 begin
   BIO_wait := LoadLibCryptoFunction('BIO_wait');
   if not assigned(BIO_wait) then
+    {$if declared(LEGACY_BIO_wait)}
+    BIO_wait := @LEGACY_BIO_wait;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_wait');
+    {$ifend}
   Result := BIO_wait(bio, max_time, nap_milliseconds);
 end;
 
@@ -3792,7 +4289,11 @@ function Load_BIO_do_connect_retry(bio: PBIO; timeout: TOpenSSL_C_INT; nap_milli
 begin
   BIO_do_connect_retry := LoadLibCryptoFunction('BIO_do_connect_retry');
   if not assigned(BIO_do_connect_retry) then
+    {$if declared(LEGACY_BIO_do_connect_retry)}
+    BIO_do_connect_retry := @LEGACY_BIO_do_connect_retry;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_do_connect_retry');
+    {$ifend}
   Result := BIO_do_connect_retry(bio, timeout, nap_milliseconds);
 end;
 
@@ -3800,7 +4301,11 @@ function Load_BIO_fd_should_retry(i: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
 begin
   BIO_fd_should_retry := LoadLibCryptoFunction('BIO_fd_should_retry');
   if not assigned(BIO_fd_should_retry) then
+    {$if declared(LEGACY_BIO_fd_should_retry)}
+    BIO_fd_should_retry := @LEGACY_BIO_fd_should_retry;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_fd_should_retry');
+    {$ifend}
   Result := BIO_fd_should_retry(i);
 end;
 
@@ -3808,7 +4313,11 @@ function Load_BIO_fd_non_fatal_error(error: TOpenSSL_C_INT): TOpenSSL_C_INT; cde
 begin
   BIO_fd_non_fatal_error := LoadLibCryptoFunction('BIO_fd_non_fatal_error');
   if not assigned(BIO_fd_non_fatal_error) then
+    {$if declared(LEGACY_BIO_fd_non_fatal_error)}
+    BIO_fd_non_fatal_error := @LEGACY_BIO_fd_non_fatal_error;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_fd_non_fatal_error');
+    {$ifend}
   Result := BIO_fd_non_fatal_error(error);
 end;
 
@@ -3816,7 +4325,11 @@ function Load_BIO_dump_cb(cb: TFuncType000; u: pointer; s: pointer; len: TOpenSS
 begin
   BIO_dump_cb := LoadLibCryptoFunction('BIO_dump_cb');
   if not assigned(BIO_dump_cb) then
+    {$if declared(LEGACY_BIO_dump_cb)}
+    BIO_dump_cb := @LEGACY_BIO_dump_cb;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_dump_cb');
+    {$ifend}
   Result := BIO_dump_cb(cb, u, s, len);
 end;
 
@@ -3824,7 +4337,11 @@ function Load_BIO_dump_indent_cb(cb: TFuncType001; u: pointer; s: pointer; len: 
 begin
   BIO_dump_indent_cb := LoadLibCryptoFunction('BIO_dump_indent_cb');
   if not assigned(BIO_dump_indent_cb) then
+    {$if declared(LEGACY_BIO_dump_indent_cb)}
+    BIO_dump_indent_cb := @LEGACY_BIO_dump_indent_cb;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_dump_indent_cb');
+    {$ifend}
   Result := BIO_dump_indent_cb(cb, u, s, len, indent);
 end;
 
@@ -3832,7 +4349,11 @@ function Load_BIO_dump(b: PBIO; bytes: pointer; len: TOpenSSL_C_INT): TOpenSSL_C
 begin
   BIO_dump := LoadLibCryptoFunction('BIO_dump');
   if not assigned(BIO_dump) then
+    {$if declared(LEGACY_BIO_dump)}
+    BIO_dump := @LEGACY_BIO_dump;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_dump');
+    {$ifend}
   Result := BIO_dump(b, bytes, len);
 end;
 
@@ -3840,7 +4361,11 @@ function Load_BIO_dump_indent(b: PBIO; bytes: pointer; len: TOpenSSL_C_INT; inde
 begin
   BIO_dump_indent := LoadLibCryptoFunction('BIO_dump_indent');
   if not assigned(BIO_dump_indent) then
+    {$if declared(LEGACY_BIO_dump_indent)}
+    BIO_dump_indent := @LEGACY_BIO_dump_indent;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_dump_indent');
+    {$ifend}
   Result := BIO_dump_indent(b, bytes, len, indent);
 end;
 
@@ -3849,7 +4374,11 @@ function Load_BIO_dump_fp(fp: PFILE; s: pointer; len: TOpenSSL_C_INT): TOpenSSL_
 begin
   BIO_dump_fp := LoadLibCryptoFunction('BIO_dump_fp');
   if not assigned(BIO_dump_fp) then
+    {$if declared(LEGACY_BIO_dump_fp)}
+    BIO_dump_fp := @LEGACY_BIO_dump_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_dump_fp');
+    {$ifend}
   Result := BIO_dump_fp(fp, s, len);
 end;
 
@@ -3857,7 +4386,11 @@ function Load_BIO_dump_indent_fp(fp: PFILE; s: pointer; len: TOpenSSL_C_INT; ind
 begin
   BIO_dump_indent_fp := LoadLibCryptoFunction('BIO_dump_indent_fp');
   if not assigned(BIO_dump_indent_fp) then
+    {$if declared(LEGACY_BIO_dump_indent_fp)}
+    BIO_dump_indent_fp := @LEGACY_BIO_dump_indent_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_dump_indent_fp');
+    {$ifend}
   Result := BIO_dump_indent_fp(fp, s, len, indent);
 end;
 
@@ -3866,7 +4399,11 @@ function Load_BIO_hex_string(out_: PBIO; indent: TOpenSSL_C_INT; width: TOpenSSL
 begin
   BIO_hex_string := LoadLibCryptoFunction('BIO_hex_string');
   if not assigned(BIO_hex_string) then
+    {$if declared(LEGACY_BIO_hex_string)}
+    BIO_hex_string := @LEGACY_BIO_hex_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_hex_string');
+    {$ifend}
   Result := BIO_hex_string(out_, indent, width, data, datalen);
 end;
 
@@ -3875,7 +4412,11 @@ function Load_BIO_ADDR_new: PBIO_ADDR; cdecl;
 begin
   BIO_ADDR_new := LoadLibCryptoFunction('BIO_ADDR_new');
   if not assigned(BIO_ADDR_new) then
+    {$if declared(LEGACY_BIO_ADDR_new)}
+    BIO_ADDR_new := @LEGACY_BIO_ADDR_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_ADDR_new');
+    {$ifend}
   Result := BIO_ADDR_new;
 end;
 
@@ -3883,7 +4424,11 @@ function Load_BIO_ADDR_rawmake(ap: PBIO_ADDR; family: TOpenSSL_C_INT; where: poi
 begin
   BIO_ADDR_rawmake := LoadLibCryptoFunction('BIO_ADDR_rawmake');
   if not assigned(BIO_ADDR_rawmake) then
+    {$if declared(LEGACY_BIO_ADDR_rawmake)}
+    BIO_ADDR_rawmake := @LEGACY_BIO_ADDR_rawmake;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_ADDR_rawmake');
+    {$ifend}
   Result := BIO_ADDR_rawmake(ap, family, where, wherelen, port);
 end;
 
@@ -3891,7 +4436,11 @@ procedure Load_BIO_ADDR_free(_param1: PBIO_ADDR); cdecl;
 begin
   BIO_ADDR_free := LoadLibCryptoFunction('BIO_ADDR_free');
   if not assigned(BIO_ADDR_free) then
+    {$if declared(LEGACY_BIO_ADDR_free)}
+    BIO_ADDR_free := @LEGACY_BIO_ADDR_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_ADDR_free');
+    {$ifend}
   BIO_ADDR_free(_param1);
 end;
 
@@ -3899,7 +4448,11 @@ procedure Load_BIO_ADDR_clear(ap: PBIO_ADDR); cdecl;
 begin
   BIO_ADDR_clear := LoadLibCryptoFunction('BIO_ADDR_clear');
   if not assigned(BIO_ADDR_clear) then
+    {$if declared(LEGACY_BIO_ADDR_clear)}
+    BIO_ADDR_clear := @LEGACY_BIO_ADDR_clear;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_ADDR_clear');
+    {$ifend}
   BIO_ADDR_clear(ap);
 end;
 
@@ -3907,7 +4460,11 @@ function Load_BIO_ADDR_family(ap: PBIO_ADDR): TOpenSSL_C_INT; cdecl;
 begin
   BIO_ADDR_family := LoadLibCryptoFunction('BIO_ADDR_family');
   if not assigned(BIO_ADDR_family) then
+    {$if declared(LEGACY_BIO_ADDR_family)}
+    BIO_ADDR_family := @LEGACY_BIO_ADDR_family;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_ADDR_family');
+    {$ifend}
   Result := BIO_ADDR_family(ap);
 end;
 
@@ -3915,7 +4472,11 @@ function Load_BIO_ADDR_rawaddress(ap: PBIO_ADDR; p: pointer; l: POpenSSL_C_SIZET
 begin
   BIO_ADDR_rawaddress := LoadLibCryptoFunction('BIO_ADDR_rawaddress');
   if not assigned(BIO_ADDR_rawaddress) then
+    {$if declared(LEGACY_BIO_ADDR_rawaddress)}
+    BIO_ADDR_rawaddress := @LEGACY_BIO_ADDR_rawaddress;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_ADDR_rawaddress');
+    {$ifend}
   Result := BIO_ADDR_rawaddress(ap, p, l);
 end;
 
@@ -3923,7 +4484,11 @@ function Load_BIO_ADDR_rawport(ap: PBIO_ADDR): TOpenSSL_C_UINT16; cdecl;
 begin
   BIO_ADDR_rawport := LoadLibCryptoFunction('BIO_ADDR_rawport');
   if not assigned(BIO_ADDR_rawport) then
+    {$if declared(LEGACY_BIO_ADDR_rawport)}
+    BIO_ADDR_rawport := @LEGACY_BIO_ADDR_rawport;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_ADDR_rawport');
+    {$ifend}
   Result := BIO_ADDR_rawport(ap);
 end;
 
@@ -3931,7 +4496,11 @@ function Load_BIO_ADDR_hostname_string(ap: PBIO_ADDR; numeric: TOpenSSL_C_INT): 
 begin
   BIO_ADDR_hostname_string := LoadLibCryptoFunction('BIO_ADDR_hostname_string');
   if not assigned(BIO_ADDR_hostname_string) then
+    {$if declared(LEGACY_BIO_ADDR_hostname_string)}
+    BIO_ADDR_hostname_string := @LEGACY_BIO_ADDR_hostname_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_ADDR_hostname_string');
+    {$ifend}
   Result := BIO_ADDR_hostname_string(ap, numeric);
 end;
 
@@ -3939,7 +4508,11 @@ function Load_BIO_ADDR_service_string(ap: PBIO_ADDR; numeric: TOpenSSL_C_INT): P
 begin
   BIO_ADDR_service_string := LoadLibCryptoFunction('BIO_ADDR_service_string');
   if not assigned(BIO_ADDR_service_string) then
+    {$if declared(LEGACY_BIO_ADDR_service_string)}
+    BIO_ADDR_service_string := @LEGACY_BIO_ADDR_service_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_ADDR_service_string');
+    {$ifend}
   Result := BIO_ADDR_service_string(ap, numeric);
 end;
 
@@ -3947,7 +4520,11 @@ function Load_BIO_ADDR_path_string(ap: PBIO_ADDR): PAnsiChar; cdecl;
 begin
   BIO_ADDR_path_string := LoadLibCryptoFunction('BIO_ADDR_path_string');
   if not assigned(BIO_ADDR_path_string) then
+    {$if declared(LEGACY_BIO_ADDR_path_string)}
+    BIO_ADDR_path_string := @LEGACY_BIO_ADDR_path_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_ADDR_path_string');
+    {$ifend}
   Result := BIO_ADDR_path_string(ap);
 end;
 
@@ -3955,7 +4532,11 @@ function Load_BIO_ADDRINFO_next(bai: PBIO_ADDRINFO): PBIO_ADDRINFO; cdecl;
 begin
   BIO_ADDRINFO_next := LoadLibCryptoFunction('BIO_ADDRINFO_next');
   if not assigned(BIO_ADDRINFO_next) then
+    {$if declared(LEGACY_BIO_ADDRINFO_next)}
+    BIO_ADDRINFO_next := @LEGACY_BIO_ADDRINFO_next;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_ADDRINFO_next');
+    {$ifend}
   Result := BIO_ADDRINFO_next(bai);
 end;
 
@@ -3963,7 +4544,11 @@ function Load_BIO_ADDRINFO_family(bai: PBIO_ADDRINFO): TOpenSSL_C_INT; cdecl;
 begin
   BIO_ADDRINFO_family := LoadLibCryptoFunction('BIO_ADDRINFO_family');
   if not assigned(BIO_ADDRINFO_family) then
+    {$if declared(LEGACY_BIO_ADDRINFO_family)}
+    BIO_ADDRINFO_family := @LEGACY_BIO_ADDRINFO_family;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_ADDRINFO_family');
+    {$ifend}
   Result := BIO_ADDRINFO_family(bai);
 end;
 
@@ -3971,7 +4556,11 @@ function Load_BIO_ADDRINFO_socktype(bai: PBIO_ADDRINFO): TOpenSSL_C_INT; cdecl;
 begin
   BIO_ADDRINFO_socktype := LoadLibCryptoFunction('BIO_ADDRINFO_socktype');
   if not assigned(BIO_ADDRINFO_socktype) then
+    {$if declared(LEGACY_BIO_ADDRINFO_socktype)}
+    BIO_ADDRINFO_socktype := @LEGACY_BIO_ADDRINFO_socktype;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_ADDRINFO_socktype');
+    {$ifend}
   Result := BIO_ADDRINFO_socktype(bai);
 end;
 
@@ -3979,7 +4568,11 @@ function Load_BIO_ADDRINFO_protocol(bai: PBIO_ADDRINFO): TOpenSSL_C_INT; cdecl;
 begin
   BIO_ADDRINFO_protocol := LoadLibCryptoFunction('BIO_ADDRINFO_protocol');
   if not assigned(BIO_ADDRINFO_protocol) then
+    {$if declared(LEGACY_BIO_ADDRINFO_protocol)}
+    BIO_ADDRINFO_protocol := @LEGACY_BIO_ADDRINFO_protocol;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_ADDRINFO_protocol');
+    {$ifend}
   Result := BIO_ADDRINFO_protocol(bai);
 end;
 
@@ -3987,7 +4580,11 @@ function Load_BIO_ADDRINFO_address(bai: PBIO_ADDRINFO): PBIO_ADDR; cdecl;
 begin
   BIO_ADDRINFO_address := LoadLibCryptoFunction('BIO_ADDRINFO_address');
   if not assigned(BIO_ADDRINFO_address) then
+    {$if declared(LEGACY_BIO_ADDRINFO_address)}
+    BIO_ADDRINFO_address := @LEGACY_BIO_ADDRINFO_address;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_ADDRINFO_address');
+    {$ifend}
   Result := BIO_ADDRINFO_address(bai);
 end;
 
@@ -3995,7 +4592,11 @@ procedure Load_BIO_ADDRINFO_free(bai: PBIO_ADDRINFO); cdecl;
 begin
   BIO_ADDRINFO_free := LoadLibCryptoFunction('BIO_ADDRINFO_free');
   if not assigned(BIO_ADDRINFO_free) then
+    {$if declared(LEGACY_BIO_ADDRINFO_free)}
+    BIO_ADDRINFO_free := @LEGACY_BIO_ADDRINFO_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_ADDRINFO_free');
+    {$ifend}
   BIO_ADDRINFO_free(bai);
 end;
 
@@ -4003,7 +4604,11 @@ function Load_BIO_parse_hostserv(hostserv: PAnsiChar; host: PPAnsiChar; service:
 begin
   BIO_parse_hostserv := LoadLibCryptoFunction('BIO_parse_hostserv');
   if not assigned(BIO_parse_hostserv) then
+    {$if declared(LEGACY_BIO_parse_hostserv)}
+    BIO_parse_hostserv := @LEGACY_BIO_parse_hostserv;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_parse_hostserv');
+    {$ifend}
   Result := BIO_parse_hostserv(hostserv, host, service, hostserv_prio);
 end;
 
@@ -4011,7 +4616,11 @@ function Load_BIO_lookup(host: PAnsiChar; service: PAnsiChar; lookup_type: TBIO_
 begin
   BIO_lookup := LoadLibCryptoFunction('BIO_lookup');
   if not assigned(BIO_lookup) then
+    {$if declared(LEGACY_BIO_lookup)}
+    BIO_lookup := @LEGACY_BIO_lookup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_lookup');
+    {$ifend}
   Result := BIO_lookup(host, service, lookup_type, family, socktype, res);
 end;
 
@@ -4019,7 +4628,11 @@ function Load_BIO_lookup_ex(host: PAnsiChar; service: PAnsiChar; lookup_type: TO
 begin
   BIO_lookup_ex := LoadLibCryptoFunction('BIO_lookup_ex');
   if not assigned(BIO_lookup_ex) then
+    {$if declared(LEGACY_BIO_lookup_ex)}
+    BIO_lookup_ex := @LEGACY_BIO_lookup_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_lookup_ex');
+    {$ifend}
   Result := BIO_lookup_ex(host, service, lookup_type, family, socktype, protocol, res);
 end;
 
@@ -4027,7 +4640,11 @@ function Load_BIO_sock_error(sock: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
 begin
   BIO_sock_error := LoadLibCryptoFunction('BIO_sock_error');
   if not assigned(BIO_sock_error) then
+    {$if declared(LEGACY_BIO_sock_error)}
+    BIO_sock_error := @LEGACY_BIO_sock_error;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_sock_error');
+    {$ifend}
   Result := BIO_sock_error(sock);
 end;
 
@@ -4035,7 +4652,11 @@ function Load_BIO_socket_ioctl(fd: TOpenSSL_C_INT; type_: TOpenSSL_C_INT; arg: p
 begin
   BIO_socket_ioctl := LoadLibCryptoFunction('BIO_socket_ioctl');
   if not assigned(BIO_socket_ioctl) then
+    {$if declared(LEGACY_BIO_socket_ioctl)}
+    BIO_socket_ioctl := @LEGACY_BIO_socket_ioctl;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_socket_ioctl');
+    {$ifend}
   Result := BIO_socket_ioctl(fd, type_, arg);
 end;
 
@@ -4043,7 +4664,11 @@ function Load_BIO_socket_nbio(fd: TOpenSSL_C_INT; mode: TOpenSSL_C_INT): TOpenSS
 begin
   BIO_socket_nbio := LoadLibCryptoFunction('BIO_socket_nbio');
   if not assigned(BIO_socket_nbio) then
+    {$if declared(LEGACY_BIO_socket_nbio)}
+    BIO_socket_nbio := @LEGACY_BIO_socket_nbio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_socket_nbio');
+    {$ifend}
   Result := BIO_socket_nbio(fd, mode);
 end;
 
@@ -4051,7 +4676,11 @@ function Load_BIO_sock_init: TOpenSSL_C_INT; cdecl;
 begin
   BIO_sock_init := LoadLibCryptoFunction('BIO_sock_init');
   if not assigned(BIO_sock_init) then
+    {$if declared(LEGACY_BIO_sock_init)}
+    BIO_sock_init := @LEGACY_BIO_sock_init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_sock_init');
+    {$ifend}
   Result := BIO_sock_init;
 end;
 
@@ -4059,7 +4688,11 @@ function Load_BIO_set_tcp_ndelay(sock: TOpenSSL_C_INT; turn_on: TOpenSSL_C_INT):
 begin
   BIO_set_tcp_ndelay := LoadLibCryptoFunction('BIO_set_tcp_ndelay');
   if not assigned(BIO_set_tcp_ndelay) then
+    {$if declared(LEGACY_BIO_set_tcp_ndelay)}
+    BIO_set_tcp_ndelay := @LEGACY_BIO_set_tcp_ndelay;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_set_tcp_ndelay');
+    {$ifend}
   Result := BIO_set_tcp_ndelay(sock, turn_on);
 end;
 
@@ -4068,7 +4701,11 @@ function Load_BIO_gethostbyname(name: PAnsiChar): Phostent; cdecl;
 begin
   BIO_gethostbyname := LoadLibCryptoFunction('BIO_gethostbyname');
   if not assigned(BIO_gethostbyname) then
+    {$if declared(LEGACY_BIO_gethostbyname)}
+    BIO_gethostbyname := @LEGACY_BIO_gethostbyname;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_gethostbyname');
+    {$ifend}
   Result := BIO_gethostbyname(name);
 end;
 
@@ -4076,7 +4713,11 @@ function Load_BIO_get_port(str: PAnsiChar; port_ptr: POpenSSL_C_UINT16): TOpenSS
 begin
   BIO_get_port := LoadLibCryptoFunction('BIO_get_port');
   if not assigned(BIO_get_port) then
+    {$if declared(LEGACY_BIO_get_port)}
+    BIO_get_port := @LEGACY_BIO_get_port;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_get_port');
+    {$ifend}
   Result := BIO_get_port(str, port_ptr);
 end;
 
@@ -4084,7 +4725,11 @@ function Load_BIO_get_host_ip(str: PAnsiChar; ip: Pbyte): TOpenSSL_C_INT; cdecl;
 begin
   BIO_get_host_ip := LoadLibCryptoFunction('BIO_get_host_ip');
   if not assigned(BIO_get_host_ip) then
+    {$if declared(LEGACY_BIO_get_host_ip)}
+    BIO_get_host_ip := @LEGACY_BIO_get_host_ip;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_get_host_ip');
+    {$ifend}
   Result := BIO_get_host_ip(str, ip);
 end;
 
@@ -4092,7 +4737,11 @@ function Load_BIO_get_accept_socket(host_port: PAnsiChar; mode: TOpenSSL_C_INT):
 begin
   BIO_get_accept_socket := LoadLibCryptoFunction('BIO_get_accept_socket');
   if not assigned(BIO_get_accept_socket) then
+    {$if declared(LEGACY_BIO_get_accept_socket)}
+    BIO_get_accept_socket := @LEGACY_BIO_get_accept_socket;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_get_accept_socket');
+    {$ifend}
   Result := BIO_get_accept_socket(host_port, mode);
 end;
 
@@ -4100,7 +4749,11 @@ function Load_BIO_accept(sock: TOpenSSL_C_INT; ip_port: PPAnsiChar): TOpenSSL_C_
 begin
   BIO_accept := LoadLibCryptoFunction('BIO_accept');
   if not assigned(BIO_accept) then
+    {$if declared(LEGACY_BIO_accept)}
+    BIO_accept := @LEGACY_BIO_accept;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_accept');
+    {$ifend}
   Result := BIO_accept(sock, ip_port);
 end;
 
@@ -4109,7 +4762,11 @@ function Load_BIO_sock_info(sock: TOpenSSL_C_INT; type_: TBIO_sock_info_type; in
 begin
   BIO_sock_info := LoadLibCryptoFunction('BIO_sock_info');
   if not assigned(BIO_sock_info) then
+    {$if declared(LEGACY_BIO_sock_info)}
+    BIO_sock_info := @LEGACY_BIO_sock_info;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_sock_info');
+    {$ifend}
   Result := BIO_sock_info(sock, type_, info);
 end;
 
@@ -4117,7 +4774,11 @@ function Load_BIO_socket(domain: TOpenSSL_C_INT; socktype: TOpenSSL_C_INT; proto
 begin
   BIO_socket := LoadLibCryptoFunction('BIO_socket');
   if not assigned(BIO_socket) then
+    {$if declared(LEGACY_BIO_socket)}
+    BIO_socket := @LEGACY_BIO_socket;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_socket');
+    {$ifend}
   Result := BIO_socket(domain, socktype, protocol, options);
 end;
 
@@ -4125,7 +4786,11 @@ function Load_BIO_connect(sock: TOpenSSL_C_INT; addr: PBIO_ADDR; options: TOpenS
 begin
   BIO_connect := LoadLibCryptoFunction('BIO_connect');
   if not assigned(BIO_connect) then
+    {$if declared(LEGACY_BIO_connect)}
+    BIO_connect := @LEGACY_BIO_connect;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_connect');
+    {$ifend}
   Result := BIO_connect(sock, addr, options);
 end;
 
@@ -4133,7 +4798,11 @@ function Load_BIO_bind(sock: TOpenSSL_C_INT; addr: PBIO_ADDR; options: TOpenSSL_
 begin
   BIO_bind := LoadLibCryptoFunction('BIO_bind');
   if not assigned(BIO_bind) then
+    {$if declared(LEGACY_BIO_bind)}
+    BIO_bind := @LEGACY_BIO_bind;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_bind');
+    {$ifend}
   Result := BIO_bind(sock, addr, options);
 end;
 
@@ -4141,7 +4810,11 @@ function Load_BIO_listen(sock: TOpenSSL_C_INT; addr: PBIO_ADDR; options: TOpenSS
 begin
   BIO_listen := LoadLibCryptoFunction('BIO_listen');
   if not assigned(BIO_listen) then
+    {$if declared(LEGACY_BIO_listen)}
+    BIO_listen := @LEGACY_BIO_listen;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_listen');
+    {$ifend}
   Result := BIO_listen(sock, addr, options);
 end;
 
@@ -4149,7 +4822,11 @@ function Load_BIO_accept_ex(accept_sock: TOpenSSL_C_INT; addr: PBIO_ADDR; option
 begin
   BIO_accept_ex := LoadLibCryptoFunction('BIO_accept_ex');
   if not assigned(BIO_accept_ex) then
+    {$if declared(LEGACY_BIO_accept_ex)}
+    BIO_accept_ex := @LEGACY_BIO_accept_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_accept_ex');
+    {$ifend}
   Result := BIO_accept_ex(accept_sock, addr, options);
 end;
 
@@ -4157,7 +4834,11 @@ function Load_BIO_closesocket(sock: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
 begin
   BIO_closesocket := LoadLibCryptoFunction('BIO_closesocket');
   if not assigned(BIO_closesocket) then
+    {$if declared(LEGACY_BIO_closesocket)}
+    BIO_closesocket := @LEGACY_BIO_closesocket;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_closesocket');
+    {$ifend}
   Result := BIO_closesocket(sock);
 end;
 
@@ -4165,7 +4846,11 @@ function Load_BIO_new_socket(sock: TOpenSSL_C_INT; close_flag: TOpenSSL_C_INT): 
 begin
   BIO_new_socket := LoadLibCryptoFunction('BIO_new_socket');
   if not assigned(BIO_new_socket) then
+    {$if declared(LEGACY_BIO_new_socket)}
+    BIO_new_socket := @LEGACY_BIO_new_socket;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_new_socket');
+    {$ifend}
   Result := BIO_new_socket(sock, close_flag);
 end;
 
@@ -4173,7 +4858,11 @@ function Load_BIO_new_connect(host_port: PAnsiChar): PBIO; cdecl;
 begin
   BIO_new_connect := LoadLibCryptoFunction('BIO_new_connect');
   if not assigned(BIO_new_connect) then
+    {$if declared(LEGACY_BIO_new_connect)}
+    BIO_new_connect := @LEGACY_BIO_new_connect;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_new_connect');
+    {$ifend}
   Result := BIO_new_connect(host_port);
 end;
 
@@ -4181,7 +4870,11 @@ function Load_BIO_new_accept(host_port: PAnsiChar): PBIO; cdecl;
 begin
   BIO_new_accept := LoadLibCryptoFunction('BIO_new_accept');
   if not assigned(BIO_new_accept) then
+    {$if declared(LEGACY_BIO_new_accept)}
+    BIO_new_accept := @LEGACY_BIO_new_accept;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_new_accept');
+    {$ifend}
   Result := BIO_new_accept(host_port);
 end;
 
@@ -4190,7 +4883,11 @@ function Load_BIO_new_fd(fd: TOpenSSL_C_INT; close_flag: TOpenSSL_C_INT): PBIO; 
 begin
   BIO_new_fd := LoadLibCryptoFunction('BIO_new_fd');
   if not assigned(BIO_new_fd) then
+    {$if declared(LEGACY_BIO_new_fd)}
+    BIO_new_fd := @LEGACY_BIO_new_fd;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_new_fd');
+    {$ifend}
   Result := BIO_new_fd(fd, close_flag);
 end;
 
@@ -4198,7 +4895,11 @@ function Load_BIO_new_bio_pair(bio1: PPBIO; writebuf1: TOpenSSL_C_SIZET; bio2: P
 begin
   BIO_new_bio_pair := LoadLibCryptoFunction('BIO_new_bio_pair');
   if not assigned(BIO_new_bio_pair) then
+    {$if declared(LEGACY_BIO_new_bio_pair)}
+    BIO_new_bio_pair := @LEGACY_BIO_new_bio_pair;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_new_bio_pair');
+    {$ifend}
   Result := BIO_new_bio_pair(bio1, writebuf1, bio2, writebuf2);
 end;
 
@@ -4206,7 +4907,11 @@ procedure Load_BIO_copy_next_retry(b: PBIO); cdecl;
 begin
   BIO_copy_next_retry := LoadLibCryptoFunction('BIO_copy_next_retry');
   if not assigned(BIO_copy_next_retry) then
+    {$if declared(LEGACY_BIO_copy_next_retry)}
+    BIO_copy_next_retry := @LEGACY_BIO_copy_next_retry;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_copy_next_retry');
+    {$ifend}
   BIO_copy_next_retry(b);
 end;
 
@@ -4214,7 +4919,11 @@ function Load_BIO_meth_new(type_: TOpenSSL_C_INT; name: PAnsiChar): PBIO_METHOD;
 begin
   BIO_meth_new := LoadLibCryptoFunction('BIO_meth_new');
   if not assigned(BIO_meth_new) then
+    {$if declared(LEGACY_BIO_meth_new)}
+    BIO_meth_new := @LEGACY_BIO_meth_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_meth_new');
+    {$ifend}
   Result := BIO_meth_new(type_, name);
 end;
 
@@ -4222,7 +4931,11 @@ procedure Load_BIO_meth_free(biom: PBIO_METHOD); cdecl;
 begin
   BIO_meth_free := LoadLibCryptoFunction('BIO_meth_free');
   if not assigned(BIO_meth_free) then
+    {$if declared(LEGACY_BIO_meth_free)}
+    BIO_meth_free := @LEGACY_BIO_meth_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_meth_free');
+    {$ifend}
   BIO_meth_free(biom);
 end;
 
@@ -4230,7 +4943,11 @@ function Load_BIO_meth_get_write(biom: PBIO_METHOD): TFuncType002; cdecl;
 begin
   BIO_meth_get_write := LoadLibCryptoFunction('BIO_meth_get_write');
   if not assigned(BIO_meth_get_write) then
+    {$if declared(LEGACY_BIO_meth_get_write)}
+    BIO_meth_get_write := @LEGACY_BIO_meth_get_write;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_meth_get_write');
+    {$ifend}
   Result := BIO_meth_get_write(biom);
 end;
 
@@ -4238,7 +4955,11 @@ function Load_BIO_meth_get_write_ex(biom: PBIO_METHOD): TFuncType003; cdecl;
 begin
   BIO_meth_get_write_ex := LoadLibCryptoFunction('BIO_meth_get_write_ex');
   if not assigned(BIO_meth_get_write_ex) then
+    {$if declared(LEGACY_BIO_meth_get_write_ex)}
+    BIO_meth_get_write_ex := @LEGACY_BIO_meth_get_write_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_meth_get_write_ex');
+    {$ifend}
   Result := BIO_meth_get_write_ex(biom);
 end;
 
@@ -4246,7 +4967,11 @@ function Load_BIO_meth_set_write(biom: PBIO_METHOD; write: TFuncType004): TOpenS
 begin
   BIO_meth_set_write := LoadLibCryptoFunction('BIO_meth_set_write');
   if not assigned(BIO_meth_set_write) then
+    {$if declared(LEGACY_BIO_meth_set_write)}
+    BIO_meth_set_write := @LEGACY_BIO_meth_set_write;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_meth_set_write');
+    {$ifend}
   Result := BIO_meth_set_write(biom, write);
 end;
 
@@ -4254,7 +4979,11 @@ function Load_BIO_meth_set_write_ex(biom: PBIO_METHOD; bwrite: TFuncType005): TO
 begin
   BIO_meth_set_write_ex := LoadLibCryptoFunction('BIO_meth_set_write_ex');
   if not assigned(BIO_meth_set_write_ex) then
+    {$if declared(LEGACY_BIO_meth_set_write_ex)}
+    BIO_meth_set_write_ex := @LEGACY_BIO_meth_set_write_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_meth_set_write_ex');
+    {$ifend}
   Result := BIO_meth_set_write_ex(biom, bwrite);
 end;
 
@@ -4262,7 +4991,11 @@ function Load_BIO_meth_get_read(biom: PBIO_METHOD): TFuncType006; cdecl;
 begin
   BIO_meth_get_read := LoadLibCryptoFunction('BIO_meth_get_read');
   if not assigned(BIO_meth_get_read) then
+    {$if declared(LEGACY_BIO_meth_get_read)}
+    BIO_meth_get_read := @LEGACY_BIO_meth_get_read;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_meth_get_read');
+    {$ifend}
   Result := BIO_meth_get_read(biom);
 end;
 
@@ -4270,7 +5003,11 @@ function Load_BIO_meth_get_read_ex(biom: PBIO_METHOD): TFuncType007; cdecl;
 begin
   BIO_meth_get_read_ex := LoadLibCryptoFunction('BIO_meth_get_read_ex');
   if not assigned(BIO_meth_get_read_ex) then
+    {$if declared(LEGACY_BIO_meth_get_read_ex)}
+    BIO_meth_get_read_ex := @LEGACY_BIO_meth_get_read_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_meth_get_read_ex');
+    {$ifend}
   Result := BIO_meth_get_read_ex(biom);
 end;
 
@@ -4278,7 +5015,11 @@ function Load_BIO_meth_set_read(biom: PBIO_METHOD; read: TFuncType008): TOpenSSL
 begin
   BIO_meth_set_read := LoadLibCryptoFunction('BIO_meth_set_read');
   if not assigned(BIO_meth_set_read) then
+    {$if declared(LEGACY_BIO_meth_set_read)}
+    BIO_meth_set_read := @LEGACY_BIO_meth_set_read;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_meth_set_read');
+    {$ifend}
   Result := BIO_meth_set_read(biom, read);
 end;
 
@@ -4286,7 +5027,11 @@ function Load_BIO_meth_set_read_ex(biom: PBIO_METHOD; bread: TFuncType009): TOpe
 begin
   BIO_meth_set_read_ex := LoadLibCryptoFunction('BIO_meth_set_read_ex');
   if not assigned(BIO_meth_set_read_ex) then
+    {$if declared(LEGACY_BIO_meth_set_read_ex)}
+    BIO_meth_set_read_ex := @LEGACY_BIO_meth_set_read_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_meth_set_read_ex');
+    {$ifend}
   Result := BIO_meth_set_read_ex(biom, bread);
 end;
 
@@ -4294,7 +5039,11 @@ function Load_BIO_meth_get_puts(biom: PBIO_METHOD): TFuncType010; cdecl;
 begin
   BIO_meth_get_puts := LoadLibCryptoFunction('BIO_meth_get_puts');
   if not assigned(BIO_meth_get_puts) then
+    {$if declared(LEGACY_BIO_meth_get_puts)}
+    BIO_meth_get_puts := @LEGACY_BIO_meth_get_puts;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_meth_get_puts');
+    {$ifend}
   Result := BIO_meth_get_puts(biom);
 end;
 
@@ -4302,7 +5051,11 @@ function Load_BIO_meth_set_puts(biom: PBIO_METHOD; puts: TFuncType011): TOpenSSL
 begin
   BIO_meth_set_puts := LoadLibCryptoFunction('BIO_meth_set_puts');
   if not assigned(BIO_meth_set_puts) then
+    {$if declared(LEGACY_BIO_meth_set_puts)}
+    BIO_meth_set_puts := @LEGACY_BIO_meth_set_puts;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_meth_set_puts');
+    {$ifend}
   Result := BIO_meth_set_puts(biom, puts);
 end;
 
@@ -4310,7 +5063,11 @@ function Load_BIO_meth_get_gets(biom: PBIO_METHOD): TFuncType012; cdecl;
 begin
   BIO_meth_get_gets := LoadLibCryptoFunction('BIO_meth_get_gets');
   if not assigned(BIO_meth_get_gets) then
+    {$if declared(LEGACY_BIO_meth_get_gets)}
+    BIO_meth_get_gets := @LEGACY_BIO_meth_get_gets;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_meth_get_gets');
+    {$ifend}
   Result := BIO_meth_get_gets(biom);
 end;
 
@@ -4318,7 +5075,11 @@ function Load_BIO_meth_set_gets(biom: PBIO_METHOD; ossl_gets: TFuncType013): TOp
 begin
   BIO_meth_set_gets := LoadLibCryptoFunction('BIO_meth_set_gets');
   if not assigned(BIO_meth_set_gets) then
+    {$if declared(LEGACY_BIO_meth_set_gets)}
+    BIO_meth_set_gets := @LEGACY_BIO_meth_set_gets;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_meth_set_gets');
+    {$ifend}
   Result := BIO_meth_set_gets(biom, ossl_gets);
 end;
 
@@ -4326,7 +5087,11 @@ function Load_BIO_meth_get_ctrl(biom: PBIO_METHOD): TFuncType014; cdecl;
 begin
   BIO_meth_get_ctrl := LoadLibCryptoFunction('BIO_meth_get_ctrl');
   if not assigned(BIO_meth_get_ctrl) then
+    {$if declared(LEGACY_BIO_meth_get_ctrl)}
+    BIO_meth_get_ctrl := @LEGACY_BIO_meth_get_ctrl;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_meth_get_ctrl');
+    {$ifend}
   Result := BIO_meth_get_ctrl(biom);
 end;
 
@@ -4334,7 +5099,11 @@ function Load_BIO_meth_set_ctrl(biom: PBIO_METHOD; ctrl: TFuncType015): TOpenSSL
 begin
   BIO_meth_set_ctrl := LoadLibCryptoFunction('BIO_meth_set_ctrl');
   if not assigned(BIO_meth_set_ctrl) then
+    {$if declared(LEGACY_BIO_meth_set_ctrl)}
+    BIO_meth_set_ctrl := @LEGACY_BIO_meth_set_ctrl;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_meth_set_ctrl');
+    {$ifend}
   Result := BIO_meth_set_ctrl(biom, ctrl);
 end;
 
@@ -4342,7 +5111,11 @@ function Load_BIO_meth_get_create(bion: PBIO_METHOD): TFuncType016; cdecl;
 begin
   BIO_meth_get_create := LoadLibCryptoFunction('BIO_meth_get_create');
   if not assigned(BIO_meth_get_create) then
+    {$if declared(LEGACY_BIO_meth_get_create)}
+    BIO_meth_get_create := @LEGACY_BIO_meth_get_create;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_meth_get_create');
+    {$ifend}
   Result := BIO_meth_get_create(bion);
 end;
 
@@ -4350,7 +5123,11 @@ function Load_BIO_meth_set_create(biom: PBIO_METHOD; create: TFuncType017): TOpe
 begin
   BIO_meth_set_create := LoadLibCryptoFunction('BIO_meth_set_create');
   if not assigned(BIO_meth_set_create) then
+    {$if declared(LEGACY_BIO_meth_set_create)}
+    BIO_meth_set_create := @LEGACY_BIO_meth_set_create;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_meth_set_create');
+    {$ifend}
   Result := BIO_meth_set_create(biom, create);
 end;
 
@@ -4358,7 +5135,11 @@ function Load_BIO_meth_get_destroy(biom: PBIO_METHOD): TFuncType018; cdecl;
 begin
   BIO_meth_get_destroy := LoadLibCryptoFunction('BIO_meth_get_destroy');
   if not assigned(BIO_meth_get_destroy) then
+    {$if declared(LEGACY_BIO_meth_get_destroy)}
+    BIO_meth_get_destroy := @LEGACY_BIO_meth_get_destroy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_meth_get_destroy');
+    {$ifend}
   Result := BIO_meth_get_destroy(biom);
 end;
 
@@ -4366,7 +5147,11 @@ function Load_BIO_meth_set_destroy(biom: PBIO_METHOD; destroy: TFuncType019): TO
 begin
   BIO_meth_set_destroy := LoadLibCryptoFunction('BIO_meth_set_destroy');
   if not assigned(BIO_meth_set_destroy) then
+    {$if declared(LEGACY_BIO_meth_set_destroy)}
+    BIO_meth_set_destroy := @LEGACY_BIO_meth_set_destroy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_meth_set_destroy');
+    {$ifend}
   Result := BIO_meth_set_destroy(biom, destroy);
 end;
 
@@ -4374,7 +5159,11 @@ function Load_BIO_meth_get_callback_ctrl(biom: PBIO_METHOD): TFuncType020; cdecl
 begin
   BIO_meth_get_callback_ctrl := LoadLibCryptoFunction('BIO_meth_get_callback_ctrl');
   if not assigned(BIO_meth_get_callback_ctrl) then
+    {$if declared(LEGACY_BIO_meth_get_callback_ctrl)}
+    BIO_meth_get_callback_ctrl := @LEGACY_BIO_meth_get_callback_ctrl;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_meth_get_callback_ctrl');
+    {$ifend}
   Result := BIO_meth_get_callback_ctrl(biom);
 end;
 
@@ -4382,7 +5171,11 @@ function Load_BIO_meth_set_callback_ctrl(biom: PBIO_METHOD; callback_ctrl: TFunc
 begin
   BIO_meth_set_callback_ctrl := LoadLibCryptoFunction('BIO_meth_set_callback_ctrl');
   if not assigned(BIO_meth_set_callback_ctrl) then
+    {$if declared(LEGACY_BIO_meth_set_callback_ctrl)}
+    BIO_meth_set_callback_ctrl := @LEGACY_BIO_meth_set_callback_ctrl;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_meth_set_callback_ctrl');
+    {$ifend}
   Result := BIO_meth_set_callback_ctrl(biom, callback_ctrl);
 end;
 

@@ -18,7 +18,8 @@
 unit openssl_lhash;
 
 {
-  Generated from OpenSSL 3.0.20 Header File lhash.h - Wed  6 May 13:06:10 BST 2026
+  Generated from OpenSSL 3.0.20 Header File lhash.h - Wed  6 May 13:15:19 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -602,7 +603,11 @@ function Load_OPENSSL_LH_error(lh: POPENSSL_LHASH): TOpenSSL_C_INT; cdecl;
 begin
   OPENSSL_LH_error := LoadLibCryptoFunction('OPENSSL_LH_error');
   if not assigned(OPENSSL_LH_error) then
+    {$if declared(LEGACY_OPENSSL_LH_error)}
+    OPENSSL_LH_error := @LEGACY_OPENSSL_LH_error;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_error');
+    {$ifend}
   Result := OPENSSL_LH_error(lh);
 end;
 
@@ -610,7 +615,11 @@ function Load_OPENSSL_LH_new(h: TOPENSSL_LH_HASHFUNC; c: TOPENSSL_LH_COMPFUNC): 
 begin
   OPENSSL_LH_new := LoadLibCryptoFunction('OPENSSL_LH_new');
   if not assigned(OPENSSL_LH_new) then
+    {$if declared(LEGACY_OPENSSL_LH_new)}
+    OPENSSL_LH_new := @LEGACY_OPENSSL_LH_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_new');
+    {$ifend}
   Result := OPENSSL_LH_new(h, c);
 end;
 
@@ -618,7 +627,11 @@ procedure Load_OPENSSL_LH_free(lh: POPENSSL_LHASH); cdecl;
 begin
   OPENSSL_LH_free := LoadLibCryptoFunction('OPENSSL_LH_free');
   if not assigned(OPENSSL_LH_free) then
+    {$if declared(LEGACY_OPENSSL_LH_free)}
+    OPENSSL_LH_free := @LEGACY_OPENSSL_LH_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_free');
+    {$ifend}
   OPENSSL_LH_free(lh);
 end;
 
@@ -626,7 +639,11 @@ procedure Load_OPENSSL_LH_flush(lh: POPENSSL_LHASH); cdecl;
 begin
   OPENSSL_LH_flush := LoadLibCryptoFunction('OPENSSL_LH_flush');
   if not assigned(OPENSSL_LH_flush) then
+    {$if declared(LEGACY_OPENSSL_LH_flush)}
+    OPENSSL_LH_flush := @LEGACY_OPENSSL_LH_flush;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_flush');
+    {$ifend}
   OPENSSL_LH_flush(lh);
 end;
 
@@ -634,7 +651,11 @@ function Load_OPENSSL_LH_insert(lh: POPENSSL_LHASH; data: pointer): pointer; cde
 begin
   OPENSSL_LH_insert := LoadLibCryptoFunction('OPENSSL_LH_insert');
   if not assigned(OPENSSL_LH_insert) then
+    {$if declared(LEGACY_OPENSSL_LH_insert)}
+    OPENSSL_LH_insert := @LEGACY_OPENSSL_LH_insert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_insert');
+    {$ifend}
   Result := OPENSSL_LH_insert(lh, data);
 end;
 
@@ -642,7 +663,11 @@ function Load_OPENSSL_LH_delete(lh: POPENSSL_LHASH; data: pointer): pointer; cde
 begin
   OPENSSL_LH_delete := LoadLibCryptoFunction('OPENSSL_LH_delete');
   if not assigned(OPENSSL_LH_delete) then
+    {$if declared(LEGACY_OPENSSL_LH_delete)}
+    OPENSSL_LH_delete := @LEGACY_OPENSSL_LH_delete;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_delete');
+    {$ifend}
   Result := OPENSSL_LH_delete(lh, data);
 end;
 
@@ -650,7 +675,11 @@ function Load_OPENSSL_LH_retrieve(lh: POPENSSL_LHASH; data: pointer): pointer; c
 begin
   OPENSSL_LH_retrieve := LoadLibCryptoFunction('OPENSSL_LH_retrieve');
   if not assigned(OPENSSL_LH_retrieve) then
+    {$if declared(LEGACY_OPENSSL_LH_retrieve)}
+    OPENSSL_LH_retrieve := @LEGACY_OPENSSL_LH_retrieve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_retrieve');
+    {$ifend}
   Result := OPENSSL_LH_retrieve(lh, data);
 end;
 
@@ -658,7 +687,11 @@ procedure Load_OPENSSL_LH_doall(lh: POPENSSL_LHASH; func: TOPENSSL_LH_DOALL_FUNC
 begin
   OPENSSL_LH_doall := LoadLibCryptoFunction('OPENSSL_LH_doall');
   if not assigned(OPENSSL_LH_doall) then
+    {$if declared(LEGACY_OPENSSL_LH_doall)}
+    OPENSSL_LH_doall := @LEGACY_OPENSSL_LH_doall;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_doall');
+    {$ifend}
   OPENSSL_LH_doall(lh, func);
 end;
 
@@ -666,7 +699,11 @@ procedure Load_OPENSSL_LH_doall_arg(lh: POPENSSL_LHASH; func: TOPENSSL_LH_DOALL_
 begin
   OPENSSL_LH_doall_arg := LoadLibCryptoFunction('OPENSSL_LH_doall_arg');
   if not assigned(OPENSSL_LH_doall_arg) then
+    {$if declared(LEGACY_OPENSSL_LH_doall_arg)}
+    OPENSSL_LH_doall_arg := @LEGACY_OPENSSL_LH_doall_arg;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_doall_arg');
+    {$ifend}
   OPENSSL_LH_doall_arg(lh, func, arg);
 end;
 
@@ -674,7 +711,11 @@ function Load_OPENSSL_LH_strhash(c: PAnsiChar): TOpenSSL_C_UINT; cdecl;
 begin
   OPENSSL_LH_strhash := LoadLibCryptoFunction('OPENSSL_LH_strhash');
   if not assigned(OPENSSL_LH_strhash) then
+    {$if declared(LEGACY_OPENSSL_LH_strhash)}
+    OPENSSL_LH_strhash := @LEGACY_OPENSSL_LH_strhash;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_strhash');
+    {$ifend}
   Result := OPENSSL_LH_strhash(c);
 end;
 
@@ -682,7 +723,11 @@ function Load_OPENSSL_LH_num_items(lh: POPENSSL_LHASH): TOpenSSL_C_UINT; cdecl;
 begin
   OPENSSL_LH_num_items := LoadLibCryptoFunction('OPENSSL_LH_num_items');
   if not assigned(OPENSSL_LH_num_items) then
+    {$if declared(LEGACY_OPENSSL_LH_num_items)}
+    OPENSSL_LH_num_items := @LEGACY_OPENSSL_LH_num_items;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_num_items');
+    {$ifend}
   Result := OPENSSL_LH_num_items(lh);
 end;
 
@@ -690,7 +735,11 @@ function Load_OPENSSL_LH_get_down_load(lh: POPENSSL_LHASH): TOpenSSL_C_UINT; cde
 begin
   OPENSSL_LH_get_down_load := LoadLibCryptoFunction('OPENSSL_LH_get_down_load');
   if not assigned(OPENSSL_LH_get_down_load) then
+    {$if declared(LEGACY_OPENSSL_LH_get_down_load)}
+    OPENSSL_LH_get_down_load := @LEGACY_OPENSSL_LH_get_down_load;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_get_down_load');
+    {$ifend}
   Result := OPENSSL_LH_get_down_load(lh);
 end;
 
@@ -698,7 +747,11 @@ procedure Load_OPENSSL_LH_set_down_load(lh: POPENSSL_LHASH; down_load: TOpenSSL_
 begin
   OPENSSL_LH_set_down_load := LoadLibCryptoFunction('OPENSSL_LH_set_down_load');
   if not assigned(OPENSSL_LH_set_down_load) then
+    {$if declared(LEGACY_OPENSSL_LH_set_down_load)}
+    OPENSSL_LH_set_down_load := @LEGACY_OPENSSL_LH_set_down_load;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_set_down_load');
+    {$ifend}
   OPENSSL_LH_set_down_load(lh, down_load);
 end;
 
@@ -707,7 +760,11 @@ procedure Load_OPENSSL_LH_stats(lh: POPENSSL_LHASH; fp: PFILE); cdecl;
 begin
   OPENSSL_LH_stats := LoadLibCryptoFunction('OPENSSL_LH_stats');
   if not assigned(OPENSSL_LH_stats) then
+    {$if declared(LEGACY_OPENSSL_LH_stats)}
+    OPENSSL_LH_stats := @LEGACY_OPENSSL_LH_stats;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_stats');
+    {$ifend}
   OPENSSL_LH_stats(lh, fp);
 end;
 
@@ -715,7 +772,11 @@ procedure Load_OPENSSL_LH_node_stats(lh: POPENSSL_LHASH; fp: PFILE); cdecl;
 begin
   OPENSSL_LH_node_stats := LoadLibCryptoFunction('OPENSSL_LH_node_stats');
   if not assigned(OPENSSL_LH_node_stats) then
+    {$if declared(LEGACY_OPENSSL_LH_node_stats)}
+    OPENSSL_LH_node_stats := @LEGACY_OPENSSL_LH_node_stats;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_node_stats');
+    {$ifend}
   OPENSSL_LH_node_stats(lh, fp);
 end;
 
@@ -723,7 +784,11 @@ procedure Load_OPENSSL_LH_node_usage_stats(lh: POPENSSL_LHASH; fp: PFILE); cdecl
 begin
   OPENSSL_LH_node_usage_stats := LoadLibCryptoFunction('OPENSSL_LH_node_usage_stats');
   if not assigned(OPENSSL_LH_node_usage_stats) then
+    {$if declared(LEGACY_OPENSSL_LH_node_usage_stats)}
+    OPENSSL_LH_node_usage_stats := @LEGACY_OPENSSL_LH_node_usage_stats;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_node_usage_stats');
+    {$ifend}
   OPENSSL_LH_node_usage_stats(lh, fp);
 end;
 
@@ -732,7 +797,11 @@ procedure Load_OPENSSL_LH_stats_bio(lh: POPENSSL_LHASH; out_: PBIO); cdecl;
 begin
   OPENSSL_LH_stats_bio := LoadLibCryptoFunction('OPENSSL_LH_stats_bio');
   if not assigned(OPENSSL_LH_stats_bio) then
+    {$if declared(LEGACY_OPENSSL_LH_stats_bio)}
+    OPENSSL_LH_stats_bio := @LEGACY_OPENSSL_LH_stats_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_stats_bio');
+    {$ifend}
   OPENSSL_LH_stats_bio(lh, out_);
 end;
 
@@ -740,7 +809,11 @@ procedure Load_OPENSSL_LH_node_stats_bio(lh: POPENSSL_LHASH; out_: PBIO); cdecl;
 begin
   OPENSSL_LH_node_stats_bio := LoadLibCryptoFunction('OPENSSL_LH_node_stats_bio');
   if not assigned(OPENSSL_LH_node_stats_bio) then
+    {$if declared(LEGACY_OPENSSL_LH_node_stats_bio)}
+    OPENSSL_LH_node_stats_bio := @LEGACY_OPENSSL_LH_node_stats_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_node_stats_bio');
+    {$ifend}
   OPENSSL_LH_node_stats_bio(lh, out_);
 end;
 
@@ -748,7 +821,11 @@ procedure Load_OPENSSL_LH_node_usage_stats_bio(lh: POPENSSL_LHASH; out_: PBIO); 
 begin
   OPENSSL_LH_node_usage_stats_bio := LoadLibCryptoFunction('OPENSSL_LH_node_usage_stats_bio');
   if not assigned(OPENSSL_LH_node_usage_stats_bio) then
+    {$if declared(LEGACY_OPENSSL_LH_node_usage_stats_bio)}
+    OPENSSL_LH_node_usage_stats_bio := @LEGACY_OPENSSL_LH_node_usage_stats_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_node_usage_stats_bio');
+    {$ifend}
   OPENSSL_LH_node_usage_stats_bio(lh, out_);
 end;
 
@@ -757,7 +834,11 @@ function Load_lh_error(lh: POPENSSL_LHASH): TOpenSSL_C_INT; cdecl;
 begin
   lh_error := LoadLibCryptoFunction('OPENSSL_LH_error');
   if not assigned(lh_error) then
+    {$if declared(LEGACY_OPENSSL_LH_error)}
+    lh_error := @LEGACY_OPENSSL_LH_error;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_error');
+    {$ifend}
   Result := lh_error(lh);
 end;
 
@@ -765,7 +846,11 @@ function Load_lh_new(h: TOPENSSL_LH_HASHFUNC; c: TOPENSSL_LH_COMPFUNC): POPENSSL
 begin
   lh_new := LoadLibCryptoFunction('OPENSSL_LH_new');
   if not assigned(lh_new) then
+    {$if declared(LEGACY_OPENSSL_LH_new)}
+    lh_new := @LEGACY_OPENSSL_LH_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_new');
+    {$ifend}
   Result := lh_new(h, c);
 end;
 
@@ -773,7 +858,11 @@ procedure Load_lh_free(lh: POPENSSL_LHASH); cdecl;
 begin
   lh_free := LoadLibCryptoFunction('OPENSSL_LH_free');
   if not assigned(lh_free) then
+    {$if declared(LEGACY_OPENSSL_LH_free)}
+    lh_free := @LEGACY_OPENSSL_LH_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_free');
+    {$ifend}
   lh_free(lh);
 end;
 
@@ -781,7 +870,11 @@ function Load_lh_insert(lh: POPENSSL_LHASH; data: pointer): pointer; cdecl;
 begin
   lh_insert := LoadLibCryptoFunction('OPENSSL_LH_insert');
   if not assigned(lh_insert) then
+    {$if declared(LEGACY_OPENSSL_LH_insert)}
+    lh_insert := @LEGACY_OPENSSL_LH_insert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_insert');
+    {$ifend}
   Result := lh_insert(lh, data);
 end;
 
@@ -789,7 +882,11 @@ function Load_lh_delete(lh: POPENSSL_LHASH; data: pointer): pointer; cdecl;
 begin
   lh_delete := LoadLibCryptoFunction('OPENSSL_LH_delete');
   if not assigned(lh_delete) then
+    {$if declared(LEGACY_OPENSSL_LH_delete)}
+    lh_delete := @LEGACY_OPENSSL_LH_delete;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_delete');
+    {$ifend}
   Result := lh_delete(lh, data);
 end;
 
@@ -797,7 +894,11 @@ function Load_lh_retrieve(lh: POPENSSL_LHASH; data: pointer): pointer; cdecl;
 begin
   lh_retrieve := LoadLibCryptoFunction('OPENSSL_LH_retrieve');
   if not assigned(lh_retrieve) then
+    {$if declared(LEGACY_OPENSSL_LH_retrieve)}
+    lh_retrieve := @LEGACY_OPENSSL_LH_retrieve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_retrieve');
+    {$ifend}
   Result := lh_retrieve(lh, data);
 end;
 
@@ -805,7 +906,11 @@ procedure Load_lh_doall(lh: POPENSSL_LHASH; func: TOPENSSL_LH_DOALL_FUNC); cdecl
 begin
   lh_doall := LoadLibCryptoFunction('OPENSSL_LH_doall');
   if not assigned(lh_doall) then
+    {$if declared(LEGACY_OPENSSL_LH_doall)}
+    lh_doall := @LEGACY_OPENSSL_LH_doall;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_doall');
+    {$ifend}
   lh_doall(lh, func);
 end;
 
@@ -813,7 +918,11 @@ procedure Load_lh_doall_arg(lh: POPENSSL_LHASH; func: TOPENSSL_LH_DOALL_FUNCARG;
 begin
   lh_doall_arg := LoadLibCryptoFunction('OPENSSL_LH_doall_arg');
   if not assigned(lh_doall_arg) then
+    {$if declared(LEGACY_OPENSSL_LH_doall_arg)}
+    lh_doall_arg := @LEGACY_OPENSSL_LH_doall_arg;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_doall_arg');
+    {$ifend}
   lh_doall_arg(lh, func, arg);
 end;
 
@@ -821,7 +930,11 @@ function Load_lh_strhash(c: PAnsiChar): TOpenSSL_C_UINT; cdecl;
 begin
   lh_strhash := LoadLibCryptoFunction('OPENSSL_LH_strhash');
   if not assigned(lh_strhash) then
+    {$if declared(LEGACY_OPENSSL_LH_strhash)}
+    lh_strhash := @LEGACY_OPENSSL_LH_strhash;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_strhash');
+    {$ifend}
   Result := lh_strhash(c);
 end;
 
@@ -829,7 +942,11 @@ function Load_lh_num_items(lh: POPENSSL_LHASH): TOpenSSL_C_UINT; cdecl;
 begin
   lh_num_items := LoadLibCryptoFunction('OPENSSL_LH_num_items');
   if not assigned(lh_num_items) then
+    {$if declared(LEGACY_OPENSSL_LH_num_items)}
+    lh_num_items := @LEGACY_OPENSSL_LH_num_items;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_num_items');
+    {$ifend}
   Result := lh_num_items(lh);
 end;
 
@@ -838,7 +955,11 @@ procedure Load_lh_stats(lh: POPENSSL_LHASH; fp: PFILE); cdecl;
 begin
   lh_stats := LoadLibCryptoFunction('OPENSSL_LH_stats');
   if not assigned(lh_stats) then
+    {$if declared(LEGACY_OPENSSL_LH_stats)}
+    lh_stats := @LEGACY_OPENSSL_LH_stats;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_stats');
+    {$ifend}
   lh_stats(lh, fp);
 end;
 
@@ -846,7 +967,11 @@ procedure Load_lh_node_stats(lh: POPENSSL_LHASH; fp: PFILE); cdecl;
 begin
   lh_node_stats := LoadLibCryptoFunction('OPENSSL_LH_node_stats');
   if not assigned(lh_node_stats) then
+    {$if declared(LEGACY_OPENSSL_LH_node_stats)}
+    lh_node_stats := @LEGACY_OPENSSL_LH_node_stats;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_node_stats');
+    {$ifend}
   lh_node_stats(lh, fp);
 end;
 
@@ -854,7 +979,11 @@ procedure Load_lh_node_usage_stats(lh: POPENSSL_LHASH; fp: PFILE); cdecl;
 begin
   lh_node_usage_stats := LoadLibCryptoFunction('OPENSSL_LH_node_usage_stats');
   if not assigned(lh_node_usage_stats) then
+    {$if declared(LEGACY_OPENSSL_LH_node_usage_stats)}
+    lh_node_usage_stats := @LEGACY_OPENSSL_LH_node_usage_stats;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_node_usage_stats');
+    {$ifend}
   lh_node_usage_stats(lh, fp);
 end;
 
@@ -863,7 +992,11 @@ procedure Load_lh_stats_bio(lh: POPENSSL_LHASH; out_: PBIO); cdecl;
 begin
   lh_stats_bio := LoadLibCryptoFunction('OPENSSL_LH_stats_bio');
   if not assigned(lh_stats_bio) then
+    {$if declared(LEGACY_OPENSSL_LH_stats_bio)}
+    lh_stats_bio := @LEGACY_OPENSSL_LH_stats_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_stats_bio');
+    {$ifend}
   lh_stats_bio(lh, out_);
 end;
 
@@ -871,7 +1004,11 @@ procedure Load_lh_node_stats_bio(lh: POPENSSL_LHASH; out_: PBIO); cdecl;
 begin
   lh_node_stats_bio := LoadLibCryptoFunction('OPENSSL_LH_node_stats_bio');
   if not assigned(lh_node_stats_bio) then
+    {$if declared(LEGACY_OPENSSL_LH_node_stats_bio)}
+    lh_node_stats_bio := @LEGACY_OPENSSL_LH_node_stats_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_node_stats_bio');
+    {$ifend}
   lh_node_stats_bio(lh, out_);
 end;
 
@@ -879,7 +1016,11 @@ procedure Load_lh_node_usage_stats_bio(lh: POPENSSL_LHASH; out_: PBIO); cdecl;
 begin
   lh_node_usage_stats_bio := LoadLibCryptoFunction('OPENSSL_LH_node_usage_stats_bio');
   if not assigned(lh_node_usage_stats_bio) then
+    {$if declared(LEGACY_OPENSSL_LH_node_usage_stats_bio)}
+    lh_node_usage_stats_bio := @LEGACY_OPENSSL_LH_node_usage_stats_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_LH_node_usage_stats_bio');
+    {$ifend}
   lh_node_usage_stats_bio(lh, out_);
 end;
 

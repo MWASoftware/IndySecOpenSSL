@@ -18,7 +18,8 @@
 unit openssl_sha;
 
 {
-  Generated from OpenSSL 3.0.20 Header File sha.h - Wed  6 May 13:06:29 BST 2026
+  Generated from OpenSSL 3.0.20 Header File sha.h - Wed  6 May 13:15:38 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -355,7 +356,11 @@ function Load_SHA1_Init(c: PSHA_CTX): TOpenSSL_C_INT; cdecl;
 begin
   SHA1_Init := LoadLibCryptoFunction('SHA1_Init');
   if not assigned(SHA1_Init) then
+    {$if declared(LEGACY_SHA1_Init)}
+    SHA1_Init := @LEGACY_SHA1_Init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SHA1_Init');
+    {$ifend}
   Result := SHA1_Init(c);
 end;
 
@@ -363,7 +368,11 @@ function Load_SHA1_Update(c: PSHA_CTX; data: pointer; len: TOpenSSL_C_SIZET): TO
 begin
   SHA1_Update := LoadLibCryptoFunction('SHA1_Update');
   if not assigned(SHA1_Update) then
+    {$if declared(LEGACY_SHA1_Update)}
+    SHA1_Update := @LEGACY_SHA1_Update;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SHA1_Update');
+    {$ifend}
   Result := SHA1_Update(c, data, len);
 end;
 
@@ -371,7 +380,11 @@ function Load_SHA1_Final(md: Pbyte; c: PSHA_CTX): TOpenSSL_C_INT; cdecl;
 begin
   SHA1_Final := LoadLibCryptoFunction('SHA1_Final');
   if not assigned(SHA1_Final) then
+    {$if declared(LEGACY_SHA1_Final)}
+    SHA1_Final := @LEGACY_SHA1_Final;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SHA1_Final');
+    {$ifend}
   Result := SHA1_Final(md, c);
 end;
 
@@ -379,7 +392,11 @@ procedure Load_SHA1_Transform(c: PSHA_CTX; data: Pbyte); cdecl;
 begin
   SHA1_Transform := LoadLibCryptoFunction('SHA1_Transform');
   if not assigned(SHA1_Transform) then
+    {$if declared(LEGACY_SHA1_Transform)}
+    SHA1_Transform := @LEGACY_SHA1_Transform;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SHA1_Transform');
+    {$ifend}
   SHA1_Transform(c, data);
 end;
 
@@ -388,7 +405,11 @@ function Load_SHA1(d: Pbyte; n: TOpenSSL_C_SIZET; md: Pbyte): Pbyte; cdecl;
 begin
   SHA1 := LoadLibCryptoFunction('SHA1');
   if not assigned(SHA1) then
+    {$if declared(LEGACY_SHA1)}
+    SHA1 := @LEGACY_SHA1;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SHA1');
+    {$ifend}
   Result := SHA1(d, n, md);
 end;
 
@@ -397,7 +418,11 @@ function Load_SHA224_Init(c: PSHA256_CTX): TOpenSSL_C_INT; cdecl;
 begin
   SHA224_Init := LoadLibCryptoFunction('SHA224_Init');
   if not assigned(SHA224_Init) then
+    {$if declared(LEGACY_SHA224_Init)}
+    SHA224_Init := @LEGACY_SHA224_Init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SHA224_Init');
+    {$ifend}
   Result := SHA224_Init(c);
 end;
 
@@ -405,7 +430,11 @@ function Load_SHA224_Update(c: PSHA256_CTX; data: pointer; len: TOpenSSL_C_SIZET
 begin
   SHA224_Update := LoadLibCryptoFunction('SHA224_Update');
   if not assigned(SHA224_Update) then
+    {$if declared(LEGACY_SHA224_Update)}
+    SHA224_Update := @LEGACY_SHA224_Update;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SHA224_Update');
+    {$ifend}
   Result := SHA224_Update(c, data, len);
 end;
 
@@ -413,7 +442,11 @@ function Load_SHA224_Final(md: Pbyte; c: PSHA256_CTX): TOpenSSL_C_INT; cdecl;
 begin
   SHA224_Final := LoadLibCryptoFunction('SHA224_Final');
   if not assigned(SHA224_Final) then
+    {$if declared(LEGACY_SHA224_Final)}
+    SHA224_Final := @LEGACY_SHA224_Final;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SHA224_Final');
+    {$ifend}
   Result := SHA224_Final(md, c);
 end;
 
@@ -421,7 +454,11 @@ function Load_SHA256_Init(c: PSHA256_CTX): TOpenSSL_C_INT; cdecl;
 begin
   SHA256_Init := LoadLibCryptoFunction('SHA256_Init');
   if not assigned(SHA256_Init) then
+    {$if declared(LEGACY_SHA256_Init)}
+    SHA256_Init := @LEGACY_SHA256_Init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SHA256_Init');
+    {$ifend}
   Result := SHA256_Init(c);
 end;
 
@@ -429,7 +466,11 @@ function Load_SHA256_Update(c: PSHA256_CTX; data: pointer; len: TOpenSSL_C_SIZET
 begin
   SHA256_Update := LoadLibCryptoFunction('SHA256_Update');
   if not assigned(SHA256_Update) then
+    {$if declared(LEGACY_SHA256_Update)}
+    SHA256_Update := @LEGACY_SHA256_Update;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SHA256_Update');
+    {$ifend}
   Result := SHA256_Update(c, data, len);
 end;
 
@@ -437,7 +478,11 @@ function Load_SHA256_Final(md: Pbyte; c: PSHA256_CTX): TOpenSSL_C_INT; cdecl;
 begin
   SHA256_Final := LoadLibCryptoFunction('SHA256_Final');
   if not assigned(SHA256_Final) then
+    {$if declared(LEGACY_SHA256_Final)}
+    SHA256_Final := @LEGACY_SHA256_Final;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SHA256_Final');
+    {$ifend}
   Result := SHA256_Final(md, c);
 end;
 
@@ -445,7 +490,11 @@ procedure Load_SHA256_Transform(c: PSHA256_CTX; data: Pbyte); cdecl;
 begin
   SHA256_Transform := LoadLibCryptoFunction('SHA256_Transform');
   if not assigned(SHA256_Transform) then
+    {$if declared(LEGACY_SHA256_Transform)}
+    SHA256_Transform := @LEGACY_SHA256_Transform;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SHA256_Transform');
+    {$ifend}
   SHA256_Transform(c, data);
 end;
 
@@ -454,7 +503,11 @@ function Load_SHA224(d: Pbyte; n: TOpenSSL_C_SIZET; md: Pbyte): Pbyte; cdecl;
 begin
   SHA224 := LoadLibCryptoFunction('SHA224');
   if not assigned(SHA224) then
+    {$if declared(LEGACY_SHA224)}
+    SHA224 := @LEGACY_SHA224;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SHA224');
+    {$ifend}
   Result := SHA224(d, n, md);
 end;
 
@@ -462,7 +515,11 @@ function Load_SHA256(d: Pbyte; n: TOpenSSL_C_SIZET; md: Pbyte): Pbyte; cdecl;
 begin
   SHA256 := LoadLibCryptoFunction('SHA256');
   if not assigned(SHA256) then
+    {$if declared(LEGACY_SHA256)}
+    SHA256 := @LEGACY_SHA256;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SHA256');
+    {$ifend}
   Result := SHA256(d, n, md);
 end;
 
@@ -471,7 +528,11 @@ function Load_SHA384_Init(c: PSHA512_CTX): TOpenSSL_C_INT; cdecl;
 begin
   SHA384_Init := LoadLibCryptoFunction('SHA384_Init');
   if not assigned(SHA384_Init) then
+    {$if declared(LEGACY_SHA384_Init)}
+    SHA384_Init := @LEGACY_SHA384_Init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SHA384_Init');
+    {$ifend}
   Result := SHA384_Init(c);
 end;
 
@@ -479,7 +540,11 @@ function Load_SHA384_Update(c: PSHA512_CTX; data: pointer; len: TOpenSSL_C_SIZET
 begin
   SHA384_Update := LoadLibCryptoFunction('SHA384_Update');
   if not assigned(SHA384_Update) then
+    {$if declared(LEGACY_SHA384_Update)}
+    SHA384_Update := @LEGACY_SHA384_Update;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SHA384_Update');
+    {$ifend}
   Result := SHA384_Update(c, data, len);
 end;
 
@@ -487,7 +552,11 @@ function Load_SHA384_Final(md: Pbyte; c: PSHA512_CTX): TOpenSSL_C_INT; cdecl;
 begin
   SHA384_Final := LoadLibCryptoFunction('SHA384_Final');
   if not assigned(SHA384_Final) then
+    {$if declared(LEGACY_SHA384_Final)}
+    SHA384_Final := @LEGACY_SHA384_Final;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SHA384_Final');
+    {$ifend}
   Result := SHA384_Final(md, c);
 end;
 
@@ -495,7 +564,11 @@ function Load_SHA512_Init(c: PSHA512_CTX): TOpenSSL_C_INT; cdecl;
 begin
   SHA512_Init := LoadLibCryptoFunction('SHA512_Init');
   if not assigned(SHA512_Init) then
+    {$if declared(LEGACY_SHA512_Init)}
+    SHA512_Init := @LEGACY_SHA512_Init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SHA512_Init');
+    {$ifend}
   Result := SHA512_Init(c);
 end;
 
@@ -503,7 +576,11 @@ function Load_SHA512_Update(c: PSHA512_CTX; data: pointer; len: TOpenSSL_C_SIZET
 begin
   SHA512_Update := LoadLibCryptoFunction('SHA512_Update');
   if not assigned(SHA512_Update) then
+    {$if declared(LEGACY_SHA512_Update)}
+    SHA512_Update := @LEGACY_SHA512_Update;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SHA512_Update');
+    {$ifend}
   Result := SHA512_Update(c, data, len);
 end;
 
@@ -511,7 +588,11 @@ function Load_SHA512_Final(md: Pbyte; c: PSHA512_CTX): TOpenSSL_C_INT; cdecl;
 begin
   SHA512_Final := LoadLibCryptoFunction('SHA512_Final');
   if not assigned(SHA512_Final) then
+    {$if declared(LEGACY_SHA512_Final)}
+    SHA512_Final := @LEGACY_SHA512_Final;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SHA512_Final');
+    {$ifend}
   Result := SHA512_Final(md, c);
 end;
 
@@ -519,7 +600,11 @@ procedure Load_SHA512_Transform(c: PSHA512_CTX; data: Pbyte); cdecl;
 begin
   SHA512_Transform := LoadLibCryptoFunction('SHA512_Transform');
   if not assigned(SHA512_Transform) then
+    {$if declared(LEGACY_SHA512_Transform)}
+    SHA512_Transform := @LEGACY_SHA512_Transform;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SHA512_Transform');
+    {$ifend}
   SHA512_Transform(c, data);
 end;
 
@@ -528,7 +613,11 @@ function Load_SHA384(d: Pbyte; n: TOpenSSL_C_SIZET; md: Pbyte): Pbyte; cdecl;
 begin
   SHA384 := LoadLibCryptoFunction('SHA384');
   if not assigned(SHA384) then
+    {$if declared(LEGACY_SHA384)}
+    SHA384 := @LEGACY_SHA384;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SHA384');
+    {$ifend}
   Result := SHA384(d, n, md);
 end;
 
@@ -536,7 +625,11 @@ function Load_SHA512(d: Pbyte; n: TOpenSSL_C_SIZET; md: Pbyte): Pbyte; cdecl;
 begin
   SHA512 := LoadLibCryptoFunction('SHA512');
   if not assigned(SHA512) then
+    {$if declared(LEGACY_SHA512)}
+    SHA512 := @LEGACY_SHA512;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SHA512');
+    {$ifend}
   Result := SHA512(d, n, md);
 end;
 

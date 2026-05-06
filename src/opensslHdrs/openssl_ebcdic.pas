@@ -18,7 +18,8 @@
 unit openssl_ebcdic;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ebcdic.h - Wed  6 May 13:05:55 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ebcdic.h - Wed  6 May 13:15:04 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -101,7 +102,11 @@ function Load_ebcdic2ascii(dest: pointer; srce: pointer; count: TOpenSSL_C_SIZET
 begin
   ebcdic2ascii := LoadLibCryptoFunction('ebcdic2ascii');
   if not assigned(ebcdic2ascii) then
+    {$if declared(LEGACY_ebcdic2ascii)}
+    ebcdic2ascii := @LEGACY_ebcdic2ascii;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ebcdic2ascii');
+    {$ifend}
   Result := ebcdic2ascii(dest, srce, count);
 end;
 
@@ -109,7 +114,11 @@ function Load_ascii2ebcdic(dest: pointer; srce: pointer; count: TOpenSSL_C_SIZET
 begin
   ascii2ebcdic := LoadLibCryptoFunction('ascii2ebcdic');
   if not assigned(ascii2ebcdic) then
+    {$if declared(LEGACY_ascii2ebcdic)}
+    ascii2ebcdic := @LEGACY_ascii2ebcdic;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ascii2ebcdic');
+    {$ifend}
   Result := ascii2ebcdic(dest, srce, count);
 end;
 

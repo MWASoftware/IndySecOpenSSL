@@ -18,7 +18,8 @@
 unit openssl_rc5;
 
 {
-  Generated from OpenSSL 3.0.20 Header File rc5.h - Wed  6 May 13:06:26 BST 2026
+  Generated from OpenSSL 3.0.20 Header File rc5.h - Wed  6 May 13:15:36 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -161,7 +162,11 @@ function Load_RC5_32_set_key(key: PRC5_32_KEY; len: TOpenSSL_C_INT; data: Pbyte;
 begin
   RC5_32_set_key := LoadLibCryptoFunction('RC5_32_set_key');
   if not assigned(RC5_32_set_key) then
+    {$if declared(LEGACY_RC5_32_set_key)}
+    RC5_32_set_key := @LEGACY_RC5_32_set_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RC5_32_set_key');
+    {$ifend}
   Result := RC5_32_set_key(key, len, data, rounds);
 end;
 
@@ -169,7 +174,11 @@ procedure Load_RC5_32_ecb_encrypt(in_: Pbyte; out_: Pbyte; key: PRC5_32_KEY; enc
 begin
   RC5_32_ecb_encrypt := LoadLibCryptoFunction('RC5_32_ecb_encrypt');
   if not assigned(RC5_32_ecb_encrypt) then
+    {$if declared(LEGACY_RC5_32_ecb_encrypt)}
+    RC5_32_ecb_encrypt := @LEGACY_RC5_32_ecb_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RC5_32_ecb_encrypt');
+    {$ifend}
   RC5_32_ecb_encrypt(in_, out_, key, enc);
 end;
 
@@ -177,7 +186,11 @@ procedure Load_RC5_32_encrypt(data: POpenSSL_C_UINT; key: PRC5_32_KEY); cdecl;
 begin
   RC5_32_encrypt := LoadLibCryptoFunction('RC5_32_encrypt');
   if not assigned(RC5_32_encrypt) then
+    {$if declared(LEGACY_RC5_32_encrypt)}
+    RC5_32_encrypt := @LEGACY_RC5_32_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RC5_32_encrypt');
+    {$ifend}
   RC5_32_encrypt(data, key);
 end;
 
@@ -185,7 +198,11 @@ procedure Load_RC5_32_decrypt(data: POpenSSL_C_UINT; key: PRC5_32_KEY); cdecl;
 begin
   RC5_32_decrypt := LoadLibCryptoFunction('RC5_32_decrypt');
   if not assigned(RC5_32_decrypt) then
+    {$if declared(LEGACY_RC5_32_decrypt)}
+    RC5_32_decrypt := @LEGACY_RC5_32_decrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RC5_32_decrypt');
+    {$ifend}
   RC5_32_decrypt(data, key);
 end;
 
@@ -193,7 +210,11 @@ procedure Load_RC5_32_cbc_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_IN
 begin
   RC5_32_cbc_encrypt := LoadLibCryptoFunction('RC5_32_cbc_encrypt');
   if not assigned(RC5_32_cbc_encrypt) then
+    {$if declared(LEGACY_RC5_32_cbc_encrypt)}
+    RC5_32_cbc_encrypt := @LEGACY_RC5_32_cbc_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RC5_32_cbc_encrypt');
+    {$ifend}
   RC5_32_cbc_encrypt(in_, out_, length, ks, iv, enc);
 end;
 
@@ -201,7 +222,11 @@ procedure Load_RC5_32_cfb64_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_
 begin
   RC5_32_cfb64_encrypt := LoadLibCryptoFunction('RC5_32_cfb64_encrypt');
   if not assigned(RC5_32_cfb64_encrypt) then
+    {$if declared(LEGACY_RC5_32_cfb64_encrypt)}
+    RC5_32_cfb64_encrypt := @LEGACY_RC5_32_cfb64_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RC5_32_cfb64_encrypt');
+    {$ifend}
   RC5_32_cfb64_encrypt(in_, out_, length, schedule, ivec, num, enc);
 end;
 
@@ -209,7 +234,11 @@ procedure Load_RC5_32_ofb64_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_
 begin
   RC5_32_ofb64_encrypt := LoadLibCryptoFunction('RC5_32_ofb64_encrypt');
   if not assigned(RC5_32_ofb64_encrypt) then
+    {$if declared(LEGACY_RC5_32_ofb64_encrypt)}
+    RC5_32_ofb64_encrypt := @LEGACY_RC5_32_ofb64_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RC5_32_ofb64_encrypt');
+    {$ifend}
   RC5_32_ofb64_encrypt(in_, out_, length, schedule, ivec, num);
 end;
 

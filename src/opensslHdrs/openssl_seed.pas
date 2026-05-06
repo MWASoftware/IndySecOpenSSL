@@ -18,7 +18,8 @@
 unit openssl_seed;
 
 {
-  Generated from OpenSSL 3.0.20 Header File seed.h - Wed  6 May 13:06:29 BST 2026
+  Generated from OpenSSL 3.0.20 Header File seed.h - Wed  6 May 13:15:38 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -175,7 +176,11 @@ procedure Load_SEED_set_key(rawkey: array of byte; ks: PSEED_KEY_SCHEDULE); cdec
 begin
   SEED_set_key := LoadLibCryptoFunction('SEED_set_key');
   if not assigned(SEED_set_key) then
+    {$if declared(LEGACY_SEED_set_key)}
+    SEED_set_key := @LEGACY_SEED_set_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SEED_set_key');
+    {$ifend}
   SEED_set_key(rawkey, ks);
 end;
 
@@ -183,7 +188,11 @@ procedure Load_SEED_encrypt(s: array of byte; d: array of byte; ks: PSEED_KEY_SC
 begin
   SEED_encrypt := LoadLibCryptoFunction('SEED_encrypt');
   if not assigned(SEED_encrypt) then
+    {$if declared(LEGACY_SEED_encrypt)}
+    SEED_encrypt := @LEGACY_SEED_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SEED_encrypt');
+    {$ifend}
   SEED_encrypt(s, d, ks);
 end;
 
@@ -191,7 +200,11 @@ procedure Load_SEED_decrypt(s: array of byte; d: array of byte; ks: PSEED_KEY_SC
 begin
   SEED_decrypt := LoadLibCryptoFunction('SEED_decrypt');
   if not assigned(SEED_decrypt) then
+    {$if declared(LEGACY_SEED_decrypt)}
+    SEED_decrypt := @LEGACY_SEED_decrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SEED_decrypt');
+    {$ifend}
   SEED_decrypt(s, d, ks);
 end;
 
@@ -199,7 +212,11 @@ procedure Load_SEED_ecb_encrypt(in_: Pbyte; out_: Pbyte; ks: PSEED_KEY_SCHEDULE;
 begin
   SEED_ecb_encrypt := LoadLibCryptoFunction('SEED_ecb_encrypt');
   if not assigned(SEED_ecb_encrypt) then
+    {$if declared(LEGACY_SEED_ecb_encrypt)}
+    SEED_ecb_encrypt := @LEGACY_SEED_ecb_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SEED_ecb_encrypt');
+    {$ifend}
   SEED_ecb_encrypt(in_, out_, ks, enc);
 end;
 
@@ -207,7 +224,11 @@ procedure Load_SEED_cbc_encrypt(in_: Pbyte; out_: Pbyte; len: TOpenSSL_C_SIZET; 
 begin
   SEED_cbc_encrypt := LoadLibCryptoFunction('SEED_cbc_encrypt');
   if not assigned(SEED_cbc_encrypt) then
+    {$if declared(LEGACY_SEED_cbc_encrypt)}
+    SEED_cbc_encrypt := @LEGACY_SEED_cbc_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SEED_cbc_encrypt');
+    {$ifend}
   SEED_cbc_encrypt(in_, out_, len, ks, ivec, enc);
 end;
 
@@ -215,7 +236,11 @@ procedure Load_SEED_cfb128_encrypt(in_: Pbyte; out_: Pbyte; len: TOpenSSL_C_SIZE
 begin
   SEED_cfb128_encrypt := LoadLibCryptoFunction('SEED_cfb128_encrypt');
   if not assigned(SEED_cfb128_encrypt) then
+    {$if declared(LEGACY_SEED_cfb128_encrypt)}
+    SEED_cfb128_encrypt := @LEGACY_SEED_cfb128_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SEED_cfb128_encrypt');
+    {$ifend}
   SEED_cfb128_encrypt(in_, out_, len, ks, ivec, num, enc);
 end;
 
@@ -223,7 +248,11 @@ procedure Load_SEED_ofb128_encrypt(in_: Pbyte; out_: Pbyte; len: TOpenSSL_C_SIZE
 begin
   SEED_ofb128_encrypt := LoadLibCryptoFunction('SEED_ofb128_encrypt');
   if not assigned(SEED_ofb128_encrypt) then
+    {$if declared(LEGACY_SEED_ofb128_encrypt)}
+    SEED_ofb128_encrypt := @LEGACY_SEED_ofb128_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SEED_ofb128_encrypt');
+    {$ifend}
   SEED_ofb128_encrypt(in_, out_, len, ks, ivec, num);
 end;
 

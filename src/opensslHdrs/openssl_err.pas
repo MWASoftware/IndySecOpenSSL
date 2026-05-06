@@ -18,7 +18,8 @@
 unit openssl_err;
 
 {
-  Generated from OpenSSL 3.0.20 Header File err.h - Wed  6 May 13:06:02 BST 2026
+  Generated from OpenSSL 3.0.20 Header File err.h - Wed  6 May 13:15:11 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -908,7 +909,11 @@ procedure Load_ERR_new; cdecl;
 begin
   ERR_new := LoadLibCryptoFunction('ERR_new');
   if not assigned(ERR_new) then
+    {$if declared(LEGACY_ERR_new)}
+    ERR_new := @LEGACY_ERR_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_new');
+    {$ifend}
   ERR_new;
 end;
 
@@ -916,7 +921,11 @@ procedure Load_ERR_set_debug(file_: PAnsiChar; line: TOpenSSL_C_INT; func: PAnsi
 begin
   ERR_set_debug := LoadLibCryptoFunction('ERR_set_debug');
   if not assigned(ERR_set_debug) then
+    {$if declared(LEGACY_ERR_set_debug)}
+    ERR_set_debug := @LEGACY_ERR_set_debug;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_set_debug');
+    {$ifend}
   ERR_set_debug(file_, line, func);
 end;
 
@@ -924,7 +933,11 @@ procedure Load_ERR_set_error_data(data: PAnsiChar; flags: TOpenSSL_C_INT); cdecl
 begin
   ERR_set_error_data := LoadLibCryptoFunction('ERR_set_error_data');
   if not assigned(ERR_set_error_data) then
+    {$if declared(LEGACY_ERR_set_error_data)}
+    ERR_set_error_data := @LEGACY_ERR_set_error_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_set_error_data');
+    {$ifend}
   ERR_set_error_data(data, flags);
 end;
 
@@ -932,7 +945,11 @@ function Load_ERR_get_error: TOpenSSL_C_UINT; cdecl;
 begin
   ERR_get_error := LoadLibCryptoFunction('ERR_get_error');
   if not assigned(ERR_get_error) then
+    {$if declared(LEGACY_ERR_get_error)}
+    ERR_get_error := @LEGACY_ERR_get_error;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_get_error');
+    {$ifend}
   Result := ERR_get_error;
 end;
 
@@ -940,7 +957,11 @@ function Load_ERR_get_error_all(file_: PPAnsiChar; line: POpenSSL_C_INT; func: P
 begin
   ERR_get_error_all := LoadLibCryptoFunction('ERR_get_error_all');
   if not assigned(ERR_get_error_all) then
+    {$if declared(LEGACY_ERR_get_error_all)}
+    ERR_get_error_all := @LEGACY_ERR_get_error_all;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_get_error_all');
+    {$ifend}
   Result := ERR_get_error_all(file_, line, func, data, flags);
 end;
 
@@ -949,7 +970,11 @@ function Load_ERR_get_error_line(file_: PPAnsiChar; line: POpenSSL_C_INT): TOpen
 begin
   ERR_get_error_line := LoadLibCryptoFunction('ERR_get_error_line');
   if not assigned(ERR_get_error_line) then
+    {$if declared(LEGACY_ERR_get_error_line)}
+    ERR_get_error_line := @LEGACY_ERR_get_error_line;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_get_error_line');
+    {$ifend}
   Result := ERR_get_error_line(file_, line);
 end;
 
@@ -957,7 +982,11 @@ function Load_ERR_get_error_line_data(file_: PPAnsiChar; line: POpenSSL_C_INT; d
 begin
   ERR_get_error_line_data := LoadLibCryptoFunction('ERR_get_error_line_data');
   if not assigned(ERR_get_error_line_data) then
+    {$if declared(LEGACY_ERR_get_error_line_data)}
+    ERR_get_error_line_data := @LEGACY_ERR_get_error_line_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_get_error_line_data');
+    {$ifend}
   Result := ERR_get_error_line_data(file_, line, data, flags);
 end;
 
@@ -966,7 +995,11 @@ function Load_ERR_peek_error: TOpenSSL_C_UINT; cdecl;
 begin
   ERR_peek_error := LoadLibCryptoFunction('ERR_peek_error');
   if not assigned(ERR_peek_error) then
+    {$if declared(LEGACY_ERR_peek_error)}
+    ERR_peek_error := @LEGACY_ERR_peek_error;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_peek_error');
+    {$ifend}
   Result := ERR_peek_error;
 end;
 
@@ -974,7 +1007,11 @@ function Load_ERR_peek_error_line(file_: PPAnsiChar; line: POpenSSL_C_INT): TOpe
 begin
   ERR_peek_error_line := LoadLibCryptoFunction('ERR_peek_error_line');
   if not assigned(ERR_peek_error_line) then
+    {$if declared(LEGACY_ERR_peek_error_line)}
+    ERR_peek_error_line := @LEGACY_ERR_peek_error_line;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_peek_error_line');
+    {$ifend}
   Result := ERR_peek_error_line(file_, line);
 end;
 
@@ -982,7 +1019,11 @@ function Load_ERR_peek_error_func(func: PPAnsiChar): TOpenSSL_C_UINT; cdecl;
 begin
   ERR_peek_error_func := LoadLibCryptoFunction('ERR_peek_error_func');
   if not assigned(ERR_peek_error_func) then
+    {$if declared(LEGACY_ERR_peek_error_func)}
+    ERR_peek_error_func := @LEGACY_ERR_peek_error_func;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_peek_error_func');
+    {$ifend}
   Result := ERR_peek_error_func(func);
 end;
 
@@ -990,7 +1031,11 @@ function Load_ERR_peek_error_data(data: PPAnsiChar; flags: POpenSSL_C_INT): TOpe
 begin
   ERR_peek_error_data := LoadLibCryptoFunction('ERR_peek_error_data');
   if not assigned(ERR_peek_error_data) then
+    {$if declared(LEGACY_ERR_peek_error_data)}
+    ERR_peek_error_data := @LEGACY_ERR_peek_error_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_peek_error_data');
+    {$ifend}
   Result := ERR_peek_error_data(data, flags);
 end;
 
@@ -998,7 +1043,11 @@ function Load_ERR_peek_error_all(file_: PPAnsiChar; line: POpenSSL_C_INT; func: 
 begin
   ERR_peek_error_all := LoadLibCryptoFunction('ERR_peek_error_all');
   if not assigned(ERR_peek_error_all) then
+    {$if declared(LEGACY_ERR_peek_error_all)}
+    ERR_peek_error_all := @LEGACY_ERR_peek_error_all;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_peek_error_all');
+    {$ifend}
   Result := ERR_peek_error_all(file_, line, func, data, flags);
 end;
 
@@ -1007,7 +1056,11 @@ function Load_ERR_peek_error_line_data(file_: PPAnsiChar; line: POpenSSL_C_INT; 
 begin
   ERR_peek_error_line_data := LoadLibCryptoFunction('ERR_peek_error_line_data');
   if not assigned(ERR_peek_error_line_data) then
+    {$if declared(LEGACY_ERR_peek_error_line_data)}
+    ERR_peek_error_line_data := @LEGACY_ERR_peek_error_line_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_peek_error_line_data');
+    {$ifend}
   Result := ERR_peek_error_line_data(file_, line, data, flags);
 end;
 
@@ -1016,7 +1069,11 @@ function Load_ERR_peek_last_error: TOpenSSL_C_UINT; cdecl;
 begin
   ERR_peek_last_error := LoadLibCryptoFunction('ERR_peek_last_error');
   if not assigned(ERR_peek_last_error) then
+    {$if declared(LEGACY_ERR_peek_last_error)}
+    ERR_peek_last_error := @LEGACY_ERR_peek_last_error;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_peek_last_error');
+    {$ifend}
   Result := ERR_peek_last_error;
 end;
 
@@ -1024,7 +1081,11 @@ function Load_ERR_peek_last_error_line(file_: PPAnsiChar; line: POpenSSL_C_INT):
 begin
   ERR_peek_last_error_line := LoadLibCryptoFunction('ERR_peek_last_error_line');
   if not assigned(ERR_peek_last_error_line) then
+    {$if declared(LEGACY_ERR_peek_last_error_line)}
+    ERR_peek_last_error_line := @LEGACY_ERR_peek_last_error_line;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_peek_last_error_line');
+    {$ifend}
   Result := ERR_peek_last_error_line(file_, line);
 end;
 
@@ -1032,7 +1093,11 @@ function Load_ERR_peek_last_error_func(func: PPAnsiChar): TOpenSSL_C_UINT; cdecl
 begin
   ERR_peek_last_error_func := LoadLibCryptoFunction('ERR_peek_last_error_func');
   if not assigned(ERR_peek_last_error_func) then
+    {$if declared(LEGACY_ERR_peek_last_error_func)}
+    ERR_peek_last_error_func := @LEGACY_ERR_peek_last_error_func;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_peek_last_error_func');
+    {$ifend}
   Result := ERR_peek_last_error_func(func);
 end;
 
@@ -1040,7 +1105,11 @@ function Load_ERR_peek_last_error_data(data: PPAnsiChar; flags: POpenSSL_C_INT):
 begin
   ERR_peek_last_error_data := LoadLibCryptoFunction('ERR_peek_last_error_data');
   if not assigned(ERR_peek_last_error_data) then
+    {$if declared(LEGACY_ERR_peek_last_error_data)}
+    ERR_peek_last_error_data := @LEGACY_ERR_peek_last_error_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_peek_last_error_data');
+    {$ifend}
   Result := ERR_peek_last_error_data(data, flags);
 end;
 
@@ -1048,7 +1117,11 @@ function Load_ERR_peek_last_error_all(file_: PPAnsiChar; line: POpenSSL_C_INT; f
 begin
   ERR_peek_last_error_all := LoadLibCryptoFunction('ERR_peek_last_error_all');
   if not assigned(ERR_peek_last_error_all) then
+    {$if declared(LEGACY_ERR_peek_last_error_all)}
+    ERR_peek_last_error_all := @LEGACY_ERR_peek_last_error_all;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_peek_last_error_all');
+    {$ifend}
   Result := ERR_peek_last_error_all(file_, line, func, data, flags);
 end;
 
@@ -1057,7 +1130,11 @@ function Load_ERR_peek_last_error_line_data(file_: PPAnsiChar; line: POpenSSL_C_
 begin
   ERR_peek_last_error_line_data := LoadLibCryptoFunction('ERR_peek_last_error_line_data');
   if not assigned(ERR_peek_last_error_line_data) then
+    {$if declared(LEGACY_ERR_peek_last_error_line_data)}
+    ERR_peek_last_error_line_data := @LEGACY_ERR_peek_last_error_line_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_peek_last_error_line_data');
+    {$ifend}
   Result := ERR_peek_last_error_line_data(file_, line, data, flags);
 end;
 
@@ -1066,7 +1143,11 @@ procedure Load_ERR_clear_error; cdecl;
 begin
   ERR_clear_error := LoadLibCryptoFunction('ERR_clear_error');
   if not assigned(ERR_clear_error) then
+    {$if declared(LEGACY_ERR_clear_error)}
+    ERR_clear_error := @LEGACY_ERR_clear_error;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_clear_error');
+    {$ifend}
   ERR_clear_error;
 end;
 
@@ -1074,7 +1155,11 @@ function Load_ERR_error_string(e: TOpenSSL_C_UINT; buf: PAnsiChar): PAnsiChar; c
 begin
   ERR_error_string := LoadLibCryptoFunction('ERR_error_string');
   if not assigned(ERR_error_string) then
+    {$if declared(LEGACY_ERR_error_string)}
+    ERR_error_string := @LEGACY_ERR_error_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_error_string');
+    {$ifend}
   Result := ERR_error_string(e, buf);
 end;
 
@@ -1082,7 +1167,11 @@ procedure Load_ERR_error_string_n(e: TOpenSSL_C_UINT; buf: PAnsiChar; len: TOpen
 begin
   ERR_error_string_n := LoadLibCryptoFunction('ERR_error_string_n');
   if not assigned(ERR_error_string_n) then
+    {$if declared(LEGACY_ERR_error_string_n)}
+    ERR_error_string_n := @LEGACY_ERR_error_string_n;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_error_string_n');
+    {$ifend}
   ERR_error_string_n(e, buf, len);
 end;
 
@@ -1090,7 +1179,11 @@ function Load_ERR_lib_error_string(e: TOpenSSL_C_UINT): PAnsiChar; cdecl;
 begin
   ERR_lib_error_string := LoadLibCryptoFunction('ERR_lib_error_string');
   if not assigned(ERR_lib_error_string) then
+    {$if declared(LEGACY_ERR_lib_error_string)}
+    ERR_lib_error_string := @LEGACY_ERR_lib_error_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_lib_error_string');
+    {$ifend}
   Result := ERR_lib_error_string(e);
 end;
 
@@ -1099,7 +1192,11 @@ function Load_ERR_func_error_string(e: TOpenSSL_C_UINT): PAnsiChar; cdecl;
 begin
   ERR_func_error_string := LoadLibCryptoFunction('ERR_func_error_string');
   if not assigned(ERR_func_error_string) then
+    {$if declared(LEGACY_ERR_func_error_string)}
+    ERR_func_error_string := @LEGACY_ERR_func_error_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_func_error_string');
+    {$ifend}
   Result := ERR_func_error_string(e);
 end;
 
@@ -1108,7 +1205,11 @@ function Load_ERR_reason_error_string(e: TOpenSSL_C_UINT): PAnsiChar; cdecl;
 begin
   ERR_reason_error_string := LoadLibCryptoFunction('ERR_reason_error_string');
   if not assigned(ERR_reason_error_string) then
+    {$if declared(LEGACY_ERR_reason_error_string)}
+    ERR_reason_error_string := @LEGACY_ERR_reason_error_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_reason_error_string');
+    {$ifend}
   Result := ERR_reason_error_string(e);
 end;
 
@@ -1116,7 +1217,11 @@ procedure Load_ERR_print_errors_cb(cb: TFuncType000; u: pointer); cdecl;
 begin
   ERR_print_errors_cb := LoadLibCryptoFunction('ERR_print_errors_cb');
   if not assigned(ERR_print_errors_cb) then
+    {$if declared(LEGACY_ERR_print_errors_cb)}
+    ERR_print_errors_cb := @LEGACY_ERR_print_errors_cb;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_print_errors_cb');
+    {$ifend}
   ERR_print_errors_cb(cb, u);
 end;
 
@@ -1125,7 +1230,11 @@ procedure Load_ERR_print_errors_fp(fp: PFILE); cdecl;
 begin
   ERR_print_errors_fp := LoadLibCryptoFunction('ERR_print_errors_fp');
   if not assigned(ERR_print_errors_fp) then
+    {$if declared(LEGACY_ERR_print_errors_fp)}
+    ERR_print_errors_fp := @LEGACY_ERR_print_errors_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_print_errors_fp');
+    {$ifend}
   ERR_print_errors_fp(fp);
 end;
 
@@ -1134,7 +1243,11 @@ procedure Load_ERR_print_errors(bp: PBIO); cdecl;
 begin
   ERR_print_errors := LoadLibCryptoFunction('ERR_print_errors');
   if not assigned(ERR_print_errors) then
+    {$if declared(LEGACY_ERR_print_errors)}
+    ERR_print_errors := @LEGACY_ERR_print_errors;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_print_errors');
+    {$ifend}
   ERR_print_errors(bp);
 end;
 
@@ -1142,7 +1255,11 @@ procedure Load_ERR_add_error_txt(sepr: PAnsiChar; txt: PAnsiChar); cdecl;
 begin
   ERR_add_error_txt := LoadLibCryptoFunction('ERR_add_error_txt');
   if not assigned(ERR_add_error_txt) then
+    {$if declared(LEGACY_ERR_add_error_txt)}
+    ERR_add_error_txt := @LEGACY_ERR_add_error_txt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_add_error_txt');
+    {$ifend}
   ERR_add_error_txt(sepr, txt);
 end;
 
@@ -1150,7 +1267,11 @@ procedure Load_ERR_add_error_mem_bio(sep: PAnsiChar; bio: PBIO); cdecl;
 begin
   ERR_add_error_mem_bio := LoadLibCryptoFunction('ERR_add_error_mem_bio');
   if not assigned(ERR_add_error_mem_bio) then
+    {$if declared(LEGACY_ERR_add_error_mem_bio)}
+    ERR_add_error_mem_bio := @LEGACY_ERR_add_error_mem_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_add_error_mem_bio');
+    {$ifend}
   ERR_add_error_mem_bio(sep, bio);
 end;
 
@@ -1158,7 +1279,11 @@ function Load_ERR_load_strings(lib: TOpenSSL_C_INT; str: PERR_STRING_DATA): TOpe
 begin
   ERR_load_strings := LoadLibCryptoFunction('ERR_load_strings');
   if not assigned(ERR_load_strings) then
+    {$if declared(LEGACY_ERR_load_strings)}
+    ERR_load_strings := @LEGACY_ERR_load_strings;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_load_strings');
+    {$ifend}
   Result := ERR_load_strings(lib, str);
 end;
 
@@ -1166,7 +1291,11 @@ function Load_ERR_load_strings_const(str: PERR_STRING_DATA): TOpenSSL_C_INT; cde
 begin
   ERR_load_strings_const := LoadLibCryptoFunction('ERR_load_strings_const');
   if not assigned(ERR_load_strings_const) then
+    {$if declared(LEGACY_ERR_load_strings_const)}
+    ERR_load_strings_const := @LEGACY_ERR_load_strings_const;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_load_strings_const');
+    {$ifend}
   Result := ERR_load_strings_const(str);
 end;
 
@@ -1174,7 +1303,11 @@ function Load_ERR_unload_strings(lib: TOpenSSL_C_INT; str: PERR_STRING_DATA): TO
 begin
   ERR_unload_strings := LoadLibCryptoFunction('ERR_unload_strings');
   if not assigned(ERR_unload_strings) then
+    {$if declared(LEGACY_ERR_unload_strings)}
+    ERR_unload_strings := @LEGACY_ERR_unload_strings;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_unload_strings');
+    {$ifend}
   Result := ERR_unload_strings(lib, str);
 end;
 
@@ -1183,7 +1316,11 @@ procedure Load_ERR_remove_thread_state(_param1: pointer); cdecl;
 begin
   ERR_remove_thread_state := LoadLibCryptoFunction('ERR_remove_thread_state');
   if not assigned(ERR_remove_thread_state) then
+    {$if declared(LEGACY_ERR_remove_thread_state)}
+    ERR_remove_thread_state := @LEGACY_ERR_remove_thread_state;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_remove_thread_state');
+    {$ifend}
   ERR_remove_thread_state(_param1);
 end;
 
@@ -1193,7 +1330,11 @@ procedure Load_ERR_remove_state(pid: TOpenSSL_C_UINT); cdecl;
 begin
   ERR_remove_state := LoadLibCryptoFunction('ERR_remove_state');
   if not assigned(ERR_remove_state) then
+    {$if declared(LEGACY_ERR_remove_state)}
+    ERR_remove_state := @LEGACY_ERR_remove_state;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_remove_state');
+    {$ifend}
   ERR_remove_state(pid);
 end;
 
@@ -1203,7 +1344,11 @@ function Load_ERR_get_state: PERR_STATE; cdecl;
 begin
   ERR_get_state := LoadLibCryptoFunction('ERR_get_state');
   if not assigned(ERR_get_state) then
+    {$if declared(LEGACY_ERR_get_state)}
+    ERR_get_state := @LEGACY_ERR_get_state;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_get_state');
+    {$ifend}
   Result := ERR_get_state;
 end;
 
@@ -1212,7 +1357,11 @@ function Load_ERR_get_next_error_library: TOpenSSL_C_INT; cdecl;
 begin
   ERR_get_next_error_library := LoadLibCryptoFunction('ERR_get_next_error_library');
   if not assigned(ERR_get_next_error_library) then
+    {$if declared(LEGACY_ERR_get_next_error_library)}
+    ERR_get_next_error_library := @LEGACY_ERR_get_next_error_library;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_get_next_error_library');
+    {$ifend}
   Result := ERR_get_next_error_library;
 end;
 
@@ -1220,7 +1369,11 @@ function Load_ERR_set_mark: TOpenSSL_C_INT; cdecl;
 begin
   ERR_set_mark := LoadLibCryptoFunction('ERR_set_mark');
   if not assigned(ERR_set_mark) then
+    {$if declared(LEGACY_ERR_set_mark)}
+    ERR_set_mark := @LEGACY_ERR_set_mark;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_set_mark');
+    {$ifend}
   Result := ERR_set_mark;
 end;
 
@@ -1228,7 +1381,11 @@ function Load_ERR_pop_to_mark: TOpenSSL_C_INT; cdecl;
 begin
   ERR_pop_to_mark := LoadLibCryptoFunction('ERR_pop_to_mark');
   if not assigned(ERR_pop_to_mark) then
+    {$if declared(LEGACY_ERR_pop_to_mark)}
+    ERR_pop_to_mark := @LEGACY_ERR_pop_to_mark;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_pop_to_mark');
+    {$ifend}
   Result := ERR_pop_to_mark;
 end;
 
@@ -1236,7 +1393,11 @@ function Load_ERR_clear_last_mark: TOpenSSL_C_INT; cdecl;
 begin
   ERR_clear_last_mark := LoadLibCryptoFunction('ERR_clear_last_mark');
   if not assigned(ERR_clear_last_mark) then
+    {$if declared(LEGACY_ERR_clear_last_mark)}
+    ERR_clear_last_mark := @LEGACY_ERR_clear_last_mark;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_clear_last_mark');
+    {$ifend}
   Result := ERR_clear_last_mark;
 end;
 

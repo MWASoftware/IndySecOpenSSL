@@ -18,7 +18,8 @@
 unit openssl_ts;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ts.h - Wed  6 May 13:06:46 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ts.h - Wed  6 May 13:15:55 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -1240,7 +1241,11 @@ function Load_TS_REQ_new: PTS_REQ; cdecl;
 begin
   TS_REQ_new := LoadLibCryptoFunction('TS_REQ_new');
   if not assigned(TS_REQ_new) then
+    {$if declared(LEGACY_TS_REQ_new)}
+    TS_REQ_new := @LEGACY_TS_REQ_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_REQ_new');
+    {$ifend}
   Result := TS_REQ_new;
 end;
 
@@ -1248,7 +1253,11 @@ procedure Load_TS_REQ_free(a: PTS_REQ); cdecl;
 begin
   TS_REQ_free := LoadLibCryptoFunction('TS_REQ_free');
   if not assigned(TS_REQ_free) then
+    {$if declared(LEGACY_TS_REQ_free)}
+    TS_REQ_free := @LEGACY_TS_REQ_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_REQ_free');
+    {$ifend}
   TS_REQ_free(a);
 end;
 
@@ -1256,7 +1265,11 @@ function Load_d2i_TS_REQ(a: PPTS_REQ; in_: PPbyte; len: TOpenSSL_C_INT): PTS_REQ
 begin
   d2i_TS_REQ := LoadLibCryptoFunction('d2i_TS_REQ');
   if not assigned(d2i_TS_REQ) then
+    {$if declared(LEGACY_d2i_TS_REQ)}
+    d2i_TS_REQ := @LEGACY_d2i_TS_REQ;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_TS_REQ');
+    {$ifend}
   Result := d2i_TS_REQ(a, in_, len);
 end;
 
@@ -1264,7 +1277,11 @@ function Load_i2d_TS_REQ(a: PTS_REQ; out_: PPbyte): TOpenSSL_C_INT; cdecl;
 begin
   i2d_TS_REQ := LoadLibCryptoFunction('i2d_TS_REQ');
   if not assigned(i2d_TS_REQ) then
+    {$if declared(LEGACY_i2d_TS_REQ)}
+    i2d_TS_REQ := @LEGACY_i2d_TS_REQ;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_TS_REQ');
+    {$ifend}
   Result := i2d_TS_REQ(a, out_);
 end;
 
@@ -1272,7 +1289,11 @@ function Load_TS_REQ_dup(a: PTS_REQ): PTS_REQ; cdecl;
 begin
   TS_REQ_dup := LoadLibCryptoFunction('TS_REQ_dup');
   if not assigned(TS_REQ_dup) then
+    {$if declared(LEGACY_TS_REQ_dup)}
+    TS_REQ_dup := @LEGACY_TS_REQ_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_REQ_dup');
+    {$ifend}
   Result := TS_REQ_dup(a);
 end;
 
@@ -1281,7 +1302,11 @@ function Load_d2i_TS_REQ_fp(fp: PFILE; a: PPTS_REQ): PTS_REQ; cdecl;
 begin
   d2i_TS_REQ_fp := LoadLibCryptoFunction('d2i_TS_REQ_fp');
   if not assigned(d2i_TS_REQ_fp) then
+    {$if declared(LEGACY_d2i_TS_REQ_fp)}
+    d2i_TS_REQ_fp := @LEGACY_d2i_TS_REQ_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_TS_REQ_fp');
+    {$ifend}
   Result := d2i_TS_REQ_fp(fp, a);
 end;
 
@@ -1289,7 +1314,11 @@ function Load_i2d_TS_REQ_fp(fp: PFILE; a: PTS_REQ): TOpenSSL_C_INT; cdecl;
 begin
   i2d_TS_REQ_fp := LoadLibCryptoFunction('i2d_TS_REQ_fp');
   if not assigned(i2d_TS_REQ_fp) then
+    {$if declared(LEGACY_i2d_TS_REQ_fp)}
+    i2d_TS_REQ_fp := @LEGACY_i2d_TS_REQ_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_TS_REQ_fp');
+    {$ifend}
   Result := i2d_TS_REQ_fp(fp, a);
 end;
 
@@ -1298,7 +1327,11 @@ function Load_d2i_TS_REQ_bio(fp: PBIO; a: PPTS_REQ): PTS_REQ; cdecl;
 begin
   d2i_TS_REQ_bio := LoadLibCryptoFunction('d2i_TS_REQ_bio');
   if not assigned(d2i_TS_REQ_bio) then
+    {$if declared(LEGACY_d2i_TS_REQ_bio)}
+    d2i_TS_REQ_bio := @LEGACY_d2i_TS_REQ_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_TS_REQ_bio');
+    {$ifend}
   Result := d2i_TS_REQ_bio(fp, a);
 end;
 
@@ -1306,7 +1339,11 @@ function Load_i2d_TS_REQ_bio(fp: PBIO; a: PTS_REQ): TOpenSSL_C_INT; cdecl;
 begin
   i2d_TS_REQ_bio := LoadLibCryptoFunction('i2d_TS_REQ_bio');
   if not assigned(i2d_TS_REQ_bio) then
+    {$if declared(LEGACY_i2d_TS_REQ_bio)}
+    i2d_TS_REQ_bio := @LEGACY_i2d_TS_REQ_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_TS_REQ_bio');
+    {$ifend}
   Result := i2d_TS_REQ_bio(fp, a);
 end;
 
@@ -1314,7 +1351,11 @@ function Load_TS_MSG_IMPRINT_new: PTS_MSG_IMPRINT; cdecl;
 begin
   TS_MSG_IMPRINT_new := LoadLibCryptoFunction('TS_MSG_IMPRINT_new');
   if not assigned(TS_MSG_IMPRINT_new) then
+    {$if declared(LEGACY_TS_MSG_IMPRINT_new)}
+    TS_MSG_IMPRINT_new := @LEGACY_TS_MSG_IMPRINT_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_MSG_IMPRINT_new');
+    {$ifend}
   Result := TS_MSG_IMPRINT_new;
 end;
 
@@ -1322,7 +1363,11 @@ procedure Load_TS_MSG_IMPRINT_free(a: PTS_MSG_IMPRINT); cdecl;
 begin
   TS_MSG_IMPRINT_free := LoadLibCryptoFunction('TS_MSG_IMPRINT_free');
   if not assigned(TS_MSG_IMPRINT_free) then
+    {$if declared(LEGACY_TS_MSG_IMPRINT_free)}
+    TS_MSG_IMPRINT_free := @LEGACY_TS_MSG_IMPRINT_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_MSG_IMPRINT_free');
+    {$ifend}
   TS_MSG_IMPRINT_free(a);
 end;
 
@@ -1330,7 +1375,11 @@ function Load_d2i_TS_MSG_IMPRINT(a: PPTS_MSG_IMPRINT; in_: PPbyte; len: TOpenSSL
 begin
   d2i_TS_MSG_IMPRINT := LoadLibCryptoFunction('d2i_TS_MSG_IMPRINT');
   if not assigned(d2i_TS_MSG_IMPRINT) then
+    {$if declared(LEGACY_d2i_TS_MSG_IMPRINT)}
+    d2i_TS_MSG_IMPRINT := @LEGACY_d2i_TS_MSG_IMPRINT;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_TS_MSG_IMPRINT');
+    {$ifend}
   Result := d2i_TS_MSG_IMPRINT(a, in_, len);
 end;
 
@@ -1338,7 +1387,11 @@ function Load_i2d_TS_MSG_IMPRINT(a: PTS_MSG_IMPRINT; out_: PPbyte): TOpenSSL_C_I
 begin
   i2d_TS_MSG_IMPRINT := LoadLibCryptoFunction('i2d_TS_MSG_IMPRINT');
   if not assigned(i2d_TS_MSG_IMPRINT) then
+    {$if declared(LEGACY_i2d_TS_MSG_IMPRINT)}
+    i2d_TS_MSG_IMPRINT := @LEGACY_i2d_TS_MSG_IMPRINT;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_TS_MSG_IMPRINT');
+    {$ifend}
   Result := i2d_TS_MSG_IMPRINT(a, out_);
 end;
 
@@ -1346,7 +1399,11 @@ function Load_TS_MSG_IMPRINT_dup(a: PTS_MSG_IMPRINT): PTS_MSG_IMPRINT; cdecl;
 begin
   TS_MSG_IMPRINT_dup := LoadLibCryptoFunction('TS_MSG_IMPRINT_dup');
   if not assigned(TS_MSG_IMPRINT_dup) then
+    {$if declared(LEGACY_TS_MSG_IMPRINT_dup)}
+    TS_MSG_IMPRINT_dup := @LEGACY_TS_MSG_IMPRINT_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_MSG_IMPRINT_dup');
+    {$ifend}
   Result := TS_MSG_IMPRINT_dup(a);
 end;
 
@@ -1355,7 +1412,11 @@ function Load_d2i_TS_MSG_IMPRINT_fp(fp: PFILE; a: PPTS_MSG_IMPRINT): PTS_MSG_IMP
 begin
   d2i_TS_MSG_IMPRINT_fp := LoadLibCryptoFunction('d2i_TS_MSG_IMPRINT_fp');
   if not assigned(d2i_TS_MSG_IMPRINT_fp) then
+    {$if declared(LEGACY_d2i_TS_MSG_IMPRINT_fp)}
+    d2i_TS_MSG_IMPRINT_fp := @LEGACY_d2i_TS_MSG_IMPRINT_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_TS_MSG_IMPRINT_fp');
+    {$ifend}
   Result := d2i_TS_MSG_IMPRINT_fp(fp, a);
 end;
 
@@ -1363,7 +1424,11 @@ function Load_i2d_TS_MSG_IMPRINT_fp(fp: PFILE; a: PTS_MSG_IMPRINT): TOpenSSL_C_I
 begin
   i2d_TS_MSG_IMPRINT_fp := LoadLibCryptoFunction('i2d_TS_MSG_IMPRINT_fp');
   if not assigned(i2d_TS_MSG_IMPRINT_fp) then
+    {$if declared(LEGACY_i2d_TS_MSG_IMPRINT_fp)}
+    i2d_TS_MSG_IMPRINT_fp := @LEGACY_i2d_TS_MSG_IMPRINT_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_TS_MSG_IMPRINT_fp');
+    {$ifend}
   Result := i2d_TS_MSG_IMPRINT_fp(fp, a);
 end;
 
@@ -1372,7 +1437,11 @@ function Load_d2i_TS_MSG_IMPRINT_bio(bio: PBIO; a: PPTS_MSG_IMPRINT): PTS_MSG_IM
 begin
   d2i_TS_MSG_IMPRINT_bio := LoadLibCryptoFunction('d2i_TS_MSG_IMPRINT_bio');
   if not assigned(d2i_TS_MSG_IMPRINT_bio) then
+    {$if declared(LEGACY_d2i_TS_MSG_IMPRINT_bio)}
+    d2i_TS_MSG_IMPRINT_bio := @LEGACY_d2i_TS_MSG_IMPRINT_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_TS_MSG_IMPRINT_bio');
+    {$ifend}
   Result := d2i_TS_MSG_IMPRINT_bio(bio, a);
 end;
 
@@ -1380,7 +1449,11 @@ function Load_i2d_TS_MSG_IMPRINT_bio(bio: PBIO; a: PTS_MSG_IMPRINT): TOpenSSL_C_
 begin
   i2d_TS_MSG_IMPRINT_bio := LoadLibCryptoFunction('i2d_TS_MSG_IMPRINT_bio');
   if not assigned(i2d_TS_MSG_IMPRINT_bio) then
+    {$if declared(LEGACY_i2d_TS_MSG_IMPRINT_bio)}
+    i2d_TS_MSG_IMPRINT_bio := @LEGACY_i2d_TS_MSG_IMPRINT_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_TS_MSG_IMPRINT_bio');
+    {$ifend}
   Result := i2d_TS_MSG_IMPRINT_bio(bio, a);
 end;
 
@@ -1388,7 +1461,11 @@ function Load_TS_RESP_new: PTS_RESP; cdecl;
 begin
   TS_RESP_new := LoadLibCryptoFunction('TS_RESP_new');
   if not assigned(TS_RESP_new) then
+    {$if declared(LEGACY_TS_RESP_new)}
+    TS_RESP_new := @LEGACY_TS_RESP_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_new');
+    {$ifend}
   Result := TS_RESP_new;
 end;
 
@@ -1396,7 +1473,11 @@ procedure Load_TS_RESP_free(a: PTS_RESP); cdecl;
 begin
   TS_RESP_free := LoadLibCryptoFunction('TS_RESP_free');
   if not assigned(TS_RESP_free) then
+    {$if declared(LEGACY_TS_RESP_free)}
+    TS_RESP_free := @LEGACY_TS_RESP_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_free');
+    {$ifend}
   TS_RESP_free(a);
 end;
 
@@ -1404,7 +1485,11 @@ function Load_d2i_TS_RESP(a: PPTS_RESP; in_: PPbyte; len: TOpenSSL_C_INT): PTS_R
 begin
   d2i_TS_RESP := LoadLibCryptoFunction('d2i_TS_RESP');
   if not assigned(d2i_TS_RESP) then
+    {$if declared(LEGACY_d2i_TS_RESP)}
+    d2i_TS_RESP := @LEGACY_d2i_TS_RESP;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_TS_RESP');
+    {$ifend}
   Result := d2i_TS_RESP(a, in_, len);
 end;
 
@@ -1412,7 +1497,11 @@ function Load_i2d_TS_RESP(a: PTS_RESP; out_: PPbyte): TOpenSSL_C_INT; cdecl;
 begin
   i2d_TS_RESP := LoadLibCryptoFunction('i2d_TS_RESP');
   if not assigned(i2d_TS_RESP) then
+    {$if declared(LEGACY_i2d_TS_RESP)}
+    i2d_TS_RESP := @LEGACY_i2d_TS_RESP;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_TS_RESP');
+    {$ifend}
   Result := i2d_TS_RESP(a, out_);
 end;
 
@@ -1420,7 +1509,11 @@ function Load_TS_RESP_dup(a: PTS_RESP): PTS_RESP; cdecl;
 begin
   TS_RESP_dup := LoadLibCryptoFunction('TS_RESP_dup');
   if not assigned(TS_RESP_dup) then
+    {$if declared(LEGACY_TS_RESP_dup)}
+    TS_RESP_dup := @LEGACY_TS_RESP_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_dup');
+    {$ifend}
   Result := TS_RESP_dup(a);
 end;
 
@@ -1429,7 +1522,11 @@ function Load_d2i_TS_RESP_fp(fp: PFILE; a: PPTS_RESP): PTS_RESP; cdecl;
 begin
   d2i_TS_RESP_fp := LoadLibCryptoFunction('d2i_TS_RESP_fp');
   if not assigned(d2i_TS_RESP_fp) then
+    {$if declared(LEGACY_d2i_TS_RESP_fp)}
+    d2i_TS_RESP_fp := @LEGACY_d2i_TS_RESP_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_TS_RESP_fp');
+    {$ifend}
   Result := d2i_TS_RESP_fp(fp, a);
 end;
 
@@ -1437,7 +1534,11 @@ function Load_i2d_TS_RESP_fp(fp: PFILE; a: PTS_RESP): TOpenSSL_C_INT; cdecl;
 begin
   i2d_TS_RESP_fp := LoadLibCryptoFunction('i2d_TS_RESP_fp');
   if not assigned(i2d_TS_RESP_fp) then
+    {$if declared(LEGACY_i2d_TS_RESP_fp)}
+    i2d_TS_RESP_fp := @LEGACY_i2d_TS_RESP_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_TS_RESP_fp');
+    {$ifend}
   Result := i2d_TS_RESP_fp(fp, a);
 end;
 
@@ -1446,7 +1547,11 @@ function Load_d2i_TS_RESP_bio(bio: PBIO; a: PPTS_RESP): PTS_RESP; cdecl;
 begin
   d2i_TS_RESP_bio := LoadLibCryptoFunction('d2i_TS_RESP_bio');
   if not assigned(d2i_TS_RESP_bio) then
+    {$if declared(LEGACY_d2i_TS_RESP_bio)}
+    d2i_TS_RESP_bio := @LEGACY_d2i_TS_RESP_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_TS_RESP_bio');
+    {$ifend}
   Result := d2i_TS_RESP_bio(bio, a);
 end;
 
@@ -1454,7 +1559,11 @@ function Load_i2d_TS_RESP_bio(bio: PBIO; a: PTS_RESP): TOpenSSL_C_INT; cdecl;
 begin
   i2d_TS_RESP_bio := LoadLibCryptoFunction('i2d_TS_RESP_bio');
   if not assigned(i2d_TS_RESP_bio) then
+    {$if declared(LEGACY_i2d_TS_RESP_bio)}
+    i2d_TS_RESP_bio := @LEGACY_i2d_TS_RESP_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_TS_RESP_bio');
+    {$ifend}
   Result := i2d_TS_RESP_bio(bio, a);
 end;
 
@@ -1462,7 +1571,11 @@ function Load_TS_STATUS_INFO_new: PTS_STATUS_INFO; cdecl;
 begin
   TS_STATUS_INFO_new := LoadLibCryptoFunction('TS_STATUS_INFO_new');
   if not assigned(TS_STATUS_INFO_new) then
+    {$if declared(LEGACY_TS_STATUS_INFO_new)}
+    TS_STATUS_INFO_new := @LEGACY_TS_STATUS_INFO_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_STATUS_INFO_new');
+    {$ifend}
   Result := TS_STATUS_INFO_new;
 end;
 
@@ -1470,7 +1583,11 @@ procedure Load_TS_STATUS_INFO_free(a: PTS_STATUS_INFO); cdecl;
 begin
   TS_STATUS_INFO_free := LoadLibCryptoFunction('TS_STATUS_INFO_free');
   if not assigned(TS_STATUS_INFO_free) then
+    {$if declared(LEGACY_TS_STATUS_INFO_free)}
+    TS_STATUS_INFO_free := @LEGACY_TS_STATUS_INFO_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_STATUS_INFO_free');
+    {$ifend}
   TS_STATUS_INFO_free(a);
 end;
 
@@ -1478,7 +1595,11 @@ function Load_d2i_TS_STATUS_INFO(a: PPTS_STATUS_INFO; in_: PPbyte; len: TOpenSSL
 begin
   d2i_TS_STATUS_INFO := LoadLibCryptoFunction('d2i_TS_STATUS_INFO');
   if not assigned(d2i_TS_STATUS_INFO) then
+    {$if declared(LEGACY_d2i_TS_STATUS_INFO)}
+    d2i_TS_STATUS_INFO := @LEGACY_d2i_TS_STATUS_INFO;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_TS_STATUS_INFO');
+    {$ifend}
   Result := d2i_TS_STATUS_INFO(a, in_, len);
 end;
 
@@ -1486,7 +1607,11 @@ function Load_i2d_TS_STATUS_INFO(a: PTS_STATUS_INFO; out_: PPbyte): TOpenSSL_C_I
 begin
   i2d_TS_STATUS_INFO := LoadLibCryptoFunction('i2d_TS_STATUS_INFO');
   if not assigned(i2d_TS_STATUS_INFO) then
+    {$if declared(LEGACY_i2d_TS_STATUS_INFO)}
+    i2d_TS_STATUS_INFO := @LEGACY_i2d_TS_STATUS_INFO;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_TS_STATUS_INFO');
+    {$ifend}
   Result := i2d_TS_STATUS_INFO(a, out_);
 end;
 
@@ -1494,7 +1619,11 @@ function Load_TS_STATUS_INFO_dup(a: PTS_STATUS_INFO): PTS_STATUS_INFO; cdecl;
 begin
   TS_STATUS_INFO_dup := LoadLibCryptoFunction('TS_STATUS_INFO_dup');
   if not assigned(TS_STATUS_INFO_dup) then
+    {$if declared(LEGACY_TS_STATUS_INFO_dup)}
+    TS_STATUS_INFO_dup := @LEGACY_TS_STATUS_INFO_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_STATUS_INFO_dup');
+    {$ifend}
   Result := TS_STATUS_INFO_dup(a);
 end;
 
@@ -1502,7 +1631,11 @@ function Load_TS_TST_INFO_new: PTS_TST_INFO; cdecl;
 begin
   TS_TST_INFO_new := LoadLibCryptoFunction('TS_TST_INFO_new');
   if not assigned(TS_TST_INFO_new) then
+    {$if declared(LEGACY_TS_TST_INFO_new)}
+    TS_TST_INFO_new := @LEGACY_TS_TST_INFO_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_TST_INFO_new');
+    {$ifend}
   Result := TS_TST_INFO_new;
 end;
 
@@ -1510,7 +1643,11 @@ procedure Load_TS_TST_INFO_free(a: PTS_TST_INFO); cdecl;
 begin
   TS_TST_INFO_free := LoadLibCryptoFunction('TS_TST_INFO_free');
   if not assigned(TS_TST_INFO_free) then
+    {$if declared(LEGACY_TS_TST_INFO_free)}
+    TS_TST_INFO_free := @LEGACY_TS_TST_INFO_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_TST_INFO_free');
+    {$ifend}
   TS_TST_INFO_free(a);
 end;
 
@@ -1518,7 +1655,11 @@ function Load_d2i_TS_TST_INFO(a: PPTS_TST_INFO; in_: PPbyte; len: TOpenSSL_C_INT
 begin
   d2i_TS_TST_INFO := LoadLibCryptoFunction('d2i_TS_TST_INFO');
   if not assigned(d2i_TS_TST_INFO) then
+    {$if declared(LEGACY_d2i_TS_TST_INFO)}
+    d2i_TS_TST_INFO := @LEGACY_d2i_TS_TST_INFO;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_TS_TST_INFO');
+    {$ifend}
   Result := d2i_TS_TST_INFO(a, in_, len);
 end;
 
@@ -1526,7 +1667,11 @@ function Load_i2d_TS_TST_INFO(a: PTS_TST_INFO; out_: PPbyte): TOpenSSL_C_INT; cd
 begin
   i2d_TS_TST_INFO := LoadLibCryptoFunction('i2d_TS_TST_INFO');
   if not assigned(i2d_TS_TST_INFO) then
+    {$if declared(LEGACY_i2d_TS_TST_INFO)}
+    i2d_TS_TST_INFO := @LEGACY_i2d_TS_TST_INFO;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_TS_TST_INFO');
+    {$ifend}
   Result := i2d_TS_TST_INFO(a, out_);
 end;
 
@@ -1534,7 +1679,11 @@ function Load_TS_TST_INFO_dup(a: PTS_TST_INFO): PTS_TST_INFO; cdecl;
 begin
   TS_TST_INFO_dup := LoadLibCryptoFunction('TS_TST_INFO_dup');
   if not assigned(TS_TST_INFO_dup) then
+    {$if declared(LEGACY_TS_TST_INFO_dup)}
+    TS_TST_INFO_dup := @LEGACY_TS_TST_INFO_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_TST_INFO_dup');
+    {$ifend}
   Result := TS_TST_INFO_dup(a);
 end;
 
@@ -1542,7 +1691,11 @@ function Load_PKCS7_to_TS_TST_INFO(token: PPKCS7): PTS_TST_INFO; cdecl;
 begin
   PKCS7_to_TS_TST_INFO := LoadLibCryptoFunction('PKCS7_to_TS_TST_INFO');
   if not assigned(PKCS7_to_TS_TST_INFO) then
+    {$if declared(LEGACY_PKCS7_to_TS_TST_INFO)}
+    PKCS7_to_TS_TST_INFO := @LEGACY_PKCS7_to_TS_TST_INFO;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS7_to_TS_TST_INFO');
+    {$ifend}
   Result := PKCS7_to_TS_TST_INFO(token);
 end;
 
@@ -1551,7 +1704,11 @@ function Load_d2i_TS_TST_INFO_fp(fp: PFILE; a: PPTS_TST_INFO): PTS_TST_INFO; cde
 begin
   d2i_TS_TST_INFO_fp := LoadLibCryptoFunction('d2i_TS_TST_INFO_fp');
   if not assigned(d2i_TS_TST_INFO_fp) then
+    {$if declared(LEGACY_d2i_TS_TST_INFO_fp)}
+    d2i_TS_TST_INFO_fp := @LEGACY_d2i_TS_TST_INFO_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_TS_TST_INFO_fp');
+    {$ifend}
   Result := d2i_TS_TST_INFO_fp(fp, a);
 end;
 
@@ -1559,7 +1716,11 @@ function Load_i2d_TS_TST_INFO_fp(fp: PFILE; a: PTS_TST_INFO): TOpenSSL_C_INT; cd
 begin
   i2d_TS_TST_INFO_fp := LoadLibCryptoFunction('i2d_TS_TST_INFO_fp');
   if not assigned(i2d_TS_TST_INFO_fp) then
+    {$if declared(LEGACY_i2d_TS_TST_INFO_fp)}
+    i2d_TS_TST_INFO_fp := @LEGACY_i2d_TS_TST_INFO_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_TS_TST_INFO_fp');
+    {$ifend}
   Result := i2d_TS_TST_INFO_fp(fp, a);
 end;
 
@@ -1568,7 +1729,11 @@ function Load_d2i_TS_TST_INFO_bio(bio: PBIO; a: PPTS_TST_INFO): PTS_TST_INFO; cd
 begin
   d2i_TS_TST_INFO_bio := LoadLibCryptoFunction('d2i_TS_TST_INFO_bio');
   if not assigned(d2i_TS_TST_INFO_bio) then
+    {$if declared(LEGACY_d2i_TS_TST_INFO_bio)}
+    d2i_TS_TST_INFO_bio := @LEGACY_d2i_TS_TST_INFO_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_TS_TST_INFO_bio');
+    {$ifend}
   Result := d2i_TS_TST_INFO_bio(bio, a);
 end;
 
@@ -1576,7 +1741,11 @@ function Load_i2d_TS_TST_INFO_bio(bio: PBIO; a: PTS_TST_INFO): TOpenSSL_C_INT; c
 begin
   i2d_TS_TST_INFO_bio := LoadLibCryptoFunction('i2d_TS_TST_INFO_bio');
   if not assigned(i2d_TS_TST_INFO_bio) then
+    {$if declared(LEGACY_i2d_TS_TST_INFO_bio)}
+    i2d_TS_TST_INFO_bio := @LEGACY_i2d_TS_TST_INFO_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_TS_TST_INFO_bio');
+    {$ifend}
   Result := i2d_TS_TST_INFO_bio(bio, a);
 end;
 
@@ -1584,7 +1753,11 @@ function Load_TS_ACCURACY_new: PTS_ACCURACY; cdecl;
 begin
   TS_ACCURACY_new := LoadLibCryptoFunction('TS_ACCURACY_new');
   if not assigned(TS_ACCURACY_new) then
+    {$if declared(LEGACY_TS_ACCURACY_new)}
+    TS_ACCURACY_new := @LEGACY_TS_ACCURACY_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_ACCURACY_new');
+    {$ifend}
   Result := TS_ACCURACY_new;
 end;
 
@@ -1592,7 +1765,11 @@ procedure Load_TS_ACCURACY_free(a: PTS_ACCURACY); cdecl;
 begin
   TS_ACCURACY_free := LoadLibCryptoFunction('TS_ACCURACY_free');
   if not assigned(TS_ACCURACY_free) then
+    {$if declared(LEGACY_TS_ACCURACY_free)}
+    TS_ACCURACY_free := @LEGACY_TS_ACCURACY_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_ACCURACY_free');
+    {$ifend}
   TS_ACCURACY_free(a);
 end;
 
@@ -1600,7 +1777,11 @@ function Load_d2i_TS_ACCURACY(a: PPTS_ACCURACY; in_: PPbyte; len: TOpenSSL_C_INT
 begin
   d2i_TS_ACCURACY := LoadLibCryptoFunction('d2i_TS_ACCURACY');
   if not assigned(d2i_TS_ACCURACY) then
+    {$if declared(LEGACY_d2i_TS_ACCURACY)}
+    d2i_TS_ACCURACY := @LEGACY_d2i_TS_ACCURACY;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_TS_ACCURACY');
+    {$ifend}
   Result := d2i_TS_ACCURACY(a, in_, len);
 end;
 
@@ -1608,7 +1789,11 @@ function Load_i2d_TS_ACCURACY(a: PTS_ACCURACY; out_: PPbyte): TOpenSSL_C_INT; cd
 begin
   i2d_TS_ACCURACY := LoadLibCryptoFunction('i2d_TS_ACCURACY');
   if not assigned(i2d_TS_ACCURACY) then
+    {$if declared(LEGACY_i2d_TS_ACCURACY)}
+    i2d_TS_ACCURACY := @LEGACY_i2d_TS_ACCURACY;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_TS_ACCURACY');
+    {$ifend}
   Result := i2d_TS_ACCURACY(a, out_);
 end;
 
@@ -1616,7 +1801,11 @@ function Load_TS_ACCURACY_dup(a: PTS_ACCURACY): PTS_ACCURACY; cdecl;
 begin
   TS_ACCURACY_dup := LoadLibCryptoFunction('TS_ACCURACY_dup');
   if not assigned(TS_ACCURACY_dup) then
+    {$if declared(LEGACY_TS_ACCURACY_dup)}
+    TS_ACCURACY_dup := @LEGACY_TS_ACCURACY_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_ACCURACY_dup');
+    {$ifend}
   Result := TS_ACCURACY_dup(a);
 end;
 
@@ -1624,7 +1813,11 @@ function Load_TS_REQ_set_version(a: PTS_REQ; version: TOpenSSL_C_INT): TOpenSSL_
 begin
   TS_REQ_set_version := LoadLibCryptoFunction('TS_REQ_set_version');
   if not assigned(TS_REQ_set_version) then
+    {$if declared(LEGACY_TS_REQ_set_version)}
+    TS_REQ_set_version := @LEGACY_TS_REQ_set_version;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_REQ_set_version');
+    {$ifend}
   Result := TS_REQ_set_version(a, version);
 end;
 
@@ -1632,7 +1825,11 @@ function Load_TS_REQ_get_version(a: PTS_REQ): TOpenSSL_C_INT; cdecl;
 begin
   TS_REQ_get_version := LoadLibCryptoFunction('TS_REQ_get_version');
   if not assigned(TS_REQ_get_version) then
+    {$if declared(LEGACY_TS_REQ_get_version)}
+    TS_REQ_get_version := @LEGACY_TS_REQ_get_version;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_REQ_get_version');
+    {$ifend}
   Result := TS_REQ_get_version(a);
 end;
 
@@ -1640,7 +1837,11 @@ function Load_TS_STATUS_INFO_set_status(a: PTS_STATUS_INFO; i: TOpenSSL_C_INT): 
 begin
   TS_STATUS_INFO_set_status := LoadLibCryptoFunction('TS_STATUS_INFO_set_status');
   if not assigned(TS_STATUS_INFO_set_status) then
+    {$if declared(LEGACY_TS_STATUS_INFO_set_status)}
+    TS_STATUS_INFO_set_status := @LEGACY_TS_STATUS_INFO_set_status;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_STATUS_INFO_set_status');
+    {$ifend}
   Result := TS_STATUS_INFO_set_status(a, i);
 end;
 
@@ -1648,7 +1849,11 @@ function Load_TS_STATUS_INFO_get0_status(a: PTS_STATUS_INFO): PASN1_INTEGER; cde
 begin
   TS_STATUS_INFO_get0_status := LoadLibCryptoFunction('TS_STATUS_INFO_get0_status');
   if not assigned(TS_STATUS_INFO_get0_status) then
+    {$if declared(LEGACY_TS_STATUS_INFO_get0_status)}
+    TS_STATUS_INFO_get0_status := @LEGACY_TS_STATUS_INFO_get0_status;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_STATUS_INFO_get0_status');
+    {$ifend}
   Result := TS_STATUS_INFO_get0_status(a);
 end;
 
@@ -1656,7 +1861,11 @@ function Load_TS_STATUS_INFO_get0_text(a: PTS_STATUS_INFO): Pstack_st_ASN1_UTF8S
 begin
   TS_STATUS_INFO_get0_text := LoadLibCryptoFunction('TS_STATUS_INFO_get0_text');
   if not assigned(TS_STATUS_INFO_get0_text) then
+    {$if declared(LEGACY_TS_STATUS_INFO_get0_text)}
+    TS_STATUS_INFO_get0_text := @LEGACY_TS_STATUS_INFO_get0_text;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_STATUS_INFO_get0_text');
+    {$ifend}
   Result := TS_STATUS_INFO_get0_text(a);
 end;
 
@@ -1664,7 +1873,11 @@ function Load_TS_STATUS_INFO_get0_failure_info(a: PTS_STATUS_INFO): PASN1_BIT_ST
 begin
   TS_STATUS_INFO_get0_failure_info := LoadLibCryptoFunction('TS_STATUS_INFO_get0_failure_info');
   if not assigned(TS_STATUS_INFO_get0_failure_info) then
+    {$if declared(LEGACY_TS_STATUS_INFO_get0_failure_info)}
+    TS_STATUS_INFO_get0_failure_info := @LEGACY_TS_STATUS_INFO_get0_failure_info;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_STATUS_INFO_get0_failure_info');
+    {$ifend}
   Result := TS_STATUS_INFO_get0_failure_info(a);
 end;
 
@@ -1672,7 +1885,11 @@ function Load_TS_REQ_set_msg_imprint(a: PTS_REQ; msg_imprint: PTS_MSG_IMPRINT): 
 begin
   TS_REQ_set_msg_imprint := LoadLibCryptoFunction('TS_REQ_set_msg_imprint');
   if not assigned(TS_REQ_set_msg_imprint) then
+    {$if declared(LEGACY_TS_REQ_set_msg_imprint)}
+    TS_REQ_set_msg_imprint := @LEGACY_TS_REQ_set_msg_imprint;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_REQ_set_msg_imprint');
+    {$ifend}
   Result := TS_REQ_set_msg_imprint(a, msg_imprint);
 end;
 
@@ -1680,7 +1897,11 @@ function Load_TS_REQ_get_msg_imprint(a: PTS_REQ): PTS_MSG_IMPRINT; cdecl;
 begin
   TS_REQ_get_msg_imprint := LoadLibCryptoFunction('TS_REQ_get_msg_imprint');
   if not assigned(TS_REQ_get_msg_imprint) then
+    {$if declared(LEGACY_TS_REQ_get_msg_imprint)}
+    TS_REQ_get_msg_imprint := @LEGACY_TS_REQ_get_msg_imprint;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_REQ_get_msg_imprint');
+    {$ifend}
   Result := TS_REQ_get_msg_imprint(a);
 end;
 
@@ -1688,7 +1909,11 @@ function Load_TS_MSG_IMPRINT_set_algo(a: PTS_MSG_IMPRINT; alg: PX509_ALGOR): TOp
 begin
   TS_MSG_IMPRINT_set_algo := LoadLibCryptoFunction('TS_MSG_IMPRINT_set_algo');
   if not assigned(TS_MSG_IMPRINT_set_algo) then
+    {$if declared(LEGACY_TS_MSG_IMPRINT_set_algo)}
+    TS_MSG_IMPRINT_set_algo := @LEGACY_TS_MSG_IMPRINT_set_algo;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_MSG_IMPRINT_set_algo');
+    {$ifend}
   Result := TS_MSG_IMPRINT_set_algo(a, alg);
 end;
 
@@ -1696,7 +1921,11 @@ function Load_TS_MSG_IMPRINT_get_algo(a: PTS_MSG_IMPRINT): PX509_ALGOR; cdecl;
 begin
   TS_MSG_IMPRINT_get_algo := LoadLibCryptoFunction('TS_MSG_IMPRINT_get_algo');
   if not assigned(TS_MSG_IMPRINT_get_algo) then
+    {$if declared(LEGACY_TS_MSG_IMPRINT_get_algo)}
+    TS_MSG_IMPRINT_get_algo := @LEGACY_TS_MSG_IMPRINT_get_algo;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_MSG_IMPRINT_get_algo');
+    {$ifend}
   Result := TS_MSG_IMPRINT_get_algo(a);
 end;
 
@@ -1704,7 +1933,11 @@ function Load_TS_MSG_IMPRINT_set_msg(a: PTS_MSG_IMPRINT; d: Pbyte; len: TOpenSSL
 begin
   TS_MSG_IMPRINT_set_msg := LoadLibCryptoFunction('TS_MSG_IMPRINT_set_msg');
   if not assigned(TS_MSG_IMPRINT_set_msg) then
+    {$if declared(LEGACY_TS_MSG_IMPRINT_set_msg)}
+    TS_MSG_IMPRINT_set_msg := @LEGACY_TS_MSG_IMPRINT_set_msg;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_MSG_IMPRINT_set_msg');
+    {$ifend}
   Result := TS_MSG_IMPRINT_set_msg(a, d, len);
 end;
 
@@ -1712,7 +1945,11 @@ function Load_TS_MSG_IMPRINT_get_msg(a: PTS_MSG_IMPRINT): PASN1_OCTET_STRING; cd
 begin
   TS_MSG_IMPRINT_get_msg := LoadLibCryptoFunction('TS_MSG_IMPRINT_get_msg');
   if not assigned(TS_MSG_IMPRINT_get_msg) then
+    {$if declared(LEGACY_TS_MSG_IMPRINT_get_msg)}
+    TS_MSG_IMPRINT_get_msg := @LEGACY_TS_MSG_IMPRINT_get_msg;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_MSG_IMPRINT_get_msg');
+    {$ifend}
   Result := TS_MSG_IMPRINT_get_msg(a);
 end;
 
@@ -1720,7 +1957,11 @@ function Load_TS_REQ_set_policy_id(a: PTS_REQ; policy: PASN1_OBJECT): TOpenSSL_C
 begin
   TS_REQ_set_policy_id := LoadLibCryptoFunction('TS_REQ_set_policy_id');
   if not assigned(TS_REQ_set_policy_id) then
+    {$if declared(LEGACY_TS_REQ_set_policy_id)}
+    TS_REQ_set_policy_id := @LEGACY_TS_REQ_set_policy_id;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_REQ_set_policy_id');
+    {$ifend}
   Result := TS_REQ_set_policy_id(a, policy);
 end;
 
@@ -1728,7 +1969,11 @@ function Load_TS_REQ_get_policy_id(a: PTS_REQ): PASN1_OBJECT; cdecl;
 begin
   TS_REQ_get_policy_id := LoadLibCryptoFunction('TS_REQ_get_policy_id');
   if not assigned(TS_REQ_get_policy_id) then
+    {$if declared(LEGACY_TS_REQ_get_policy_id)}
+    TS_REQ_get_policy_id := @LEGACY_TS_REQ_get_policy_id;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_REQ_get_policy_id');
+    {$ifend}
   Result := TS_REQ_get_policy_id(a);
 end;
 
@@ -1736,7 +1981,11 @@ function Load_TS_REQ_set_nonce(a: PTS_REQ; nonce: PASN1_INTEGER): TOpenSSL_C_INT
 begin
   TS_REQ_set_nonce := LoadLibCryptoFunction('TS_REQ_set_nonce');
   if not assigned(TS_REQ_set_nonce) then
+    {$if declared(LEGACY_TS_REQ_set_nonce)}
+    TS_REQ_set_nonce := @LEGACY_TS_REQ_set_nonce;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_REQ_set_nonce');
+    {$ifend}
   Result := TS_REQ_set_nonce(a, nonce);
 end;
 
@@ -1744,7 +1993,11 @@ function Load_TS_REQ_get_nonce(a: PTS_REQ): PASN1_INTEGER; cdecl;
 begin
   TS_REQ_get_nonce := LoadLibCryptoFunction('TS_REQ_get_nonce');
   if not assigned(TS_REQ_get_nonce) then
+    {$if declared(LEGACY_TS_REQ_get_nonce)}
+    TS_REQ_get_nonce := @LEGACY_TS_REQ_get_nonce;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_REQ_get_nonce');
+    {$ifend}
   Result := TS_REQ_get_nonce(a);
 end;
 
@@ -1752,7 +2005,11 @@ function Load_TS_REQ_set_cert_req(a: PTS_REQ; cert_req: TOpenSSL_C_INT): TOpenSS
 begin
   TS_REQ_set_cert_req := LoadLibCryptoFunction('TS_REQ_set_cert_req');
   if not assigned(TS_REQ_set_cert_req) then
+    {$if declared(LEGACY_TS_REQ_set_cert_req)}
+    TS_REQ_set_cert_req := @LEGACY_TS_REQ_set_cert_req;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_REQ_set_cert_req');
+    {$ifend}
   Result := TS_REQ_set_cert_req(a, cert_req);
 end;
 
@@ -1760,7 +2017,11 @@ function Load_TS_REQ_get_cert_req(a: PTS_REQ): TOpenSSL_C_INT; cdecl;
 begin
   TS_REQ_get_cert_req := LoadLibCryptoFunction('TS_REQ_get_cert_req');
   if not assigned(TS_REQ_get_cert_req) then
+    {$if declared(LEGACY_TS_REQ_get_cert_req)}
+    TS_REQ_get_cert_req := @LEGACY_TS_REQ_get_cert_req;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_REQ_get_cert_req');
+    {$ifend}
   Result := TS_REQ_get_cert_req(a);
 end;
 
@@ -1768,7 +2029,11 @@ function Load_TS_REQ_get_exts(a: PTS_REQ): Pstack_st_X509_EXTENSION; cdecl;
 begin
   TS_REQ_get_exts := LoadLibCryptoFunction('TS_REQ_get_exts');
   if not assigned(TS_REQ_get_exts) then
+    {$if declared(LEGACY_TS_REQ_get_exts)}
+    TS_REQ_get_exts := @LEGACY_TS_REQ_get_exts;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_REQ_get_exts');
+    {$ifend}
   Result := TS_REQ_get_exts(a);
 end;
 
@@ -1776,7 +2041,11 @@ procedure Load_TS_REQ_ext_free(a: PTS_REQ); cdecl;
 begin
   TS_REQ_ext_free := LoadLibCryptoFunction('TS_REQ_ext_free');
   if not assigned(TS_REQ_ext_free) then
+    {$if declared(LEGACY_TS_REQ_ext_free)}
+    TS_REQ_ext_free := @LEGACY_TS_REQ_ext_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_REQ_ext_free');
+    {$ifend}
   TS_REQ_ext_free(a);
 end;
 
@@ -1784,7 +2053,11 @@ function Load_TS_REQ_get_ext_count(a: PTS_REQ): TOpenSSL_C_INT; cdecl;
 begin
   TS_REQ_get_ext_count := LoadLibCryptoFunction('TS_REQ_get_ext_count');
   if not assigned(TS_REQ_get_ext_count) then
+    {$if declared(LEGACY_TS_REQ_get_ext_count)}
+    TS_REQ_get_ext_count := @LEGACY_TS_REQ_get_ext_count;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_REQ_get_ext_count');
+    {$ifend}
   Result := TS_REQ_get_ext_count(a);
 end;
 
@@ -1792,7 +2065,11 @@ function Load_TS_REQ_get_ext_by_NID(a: PTS_REQ; nid: TOpenSSL_C_INT; lastpos: TO
 begin
   TS_REQ_get_ext_by_NID := LoadLibCryptoFunction('TS_REQ_get_ext_by_NID');
   if not assigned(TS_REQ_get_ext_by_NID) then
+    {$if declared(LEGACY_TS_REQ_get_ext_by_NID)}
+    TS_REQ_get_ext_by_NID := @LEGACY_TS_REQ_get_ext_by_NID;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_REQ_get_ext_by_NID');
+    {$ifend}
   Result := TS_REQ_get_ext_by_NID(a, nid, lastpos);
 end;
 
@@ -1800,7 +2077,11 @@ function Load_TS_REQ_get_ext_by_OBJ(a: PTS_REQ; obj: PASN1_OBJECT; lastpos: TOpe
 begin
   TS_REQ_get_ext_by_OBJ := LoadLibCryptoFunction('TS_REQ_get_ext_by_OBJ');
   if not assigned(TS_REQ_get_ext_by_OBJ) then
+    {$if declared(LEGACY_TS_REQ_get_ext_by_OBJ)}
+    TS_REQ_get_ext_by_OBJ := @LEGACY_TS_REQ_get_ext_by_OBJ;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_REQ_get_ext_by_OBJ');
+    {$ifend}
   Result := TS_REQ_get_ext_by_OBJ(a, obj, lastpos);
 end;
 
@@ -1808,7 +2089,11 @@ function Load_TS_REQ_get_ext_by_critical(a: PTS_REQ; crit: TOpenSSL_C_INT; lastp
 begin
   TS_REQ_get_ext_by_critical := LoadLibCryptoFunction('TS_REQ_get_ext_by_critical');
   if not assigned(TS_REQ_get_ext_by_critical) then
+    {$if declared(LEGACY_TS_REQ_get_ext_by_critical)}
+    TS_REQ_get_ext_by_critical := @LEGACY_TS_REQ_get_ext_by_critical;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_REQ_get_ext_by_critical');
+    {$ifend}
   Result := TS_REQ_get_ext_by_critical(a, crit, lastpos);
 end;
 
@@ -1816,7 +2101,11 @@ function Load_TS_REQ_get_ext(a: PTS_REQ; loc: TOpenSSL_C_INT): PX509_EXTENSION; 
 begin
   TS_REQ_get_ext := LoadLibCryptoFunction('TS_REQ_get_ext');
   if not assigned(TS_REQ_get_ext) then
+    {$if declared(LEGACY_TS_REQ_get_ext)}
+    TS_REQ_get_ext := @LEGACY_TS_REQ_get_ext;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_REQ_get_ext');
+    {$ifend}
   Result := TS_REQ_get_ext(a, loc);
 end;
 
@@ -1824,7 +2113,11 @@ function Load_TS_REQ_delete_ext(a: PTS_REQ; loc: TOpenSSL_C_INT): PX509_EXTENSIO
 begin
   TS_REQ_delete_ext := LoadLibCryptoFunction('TS_REQ_delete_ext');
   if not assigned(TS_REQ_delete_ext) then
+    {$if declared(LEGACY_TS_REQ_delete_ext)}
+    TS_REQ_delete_ext := @LEGACY_TS_REQ_delete_ext;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_REQ_delete_ext');
+    {$ifend}
   Result := TS_REQ_delete_ext(a, loc);
 end;
 
@@ -1832,7 +2125,11 @@ function Load_TS_REQ_add_ext(a: PTS_REQ; ex: PX509_EXTENSION; loc: TOpenSSL_C_IN
 begin
   TS_REQ_add_ext := LoadLibCryptoFunction('TS_REQ_add_ext');
   if not assigned(TS_REQ_add_ext) then
+    {$if declared(LEGACY_TS_REQ_add_ext)}
+    TS_REQ_add_ext := @LEGACY_TS_REQ_add_ext;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_REQ_add_ext');
+    {$ifend}
   Result := TS_REQ_add_ext(a, ex, loc);
 end;
 
@@ -1840,7 +2137,11 @@ function Load_TS_REQ_get_ext_d2i(a: PTS_REQ; nid: TOpenSSL_C_INT; crit: POpenSSL
 begin
   TS_REQ_get_ext_d2i := LoadLibCryptoFunction('TS_REQ_get_ext_d2i');
   if not assigned(TS_REQ_get_ext_d2i) then
+    {$if declared(LEGACY_TS_REQ_get_ext_d2i)}
+    TS_REQ_get_ext_d2i := @LEGACY_TS_REQ_get_ext_d2i;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_REQ_get_ext_d2i');
+    {$ifend}
   Result := TS_REQ_get_ext_d2i(a, nid, crit, idx);
 end;
 
@@ -1848,7 +2149,11 @@ function Load_TS_REQ_print_bio(bio: PBIO; a: PTS_REQ): TOpenSSL_C_INT; cdecl;
 begin
   TS_REQ_print_bio := LoadLibCryptoFunction('TS_REQ_print_bio');
   if not assigned(TS_REQ_print_bio) then
+    {$if declared(LEGACY_TS_REQ_print_bio)}
+    TS_REQ_print_bio := @LEGACY_TS_REQ_print_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_REQ_print_bio');
+    {$ifend}
   Result := TS_REQ_print_bio(bio, a);
 end;
 
@@ -1856,7 +2161,11 @@ function Load_TS_RESP_set_status_info(a: PTS_RESP; info: PTS_STATUS_INFO): TOpen
 begin
   TS_RESP_set_status_info := LoadLibCryptoFunction('TS_RESP_set_status_info');
   if not assigned(TS_RESP_set_status_info) then
+    {$if declared(LEGACY_TS_RESP_set_status_info)}
+    TS_RESP_set_status_info := @LEGACY_TS_RESP_set_status_info;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_set_status_info');
+    {$ifend}
   Result := TS_RESP_set_status_info(a, info);
 end;
 
@@ -1864,7 +2173,11 @@ function Load_TS_RESP_get_status_info(a: PTS_RESP): PTS_STATUS_INFO; cdecl;
 begin
   TS_RESP_get_status_info := LoadLibCryptoFunction('TS_RESP_get_status_info');
   if not assigned(TS_RESP_get_status_info) then
+    {$if declared(LEGACY_TS_RESP_get_status_info)}
+    TS_RESP_get_status_info := @LEGACY_TS_RESP_get_status_info;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_get_status_info');
+    {$ifend}
   Result := TS_RESP_get_status_info(a);
 end;
 
@@ -1872,7 +2185,11 @@ procedure Load_TS_RESP_set_tst_info(a: PTS_RESP; p7: PPKCS7; tst_info: PTS_TST_I
 begin
   TS_RESP_set_tst_info := LoadLibCryptoFunction('TS_RESP_set_tst_info');
   if not assigned(TS_RESP_set_tst_info) then
+    {$if declared(LEGACY_TS_RESP_set_tst_info)}
+    TS_RESP_set_tst_info := @LEGACY_TS_RESP_set_tst_info;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_set_tst_info');
+    {$ifend}
   TS_RESP_set_tst_info(a, p7, tst_info);
 end;
 
@@ -1880,7 +2197,11 @@ function Load_TS_RESP_get_token(a: PTS_RESP): PPKCS7; cdecl;
 begin
   TS_RESP_get_token := LoadLibCryptoFunction('TS_RESP_get_token');
   if not assigned(TS_RESP_get_token) then
+    {$if declared(LEGACY_TS_RESP_get_token)}
+    TS_RESP_get_token := @LEGACY_TS_RESP_get_token;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_get_token');
+    {$ifend}
   Result := TS_RESP_get_token(a);
 end;
 
@@ -1888,7 +2209,11 @@ function Load_TS_RESP_get_tst_info(a: PTS_RESP): PTS_TST_INFO; cdecl;
 begin
   TS_RESP_get_tst_info := LoadLibCryptoFunction('TS_RESP_get_tst_info');
   if not assigned(TS_RESP_get_tst_info) then
+    {$if declared(LEGACY_TS_RESP_get_tst_info)}
+    TS_RESP_get_tst_info := @LEGACY_TS_RESP_get_tst_info;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_get_tst_info');
+    {$ifend}
   Result := TS_RESP_get_tst_info(a);
 end;
 
@@ -1896,7 +2221,11 @@ function Load_TS_TST_INFO_set_version(a: PTS_TST_INFO; version: TOpenSSL_C_INT):
 begin
   TS_TST_INFO_set_version := LoadLibCryptoFunction('TS_TST_INFO_set_version');
   if not assigned(TS_TST_INFO_set_version) then
+    {$if declared(LEGACY_TS_TST_INFO_set_version)}
+    TS_TST_INFO_set_version := @LEGACY_TS_TST_INFO_set_version;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_TST_INFO_set_version');
+    {$ifend}
   Result := TS_TST_INFO_set_version(a, version);
 end;
 
@@ -1904,7 +2233,11 @@ function Load_TS_TST_INFO_get_version(a: PTS_TST_INFO): TOpenSSL_C_INT; cdecl;
 begin
   TS_TST_INFO_get_version := LoadLibCryptoFunction('TS_TST_INFO_get_version');
   if not assigned(TS_TST_INFO_get_version) then
+    {$if declared(LEGACY_TS_TST_INFO_get_version)}
+    TS_TST_INFO_get_version := @LEGACY_TS_TST_INFO_get_version;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_TST_INFO_get_version');
+    {$ifend}
   Result := TS_TST_INFO_get_version(a);
 end;
 
@@ -1912,7 +2245,11 @@ function Load_TS_TST_INFO_set_policy_id(a: PTS_TST_INFO; policy_id: PASN1_OBJECT
 begin
   TS_TST_INFO_set_policy_id := LoadLibCryptoFunction('TS_TST_INFO_set_policy_id');
   if not assigned(TS_TST_INFO_set_policy_id) then
+    {$if declared(LEGACY_TS_TST_INFO_set_policy_id)}
+    TS_TST_INFO_set_policy_id := @LEGACY_TS_TST_INFO_set_policy_id;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_TST_INFO_set_policy_id');
+    {$ifend}
   Result := TS_TST_INFO_set_policy_id(a, policy_id);
 end;
 
@@ -1920,7 +2257,11 @@ function Load_TS_TST_INFO_get_policy_id(a: PTS_TST_INFO): PASN1_OBJECT; cdecl;
 begin
   TS_TST_INFO_get_policy_id := LoadLibCryptoFunction('TS_TST_INFO_get_policy_id');
   if not assigned(TS_TST_INFO_get_policy_id) then
+    {$if declared(LEGACY_TS_TST_INFO_get_policy_id)}
+    TS_TST_INFO_get_policy_id := @LEGACY_TS_TST_INFO_get_policy_id;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_TST_INFO_get_policy_id');
+    {$ifend}
   Result := TS_TST_INFO_get_policy_id(a);
 end;
 
@@ -1928,7 +2269,11 @@ function Load_TS_TST_INFO_set_msg_imprint(a: PTS_TST_INFO; msg_imprint: PTS_MSG_
 begin
   TS_TST_INFO_set_msg_imprint := LoadLibCryptoFunction('TS_TST_INFO_set_msg_imprint');
   if not assigned(TS_TST_INFO_set_msg_imprint) then
+    {$if declared(LEGACY_TS_TST_INFO_set_msg_imprint)}
+    TS_TST_INFO_set_msg_imprint := @LEGACY_TS_TST_INFO_set_msg_imprint;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_TST_INFO_set_msg_imprint');
+    {$ifend}
   Result := TS_TST_INFO_set_msg_imprint(a, msg_imprint);
 end;
 
@@ -1936,7 +2281,11 @@ function Load_TS_TST_INFO_get_msg_imprint(a: PTS_TST_INFO): PTS_MSG_IMPRINT; cde
 begin
   TS_TST_INFO_get_msg_imprint := LoadLibCryptoFunction('TS_TST_INFO_get_msg_imprint');
   if not assigned(TS_TST_INFO_get_msg_imprint) then
+    {$if declared(LEGACY_TS_TST_INFO_get_msg_imprint)}
+    TS_TST_INFO_get_msg_imprint := @LEGACY_TS_TST_INFO_get_msg_imprint;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_TST_INFO_get_msg_imprint');
+    {$ifend}
   Result := TS_TST_INFO_get_msg_imprint(a);
 end;
 
@@ -1944,7 +2293,11 @@ function Load_TS_TST_INFO_set_serial(a: PTS_TST_INFO; serial: PASN1_INTEGER): TO
 begin
   TS_TST_INFO_set_serial := LoadLibCryptoFunction('TS_TST_INFO_set_serial');
   if not assigned(TS_TST_INFO_set_serial) then
+    {$if declared(LEGACY_TS_TST_INFO_set_serial)}
+    TS_TST_INFO_set_serial := @LEGACY_TS_TST_INFO_set_serial;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_TST_INFO_set_serial');
+    {$ifend}
   Result := TS_TST_INFO_set_serial(a, serial);
 end;
 
@@ -1952,7 +2305,11 @@ function Load_TS_TST_INFO_get_serial(a: PTS_TST_INFO): PASN1_INTEGER; cdecl;
 begin
   TS_TST_INFO_get_serial := LoadLibCryptoFunction('TS_TST_INFO_get_serial');
   if not assigned(TS_TST_INFO_get_serial) then
+    {$if declared(LEGACY_TS_TST_INFO_get_serial)}
+    TS_TST_INFO_get_serial := @LEGACY_TS_TST_INFO_get_serial;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_TST_INFO_get_serial');
+    {$ifend}
   Result := TS_TST_INFO_get_serial(a);
 end;
 
@@ -1960,7 +2317,11 @@ function Load_TS_TST_INFO_set_time(a: PTS_TST_INFO; gtime: PASN1_GENERALIZEDTIME
 begin
   TS_TST_INFO_set_time := LoadLibCryptoFunction('TS_TST_INFO_set_time');
   if not assigned(TS_TST_INFO_set_time) then
+    {$if declared(LEGACY_TS_TST_INFO_set_time)}
+    TS_TST_INFO_set_time := @LEGACY_TS_TST_INFO_set_time;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_TST_INFO_set_time');
+    {$ifend}
   Result := TS_TST_INFO_set_time(a, gtime);
 end;
 
@@ -1968,7 +2329,11 @@ function Load_TS_TST_INFO_get_time(a: PTS_TST_INFO): PASN1_GENERALIZEDTIME; cdec
 begin
   TS_TST_INFO_get_time := LoadLibCryptoFunction('TS_TST_INFO_get_time');
   if not assigned(TS_TST_INFO_get_time) then
+    {$if declared(LEGACY_TS_TST_INFO_get_time)}
+    TS_TST_INFO_get_time := @LEGACY_TS_TST_INFO_get_time;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_TST_INFO_get_time');
+    {$ifend}
   Result := TS_TST_INFO_get_time(a);
 end;
 
@@ -1976,7 +2341,11 @@ function Load_TS_TST_INFO_set_accuracy(a: PTS_TST_INFO; accuracy: PTS_ACCURACY):
 begin
   TS_TST_INFO_set_accuracy := LoadLibCryptoFunction('TS_TST_INFO_set_accuracy');
   if not assigned(TS_TST_INFO_set_accuracy) then
+    {$if declared(LEGACY_TS_TST_INFO_set_accuracy)}
+    TS_TST_INFO_set_accuracy := @LEGACY_TS_TST_INFO_set_accuracy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_TST_INFO_set_accuracy');
+    {$ifend}
   Result := TS_TST_INFO_set_accuracy(a, accuracy);
 end;
 
@@ -1984,7 +2353,11 @@ function Load_TS_TST_INFO_get_accuracy(a: PTS_TST_INFO): PTS_ACCURACY; cdecl;
 begin
   TS_TST_INFO_get_accuracy := LoadLibCryptoFunction('TS_TST_INFO_get_accuracy');
   if not assigned(TS_TST_INFO_get_accuracy) then
+    {$if declared(LEGACY_TS_TST_INFO_get_accuracy)}
+    TS_TST_INFO_get_accuracy := @LEGACY_TS_TST_INFO_get_accuracy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_TST_INFO_get_accuracy');
+    {$ifend}
   Result := TS_TST_INFO_get_accuracy(a);
 end;
 
@@ -1992,7 +2365,11 @@ function Load_TS_ACCURACY_set_seconds(a: PTS_ACCURACY; seconds: PASN1_INTEGER): 
 begin
   TS_ACCURACY_set_seconds := LoadLibCryptoFunction('TS_ACCURACY_set_seconds');
   if not assigned(TS_ACCURACY_set_seconds) then
+    {$if declared(LEGACY_TS_ACCURACY_set_seconds)}
+    TS_ACCURACY_set_seconds := @LEGACY_TS_ACCURACY_set_seconds;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_ACCURACY_set_seconds');
+    {$ifend}
   Result := TS_ACCURACY_set_seconds(a, seconds);
 end;
 
@@ -2000,7 +2377,11 @@ function Load_TS_ACCURACY_get_seconds(a: PTS_ACCURACY): PASN1_INTEGER; cdecl;
 begin
   TS_ACCURACY_get_seconds := LoadLibCryptoFunction('TS_ACCURACY_get_seconds');
   if not assigned(TS_ACCURACY_get_seconds) then
+    {$if declared(LEGACY_TS_ACCURACY_get_seconds)}
+    TS_ACCURACY_get_seconds := @LEGACY_TS_ACCURACY_get_seconds;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_ACCURACY_get_seconds');
+    {$ifend}
   Result := TS_ACCURACY_get_seconds(a);
 end;
 
@@ -2008,7 +2389,11 @@ function Load_TS_ACCURACY_set_millis(a: PTS_ACCURACY; millis: PASN1_INTEGER): TO
 begin
   TS_ACCURACY_set_millis := LoadLibCryptoFunction('TS_ACCURACY_set_millis');
   if not assigned(TS_ACCURACY_set_millis) then
+    {$if declared(LEGACY_TS_ACCURACY_set_millis)}
+    TS_ACCURACY_set_millis := @LEGACY_TS_ACCURACY_set_millis;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_ACCURACY_set_millis');
+    {$ifend}
   Result := TS_ACCURACY_set_millis(a, millis);
 end;
 
@@ -2016,7 +2401,11 @@ function Load_TS_ACCURACY_get_millis(a: PTS_ACCURACY): PASN1_INTEGER; cdecl;
 begin
   TS_ACCURACY_get_millis := LoadLibCryptoFunction('TS_ACCURACY_get_millis');
   if not assigned(TS_ACCURACY_get_millis) then
+    {$if declared(LEGACY_TS_ACCURACY_get_millis)}
+    TS_ACCURACY_get_millis := @LEGACY_TS_ACCURACY_get_millis;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_ACCURACY_get_millis');
+    {$ifend}
   Result := TS_ACCURACY_get_millis(a);
 end;
 
@@ -2024,7 +2413,11 @@ function Load_TS_ACCURACY_set_micros(a: PTS_ACCURACY; micros: PASN1_INTEGER): TO
 begin
   TS_ACCURACY_set_micros := LoadLibCryptoFunction('TS_ACCURACY_set_micros');
   if not assigned(TS_ACCURACY_set_micros) then
+    {$if declared(LEGACY_TS_ACCURACY_set_micros)}
+    TS_ACCURACY_set_micros := @LEGACY_TS_ACCURACY_set_micros;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_ACCURACY_set_micros');
+    {$ifend}
   Result := TS_ACCURACY_set_micros(a, micros);
 end;
 
@@ -2032,7 +2425,11 @@ function Load_TS_ACCURACY_get_micros(a: PTS_ACCURACY): PASN1_INTEGER; cdecl;
 begin
   TS_ACCURACY_get_micros := LoadLibCryptoFunction('TS_ACCURACY_get_micros');
   if not assigned(TS_ACCURACY_get_micros) then
+    {$if declared(LEGACY_TS_ACCURACY_get_micros)}
+    TS_ACCURACY_get_micros := @LEGACY_TS_ACCURACY_get_micros;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_ACCURACY_get_micros');
+    {$ifend}
   Result := TS_ACCURACY_get_micros(a);
 end;
 
@@ -2040,7 +2437,11 @@ function Load_TS_TST_INFO_set_ordering(a: PTS_TST_INFO; ordering: TOpenSSL_C_INT
 begin
   TS_TST_INFO_set_ordering := LoadLibCryptoFunction('TS_TST_INFO_set_ordering');
   if not assigned(TS_TST_INFO_set_ordering) then
+    {$if declared(LEGACY_TS_TST_INFO_set_ordering)}
+    TS_TST_INFO_set_ordering := @LEGACY_TS_TST_INFO_set_ordering;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_TST_INFO_set_ordering');
+    {$ifend}
   Result := TS_TST_INFO_set_ordering(a, ordering);
 end;
 
@@ -2048,7 +2449,11 @@ function Load_TS_TST_INFO_get_ordering(a: PTS_TST_INFO): TOpenSSL_C_INT; cdecl;
 begin
   TS_TST_INFO_get_ordering := LoadLibCryptoFunction('TS_TST_INFO_get_ordering');
   if not assigned(TS_TST_INFO_get_ordering) then
+    {$if declared(LEGACY_TS_TST_INFO_get_ordering)}
+    TS_TST_INFO_get_ordering := @LEGACY_TS_TST_INFO_get_ordering;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_TST_INFO_get_ordering');
+    {$ifend}
   Result := TS_TST_INFO_get_ordering(a);
 end;
 
@@ -2056,7 +2461,11 @@ function Load_TS_TST_INFO_set_nonce(a: PTS_TST_INFO; nonce: PASN1_INTEGER): TOpe
 begin
   TS_TST_INFO_set_nonce := LoadLibCryptoFunction('TS_TST_INFO_set_nonce');
   if not assigned(TS_TST_INFO_set_nonce) then
+    {$if declared(LEGACY_TS_TST_INFO_set_nonce)}
+    TS_TST_INFO_set_nonce := @LEGACY_TS_TST_INFO_set_nonce;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_TST_INFO_set_nonce');
+    {$ifend}
   Result := TS_TST_INFO_set_nonce(a, nonce);
 end;
 
@@ -2064,7 +2473,11 @@ function Load_TS_TST_INFO_get_nonce(a: PTS_TST_INFO): PASN1_INTEGER; cdecl;
 begin
   TS_TST_INFO_get_nonce := LoadLibCryptoFunction('TS_TST_INFO_get_nonce');
   if not assigned(TS_TST_INFO_get_nonce) then
+    {$if declared(LEGACY_TS_TST_INFO_get_nonce)}
+    TS_TST_INFO_get_nonce := @LEGACY_TS_TST_INFO_get_nonce;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_TST_INFO_get_nonce');
+    {$ifend}
   Result := TS_TST_INFO_get_nonce(a);
 end;
 
@@ -2072,7 +2485,11 @@ function Load_TS_TST_INFO_set_tsa(a: PTS_TST_INFO; tsa: PGENERAL_NAME): TOpenSSL
 begin
   TS_TST_INFO_set_tsa := LoadLibCryptoFunction('TS_TST_INFO_set_tsa');
   if not assigned(TS_TST_INFO_set_tsa) then
+    {$if declared(LEGACY_TS_TST_INFO_set_tsa)}
+    TS_TST_INFO_set_tsa := @LEGACY_TS_TST_INFO_set_tsa;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_TST_INFO_set_tsa');
+    {$ifend}
   Result := TS_TST_INFO_set_tsa(a, tsa);
 end;
 
@@ -2080,7 +2497,11 @@ function Load_TS_TST_INFO_get_tsa(a: PTS_TST_INFO): PGENERAL_NAME; cdecl;
 begin
   TS_TST_INFO_get_tsa := LoadLibCryptoFunction('TS_TST_INFO_get_tsa');
   if not assigned(TS_TST_INFO_get_tsa) then
+    {$if declared(LEGACY_TS_TST_INFO_get_tsa)}
+    TS_TST_INFO_get_tsa := @LEGACY_TS_TST_INFO_get_tsa;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_TST_INFO_get_tsa');
+    {$ifend}
   Result := TS_TST_INFO_get_tsa(a);
 end;
 
@@ -2088,7 +2509,11 @@ function Load_TS_TST_INFO_get_exts(a: PTS_TST_INFO): Pstack_st_X509_EXTENSION; c
 begin
   TS_TST_INFO_get_exts := LoadLibCryptoFunction('TS_TST_INFO_get_exts');
   if not assigned(TS_TST_INFO_get_exts) then
+    {$if declared(LEGACY_TS_TST_INFO_get_exts)}
+    TS_TST_INFO_get_exts := @LEGACY_TS_TST_INFO_get_exts;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_TST_INFO_get_exts');
+    {$ifend}
   Result := TS_TST_INFO_get_exts(a);
 end;
 
@@ -2096,7 +2521,11 @@ procedure Load_TS_TST_INFO_ext_free(a: PTS_TST_INFO); cdecl;
 begin
   TS_TST_INFO_ext_free := LoadLibCryptoFunction('TS_TST_INFO_ext_free');
   if not assigned(TS_TST_INFO_ext_free) then
+    {$if declared(LEGACY_TS_TST_INFO_ext_free)}
+    TS_TST_INFO_ext_free := @LEGACY_TS_TST_INFO_ext_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_TST_INFO_ext_free');
+    {$ifend}
   TS_TST_INFO_ext_free(a);
 end;
 
@@ -2104,7 +2533,11 @@ function Load_TS_TST_INFO_get_ext_count(a: PTS_TST_INFO): TOpenSSL_C_INT; cdecl;
 begin
   TS_TST_INFO_get_ext_count := LoadLibCryptoFunction('TS_TST_INFO_get_ext_count');
   if not assigned(TS_TST_INFO_get_ext_count) then
+    {$if declared(LEGACY_TS_TST_INFO_get_ext_count)}
+    TS_TST_INFO_get_ext_count := @LEGACY_TS_TST_INFO_get_ext_count;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_TST_INFO_get_ext_count');
+    {$ifend}
   Result := TS_TST_INFO_get_ext_count(a);
 end;
 
@@ -2112,7 +2545,11 @@ function Load_TS_TST_INFO_get_ext_by_NID(a: PTS_TST_INFO; nid: TOpenSSL_C_INT; l
 begin
   TS_TST_INFO_get_ext_by_NID := LoadLibCryptoFunction('TS_TST_INFO_get_ext_by_NID');
   if not assigned(TS_TST_INFO_get_ext_by_NID) then
+    {$if declared(LEGACY_TS_TST_INFO_get_ext_by_NID)}
+    TS_TST_INFO_get_ext_by_NID := @LEGACY_TS_TST_INFO_get_ext_by_NID;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_TST_INFO_get_ext_by_NID');
+    {$ifend}
   Result := TS_TST_INFO_get_ext_by_NID(a, nid, lastpos);
 end;
 
@@ -2120,7 +2557,11 @@ function Load_TS_TST_INFO_get_ext_by_OBJ(a: PTS_TST_INFO; obj: PASN1_OBJECT; las
 begin
   TS_TST_INFO_get_ext_by_OBJ := LoadLibCryptoFunction('TS_TST_INFO_get_ext_by_OBJ');
   if not assigned(TS_TST_INFO_get_ext_by_OBJ) then
+    {$if declared(LEGACY_TS_TST_INFO_get_ext_by_OBJ)}
+    TS_TST_INFO_get_ext_by_OBJ := @LEGACY_TS_TST_INFO_get_ext_by_OBJ;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_TST_INFO_get_ext_by_OBJ');
+    {$ifend}
   Result := TS_TST_INFO_get_ext_by_OBJ(a, obj, lastpos);
 end;
 
@@ -2128,7 +2569,11 @@ function Load_TS_TST_INFO_get_ext_by_critical(a: PTS_TST_INFO; crit: TOpenSSL_C_
 begin
   TS_TST_INFO_get_ext_by_critical := LoadLibCryptoFunction('TS_TST_INFO_get_ext_by_critical');
   if not assigned(TS_TST_INFO_get_ext_by_critical) then
+    {$if declared(LEGACY_TS_TST_INFO_get_ext_by_critical)}
+    TS_TST_INFO_get_ext_by_critical := @LEGACY_TS_TST_INFO_get_ext_by_critical;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_TST_INFO_get_ext_by_critical');
+    {$ifend}
   Result := TS_TST_INFO_get_ext_by_critical(a, crit, lastpos);
 end;
 
@@ -2136,7 +2581,11 @@ function Load_TS_TST_INFO_get_ext(a: PTS_TST_INFO; loc: TOpenSSL_C_INT): PX509_E
 begin
   TS_TST_INFO_get_ext := LoadLibCryptoFunction('TS_TST_INFO_get_ext');
   if not assigned(TS_TST_INFO_get_ext) then
+    {$if declared(LEGACY_TS_TST_INFO_get_ext)}
+    TS_TST_INFO_get_ext := @LEGACY_TS_TST_INFO_get_ext;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_TST_INFO_get_ext');
+    {$ifend}
   Result := TS_TST_INFO_get_ext(a, loc);
 end;
 
@@ -2144,7 +2593,11 @@ function Load_TS_TST_INFO_delete_ext(a: PTS_TST_INFO; loc: TOpenSSL_C_INT): PX50
 begin
   TS_TST_INFO_delete_ext := LoadLibCryptoFunction('TS_TST_INFO_delete_ext');
   if not assigned(TS_TST_INFO_delete_ext) then
+    {$if declared(LEGACY_TS_TST_INFO_delete_ext)}
+    TS_TST_INFO_delete_ext := @LEGACY_TS_TST_INFO_delete_ext;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_TST_INFO_delete_ext');
+    {$ifend}
   Result := TS_TST_INFO_delete_ext(a, loc);
 end;
 
@@ -2152,7 +2605,11 @@ function Load_TS_TST_INFO_add_ext(a: PTS_TST_INFO; ex: PX509_EXTENSION; loc: TOp
 begin
   TS_TST_INFO_add_ext := LoadLibCryptoFunction('TS_TST_INFO_add_ext');
   if not assigned(TS_TST_INFO_add_ext) then
+    {$if declared(LEGACY_TS_TST_INFO_add_ext)}
+    TS_TST_INFO_add_ext := @LEGACY_TS_TST_INFO_add_ext;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_TST_INFO_add_ext');
+    {$ifend}
   Result := TS_TST_INFO_add_ext(a, ex, loc);
 end;
 
@@ -2160,7 +2617,11 @@ function Load_TS_TST_INFO_get_ext_d2i(a: PTS_TST_INFO; nid: TOpenSSL_C_INT; crit
 begin
   TS_TST_INFO_get_ext_d2i := LoadLibCryptoFunction('TS_TST_INFO_get_ext_d2i');
   if not assigned(TS_TST_INFO_get_ext_d2i) then
+    {$if declared(LEGACY_TS_TST_INFO_get_ext_d2i)}
+    TS_TST_INFO_get_ext_d2i := @LEGACY_TS_TST_INFO_get_ext_d2i;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_TST_INFO_get_ext_d2i');
+    {$ifend}
   Result := TS_TST_INFO_get_ext_d2i(a, nid, crit, idx);
 end;
 
@@ -2168,7 +2629,11 @@ function Load_TS_RESP_CTX_new: PTS_RESP_CTX; cdecl;
 begin
   TS_RESP_CTX_new := LoadLibCryptoFunction('TS_RESP_CTX_new');
   if not assigned(TS_RESP_CTX_new) then
+    {$if declared(LEGACY_TS_RESP_CTX_new)}
+    TS_RESP_CTX_new := @LEGACY_TS_RESP_CTX_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_CTX_new');
+    {$ifend}
   Result := TS_RESP_CTX_new;
 end;
 
@@ -2176,7 +2641,11 @@ function Load_TS_RESP_CTX_new_ex(libctx: POSSL_LIB_CTX; propq: PAnsiChar): PTS_R
 begin
   TS_RESP_CTX_new_ex := LoadLibCryptoFunction('TS_RESP_CTX_new_ex');
   if not assigned(TS_RESP_CTX_new_ex) then
+    {$if declared(LEGACY_TS_RESP_CTX_new_ex)}
+    TS_RESP_CTX_new_ex := @LEGACY_TS_RESP_CTX_new_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_CTX_new_ex');
+    {$ifend}
   Result := TS_RESP_CTX_new_ex(libctx, propq);
 end;
 
@@ -2184,7 +2653,11 @@ procedure Load_TS_RESP_CTX_free(ctx: PTS_RESP_CTX); cdecl;
 begin
   TS_RESP_CTX_free := LoadLibCryptoFunction('TS_RESP_CTX_free');
   if not assigned(TS_RESP_CTX_free) then
+    {$if declared(LEGACY_TS_RESP_CTX_free)}
+    TS_RESP_CTX_free := @LEGACY_TS_RESP_CTX_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_CTX_free');
+    {$ifend}
   TS_RESP_CTX_free(ctx);
 end;
 
@@ -2192,7 +2665,11 @@ function Load_TS_RESP_CTX_set_signer_cert(ctx: PTS_RESP_CTX; signer: PX509): TOp
 begin
   TS_RESP_CTX_set_signer_cert := LoadLibCryptoFunction('TS_RESP_CTX_set_signer_cert');
   if not assigned(TS_RESP_CTX_set_signer_cert) then
+    {$if declared(LEGACY_TS_RESP_CTX_set_signer_cert)}
+    TS_RESP_CTX_set_signer_cert := @LEGACY_TS_RESP_CTX_set_signer_cert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_CTX_set_signer_cert');
+    {$ifend}
   Result := TS_RESP_CTX_set_signer_cert(ctx, signer);
 end;
 
@@ -2200,7 +2677,11 @@ function Load_TS_RESP_CTX_set_signer_key(ctx: PTS_RESP_CTX; key: PEVP_PKEY): TOp
 begin
   TS_RESP_CTX_set_signer_key := LoadLibCryptoFunction('TS_RESP_CTX_set_signer_key');
   if not assigned(TS_RESP_CTX_set_signer_key) then
+    {$if declared(LEGACY_TS_RESP_CTX_set_signer_key)}
+    TS_RESP_CTX_set_signer_key := @LEGACY_TS_RESP_CTX_set_signer_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_CTX_set_signer_key');
+    {$ifend}
   Result := TS_RESP_CTX_set_signer_key(ctx, key);
 end;
 
@@ -2208,7 +2689,11 @@ function Load_TS_RESP_CTX_set_signer_digest(ctx: PTS_RESP_CTX; signer_digest: PE
 begin
   TS_RESP_CTX_set_signer_digest := LoadLibCryptoFunction('TS_RESP_CTX_set_signer_digest');
   if not assigned(TS_RESP_CTX_set_signer_digest) then
+    {$if declared(LEGACY_TS_RESP_CTX_set_signer_digest)}
+    TS_RESP_CTX_set_signer_digest := @LEGACY_TS_RESP_CTX_set_signer_digest;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_CTX_set_signer_digest');
+    {$ifend}
   Result := TS_RESP_CTX_set_signer_digest(ctx, signer_digest);
 end;
 
@@ -2216,7 +2701,11 @@ function Load_TS_RESP_CTX_set_ess_cert_id_digest(ctx: PTS_RESP_CTX; md: PEVP_MD)
 begin
   TS_RESP_CTX_set_ess_cert_id_digest := LoadLibCryptoFunction('TS_RESP_CTX_set_ess_cert_id_digest');
   if not assigned(TS_RESP_CTX_set_ess_cert_id_digest) then
+    {$if declared(LEGACY_TS_RESP_CTX_set_ess_cert_id_digest)}
+    TS_RESP_CTX_set_ess_cert_id_digest := @LEGACY_TS_RESP_CTX_set_ess_cert_id_digest;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_CTX_set_ess_cert_id_digest');
+    {$ifend}
   Result := TS_RESP_CTX_set_ess_cert_id_digest(ctx, md);
 end;
 
@@ -2224,7 +2713,11 @@ function Load_TS_RESP_CTX_set_def_policy(ctx: PTS_RESP_CTX; def_policy: PASN1_OB
 begin
   TS_RESP_CTX_set_def_policy := LoadLibCryptoFunction('TS_RESP_CTX_set_def_policy');
   if not assigned(TS_RESP_CTX_set_def_policy) then
+    {$if declared(LEGACY_TS_RESP_CTX_set_def_policy)}
+    TS_RESP_CTX_set_def_policy := @LEGACY_TS_RESP_CTX_set_def_policy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_CTX_set_def_policy');
+    {$ifend}
   Result := TS_RESP_CTX_set_def_policy(ctx, def_policy);
 end;
 
@@ -2232,7 +2725,11 @@ function Load_TS_RESP_CTX_set_certs(ctx: PTS_RESP_CTX; certs: Pstack_st_X509): T
 begin
   TS_RESP_CTX_set_certs := LoadLibCryptoFunction('TS_RESP_CTX_set_certs');
   if not assigned(TS_RESP_CTX_set_certs) then
+    {$if declared(LEGACY_TS_RESP_CTX_set_certs)}
+    TS_RESP_CTX_set_certs := @LEGACY_TS_RESP_CTX_set_certs;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_CTX_set_certs');
+    {$ifend}
   Result := TS_RESP_CTX_set_certs(ctx, certs);
 end;
 
@@ -2240,7 +2737,11 @@ function Load_TS_RESP_CTX_add_policy(ctx: PTS_RESP_CTX; policy: PASN1_OBJECT): T
 begin
   TS_RESP_CTX_add_policy := LoadLibCryptoFunction('TS_RESP_CTX_add_policy');
   if not assigned(TS_RESP_CTX_add_policy) then
+    {$if declared(LEGACY_TS_RESP_CTX_add_policy)}
+    TS_RESP_CTX_add_policy := @LEGACY_TS_RESP_CTX_add_policy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_CTX_add_policy');
+    {$ifend}
   Result := TS_RESP_CTX_add_policy(ctx, policy);
 end;
 
@@ -2248,7 +2749,11 @@ function Load_TS_RESP_CTX_add_md(ctx: PTS_RESP_CTX; md: PEVP_MD): TOpenSSL_C_INT
 begin
   TS_RESP_CTX_add_md := LoadLibCryptoFunction('TS_RESP_CTX_add_md');
   if not assigned(TS_RESP_CTX_add_md) then
+    {$if declared(LEGACY_TS_RESP_CTX_add_md)}
+    TS_RESP_CTX_add_md := @LEGACY_TS_RESP_CTX_add_md;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_CTX_add_md');
+    {$ifend}
   Result := TS_RESP_CTX_add_md(ctx, md);
 end;
 
@@ -2256,7 +2761,11 @@ function Load_TS_RESP_CTX_set_accuracy(ctx: PTS_RESP_CTX; secs: TOpenSSL_C_INT; 
 begin
   TS_RESP_CTX_set_accuracy := LoadLibCryptoFunction('TS_RESP_CTX_set_accuracy');
   if not assigned(TS_RESP_CTX_set_accuracy) then
+    {$if declared(LEGACY_TS_RESP_CTX_set_accuracy)}
+    TS_RESP_CTX_set_accuracy := @LEGACY_TS_RESP_CTX_set_accuracy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_CTX_set_accuracy');
+    {$ifend}
   Result := TS_RESP_CTX_set_accuracy(ctx, secs, millis, micros);
 end;
 
@@ -2264,7 +2773,11 @@ function Load_TS_RESP_CTX_set_clock_precision_digits(ctx: PTS_RESP_CTX; clock_pr
 begin
   TS_RESP_CTX_set_clock_precision_digits := LoadLibCryptoFunction('TS_RESP_CTX_set_clock_precision_digits');
   if not assigned(TS_RESP_CTX_set_clock_precision_digits) then
+    {$if declared(LEGACY_TS_RESP_CTX_set_clock_precision_digits)}
+    TS_RESP_CTX_set_clock_precision_digits := @LEGACY_TS_RESP_CTX_set_clock_precision_digits;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_CTX_set_clock_precision_digits');
+    {$ifend}
   Result := TS_RESP_CTX_set_clock_precision_digits(ctx, clock_precision_digits);
 end;
 
@@ -2272,7 +2785,11 @@ procedure Load_TS_RESP_CTX_add_flags(ctx: PTS_RESP_CTX; flags: TOpenSSL_C_INT); 
 begin
   TS_RESP_CTX_add_flags := LoadLibCryptoFunction('TS_RESP_CTX_add_flags');
   if not assigned(TS_RESP_CTX_add_flags) then
+    {$if declared(LEGACY_TS_RESP_CTX_add_flags)}
+    TS_RESP_CTX_add_flags := @LEGACY_TS_RESP_CTX_add_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_CTX_add_flags');
+    {$ifend}
   TS_RESP_CTX_add_flags(ctx, flags);
 end;
 
@@ -2280,7 +2797,11 @@ procedure Load_TS_RESP_CTX_set_serial_cb(ctx: PTS_RESP_CTX; cb: TTS_serial_cb; d
 begin
   TS_RESP_CTX_set_serial_cb := LoadLibCryptoFunction('TS_RESP_CTX_set_serial_cb');
   if not assigned(TS_RESP_CTX_set_serial_cb) then
+    {$if declared(LEGACY_TS_RESP_CTX_set_serial_cb)}
+    TS_RESP_CTX_set_serial_cb := @LEGACY_TS_RESP_CTX_set_serial_cb;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_CTX_set_serial_cb');
+    {$ifend}
   TS_RESP_CTX_set_serial_cb(ctx, cb, data);
 end;
 
@@ -2288,7 +2809,11 @@ procedure Load_TS_RESP_CTX_set_time_cb(ctx: PTS_RESP_CTX; cb: TTS_time_cb; data:
 begin
   TS_RESP_CTX_set_time_cb := LoadLibCryptoFunction('TS_RESP_CTX_set_time_cb');
   if not assigned(TS_RESP_CTX_set_time_cb) then
+    {$if declared(LEGACY_TS_RESP_CTX_set_time_cb)}
+    TS_RESP_CTX_set_time_cb := @LEGACY_TS_RESP_CTX_set_time_cb;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_CTX_set_time_cb');
+    {$ifend}
   TS_RESP_CTX_set_time_cb(ctx, cb, data);
 end;
 
@@ -2296,7 +2821,11 @@ procedure Load_TS_RESP_CTX_set_extension_cb(ctx: PTS_RESP_CTX; cb: TTS_extension
 begin
   TS_RESP_CTX_set_extension_cb := LoadLibCryptoFunction('TS_RESP_CTX_set_extension_cb');
   if not assigned(TS_RESP_CTX_set_extension_cb) then
+    {$if declared(LEGACY_TS_RESP_CTX_set_extension_cb)}
+    TS_RESP_CTX_set_extension_cb := @LEGACY_TS_RESP_CTX_set_extension_cb;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_CTX_set_extension_cb');
+    {$ifend}
   TS_RESP_CTX_set_extension_cb(ctx, cb, data);
 end;
 
@@ -2304,7 +2833,11 @@ function Load_TS_RESP_CTX_set_status_info(ctx: PTS_RESP_CTX; status: TOpenSSL_C_
 begin
   TS_RESP_CTX_set_status_info := LoadLibCryptoFunction('TS_RESP_CTX_set_status_info');
   if not assigned(TS_RESP_CTX_set_status_info) then
+    {$if declared(LEGACY_TS_RESP_CTX_set_status_info)}
+    TS_RESP_CTX_set_status_info := @LEGACY_TS_RESP_CTX_set_status_info;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_CTX_set_status_info');
+    {$ifend}
   Result := TS_RESP_CTX_set_status_info(ctx, status, text);
 end;
 
@@ -2312,7 +2845,11 @@ function Load_TS_RESP_CTX_set_status_info_cond(ctx: PTS_RESP_CTX; status: TOpenS
 begin
   TS_RESP_CTX_set_status_info_cond := LoadLibCryptoFunction('TS_RESP_CTX_set_status_info_cond');
   if not assigned(TS_RESP_CTX_set_status_info_cond) then
+    {$if declared(LEGACY_TS_RESP_CTX_set_status_info_cond)}
+    TS_RESP_CTX_set_status_info_cond := @LEGACY_TS_RESP_CTX_set_status_info_cond;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_CTX_set_status_info_cond');
+    {$ifend}
   Result := TS_RESP_CTX_set_status_info_cond(ctx, status, text);
 end;
 
@@ -2320,7 +2857,11 @@ function Load_TS_RESP_CTX_add_failure_info(ctx: PTS_RESP_CTX; failure: TOpenSSL_
 begin
   TS_RESP_CTX_add_failure_info := LoadLibCryptoFunction('TS_RESP_CTX_add_failure_info');
   if not assigned(TS_RESP_CTX_add_failure_info) then
+    {$if declared(LEGACY_TS_RESP_CTX_add_failure_info)}
+    TS_RESP_CTX_add_failure_info := @LEGACY_TS_RESP_CTX_add_failure_info;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_CTX_add_failure_info');
+    {$ifend}
   Result := TS_RESP_CTX_add_failure_info(ctx, failure);
 end;
 
@@ -2328,7 +2869,11 @@ function Load_TS_RESP_CTX_get_request(ctx: PTS_RESP_CTX): PTS_REQ; cdecl;
 begin
   TS_RESP_CTX_get_request := LoadLibCryptoFunction('TS_RESP_CTX_get_request');
   if not assigned(TS_RESP_CTX_get_request) then
+    {$if declared(LEGACY_TS_RESP_CTX_get_request)}
+    TS_RESP_CTX_get_request := @LEGACY_TS_RESP_CTX_get_request;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_CTX_get_request');
+    {$ifend}
   Result := TS_RESP_CTX_get_request(ctx);
 end;
 
@@ -2336,7 +2881,11 @@ function Load_TS_RESP_CTX_get_tst_info(ctx: PTS_RESP_CTX): PTS_TST_INFO; cdecl;
 begin
   TS_RESP_CTX_get_tst_info := LoadLibCryptoFunction('TS_RESP_CTX_get_tst_info');
   if not assigned(TS_RESP_CTX_get_tst_info) then
+    {$if declared(LEGACY_TS_RESP_CTX_get_tst_info)}
+    TS_RESP_CTX_get_tst_info := @LEGACY_TS_RESP_CTX_get_tst_info;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_CTX_get_tst_info');
+    {$ifend}
   Result := TS_RESP_CTX_get_tst_info(ctx);
 end;
 
@@ -2344,7 +2893,11 @@ function Load_TS_RESP_create_response(ctx: PTS_RESP_CTX; req_bio: PBIO): PTS_RES
 begin
   TS_RESP_create_response := LoadLibCryptoFunction('TS_RESP_create_response');
   if not assigned(TS_RESP_create_response) then
+    {$if declared(LEGACY_TS_RESP_create_response)}
+    TS_RESP_create_response := @LEGACY_TS_RESP_create_response;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_create_response');
+    {$ifend}
   Result := TS_RESP_create_response(ctx, req_bio);
 end;
 
@@ -2352,7 +2905,11 @@ function Load_TS_RESP_verify_signature(token: PPKCS7; certs: Pstack_st_X509; sto
 begin
   TS_RESP_verify_signature := LoadLibCryptoFunction('TS_RESP_verify_signature');
   if not assigned(TS_RESP_verify_signature) then
+    {$if declared(LEGACY_TS_RESP_verify_signature)}
+    TS_RESP_verify_signature := @LEGACY_TS_RESP_verify_signature;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_verify_signature');
+    {$ifend}
   Result := TS_RESP_verify_signature(token, certs, store, signer_out);
 end;
 
@@ -2360,7 +2917,11 @@ function Load_TS_RESP_verify_response(ctx: PTS_VERIFY_CTX; response: PTS_RESP): 
 begin
   TS_RESP_verify_response := LoadLibCryptoFunction('TS_RESP_verify_response');
   if not assigned(TS_RESP_verify_response) then
+    {$if declared(LEGACY_TS_RESP_verify_response)}
+    TS_RESP_verify_response := @LEGACY_TS_RESP_verify_response;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_verify_response');
+    {$ifend}
   Result := TS_RESP_verify_response(ctx, response);
 end;
 
@@ -2368,7 +2929,11 @@ function Load_TS_RESP_verify_token(ctx: PTS_VERIFY_CTX; token: PPKCS7): TOpenSSL
 begin
   TS_RESP_verify_token := LoadLibCryptoFunction('TS_RESP_verify_token');
   if not assigned(TS_RESP_verify_token) then
+    {$if declared(LEGACY_TS_RESP_verify_token)}
+    TS_RESP_verify_token := @LEGACY_TS_RESP_verify_token;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_verify_token');
+    {$ifend}
   Result := TS_RESP_verify_token(ctx, token);
 end;
 
@@ -2376,7 +2941,11 @@ function Load_TS_VERIFY_CTX_new: PTS_VERIFY_CTX; cdecl;
 begin
   TS_VERIFY_CTX_new := LoadLibCryptoFunction('TS_VERIFY_CTX_new');
   if not assigned(TS_VERIFY_CTX_new) then
+    {$if declared(LEGACY_TS_VERIFY_CTX_new)}
+    TS_VERIFY_CTX_new := @LEGACY_TS_VERIFY_CTX_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_VERIFY_CTX_new');
+    {$ifend}
   Result := TS_VERIFY_CTX_new;
 end;
 
@@ -2384,7 +2953,11 @@ procedure Load_TS_VERIFY_CTX_init(ctx: PTS_VERIFY_CTX); cdecl;
 begin
   TS_VERIFY_CTX_init := LoadLibCryptoFunction('TS_VERIFY_CTX_init');
   if not assigned(TS_VERIFY_CTX_init) then
+    {$if declared(LEGACY_TS_VERIFY_CTX_init)}
+    TS_VERIFY_CTX_init := @LEGACY_TS_VERIFY_CTX_init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_VERIFY_CTX_init');
+    {$ifend}
   TS_VERIFY_CTX_init(ctx);
 end;
 
@@ -2392,7 +2965,11 @@ procedure Load_TS_VERIFY_CTX_free(ctx: PTS_VERIFY_CTX); cdecl;
 begin
   TS_VERIFY_CTX_free := LoadLibCryptoFunction('TS_VERIFY_CTX_free');
   if not assigned(TS_VERIFY_CTX_free) then
+    {$if declared(LEGACY_TS_VERIFY_CTX_free)}
+    TS_VERIFY_CTX_free := @LEGACY_TS_VERIFY_CTX_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_VERIFY_CTX_free');
+    {$ifend}
   TS_VERIFY_CTX_free(ctx);
 end;
 
@@ -2400,7 +2977,11 @@ procedure Load_TS_VERIFY_CTX_cleanup(ctx: PTS_VERIFY_CTX); cdecl;
 begin
   TS_VERIFY_CTX_cleanup := LoadLibCryptoFunction('TS_VERIFY_CTX_cleanup');
   if not assigned(TS_VERIFY_CTX_cleanup) then
+    {$if declared(LEGACY_TS_VERIFY_CTX_cleanup)}
+    TS_VERIFY_CTX_cleanup := @LEGACY_TS_VERIFY_CTX_cleanup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_VERIFY_CTX_cleanup');
+    {$ifend}
   TS_VERIFY_CTX_cleanup(ctx);
 end;
 
@@ -2408,7 +2989,11 @@ function Load_TS_VERIFY_CTX_set_flags(ctx: PTS_VERIFY_CTX; f: TOpenSSL_C_INT): T
 begin
   TS_VERIFY_CTX_set_flags := LoadLibCryptoFunction('TS_VERIFY_CTX_set_flags');
   if not assigned(TS_VERIFY_CTX_set_flags) then
+    {$if declared(LEGACY_TS_VERIFY_CTX_set_flags)}
+    TS_VERIFY_CTX_set_flags := @LEGACY_TS_VERIFY_CTX_set_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_VERIFY_CTX_set_flags');
+    {$ifend}
   Result := TS_VERIFY_CTX_set_flags(ctx, f);
 end;
 
@@ -2416,7 +3001,11 @@ function Load_TS_VERIFY_CTX_add_flags(ctx: PTS_VERIFY_CTX; f: TOpenSSL_C_INT): T
 begin
   TS_VERIFY_CTX_add_flags := LoadLibCryptoFunction('TS_VERIFY_CTX_add_flags');
   if not assigned(TS_VERIFY_CTX_add_flags) then
+    {$if declared(LEGACY_TS_VERIFY_CTX_add_flags)}
+    TS_VERIFY_CTX_add_flags := @LEGACY_TS_VERIFY_CTX_add_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_VERIFY_CTX_add_flags');
+    {$ifend}
   Result := TS_VERIFY_CTX_add_flags(ctx, f);
 end;
 
@@ -2424,7 +3013,11 @@ function Load_TS_VERIFY_CTX_set_data(ctx: PTS_VERIFY_CTX; b: PBIO): PBIO; cdecl;
 begin
   TS_VERIFY_CTX_set_data := LoadLibCryptoFunction('TS_VERIFY_CTX_set_data');
   if not assigned(TS_VERIFY_CTX_set_data) then
+    {$if declared(LEGACY_TS_VERIFY_CTX_set_data)}
+    TS_VERIFY_CTX_set_data := @LEGACY_TS_VERIFY_CTX_set_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_VERIFY_CTX_set_data');
+    {$ifend}
   Result := TS_VERIFY_CTX_set_data(ctx, b);
 end;
 
@@ -2432,7 +3025,11 @@ function Load_TS_VERIFY_CTX_set_imprint(ctx: PTS_VERIFY_CTX; hexstr: Pbyte; len:
 begin
   TS_VERIFY_CTX_set_imprint := LoadLibCryptoFunction('TS_VERIFY_CTX_set_imprint');
   if not assigned(TS_VERIFY_CTX_set_imprint) then
+    {$if declared(LEGACY_TS_VERIFY_CTX_set_imprint)}
+    TS_VERIFY_CTX_set_imprint := @LEGACY_TS_VERIFY_CTX_set_imprint;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_VERIFY_CTX_set_imprint');
+    {$ifend}
   Result := TS_VERIFY_CTX_set_imprint(ctx, hexstr, len);
 end;
 
@@ -2440,7 +3037,11 @@ function Load_TS_VERIFY_CTX_set_store(ctx: PTS_VERIFY_CTX; s: PX509_STORE): PX50
 begin
   TS_VERIFY_CTX_set_store := LoadLibCryptoFunction('TS_VERIFY_CTX_set_store');
   if not assigned(TS_VERIFY_CTX_set_store) then
+    {$if declared(LEGACY_TS_VERIFY_CTX_set_store)}
+    TS_VERIFY_CTX_set_store := @LEGACY_TS_VERIFY_CTX_set_store;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_VERIFY_CTX_set_store');
+    {$ifend}
   Result := TS_VERIFY_CTX_set_store(ctx, s);
 end;
 
@@ -2448,7 +3049,11 @@ function Load_TS_VERIFY_CTX_set_certs(ctx: PTS_VERIFY_CTX; certs: Pstack_st_X509
 begin
   TS_VERIFY_CTX_set_certs := LoadLibCryptoFunction('TS_VERIFY_CTX_set_certs');
   if not assigned(TS_VERIFY_CTX_set_certs) then
+    {$if declared(LEGACY_TS_VERIFY_CTX_set_certs)}
+    TS_VERIFY_CTX_set_certs := @LEGACY_TS_VERIFY_CTX_set_certs;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_VERIFY_CTX_set_certs');
+    {$ifend}
   Result := TS_VERIFY_CTX_set_certs(ctx, certs);
 end;
 
@@ -2456,7 +3061,11 @@ function Load_TS_REQ_to_TS_VERIFY_CTX(req: PTS_REQ; ctx: PTS_VERIFY_CTX): PTS_VE
 begin
   TS_REQ_to_TS_VERIFY_CTX := LoadLibCryptoFunction('TS_REQ_to_TS_VERIFY_CTX');
   if not assigned(TS_REQ_to_TS_VERIFY_CTX) then
+    {$if declared(LEGACY_TS_REQ_to_TS_VERIFY_CTX)}
+    TS_REQ_to_TS_VERIFY_CTX := @LEGACY_TS_REQ_to_TS_VERIFY_CTX;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_REQ_to_TS_VERIFY_CTX');
+    {$ifend}
   Result := TS_REQ_to_TS_VERIFY_CTX(req, ctx);
 end;
 
@@ -2464,7 +3073,11 @@ function Load_TS_RESP_print_bio(bio: PBIO; a: PTS_RESP): TOpenSSL_C_INT; cdecl;
 begin
   TS_RESP_print_bio := LoadLibCryptoFunction('TS_RESP_print_bio');
   if not assigned(TS_RESP_print_bio) then
+    {$if declared(LEGACY_TS_RESP_print_bio)}
+    TS_RESP_print_bio := @LEGACY_TS_RESP_print_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_RESP_print_bio');
+    {$ifend}
   Result := TS_RESP_print_bio(bio, a);
 end;
 
@@ -2472,7 +3085,11 @@ function Load_TS_STATUS_INFO_print_bio(bio: PBIO; a: PTS_STATUS_INFO): TOpenSSL_
 begin
   TS_STATUS_INFO_print_bio := LoadLibCryptoFunction('TS_STATUS_INFO_print_bio');
   if not assigned(TS_STATUS_INFO_print_bio) then
+    {$if declared(LEGACY_TS_STATUS_INFO_print_bio)}
+    TS_STATUS_INFO_print_bio := @LEGACY_TS_STATUS_INFO_print_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_STATUS_INFO_print_bio');
+    {$ifend}
   Result := TS_STATUS_INFO_print_bio(bio, a);
 end;
 
@@ -2480,7 +3097,11 @@ function Load_TS_TST_INFO_print_bio(bio: PBIO; a: PTS_TST_INFO): TOpenSSL_C_INT;
 begin
   TS_TST_INFO_print_bio := LoadLibCryptoFunction('TS_TST_INFO_print_bio');
   if not assigned(TS_TST_INFO_print_bio) then
+    {$if declared(LEGACY_TS_TST_INFO_print_bio)}
+    TS_TST_INFO_print_bio := @LEGACY_TS_TST_INFO_print_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_TST_INFO_print_bio');
+    {$ifend}
   Result := TS_TST_INFO_print_bio(bio, a);
 end;
 
@@ -2488,7 +3109,11 @@ function Load_TS_ASN1_INTEGER_print_bio(bio: PBIO; num: PASN1_INTEGER): TOpenSSL
 begin
   TS_ASN1_INTEGER_print_bio := LoadLibCryptoFunction('TS_ASN1_INTEGER_print_bio');
   if not assigned(TS_ASN1_INTEGER_print_bio) then
+    {$if declared(LEGACY_TS_ASN1_INTEGER_print_bio)}
+    TS_ASN1_INTEGER_print_bio := @LEGACY_TS_ASN1_INTEGER_print_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_ASN1_INTEGER_print_bio');
+    {$ifend}
   Result := TS_ASN1_INTEGER_print_bio(bio, num);
 end;
 
@@ -2496,7 +3121,11 @@ function Load_TS_OBJ_print_bio(bio: PBIO; obj: PASN1_OBJECT): TOpenSSL_C_INT; cd
 begin
   TS_OBJ_print_bio := LoadLibCryptoFunction('TS_OBJ_print_bio');
   if not assigned(TS_OBJ_print_bio) then
+    {$if declared(LEGACY_TS_OBJ_print_bio)}
+    TS_OBJ_print_bio := @LEGACY_TS_OBJ_print_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_OBJ_print_bio');
+    {$ifend}
   Result := TS_OBJ_print_bio(bio, obj);
 end;
 
@@ -2504,7 +3133,11 @@ function Load_TS_ext_print_bio(bio: PBIO; extensions: Pstack_st_X509_EXTENSION):
 begin
   TS_ext_print_bio := LoadLibCryptoFunction('TS_ext_print_bio');
   if not assigned(TS_ext_print_bio) then
+    {$if declared(LEGACY_TS_ext_print_bio)}
+    TS_ext_print_bio := @LEGACY_TS_ext_print_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_ext_print_bio');
+    {$ifend}
   Result := TS_ext_print_bio(bio, extensions);
 end;
 
@@ -2512,7 +3145,11 @@ function Load_TS_X509_ALGOR_print_bio(bio: PBIO; alg: PX509_ALGOR): TOpenSSL_C_I
 begin
   TS_X509_ALGOR_print_bio := LoadLibCryptoFunction('TS_X509_ALGOR_print_bio');
   if not assigned(TS_X509_ALGOR_print_bio) then
+    {$if declared(LEGACY_TS_X509_ALGOR_print_bio)}
+    TS_X509_ALGOR_print_bio := @LEGACY_TS_X509_ALGOR_print_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_X509_ALGOR_print_bio');
+    {$ifend}
   Result := TS_X509_ALGOR_print_bio(bio, alg);
 end;
 
@@ -2520,7 +3157,11 @@ function Load_TS_MSG_IMPRINT_print_bio(bio: PBIO; msg: PTS_MSG_IMPRINT): TOpenSS
 begin
   TS_MSG_IMPRINT_print_bio := LoadLibCryptoFunction('TS_MSG_IMPRINT_print_bio');
   if not assigned(TS_MSG_IMPRINT_print_bio) then
+    {$if declared(LEGACY_TS_MSG_IMPRINT_print_bio)}
+    TS_MSG_IMPRINT_print_bio := @LEGACY_TS_MSG_IMPRINT_print_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_MSG_IMPRINT_print_bio');
+    {$ifend}
   Result := TS_MSG_IMPRINT_print_bio(bio, msg);
 end;
 
@@ -2528,7 +3169,11 @@ function Load_TS_CONF_load_cert(file_: PAnsiChar): PX509; cdecl;
 begin
   TS_CONF_load_cert := LoadLibCryptoFunction('TS_CONF_load_cert');
   if not assigned(TS_CONF_load_cert) then
+    {$if declared(LEGACY_TS_CONF_load_cert)}
+    TS_CONF_load_cert := @LEGACY_TS_CONF_load_cert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_CONF_load_cert');
+    {$ifend}
   Result := TS_CONF_load_cert(file_);
 end;
 
@@ -2536,7 +3181,11 @@ function Load_TS_CONF_load_certs(file_: PAnsiChar): Pstack_st_X509; cdecl;
 begin
   TS_CONF_load_certs := LoadLibCryptoFunction('TS_CONF_load_certs');
   if not assigned(TS_CONF_load_certs) then
+    {$if declared(LEGACY_TS_CONF_load_certs)}
+    TS_CONF_load_certs := @LEGACY_TS_CONF_load_certs;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_CONF_load_certs');
+    {$ifend}
   Result := TS_CONF_load_certs(file_);
 end;
 
@@ -2544,7 +3193,11 @@ function Load_TS_CONF_load_key(file_: PAnsiChar; pass: PAnsiChar): PEVP_PKEY; cd
 begin
   TS_CONF_load_key := LoadLibCryptoFunction('TS_CONF_load_key');
   if not assigned(TS_CONF_load_key) then
+    {$if declared(LEGACY_TS_CONF_load_key)}
+    TS_CONF_load_key := @LEGACY_TS_CONF_load_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_CONF_load_key');
+    {$ifend}
   Result := TS_CONF_load_key(file_, pass);
 end;
 
@@ -2552,7 +3205,11 @@ function Load_TS_CONF_get_tsa_section(conf: PCONF; section: PAnsiChar): PAnsiCha
 begin
   TS_CONF_get_tsa_section := LoadLibCryptoFunction('TS_CONF_get_tsa_section');
   if not assigned(TS_CONF_get_tsa_section) then
+    {$if declared(LEGACY_TS_CONF_get_tsa_section)}
+    TS_CONF_get_tsa_section := @LEGACY_TS_CONF_get_tsa_section;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_CONF_get_tsa_section');
+    {$ifend}
   Result := TS_CONF_get_tsa_section(conf, section);
 end;
 
@@ -2560,7 +3217,11 @@ function Load_TS_CONF_set_serial(conf: PCONF; section: PAnsiChar; cb: TTS_serial
 begin
   TS_CONF_set_serial := LoadLibCryptoFunction('TS_CONF_set_serial');
   if not assigned(TS_CONF_set_serial) then
+    {$if declared(LEGACY_TS_CONF_set_serial)}
+    TS_CONF_set_serial := @LEGACY_TS_CONF_set_serial;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_CONF_set_serial');
+    {$ifend}
   Result := TS_CONF_set_serial(conf, section, cb, ctx);
 end;
 
@@ -2569,7 +3230,11 @@ function Load_TS_CONF_set_crypto_device(conf: PCONF; section: PAnsiChar; device:
 begin
   TS_CONF_set_crypto_device := LoadLibCryptoFunction('TS_CONF_set_crypto_device');
   if not assigned(TS_CONF_set_crypto_device) then
+    {$if declared(LEGACY_TS_CONF_set_crypto_device)}
+    TS_CONF_set_crypto_device := @LEGACY_TS_CONF_set_crypto_device;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_CONF_set_crypto_device');
+    {$ifend}
   Result := TS_CONF_set_crypto_device(conf, section, device);
 end;
 
@@ -2577,7 +3242,11 @@ function Load_TS_CONF_set_default_engine(name: PAnsiChar): TOpenSSL_C_INT; cdecl
 begin
   TS_CONF_set_default_engine := LoadLibCryptoFunction('TS_CONF_set_default_engine');
   if not assigned(TS_CONF_set_default_engine) then
+    {$if declared(LEGACY_TS_CONF_set_default_engine)}
+    TS_CONF_set_default_engine := @LEGACY_TS_CONF_set_default_engine;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_CONF_set_default_engine');
+    {$ifend}
   Result := TS_CONF_set_default_engine(name);
 end;
 
@@ -2586,7 +3255,11 @@ function Load_TS_CONF_set_signer_cert(conf: PCONF; section: PAnsiChar; cert: PAn
 begin
   TS_CONF_set_signer_cert := LoadLibCryptoFunction('TS_CONF_set_signer_cert');
   if not assigned(TS_CONF_set_signer_cert) then
+    {$if declared(LEGACY_TS_CONF_set_signer_cert)}
+    TS_CONF_set_signer_cert := @LEGACY_TS_CONF_set_signer_cert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_CONF_set_signer_cert');
+    {$ifend}
   Result := TS_CONF_set_signer_cert(conf, section, cert, ctx);
 end;
 
@@ -2594,7 +3267,11 @@ function Load_TS_CONF_set_certs(conf: PCONF; section: PAnsiChar; certs: PAnsiCha
 begin
   TS_CONF_set_certs := LoadLibCryptoFunction('TS_CONF_set_certs');
   if not assigned(TS_CONF_set_certs) then
+    {$if declared(LEGACY_TS_CONF_set_certs)}
+    TS_CONF_set_certs := @LEGACY_TS_CONF_set_certs;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_CONF_set_certs');
+    {$ifend}
   Result := TS_CONF_set_certs(conf, section, certs, ctx);
 end;
 
@@ -2602,7 +3279,11 @@ function Load_TS_CONF_set_signer_key(conf: PCONF; section: PAnsiChar; key: PAnsi
 begin
   TS_CONF_set_signer_key := LoadLibCryptoFunction('TS_CONF_set_signer_key');
   if not assigned(TS_CONF_set_signer_key) then
+    {$if declared(LEGACY_TS_CONF_set_signer_key)}
+    TS_CONF_set_signer_key := @LEGACY_TS_CONF_set_signer_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_CONF_set_signer_key');
+    {$ifend}
   Result := TS_CONF_set_signer_key(conf, section, key, pass, ctx);
 end;
 
@@ -2610,7 +3291,11 @@ function Load_TS_CONF_set_signer_digest(conf: PCONF; section: PAnsiChar; md: PAn
 begin
   TS_CONF_set_signer_digest := LoadLibCryptoFunction('TS_CONF_set_signer_digest');
   if not assigned(TS_CONF_set_signer_digest) then
+    {$if declared(LEGACY_TS_CONF_set_signer_digest)}
+    TS_CONF_set_signer_digest := @LEGACY_TS_CONF_set_signer_digest;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_CONF_set_signer_digest');
+    {$ifend}
   Result := TS_CONF_set_signer_digest(conf, section, md, ctx);
 end;
 
@@ -2618,7 +3303,11 @@ function Load_TS_CONF_set_def_policy(conf: PCONF; section: PAnsiChar; policy: PA
 begin
   TS_CONF_set_def_policy := LoadLibCryptoFunction('TS_CONF_set_def_policy');
   if not assigned(TS_CONF_set_def_policy) then
+    {$if declared(LEGACY_TS_CONF_set_def_policy)}
+    TS_CONF_set_def_policy := @LEGACY_TS_CONF_set_def_policy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_CONF_set_def_policy');
+    {$ifend}
   Result := TS_CONF_set_def_policy(conf, section, policy, ctx);
 end;
 
@@ -2626,7 +3315,11 @@ function Load_TS_CONF_set_policies(conf: PCONF; section: PAnsiChar; ctx: PTS_RES
 begin
   TS_CONF_set_policies := LoadLibCryptoFunction('TS_CONF_set_policies');
   if not assigned(TS_CONF_set_policies) then
+    {$if declared(LEGACY_TS_CONF_set_policies)}
+    TS_CONF_set_policies := @LEGACY_TS_CONF_set_policies;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_CONF_set_policies');
+    {$ifend}
   Result := TS_CONF_set_policies(conf, section, ctx);
 end;
 
@@ -2634,7 +3327,11 @@ function Load_TS_CONF_set_digests(conf: PCONF; section: PAnsiChar; ctx: PTS_RESP
 begin
   TS_CONF_set_digests := LoadLibCryptoFunction('TS_CONF_set_digests');
   if not assigned(TS_CONF_set_digests) then
+    {$if declared(LEGACY_TS_CONF_set_digests)}
+    TS_CONF_set_digests := @LEGACY_TS_CONF_set_digests;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_CONF_set_digests');
+    {$ifend}
   Result := TS_CONF_set_digests(conf, section, ctx);
 end;
 
@@ -2642,7 +3339,11 @@ function Load_TS_CONF_set_accuracy(conf: PCONF; section: PAnsiChar; ctx: PTS_RES
 begin
   TS_CONF_set_accuracy := LoadLibCryptoFunction('TS_CONF_set_accuracy');
   if not assigned(TS_CONF_set_accuracy) then
+    {$if declared(LEGACY_TS_CONF_set_accuracy)}
+    TS_CONF_set_accuracy := @LEGACY_TS_CONF_set_accuracy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_CONF_set_accuracy');
+    {$ifend}
   Result := TS_CONF_set_accuracy(conf, section, ctx);
 end;
 
@@ -2650,7 +3351,11 @@ function Load_TS_CONF_set_clock_precision_digits(conf: PCONF; section: PAnsiChar
 begin
   TS_CONF_set_clock_precision_digits := LoadLibCryptoFunction('TS_CONF_set_clock_precision_digits');
   if not assigned(TS_CONF_set_clock_precision_digits) then
+    {$if declared(LEGACY_TS_CONF_set_clock_precision_digits)}
+    TS_CONF_set_clock_precision_digits := @LEGACY_TS_CONF_set_clock_precision_digits;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_CONF_set_clock_precision_digits');
+    {$ifend}
   Result := TS_CONF_set_clock_precision_digits(conf, section, ctx);
 end;
 
@@ -2658,7 +3363,11 @@ function Load_TS_CONF_set_ordering(conf: PCONF; section: PAnsiChar; ctx: PTS_RES
 begin
   TS_CONF_set_ordering := LoadLibCryptoFunction('TS_CONF_set_ordering');
   if not assigned(TS_CONF_set_ordering) then
+    {$if declared(LEGACY_TS_CONF_set_ordering)}
+    TS_CONF_set_ordering := @LEGACY_TS_CONF_set_ordering;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_CONF_set_ordering');
+    {$ifend}
   Result := TS_CONF_set_ordering(conf, section, ctx);
 end;
 
@@ -2666,7 +3375,11 @@ function Load_TS_CONF_set_tsa_name(conf: PCONF; section: PAnsiChar; ctx: PTS_RES
 begin
   TS_CONF_set_tsa_name := LoadLibCryptoFunction('TS_CONF_set_tsa_name');
   if not assigned(TS_CONF_set_tsa_name) then
+    {$if declared(LEGACY_TS_CONF_set_tsa_name)}
+    TS_CONF_set_tsa_name := @LEGACY_TS_CONF_set_tsa_name;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_CONF_set_tsa_name');
+    {$ifend}
   Result := TS_CONF_set_tsa_name(conf, section, ctx);
 end;
 
@@ -2674,7 +3387,11 @@ function Load_TS_CONF_set_ess_cert_id_chain(conf: PCONF; section: PAnsiChar; ctx
 begin
   TS_CONF_set_ess_cert_id_chain := LoadLibCryptoFunction('TS_CONF_set_ess_cert_id_chain');
   if not assigned(TS_CONF_set_ess_cert_id_chain) then
+    {$if declared(LEGACY_TS_CONF_set_ess_cert_id_chain)}
+    TS_CONF_set_ess_cert_id_chain := @LEGACY_TS_CONF_set_ess_cert_id_chain;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_CONF_set_ess_cert_id_chain');
+    {$ifend}
   Result := TS_CONF_set_ess_cert_id_chain(conf, section, ctx);
 end;
 
@@ -2682,7 +3399,11 @@ function Load_TS_CONF_set_ess_cert_id_digest(conf: PCONF; section: PAnsiChar; ct
 begin
   TS_CONF_set_ess_cert_id_digest := LoadLibCryptoFunction('TS_CONF_set_ess_cert_id_digest');
   if not assigned(TS_CONF_set_ess_cert_id_digest) then
+    {$if declared(LEGACY_TS_CONF_set_ess_cert_id_digest)}
+    TS_CONF_set_ess_cert_id_digest := @LEGACY_TS_CONF_set_ess_cert_id_digest;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_CONF_set_ess_cert_id_digest');
+    {$ifend}
   Result := TS_CONF_set_ess_cert_id_digest(conf, section, ctx);
 end;
 

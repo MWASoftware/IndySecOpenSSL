@@ -18,7 +18,8 @@
 unit openssl_asn1;
 
 {
-  Generated from OpenSSL 3.0.20 Header File asn1.h - Wed  6 May 13:05:27 BST 2026
+  Generated from OpenSSL 3.0.20 Header File asn1.h - Wed  6 May 13:14:36 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -3057,7 +3058,11 @@ function Load_sk_X509_ALGOR_num(_para: Pstack_st_X509_ALGOR): TOpenSSL_C_INT; cd
 begin
   sk_X509_ALGOR_num := LoadLibCryptoFunction('OPENSSL_sk_num');
   if not assigned(sk_X509_ALGOR_num) then
+    {$if declared(LEGACY_OPENSSL_sk_num)}
+    sk_X509_ALGOR_num := @LEGACY_OPENSSL_sk_num;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_num');
+    {$ifend}
   Result := sk_X509_ALGOR_num(_para);
 end;
 
@@ -3065,7 +3070,11 @@ function Load_sk_X509_ALGOR_value(_para: Pstack_st_X509_ALGOR; _para2: TOpenSSL_
 begin
   sk_X509_ALGOR_value := LoadLibCryptoFunction('OPENSSL_sk_value');
   if not assigned(sk_X509_ALGOR_value) then
+    {$if declared(LEGACY_OPENSSL_sk_value)}
+    sk_X509_ALGOR_value := @LEGACY_OPENSSL_sk_value;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_value');
+    {$ifend}
   Result := sk_X509_ALGOR_value(_para, _para2);
 end;
 
@@ -3073,7 +3082,11 @@ function Load_sk_X509_ALGOR_new(cmp: Tsk_X509_ALGOR_compfunc): Pstack_st_X509_AL
 begin
   sk_X509_ALGOR_new := LoadLibCryptoFunction('OPENSSL_sk_new');
   if not assigned(sk_X509_ALGOR_new) then
+    {$if declared(LEGACY_OPENSSL_sk_new)}
+    sk_X509_ALGOR_new := @LEGACY_OPENSSL_sk_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new');
+    {$ifend}
   Result := sk_X509_ALGOR_new(cmp);
 end;
 
@@ -3081,7 +3094,11 @@ function Load_sk_X509_ALGOR_new_null: Pstack_st_X509_ALGOR; cdecl;
 begin
   sk_X509_ALGOR_new_null := LoadLibCryptoFunction('OPENSSL_sk_new_null');
   if not assigned(sk_X509_ALGOR_new_null) then
+    {$if declared(LEGACY_OPENSSL_sk_new_null)}
+    sk_X509_ALGOR_new_null := @LEGACY_OPENSSL_sk_new_null;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_null');
+    {$ifend}
   Result := sk_X509_ALGOR_new_null;
 end;
 
@@ -3089,7 +3106,11 @@ function Load_sk_X509_ALGOR_new_reserve(cmp: Tsk_X509_ALGOR_compfunc; n: TOpenSS
 begin
   sk_X509_ALGOR_new_reserve := LoadLibCryptoFunction('OPENSSL_sk_new_reserve');
   if not assigned(sk_X509_ALGOR_new_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_new_reserve)}
+    sk_X509_ALGOR_new_reserve := @LEGACY_OPENSSL_sk_new_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_reserve');
+    {$ifend}
   Result := sk_X509_ALGOR_new_reserve(cmp, n);
 end;
 
@@ -3097,7 +3118,11 @@ function Load_sk_X509_ALGOR_reserve(_para: Pstack_st_X509_ALGOR; n: TOpenSSL_C_I
 begin
   sk_X509_ALGOR_reserve := LoadLibCryptoFunction('OPENSSL_sk_reserve');
   if not assigned(sk_X509_ALGOR_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_reserve)}
+    sk_X509_ALGOR_reserve := @LEGACY_OPENSSL_sk_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_reserve');
+    {$ifend}
   Result := sk_X509_ALGOR_reserve(_para, n);
 end;
 
@@ -3105,7 +3130,11 @@ function Load_sk_X509_ALGOR_free(_para: Pstack_st_X509_ALGOR): TOpenSSL_C_INT; c
 begin
   sk_X509_ALGOR_free := LoadLibCryptoFunction('OPENSSL_sk_free');
   if not assigned(sk_X509_ALGOR_free) then
+    {$if declared(LEGACY_OPENSSL_sk_free)}
+    sk_X509_ALGOR_free := @LEGACY_OPENSSL_sk_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_free');
+    {$ifend}
   Result := sk_X509_ALGOR_free(_para);
 end;
 
@@ -3113,7 +3142,11 @@ function Load_sk_X509_ALGOR_zero(_para: Pstack_st_X509_ALGOR): TOpenSSL_C_INT; c
 begin
   sk_X509_ALGOR_zero := LoadLibCryptoFunction('OPENSSL_sk_zero');
   if not assigned(sk_X509_ALGOR_zero) then
+    {$if declared(LEGACY_OPENSSL_sk_zero)}
+    sk_X509_ALGOR_zero := @LEGACY_OPENSSL_sk_zero;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_zero');
+    {$ifend}
   Result := sk_X509_ALGOR_zero(_para);
 end;
 
@@ -3121,7 +3154,11 @@ function Load_sk_X509_ALGOR_delete(st: Pstack_st_X509_ALGOR; loc: TOpenSSL_C_INT
 begin
   sk_X509_ALGOR_delete := LoadLibCryptoFunction('OPENSSL_sk_delete');
   if not assigned(sk_X509_ALGOR_delete) then
+    {$if declared(LEGACY_OPENSSL_sk_delete)}
+    sk_X509_ALGOR_delete := @LEGACY_OPENSSL_sk_delete;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete');
+    {$ifend}
   Result := sk_X509_ALGOR_delete(st, loc);
 end;
 
@@ -3129,7 +3166,11 @@ function Load_sk_X509_ALGOR_delete_ptr(st: Pstack_st_X509_ALGOR; ptr: Pstack_st_
 begin
   sk_X509_ALGOR_delete_ptr := LoadLibCryptoFunction('OPENSSL_sk_delete_ptr');
   if not assigned(sk_X509_ALGOR_delete_ptr) then
+    {$if declared(LEGACY_OPENSSL_sk_delete_ptr)}
+    sk_X509_ALGOR_delete_ptr := @LEGACY_OPENSSL_sk_delete_ptr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete_ptr');
+    {$ifend}
   Result := sk_X509_ALGOR_delete_ptr(st, ptr);
 end;
 
@@ -3137,7 +3178,11 @@ function Load_sk_X509_ALGOR_push(st: Pstack_st_X509_ALGOR; data: pointer): TOpen
 begin
   sk_X509_ALGOR_push := LoadLibCryptoFunction('OPENSSL_sk_push');
   if not assigned(sk_X509_ALGOR_push) then
+    {$if declared(LEGACY_OPENSSL_sk_push)}
+    sk_X509_ALGOR_push := @LEGACY_OPENSSL_sk_push;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_push');
+    {$ifend}
   Result := sk_X509_ALGOR_push(st, data);
 end;
 
@@ -3145,7 +3190,11 @@ function Load_sk_X509_ALGOR_unshift(st: Pstack_st_X509_ALGOR; data: pointer): TO
 begin
   sk_X509_ALGOR_unshift := LoadLibCryptoFunction('OPENSSL_sk_unshift');
   if not assigned(sk_X509_ALGOR_unshift) then
+    {$if declared(LEGACY_OPENSSL_sk_unshift)}
+    sk_X509_ALGOR_unshift := @LEGACY_OPENSSL_sk_unshift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_unshift');
+    {$ifend}
   Result := sk_X509_ALGOR_unshift(st, data);
 end;
 
@@ -3153,7 +3202,11 @@ function Load_sk_X509_ALGOR_pop(_para: Pstack_st_X509_ALGOR): Pstack_st_X509_ALG
 begin
   sk_X509_ALGOR_pop := LoadLibCryptoFunction('OPENSSL_sk_pop');
   if not assigned(sk_X509_ALGOR_pop) then
+    {$if declared(LEGACY_OPENSSL_sk_pop)}
+    sk_X509_ALGOR_pop := @LEGACY_OPENSSL_sk_pop;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop');
+    {$ifend}
   Result := sk_X509_ALGOR_pop(_para);
 end;
 
@@ -3161,7 +3214,11 @@ function Load_sk_X509_ALGOR_shift(_para: Pstack_st_X509_ALGOR): Pstack_st_X509_A
 begin
   sk_X509_ALGOR_shift := LoadLibCryptoFunction('OPENSSL_sk_shift');
   if not assigned(sk_X509_ALGOR_shift) then
+    {$if declared(LEGACY_OPENSSL_sk_shift)}
+    sk_X509_ALGOR_shift := @LEGACY_OPENSSL_sk_shift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_shift');
+    {$ifend}
   Result := sk_X509_ALGOR_shift(_para);
 end;
 
@@ -3169,7 +3226,11 @@ procedure Load_sk_X509_ALGOR_pop_free(st: Pstack_st_X509_ALGOR; func: Tsk_X509_A
 begin
   sk_X509_ALGOR_pop_free := LoadLibCryptoFunction('OPENSSL_sk_pop_free');
   if not assigned(sk_X509_ALGOR_pop_free) then
+    {$if declared(LEGACY_OPENSSL_sk_pop_free)}
+    sk_X509_ALGOR_pop_free := @LEGACY_OPENSSL_sk_pop_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop_free');
+    {$ifend}
   sk_X509_ALGOR_pop_free(st, func);
 end;
 
@@ -3177,7 +3238,11 @@ function Load_sk_X509_ALGOR_insert(st: Pstack_st_X509_ALGOR; data: pointer; wher
 begin
   sk_X509_ALGOR_insert := LoadLibCryptoFunction('OPENSSL_sk_insert');
   if not assigned(sk_X509_ALGOR_insert) then
+    {$if declared(LEGACY_OPENSSL_sk_insert)}
+    sk_X509_ALGOR_insert := @LEGACY_OPENSSL_sk_insert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_insert');
+    {$ifend}
   Result := sk_X509_ALGOR_insert(st, data, where);
 end;
 
@@ -3185,7 +3250,11 @@ function Load_sk_X509_ALGOR_set(st: Pstack_st_X509_ALGOR; i: TOpenSSL_C_INT; dat
 begin
   sk_X509_ALGOR_set := LoadLibCryptoFunction('OPENSSL_sk_set');
   if not assigned(sk_X509_ALGOR_set) then
+    {$if declared(LEGACY_OPENSSL_sk_set)}
+    sk_X509_ALGOR_set := @LEGACY_OPENSSL_sk_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set');
+    {$ifend}
   Result := sk_X509_ALGOR_set(st, i, data);
 end;
 
@@ -3193,7 +3262,11 @@ function Load_sk_X509_ALGOR_find(st: Pstack_st_X509_ALGOR; data: pointer): TOpen
 begin
   sk_X509_ALGOR_find := LoadLibCryptoFunction('OPENSSL_sk_find');
   if not assigned(sk_X509_ALGOR_find) then
+    {$if declared(LEGACY_OPENSSL_sk_find)}
+    sk_X509_ALGOR_find := @LEGACY_OPENSSL_sk_find;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find');
+    {$ifend}
   Result := sk_X509_ALGOR_find(st, data);
 end;
 
@@ -3201,7 +3274,11 @@ function Load_sk_X509_ALGOR_find_ex(st: Pstack_st_X509_ALGOR; data: pointer): TO
 begin
   sk_X509_ALGOR_find_ex := LoadLibCryptoFunction('OPENSSL_sk_find_ex');
   if not assigned(sk_X509_ALGOR_find_ex) then
+    {$if declared(LEGACY_OPENSSL_sk_find_ex)}
+    sk_X509_ALGOR_find_ex := @LEGACY_OPENSSL_sk_find_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_ex');
+    {$ifend}
   Result := sk_X509_ALGOR_find_ex(st, data);
 end;
 
@@ -3209,7 +3286,11 @@ function Load_sk_X509_ALGOR_find_all(st: Pstack_st_X509_ALGOR; data: pointer; pn
 begin
   sk_X509_ALGOR_find_all := LoadLibCryptoFunction('OPENSSL_sk_find_all');
   if not assigned(sk_X509_ALGOR_find_all) then
+    {$if declared(LEGACY_OPENSSL_sk_find_all)}
+    sk_X509_ALGOR_find_all := @LEGACY_OPENSSL_sk_find_all;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_all');
+    {$ifend}
   Result := sk_X509_ALGOR_find_all(st, data, pnum);
 end;
 
@@ -3217,7 +3298,11 @@ function Load_sk_X509_ALGOR_sort(_para: Pstack_st_X509_ALGOR): TOpenSSL_C_INT; c
 begin
   sk_X509_ALGOR_sort := LoadLibCryptoFunction('OPENSSL_sk_sort');
   if not assigned(sk_X509_ALGOR_sort) then
+    {$if declared(LEGACY_OPENSSL_sk_sort)}
+    sk_X509_ALGOR_sort := @LEGACY_OPENSSL_sk_sort;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_sort');
+    {$ifend}
   Result := sk_X509_ALGOR_sort(_para);
 end;
 
@@ -3225,7 +3310,11 @@ function Load_sk_X509_ALGOR_is_sorted(_para: Pstack_st_X509_ALGOR): TOpenSSL_C_I
 begin
   sk_X509_ALGOR_is_sorted := LoadLibCryptoFunction('OPENSSL_sk_is_sorted');
   if not assigned(sk_X509_ALGOR_is_sorted) then
+    {$if declared(LEGACY_OPENSSL_sk_is_sorted)}
+    sk_X509_ALGOR_is_sorted := @LEGACY_OPENSSL_sk_is_sorted;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_is_sorted');
+    {$ifend}
   Result := sk_X509_ALGOR_is_sorted(_para);
 end;
 
@@ -3233,7 +3322,11 @@ function Load_sk_X509_ALGOR_dup(st: Pstack_st_X509_ALGOR): Pstack_st_X509_ALGOR;
 begin
   sk_X509_ALGOR_dup := LoadLibCryptoFunction('OPENSSL_sk_dup');
   if not assigned(sk_X509_ALGOR_dup) then
+    {$if declared(LEGACY_OPENSSL_sk_dup)}
+    sk_X509_ALGOR_dup := @LEGACY_OPENSSL_sk_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_dup');
+    {$ifend}
   Result := sk_X509_ALGOR_dup(st);
 end;
 
@@ -3241,7 +3334,11 @@ function Load_sk_X509_ALGOR_deep_copy(st: Pstack_st_X509_ALGOR; c: Tsk_X509_ALGO
 begin
   sk_X509_ALGOR_deep_copy := LoadLibCryptoFunction('OPENSSL_sk_deep_copy');
   if not assigned(sk_X509_ALGOR_deep_copy) then
+    {$if declared(LEGACY_OPENSSL_sk_deep_copy)}
+    sk_X509_ALGOR_deep_copy := @LEGACY_OPENSSL_sk_deep_copy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_deep_copy');
+    {$ifend}
   Result := sk_X509_ALGOR_deep_copy(st, c, f);
 end;
 
@@ -3249,7 +3346,11 @@ function Load_sk_X509_ALGOR_set_cmp_func(st: Pstack_st_X509_ALGOR; cmp: Tsk_X509
 begin
   sk_X509_ALGOR_set_cmp_func := LoadLibCryptoFunction('OPENSSL_sk_set_cmp_func');
   if not assigned(sk_X509_ALGOR_set_cmp_func) then
+    {$if declared(LEGACY_OPENSSL_sk_set_cmp_func)}
+    sk_X509_ALGOR_set_cmp_func := @LEGACY_OPENSSL_sk_set_cmp_func;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set_cmp_func');
+    {$ifend}
   Result := sk_X509_ALGOR_set_cmp_func(st, cmp);
 end;
 
@@ -3257,7 +3358,11 @@ function Load_sk_ASN1_STRING_TABLE_num(_para: Pstack_st_ASN1_STRING_TABLE): TOpe
 begin
   sk_ASN1_STRING_TABLE_num := LoadLibCryptoFunction('OPENSSL_sk_num');
   if not assigned(sk_ASN1_STRING_TABLE_num) then
+    {$if declared(LEGACY_OPENSSL_sk_num)}
+    sk_ASN1_STRING_TABLE_num := @LEGACY_OPENSSL_sk_num;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_num');
+    {$ifend}
   Result := sk_ASN1_STRING_TABLE_num(_para);
 end;
 
@@ -3265,7 +3370,11 @@ function Load_sk_ASN1_STRING_TABLE_value(_para: Pstack_st_ASN1_STRING_TABLE; _pa
 begin
   sk_ASN1_STRING_TABLE_value := LoadLibCryptoFunction('OPENSSL_sk_value');
   if not assigned(sk_ASN1_STRING_TABLE_value) then
+    {$if declared(LEGACY_OPENSSL_sk_value)}
+    sk_ASN1_STRING_TABLE_value := @LEGACY_OPENSSL_sk_value;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_value');
+    {$ifend}
   Result := sk_ASN1_STRING_TABLE_value(_para, _para2);
 end;
 
@@ -3273,7 +3382,11 @@ function Load_sk_ASN1_STRING_TABLE_new(cmp: Tsk_ASN1_STRING_TABLE_compfunc): Pst
 begin
   sk_ASN1_STRING_TABLE_new := LoadLibCryptoFunction('OPENSSL_sk_new');
   if not assigned(sk_ASN1_STRING_TABLE_new) then
+    {$if declared(LEGACY_OPENSSL_sk_new)}
+    sk_ASN1_STRING_TABLE_new := @LEGACY_OPENSSL_sk_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new');
+    {$ifend}
   Result := sk_ASN1_STRING_TABLE_new(cmp);
 end;
 
@@ -3281,7 +3394,11 @@ function Load_sk_ASN1_STRING_TABLE_new_null: Pstack_st_ASN1_STRING_TABLE; cdecl;
 begin
   sk_ASN1_STRING_TABLE_new_null := LoadLibCryptoFunction('OPENSSL_sk_new_null');
   if not assigned(sk_ASN1_STRING_TABLE_new_null) then
+    {$if declared(LEGACY_OPENSSL_sk_new_null)}
+    sk_ASN1_STRING_TABLE_new_null := @LEGACY_OPENSSL_sk_new_null;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_null');
+    {$ifend}
   Result := sk_ASN1_STRING_TABLE_new_null;
 end;
 
@@ -3289,7 +3406,11 @@ function Load_sk_ASN1_STRING_TABLE_new_reserve(cmp: Tsk_ASN1_STRING_TABLE_compfu
 begin
   sk_ASN1_STRING_TABLE_new_reserve := LoadLibCryptoFunction('OPENSSL_sk_new_reserve');
   if not assigned(sk_ASN1_STRING_TABLE_new_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_new_reserve)}
+    sk_ASN1_STRING_TABLE_new_reserve := @LEGACY_OPENSSL_sk_new_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_reserve');
+    {$ifend}
   Result := sk_ASN1_STRING_TABLE_new_reserve(cmp, n);
 end;
 
@@ -3297,7 +3418,11 @@ function Load_sk_ASN1_STRING_TABLE_reserve(_para: Pstack_st_ASN1_STRING_TABLE; n
 begin
   sk_ASN1_STRING_TABLE_reserve := LoadLibCryptoFunction('OPENSSL_sk_reserve');
   if not assigned(sk_ASN1_STRING_TABLE_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_reserve)}
+    sk_ASN1_STRING_TABLE_reserve := @LEGACY_OPENSSL_sk_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_reserve');
+    {$ifend}
   Result := sk_ASN1_STRING_TABLE_reserve(_para, n);
 end;
 
@@ -3305,7 +3430,11 @@ function Load_sk_ASN1_STRING_TABLE_free(_para: Pstack_st_ASN1_STRING_TABLE): TOp
 begin
   sk_ASN1_STRING_TABLE_free := LoadLibCryptoFunction('OPENSSL_sk_free');
   if not assigned(sk_ASN1_STRING_TABLE_free) then
+    {$if declared(LEGACY_OPENSSL_sk_free)}
+    sk_ASN1_STRING_TABLE_free := @LEGACY_OPENSSL_sk_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_free');
+    {$ifend}
   Result := sk_ASN1_STRING_TABLE_free(_para);
 end;
 
@@ -3313,7 +3442,11 @@ function Load_sk_ASN1_STRING_TABLE_zero(_para: Pstack_st_ASN1_STRING_TABLE): TOp
 begin
   sk_ASN1_STRING_TABLE_zero := LoadLibCryptoFunction('OPENSSL_sk_zero');
   if not assigned(sk_ASN1_STRING_TABLE_zero) then
+    {$if declared(LEGACY_OPENSSL_sk_zero)}
+    sk_ASN1_STRING_TABLE_zero := @LEGACY_OPENSSL_sk_zero;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_zero');
+    {$ifend}
   Result := sk_ASN1_STRING_TABLE_zero(_para);
 end;
 
@@ -3321,7 +3454,11 @@ function Load_sk_ASN1_STRING_TABLE_delete(st: Pstack_st_ASN1_STRING_TABLE; loc: 
 begin
   sk_ASN1_STRING_TABLE_delete := LoadLibCryptoFunction('OPENSSL_sk_delete');
   if not assigned(sk_ASN1_STRING_TABLE_delete) then
+    {$if declared(LEGACY_OPENSSL_sk_delete)}
+    sk_ASN1_STRING_TABLE_delete := @LEGACY_OPENSSL_sk_delete;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete');
+    {$ifend}
   Result := sk_ASN1_STRING_TABLE_delete(st, loc);
 end;
 
@@ -3329,7 +3466,11 @@ function Load_sk_ASN1_STRING_TABLE_delete_ptr(st: Pstack_st_ASN1_STRING_TABLE; p
 begin
   sk_ASN1_STRING_TABLE_delete_ptr := LoadLibCryptoFunction('OPENSSL_sk_delete_ptr');
   if not assigned(sk_ASN1_STRING_TABLE_delete_ptr) then
+    {$if declared(LEGACY_OPENSSL_sk_delete_ptr)}
+    sk_ASN1_STRING_TABLE_delete_ptr := @LEGACY_OPENSSL_sk_delete_ptr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete_ptr');
+    {$ifend}
   Result := sk_ASN1_STRING_TABLE_delete_ptr(st, ptr);
 end;
 
@@ -3337,7 +3478,11 @@ function Load_sk_ASN1_STRING_TABLE_push(st: Pstack_st_ASN1_STRING_TABLE; data: p
 begin
   sk_ASN1_STRING_TABLE_push := LoadLibCryptoFunction('OPENSSL_sk_push');
   if not assigned(sk_ASN1_STRING_TABLE_push) then
+    {$if declared(LEGACY_OPENSSL_sk_push)}
+    sk_ASN1_STRING_TABLE_push := @LEGACY_OPENSSL_sk_push;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_push');
+    {$ifend}
   Result := sk_ASN1_STRING_TABLE_push(st, data);
 end;
 
@@ -3345,7 +3490,11 @@ function Load_sk_ASN1_STRING_TABLE_unshift(st: Pstack_st_ASN1_STRING_TABLE; data
 begin
   sk_ASN1_STRING_TABLE_unshift := LoadLibCryptoFunction('OPENSSL_sk_unshift');
   if not assigned(sk_ASN1_STRING_TABLE_unshift) then
+    {$if declared(LEGACY_OPENSSL_sk_unshift)}
+    sk_ASN1_STRING_TABLE_unshift := @LEGACY_OPENSSL_sk_unshift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_unshift');
+    {$ifend}
   Result := sk_ASN1_STRING_TABLE_unshift(st, data);
 end;
 
@@ -3353,7 +3502,11 @@ function Load_sk_ASN1_STRING_TABLE_pop(_para: Pstack_st_ASN1_STRING_TABLE): Psta
 begin
   sk_ASN1_STRING_TABLE_pop := LoadLibCryptoFunction('OPENSSL_sk_pop');
   if not assigned(sk_ASN1_STRING_TABLE_pop) then
+    {$if declared(LEGACY_OPENSSL_sk_pop)}
+    sk_ASN1_STRING_TABLE_pop := @LEGACY_OPENSSL_sk_pop;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop');
+    {$ifend}
   Result := sk_ASN1_STRING_TABLE_pop(_para);
 end;
 
@@ -3361,7 +3514,11 @@ function Load_sk_ASN1_STRING_TABLE_shift(_para: Pstack_st_ASN1_STRING_TABLE): Ps
 begin
   sk_ASN1_STRING_TABLE_shift := LoadLibCryptoFunction('OPENSSL_sk_shift');
   if not assigned(sk_ASN1_STRING_TABLE_shift) then
+    {$if declared(LEGACY_OPENSSL_sk_shift)}
+    sk_ASN1_STRING_TABLE_shift := @LEGACY_OPENSSL_sk_shift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_shift');
+    {$ifend}
   Result := sk_ASN1_STRING_TABLE_shift(_para);
 end;
 
@@ -3369,7 +3526,11 @@ procedure Load_sk_ASN1_STRING_TABLE_pop_free(st: Pstack_st_ASN1_STRING_TABLE; fu
 begin
   sk_ASN1_STRING_TABLE_pop_free := LoadLibCryptoFunction('OPENSSL_sk_pop_free');
   if not assigned(sk_ASN1_STRING_TABLE_pop_free) then
+    {$if declared(LEGACY_OPENSSL_sk_pop_free)}
+    sk_ASN1_STRING_TABLE_pop_free := @LEGACY_OPENSSL_sk_pop_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop_free');
+    {$ifend}
   sk_ASN1_STRING_TABLE_pop_free(st, func);
 end;
 
@@ -3377,7 +3538,11 @@ function Load_sk_ASN1_STRING_TABLE_insert(st: Pstack_st_ASN1_STRING_TABLE; data:
 begin
   sk_ASN1_STRING_TABLE_insert := LoadLibCryptoFunction('OPENSSL_sk_insert');
   if not assigned(sk_ASN1_STRING_TABLE_insert) then
+    {$if declared(LEGACY_OPENSSL_sk_insert)}
+    sk_ASN1_STRING_TABLE_insert := @LEGACY_OPENSSL_sk_insert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_insert');
+    {$ifend}
   Result := sk_ASN1_STRING_TABLE_insert(st, data, where);
 end;
 
@@ -3385,7 +3550,11 @@ function Load_sk_ASN1_STRING_TABLE_set(st: Pstack_st_ASN1_STRING_TABLE; i: TOpen
 begin
   sk_ASN1_STRING_TABLE_set := LoadLibCryptoFunction('OPENSSL_sk_set');
   if not assigned(sk_ASN1_STRING_TABLE_set) then
+    {$if declared(LEGACY_OPENSSL_sk_set)}
+    sk_ASN1_STRING_TABLE_set := @LEGACY_OPENSSL_sk_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set');
+    {$ifend}
   Result := sk_ASN1_STRING_TABLE_set(st, i, data);
 end;
 
@@ -3393,7 +3562,11 @@ function Load_sk_ASN1_STRING_TABLE_find(st: Pstack_st_ASN1_STRING_TABLE; data: p
 begin
   sk_ASN1_STRING_TABLE_find := LoadLibCryptoFunction('OPENSSL_sk_find');
   if not assigned(sk_ASN1_STRING_TABLE_find) then
+    {$if declared(LEGACY_OPENSSL_sk_find)}
+    sk_ASN1_STRING_TABLE_find := @LEGACY_OPENSSL_sk_find;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find');
+    {$ifend}
   Result := sk_ASN1_STRING_TABLE_find(st, data);
 end;
 
@@ -3401,7 +3574,11 @@ function Load_sk_ASN1_STRING_TABLE_find_ex(st: Pstack_st_ASN1_STRING_TABLE; data
 begin
   sk_ASN1_STRING_TABLE_find_ex := LoadLibCryptoFunction('OPENSSL_sk_find_ex');
   if not assigned(sk_ASN1_STRING_TABLE_find_ex) then
+    {$if declared(LEGACY_OPENSSL_sk_find_ex)}
+    sk_ASN1_STRING_TABLE_find_ex := @LEGACY_OPENSSL_sk_find_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_ex');
+    {$ifend}
   Result := sk_ASN1_STRING_TABLE_find_ex(st, data);
 end;
 
@@ -3409,7 +3586,11 @@ function Load_sk_ASN1_STRING_TABLE_find_all(st: Pstack_st_ASN1_STRING_TABLE; dat
 begin
   sk_ASN1_STRING_TABLE_find_all := LoadLibCryptoFunction('OPENSSL_sk_find_all');
   if not assigned(sk_ASN1_STRING_TABLE_find_all) then
+    {$if declared(LEGACY_OPENSSL_sk_find_all)}
+    sk_ASN1_STRING_TABLE_find_all := @LEGACY_OPENSSL_sk_find_all;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_all');
+    {$ifend}
   Result := sk_ASN1_STRING_TABLE_find_all(st, data, pnum);
 end;
 
@@ -3417,7 +3598,11 @@ function Load_sk_ASN1_STRING_TABLE_sort(_para: Pstack_st_ASN1_STRING_TABLE): TOp
 begin
   sk_ASN1_STRING_TABLE_sort := LoadLibCryptoFunction('OPENSSL_sk_sort');
   if not assigned(sk_ASN1_STRING_TABLE_sort) then
+    {$if declared(LEGACY_OPENSSL_sk_sort)}
+    sk_ASN1_STRING_TABLE_sort := @LEGACY_OPENSSL_sk_sort;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_sort');
+    {$ifend}
   Result := sk_ASN1_STRING_TABLE_sort(_para);
 end;
 
@@ -3425,7 +3610,11 @@ function Load_sk_ASN1_STRING_TABLE_is_sorted(_para: Pstack_st_ASN1_STRING_TABLE)
 begin
   sk_ASN1_STRING_TABLE_is_sorted := LoadLibCryptoFunction('OPENSSL_sk_is_sorted');
   if not assigned(sk_ASN1_STRING_TABLE_is_sorted) then
+    {$if declared(LEGACY_OPENSSL_sk_is_sorted)}
+    sk_ASN1_STRING_TABLE_is_sorted := @LEGACY_OPENSSL_sk_is_sorted;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_is_sorted');
+    {$ifend}
   Result := sk_ASN1_STRING_TABLE_is_sorted(_para);
 end;
 
@@ -3433,7 +3622,11 @@ function Load_sk_ASN1_STRING_TABLE_dup(st: Pstack_st_ASN1_STRING_TABLE): Pstack_
 begin
   sk_ASN1_STRING_TABLE_dup := LoadLibCryptoFunction('OPENSSL_sk_dup');
   if not assigned(sk_ASN1_STRING_TABLE_dup) then
+    {$if declared(LEGACY_OPENSSL_sk_dup)}
+    sk_ASN1_STRING_TABLE_dup := @LEGACY_OPENSSL_sk_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_dup');
+    {$ifend}
   Result := sk_ASN1_STRING_TABLE_dup(st);
 end;
 
@@ -3441,7 +3634,11 @@ function Load_sk_ASN1_STRING_TABLE_deep_copy(st: Pstack_st_ASN1_STRING_TABLE; c:
 begin
   sk_ASN1_STRING_TABLE_deep_copy := LoadLibCryptoFunction('OPENSSL_sk_deep_copy');
   if not assigned(sk_ASN1_STRING_TABLE_deep_copy) then
+    {$if declared(LEGACY_OPENSSL_sk_deep_copy)}
+    sk_ASN1_STRING_TABLE_deep_copy := @LEGACY_OPENSSL_sk_deep_copy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_deep_copy');
+    {$ifend}
   Result := sk_ASN1_STRING_TABLE_deep_copy(st, c, f);
 end;
 
@@ -3449,7 +3646,11 @@ function Load_sk_ASN1_STRING_TABLE_set_cmp_func(st: Pstack_st_ASN1_STRING_TABLE;
 begin
   sk_ASN1_STRING_TABLE_set_cmp_func := LoadLibCryptoFunction('OPENSSL_sk_set_cmp_func');
   if not assigned(sk_ASN1_STRING_TABLE_set_cmp_func) then
+    {$if declared(LEGACY_OPENSSL_sk_set_cmp_func)}
+    sk_ASN1_STRING_TABLE_set_cmp_func := @LEGACY_OPENSSL_sk_set_cmp_func;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set_cmp_func');
+    {$ifend}
   Result := sk_ASN1_STRING_TABLE_set_cmp_func(st, cmp);
 end;
 
@@ -3457,7 +3658,11 @@ function Load_sk_ASN1_TYPE_num(_para: Pstack_st_ASN1_TYPE): TOpenSSL_C_INT; cdec
 begin
   sk_ASN1_TYPE_num := LoadLibCryptoFunction('OPENSSL_sk_num');
   if not assigned(sk_ASN1_TYPE_num) then
+    {$if declared(LEGACY_OPENSSL_sk_num)}
+    sk_ASN1_TYPE_num := @LEGACY_OPENSSL_sk_num;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_num');
+    {$ifend}
   Result := sk_ASN1_TYPE_num(_para);
 end;
 
@@ -3465,7 +3670,11 @@ function Load_sk_ASN1_TYPE_value(_para: Pstack_st_ASN1_TYPE; _para2: TOpenSSL_C_
 begin
   sk_ASN1_TYPE_value := LoadLibCryptoFunction('OPENSSL_sk_value');
   if not assigned(sk_ASN1_TYPE_value) then
+    {$if declared(LEGACY_OPENSSL_sk_value)}
+    sk_ASN1_TYPE_value := @LEGACY_OPENSSL_sk_value;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_value');
+    {$ifend}
   Result := sk_ASN1_TYPE_value(_para, _para2);
 end;
 
@@ -3473,7 +3682,11 @@ function Load_sk_ASN1_TYPE_new(cmp: Tsk_ASN1_TYPE_compfunc): Pstack_st_ASN1_TYPE
 begin
   sk_ASN1_TYPE_new := LoadLibCryptoFunction('OPENSSL_sk_new');
   if not assigned(sk_ASN1_TYPE_new) then
+    {$if declared(LEGACY_OPENSSL_sk_new)}
+    sk_ASN1_TYPE_new := @LEGACY_OPENSSL_sk_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new');
+    {$ifend}
   Result := sk_ASN1_TYPE_new(cmp);
 end;
 
@@ -3481,7 +3694,11 @@ function Load_sk_ASN1_TYPE_new_null: Pstack_st_ASN1_TYPE; cdecl;
 begin
   sk_ASN1_TYPE_new_null := LoadLibCryptoFunction('OPENSSL_sk_new_null');
   if not assigned(sk_ASN1_TYPE_new_null) then
+    {$if declared(LEGACY_OPENSSL_sk_new_null)}
+    sk_ASN1_TYPE_new_null := @LEGACY_OPENSSL_sk_new_null;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_null');
+    {$ifend}
   Result := sk_ASN1_TYPE_new_null;
 end;
 
@@ -3489,7 +3706,11 @@ function Load_sk_ASN1_TYPE_new_reserve(cmp: Tsk_ASN1_TYPE_compfunc; n: TOpenSSL_
 begin
   sk_ASN1_TYPE_new_reserve := LoadLibCryptoFunction('OPENSSL_sk_new_reserve');
   if not assigned(sk_ASN1_TYPE_new_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_new_reserve)}
+    sk_ASN1_TYPE_new_reserve := @LEGACY_OPENSSL_sk_new_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_reserve');
+    {$ifend}
   Result := sk_ASN1_TYPE_new_reserve(cmp, n);
 end;
 
@@ -3497,7 +3718,11 @@ function Load_sk_ASN1_TYPE_reserve(_para: Pstack_st_ASN1_TYPE; n: TOpenSSL_C_INT
 begin
   sk_ASN1_TYPE_reserve := LoadLibCryptoFunction('OPENSSL_sk_reserve');
   if not assigned(sk_ASN1_TYPE_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_reserve)}
+    sk_ASN1_TYPE_reserve := @LEGACY_OPENSSL_sk_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_reserve');
+    {$ifend}
   Result := sk_ASN1_TYPE_reserve(_para, n);
 end;
 
@@ -3505,7 +3730,11 @@ function Load_sk_ASN1_TYPE_free(_para: Pstack_st_ASN1_TYPE): TOpenSSL_C_INT; cde
 begin
   sk_ASN1_TYPE_free := LoadLibCryptoFunction('OPENSSL_sk_free');
   if not assigned(sk_ASN1_TYPE_free) then
+    {$if declared(LEGACY_OPENSSL_sk_free)}
+    sk_ASN1_TYPE_free := @LEGACY_OPENSSL_sk_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_free');
+    {$ifend}
   Result := sk_ASN1_TYPE_free(_para);
 end;
 
@@ -3513,7 +3742,11 @@ function Load_sk_ASN1_TYPE_zero(_para: Pstack_st_ASN1_TYPE): TOpenSSL_C_INT; cde
 begin
   sk_ASN1_TYPE_zero := LoadLibCryptoFunction('OPENSSL_sk_zero');
   if not assigned(sk_ASN1_TYPE_zero) then
+    {$if declared(LEGACY_OPENSSL_sk_zero)}
+    sk_ASN1_TYPE_zero := @LEGACY_OPENSSL_sk_zero;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_zero');
+    {$ifend}
   Result := sk_ASN1_TYPE_zero(_para);
 end;
 
@@ -3521,7 +3754,11 @@ function Load_sk_ASN1_TYPE_delete(st: Pstack_st_ASN1_TYPE; loc: TOpenSSL_C_INT):
 begin
   sk_ASN1_TYPE_delete := LoadLibCryptoFunction('OPENSSL_sk_delete');
   if not assigned(sk_ASN1_TYPE_delete) then
+    {$if declared(LEGACY_OPENSSL_sk_delete)}
+    sk_ASN1_TYPE_delete := @LEGACY_OPENSSL_sk_delete;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete');
+    {$ifend}
   Result := sk_ASN1_TYPE_delete(st, loc);
 end;
 
@@ -3529,7 +3766,11 @@ function Load_sk_ASN1_TYPE_delete_ptr(st: Pstack_st_ASN1_TYPE; ptr: Pstack_st_AS
 begin
   sk_ASN1_TYPE_delete_ptr := LoadLibCryptoFunction('OPENSSL_sk_delete_ptr');
   if not assigned(sk_ASN1_TYPE_delete_ptr) then
+    {$if declared(LEGACY_OPENSSL_sk_delete_ptr)}
+    sk_ASN1_TYPE_delete_ptr := @LEGACY_OPENSSL_sk_delete_ptr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete_ptr');
+    {$ifend}
   Result := sk_ASN1_TYPE_delete_ptr(st, ptr);
 end;
 
@@ -3537,7 +3778,11 @@ function Load_sk_ASN1_TYPE_push(st: Pstack_st_ASN1_TYPE; data: pointer): TOpenSS
 begin
   sk_ASN1_TYPE_push := LoadLibCryptoFunction('OPENSSL_sk_push');
   if not assigned(sk_ASN1_TYPE_push) then
+    {$if declared(LEGACY_OPENSSL_sk_push)}
+    sk_ASN1_TYPE_push := @LEGACY_OPENSSL_sk_push;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_push');
+    {$ifend}
   Result := sk_ASN1_TYPE_push(st, data);
 end;
 
@@ -3545,7 +3790,11 @@ function Load_sk_ASN1_TYPE_unshift(st: Pstack_st_ASN1_TYPE; data: pointer): TOpe
 begin
   sk_ASN1_TYPE_unshift := LoadLibCryptoFunction('OPENSSL_sk_unshift');
   if not assigned(sk_ASN1_TYPE_unshift) then
+    {$if declared(LEGACY_OPENSSL_sk_unshift)}
+    sk_ASN1_TYPE_unshift := @LEGACY_OPENSSL_sk_unshift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_unshift');
+    {$ifend}
   Result := sk_ASN1_TYPE_unshift(st, data);
 end;
 
@@ -3553,7 +3802,11 @@ function Load_sk_ASN1_TYPE_pop(_para: Pstack_st_ASN1_TYPE): Pstack_st_ASN1_TYPE;
 begin
   sk_ASN1_TYPE_pop := LoadLibCryptoFunction('OPENSSL_sk_pop');
   if not assigned(sk_ASN1_TYPE_pop) then
+    {$if declared(LEGACY_OPENSSL_sk_pop)}
+    sk_ASN1_TYPE_pop := @LEGACY_OPENSSL_sk_pop;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop');
+    {$ifend}
   Result := sk_ASN1_TYPE_pop(_para);
 end;
 
@@ -3561,7 +3814,11 @@ function Load_sk_ASN1_TYPE_shift(_para: Pstack_st_ASN1_TYPE): Pstack_st_ASN1_TYP
 begin
   sk_ASN1_TYPE_shift := LoadLibCryptoFunction('OPENSSL_sk_shift');
   if not assigned(sk_ASN1_TYPE_shift) then
+    {$if declared(LEGACY_OPENSSL_sk_shift)}
+    sk_ASN1_TYPE_shift := @LEGACY_OPENSSL_sk_shift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_shift');
+    {$ifend}
   Result := sk_ASN1_TYPE_shift(_para);
 end;
 
@@ -3569,7 +3826,11 @@ procedure Load_sk_ASN1_TYPE_pop_free(st: Pstack_st_ASN1_TYPE; func: Tsk_ASN1_TYP
 begin
   sk_ASN1_TYPE_pop_free := LoadLibCryptoFunction('OPENSSL_sk_pop_free');
   if not assigned(sk_ASN1_TYPE_pop_free) then
+    {$if declared(LEGACY_OPENSSL_sk_pop_free)}
+    sk_ASN1_TYPE_pop_free := @LEGACY_OPENSSL_sk_pop_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop_free');
+    {$ifend}
   sk_ASN1_TYPE_pop_free(st, func);
 end;
 
@@ -3577,7 +3838,11 @@ function Load_sk_ASN1_TYPE_insert(st: Pstack_st_ASN1_TYPE; data: pointer; where:
 begin
   sk_ASN1_TYPE_insert := LoadLibCryptoFunction('OPENSSL_sk_insert');
   if not assigned(sk_ASN1_TYPE_insert) then
+    {$if declared(LEGACY_OPENSSL_sk_insert)}
+    sk_ASN1_TYPE_insert := @LEGACY_OPENSSL_sk_insert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_insert');
+    {$ifend}
   Result := sk_ASN1_TYPE_insert(st, data, where);
 end;
 
@@ -3585,7 +3850,11 @@ function Load_sk_ASN1_TYPE_set(st: Pstack_st_ASN1_TYPE; i: TOpenSSL_C_INT; data:
 begin
   sk_ASN1_TYPE_set := LoadLibCryptoFunction('OPENSSL_sk_set');
   if not assigned(sk_ASN1_TYPE_set) then
+    {$if declared(LEGACY_OPENSSL_sk_set)}
+    sk_ASN1_TYPE_set := @LEGACY_OPENSSL_sk_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set');
+    {$ifend}
   Result := sk_ASN1_TYPE_set(st, i, data);
 end;
 
@@ -3593,7 +3862,11 @@ function Load_sk_ASN1_TYPE_find(st: Pstack_st_ASN1_TYPE; data: pointer): TOpenSS
 begin
   sk_ASN1_TYPE_find := LoadLibCryptoFunction('OPENSSL_sk_find');
   if not assigned(sk_ASN1_TYPE_find) then
+    {$if declared(LEGACY_OPENSSL_sk_find)}
+    sk_ASN1_TYPE_find := @LEGACY_OPENSSL_sk_find;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find');
+    {$ifend}
   Result := sk_ASN1_TYPE_find(st, data);
 end;
 
@@ -3601,7 +3874,11 @@ function Load_sk_ASN1_TYPE_find_ex(st: Pstack_st_ASN1_TYPE; data: pointer): TOpe
 begin
   sk_ASN1_TYPE_find_ex := LoadLibCryptoFunction('OPENSSL_sk_find_ex');
   if not assigned(sk_ASN1_TYPE_find_ex) then
+    {$if declared(LEGACY_OPENSSL_sk_find_ex)}
+    sk_ASN1_TYPE_find_ex := @LEGACY_OPENSSL_sk_find_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_ex');
+    {$ifend}
   Result := sk_ASN1_TYPE_find_ex(st, data);
 end;
 
@@ -3609,7 +3886,11 @@ function Load_sk_ASN1_TYPE_find_all(st: Pstack_st_ASN1_TYPE; data: pointer; pnum
 begin
   sk_ASN1_TYPE_find_all := LoadLibCryptoFunction('OPENSSL_sk_find_all');
   if not assigned(sk_ASN1_TYPE_find_all) then
+    {$if declared(LEGACY_OPENSSL_sk_find_all)}
+    sk_ASN1_TYPE_find_all := @LEGACY_OPENSSL_sk_find_all;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_all');
+    {$ifend}
   Result := sk_ASN1_TYPE_find_all(st, data, pnum);
 end;
 
@@ -3617,7 +3898,11 @@ function Load_sk_ASN1_TYPE_sort(_para: Pstack_st_ASN1_TYPE): TOpenSSL_C_INT; cde
 begin
   sk_ASN1_TYPE_sort := LoadLibCryptoFunction('OPENSSL_sk_sort');
   if not assigned(sk_ASN1_TYPE_sort) then
+    {$if declared(LEGACY_OPENSSL_sk_sort)}
+    sk_ASN1_TYPE_sort := @LEGACY_OPENSSL_sk_sort;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_sort');
+    {$ifend}
   Result := sk_ASN1_TYPE_sort(_para);
 end;
 
@@ -3625,7 +3910,11 @@ function Load_sk_ASN1_TYPE_is_sorted(_para: Pstack_st_ASN1_TYPE): TOpenSSL_C_INT
 begin
   sk_ASN1_TYPE_is_sorted := LoadLibCryptoFunction('OPENSSL_sk_is_sorted');
   if not assigned(sk_ASN1_TYPE_is_sorted) then
+    {$if declared(LEGACY_OPENSSL_sk_is_sorted)}
+    sk_ASN1_TYPE_is_sorted := @LEGACY_OPENSSL_sk_is_sorted;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_is_sorted');
+    {$ifend}
   Result := sk_ASN1_TYPE_is_sorted(_para);
 end;
 
@@ -3633,7 +3922,11 @@ function Load_sk_ASN1_TYPE_dup(st: Pstack_st_ASN1_TYPE): Pstack_st_ASN1_TYPE; cd
 begin
   sk_ASN1_TYPE_dup := LoadLibCryptoFunction('OPENSSL_sk_dup');
   if not assigned(sk_ASN1_TYPE_dup) then
+    {$if declared(LEGACY_OPENSSL_sk_dup)}
+    sk_ASN1_TYPE_dup := @LEGACY_OPENSSL_sk_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_dup');
+    {$ifend}
   Result := sk_ASN1_TYPE_dup(st);
 end;
 
@@ -3641,7 +3934,11 @@ function Load_sk_ASN1_TYPE_deep_copy(st: Pstack_st_ASN1_TYPE; c: Tsk_ASN1_TYPE_c
 begin
   sk_ASN1_TYPE_deep_copy := LoadLibCryptoFunction('OPENSSL_sk_deep_copy');
   if not assigned(sk_ASN1_TYPE_deep_copy) then
+    {$if declared(LEGACY_OPENSSL_sk_deep_copy)}
+    sk_ASN1_TYPE_deep_copy := @LEGACY_OPENSSL_sk_deep_copy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_deep_copy');
+    {$ifend}
   Result := sk_ASN1_TYPE_deep_copy(st, c, f);
 end;
 
@@ -3649,7 +3946,11 @@ function Load_sk_ASN1_TYPE_set_cmp_func(st: Pstack_st_ASN1_TYPE; cmp: Tsk_ASN1_T
 begin
   sk_ASN1_TYPE_set_cmp_func := LoadLibCryptoFunction('OPENSSL_sk_set_cmp_func');
   if not assigned(sk_ASN1_TYPE_set_cmp_func) then
+    {$if declared(LEGACY_OPENSSL_sk_set_cmp_func)}
+    sk_ASN1_TYPE_set_cmp_func := @LEGACY_OPENSSL_sk_set_cmp_func;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set_cmp_func');
+    {$ifend}
   Result := sk_ASN1_TYPE_set_cmp_func(st, cmp);
 end;
 
@@ -3657,7 +3958,11 @@ function Load_d2i_ASN1_SEQUENCE_ANY(a: PPASN1_SEQUENCE_ANY; in_: PPbyte; len: TO
 begin
   d2i_ASN1_SEQUENCE_ANY := LoadLibCryptoFunction('d2i_ASN1_SEQUENCE_ANY');
   if not assigned(d2i_ASN1_SEQUENCE_ANY) then
+    {$if declared(LEGACY_d2i_ASN1_SEQUENCE_ANY)}
+    d2i_ASN1_SEQUENCE_ANY := @LEGACY_d2i_ASN1_SEQUENCE_ANY;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_ASN1_SEQUENCE_ANY');
+    {$ifend}
   Result := d2i_ASN1_SEQUENCE_ANY(a, in_, len);
 end;
 
@@ -3665,7 +3970,11 @@ function Load_i2d_ASN1_SEQUENCE_ANY(a: PASN1_SEQUENCE_ANY; out_: PPbyte): TOpenS
 begin
   i2d_ASN1_SEQUENCE_ANY := LoadLibCryptoFunction('i2d_ASN1_SEQUENCE_ANY');
   if not assigned(i2d_ASN1_SEQUENCE_ANY) then
+    {$if declared(LEGACY_i2d_ASN1_SEQUENCE_ANY)}
+    i2d_ASN1_SEQUENCE_ANY := @LEGACY_i2d_ASN1_SEQUENCE_ANY;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_ASN1_SEQUENCE_ANY');
+    {$ifend}
   Result := i2d_ASN1_SEQUENCE_ANY(a, out_);
 end;
 
@@ -3673,7 +3982,11 @@ function Load_ASN1_SEQUENCE_ANY_it: PASN1_ITEM; cdecl;
 begin
   ASN1_SEQUENCE_ANY_it := LoadLibCryptoFunction('ASN1_SEQUENCE_ANY_it');
   if not assigned(ASN1_SEQUENCE_ANY_it) then
+    {$if declared(LEGACY_ASN1_SEQUENCE_ANY_it)}
+    ASN1_SEQUENCE_ANY_it := @LEGACY_ASN1_SEQUENCE_ANY_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_SEQUENCE_ANY_it');
+    {$ifend}
   Result := ASN1_SEQUENCE_ANY_it;
 end;
 
@@ -3681,7 +3994,11 @@ function Load_d2i_ASN1_SET_ANY(a: PPASN1_SEQUENCE_ANY; in_: PPbyte; len: TOpenSS
 begin
   d2i_ASN1_SET_ANY := LoadLibCryptoFunction('d2i_ASN1_SET_ANY');
   if not assigned(d2i_ASN1_SET_ANY) then
+    {$if declared(LEGACY_d2i_ASN1_SET_ANY)}
+    d2i_ASN1_SET_ANY := @LEGACY_d2i_ASN1_SET_ANY;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_ASN1_SET_ANY');
+    {$ifend}
   Result := d2i_ASN1_SET_ANY(a, in_, len);
 end;
 
@@ -3689,7 +4006,11 @@ function Load_i2d_ASN1_SET_ANY(a: PASN1_SEQUENCE_ANY; out_: PPbyte): TOpenSSL_C_
 begin
   i2d_ASN1_SET_ANY := LoadLibCryptoFunction('i2d_ASN1_SET_ANY');
   if not assigned(i2d_ASN1_SET_ANY) then
+    {$if declared(LEGACY_i2d_ASN1_SET_ANY)}
+    i2d_ASN1_SET_ANY := @LEGACY_i2d_ASN1_SET_ANY;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_ASN1_SET_ANY');
+    {$ifend}
   Result := i2d_ASN1_SET_ANY(a, out_);
 end;
 
@@ -3697,7 +4018,11 @@ function Load_ASN1_SET_ANY_it: PASN1_ITEM; cdecl;
 begin
   ASN1_SET_ANY_it := LoadLibCryptoFunction('ASN1_SET_ANY_it');
   if not assigned(ASN1_SET_ANY_it) then
+    {$if declared(LEGACY_ASN1_SET_ANY_it)}
+    ASN1_SET_ANY_it := @LEGACY_ASN1_SET_ANY_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_SET_ANY_it');
+    {$ifend}
   Result := ASN1_SET_ANY_it;
 end;
 
@@ -3705,7 +4030,11 @@ function Load_ASN1_TYPE_new: PASN1_TYPE; cdecl;
 begin
   ASN1_TYPE_new := LoadLibCryptoFunction('ASN1_TYPE_new');
   if not assigned(ASN1_TYPE_new) then
+    {$if declared(LEGACY_ASN1_TYPE_new)}
+    ASN1_TYPE_new := @LEGACY_ASN1_TYPE_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_TYPE_new');
+    {$ifend}
   Result := ASN1_TYPE_new;
 end;
 
@@ -3713,7 +4042,11 @@ procedure Load_ASN1_TYPE_free(a: PASN1_TYPE); cdecl;
 begin
   ASN1_TYPE_free := LoadLibCryptoFunction('ASN1_TYPE_free');
   if not assigned(ASN1_TYPE_free) then
+    {$if declared(LEGACY_ASN1_TYPE_free)}
+    ASN1_TYPE_free := @LEGACY_ASN1_TYPE_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_TYPE_free');
+    {$ifend}
   ASN1_TYPE_free(a);
 end;
 
@@ -3721,7 +4054,11 @@ function Load_d2i_ASN1_TYPE(a: PPASN1_TYPE; in_: PPbyte; len: TOpenSSL_C_INT): P
 begin
   d2i_ASN1_TYPE := LoadLibCryptoFunction('d2i_ASN1_TYPE');
   if not assigned(d2i_ASN1_TYPE) then
+    {$if declared(LEGACY_d2i_ASN1_TYPE)}
+    d2i_ASN1_TYPE := @LEGACY_d2i_ASN1_TYPE;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_ASN1_TYPE');
+    {$ifend}
   Result := d2i_ASN1_TYPE(a, in_, len);
 end;
 
@@ -3729,7 +4066,11 @@ function Load_i2d_ASN1_TYPE(a: PASN1_TYPE; out_: PPbyte): TOpenSSL_C_INT; cdecl;
 begin
   i2d_ASN1_TYPE := LoadLibCryptoFunction('i2d_ASN1_TYPE');
   if not assigned(i2d_ASN1_TYPE) then
+    {$if declared(LEGACY_i2d_ASN1_TYPE)}
+    i2d_ASN1_TYPE := @LEGACY_i2d_ASN1_TYPE;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_ASN1_TYPE');
+    {$ifend}
   Result := i2d_ASN1_TYPE(a, out_);
 end;
 
@@ -3737,7 +4078,11 @@ function Load_ASN1_ANY_it: PASN1_ITEM; cdecl;
 begin
   ASN1_ANY_it := LoadLibCryptoFunction('ASN1_ANY_it');
   if not assigned(ASN1_ANY_it) then
+    {$if declared(LEGACY_ASN1_ANY_it)}
+    ASN1_ANY_it := @LEGACY_ASN1_ANY_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_ANY_it');
+    {$ifend}
   Result := ASN1_ANY_it;
 end;
 
@@ -3745,7 +4090,11 @@ function Load_ASN1_TYPE_get(a: PASN1_TYPE): TOpenSSL_C_INT; cdecl;
 begin
   ASN1_TYPE_get := LoadLibCryptoFunction('ASN1_TYPE_get');
   if not assigned(ASN1_TYPE_get) then
+    {$if declared(LEGACY_ASN1_TYPE_get)}
+    ASN1_TYPE_get := @LEGACY_ASN1_TYPE_get;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_TYPE_get');
+    {$ifend}
   Result := ASN1_TYPE_get(a);
 end;
 
@@ -3753,7 +4102,11 @@ procedure Load_ASN1_TYPE_set(a: PASN1_TYPE; type_: TOpenSSL_C_INT; value: pointe
 begin
   ASN1_TYPE_set := LoadLibCryptoFunction('ASN1_TYPE_set');
   if not assigned(ASN1_TYPE_set) then
+    {$if declared(LEGACY_ASN1_TYPE_set)}
+    ASN1_TYPE_set := @LEGACY_ASN1_TYPE_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_TYPE_set');
+    {$ifend}
   ASN1_TYPE_set(a, type_, value);
 end;
 
@@ -3761,7 +4114,11 @@ function Load_ASN1_TYPE_set1(a: PASN1_TYPE; type_: TOpenSSL_C_INT; value: pointe
 begin
   ASN1_TYPE_set1 := LoadLibCryptoFunction('ASN1_TYPE_set1');
   if not assigned(ASN1_TYPE_set1) then
+    {$if declared(LEGACY_ASN1_TYPE_set1)}
+    ASN1_TYPE_set1 := @LEGACY_ASN1_TYPE_set1;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_TYPE_set1');
+    {$ifend}
   Result := ASN1_TYPE_set1(a, type_, value);
 end;
 
@@ -3769,7 +4126,11 @@ function Load_ASN1_TYPE_cmp(a: PASN1_TYPE; b: PASN1_TYPE): TOpenSSL_C_INT; cdecl
 begin
   ASN1_TYPE_cmp := LoadLibCryptoFunction('ASN1_TYPE_cmp');
   if not assigned(ASN1_TYPE_cmp) then
+    {$if declared(LEGACY_ASN1_TYPE_cmp)}
+    ASN1_TYPE_cmp := @LEGACY_ASN1_TYPE_cmp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_TYPE_cmp');
+    {$ifend}
   Result := ASN1_TYPE_cmp(a, b);
 end;
 
@@ -3777,7 +4138,11 @@ function Load_ASN1_TYPE_pack_sequence(it: PASN1_ITEM; s: pointer; t: PPASN1_TYPE
 begin
   ASN1_TYPE_pack_sequence := LoadLibCryptoFunction('ASN1_TYPE_pack_sequence');
   if not assigned(ASN1_TYPE_pack_sequence) then
+    {$if declared(LEGACY_ASN1_TYPE_pack_sequence)}
+    ASN1_TYPE_pack_sequence := @LEGACY_ASN1_TYPE_pack_sequence;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_TYPE_pack_sequence');
+    {$ifend}
   Result := ASN1_TYPE_pack_sequence(it, s, t);
 end;
 
@@ -3785,7 +4150,11 @@ function Load_ASN1_TYPE_unpack_sequence(it: PASN1_ITEM; t: PASN1_TYPE): pointer;
 begin
   ASN1_TYPE_unpack_sequence := LoadLibCryptoFunction('ASN1_TYPE_unpack_sequence');
   if not assigned(ASN1_TYPE_unpack_sequence) then
+    {$if declared(LEGACY_ASN1_TYPE_unpack_sequence)}
+    ASN1_TYPE_unpack_sequence := @LEGACY_ASN1_TYPE_unpack_sequence;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_TYPE_unpack_sequence');
+    {$ifend}
   Result := ASN1_TYPE_unpack_sequence(it, t);
 end;
 
@@ -3793,7 +4162,11 @@ function Load_sk_ASN1_OBJECT_num(_para: Pstack_st_ASN1_OBJECT): TOpenSSL_C_INT; 
 begin
   sk_ASN1_OBJECT_num := LoadLibCryptoFunction('OPENSSL_sk_num');
   if not assigned(sk_ASN1_OBJECT_num) then
+    {$if declared(LEGACY_OPENSSL_sk_num)}
+    sk_ASN1_OBJECT_num := @LEGACY_OPENSSL_sk_num;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_num');
+    {$ifend}
   Result := sk_ASN1_OBJECT_num(_para);
 end;
 
@@ -3801,7 +4174,11 @@ function Load_sk_ASN1_OBJECT_value(_para: Pstack_st_ASN1_OBJECT; _para2: TOpenSS
 begin
   sk_ASN1_OBJECT_value := LoadLibCryptoFunction('OPENSSL_sk_value');
   if not assigned(sk_ASN1_OBJECT_value) then
+    {$if declared(LEGACY_OPENSSL_sk_value)}
+    sk_ASN1_OBJECT_value := @LEGACY_OPENSSL_sk_value;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_value');
+    {$ifend}
   Result := sk_ASN1_OBJECT_value(_para, _para2);
 end;
 
@@ -3809,7 +4186,11 @@ function Load_sk_ASN1_OBJECT_new(cmp: Tsk_ASN1_OBJECT_compfunc): Pstack_st_ASN1_
 begin
   sk_ASN1_OBJECT_new := LoadLibCryptoFunction('OPENSSL_sk_new');
   if not assigned(sk_ASN1_OBJECT_new) then
+    {$if declared(LEGACY_OPENSSL_sk_new)}
+    sk_ASN1_OBJECT_new := @LEGACY_OPENSSL_sk_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new');
+    {$ifend}
   Result := sk_ASN1_OBJECT_new(cmp);
 end;
 
@@ -3817,7 +4198,11 @@ function Load_sk_ASN1_OBJECT_new_null: Pstack_st_ASN1_OBJECT; cdecl;
 begin
   sk_ASN1_OBJECT_new_null := LoadLibCryptoFunction('OPENSSL_sk_new_null');
   if not assigned(sk_ASN1_OBJECT_new_null) then
+    {$if declared(LEGACY_OPENSSL_sk_new_null)}
+    sk_ASN1_OBJECT_new_null := @LEGACY_OPENSSL_sk_new_null;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_null');
+    {$ifend}
   Result := sk_ASN1_OBJECT_new_null;
 end;
 
@@ -3825,7 +4210,11 @@ function Load_sk_ASN1_OBJECT_new_reserve(cmp: Tsk_ASN1_OBJECT_compfunc; n: TOpen
 begin
   sk_ASN1_OBJECT_new_reserve := LoadLibCryptoFunction('OPENSSL_sk_new_reserve');
   if not assigned(sk_ASN1_OBJECT_new_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_new_reserve)}
+    sk_ASN1_OBJECT_new_reserve := @LEGACY_OPENSSL_sk_new_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_reserve');
+    {$ifend}
   Result := sk_ASN1_OBJECT_new_reserve(cmp, n);
 end;
 
@@ -3833,7 +4222,11 @@ function Load_sk_ASN1_OBJECT_reserve(_para: Pstack_st_ASN1_OBJECT; n: TOpenSSL_C
 begin
   sk_ASN1_OBJECT_reserve := LoadLibCryptoFunction('OPENSSL_sk_reserve');
   if not assigned(sk_ASN1_OBJECT_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_reserve)}
+    sk_ASN1_OBJECT_reserve := @LEGACY_OPENSSL_sk_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_reserve');
+    {$ifend}
   Result := sk_ASN1_OBJECT_reserve(_para, n);
 end;
 
@@ -3841,7 +4234,11 @@ function Load_sk_ASN1_OBJECT_free(_para: Pstack_st_ASN1_OBJECT): TOpenSSL_C_INT;
 begin
   sk_ASN1_OBJECT_free := LoadLibCryptoFunction('OPENSSL_sk_free');
   if not assigned(sk_ASN1_OBJECT_free) then
+    {$if declared(LEGACY_OPENSSL_sk_free)}
+    sk_ASN1_OBJECT_free := @LEGACY_OPENSSL_sk_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_free');
+    {$ifend}
   Result := sk_ASN1_OBJECT_free(_para);
 end;
 
@@ -3849,7 +4246,11 @@ function Load_sk_ASN1_OBJECT_zero(_para: Pstack_st_ASN1_OBJECT): TOpenSSL_C_INT;
 begin
   sk_ASN1_OBJECT_zero := LoadLibCryptoFunction('OPENSSL_sk_zero');
   if not assigned(sk_ASN1_OBJECT_zero) then
+    {$if declared(LEGACY_OPENSSL_sk_zero)}
+    sk_ASN1_OBJECT_zero := @LEGACY_OPENSSL_sk_zero;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_zero');
+    {$ifend}
   Result := sk_ASN1_OBJECT_zero(_para);
 end;
 
@@ -3857,7 +4258,11 @@ function Load_sk_ASN1_OBJECT_delete(st: Pstack_st_ASN1_OBJECT; loc: TOpenSSL_C_I
 begin
   sk_ASN1_OBJECT_delete := LoadLibCryptoFunction('OPENSSL_sk_delete');
   if not assigned(sk_ASN1_OBJECT_delete) then
+    {$if declared(LEGACY_OPENSSL_sk_delete)}
+    sk_ASN1_OBJECT_delete := @LEGACY_OPENSSL_sk_delete;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete');
+    {$ifend}
   Result := sk_ASN1_OBJECT_delete(st, loc);
 end;
 
@@ -3865,7 +4270,11 @@ function Load_sk_ASN1_OBJECT_delete_ptr(st: Pstack_st_ASN1_OBJECT; ptr: Pstack_s
 begin
   sk_ASN1_OBJECT_delete_ptr := LoadLibCryptoFunction('OPENSSL_sk_delete_ptr');
   if not assigned(sk_ASN1_OBJECT_delete_ptr) then
+    {$if declared(LEGACY_OPENSSL_sk_delete_ptr)}
+    sk_ASN1_OBJECT_delete_ptr := @LEGACY_OPENSSL_sk_delete_ptr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete_ptr');
+    {$ifend}
   Result := sk_ASN1_OBJECT_delete_ptr(st, ptr);
 end;
 
@@ -3873,7 +4282,11 @@ function Load_sk_ASN1_OBJECT_push(st: Pstack_st_ASN1_OBJECT; data: pointer): TOp
 begin
   sk_ASN1_OBJECT_push := LoadLibCryptoFunction('OPENSSL_sk_push');
   if not assigned(sk_ASN1_OBJECT_push) then
+    {$if declared(LEGACY_OPENSSL_sk_push)}
+    sk_ASN1_OBJECT_push := @LEGACY_OPENSSL_sk_push;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_push');
+    {$ifend}
   Result := sk_ASN1_OBJECT_push(st, data);
 end;
 
@@ -3881,7 +4294,11 @@ function Load_sk_ASN1_OBJECT_unshift(st: Pstack_st_ASN1_OBJECT; data: pointer): 
 begin
   sk_ASN1_OBJECT_unshift := LoadLibCryptoFunction('OPENSSL_sk_unshift');
   if not assigned(sk_ASN1_OBJECT_unshift) then
+    {$if declared(LEGACY_OPENSSL_sk_unshift)}
+    sk_ASN1_OBJECT_unshift := @LEGACY_OPENSSL_sk_unshift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_unshift');
+    {$ifend}
   Result := sk_ASN1_OBJECT_unshift(st, data);
 end;
 
@@ -3889,7 +4306,11 @@ function Load_sk_ASN1_OBJECT_pop(_para: Pstack_st_ASN1_OBJECT): Pstack_st_ASN1_O
 begin
   sk_ASN1_OBJECT_pop := LoadLibCryptoFunction('OPENSSL_sk_pop');
   if not assigned(sk_ASN1_OBJECT_pop) then
+    {$if declared(LEGACY_OPENSSL_sk_pop)}
+    sk_ASN1_OBJECT_pop := @LEGACY_OPENSSL_sk_pop;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop');
+    {$ifend}
   Result := sk_ASN1_OBJECT_pop(_para);
 end;
 
@@ -3897,7 +4318,11 @@ function Load_sk_ASN1_OBJECT_shift(_para: Pstack_st_ASN1_OBJECT): Pstack_st_ASN1
 begin
   sk_ASN1_OBJECT_shift := LoadLibCryptoFunction('OPENSSL_sk_shift');
   if not assigned(sk_ASN1_OBJECT_shift) then
+    {$if declared(LEGACY_OPENSSL_sk_shift)}
+    sk_ASN1_OBJECT_shift := @LEGACY_OPENSSL_sk_shift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_shift');
+    {$ifend}
   Result := sk_ASN1_OBJECT_shift(_para);
 end;
 
@@ -3905,7 +4330,11 @@ procedure Load_sk_ASN1_OBJECT_pop_free(st: Pstack_st_ASN1_OBJECT; func: Tsk_ASN1
 begin
   sk_ASN1_OBJECT_pop_free := LoadLibCryptoFunction('OPENSSL_sk_pop_free');
   if not assigned(sk_ASN1_OBJECT_pop_free) then
+    {$if declared(LEGACY_OPENSSL_sk_pop_free)}
+    sk_ASN1_OBJECT_pop_free := @LEGACY_OPENSSL_sk_pop_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop_free');
+    {$ifend}
   sk_ASN1_OBJECT_pop_free(st, func);
 end;
 
@@ -3913,7 +4342,11 @@ function Load_sk_ASN1_OBJECT_insert(st: Pstack_st_ASN1_OBJECT; data: pointer; wh
 begin
   sk_ASN1_OBJECT_insert := LoadLibCryptoFunction('OPENSSL_sk_insert');
   if not assigned(sk_ASN1_OBJECT_insert) then
+    {$if declared(LEGACY_OPENSSL_sk_insert)}
+    sk_ASN1_OBJECT_insert := @LEGACY_OPENSSL_sk_insert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_insert');
+    {$ifend}
   Result := sk_ASN1_OBJECT_insert(st, data, where);
 end;
 
@@ -3921,7 +4354,11 @@ function Load_sk_ASN1_OBJECT_set(st: Pstack_st_ASN1_OBJECT; i: TOpenSSL_C_INT; d
 begin
   sk_ASN1_OBJECT_set := LoadLibCryptoFunction('OPENSSL_sk_set');
   if not assigned(sk_ASN1_OBJECT_set) then
+    {$if declared(LEGACY_OPENSSL_sk_set)}
+    sk_ASN1_OBJECT_set := @LEGACY_OPENSSL_sk_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set');
+    {$ifend}
   Result := sk_ASN1_OBJECT_set(st, i, data);
 end;
 
@@ -3929,7 +4366,11 @@ function Load_sk_ASN1_OBJECT_find(st: Pstack_st_ASN1_OBJECT; data: pointer): TOp
 begin
   sk_ASN1_OBJECT_find := LoadLibCryptoFunction('OPENSSL_sk_find');
   if not assigned(sk_ASN1_OBJECT_find) then
+    {$if declared(LEGACY_OPENSSL_sk_find)}
+    sk_ASN1_OBJECT_find := @LEGACY_OPENSSL_sk_find;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find');
+    {$ifend}
   Result := sk_ASN1_OBJECT_find(st, data);
 end;
 
@@ -3937,7 +4378,11 @@ function Load_sk_ASN1_OBJECT_find_ex(st: Pstack_st_ASN1_OBJECT; data: pointer): 
 begin
   sk_ASN1_OBJECT_find_ex := LoadLibCryptoFunction('OPENSSL_sk_find_ex');
   if not assigned(sk_ASN1_OBJECT_find_ex) then
+    {$if declared(LEGACY_OPENSSL_sk_find_ex)}
+    sk_ASN1_OBJECT_find_ex := @LEGACY_OPENSSL_sk_find_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_ex');
+    {$ifend}
   Result := sk_ASN1_OBJECT_find_ex(st, data);
 end;
 
@@ -3945,7 +4390,11 @@ function Load_sk_ASN1_OBJECT_find_all(st: Pstack_st_ASN1_OBJECT; data: pointer; 
 begin
   sk_ASN1_OBJECT_find_all := LoadLibCryptoFunction('OPENSSL_sk_find_all');
   if not assigned(sk_ASN1_OBJECT_find_all) then
+    {$if declared(LEGACY_OPENSSL_sk_find_all)}
+    sk_ASN1_OBJECT_find_all := @LEGACY_OPENSSL_sk_find_all;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_all');
+    {$ifend}
   Result := sk_ASN1_OBJECT_find_all(st, data, pnum);
 end;
 
@@ -3953,7 +4402,11 @@ function Load_sk_ASN1_OBJECT_sort(_para: Pstack_st_ASN1_OBJECT): TOpenSSL_C_INT;
 begin
   sk_ASN1_OBJECT_sort := LoadLibCryptoFunction('OPENSSL_sk_sort');
   if not assigned(sk_ASN1_OBJECT_sort) then
+    {$if declared(LEGACY_OPENSSL_sk_sort)}
+    sk_ASN1_OBJECT_sort := @LEGACY_OPENSSL_sk_sort;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_sort');
+    {$ifend}
   Result := sk_ASN1_OBJECT_sort(_para);
 end;
 
@@ -3961,7 +4414,11 @@ function Load_sk_ASN1_OBJECT_is_sorted(_para: Pstack_st_ASN1_OBJECT): TOpenSSL_C
 begin
   sk_ASN1_OBJECT_is_sorted := LoadLibCryptoFunction('OPENSSL_sk_is_sorted');
   if not assigned(sk_ASN1_OBJECT_is_sorted) then
+    {$if declared(LEGACY_OPENSSL_sk_is_sorted)}
+    sk_ASN1_OBJECT_is_sorted := @LEGACY_OPENSSL_sk_is_sorted;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_is_sorted');
+    {$ifend}
   Result := sk_ASN1_OBJECT_is_sorted(_para);
 end;
 
@@ -3969,7 +4426,11 @@ function Load_sk_ASN1_OBJECT_dup(st: Pstack_st_ASN1_OBJECT): Pstack_st_ASN1_OBJE
 begin
   sk_ASN1_OBJECT_dup := LoadLibCryptoFunction('OPENSSL_sk_dup');
   if not assigned(sk_ASN1_OBJECT_dup) then
+    {$if declared(LEGACY_OPENSSL_sk_dup)}
+    sk_ASN1_OBJECT_dup := @LEGACY_OPENSSL_sk_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_dup');
+    {$ifend}
   Result := sk_ASN1_OBJECT_dup(st);
 end;
 
@@ -3977,7 +4438,11 @@ function Load_sk_ASN1_OBJECT_deep_copy(st: Pstack_st_ASN1_OBJECT; c: Tsk_ASN1_OB
 begin
   sk_ASN1_OBJECT_deep_copy := LoadLibCryptoFunction('OPENSSL_sk_deep_copy');
   if not assigned(sk_ASN1_OBJECT_deep_copy) then
+    {$if declared(LEGACY_OPENSSL_sk_deep_copy)}
+    sk_ASN1_OBJECT_deep_copy := @LEGACY_OPENSSL_sk_deep_copy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_deep_copy');
+    {$ifend}
   Result := sk_ASN1_OBJECT_deep_copy(st, c, f);
 end;
 
@@ -3985,7 +4450,11 @@ function Load_sk_ASN1_OBJECT_set_cmp_func(st: Pstack_st_ASN1_OBJECT; cmp: Tsk_AS
 begin
   sk_ASN1_OBJECT_set_cmp_func := LoadLibCryptoFunction('OPENSSL_sk_set_cmp_func');
   if not assigned(sk_ASN1_OBJECT_set_cmp_func) then
+    {$if declared(LEGACY_OPENSSL_sk_set_cmp_func)}
+    sk_ASN1_OBJECT_set_cmp_func := @LEGACY_OPENSSL_sk_set_cmp_func;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set_cmp_func');
+    {$ifend}
   Result := sk_ASN1_OBJECT_set_cmp_func(st, cmp);
 end;
 
@@ -3993,7 +4462,11 @@ function Load_ASN1_OBJECT_new: PASN1_OBJECT; cdecl;
 begin
   ASN1_OBJECT_new := LoadLibCryptoFunction('ASN1_OBJECT_new');
   if not assigned(ASN1_OBJECT_new) then
+    {$if declared(LEGACY_ASN1_OBJECT_new)}
+    ASN1_OBJECT_new := @LEGACY_ASN1_OBJECT_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_OBJECT_new');
+    {$ifend}
   Result := ASN1_OBJECT_new;
 end;
 
@@ -4001,7 +4474,11 @@ procedure Load_ASN1_OBJECT_free(a: PASN1_OBJECT); cdecl;
 begin
   ASN1_OBJECT_free := LoadLibCryptoFunction('ASN1_OBJECT_free');
   if not assigned(ASN1_OBJECT_free) then
+    {$if declared(LEGACY_ASN1_OBJECT_free)}
+    ASN1_OBJECT_free := @LEGACY_ASN1_OBJECT_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_OBJECT_free');
+    {$ifend}
   ASN1_OBJECT_free(a);
 end;
 
@@ -4009,7 +4486,11 @@ function Load_d2i_ASN1_OBJECT(a: PPASN1_OBJECT; in_: PPbyte; len: TOpenSSL_C_INT
 begin
   d2i_ASN1_OBJECT := LoadLibCryptoFunction('d2i_ASN1_OBJECT');
   if not assigned(d2i_ASN1_OBJECT) then
+    {$if declared(LEGACY_d2i_ASN1_OBJECT)}
+    d2i_ASN1_OBJECT := @LEGACY_d2i_ASN1_OBJECT;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_ASN1_OBJECT');
+    {$ifend}
   Result := d2i_ASN1_OBJECT(a, in_, len);
 end;
 
@@ -4017,7 +4498,11 @@ function Load_i2d_ASN1_OBJECT(a: PASN1_OBJECT; out_: PPbyte): TOpenSSL_C_INT; cd
 begin
   i2d_ASN1_OBJECT := LoadLibCryptoFunction('i2d_ASN1_OBJECT');
   if not assigned(i2d_ASN1_OBJECT) then
+    {$if declared(LEGACY_i2d_ASN1_OBJECT)}
+    i2d_ASN1_OBJECT := @LEGACY_i2d_ASN1_OBJECT;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_ASN1_OBJECT');
+    {$ifend}
   Result := i2d_ASN1_OBJECT(a, out_);
 end;
 
@@ -4025,7 +4510,11 @@ function Load_ASN1_OBJECT_it: PASN1_ITEM; cdecl;
 begin
   ASN1_OBJECT_it := LoadLibCryptoFunction('ASN1_OBJECT_it');
   if not assigned(ASN1_OBJECT_it) then
+    {$if declared(LEGACY_ASN1_OBJECT_it)}
+    ASN1_OBJECT_it := @LEGACY_ASN1_OBJECT_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_OBJECT_it');
+    {$ifend}
   Result := ASN1_OBJECT_it;
 end;
 
@@ -4033,7 +4522,11 @@ function Load_ASN1_STRING_new: PASN1_STRING; cdecl;
 begin
   ASN1_STRING_new := LoadLibCryptoFunction('ASN1_STRING_new');
   if not assigned(ASN1_STRING_new) then
+    {$if declared(LEGACY_ASN1_STRING_new)}
+    ASN1_STRING_new := @LEGACY_ASN1_STRING_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_STRING_new');
+    {$ifend}
   Result := ASN1_STRING_new;
 end;
 
@@ -4041,7 +4534,11 @@ procedure Load_ASN1_STRING_free(a: PASN1_STRING); cdecl;
 begin
   ASN1_STRING_free := LoadLibCryptoFunction('ASN1_STRING_free');
   if not assigned(ASN1_STRING_free) then
+    {$if declared(LEGACY_ASN1_STRING_free)}
+    ASN1_STRING_free := @LEGACY_ASN1_STRING_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_STRING_free');
+    {$ifend}
   ASN1_STRING_free(a);
 end;
 
@@ -4049,7 +4546,11 @@ procedure Load_ASN1_STRING_clear_free(a: PASN1_STRING); cdecl;
 begin
   ASN1_STRING_clear_free := LoadLibCryptoFunction('ASN1_STRING_clear_free');
   if not assigned(ASN1_STRING_clear_free) then
+    {$if declared(LEGACY_ASN1_STRING_clear_free)}
+    ASN1_STRING_clear_free := @LEGACY_ASN1_STRING_clear_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_STRING_clear_free');
+    {$ifend}
   ASN1_STRING_clear_free(a);
 end;
 
@@ -4057,7 +4558,11 @@ function Load_ASN1_STRING_copy(dst: PASN1_STRING; str: PASN1_STRING): TOpenSSL_C
 begin
   ASN1_STRING_copy := LoadLibCryptoFunction('ASN1_STRING_copy');
   if not assigned(ASN1_STRING_copy) then
+    {$if declared(LEGACY_ASN1_STRING_copy)}
+    ASN1_STRING_copy := @LEGACY_ASN1_STRING_copy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_STRING_copy');
+    {$ifend}
   Result := ASN1_STRING_copy(dst, str);
 end;
 
@@ -4065,7 +4570,11 @@ function Load_ASN1_STRING_dup(a: PASN1_STRING): PASN1_STRING; cdecl;
 begin
   ASN1_STRING_dup := LoadLibCryptoFunction('ASN1_STRING_dup');
   if not assigned(ASN1_STRING_dup) then
+    {$if declared(LEGACY_ASN1_STRING_dup)}
+    ASN1_STRING_dup := @LEGACY_ASN1_STRING_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_STRING_dup');
+    {$ifend}
   Result := ASN1_STRING_dup(a);
 end;
 
@@ -4073,7 +4582,11 @@ function Load_ASN1_STRING_type_new(type_: TOpenSSL_C_INT): PASN1_STRING; cdecl;
 begin
   ASN1_STRING_type_new := LoadLibCryptoFunction('ASN1_STRING_type_new');
   if not assigned(ASN1_STRING_type_new) then
+    {$if declared(LEGACY_ASN1_STRING_type_new)}
+    ASN1_STRING_type_new := @LEGACY_ASN1_STRING_type_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_STRING_type_new');
+    {$ifend}
   Result := ASN1_STRING_type_new(type_);
 end;
 
@@ -4081,7 +4594,11 @@ function Load_ASN1_STRING_cmp(a: PASN1_STRING; b: PASN1_STRING): TOpenSSL_C_INT;
 begin
   ASN1_STRING_cmp := LoadLibCryptoFunction('ASN1_STRING_cmp');
   if not assigned(ASN1_STRING_cmp) then
+    {$if declared(LEGACY_ASN1_STRING_cmp)}
+    ASN1_STRING_cmp := @LEGACY_ASN1_STRING_cmp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_STRING_cmp');
+    {$ifend}
   Result := ASN1_STRING_cmp(a, b);
 end;
 
@@ -4089,7 +4606,11 @@ function Load_ASN1_STRING_set(str: PASN1_STRING; data: pointer; len: TOpenSSL_C_
 begin
   ASN1_STRING_set := LoadLibCryptoFunction('ASN1_STRING_set');
   if not assigned(ASN1_STRING_set) then
+    {$if declared(LEGACY_ASN1_STRING_set)}
+    ASN1_STRING_set := @LEGACY_ASN1_STRING_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_STRING_set');
+    {$ifend}
   Result := ASN1_STRING_set(str, data, len);
 end;
 
@@ -4097,7 +4618,11 @@ procedure Load_ASN1_STRING_set0(str: PASN1_STRING; data: pointer; len: TOpenSSL_
 begin
   ASN1_STRING_set0 := LoadLibCryptoFunction('ASN1_STRING_set0');
   if not assigned(ASN1_STRING_set0) then
+    {$if declared(LEGACY_ASN1_STRING_set0)}
+    ASN1_STRING_set0 := @LEGACY_ASN1_STRING_set0;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_STRING_set0');
+    {$ifend}
   ASN1_STRING_set0(str, data, len);
 end;
 
@@ -4105,7 +4630,11 @@ function Load_ASN1_STRING_length(x: PASN1_STRING): TOpenSSL_C_INT; cdecl;
 begin
   ASN1_STRING_length := LoadLibCryptoFunction('ASN1_STRING_length');
   if not assigned(ASN1_STRING_length) then
+    {$if declared(LEGACY_ASN1_STRING_length)}
+    ASN1_STRING_length := @LEGACY_ASN1_STRING_length;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_STRING_length');
+    {$ifend}
   Result := ASN1_STRING_length(x);
 end;
 
@@ -4114,7 +4643,11 @@ procedure Load_ASN1_STRING_length_set(x: PASN1_STRING; n: TOpenSSL_C_INT); cdecl
 begin
   ASN1_STRING_length_set := LoadLibCryptoFunction('ASN1_STRING_length_set');
   if not assigned(ASN1_STRING_length_set) then
+    {$if declared(LEGACY_ASN1_STRING_length_set)}
+    ASN1_STRING_length_set := @LEGACY_ASN1_STRING_length_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_STRING_length_set');
+    {$ifend}
   ASN1_STRING_length_set(x, n);
 end;
 
@@ -4123,7 +4656,11 @@ function Load_ASN1_STRING_type(x: PASN1_STRING): TOpenSSL_C_INT; cdecl;
 begin
   ASN1_STRING_type := LoadLibCryptoFunction('ASN1_STRING_type');
   if not assigned(ASN1_STRING_type) then
+    {$if declared(LEGACY_ASN1_STRING_type)}
+    ASN1_STRING_type := @LEGACY_ASN1_STRING_type;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_STRING_type');
+    {$ifend}
   Result := ASN1_STRING_type(x);
 end;
 
@@ -4132,7 +4669,11 @@ function Load_ASN1_STRING_data(x: PASN1_STRING): Pbyte; cdecl;
 begin
   ASN1_STRING_data := LoadLibCryptoFunction('ASN1_STRING_data');
   if not assigned(ASN1_STRING_data) then
+    {$if declared(LEGACY_ASN1_STRING_data)}
+    ASN1_STRING_data := @LEGACY_ASN1_STRING_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_STRING_data');
+    {$ifend}
   Result := ASN1_STRING_data(x);
 end;
 
@@ -4141,7 +4682,11 @@ function Load_ASN1_STRING_get0_data(x: PASN1_STRING): Pbyte; cdecl;
 begin
   ASN1_STRING_get0_data := LoadLibCryptoFunction('ASN1_STRING_get0_data');
   if not assigned(ASN1_STRING_get0_data) then
+    {$if declared(LEGACY_ASN1_STRING_get0_data)}
+    ASN1_STRING_get0_data := @LEGACY_ASN1_STRING_get0_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_STRING_get0_data');
+    {$ifend}
   Result := ASN1_STRING_get0_data(x);
 end;
 
@@ -4149,7 +4694,11 @@ function Load_ASN1_BIT_STRING_new: PASN1_BIT_STRING; cdecl;
 begin
   ASN1_BIT_STRING_new := LoadLibCryptoFunction('ASN1_BIT_STRING_new');
   if not assigned(ASN1_BIT_STRING_new) then
+    {$if declared(LEGACY_ASN1_BIT_STRING_new)}
+    ASN1_BIT_STRING_new := @LEGACY_ASN1_BIT_STRING_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_BIT_STRING_new');
+    {$ifend}
   Result := ASN1_BIT_STRING_new;
 end;
 
@@ -4157,7 +4706,11 @@ procedure Load_ASN1_BIT_STRING_free(a: PASN1_BIT_STRING); cdecl;
 begin
   ASN1_BIT_STRING_free := LoadLibCryptoFunction('ASN1_BIT_STRING_free');
   if not assigned(ASN1_BIT_STRING_free) then
+    {$if declared(LEGACY_ASN1_BIT_STRING_free)}
+    ASN1_BIT_STRING_free := @LEGACY_ASN1_BIT_STRING_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_BIT_STRING_free');
+    {$ifend}
   ASN1_BIT_STRING_free(a);
 end;
 
@@ -4165,7 +4718,11 @@ function Load_d2i_ASN1_BIT_STRING(a: PPASN1_BIT_STRING; in_: PPbyte; len: TOpenS
 begin
   d2i_ASN1_BIT_STRING := LoadLibCryptoFunction('d2i_ASN1_BIT_STRING');
   if not assigned(d2i_ASN1_BIT_STRING) then
+    {$if declared(LEGACY_d2i_ASN1_BIT_STRING)}
+    d2i_ASN1_BIT_STRING := @LEGACY_d2i_ASN1_BIT_STRING;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_ASN1_BIT_STRING');
+    {$ifend}
   Result := d2i_ASN1_BIT_STRING(a, in_, len);
 end;
 
@@ -4173,7 +4730,11 @@ function Load_i2d_ASN1_BIT_STRING(a: PASN1_BIT_STRING; out_: PPbyte): TOpenSSL_C
 begin
   i2d_ASN1_BIT_STRING := LoadLibCryptoFunction('i2d_ASN1_BIT_STRING');
   if not assigned(i2d_ASN1_BIT_STRING) then
+    {$if declared(LEGACY_i2d_ASN1_BIT_STRING)}
+    i2d_ASN1_BIT_STRING := @LEGACY_i2d_ASN1_BIT_STRING;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_ASN1_BIT_STRING');
+    {$ifend}
   Result := i2d_ASN1_BIT_STRING(a, out_);
 end;
 
@@ -4181,7 +4742,11 @@ function Load_ASN1_BIT_STRING_it: PASN1_ITEM; cdecl;
 begin
   ASN1_BIT_STRING_it := LoadLibCryptoFunction('ASN1_BIT_STRING_it');
   if not assigned(ASN1_BIT_STRING_it) then
+    {$if declared(LEGACY_ASN1_BIT_STRING_it)}
+    ASN1_BIT_STRING_it := @LEGACY_ASN1_BIT_STRING_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_BIT_STRING_it');
+    {$ifend}
   Result := ASN1_BIT_STRING_it;
 end;
 
@@ -4189,7 +4754,11 @@ function Load_ASN1_BIT_STRING_set(a: PASN1_BIT_STRING; d: Pbyte; length: TOpenSS
 begin
   ASN1_BIT_STRING_set := LoadLibCryptoFunction('ASN1_BIT_STRING_set');
   if not assigned(ASN1_BIT_STRING_set) then
+    {$if declared(LEGACY_ASN1_BIT_STRING_set)}
+    ASN1_BIT_STRING_set := @LEGACY_ASN1_BIT_STRING_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_BIT_STRING_set');
+    {$ifend}
   Result := ASN1_BIT_STRING_set(a, d, length);
 end;
 
@@ -4197,7 +4766,11 @@ function Load_ASN1_BIT_STRING_set_bit(a: PASN1_BIT_STRING; n: TOpenSSL_C_INT; va
 begin
   ASN1_BIT_STRING_set_bit := LoadLibCryptoFunction('ASN1_BIT_STRING_set_bit');
   if not assigned(ASN1_BIT_STRING_set_bit) then
+    {$if declared(LEGACY_ASN1_BIT_STRING_set_bit)}
+    ASN1_BIT_STRING_set_bit := @LEGACY_ASN1_BIT_STRING_set_bit;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_BIT_STRING_set_bit');
+    {$ifend}
   Result := ASN1_BIT_STRING_set_bit(a, n, value);
 end;
 
@@ -4205,7 +4778,11 @@ function Load_ASN1_BIT_STRING_get_bit(a: PASN1_BIT_STRING; n: TOpenSSL_C_INT): T
 begin
   ASN1_BIT_STRING_get_bit := LoadLibCryptoFunction('ASN1_BIT_STRING_get_bit');
   if not assigned(ASN1_BIT_STRING_get_bit) then
+    {$if declared(LEGACY_ASN1_BIT_STRING_get_bit)}
+    ASN1_BIT_STRING_get_bit := @LEGACY_ASN1_BIT_STRING_get_bit;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_BIT_STRING_get_bit');
+    {$ifend}
   Result := ASN1_BIT_STRING_get_bit(a, n);
 end;
 
@@ -4213,7 +4790,11 @@ function Load_ASN1_BIT_STRING_check(a: PASN1_BIT_STRING; flags: Pbyte; flags_len
 begin
   ASN1_BIT_STRING_check := LoadLibCryptoFunction('ASN1_BIT_STRING_check');
   if not assigned(ASN1_BIT_STRING_check) then
+    {$if declared(LEGACY_ASN1_BIT_STRING_check)}
+    ASN1_BIT_STRING_check := @LEGACY_ASN1_BIT_STRING_check;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_BIT_STRING_check');
+    {$ifend}
   Result := ASN1_BIT_STRING_check(a, flags, flags_len);
 end;
 
@@ -4221,7 +4802,11 @@ function Load_ASN1_BIT_STRING_name_print(out_: PBIO; bs: PASN1_BIT_STRING; tbl: 
 begin
   ASN1_BIT_STRING_name_print := LoadLibCryptoFunction('ASN1_BIT_STRING_name_print');
   if not assigned(ASN1_BIT_STRING_name_print) then
+    {$if declared(LEGACY_ASN1_BIT_STRING_name_print)}
+    ASN1_BIT_STRING_name_print := @LEGACY_ASN1_BIT_STRING_name_print;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_BIT_STRING_name_print');
+    {$ifend}
   Result := ASN1_BIT_STRING_name_print(out_, bs, tbl, indent);
 end;
 
@@ -4229,7 +4814,11 @@ function Load_ASN1_BIT_STRING_num_asc(name: PAnsiChar; tbl: PBIT_STRING_BITNAME)
 begin
   ASN1_BIT_STRING_num_asc := LoadLibCryptoFunction('ASN1_BIT_STRING_num_asc');
   if not assigned(ASN1_BIT_STRING_num_asc) then
+    {$if declared(LEGACY_ASN1_BIT_STRING_num_asc)}
+    ASN1_BIT_STRING_num_asc := @LEGACY_ASN1_BIT_STRING_num_asc;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_BIT_STRING_num_asc');
+    {$ifend}
   Result := ASN1_BIT_STRING_num_asc(name, tbl);
 end;
 
@@ -4237,7 +4826,11 @@ function Load_ASN1_BIT_STRING_set_asc(bs: PASN1_BIT_STRING; name: PAnsiChar; val
 begin
   ASN1_BIT_STRING_set_asc := LoadLibCryptoFunction('ASN1_BIT_STRING_set_asc');
   if not assigned(ASN1_BIT_STRING_set_asc) then
+    {$if declared(LEGACY_ASN1_BIT_STRING_set_asc)}
+    ASN1_BIT_STRING_set_asc := @LEGACY_ASN1_BIT_STRING_set_asc;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_BIT_STRING_set_asc');
+    {$ifend}
   Result := ASN1_BIT_STRING_set_asc(bs, name, value, tbl);
 end;
 
@@ -4245,7 +4838,11 @@ function Load_sk_ASN1_INTEGER_num(_para: Pstack_st_ASN1_INTEGER): TOpenSSL_C_INT
 begin
   sk_ASN1_INTEGER_num := LoadLibCryptoFunction('OPENSSL_sk_num');
   if not assigned(sk_ASN1_INTEGER_num) then
+    {$if declared(LEGACY_OPENSSL_sk_num)}
+    sk_ASN1_INTEGER_num := @LEGACY_OPENSSL_sk_num;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_num');
+    {$ifend}
   Result := sk_ASN1_INTEGER_num(_para);
 end;
 
@@ -4253,7 +4850,11 @@ function Load_sk_ASN1_INTEGER_value(_para: Pstack_st_ASN1_INTEGER; _para2: TOpen
 begin
   sk_ASN1_INTEGER_value := LoadLibCryptoFunction('OPENSSL_sk_value');
   if not assigned(sk_ASN1_INTEGER_value) then
+    {$if declared(LEGACY_OPENSSL_sk_value)}
+    sk_ASN1_INTEGER_value := @LEGACY_OPENSSL_sk_value;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_value');
+    {$ifend}
   Result := sk_ASN1_INTEGER_value(_para, _para2);
 end;
 
@@ -4261,7 +4862,11 @@ function Load_sk_ASN1_INTEGER_new(cmp: Tsk_ASN1_INTEGER_compfunc): Pstack_st_ASN
 begin
   sk_ASN1_INTEGER_new := LoadLibCryptoFunction('OPENSSL_sk_new');
   if not assigned(sk_ASN1_INTEGER_new) then
+    {$if declared(LEGACY_OPENSSL_sk_new)}
+    sk_ASN1_INTEGER_new := @LEGACY_OPENSSL_sk_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new');
+    {$ifend}
   Result := sk_ASN1_INTEGER_new(cmp);
 end;
 
@@ -4269,7 +4874,11 @@ function Load_sk_ASN1_INTEGER_new_null: Pstack_st_ASN1_INTEGER; cdecl;
 begin
   sk_ASN1_INTEGER_new_null := LoadLibCryptoFunction('OPENSSL_sk_new_null');
   if not assigned(sk_ASN1_INTEGER_new_null) then
+    {$if declared(LEGACY_OPENSSL_sk_new_null)}
+    sk_ASN1_INTEGER_new_null := @LEGACY_OPENSSL_sk_new_null;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_null');
+    {$ifend}
   Result := sk_ASN1_INTEGER_new_null;
 end;
 
@@ -4277,7 +4886,11 @@ function Load_sk_ASN1_INTEGER_new_reserve(cmp: Tsk_ASN1_INTEGER_compfunc; n: TOp
 begin
   sk_ASN1_INTEGER_new_reserve := LoadLibCryptoFunction('OPENSSL_sk_new_reserve');
   if not assigned(sk_ASN1_INTEGER_new_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_new_reserve)}
+    sk_ASN1_INTEGER_new_reserve := @LEGACY_OPENSSL_sk_new_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_reserve');
+    {$ifend}
   Result := sk_ASN1_INTEGER_new_reserve(cmp, n);
 end;
 
@@ -4285,7 +4898,11 @@ function Load_sk_ASN1_INTEGER_reserve(_para: Pstack_st_ASN1_INTEGER; n: TOpenSSL
 begin
   sk_ASN1_INTEGER_reserve := LoadLibCryptoFunction('OPENSSL_sk_reserve');
   if not assigned(sk_ASN1_INTEGER_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_reserve)}
+    sk_ASN1_INTEGER_reserve := @LEGACY_OPENSSL_sk_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_reserve');
+    {$ifend}
   Result := sk_ASN1_INTEGER_reserve(_para, n);
 end;
 
@@ -4293,7 +4910,11 @@ function Load_sk_ASN1_INTEGER_free(_para: Pstack_st_ASN1_INTEGER): TOpenSSL_C_IN
 begin
   sk_ASN1_INTEGER_free := LoadLibCryptoFunction('OPENSSL_sk_free');
   if not assigned(sk_ASN1_INTEGER_free) then
+    {$if declared(LEGACY_OPENSSL_sk_free)}
+    sk_ASN1_INTEGER_free := @LEGACY_OPENSSL_sk_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_free');
+    {$ifend}
   Result := sk_ASN1_INTEGER_free(_para);
 end;
 
@@ -4301,7 +4922,11 @@ function Load_sk_ASN1_INTEGER_zero(_para: Pstack_st_ASN1_INTEGER): TOpenSSL_C_IN
 begin
   sk_ASN1_INTEGER_zero := LoadLibCryptoFunction('OPENSSL_sk_zero');
   if not assigned(sk_ASN1_INTEGER_zero) then
+    {$if declared(LEGACY_OPENSSL_sk_zero)}
+    sk_ASN1_INTEGER_zero := @LEGACY_OPENSSL_sk_zero;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_zero');
+    {$ifend}
   Result := sk_ASN1_INTEGER_zero(_para);
 end;
 
@@ -4309,7 +4934,11 @@ function Load_sk_ASN1_INTEGER_delete(st: Pstack_st_ASN1_INTEGER; loc: TOpenSSL_C
 begin
   sk_ASN1_INTEGER_delete := LoadLibCryptoFunction('OPENSSL_sk_delete');
   if not assigned(sk_ASN1_INTEGER_delete) then
+    {$if declared(LEGACY_OPENSSL_sk_delete)}
+    sk_ASN1_INTEGER_delete := @LEGACY_OPENSSL_sk_delete;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete');
+    {$ifend}
   Result := sk_ASN1_INTEGER_delete(st, loc);
 end;
 
@@ -4317,7 +4946,11 @@ function Load_sk_ASN1_INTEGER_delete_ptr(st: Pstack_st_ASN1_INTEGER; ptr: Pstack
 begin
   sk_ASN1_INTEGER_delete_ptr := LoadLibCryptoFunction('OPENSSL_sk_delete_ptr');
   if not assigned(sk_ASN1_INTEGER_delete_ptr) then
+    {$if declared(LEGACY_OPENSSL_sk_delete_ptr)}
+    sk_ASN1_INTEGER_delete_ptr := @LEGACY_OPENSSL_sk_delete_ptr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete_ptr');
+    {$ifend}
   Result := sk_ASN1_INTEGER_delete_ptr(st, ptr);
 end;
 
@@ -4325,7 +4958,11 @@ function Load_sk_ASN1_INTEGER_push(st: Pstack_st_ASN1_INTEGER; data: pointer): T
 begin
   sk_ASN1_INTEGER_push := LoadLibCryptoFunction('OPENSSL_sk_push');
   if not assigned(sk_ASN1_INTEGER_push) then
+    {$if declared(LEGACY_OPENSSL_sk_push)}
+    sk_ASN1_INTEGER_push := @LEGACY_OPENSSL_sk_push;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_push');
+    {$ifend}
   Result := sk_ASN1_INTEGER_push(st, data);
 end;
 
@@ -4333,7 +4970,11 @@ function Load_sk_ASN1_INTEGER_unshift(st: Pstack_st_ASN1_INTEGER; data: pointer)
 begin
   sk_ASN1_INTEGER_unshift := LoadLibCryptoFunction('OPENSSL_sk_unshift');
   if not assigned(sk_ASN1_INTEGER_unshift) then
+    {$if declared(LEGACY_OPENSSL_sk_unshift)}
+    sk_ASN1_INTEGER_unshift := @LEGACY_OPENSSL_sk_unshift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_unshift');
+    {$ifend}
   Result := sk_ASN1_INTEGER_unshift(st, data);
 end;
 
@@ -4341,7 +4982,11 @@ function Load_sk_ASN1_INTEGER_pop(_para: Pstack_st_ASN1_INTEGER): Pstack_st_ASN1
 begin
   sk_ASN1_INTEGER_pop := LoadLibCryptoFunction('OPENSSL_sk_pop');
   if not assigned(sk_ASN1_INTEGER_pop) then
+    {$if declared(LEGACY_OPENSSL_sk_pop)}
+    sk_ASN1_INTEGER_pop := @LEGACY_OPENSSL_sk_pop;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop');
+    {$ifend}
   Result := sk_ASN1_INTEGER_pop(_para);
 end;
 
@@ -4349,7 +4994,11 @@ function Load_sk_ASN1_INTEGER_shift(_para: Pstack_st_ASN1_INTEGER): Pstack_st_AS
 begin
   sk_ASN1_INTEGER_shift := LoadLibCryptoFunction('OPENSSL_sk_shift');
   if not assigned(sk_ASN1_INTEGER_shift) then
+    {$if declared(LEGACY_OPENSSL_sk_shift)}
+    sk_ASN1_INTEGER_shift := @LEGACY_OPENSSL_sk_shift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_shift');
+    {$ifend}
   Result := sk_ASN1_INTEGER_shift(_para);
 end;
 
@@ -4357,7 +5006,11 @@ procedure Load_sk_ASN1_INTEGER_pop_free(st: Pstack_st_ASN1_INTEGER; func: Tsk_AS
 begin
   sk_ASN1_INTEGER_pop_free := LoadLibCryptoFunction('OPENSSL_sk_pop_free');
   if not assigned(sk_ASN1_INTEGER_pop_free) then
+    {$if declared(LEGACY_OPENSSL_sk_pop_free)}
+    sk_ASN1_INTEGER_pop_free := @LEGACY_OPENSSL_sk_pop_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop_free');
+    {$ifend}
   sk_ASN1_INTEGER_pop_free(st, func);
 end;
 
@@ -4365,7 +5018,11 @@ function Load_sk_ASN1_INTEGER_insert(st: Pstack_st_ASN1_INTEGER; data: pointer; 
 begin
   sk_ASN1_INTEGER_insert := LoadLibCryptoFunction('OPENSSL_sk_insert');
   if not assigned(sk_ASN1_INTEGER_insert) then
+    {$if declared(LEGACY_OPENSSL_sk_insert)}
+    sk_ASN1_INTEGER_insert := @LEGACY_OPENSSL_sk_insert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_insert');
+    {$ifend}
   Result := sk_ASN1_INTEGER_insert(st, data, where);
 end;
 
@@ -4373,7 +5030,11 @@ function Load_sk_ASN1_INTEGER_set(st: Pstack_st_ASN1_INTEGER; i: TOpenSSL_C_INT;
 begin
   sk_ASN1_INTEGER_set := LoadLibCryptoFunction('OPENSSL_sk_set');
   if not assigned(sk_ASN1_INTEGER_set) then
+    {$if declared(LEGACY_OPENSSL_sk_set)}
+    sk_ASN1_INTEGER_set := @LEGACY_OPENSSL_sk_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set');
+    {$ifend}
   Result := sk_ASN1_INTEGER_set(st, i, data);
 end;
 
@@ -4381,7 +5042,11 @@ function Load_sk_ASN1_INTEGER_find(st: Pstack_st_ASN1_INTEGER; data: pointer): T
 begin
   sk_ASN1_INTEGER_find := LoadLibCryptoFunction('OPENSSL_sk_find');
   if not assigned(sk_ASN1_INTEGER_find) then
+    {$if declared(LEGACY_OPENSSL_sk_find)}
+    sk_ASN1_INTEGER_find := @LEGACY_OPENSSL_sk_find;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find');
+    {$ifend}
   Result := sk_ASN1_INTEGER_find(st, data);
 end;
 
@@ -4389,7 +5054,11 @@ function Load_sk_ASN1_INTEGER_find_ex(st: Pstack_st_ASN1_INTEGER; data: pointer)
 begin
   sk_ASN1_INTEGER_find_ex := LoadLibCryptoFunction('OPENSSL_sk_find_ex');
   if not assigned(sk_ASN1_INTEGER_find_ex) then
+    {$if declared(LEGACY_OPENSSL_sk_find_ex)}
+    sk_ASN1_INTEGER_find_ex := @LEGACY_OPENSSL_sk_find_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_ex');
+    {$ifend}
   Result := sk_ASN1_INTEGER_find_ex(st, data);
 end;
 
@@ -4397,7 +5066,11 @@ function Load_sk_ASN1_INTEGER_find_all(st: Pstack_st_ASN1_INTEGER; data: pointer
 begin
   sk_ASN1_INTEGER_find_all := LoadLibCryptoFunction('OPENSSL_sk_find_all');
   if not assigned(sk_ASN1_INTEGER_find_all) then
+    {$if declared(LEGACY_OPENSSL_sk_find_all)}
+    sk_ASN1_INTEGER_find_all := @LEGACY_OPENSSL_sk_find_all;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_all');
+    {$ifend}
   Result := sk_ASN1_INTEGER_find_all(st, data, pnum);
 end;
 
@@ -4405,7 +5078,11 @@ function Load_sk_ASN1_INTEGER_sort(_para: Pstack_st_ASN1_INTEGER): TOpenSSL_C_IN
 begin
   sk_ASN1_INTEGER_sort := LoadLibCryptoFunction('OPENSSL_sk_sort');
   if not assigned(sk_ASN1_INTEGER_sort) then
+    {$if declared(LEGACY_OPENSSL_sk_sort)}
+    sk_ASN1_INTEGER_sort := @LEGACY_OPENSSL_sk_sort;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_sort');
+    {$ifend}
   Result := sk_ASN1_INTEGER_sort(_para);
 end;
 
@@ -4413,7 +5090,11 @@ function Load_sk_ASN1_INTEGER_is_sorted(_para: Pstack_st_ASN1_INTEGER): TOpenSSL
 begin
   sk_ASN1_INTEGER_is_sorted := LoadLibCryptoFunction('OPENSSL_sk_is_sorted');
   if not assigned(sk_ASN1_INTEGER_is_sorted) then
+    {$if declared(LEGACY_OPENSSL_sk_is_sorted)}
+    sk_ASN1_INTEGER_is_sorted := @LEGACY_OPENSSL_sk_is_sorted;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_is_sorted');
+    {$ifend}
   Result := sk_ASN1_INTEGER_is_sorted(_para);
 end;
 
@@ -4421,7 +5102,11 @@ function Load_sk_ASN1_INTEGER_dup(st: Pstack_st_ASN1_INTEGER): Pstack_st_ASN1_IN
 begin
   sk_ASN1_INTEGER_dup := LoadLibCryptoFunction('OPENSSL_sk_dup');
   if not assigned(sk_ASN1_INTEGER_dup) then
+    {$if declared(LEGACY_OPENSSL_sk_dup)}
+    sk_ASN1_INTEGER_dup := @LEGACY_OPENSSL_sk_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_dup');
+    {$ifend}
   Result := sk_ASN1_INTEGER_dup(st);
 end;
 
@@ -4429,7 +5114,11 @@ function Load_sk_ASN1_INTEGER_deep_copy(st: Pstack_st_ASN1_INTEGER; c: Tsk_ASN1_
 begin
   sk_ASN1_INTEGER_deep_copy := LoadLibCryptoFunction('OPENSSL_sk_deep_copy');
   if not assigned(sk_ASN1_INTEGER_deep_copy) then
+    {$if declared(LEGACY_OPENSSL_sk_deep_copy)}
+    sk_ASN1_INTEGER_deep_copy := @LEGACY_OPENSSL_sk_deep_copy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_deep_copy');
+    {$ifend}
   Result := sk_ASN1_INTEGER_deep_copy(st, c, f);
 end;
 
@@ -4437,7 +5126,11 @@ function Load_sk_ASN1_INTEGER_set_cmp_func(st: Pstack_st_ASN1_INTEGER; cmp: Tsk_
 begin
   sk_ASN1_INTEGER_set_cmp_func := LoadLibCryptoFunction('OPENSSL_sk_set_cmp_func');
   if not assigned(sk_ASN1_INTEGER_set_cmp_func) then
+    {$if declared(LEGACY_OPENSSL_sk_set_cmp_func)}
+    sk_ASN1_INTEGER_set_cmp_func := @LEGACY_OPENSSL_sk_set_cmp_func;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set_cmp_func');
+    {$ifend}
   Result := sk_ASN1_INTEGER_set_cmp_func(st, cmp);
 end;
 
@@ -4445,7 +5138,11 @@ function Load_ASN1_INTEGER_new: PASN1_INTEGER; cdecl;
 begin
   ASN1_INTEGER_new := LoadLibCryptoFunction('ASN1_INTEGER_new');
   if not assigned(ASN1_INTEGER_new) then
+    {$if declared(LEGACY_ASN1_INTEGER_new)}
+    ASN1_INTEGER_new := @LEGACY_ASN1_INTEGER_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_INTEGER_new');
+    {$ifend}
   Result := ASN1_INTEGER_new;
 end;
 
@@ -4453,7 +5150,11 @@ procedure Load_ASN1_INTEGER_free(a: PASN1_INTEGER); cdecl;
 begin
   ASN1_INTEGER_free := LoadLibCryptoFunction('ASN1_INTEGER_free');
   if not assigned(ASN1_INTEGER_free) then
+    {$if declared(LEGACY_ASN1_INTEGER_free)}
+    ASN1_INTEGER_free := @LEGACY_ASN1_INTEGER_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_INTEGER_free');
+    {$ifend}
   ASN1_INTEGER_free(a);
 end;
 
@@ -4461,7 +5162,11 @@ function Load_d2i_ASN1_INTEGER(a: PPASN1_INTEGER; in_: PPbyte; len: TOpenSSL_C_I
 begin
   d2i_ASN1_INTEGER := LoadLibCryptoFunction('d2i_ASN1_INTEGER');
   if not assigned(d2i_ASN1_INTEGER) then
+    {$if declared(LEGACY_d2i_ASN1_INTEGER)}
+    d2i_ASN1_INTEGER := @LEGACY_d2i_ASN1_INTEGER;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_ASN1_INTEGER');
+    {$ifend}
   Result := d2i_ASN1_INTEGER(a, in_, len);
 end;
 
@@ -4469,7 +5174,11 @@ function Load_i2d_ASN1_INTEGER(a: PASN1_INTEGER; out_: PPbyte): TOpenSSL_C_INT; 
 begin
   i2d_ASN1_INTEGER := LoadLibCryptoFunction('i2d_ASN1_INTEGER');
   if not assigned(i2d_ASN1_INTEGER) then
+    {$if declared(LEGACY_i2d_ASN1_INTEGER)}
+    i2d_ASN1_INTEGER := @LEGACY_i2d_ASN1_INTEGER;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_ASN1_INTEGER');
+    {$ifend}
   Result := i2d_ASN1_INTEGER(a, out_);
 end;
 
@@ -4477,7 +5186,11 @@ function Load_ASN1_INTEGER_it: PASN1_ITEM; cdecl;
 begin
   ASN1_INTEGER_it := LoadLibCryptoFunction('ASN1_INTEGER_it');
   if not assigned(ASN1_INTEGER_it) then
+    {$if declared(LEGACY_ASN1_INTEGER_it)}
+    ASN1_INTEGER_it := @LEGACY_ASN1_INTEGER_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_INTEGER_it');
+    {$ifend}
   Result := ASN1_INTEGER_it;
 end;
 
@@ -4485,7 +5198,11 @@ function Load_d2i_ASN1_UINTEGER(a: PPASN1_INTEGER; pp: PPbyte; length: TOpenSSL_
 begin
   d2i_ASN1_UINTEGER := LoadLibCryptoFunction('d2i_ASN1_UINTEGER');
   if not assigned(d2i_ASN1_UINTEGER) then
+    {$if declared(LEGACY_d2i_ASN1_UINTEGER)}
+    d2i_ASN1_UINTEGER := @LEGACY_d2i_ASN1_UINTEGER;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_ASN1_UINTEGER');
+    {$ifend}
   Result := d2i_ASN1_UINTEGER(a, pp, length);
 end;
 
@@ -4493,7 +5210,11 @@ function Load_ASN1_INTEGER_dup(a: PASN1_INTEGER): PASN1_INTEGER; cdecl;
 begin
   ASN1_INTEGER_dup := LoadLibCryptoFunction('ASN1_INTEGER_dup');
   if not assigned(ASN1_INTEGER_dup) then
+    {$if declared(LEGACY_ASN1_INTEGER_dup)}
+    ASN1_INTEGER_dup := @LEGACY_ASN1_INTEGER_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_INTEGER_dup');
+    {$ifend}
   Result := ASN1_INTEGER_dup(a);
 end;
 
@@ -4501,7 +5222,11 @@ function Load_ASN1_INTEGER_cmp(x: PASN1_INTEGER; y: PASN1_INTEGER): TOpenSSL_C_I
 begin
   ASN1_INTEGER_cmp := LoadLibCryptoFunction('ASN1_INTEGER_cmp');
   if not assigned(ASN1_INTEGER_cmp) then
+    {$if declared(LEGACY_ASN1_INTEGER_cmp)}
+    ASN1_INTEGER_cmp := @LEGACY_ASN1_INTEGER_cmp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_INTEGER_cmp');
+    {$ifend}
   Result := ASN1_INTEGER_cmp(x, y);
 end;
 
@@ -4509,7 +5234,11 @@ function Load_ASN1_ENUMERATED_new: PASN1_ENUMERATED; cdecl;
 begin
   ASN1_ENUMERATED_new := LoadLibCryptoFunction('ASN1_ENUMERATED_new');
   if not assigned(ASN1_ENUMERATED_new) then
+    {$if declared(LEGACY_ASN1_ENUMERATED_new)}
+    ASN1_ENUMERATED_new := @LEGACY_ASN1_ENUMERATED_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_ENUMERATED_new');
+    {$ifend}
   Result := ASN1_ENUMERATED_new;
 end;
 
@@ -4517,7 +5246,11 @@ procedure Load_ASN1_ENUMERATED_free(a: PASN1_ENUMERATED); cdecl;
 begin
   ASN1_ENUMERATED_free := LoadLibCryptoFunction('ASN1_ENUMERATED_free');
   if not assigned(ASN1_ENUMERATED_free) then
+    {$if declared(LEGACY_ASN1_ENUMERATED_free)}
+    ASN1_ENUMERATED_free := @LEGACY_ASN1_ENUMERATED_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_ENUMERATED_free');
+    {$ifend}
   ASN1_ENUMERATED_free(a);
 end;
 
@@ -4525,7 +5258,11 @@ function Load_d2i_ASN1_ENUMERATED(a: PPASN1_ENUMERATED; in_: PPbyte; len: TOpenS
 begin
   d2i_ASN1_ENUMERATED := LoadLibCryptoFunction('d2i_ASN1_ENUMERATED');
   if not assigned(d2i_ASN1_ENUMERATED) then
+    {$if declared(LEGACY_d2i_ASN1_ENUMERATED)}
+    d2i_ASN1_ENUMERATED := @LEGACY_d2i_ASN1_ENUMERATED;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_ASN1_ENUMERATED');
+    {$ifend}
   Result := d2i_ASN1_ENUMERATED(a, in_, len);
 end;
 
@@ -4533,7 +5270,11 @@ function Load_i2d_ASN1_ENUMERATED(a: PASN1_ENUMERATED; out_: PPbyte): TOpenSSL_C
 begin
   i2d_ASN1_ENUMERATED := LoadLibCryptoFunction('i2d_ASN1_ENUMERATED');
   if not assigned(i2d_ASN1_ENUMERATED) then
+    {$if declared(LEGACY_i2d_ASN1_ENUMERATED)}
+    i2d_ASN1_ENUMERATED := @LEGACY_i2d_ASN1_ENUMERATED;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_ASN1_ENUMERATED');
+    {$ifend}
   Result := i2d_ASN1_ENUMERATED(a, out_);
 end;
 
@@ -4541,7 +5282,11 @@ function Load_ASN1_ENUMERATED_it: PASN1_ITEM; cdecl;
 begin
   ASN1_ENUMERATED_it := LoadLibCryptoFunction('ASN1_ENUMERATED_it');
   if not assigned(ASN1_ENUMERATED_it) then
+    {$if declared(LEGACY_ASN1_ENUMERATED_it)}
+    ASN1_ENUMERATED_it := @LEGACY_ASN1_ENUMERATED_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_ENUMERATED_it');
+    {$ifend}
   Result := ASN1_ENUMERATED_it;
 end;
 
@@ -4549,7 +5294,11 @@ function Load_ASN1_UTCTIME_check(a: PASN1_UTCTIME): TOpenSSL_C_INT; cdecl;
 begin
   ASN1_UTCTIME_check := LoadLibCryptoFunction('ASN1_UTCTIME_check');
   if not assigned(ASN1_UTCTIME_check) then
+    {$if declared(LEGACY_ASN1_UTCTIME_check)}
+    ASN1_UTCTIME_check := @LEGACY_ASN1_UTCTIME_check;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_UTCTIME_check');
+    {$ifend}
   Result := ASN1_UTCTIME_check(a);
 end;
 
@@ -4557,7 +5306,11 @@ function Load_ASN1_UTCTIME_set(s: PASN1_UTCTIME; t: TOpenSSL_C_TIMET): PASN1_UTC
 begin
   ASN1_UTCTIME_set := LoadLibCryptoFunction('ASN1_UTCTIME_set');
   if not assigned(ASN1_UTCTIME_set) then
+    {$if declared(LEGACY_ASN1_UTCTIME_set)}
+    ASN1_UTCTIME_set := @LEGACY_ASN1_UTCTIME_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_UTCTIME_set');
+    {$ifend}
   Result := ASN1_UTCTIME_set(s, t);
 end;
 
@@ -4565,7 +5318,11 @@ function Load_ASN1_UTCTIME_adj(s: PASN1_UTCTIME; t: TOpenSSL_C_TIMET; offset_day
 begin
   ASN1_UTCTIME_adj := LoadLibCryptoFunction('ASN1_UTCTIME_adj');
   if not assigned(ASN1_UTCTIME_adj) then
+    {$if declared(LEGACY_ASN1_UTCTIME_adj)}
+    ASN1_UTCTIME_adj := @LEGACY_ASN1_UTCTIME_adj;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_UTCTIME_adj');
+    {$ifend}
   Result := ASN1_UTCTIME_adj(s, t, offset_day, offset_sec);
 end;
 
@@ -4573,7 +5330,11 @@ function Load_ASN1_UTCTIME_set_string(s: PASN1_UTCTIME; str: PAnsiChar): TOpenSS
 begin
   ASN1_UTCTIME_set_string := LoadLibCryptoFunction('ASN1_UTCTIME_set_string');
   if not assigned(ASN1_UTCTIME_set_string) then
+    {$if declared(LEGACY_ASN1_UTCTIME_set_string)}
+    ASN1_UTCTIME_set_string := @LEGACY_ASN1_UTCTIME_set_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_UTCTIME_set_string');
+    {$ifend}
   Result := ASN1_UTCTIME_set_string(s, str);
 end;
 
@@ -4581,7 +5342,11 @@ function Load_ASN1_UTCTIME_cmp_time_t(s: PASN1_UTCTIME; t: TOpenSSL_C_TIMET): TO
 begin
   ASN1_UTCTIME_cmp_time_t := LoadLibCryptoFunction('ASN1_UTCTIME_cmp_time_t');
   if not assigned(ASN1_UTCTIME_cmp_time_t) then
+    {$if declared(LEGACY_ASN1_UTCTIME_cmp_time_t)}
+    ASN1_UTCTIME_cmp_time_t := @LEGACY_ASN1_UTCTIME_cmp_time_t;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_UTCTIME_cmp_time_t');
+    {$ifend}
   Result := ASN1_UTCTIME_cmp_time_t(s, t);
 end;
 
@@ -4589,7 +5354,11 @@ function Load_ASN1_GENERALIZEDTIME_check(a: PASN1_GENERALIZEDTIME): TOpenSSL_C_I
 begin
   ASN1_GENERALIZEDTIME_check := LoadLibCryptoFunction('ASN1_GENERALIZEDTIME_check');
   if not assigned(ASN1_GENERALIZEDTIME_check) then
+    {$if declared(LEGACY_ASN1_GENERALIZEDTIME_check)}
+    ASN1_GENERALIZEDTIME_check := @LEGACY_ASN1_GENERALIZEDTIME_check;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_GENERALIZEDTIME_check');
+    {$ifend}
   Result := ASN1_GENERALIZEDTIME_check(a);
 end;
 
@@ -4597,7 +5366,11 @@ function Load_ASN1_GENERALIZEDTIME_set(s: PASN1_GENERALIZEDTIME; t: TOpenSSL_C_T
 begin
   ASN1_GENERALIZEDTIME_set := LoadLibCryptoFunction('ASN1_GENERALIZEDTIME_set');
   if not assigned(ASN1_GENERALIZEDTIME_set) then
+    {$if declared(LEGACY_ASN1_GENERALIZEDTIME_set)}
+    ASN1_GENERALIZEDTIME_set := @LEGACY_ASN1_GENERALIZEDTIME_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_GENERALIZEDTIME_set');
+    {$ifend}
   Result := ASN1_GENERALIZEDTIME_set(s, t);
 end;
 
@@ -4605,7 +5378,11 @@ function Load_ASN1_GENERALIZEDTIME_adj(s: PASN1_GENERALIZEDTIME; t: TOpenSSL_C_T
 begin
   ASN1_GENERALIZEDTIME_adj := LoadLibCryptoFunction('ASN1_GENERALIZEDTIME_adj');
   if not assigned(ASN1_GENERALIZEDTIME_adj) then
+    {$if declared(LEGACY_ASN1_GENERALIZEDTIME_adj)}
+    ASN1_GENERALIZEDTIME_adj := @LEGACY_ASN1_GENERALIZEDTIME_adj;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_GENERALIZEDTIME_adj');
+    {$ifend}
   Result := ASN1_GENERALIZEDTIME_adj(s, t, offset_day, offset_sec);
 end;
 
@@ -4613,7 +5390,11 @@ function Load_ASN1_GENERALIZEDTIME_set_string(s: PASN1_GENERALIZEDTIME; str: PAn
 begin
   ASN1_GENERALIZEDTIME_set_string := LoadLibCryptoFunction('ASN1_GENERALIZEDTIME_set_string');
   if not assigned(ASN1_GENERALIZEDTIME_set_string) then
+    {$if declared(LEGACY_ASN1_GENERALIZEDTIME_set_string)}
+    ASN1_GENERALIZEDTIME_set_string := @LEGACY_ASN1_GENERALIZEDTIME_set_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_GENERALIZEDTIME_set_string');
+    {$ifend}
   Result := ASN1_GENERALIZEDTIME_set_string(s, str);
 end;
 
@@ -4621,7 +5402,11 @@ function Load_ASN1_TIME_diff(pday: POpenSSL_C_INT; psec: POpenSSL_C_INT; from_: 
 begin
   ASN1_TIME_diff := LoadLibCryptoFunction('ASN1_TIME_diff');
   if not assigned(ASN1_TIME_diff) then
+    {$if declared(LEGACY_ASN1_TIME_diff)}
+    ASN1_TIME_diff := @LEGACY_ASN1_TIME_diff;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_TIME_diff');
+    {$ifend}
   Result := ASN1_TIME_diff(pday, psec, from_, to_);
 end;
 
@@ -4629,7 +5414,11 @@ function Load_ASN1_OCTET_STRING_new: PASN1_OCTET_STRING; cdecl;
 begin
   ASN1_OCTET_STRING_new := LoadLibCryptoFunction('ASN1_OCTET_STRING_new');
   if not assigned(ASN1_OCTET_STRING_new) then
+    {$if declared(LEGACY_ASN1_OCTET_STRING_new)}
+    ASN1_OCTET_STRING_new := @LEGACY_ASN1_OCTET_STRING_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_OCTET_STRING_new');
+    {$ifend}
   Result := ASN1_OCTET_STRING_new;
 end;
 
@@ -4637,7 +5426,11 @@ procedure Load_ASN1_OCTET_STRING_free(a: PASN1_OCTET_STRING); cdecl;
 begin
   ASN1_OCTET_STRING_free := LoadLibCryptoFunction('ASN1_OCTET_STRING_free');
   if not assigned(ASN1_OCTET_STRING_free) then
+    {$if declared(LEGACY_ASN1_OCTET_STRING_free)}
+    ASN1_OCTET_STRING_free := @LEGACY_ASN1_OCTET_STRING_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_OCTET_STRING_free');
+    {$ifend}
   ASN1_OCTET_STRING_free(a);
 end;
 
@@ -4645,7 +5438,11 @@ function Load_d2i_ASN1_OCTET_STRING(a: PPASN1_OCTET_STRING; in_: PPbyte; len: TO
 begin
   d2i_ASN1_OCTET_STRING := LoadLibCryptoFunction('d2i_ASN1_OCTET_STRING');
   if not assigned(d2i_ASN1_OCTET_STRING) then
+    {$if declared(LEGACY_d2i_ASN1_OCTET_STRING)}
+    d2i_ASN1_OCTET_STRING := @LEGACY_d2i_ASN1_OCTET_STRING;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_ASN1_OCTET_STRING');
+    {$ifend}
   Result := d2i_ASN1_OCTET_STRING(a, in_, len);
 end;
 
@@ -4653,7 +5450,11 @@ function Load_i2d_ASN1_OCTET_STRING(a: PASN1_OCTET_STRING; out_: PPbyte): TOpenS
 begin
   i2d_ASN1_OCTET_STRING := LoadLibCryptoFunction('i2d_ASN1_OCTET_STRING');
   if not assigned(i2d_ASN1_OCTET_STRING) then
+    {$if declared(LEGACY_i2d_ASN1_OCTET_STRING)}
+    i2d_ASN1_OCTET_STRING := @LEGACY_i2d_ASN1_OCTET_STRING;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_ASN1_OCTET_STRING');
+    {$ifend}
   Result := i2d_ASN1_OCTET_STRING(a, out_);
 end;
 
@@ -4661,7 +5462,11 @@ function Load_ASN1_OCTET_STRING_it: PASN1_ITEM; cdecl;
 begin
   ASN1_OCTET_STRING_it := LoadLibCryptoFunction('ASN1_OCTET_STRING_it');
   if not assigned(ASN1_OCTET_STRING_it) then
+    {$if declared(LEGACY_ASN1_OCTET_STRING_it)}
+    ASN1_OCTET_STRING_it := @LEGACY_ASN1_OCTET_STRING_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_OCTET_STRING_it');
+    {$ifend}
   Result := ASN1_OCTET_STRING_it;
 end;
 
@@ -4669,7 +5474,11 @@ function Load_ASN1_OCTET_STRING_dup(a: PASN1_OCTET_STRING): PASN1_OCTET_STRING; 
 begin
   ASN1_OCTET_STRING_dup := LoadLibCryptoFunction('ASN1_OCTET_STRING_dup');
   if not assigned(ASN1_OCTET_STRING_dup) then
+    {$if declared(LEGACY_ASN1_OCTET_STRING_dup)}
+    ASN1_OCTET_STRING_dup := @LEGACY_ASN1_OCTET_STRING_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_OCTET_STRING_dup');
+    {$ifend}
   Result := ASN1_OCTET_STRING_dup(a);
 end;
 
@@ -4677,7 +5486,11 @@ function Load_ASN1_OCTET_STRING_cmp(a: PASN1_OCTET_STRING; b: PASN1_OCTET_STRING
 begin
   ASN1_OCTET_STRING_cmp := LoadLibCryptoFunction('ASN1_OCTET_STRING_cmp');
   if not assigned(ASN1_OCTET_STRING_cmp) then
+    {$if declared(LEGACY_ASN1_OCTET_STRING_cmp)}
+    ASN1_OCTET_STRING_cmp := @LEGACY_ASN1_OCTET_STRING_cmp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_OCTET_STRING_cmp');
+    {$ifend}
   Result := ASN1_OCTET_STRING_cmp(a, b);
 end;
 
@@ -4685,7 +5498,11 @@ function Load_ASN1_OCTET_STRING_set(str: PASN1_OCTET_STRING; data: Pbyte; len: T
 begin
   ASN1_OCTET_STRING_set := LoadLibCryptoFunction('ASN1_OCTET_STRING_set');
   if not assigned(ASN1_OCTET_STRING_set) then
+    {$if declared(LEGACY_ASN1_OCTET_STRING_set)}
+    ASN1_OCTET_STRING_set := @LEGACY_ASN1_OCTET_STRING_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_OCTET_STRING_set');
+    {$ifend}
   Result := ASN1_OCTET_STRING_set(str, data, len);
 end;
 
@@ -4693,7 +5510,11 @@ function Load_sk_ASN1_UTF8STRING_num(_para: Pstack_st_ASN1_UTF8STRING): TOpenSSL
 begin
   sk_ASN1_UTF8STRING_num := LoadLibCryptoFunction('OPENSSL_sk_num');
   if not assigned(sk_ASN1_UTF8STRING_num) then
+    {$if declared(LEGACY_OPENSSL_sk_num)}
+    sk_ASN1_UTF8STRING_num := @LEGACY_OPENSSL_sk_num;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_num');
+    {$ifend}
   Result := sk_ASN1_UTF8STRING_num(_para);
 end;
 
@@ -4701,7 +5522,11 @@ function Load_sk_ASN1_UTF8STRING_value(_para: Pstack_st_ASN1_UTF8STRING; _para2:
 begin
   sk_ASN1_UTF8STRING_value := LoadLibCryptoFunction('OPENSSL_sk_value');
   if not assigned(sk_ASN1_UTF8STRING_value) then
+    {$if declared(LEGACY_OPENSSL_sk_value)}
+    sk_ASN1_UTF8STRING_value := @LEGACY_OPENSSL_sk_value;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_value');
+    {$ifend}
   Result := sk_ASN1_UTF8STRING_value(_para, _para2);
 end;
 
@@ -4709,7 +5534,11 @@ function Load_sk_ASN1_UTF8STRING_new(cmp: Tsk_ASN1_UTF8STRING_compfunc): Pstack_
 begin
   sk_ASN1_UTF8STRING_new := LoadLibCryptoFunction('OPENSSL_sk_new');
   if not assigned(sk_ASN1_UTF8STRING_new) then
+    {$if declared(LEGACY_OPENSSL_sk_new)}
+    sk_ASN1_UTF8STRING_new := @LEGACY_OPENSSL_sk_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new');
+    {$ifend}
   Result := sk_ASN1_UTF8STRING_new(cmp);
 end;
 
@@ -4717,7 +5546,11 @@ function Load_sk_ASN1_UTF8STRING_new_null: Pstack_st_ASN1_UTF8STRING; cdecl;
 begin
   sk_ASN1_UTF8STRING_new_null := LoadLibCryptoFunction('OPENSSL_sk_new_null');
   if not assigned(sk_ASN1_UTF8STRING_new_null) then
+    {$if declared(LEGACY_OPENSSL_sk_new_null)}
+    sk_ASN1_UTF8STRING_new_null := @LEGACY_OPENSSL_sk_new_null;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_null');
+    {$ifend}
   Result := sk_ASN1_UTF8STRING_new_null;
 end;
 
@@ -4725,7 +5558,11 @@ function Load_sk_ASN1_UTF8STRING_new_reserve(cmp: Tsk_ASN1_UTF8STRING_compfunc; 
 begin
   sk_ASN1_UTF8STRING_new_reserve := LoadLibCryptoFunction('OPENSSL_sk_new_reserve');
   if not assigned(sk_ASN1_UTF8STRING_new_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_new_reserve)}
+    sk_ASN1_UTF8STRING_new_reserve := @LEGACY_OPENSSL_sk_new_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_reserve');
+    {$ifend}
   Result := sk_ASN1_UTF8STRING_new_reserve(cmp, n);
 end;
 
@@ -4733,7 +5570,11 @@ function Load_sk_ASN1_UTF8STRING_reserve(_para: Pstack_st_ASN1_UTF8STRING; n: TO
 begin
   sk_ASN1_UTF8STRING_reserve := LoadLibCryptoFunction('OPENSSL_sk_reserve');
   if not assigned(sk_ASN1_UTF8STRING_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_reserve)}
+    sk_ASN1_UTF8STRING_reserve := @LEGACY_OPENSSL_sk_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_reserve');
+    {$ifend}
   Result := sk_ASN1_UTF8STRING_reserve(_para, n);
 end;
 
@@ -4741,7 +5582,11 @@ function Load_sk_ASN1_UTF8STRING_free(_para: Pstack_st_ASN1_UTF8STRING): TOpenSS
 begin
   sk_ASN1_UTF8STRING_free := LoadLibCryptoFunction('OPENSSL_sk_free');
   if not assigned(sk_ASN1_UTF8STRING_free) then
+    {$if declared(LEGACY_OPENSSL_sk_free)}
+    sk_ASN1_UTF8STRING_free := @LEGACY_OPENSSL_sk_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_free');
+    {$ifend}
   Result := sk_ASN1_UTF8STRING_free(_para);
 end;
 
@@ -4749,7 +5594,11 @@ function Load_sk_ASN1_UTF8STRING_zero(_para: Pstack_st_ASN1_UTF8STRING): TOpenSS
 begin
   sk_ASN1_UTF8STRING_zero := LoadLibCryptoFunction('OPENSSL_sk_zero');
   if not assigned(sk_ASN1_UTF8STRING_zero) then
+    {$if declared(LEGACY_OPENSSL_sk_zero)}
+    sk_ASN1_UTF8STRING_zero := @LEGACY_OPENSSL_sk_zero;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_zero');
+    {$ifend}
   Result := sk_ASN1_UTF8STRING_zero(_para);
 end;
 
@@ -4757,7 +5606,11 @@ function Load_sk_ASN1_UTF8STRING_delete(st: Pstack_st_ASN1_UTF8STRING; loc: TOpe
 begin
   sk_ASN1_UTF8STRING_delete := LoadLibCryptoFunction('OPENSSL_sk_delete');
   if not assigned(sk_ASN1_UTF8STRING_delete) then
+    {$if declared(LEGACY_OPENSSL_sk_delete)}
+    sk_ASN1_UTF8STRING_delete := @LEGACY_OPENSSL_sk_delete;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete');
+    {$ifend}
   Result := sk_ASN1_UTF8STRING_delete(st, loc);
 end;
 
@@ -4765,7 +5618,11 @@ function Load_sk_ASN1_UTF8STRING_delete_ptr(st: Pstack_st_ASN1_UTF8STRING; ptr: 
 begin
   sk_ASN1_UTF8STRING_delete_ptr := LoadLibCryptoFunction('OPENSSL_sk_delete_ptr');
   if not assigned(sk_ASN1_UTF8STRING_delete_ptr) then
+    {$if declared(LEGACY_OPENSSL_sk_delete_ptr)}
+    sk_ASN1_UTF8STRING_delete_ptr := @LEGACY_OPENSSL_sk_delete_ptr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete_ptr');
+    {$ifend}
   Result := sk_ASN1_UTF8STRING_delete_ptr(st, ptr);
 end;
 
@@ -4773,7 +5630,11 @@ function Load_sk_ASN1_UTF8STRING_push(st: Pstack_st_ASN1_UTF8STRING; data: point
 begin
   sk_ASN1_UTF8STRING_push := LoadLibCryptoFunction('OPENSSL_sk_push');
   if not assigned(sk_ASN1_UTF8STRING_push) then
+    {$if declared(LEGACY_OPENSSL_sk_push)}
+    sk_ASN1_UTF8STRING_push := @LEGACY_OPENSSL_sk_push;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_push');
+    {$ifend}
   Result := sk_ASN1_UTF8STRING_push(st, data);
 end;
 
@@ -4781,7 +5642,11 @@ function Load_sk_ASN1_UTF8STRING_unshift(st: Pstack_st_ASN1_UTF8STRING; data: po
 begin
   sk_ASN1_UTF8STRING_unshift := LoadLibCryptoFunction('OPENSSL_sk_unshift');
   if not assigned(sk_ASN1_UTF8STRING_unshift) then
+    {$if declared(LEGACY_OPENSSL_sk_unshift)}
+    sk_ASN1_UTF8STRING_unshift := @LEGACY_OPENSSL_sk_unshift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_unshift');
+    {$ifend}
   Result := sk_ASN1_UTF8STRING_unshift(st, data);
 end;
 
@@ -4789,7 +5654,11 @@ function Load_sk_ASN1_UTF8STRING_pop(_para: Pstack_st_ASN1_UTF8STRING): Pstack_s
 begin
   sk_ASN1_UTF8STRING_pop := LoadLibCryptoFunction('OPENSSL_sk_pop');
   if not assigned(sk_ASN1_UTF8STRING_pop) then
+    {$if declared(LEGACY_OPENSSL_sk_pop)}
+    sk_ASN1_UTF8STRING_pop := @LEGACY_OPENSSL_sk_pop;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop');
+    {$ifend}
   Result := sk_ASN1_UTF8STRING_pop(_para);
 end;
 
@@ -4797,7 +5666,11 @@ function Load_sk_ASN1_UTF8STRING_shift(_para: Pstack_st_ASN1_UTF8STRING): Pstack
 begin
   sk_ASN1_UTF8STRING_shift := LoadLibCryptoFunction('OPENSSL_sk_shift');
   if not assigned(sk_ASN1_UTF8STRING_shift) then
+    {$if declared(LEGACY_OPENSSL_sk_shift)}
+    sk_ASN1_UTF8STRING_shift := @LEGACY_OPENSSL_sk_shift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_shift');
+    {$ifend}
   Result := sk_ASN1_UTF8STRING_shift(_para);
 end;
 
@@ -4805,7 +5678,11 @@ procedure Load_sk_ASN1_UTF8STRING_pop_free(st: Pstack_st_ASN1_UTF8STRING; func: 
 begin
   sk_ASN1_UTF8STRING_pop_free := LoadLibCryptoFunction('OPENSSL_sk_pop_free');
   if not assigned(sk_ASN1_UTF8STRING_pop_free) then
+    {$if declared(LEGACY_OPENSSL_sk_pop_free)}
+    sk_ASN1_UTF8STRING_pop_free := @LEGACY_OPENSSL_sk_pop_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop_free');
+    {$ifend}
   sk_ASN1_UTF8STRING_pop_free(st, func);
 end;
 
@@ -4813,7 +5690,11 @@ function Load_sk_ASN1_UTF8STRING_insert(st: Pstack_st_ASN1_UTF8STRING; data: poi
 begin
   sk_ASN1_UTF8STRING_insert := LoadLibCryptoFunction('OPENSSL_sk_insert');
   if not assigned(sk_ASN1_UTF8STRING_insert) then
+    {$if declared(LEGACY_OPENSSL_sk_insert)}
+    sk_ASN1_UTF8STRING_insert := @LEGACY_OPENSSL_sk_insert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_insert');
+    {$ifend}
   Result := sk_ASN1_UTF8STRING_insert(st, data, where);
 end;
 
@@ -4821,7 +5702,11 @@ function Load_sk_ASN1_UTF8STRING_set(st: Pstack_st_ASN1_UTF8STRING; i: TOpenSSL_
 begin
   sk_ASN1_UTF8STRING_set := LoadLibCryptoFunction('OPENSSL_sk_set');
   if not assigned(sk_ASN1_UTF8STRING_set) then
+    {$if declared(LEGACY_OPENSSL_sk_set)}
+    sk_ASN1_UTF8STRING_set := @LEGACY_OPENSSL_sk_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set');
+    {$ifend}
   Result := sk_ASN1_UTF8STRING_set(st, i, data);
 end;
 
@@ -4829,7 +5714,11 @@ function Load_sk_ASN1_UTF8STRING_find(st: Pstack_st_ASN1_UTF8STRING; data: point
 begin
   sk_ASN1_UTF8STRING_find := LoadLibCryptoFunction('OPENSSL_sk_find');
   if not assigned(sk_ASN1_UTF8STRING_find) then
+    {$if declared(LEGACY_OPENSSL_sk_find)}
+    sk_ASN1_UTF8STRING_find := @LEGACY_OPENSSL_sk_find;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find');
+    {$ifend}
   Result := sk_ASN1_UTF8STRING_find(st, data);
 end;
 
@@ -4837,7 +5726,11 @@ function Load_sk_ASN1_UTF8STRING_find_ex(st: Pstack_st_ASN1_UTF8STRING; data: po
 begin
   sk_ASN1_UTF8STRING_find_ex := LoadLibCryptoFunction('OPENSSL_sk_find_ex');
   if not assigned(sk_ASN1_UTF8STRING_find_ex) then
+    {$if declared(LEGACY_OPENSSL_sk_find_ex)}
+    sk_ASN1_UTF8STRING_find_ex := @LEGACY_OPENSSL_sk_find_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_ex');
+    {$ifend}
   Result := sk_ASN1_UTF8STRING_find_ex(st, data);
 end;
 
@@ -4845,7 +5738,11 @@ function Load_sk_ASN1_UTF8STRING_find_all(st: Pstack_st_ASN1_UTF8STRING; data: p
 begin
   sk_ASN1_UTF8STRING_find_all := LoadLibCryptoFunction('OPENSSL_sk_find_all');
   if not assigned(sk_ASN1_UTF8STRING_find_all) then
+    {$if declared(LEGACY_OPENSSL_sk_find_all)}
+    sk_ASN1_UTF8STRING_find_all := @LEGACY_OPENSSL_sk_find_all;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_all');
+    {$ifend}
   Result := sk_ASN1_UTF8STRING_find_all(st, data, pnum);
 end;
 
@@ -4853,7 +5750,11 @@ function Load_sk_ASN1_UTF8STRING_sort(_para: Pstack_st_ASN1_UTF8STRING): TOpenSS
 begin
   sk_ASN1_UTF8STRING_sort := LoadLibCryptoFunction('OPENSSL_sk_sort');
   if not assigned(sk_ASN1_UTF8STRING_sort) then
+    {$if declared(LEGACY_OPENSSL_sk_sort)}
+    sk_ASN1_UTF8STRING_sort := @LEGACY_OPENSSL_sk_sort;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_sort');
+    {$ifend}
   Result := sk_ASN1_UTF8STRING_sort(_para);
 end;
 
@@ -4861,7 +5762,11 @@ function Load_sk_ASN1_UTF8STRING_is_sorted(_para: Pstack_st_ASN1_UTF8STRING): TO
 begin
   sk_ASN1_UTF8STRING_is_sorted := LoadLibCryptoFunction('OPENSSL_sk_is_sorted');
   if not assigned(sk_ASN1_UTF8STRING_is_sorted) then
+    {$if declared(LEGACY_OPENSSL_sk_is_sorted)}
+    sk_ASN1_UTF8STRING_is_sorted := @LEGACY_OPENSSL_sk_is_sorted;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_is_sorted');
+    {$ifend}
   Result := sk_ASN1_UTF8STRING_is_sorted(_para);
 end;
 
@@ -4869,7 +5774,11 @@ function Load_sk_ASN1_UTF8STRING_dup(st: Pstack_st_ASN1_UTF8STRING): Pstack_st_A
 begin
   sk_ASN1_UTF8STRING_dup := LoadLibCryptoFunction('OPENSSL_sk_dup');
   if not assigned(sk_ASN1_UTF8STRING_dup) then
+    {$if declared(LEGACY_OPENSSL_sk_dup)}
+    sk_ASN1_UTF8STRING_dup := @LEGACY_OPENSSL_sk_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_dup');
+    {$ifend}
   Result := sk_ASN1_UTF8STRING_dup(st);
 end;
 
@@ -4877,7 +5786,11 @@ function Load_sk_ASN1_UTF8STRING_deep_copy(st: Pstack_st_ASN1_UTF8STRING; c: Tsk
 begin
   sk_ASN1_UTF8STRING_deep_copy := LoadLibCryptoFunction('OPENSSL_sk_deep_copy');
   if not assigned(sk_ASN1_UTF8STRING_deep_copy) then
+    {$if declared(LEGACY_OPENSSL_sk_deep_copy)}
+    sk_ASN1_UTF8STRING_deep_copy := @LEGACY_OPENSSL_sk_deep_copy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_deep_copy');
+    {$ifend}
   Result := sk_ASN1_UTF8STRING_deep_copy(st, c, f);
 end;
 
@@ -4885,7 +5798,11 @@ function Load_sk_ASN1_UTF8STRING_set_cmp_func(st: Pstack_st_ASN1_UTF8STRING; cmp
 begin
   sk_ASN1_UTF8STRING_set_cmp_func := LoadLibCryptoFunction('OPENSSL_sk_set_cmp_func');
   if not assigned(sk_ASN1_UTF8STRING_set_cmp_func) then
+    {$if declared(LEGACY_OPENSSL_sk_set_cmp_func)}
+    sk_ASN1_UTF8STRING_set_cmp_func := @LEGACY_OPENSSL_sk_set_cmp_func;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set_cmp_func');
+    {$ifend}
   Result := sk_ASN1_UTF8STRING_set_cmp_func(st, cmp);
 end;
 
@@ -4893,7 +5810,11 @@ function Load_ASN1_VISIBLESTRING_new: PASN1_VISIBLESTRING; cdecl;
 begin
   ASN1_VISIBLESTRING_new := LoadLibCryptoFunction('ASN1_VISIBLESTRING_new');
   if not assigned(ASN1_VISIBLESTRING_new) then
+    {$if declared(LEGACY_ASN1_VISIBLESTRING_new)}
+    ASN1_VISIBLESTRING_new := @LEGACY_ASN1_VISIBLESTRING_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_VISIBLESTRING_new');
+    {$ifend}
   Result := ASN1_VISIBLESTRING_new;
 end;
 
@@ -4901,7 +5822,11 @@ procedure Load_ASN1_VISIBLESTRING_free(a: PASN1_VISIBLESTRING); cdecl;
 begin
   ASN1_VISIBLESTRING_free := LoadLibCryptoFunction('ASN1_VISIBLESTRING_free');
   if not assigned(ASN1_VISIBLESTRING_free) then
+    {$if declared(LEGACY_ASN1_VISIBLESTRING_free)}
+    ASN1_VISIBLESTRING_free := @LEGACY_ASN1_VISIBLESTRING_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_VISIBLESTRING_free');
+    {$ifend}
   ASN1_VISIBLESTRING_free(a);
 end;
 
@@ -4909,7 +5834,11 @@ function Load_d2i_ASN1_VISIBLESTRING(a: PPASN1_VISIBLESTRING; in_: PPbyte; len: 
 begin
   d2i_ASN1_VISIBLESTRING := LoadLibCryptoFunction('d2i_ASN1_VISIBLESTRING');
   if not assigned(d2i_ASN1_VISIBLESTRING) then
+    {$if declared(LEGACY_d2i_ASN1_VISIBLESTRING)}
+    d2i_ASN1_VISIBLESTRING := @LEGACY_d2i_ASN1_VISIBLESTRING;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_ASN1_VISIBLESTRING');
+    {$ifend}
   Result := d2i_ASN1_VISIBLESTRING(a, in_, len);
 end;
 
@@ -4917,7 +5846,11 @@ function Load_i2d_ASN1_VISIBLESTRING(a: PASN1_VISIBLESTRING; out_: PPbyte): TOpe
 begin
   i2d_ASN1_VISIBLESTRING := LoadLibCryptoFunction('i2d_ASN1_VISIBLESTRING');
   if not assigned(i2d_ASN1_VISIBLESTRING) then
+    {$if declared(LEGACY_i2d_ASN1_VISIBLESTRING)}
+    i2d_ASN1_VISIBLESTRING := @LEGACY_i2d_ASN1_VISIBLESTRING;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_ASN1_VISIBLESTRING');
+    {$ifend}
   Result := i2d_ASN1_VISIBLESTRING(a, out_);
 end;
 
@@ -4925,7 +5858,11 @@ function Load_ASN1_VISIBLESTRING_it: PASN1_ITEM; cdecl;
 begin
   ASN1_VISIBLESTRING_it := LoadLibCryptoFunction('ASN1_VISIBLESTRING_it');
   if not assigned(ASN1_VISIBLESTRING_it) then
+    {$if declared(LEGACY_ASN1_VISIBLESTRING_it)}
+    ASN1_VISIBLESTRING_it := @LEGACY_ASN1_VISIBLESTRING_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_VISIBLESTRING_it');
+    {$ifend}
   Result := ASN1_VISIBLESTRING_it;
 end;
 
@@ -4933,7 +5870,11 @@ function Load_ASN1_UNIVERSALSTRING_new: PASN1_UNIVERSALSTRING; cdecl;
 begin
   ASN1_UNIVERSALSTRING_new := LoadLibCryptoFunction('ASN1_UNIVERSALSTRING_new');
   if not assigned(ASN1_UNIVERSALSTRING_new) then
+    {$if declared(LEGACY_ASN1_UNIVERSALSTRING_new)}
+    ASN1_UNIVERSALSTRING_new := @LEGACY_ASN1_UNIVERSALSTRING_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_UNIVERSALSTRING_new');
+    {$ifend}
   Result := ASN1_UNIVERSALSTRING_new;
 end;
 
@@ -4941,7 +5882,11 @@ procedure Load_ASN1_UNIVERSALSTRING_free(a: PASN1_UNIVERSALSTRING); cdecl;
 begin
   ASN1_UNIVERSALSTRING_free := LoadLibCryptoFunction('ASN1_UNIVERSALSTRING_free');
   if not assigned(ASN1_UNIVERSALSTRING_free) then
+    {$if declared(LEGACY_ASN1_UNIVERSALSTRING_free)}
+    ASN1_UNIVERSALSTRING_free := @LEGACY_ASN1_UNIVERSALSTRING_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_UNIVERSALSTRING_free');
+    {$ifend}
   ASN1_UNIVERSALSTRING_free(a);
 end;
 
@@ -4949,7 +5894,11 @@ function Load_d2i_ASN1_UNIVERSALSTRING(a: PPASN1_UNIVERSALSTRING; in_: PPbyte; l
 begin
   d2i_ASN1_UNIVERSALSTRING := LoadLibCryptoFunction('d2i_ASN1_UNIVERSALSTRING');
   if not assigned(d2i_ASN1_UNIVERSALSTRING) then
+    {$if declared(LEGACY_d2i_ASN1_UNIVERSALSTRING)}
+    d2i_ASN1_UNIVERSALSTRING := @LEGACY_d2i_ASN1_UNIVERSALSTRING;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_ASN1_UNIVERSALSTRING');
+    {$ifend}
   Result := d2i_ASN1_UNIVERSALSTRING(a, in_, len);
 end;
 
@@ -4957,7 +5906,11 @@ function Load_i2d_ASN1_UNIVERSALSTRING(a: PASN1_UNIVERSALSTRING; out_: PPbyte): 
 begin
   i2d_ASN1_UNIVERSALSTRING := LoadLibCryptoFunction('i2d_ASN1_UNIVERSALSTRING');
   if not assigned(i2d_ASN1_UNIVERSALSTRING) then
+    {$if declared(LEGACY_i2d_ASN1_UNIVERSALSTRING)}
+    i2d_ASN1_UNIVERSALSTRING := @LEGACY_i2d_ASN1_UNIVERSALSTRING;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_ASN1_UNIVERSALSTRING');
+    {$ifend}
   Result := i2d_ASN1_UNIVERSALSTRING(a, out_);
 end;
 
@@ -4965,7 +5918,11 @@ function Load_ASN1_UNIVERSALSTRING_it: PASN1_ITEM; cdecl;
 begin
   ASN1_UNIVERSALSTRING_it := LoadLibCryptoFunction('ASN1_UNIVERSALSTRING_it');
   if not assigned(ASN1_UNIVERSALSTRING_it) then
+    {$if declared(LEGACY_ASN1_UNIVERSALSTRING_it)}
+    ASN1_UNIVERSALSTRING_it := @LEGACY_ASN1_UNIVERSALSTRING_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_UNIVERSALSTRING_it');
+    {$ifend}
   Result := ASN1_UNIVERSALSTRING_it;
 end;
 
@@ -4973,7 +5930,11 @@ function Load_ASN1_UTF8STRING_new: PASN1_UTF8STRING; cdecl;
 begin
   ASN1_UTF8STRING_new := LoadLibCryptoFunction('ASN1_UTF8STRING_new');
   if not assigned(ASN1_UTF8STRING_new) then
+    {$if declared(LEGACY_ASN1_UTF8STRING_new)}
+    ASN1_UTF8STRING_new := @LEGACY_ASN1_UTF8STRING_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_UTF8STRING_new');
+    {$ifend}
   Result := ASN1_UTF8STRING_new;
 end;
 
@@ -4981,7 +5942,11 @@ procedure Load_ASN1_UTF8STRING_free(a: PASN1_UTF8STRING); cdecl;
 begin
   ASN1_UTF8STRING_free := LoadLibCryptoFunction('ASN1_UTF8STRING_free');
   if not assigned(ASN1_UTF8STRING_free) then
+    {$if declared(LEGACY_ASN1_UTF8STRING_free)}
+    ASN1_UTF8STRING_free := @LEGACY_ASN1_UTF8STRING_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_UTF8STRING_free');
+    {$ifend}
   ASN1_UTF8STRING_free(a);
 end;
 
@@ -4989,7 +5954,11 @@ function Load_d2i_ASN1_UTF8STRING(a: PPASN1_UTF8STRING; in_: PPbyte; len: TOpenS
 begin
   d2i_ASN1_UTF8STRING := LoadLibCryptoFunction('d2i_ASN1_UTF8STRING');
   if not assigned(d2i_ASN1_UTF8STRING) then
+    {$if declared(LEGACY_d2i_ASN1_UTF8STRING)}
+    d2i_ASN1_UTF8STRING := @LEGACY_d2i_ASN1_UTF8STRING;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_ASN1_UTF8STRING');
+    {$ifend}
   Result := d2i_ASN1_UTF8STRING(a, in_, len);
 end;
 
@@ -4997,7 +5966,11 @@ function Load_i2d_ASN1_UTF8STRING(a: PASN1_UTF8STRING; out_: PPbyte): TOpenSSL_C
 begin
   i2d_ASN1_UTF8STRING := LoadLibCryptoFunction('i2d_ASN1_UTF8STRING');
   if not assigned(i2d_ASN1_UTF8STRING) then
+    {$if declared(LEGACY_i2d_ASN1_UTF8STRING)}
+    i2d_ASN1_UTF8STRING := @LEGACY_i2d_ASN1_UTF8STRING;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_ASN1_UTF8STRING');
+    {$ifend}
   Result := i2d_ASN1_UTF8STRING(a, out_);
 end;
 
@@ -5005,7 +5978,11 @@ function Load_ASN1_UTF8STRING_it: PASN1_ITEM; cdecl;
 begin
   ASN1_UTF8STRING_it := LoadLibCryptoFunction('ASN1_UTF8STRING_it');
   if not assigned(ASN1_UTF8STRING_it) then
+    {$if declared(LEGACY_ASN1_UTF8STRING_it)}
+    ASN1_UTF8STRING_it := @LEGACY_ASN1_UTF8STRING_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_UTF8STRING_it');
+    {$ifend}
   Result := ASN1_UTF8STRING_it;
 end;
 
@@ -5013,7 +5990,11 @@ function Load_ASN1_NULL_new: PASN1_NULL; cdecl;
 begin
   ASN1_NULL_new := LoadLibCryptoFunction('ASN1_NULL_new');
   if not assigned(ASN1_NULL_new) then
+    {$if declared(LEGACY_ASN1_NULL_new)}
+    ASN1_NULL_new := @LEGACY_ASN1_NULL_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_NULL_new');
+    {$ifend}
   Result := ASN1_NULL_new;
 end;
 
@@ -5021,7 +6002,11 @@ procedure Load_ASN1_NULL_free(a: PASN1_NULL); cdecl;
 begin
   ASN1_NULL_free := LoadLibCryptoFunction('ASN1_NULL_free');
   if not assigned(ASN1_NULL_free) then
+    {$if declared(LEGACY_ASN1_NULL_free)}
+    ASN1_NULL_free := @LEGACY_ASN1_NULL_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_NULL_free');
+    {$ifend}
   ASN1_NULL_free(a);
 end;
 
@@ -5029,7 +6014,11 @@ function Load_d2i_ASN1_NULL(a: PPASN1_NULL; in_: PPbyte; len: TOpenSSL_C_INT): P
 begin
   d2i_ASN1_NULL := LoadLibCryptoFunction('d2i_ASN1_NULL');
   if not assigned(d2i_ASN1_NULL) then
+    {$if declared(LEGACY_d2i_ASN1_NULL)}
+    d2i_ASN1_NULL := @LEGACY_d2i_ASN1_NULL;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_ASN1_NULL');
+    {$ifend}
   Result := d2i_ASN1_NULL(a, in_, len);
 end;
 
@@ -5037,7 +6026,11 @@ function Load_i2d_ASN1_NULL(a: PASN1_NULL; out_: PPbyte): TOpenSSL_C_INT; cdecl;
 begin
   i2d_ASN1_NULL := LoadLibCryptoFunction('i2d_ASN1_NULL');
   if not assigned(i2d_ASN1_NULL) then
+    {$if declared(LEGACY_i2d_ASN1_NULL)}
+    i2d_ASN1_NULL := @LEGACY_i2d_ASN1_NULL;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_ASN1_NULL');
+    {$ifend}
   Result := i2d_ASN1_NULL(a, out_);
 end;
 
@@ -5045,7 +6038,11 @@ function Load_ASN1_NULL_it: PASN1_ITEM; cdecl;
 begin
   ASN1_NULL_it := LoadLibCryptoFunction('ASN1_NULL_it');
   if not assigned(ASN1_NULL_it) then
+    {$if declared(LEGACY_ASN1_NULL_it)}
+    ASN1_NULL_it := @LEGACY_ASN1_NULL_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_NULL_it');
+    {$ifend}
   Result := ASN1_NULL_it;
 end;
 
@@ -5053,7 +6050,11 @@ function Load_ASN1_BMPSTRING_new: PASN1_BMPSTRING; cdecl;
 begin
   ASN1_BMPSTRING_new := LoadLibCryptoFunction('ASN1_BMPSTRING_new');
   if not assigned(ASN1_BMPSTRING_new) then
+    {$if declared(LEGACY_ASN1_BMPSTRING_new)}
+    ASN1_BMPSTRING_new := @LEGACY_ASN1_BMPSTRING_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_BMPSTRING_new');
+    {$ifend}
   Result := ASN1_BMPSTRING_new;
 end;
 
@@ -5061,7 +6062,11 @@ procedure Load_ASN1_BMPSTRING_free(a: PASN1_BMPSTRING); cdecl;
 begin
   ASN1_BMPSTRING_free := LoadLibCryptoFunction('ASN1_BMPSTRING_free');
   if not assigned(ASN1_BMPSTRING_free) then
+    {$if declared(LEGACY_ASN1_BMPSTRING_free)}
+    ASN1_BMPSTRING_free := @LEGACY_ASN1_BMPSTRING_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_BMPSTRING_free');
+    {$ifend}
   ASN1_BMPSTRING_free(a);
 end;
 
@@ -5069,7 +6074,11 @@ function Load_d2i_ASN1_BMPSTRING(a: PPASN1_BMPSTRING; in_: PPbyte; len: TOpenSSL
 begin
   d2i_ASN1_BMPSTRING := LoadLibCryptoFunction('d2i_ASN1_BMPSTRING');
   if not assigned(d2i_ASN1_BMPSTRING) then
+    {$if declared(LEGACY_d2i_ASN1_BMPSTRING)}
+    d2i_ASN1_BMPSTRING := @LEGACY_d2i_ASN1_BMPSTRING;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_ASN1_BMPSTRING');
+    {$ifend}
   Result := d2i_ASN1_BMPSTRING(a, in_, len);
 end;
 
@@ -5077,7 +6086,11 @@ function Load_i2d_ASN1_BMPSTRING(a: PASN1_BMPSTRING; out_: PPbyte): TOpenSSL_C_I
 begin
   i2d_ASN1_BMPSTRING := LoadLibCryptoFunction('i2d_ASN1_BMPSTRING');
   if not assigned(i2d_ASN1_BMPSTRING) then
+    {$if declared(LEGACY_i2d_ASN1_BMPSTRING)}
+    i2d_ASN1_BMPSTRING := @LEGACY_i2d_ASN1_BMPSTRING;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_ASN1_BMPSTRING');
+    {$ifend}
   Result := i2d_ASN1_BMPSTRING(a, out_);
 end;
 
@@ -5085,7 +6098,11 @@ function Load_ASN1_BMPSTRING_it: PASN1_ITEM; cdecl;
 begin
   ASN1_BMPSTRING_it := LoadLibCryptoFunction('ASN1_BMPSTRING_it');
   if not assigned(ASN1_BMPSTRING_it) then
+    {$if declared(LEGACY_ASN1_BMPSTRING_it)}
+    ASN1_BMPSTRING_it := @LEGACY_ASN1_BMPSTRING_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_BMPSTRING_it');
+    {$ifend}
   Result := ASN1_BMPSTRING_it;
 end;
 
@@ -5093,7 +6110,11 @@ function Load_UTF8_getc(str: Pbyte; len: TOpenSSL_C_INT; val: POpenSSL_C_UINT): 
 begin
   UTF8_getc := LoadLibCryptoFunction('UTF8_getc');
   if not assigned(UTF8_getc) then
+    {$if declared(LEGACY_UTF8_getc)}
+    UTF8_getc := @LEGACY_UTF8_getc;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UTF8_getc');
+    {$ifend}
   Result := UTF8_getc(str, len, val);
 end;
 
@@ -5101,7 +6122,11 @@ function Load_UTF8_putc(str: Pbyte; len: TOpenSSL_C_INT; value: TOpenSSL_C_UINT)
 begin
   UTF8_putc := LoadLibCryptoFunction('UTF8_putc');
   if not assigned(UTF8_putc) then
+    {$if declared(LEGACY_UTF8_putc)}
+    UTF8_putc := @LEGACY_UTF8_putc;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('UTF8_putc');
+    {$ifend}
   Result := UTF8_putc(str, len, value);
 end;
 
@@ -5109,7 +6134,11 @@ function Load_sk_ASN1_GENERALSTRING_num(_para: Pstack_st_ASN1_GENERALSTRING): TO
 begin
   sk_ASN1_GENERALSTRING_num := LoadLibCryptoFunction('OPENSSL_sk_num');
   if not assigned(sk_ASN1_GENERALSTRING_num) then
+    {$if declared(LEGACY_OPENSSL_sk_num)}
+    sk_ASN1_GENERALSTRING_num := @LEGACY_OPENSSL_sk_num;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_num');
+    {$ifend}
   Result := sk_ASN1_GENERALSTRING_num(_para);
 end;
 
@@ -5117,7 +6146,11 @@ function Load_sk_ASN1_GENERALSTRING_value(_para: Pstack_st_ASN1_GENERALSTRING; _
 begin
   sk_ASN1_GENERALSTRING_value := LoadLibCryptoFunction('OPENSSL_sk_value');
   if not assigned(sk_ASN1_GENERALSTRING_value) then
+    {$if declared(LEGACY_OPENSSL_sk_value)}
+    sk_ASN1_GENERALSTRING_value := @LEGACY_OPENSSL_sk_value;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_value');
+    {$ifend}
   Result := sk_ASN1_GENERALSTRING_value(_para, _para2);
 end;
 
@@ -5125,7 +6158,11 @@ function Load_sk_ASN1_GENERALSTRING_new(cmp: Tsk_ASN1_GENERALSTRING_compfunc): P
 begin
   sk_ASN1_GENERALSTRING_new := LoadLibCryptoFunction('OPENSSL_sk_new');
   if not assigned(sk_ASN1_GENERALSTRING_new) then
+    {$if declared(LEGACY_OPENSSL_sk_new)}
+    sk_ASN1_GENERALSTRING_new := @LEGACY_OPENSSL_sk_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new');
+    {$ifend}
   Result := sk_ASN1_GENERALSTRING_new(cmp);
 end;
 
@@ -5133,7 +6170,11 @@ function Load_sk_ASN1_GENERALSTRING_new_null: Pstack_st_ASN1_GENERALSTRING; cdec
 begin
   sk_ASN1_GENERALSTRING_new_null := LoadLibCryptoFunction('OPENSSL_sk_new_null');
   if not assigned(sk_ASN1_GENERALSTRING_new_null) then
+    {$if declared(LEGACY_OPENSSL_sk_new_null)}
+    sk_ASN1_GENERALSTRING_new_null := @LEGACY_OPENSSL_sk_new_null;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_null');
+    {$ifend}
   Result := sk_ASN1_GENERALSTRING_new_null;
 end;
 
@@ -5141,7 +6182,11 @@ function Load_sk_ASN1_GENERALSTRING_new_reserve(cmp: Tsk_ASN1_GENERALSTRING_comp
 begin
   sk_ASN1_GENERALSTRING_new_reserve := LoadLibCryptoFunction('OPENSSL_sk_new_reserve');
   if not assigned(sk_ASN1_GENERALSTRING_new_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_new_reserve)}
+    sk_ASN1_GENERALSTRING_new_reserve := @LEGACY_OPENSSL_sk_new_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_reserve');
+    {$ifend}
   Result := sk_ASN1_GENERALSTRING_new_reserve(cmp, n);
 end;
 
@@ -5149,7 +6194,11 @@ function Load_sk_ASN1_GENERALSTRING_reserve(_para: Pstack_st_ASN1_GENERALSTRING;
 begin
   sk_ASN1_GENERALSTRING_reserve := LoadLibCryptoFunction('OPENSSL_sk_reserve');
   if not assigned(sk_ASN1_GENERALSTRING_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_reserve)}
+    sk_ASN1_GENERALSTRING_reserve := @LEGACY_OPENSSL_sk_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_reserve');
+    {$ifend}
   Result := sk_ASN1_GENERALSTRING_reserve(_para, n);
 end;
 
@@ -5157,7 +6206,11 @@ function Load_sk_ASN1_GENERALSTRING_free(_para: Pstack_st_ASN1_GENERALSTRING): T
 begin
   sk_ASN1_GENERALSTRING_free := LoadLibCryptoFunction('OPENSSL_sk_free');
   if not assigned(sk_ASN1_GENERALSTRING_free) then
+    {$if declared(LEGACY_OPENSSL_sk_free)}
+    sk_ASN1_GENERALSTRING_free := @LEGACY_OPENSSL_sk_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_free');
+    {$ifend}
   Result := sk_ASN1_GENERALSTRING_free(_para);
 end;
 
@@ -5165,7 +6218,11 @@ function Load_sk_ASN1_GENERALSTRING_zero(_para: Pstack_st_ASN1_GENERALSTRING): T
 begin
   sk_ASN1_GENERALSTRING_zero := LoadLibCryptoFunction('OPENSSL_sk_zero');
   if not assigned(sk_ASN1_GENERALSTRING_zero) then
+    {$if declared(LEGACY_OPENSSL_sk_zero)}
+    sk_ASN1_GENERALSTRING_zero := @LEGACY_OPENSSL_sk_zero;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_zero');
+    {$ifend}
   Result := sk_ASN1_GENERALSTRING_zero(_para);
 end;
 
@@ -5173,7 +6230,11 @@ function Load_sk_ASN1_GENERALSTRING_delete(st: Pstack_st_ASN1_GENERALSTRING; loc
 begin
   sk_ASN1_GENERALSTRING_delete := LoadLibCryptoFunction('OPENSSL_sk_delete');
   if not assigned(sk_ASN1_GENERALSTRING_delete) then
+    {$if declared(LEGACY_OPENSSL_sk_delete)}
+    sk_ASN1_GENERALSTRING_delete := @LEGACY_OPENSSL_sk_delete;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete');
+    {$ifend}
   Result := sk_ASN1_GENERALSTRING_delete(st, loc);
 end;
 
@@ -5181,7 +6242,11 @@ function Load_sk_ASN1_GENERALSTRING_delete_ptr(st: Pstack_st_ASN1_GENERALSTRING;
 begin
   sk_ASN1_GENERALSTRING_delete_ptr := LoadLibCryptoFunction('OPENSSL_sk_delete_ptr');
   if not assigned(sk_ASN1_GENERALSTRING_delete_ptr) then
+    {$if declared(LEGACY_OPENSSL_sk_delete_ptr)}
+    sk_ASN1_GENERALSTRING_delete_ptr := @LEGACY_OPENSSL_sk_delete_ptr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete_ptr');
+    {$ifend}
   Result := sk_ASN1_GENERALSTRING_delete_ptr(st, ptr);
 end;
 
@@ -5189,7 +6254,11 @@ function Load_sk_ASN1_GENERALSTRING_push(st: Pstack_st_ASN1_GENERALSTRING; data:
 begin
   sk_ASN1_GENERALSTRING_push := LoadLibCryptoFunction('OPENSSL_sk_push');
   if not assigned(sk_ASN1_GENERALSTRING_push) then
+    {$if declared(LEGACY_OPENSSL_sk_push)}
+    sk_ASN1_GENERALSTRING_push := @LEGACY_OPENSSL_sk_push;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_push');
+    {$ifend}
   Result := sk_ASN1_GENERALSTRING_push(st, data);
 end;
 
@@ -5197,7 +6266,11 @@ function Load_sk_ASN1_GENERALSTRING_unshift(st: Pstack_st_ASN1_GENERALSTRING; da
 begin
   sk_ASN1_GENERALSTRING_unshift := LoadLibCryptoFunction('OPENSSL_sk_unshift');
   if not assigned(sk_ASN1_GENERALSTRING_unshift) then
+    {$if declared(LEGACY_OPENSSL_sk_unshift)}
+    sk_ASN1_GENERALSTRING_unshift := @LEGACY_OPENSSL_sk_unshift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_unshift');
+    {$ifend}
   Result := sk_ASN1_GENERALSTRING_unshift(st, data);
 end;
 
@@ -5205,7 +6278,11 @@ function Load_sk_ASN1_GENERALSTRING_pop(_para: Pstack_st_ASN1_GENERALSTRING): Ps
 begin
   sk_ASN1_GENERALSTRING_pop := LoadLibCryptoFunction('OPENSSL_sk_pop');
   if not assigned(sk_ASN1_GENERALSTRING_pop) then
+    {$if declared(LEGACY_OPENSSL_sk_pop)}
+    sk_ASN1_GENERALSTRING_pop := @LEGACY_OPENSSL_sk_pop;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop');
+    {$ifend}
   Result := sk_ASN1_GENERALSTRING_pop(_para);
 end;
 
@@ -5213,7 +6290,11 @@ function Load_sk_ASN1_GENERALSTRING_shift(_para: Pstack_st_ASN1_GENERALSTRING): 
 begin
   sk_ASN1_GENERALSTRING_shift := LoadLibCryptoFunction('OPENSSL_sk_shift');
   if not assigned(sk_ASN1_GENERALSTRING_shift) then
+    {$if declared(LEGACY_OPENSSL_sk_shift)}
+    sk_ASN1_GENERALSTRING_shift := @LEGACY_OPENSSL_sk_shift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_shift');
+    {$ifend}
   Result := sk_ASN1_GENERALSTRING_shift(_para);
 end;
 
@@ -5221,7 +6302,11 @@ procedure Load_sk_ASN1_GENERALSTRING_pop_free(st: Pstack_st_ASN1_GENERALSTRING; 
 begin
   sk_ASN1_GENERALSTRING_pop_free := LoadLibCryptoFunction('OPENSSL_sk_pop_free');
   if not assigned(sk_ASN1_GENERALSTRING_pop_free) then
+    {$if declared(LEGACY_OPENSSL_sk_pop_free)}
+    sk_ASN1_GENERALSTRING_pop_free := @LEGACY_OPENSSL_sk_pop_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop_free');
+    {$ifend}
   sk_ASN1_GENERALSTRING_pop_free(st, func);
 end;
 
@@ -5229,7 +6314,11 @@ function Load_sk_ASN1_GENERALSTRING_insert(st: Pstack_st_ASN1_GENERALSTRING; dat
 begin
   sk_ASN1_GENERALSTRING_insert := LoadLibCryptoFunction('OPENSSL_sk_insert');
   if not assigned(sk_ASN1_GENERALSTRING_insert) then
+    {$if declared(LEGACY_OPENSSL_sk_insert)}
+    sk_ASN1_GENERALSTRING_insert := @LEGACY_OPENSSL_sk_insert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_insert');
+    {$ifend}
   Result := sk_ASN1_GENERALSTRING_insert(st, data, where);
 end;
 
@@ -5237,7 +6326,11 @@ function Load_sk_ASN1_GENERALSTRING_set(st: Pstack_st_ASN1_GENERALSTRING; i: TOp
 begin
   sk_ASN1_GENERALSTRING_set := LoadLibCryptoFunction('OPENSSL_sk_set');
   if not assigned(sk_ASN1_GENERALSTRING_set) then
+    {$if declared(LEGACY_OPENSSL_sk_set)}
+    sk_ASN1_GENERALSTRING_set := @LEGACY_OPENSSL_sk_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set');
+    {$ifend}
   Result := sk_ASN1_GENERALSTRING_set(st, i, data);
 end;
 
@@ -5245,7 +6338,11 @@ function Load_sk_ASN1_GENERALSTRING_find(st: Pstack_st_ASN1_GENERALSTRING; data:
 begin
   sk_ASN1_GENERALSTRING_find := LoadLibCryptoFunction('OPENSSL_sk_find');
   if not assigned(sk_ASN1_GENERALSTRING_find) then
+    {$if declared(LEGACY_OPENSSL_sk_find)}
+    sk_ASN1_GENERALSTRING_find := @LEGACY_OPENSSL_sk_find;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find');
+    {$ifend}
   Result := sk_ASN1_GENERALSTRING_find(st, data);
 end;
 
@@ -5253,7 +6350,11 @@ function Load_sk_ASN1_GENERALSTRING_find_ex(st: Pstack_st_ASN1_GENERALSTRING; da
 begin
   sk_ASN1_GENERALSTRING_find_ex := LoadLibCryptoFunction('OPENSSL_sk_find_ex');
   if not assigned(sk_ASN1_GENERALSTRING_find_ex) then
+    {$if declared(LEGACY_OPENSSL_sk_find_ex)}
+    sk_ASN1_GENERALSTRING_find_ex := @LEGACY_OPENSSL_sk_find_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_ex');
+    {$ifend}
   Result := sk_ASN1_GENERALSTRING_find_ex(st, data);
 end;
 
@@ -5261,7 +6362,11 @@ function Load_sk_ASN1_GENERALSTRING_find_all(st: Pstack_st_ASN1_GENERALSTRING; d
 begin
   sk_ASN1_GENERALSTRING_find_all := LoadLibCryptoFunction('OPENSSL_sk_find_all');
   if not assigned(sk_ASN1_GENERALSTRING_find_all) then
+    {$if declared(LEGACY_OPENSSL_sk_find_all)}
+    sk_ASN1_GENERALSTRING_find_all := @LEGACY_OPENSSL_sk_find_all;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_all');
+    {$ifend}
   Result := sk_ASN1_GENERALSTRING_find_all(st, data, pnum);
 end;
 
@@ -5269,7 +6374,11 @@ function Load_sk_ASN1_GENERALSTRING_sort(_para: Pstack_st_ASN1_GENERALSTRING): T
 begin
   sk_ASN1_GENERALSTRING_sort := LoadLibCryptoFunction('OPENSSL_sk_sort');
   if not assigned(sk_ASN1_GENERALSTRING_sort) then
+    {$if declared(LEGACY_OPENSSL_sk_sort)}
+    sk_ASN1_GENERALSTRING_sort := @LEGACY_OPENSSL_sk_sort;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_sort');
+    {$ifend}
   Result := sk_ASN1_GENERALSTRING_sort(_para);
 end;
 
@@ -5277,7 +6386,11 @@ function Load_sk_ASN1_GENERALSTRING_is_sorted(_para: Pstack_st_ASN1_GENERALSTRIN
 begin
   sk_ASN1_GENERALSTRING_is_sorted := LoadLibCryptoFunction('OPENSSL_sk_is_sorted');
   if not assigned(sk_ASN1_GENERALSTRING_is_sorted) then
+    {$if declared(LEGACY_OPENSSL_sk_is_sorted)}
+    sk_ASN1_GENERALSTRING_is_sorted := @LEGACY_OPENSSL_sk_is_sorted;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_is_sorted');
+    {$ifend}
   Result := sk_ASN1_GENERALSTRING_is_sorted(_para);
 end;
 
@@ -5285,7 +6398,11 @@ function Load_sk_ASN1_GENERALSTRING_dup(st: Pstack_st_ASN1_GENERALSTRING): Pstac
 begin
   sk_ASN1_GENERALSTRING_dup := LoadLibCryptoFunction('OPENSSL_sk_dup');
   if not assigned(sk_ASN1_GENERALSTRING_dup) then
+    {$if declared(LEGACY_OPENSSL_sk_dup)}
+    sk_ASN1_GENERALSTRING_dup := @LEGACY_OPENSSL_sk_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_dup');
+    {$ifend}
   Result := sk_ASN1_GENERALSTRING_dup(st);
 end;
 
@@ -5293,7 +6410,11 @@ function Load_sk_ASN1_GENERALSTRING_deep_copy(st: Pstack_st_ASN1_GENERALSTRING; 
 begin
   sk_ASN1_GENERALSTRING_deep_copy := LoadLibCryptoFunction('OPENSSL_sk_deep_copy');
   if not assigned(sk_ASN1_GENERALSTRING_deep_copy) then
+    {$if declared(LEGACY_OPENSSL_sk_deep_copy)}
+    sk_ASN1_GENERALSTRING_deep_copy := @LEGACY_OPENSSL_sk_deep_copy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_deep_copy');
+    {$ifend}
   Result := sk_ASN1_GENERALSTRING_deep_copy(st, c, f);
 end;
 
@@ -5301,7 +6422,11 @@ function Load_sk_ASN1_GENERALSTRING_set_cmp_func(st: Pstack_st_ASN1_GENERALSTRIN
 begin
   sk_ASN1_GENERALSTRING_set_cmp_func := LoadLibCryptoFunction('OPENSSL_sk_set_cmp_func');
   if not assigned(sk_ASN1_GENERALSTRING_set_cmp_func) then
+    {$if declared(LEGACY_OPENSSL_sk_set_cmp_func)}
+    sk_ASN1_GENERALSTRING_set_cmp_func := @LEGACY_OPENSSL_sk_set_cmp_func;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set_cmp_func');
+    {$ifend}
   Result := sk_ASN1_GENERALSTRING_set_cmp_func(st, cmp);
 end;
 
@@ -5309,7 +6434,11 @@ function Load_ASN1_PRINTABLE_new: PASN1_STRING; cdecl;
 begin
   ASN1_PRINTABLE_new := LoadLibCryptoFunction('ASN1_PRINTABLE_new');
   if not assigned(ASN1_PRINTABLE_new) then
+    {$if declared(LEGACY_ASN1_PRINTABLE_new)}
+    ASN1_PRINTABLE_new := @LEGACY_ASN1_PRINTABLE_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_PRINTABLE_new');
+    {$ifend}
   Result := ASN1_PRINTABLE_new;
 end;
 
@@ -5317,7 +6446,11 @@ procedure Load_ASN1_PRINTABLE_free(a: PASN1_STRING); cdecl;
 begin
   ASN1_PRINTABLE_free := LoadLibCryptoFunction('ASN1_PRINTABLE_free');
   if not assigned(ASN1_PRINTABLE_free) then
+    {$if declared(LEGACY_ASN1_PRINTABLE_free)}
+    ASN1_PRINTABLE_free := @LEGACY_ASN1_PRINTABLE_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_PRINTABLE_free');
+    {$ifend}
   ASN1_PRINTABLE_free(a);
 end;
 
@@ -5325,7 +6458,11 @@ function Load_d2i_ASN1_PRINTABLE(a: PPASN1_STRING; in_: PPbyte; len: TOpenSSL_C_
 begin
   d2i_ASN1_PRINTABLE := LoadLibCryptoFunction('d2i_ASN1_PRINTABLE');
   if not assigned(d2i_ASN1_PRINTABLE) then
+    {$if declared(LEGACY_d2i_ASN1_PRINTABLE)}
+    d2i_ASN1_PRINTABLE := @LEGACY_d2i_ASN1_PRINTABLE;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_ASN1_PRINTABLE');
+    {$ifend}
   Result := d2i_ASN1_PRINTABLE(a, in_, len);
 end;
 
@@ -5333,7 +6470,11 @@ function Load_i2d_ASN1_PRINTABLE(a: PASN1_STRING; out_: PPbyte): TOpenSSL_C_INT;
 begin
   i2d_ASN1_PRINTABLE := LoadLibCryptoFunction('i2d_ASN1_PRINTABLE');
   if not assigned(i2d_ASN1_PRINTABLE) then
+    {$if declared(LEGACY_i2d_ASN1_PRINTABLE)}
+    i2d_ASN1_PRINTABLE := @LEGACY_i2d_ASN1_PRINTABLE;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_ASN1_PRINTABLE');
+    {$ifend}
   Result := i2d_ASN1_PRINTABLE(a, out_);
 end;
 
@@ -5341,7 +6482,11 @@ function Load_ASN1_PRINTABLE_it: PASN1_ITEM; cdecl;
 begin
   ASN1_PRINTABLE_it := LoadLibCryptoFunction('ASN1_PRINTABLE_it');
   if not assigned(ASN1_PRINTABLE_it) then
+    {$if declared(LEGACY_ASN1_PRINTABLE_it)}
+    ASN1_PRINTABLE_it := @LEGACY_ASN1_PRINTABLE_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_PRINTABLE_it');
+    {$ifend}
   Result := ASN1_PRINTABLE_it;
 end;
 
@@ -5349,7 +6494,11 @@ function Load_DIRECTORYSTRING_new: PASN1_STRING; cdecl;
 begin
   DIRECTORYSTRING_new := LoadLibCryptoFunction('DIRECTORYSTRING_new');
   if not assigned(DIRECTORYSTRING_new) then
+    {$if declared(LEGACY_DIRECTORYSTRING_new)}
+    DIRECTORYSTRING_new := @LEGACY_DIRECTORYSTRING_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DIRECTORYSTRING_new');
+    {$ifend}
   Result := DIRECTORYSTRING_new;
 end;
 
@@ -5357,7 +6506,11 @@ procedure Load_DIRECTORYSTRING_free(a: PASN1_STRING); cdecl;
 begin
   DIRECTORYSTRING_free := LoadLibCryptoFunction('DIRECTORYSTRING_free');
   if not assigned(DIRECTORYSTRING_free) then
+    {$if declared(LEGACY_DIRECTORYSTRING_free)}
+    DIRECTORYSTRING_free := @LEGACY_DIRECTORYSTRING_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DIRECTORYSTRING_free');
+    {$ifend}
   DIRECTORYSTRING_free(a);
 end;
 
@@ -5365,7 +6518,11 @@ function Load_d2i_DIRECTORYSTRING(a: PPASN1_STRING; in_: PPbyte; len: TOpenSSL_C
 begin
   d2i_DIRECTORYSTRING := LoadLibCryptoFunction('d2i_DIRECTORYSTRING');
   if not assigned(d2i_DIRECTORYSTRING) then
+    {$if declared(LEGACY_d2i_DIRECTORYSTRING)}
+    d2i_DIRECTORYSTRING := @LEGACY_d2i_DIRECTORYSTRING;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_DIRECTORYSTRING');
+    {$ifend}
   Result := d2i_DIRECTORYSTRING(a, in_, len);
 end;
 
@@ -5373,7 +6530,11 @@ function Load_i2d_DIRECTORYSTRING(a: PASN1_STRING; out_: PPbyte): TOpenSSL_C_INT
 begin
   i2d_DIRECTORYSTRING := LoadLibCryptoFunction('i2d_DIRECTORYSTRING');
   if not assigned(i2d_DIRECTORYSTRING) then
+    {$if declared(LEGACY_i2d_DIRECTORYSTRING)}
+    i2d_DIRECTORYSTRING := @LEGACY_i2d_DIRECTORYSTRING;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_DIRECTORYSTRING');
+    {$ifend}
   Result := i2d_DIRECTORYSTRING(a, out_);
 end;
 
@@ -5381,7 +6542,11 @@ function Load_DIRECTORYSTRING_it: PASN1_ITEM; cdecl;
 begin
   DIRECTORYSTRING_it := LoadLibCryptoFunction('DIRECTORYSTRING_it');
   if not assigned(DIRECTORYSTRING_it) then
+    {$if declared(LEGACY_DIRECTORYSTRING_it)}
+    DIRECTORYSTRING_it := @LEGACY_DIRECTORYSTRING_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DIRECTORYSTRING_it');
+    {$ifend}
   Result := DIRECTORYSTRING_it;
 end;
 
@@ -5389,7 +6554,11 @@ function Load_DISPLAYTEXT_new: PASN1_STRING; cdecl;
 begin
   DISPLAYTEXT_new := LoadLibCryptoFunction('DISPLAYTEXT_new');
   if not assigned(DISPLAYTEXT_new) then
+    {$if declared(LEGACY_DISPLAYTEXT_new)}
+    DISPLAYTEXT_new := @LEGACY_DISPLAYTEXT_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DISPLAYTEXT_new');
+    {$ifend}
   Result := DISPLAYTEXT_new;
 end;
 
@@ -5397,7 +6566,11 @@ procedure Load_DISPLAYTEXT_free(a: PASN1_STRING); cdecl;
 begin
   DISPLAYTEXT_free := LoadLibCryptoFunction('DISPLAYTEXT_free');
   if not assigned(DISPLAYTEXT_free) then
+    {$if declared(LEGACY_DISPLAYTEXT_free)}
+    DISPLAYTEXT_free := @LEGACY_DISPLAYTEXT_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DISPLAYTEXT_free');
+    {$ifend}
   DISPLAYTEXT_free(a);
 end;
 
@@ -5405,7 +6578,11 @@ function Load_d2i_DISPLAYTEXT(a: PPASN1_STRING; in_: PPbyte; len: TOpenSSL_C_INT
 begin
   d2i_DISPLAYTEXT := LoadLibCryptoFunction('d2i_DISPLAYTEXT');
   if not assigned(d2i_DISPLAYTEXT) then
+    {$if declared(LEGACY_d2i_DISPLAYTEXT)}
+    d2i_DISPLAYTEXT := @LEGACY_d2i_DISPLAYTEXT;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_DISPLAYTEXT');
+    {$ifend}
   Result := d2i_DISPLAYTEXT(a, in_, len);
 end;
 
@@ -5413,7 +6590,11 @@ function Load_i2d_DISPLAYTEXT(a: PASN1_STRING; out_: PPbyte): TOpenSSL_C_INT; cd
 begin
   i2d_DISPLAYTEXT := LoadLibCryptoFunction('i2d_DISPLAYTEXT');
   if not assigned(i2d_DISPLAYTEXT) then
+    {$if declared(LEGACY_i2d_DISPLAYTEXT)}
+    i2d_DISPLAYTEXT := @LEGACY_i2d_DISPLAYTEXT;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_DISPLAYTEXT');
+    {$ifend}
   Result := i2d_DISPLAYTEXT(a, out_);
 end;
 
@@ -5421,7 +6602,11 @@ function Load_DISPLAYTEXT_it: PASN1_ITEM; cdecl;
 begin
   DISPLAYTEXT_it := LoadLibCryptoFunction('DISPLAYTEXT_it');
   if not assigned(DISPLAYTEXT_it) then
+    {$if declared(LEGACY_DISPLAYTEXT_it)}
+    DISPLAYTEXT_it := @LEGACY_DISPLAYTEXT_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DISPLAYTEXT_it');
+    {$ifend}
   Result := DISPLAYTEXT_it;
 end;
 
@@ -5429,7 +6614,11 @@ function Load_ASN1_PRINTABLESTRING_new: PASN1_PRINTABLESTRING; cdecl;
 begin
   ASN1_PRINTABLESTRING_new := LoadLibCryptoFunction('ASN1_PRINTABLESTRING_new');
   if not assigned(ASN1_PRINTABLESTRING_new) then
+    {$if declared(LEGACY_ASN1_PRINTABLESTRING_new)}
+    ASN1_PRINTABLESTRING_new := @LEGACY_ASN1_PRINTABLESTRING_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_PRINTABLESTRING_new');
+    {$ifend}
   Result := ASN1_PRINTABLESTRING_new;
 end;
 
@@ -5437,7 +6626,11 @@ procedure Load_ASN1_PRINTABLESTRING_free(a: PASN1_PRINTABLESTRING); cdecl;
 begin
   ASN1_PRINTABLESTRING_free := LoadLibCryptoFunction('ASN1_PRINTABLESTRING_free');
   if not assigned(ASN1_PRINTABLESTRING_free) then
+    {$if declared(LEGACY_ASN1_PRINTABLESTRING_free)}
+    ASN1_PRINTABLESTRING_free := @LEGACY_ASN1_PRINTABLESTRING_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_PRINTABLESTRING_free');
+    {$ifend}
   ASN1_PRINTABLESTRING_free(a);
 end;
 
@@ -5445,7 +6638,11 @@ function Load_d2i_ASN1_PRINTABLESTRING(a: PPASN1_PRINTABLESTRING; in_: PPbyte; l
 begin
   d2i_ASN1_PRINTABLESTRING := LoadLibCryptoFunction('d2i_ASN1_PRINTABLESTRING');
   if not assigned(d2i_ASN1_PRINTABLESTRING) then
+    {$if declared(LEGACY_d2i_ASN1_PRINTABLESTRING)}
+    d2i_ASN1_PRINTABLESTRING := @LEGACY_d2i_ASN1_PRINTABLESTRING;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_ASN1_PRINTABLESTRING');
+    {$ifend}
   Result := d2i_ASN1_PRINTABLESTRING(a, in_, len);
 end;
 
@@ -5453,7 +6650,11 @@ function Load_i2d_ASN1_PRINTABLESTRING(a: PASN1_PRINTABLESTRING; out_: PPbyte): 
 begin
   i2d_ASN1_PRINTABLESTRING := LoadLibCryptoFunction('i2d_ASN1_PRINTABLESTRING');
   if not assigned(i2d_ASN1_PRINTABLESTRING) then
+    {$if declared(LEGACY_i2d_ASN1_PRINTABLESTRING)}
+    i2d_ASN1_PRINTABLESTRING := @LEGACY_i2d_ASN1_PRINTABLESTRING;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_ASN1_PRINTABLESTRING');
+    {$ifend}
   Result := i2d_ASN1_PRINTABLESTRING(a, out_);
 end;
 
@@ -5461,7 +6662,11 @@ function Load_ASN1_PRINTABLESTRING_it: PASN1_ITEM; cdecl;
 begin
   ASN1_PRINTABLESTRING_it := LoadLibCryptoFunction('ASN1_PRINTABLESTRING_it');
   if not assigned(ASN1_PRINTABLESTRING_it) then
+    {$if declared(LEGACY_ASN1_PRINTABLESTRING_it)}
+    ASN1_PRINTABLESTRING_it := @LEGACY_ASN1_PRINTABLESTRING_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_PRINTABLESTRING_it');
+    {$ifend}
   Result := ASN1_PRINTABLESTRING_it;
 end;
 
@@ -5469,7 +6674,11 @@ function Load_ASN1_T61STRING_new: PASN1_T61STRING; cdecl;
 begin
   ASN1_T61STRING_new := LoadLibCryptoFunction('ASN1_T61STRING_new');
   if not assigned(ASN1_T61STRING_new) then
+    {$if declared(LEGACY_ASN1_T61STRING_new)}
+    ASN1_T61STRING_new := @LEGACY_ASN1_T61STRING_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_T61STRING_new');
+    {$ifend}
   Result := ASN1_T61STRING_new;
 end;
 
@@ -5477,7 +6686,11 @@ procedure Load_ASN1_T61STRING_free(a: PASN1_T61STRING); cdecl;
 begin
   ASN1_T61STRING_free := LoadLibCryptoFunction('ASN1_T61STRING_free');
   if not assigned(ASN1_T61STRING_free) then
+    {$if declared(LEGACY_ASN1_T61STRING_free)}
+    ASN1_T61STRING_free := @LEGACY_ASN1_T61STRING_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_T61STRING_free');
+    {$ifend}
   ASN1_T61STRING_free(a);
 end;
 
@@ -5485,7 +6698,11 @@ function Load_d2i_ASN1_T61STRING(a: PPASN1_T61STRING; in_: PPbyte; len: TOpenSSL
 begin
   d2i_ASN1_T61STRING := LoadLibCryptoFunction('d2i_ASN1_T61STRING');
   if not assigned(d2i_ASN1_T61STRING) then
+    {$if declared(LEGACY_d2i_ASN1_T61STRING)}
+    d2i_ASN1_T61STRING := @LEGACY_d2i_ASN1_T61STRING;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_ASN1_T61STRING');
+    {$ifend}
   Result := d2i_ASN1_T61STRING(a, in_, len);
 end;
 
@@ -5493,7 +6710,11 @@ function Load_i2d_ASN1_T61STRING(a: PASN1_T61STRING; out_: PPbyte): TOpenSSL_C_I
 begin
   i2d_ASN1_T61STRING := LoadLibCryptoFunction('i2d_ASN1_T61STRING');
   if not assigned(i2d_ASN1_T61STRING) then
+    {$if declared(LEGACY_i2d_ASN1_T61STRING)}
+    i2d_ASN1_T61STRING := @LEGACY_i2d_ASN1_T61STRING;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_ASN1_T61STRING');
+    {$ifend}
   Result := i2d_ASN1_T61STRING(a, out_);
 end;
 
@@ -5501,7 +6722,11 @@ function Load_ASN1_T61STRING_it: PASN1_ITEM; cdecl;
 begin
   ASN1_T61STRING_it := LoadLibCryptoFunction('ASN1_T61STRING_it');
   if not assigned(ASN1_T61STRING_it) then
+    {$if declared(LEGACY_ASN1_T61STRING_it)}
+    ASN1_T61STRING_it := @LEGACY_ASN1_T61STRING_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_T61STRING_it');
+    {$ifend}
   Result := ASN1_T61STRING_it;
 end;
 
@@ -5509,7 +6734,11 @@ function Load_ASN1_IA5STRING_new: PASN1_IA5STRING; cdecl;
 begin
   ASN1_IA5STRING_new := LoadLibCryptoFunction('ASN1_IA5STRING_new');
   if not assigned(ASN1_IA5STRING_new) then
+    {$if declared(LEGACY_ASN1_IA5STRING_new)}
+    ASN1_IA5STRING_new := @LEGACY_ASN1_IA5STRING_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_IA5STRING_new');
+    {$ifend}
   Result := ASN1_IA5STRING_new;
 end;
 
@@ -5517,7 +6746,11 @@ procedure Load_ASN1_IA5STRING_free(a: PASN1_IA5STRING); cdecl;
 begin
   ASN1_IA5STRING_free := LoadLibCryptoFunction('ASN1_IA5STRING_free');
   if not assigned(ASN1_IA5STRING_free) then
+    {$if declared(LEGACY_ASN1_IA5STRING_free)}
+    ASN1_IA5STRING_free := @LEGACY_ASN1_IA5STRING_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_IA5STRING_free');
+    {$ifend}
   ASN1_IA5STRING_free(a);
 end;
 
@@ -5525,7 +6758,11 @@ function Load_d2i_ASN1_IA5STRING(a: PPASN1_IA5STRING; in_: PPbyte; len: TOpenSSL
 begin
   d2i_ASN1_IA5STRING := LoadLibCryptoFunction('d2i_ASN1_IA5STRING');
   if not assigned(d2i_ASN1_IA5STRING) then
+    {$if declared(LEGACY_d2i_ASN1_IA5STRING)}
+    d2i_ASN1_IA5STRING := @LEGACY_d2i_ASN1_IA5STRING;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_ASN1_IA5STRING');
+    {$ifend}
   Result := d2i_ASN1_IA5STRING(a, in_, len);
 end;
 
@@ -5533,7 +6770,11 @@ function Load_i2d_ASN1_IA5STRING(a: PASN1_IA5STRING; out_: PPbyte): TOpenSSL_C_I
 begin
   i2d_ASN1_IA5STRING := LoadLibCryptoFunction('i2d_ASN1_IA5STRING');
   if not assigned(i2d_ASN1_IA5STRING) then
+    {$if declared(LEGACY_i2d_ASN1_IA5STRING)}
+    i2d_ASN1_IA5STRING := @LEGACY_i2d_ASN1_IA5STRING;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_ASN1_IA5STRING');
+    {$ifend}
   Result := i2d_ASN1_IA5STRING(a, out_);
 end;
 
@@ -5541,7 +6782,11 @@ function Load_ASN1_IA5STRING_it: PASN1_ITEM; cdecl;
 begin
   ASN1_IA5STRING_it := LoadLibCryptoFunction('ASN1_IA5STRING_it');
   if not assigned(ASN1_IA5STRING_it) then
+    {$if declared(LEGACY_ASN1_IA5STRING_it)}
+    ASN1_IA5STRING_it := @LEGACY_ASN1_IA5STRING_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_IA5STRING_it');
+    {$ifend}
   Result := ASN1_IA5STRING_it;
 end;
 
@@ -5549,7 +6794,11 @@ function Load_ASN1_GENERALSTRING_new: PASN1_GENERALSTRING; cdecl;
 begin
   ASN1_GENERALSTRING_new := LoadLibCryptoFunction('ASN1_GENERALSTRING_new');
   if not assigned(ASN1_GENERALSTRING_new) then
+    {$if declared(LEGACY_ASN1_GENERALSTRING_new)}
+    ASN1_GENERALSTRING_new := @LEGACY_ASN1_GENERALSTRING_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_GENERALSTRING_new');
+    {$ifend}
   Result := ASN1_GENERALSTRING_new;
 end;
 
@@ -5557,7 +6806,11 @@ procedure Load_ASN1_GENERALSTRING_free(a: PASN1_GENERALSTRING); cdecl;
 begin
   ASN1_GENERALSTRING_free := LoadLibCryptoFunction('ASN1_GENERALSTRING_free');
   if not assigned(ASN1_GENERALSTRING_free) then
+    {$if declared(LEGACY_ASN1_GENERALSTRING_free)}
+    ASN1_GENERALSTRING_free := @LEGACY_ASN1_GENERALSTRING_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_GENERALSTRING_free');
+    {$ifend}
   ASN1_GENERALSTRING_free(a);
 end;
 
@@ -5565,7 +6818,11 @@ function Load_d2i_ASN1_GENERALSTRING(a: PPASN1_GENERALSTRING; in_: PPbyte; len: 
 begin
   d2i_ASN1_GENERALSTRING := LoadLibCryptoFunction('d2i_ASN1_GENERALSTRING');
   if not assigned(d2i_ASN1_GENERALSTRING) then
+    {$if declared(LEGACY_d2i_ASN1_GENERALSTRING)}
+    d2i_ASN1_GENERALSTRING := @LEGACY_d2i_ASN1_GENERALSTRING;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_ASN1_GENERALSTRING');
+    {$ifend}
   Result := d2i_ASN1_GENERALSTRING(a, in_, len);
 end;
 
@@ -5573,7 +6830,11 @@ function Load_i2d_ASN1_GENERALSTRING(a: PASN1_GENERALSTRING; out_: PPbyte): TOpe
 begin
   i2d_ASN1_GENERALSTRING := LoadLibCryptoFunction('i2d_ASN1_GENERALSTRING');
   if not assigned(i2d_ASN1_GENERALSTRING) then
+    {$if declared(LEGACY_i2d_ASN1_GENERALSTRING)}
+    i2d_ASN1_GENERALSTRING := @LEGACY_i2d_ASN1_GENERALSTRING;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_ASN1_GENERALSTRING');
+    {$ifend}
   Result := i2d_ASN1_GENERALSTRING(a, out_);
 end;
 
@@ -5581,7 +6842,11 @@ function Load_ASN1_GENERALSTRING_it: PASN1_ITEM; cdecl;
 begin
   ASN1_GENERALSTRING_it := LoadLibCryptoFunction('ASN1_GENERALSTRING_it');
   if not assigned(ASN1_GENERALSTRING_it) then
+    {$if declared(LEGACY_ASN1_GENERALSTRING_it)}
+    ASN1_GENERALSTRING_it := @LEGACY_ASN1_GENERALSTRING_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_GENERALSTRING_it');
+    {$ifend}
   Result := ASN1_GENERALSTRING_it;
 end;
 
@@ -5589,7 +6854,11 @@ function Load_ASN1_UTCTIME_new: PASN1_UTCTIME; cdecl;
 begin
   ASN1_UTCTIME_new := LoadLibCryptoFunction('ASN1_UTCTIME_new');
   if not assigned(ASN1_UTCTIME_new) then
+    {$if declared(LEGACY_ASN1_UTCTIME_new)}
+    ASN1_UTCTIME_new := @LEGACY_ASN1_UTCTIME_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_UTCTIME_new');
+    {$ifend}
   Result := ASN1_UTCTIME_new;
 end;
 
@@ -5597,7 +6866,11 @@ procedure Load_ASN1_UTCTIME_free(a: PASN1_UTCTIME); cdecl;
 begin
   ASN1_UTCTIME_free := LoadLibCryptoFunction('ASN1_UTCTIME_free');
   if not assigned(ASN1_UTCTIME_free) then
+    {$if declared(LEGACY_ASN1_UTCTIME_free)}
+    ASN1_UTCTIME_free := @LEGACY_ASN1_UTCTIME_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_UTCTIME_free');
+    {$ifend}
   ASN1_UTCTIME_free(a);
 end;
 
@@ -5605,7 +6878,11 @@ function Load_d2i_ASN1_UTCTIME(a: PPASN1_UTCTIME; in_: PPbyte; len: TOpenSSL_C_I
 begin
   d2i_ASN1_UTCTIME := LoadLibCryptoFunction('d2i_ASN1_UTCTIME');
   if not assigned(d2i_ASN1_UTCTIME) then
+    {$if declared(LEGACY_d2i_ASN1_UTCTIME)}
+    d2i_ASN1_UTCTIME := @LEGACY_d2i_ASN1_UTCTIME;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_ASN1_UTCTIME');
+    {$ifend}
   Result := d2i_ASN1_UTCTIME(a, in_, len);
 end;
 
@@ -5613,7 +6890,11 @@ function Load_i2d_ASN1_UTCTIME(a: PASN1_UTCTIME; out_: PPbyte): TOpenSSL_C_INT; 
 begin
   i2d_ASN1_UTCTIME := LoadLibCryptoFunction('i2d_ASN1_UTCTIME');
   if not assigned(i2d_ASN1_UTCTIME) then
+    {$if declared(LEGACY_i2d_ASN1_UTCTIME)}
+    i2d_ASN1_UTCTIME := @LEGACY_i2d_ASN1_UTCTIME;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_ASN1_UTCTIME');
+    {$ifend}
   Result := i2d_ASN1_UTCTIME(a, out_);
 end;
 
@@ -5621,7 +6902,11 @@ function Load_ASN1_UTCTIME_it: PASN1_ITEM; cdecl;
 begin
   ASN1_UTCTIME_it := LoadLibCryptoFunction('ASN1_UTCTIME_it');
   if not assigned(ASN1_UTCTIME_it) then
+    {$if declared(LEGACY_ASN1_UTCTIME_it)}
+    ASN1_UTCTIME_it := @LEGACY_ASN1_UTCTIME_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_UTCTIME_it');
+    {$ifend}
   Result := ASN1_UTCTIME_it;
 end;
 
@@ -5629,7 +6914,11 @@ function Load_ASN1_GENERALIZEDTIME_new: PASN1_GENERALIZEDTIME; cdecl;
 begin
   ASN1_GENERALIZEDTIME_new := LoadLibCryptoFunction('ASN1_GENERALIZEDTIME_new');
   if not assigned(ASN1_GENERALIZEDTIME_new) then
+    {$if declared(LEGACY_ASN1_GENERALIZEDTIME_new)}
+    ASN1_GENERALIZEDTIME_new := @LEGACY_ASN1_GENERALIZEDTIME_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_GENERALIZEDTIME_new');
+    {$ifend}
   Result := ASN1_GENERALIZEDTIME_new;
 end;
 
@@ -5637,7 +6926,11 @@ procedure Load_ASN1_GENERALIZEDTIME_free(a: PASN1_GENERALIZEDTIME); cdecl;
 begin
   ASN1_GENERALIZEDTIME_free := LoadLibCryptoFunction('ASN1_GENERALIZEDTIME_free');
   if not assigned(ASN1_GENERALIZEDTIME_free) then
+    {$if declared(LEGACY_ASN1_GENERALIZEDTIME_free)}
+    ASN1_GENERALIZEDTIME_free := @LEGACY_ASN1_GENERALIZEDTIME_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_GENERALIZEDTIME_free');
+    {$ifend}
   ASN1_GENERALIZEDTIME_free(a);
 end;
 
@@ -5645,7 +6938,11 @@ function Load_d2i_ASN1_GENERALIZEDTIME(a: PPASN1_GENERALIZEDTIME; in_: PPbyte; l
 begin
   d2i_ASN1_GENERALIZEDTIME := LoadLibCryptoFunction('d2i_ASN1_GENERALIZEDTIME');
   if not assigned(d2i_ASN1_GENERALIZEDTIME) then
+    {$if declared(LEGACY_d2i_ASN1_GENERALIZEDTIME)}
+    d2i_ASN1_GENERALIZEDTIME := @LEGACY_d2i_ASN1_GENERALIZEDTIME;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_ASN1_GENERALIZEDTIME');
+    {$ifend}
   Result := d2i_ASN1_GENERALIZEDTIME(a, in_, len);
 end;
 
@@ -5653,7 +6950,11 @@ function Load_i2d_ASN1_GENERALIZEDTIME(a: PASN1_GENERALIZEDTIME; out_: PPbyte): 
 begin
   i2d_ASN1_GENERALIZEDTIME := LoadLibCryptoFunction('i2d_ASN1_GENERALIZEDTIME');
   if not assigned(i2d_ASN1_GENERALIZEDTIME) then
+    {$if declared(LEGACY_i2d_ASN1_GENERALIZEDTIME)}
+    i2d_ASN1_GENERALIZEDTIME := @LEGACY_i2d_ASN1_GENERALIZEDTIME;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_ASN1_GENERALIZEDTIME');
+    {$ifend}
   Result := i2d_ASN1_GENERALIZEDTIME(a, out_);
 end;
 
@@ -5661,7 +6962,11 @@ function Load_ASN1_GENERALIZEDTIME_it: PASN1_ITEM; cdecl;
 begin
   ASN1_GENERALIZEDTIME_it := LoadLibCryptoFunction('ASN1_GENERALIZEDTIME_it');
   if not assigned(ASN1_GENERALIZEDTIME_it) then
+    {$if declared(LEGACY_ASN1_GENERALIZEDTIME_it)}
+    ASN1_GENERALIZEDTIME_it := @LEGACY_ASN1_GENERALIZEDTIME_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_GENERALIZEDTIME_it');
+    {$ifend}
   Result := ASN1_GENERALIZEDTIME_it;
 end;
 
@@ -5669,7 +6974,11 @@ function Load_ASN1_TIME_new: PASN1_TIME; cdecl;
 begin
   ASN1_TIME_new := LoadLibCryptoFunction('ASN1_TIME_new');
   if not assigned(ASN1_TIME_new) then
+    {$if declared(LEGACY_ASN1_TIME_new)}
+    ASN1_TIME_new := @LEGACY_ASN1_TIME_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_TIME_new');
+    {$ifend}
   Result := ASN1_TIME_new;
 end;
 
@@ -5677,7 +6986,11 @@ procedure Load_ASN1_TIME_free(a: PASN1_TIME); cdecl;
 begin
   ASN1_TIME_free := LoadLibCryptoFunction('ASN1_TIME_free');
   if not assigned(ASN1_TIME_free) then
+    {$if declared(LEGACY_ASN1_TIME_free)}
+    ASN1_TIME_free := @LEGACY_ASN1_TIME_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_TIME_free');
+    {$ifend}
   ASN1_TIME_free(a);
 end;
 
@@ -5685,7 +6998,11 @@ function Load_d2i_ASN1_TIME(a: PPASN1_TIME; in_: PPbyte; len: TOpenSSL_C_INT): P
 begin
   d2i_ASN1_TIME := LoadLibCryptoFunction('d2i_ASN1_TIME');
   if not assigned(d2i_ASN1_TIME) then
+    {$if declared(LEGACY_d2i_ASN1_TIME)}
+    d2i_ASN1_TIME := @LEGACY_d2i_ASN1_TIME;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_ASN1_TIME');
+    {$ifend}
   Result := d2i_ASN1_TIME(a, in_, len);
 end;
 
@@ -5693,7 +7010,11 @@ function Load_i2d_ASN1_TIME(a: PASN1_TIME; out_: PPbyte): TOpenSSL_C_INT; cdecl;
 begin
   i2d_ASN1_TIME := LoadLibCryptoFunction('i2d_ASN1_TIME');
   if not assigned(i2d_ASN1_TIME) then
+    {$if declared(LEGACY_i2d_ASN1_TIME)}
+    i2d_ASN1_TIME := @LEGACY_i2d_ASN1_TIME;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_ASN1_TIME');
+    {$ifend}
   Result := i2d_ASN1_TIME(a, out_);
 end;
 
@@ -5701,7 +7022,11 @@ function Load_ASN1_TIME_it: PASN1_ITEM; cdecl;
 begin
   ASN1_TIME_it := LoadLibCryptoFunction('ASN1_TIME_it');
   if not assigned(ASN1_TIME_it) then
+    {$if declared(LEGACY_ASN1_TIME_it)}
+    ASN1_TIME_it := @LEGACY_ASN1_TIME_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_TIME_it');
+    {$ifend}
   Result := ASN1_TIME_it;
 end;
 
@@ -5709,7 +7034,11 @@ function Load_ASN1_TIME_dup(a: PASN1_TIME): PASN1_TIME; cdecl;
 begin
   ASN1_TIME_dup := LoadLibCryptoFunction('ASN1_TIME_dup');
   if not assigned(ASN1_TIME_dup) then
+    {$if declared(LEGACY_ASN1_TIME_dup)}
+    ASN1_TIME_dup := @LEGACY_ASN1_TIME_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_TIME_dup');
+    {$ifend}
   Result := ASN1_TIME_dup(a);
 end;
 
@@ -5717,7 +7046,11 @@ function Load_ASN1_UTCTIME_dup(a: PASN1_UTCTIME): PASN1_UTCTIME; cdecl;
 begin
   ASN1_UTCTIME_dup := LoadLibCryptoFunction('ASN1_UTCTIME_dup');
   if not assigned(ASN1_UTCTIME_dup) then
+    {$if declared(LEGACY_ASN1_UTCTIME_dup)}
+    ASN1_UTCTIME_dup := @LEGACY_ASN1_UTCTIME_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_UTCTIME_dup');
+    {$ifend}
   Result := ASN1_UTCTIME_dup(a);
 end;
 
@@ -5725,7 +7058,11 @@ function Load_ASN1_GENERALIZEDTIME_dup(a: PASN1_GENERALIZEDTIME): PASN1_GENERALI
 begin
   ASN1_GENERALIZEDTIME_dup := LoadLibCryptoFunction('ASN1_GENERALIZEDTIME_dup');
   if not assigned(ASN1_GENERALIZEDTIME_dup) then
+    {$if declared(LEGACY_ASN1_GENERALIZEDTIME_dup)}
+    ASN1_GENERALIZEDTIME_dup := @LEGACY_ASN1_GENERALIZEDTIME_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_GENERALIZEDTIME_dup');
+    {$ifend}
   Result := ASN1_GENERALIZEDTIME_dup(a);
 end;
 
@@ -5733,7 +7070,11 @@ function Load_ASN1_OCTET_STRING_NDEF_it: PASN1_ITEM; cdecl;
 begin
   ASN1_OCTET_STRING_NDEF_it := LoadLibCryptoFunction('ASN1_OCTET_STRING_NDEF_it');
   if not assigned(ASN1_OCTET_STRING_NDEF_it) then
+    {$if declared(LEGACY_ASN1_OCTET_STRING_NDEF_it)}
+    ASN1_OCTET_STRING_NDEF_it := @LEGACY_ASN1_OCTET_STRING_NDEF_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_OCTET_STRING_NDEF_it');
+    {$ifend}
   Result := ASN1_OCTET_STRING_NDEF_it;
 end;
 
@@ -5741,7 +7082,11 @@ function Load_ASN1_TIME_set(s: PASN1_TIME; t: TOpenSSL_C_TIMET): PASN1_TIME; cde
 begin
   ASN1_TIME_set := LoadLibCryptoFunction('ASN1_TIME_set');
   if not assigned(ASN1_TIME_set) then
+    {$if declared(LEGACY_ASN1_TIME_set)}
+    ASN1_TIME_set := @LEGACY_ASN1_TIME_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_TIME_set');
+    {$ifend}
   Result := ASN1_TIME_set(s, t);
 end;
 
@@ -5749,7 +7094,11 @@ function Load_ASN1_TIME_adj(s: PASN1_TIME; t: TOpenSSL_C_TIMET; offset_day: TOpe
 begin
   ASN1_TIME_adj := LoadLibCryptoFunction('ASN1_TIME_adj');
   if not assigned(ASN1_TIME_adj) then
+    {$if declared(LEGACY_ASN1_TIME_adj)}
+    ASN1_TIME_adj := @LEGACY_ASN1_TIME_adj;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_TIME_adj');
+    {$ifend}
   Result := ASN1_TIME_adj(s, t, offset_day, offset_sec);
 end;
 
@@ -5757,7 +7106,11 @@ function Load_ASN1_TIME_check(t: PASN1_TIME): TOpenSSL_C_INT; cdecl;
 begin
   ASN1_TIME_check := LoadLibCryptoFunction('ASN1_TIME_check');
   if not assigned(ASN1_TIME_check) then
+    {$if declared(LEGACY_ASN1_TIME_check)}
+    ASN1_TIME_check := @LEGACY_ASN1_TIME_check;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_TIME_check');
+    {$ifend}
   Result := ASN1_TIME_check(t);
 end;
 
@@ -5765,7 +7118,11 @@ function Load_ASN1_TIME_to_generalizedtime(t: PASN1_TIME; out_: PPASN1_GENERALIZ
 begin
   ASN1_TIME_to_generalizedtime := LoadLibCryptoFunction('ASN1_TIME_to_generalizedtime');
   if not assigned(ASN1_TIME_to_generalizedtime) then
+    {$if declared(LEGACY_ASN1_TIME_to_generalizedtime)}
+    ASN1_TIME_to_generalizedtime := @LEGACY_ASN1_TIME_to_generalizedtime;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_TIME_to_generalizedtime');
+    {$ifend}
   Result := ASN1_TIME_to_generalizedtime(t, out_);
 end;
 
@@ -5773,7 +7130,11 @@ function Load_ASN1_TIME_set_string(s: PASN1_TIME; str: PAnsiChar): TOpenSSL_C_IN
 begin
   ASN1_TIME_set_string := LoadLibCryptoFunction('ASN1_TIME_set_string');
   if not assigned(ASN1_TIME_set_string) then
+    {$if declared(LEGACY_ASN1_TIME_set_string)}
+    ASN1_TIME_set_string := @LEGACY_ASN1_TIME_set_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_TIME_set_string');
+    {$ifend}
   Result := ASN1_TIME_set_string(s, str);
 end;
 
@@ -5781,7 +7142,11 @@ function Load_ASN1_TIME_set_string_X509(s: PASN1_TIME; str: PAnsiChar): TOpenSSL
 begin
   ASN1_TIME_set_string_X509 := LoadLibCryptoFunction('ASN1_TIME_set_string_X509');
   if not assigned(ASN1_TIME_set_string_X509) then
+    {$if declared(LEGACY_ASN1_TIME_set_string_X509)}
+    ASN1_TIME_set_string_X509 := @LEGACY_ASN1_TIME_set_string_X509;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_TIME_set_string_X509');
+    {$ifend}
   Result := ASN1_TIME_set_string_X509(s, str);
 end;
 
@@ -5789,7 +7154,11 @@ function Load_ASN1_TIME_to_tm(s: PASN1_TIME; tm: POpenSSL_C_TM): TOpenSSL_C_INT;
 begin
   ASN1_TIME_to_tm := LoadLibCryptoFunction('ASN1_TIME_to_tm');
   if not assigned(ASN1_TIME_to_tm) then
+    {$if declared(LEGACY_ASN1_TIME_to_tm)}
+    ASN1_TIME_to_tm := @LEGACY_ASN1_TIME_to_tm;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_TIME_to_tm');
+    {$ifend}
   Result := ASN1_TIME_to_tm(s, tm);
 end;
 
@@ -5797,7 +7166,11 @@ function Load_ASN1_TIME_normalize(s: PASN1_TIME): TOpenSSL_C_INT; cdecl;
 begin
   ASN1_TIME_normalize := LoadLibCryptoFunction('ASN1_TIME_normalize');
   if not assigned(ASN1_TIME_normalize) then
+    {$if declared(LEGACY_ASN1_TIME_normalize)}
+    ASN1_TIME_normalize := @LEGACY_ASN1_TIME_normalize;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_TIME_normalize');
+    {$ifend}
   Result := ASN1_TIME_normalize(s);
 end;
 
@@ -5805,7 +7178,11 @@ function Load_ASN1_TIME_cmp_time_t(s: PASN1_TIME; t: TOpenSSL_C_TIMET): TOpenSSL
 begin
   ASN1_TIME_cmp_time_t := LoadLibCryptoFunction('ASN1_TIME_cmp_time_t');
   if not assigned(ASN1_TIME_cmp_time_t) then
+    {$if declared(LEGACY_ASN1_TIME_cmp_time_t)}
+    ASN1_TIME_cmp_time_t := @LEGACY_ASN1_TIME_cmp_time_t;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_TIME_cmp_time_t');
+    {$ifend}
   Result := ASN1_TIME_cmp_time_t(s, t);
 end;
 
@@ -5813,7 +7190,11 @@ function Load_ASN1_TIME_compare(a: PASN1_TIME; b: PASN1_TIME): TOpenSSL_C_INT; c
 begin
   ASN1_TIME_compare := LoadLibCryptoFunction('ASN1_TIME_compare');
   if not assigned(ASN1_TIME_compare) then
+    {$if declared(LEGACY_ASN1_TIME_compare)}
+    ASN1_TIME_compare := @LEGACY_ASN1_TIME_compare;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_TIME_compare');
+    {$ifend}
   Result := ASN1_TIME_compare(a, b);
 end;
 
@@ -5821,7 +7202,11 @@ function Load_i2a_ASN1_INTEGER(bp: PBIO; a: PASN1_INTEGER): TOpenSSL_C_INT; cdec
 begin
   i2a_ASN1_INTEGER := LoadLibCryptoFunction('i2a_ASN1_INTEGER');
   if not assigned(i2a_ASN1_INTEGER) then
+    {$if declared(LEGACY_i2a_ASN1_INTEGER)}
+    i2a_ASN1_INTEGER := @LEGACY_i2a_ASN1_INTEGER;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2a_ASN1_INTEGER');
+    {$ifend}
   Result := i2a_ASN1_INTEGER(bp, a);
 end;
 
@@ -5829,7 +7214,11 @@ function Load_a2i_ASN1_INTEGER(bp: PBIO; bs: PASN1_INTEGER; buf: PAnsiChar; size
 begin
   a2i_ASN1_INTEGER := LoadLibCryptoFunction('a2i_ASN1_INTEGER');
   if not assigned(a2i_ASN1_INTEGER) then
+    {$if declared(LEGACY_a2i_ASN1_INTEGER)}
+    a2i_ASN1_INTEGER := @LEGACY_a2i_ASN1_INTEGER;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('a2i_ASN1_INTEGER');
+    {$ifend}
   Result := a2i_ASN1_INTEGER(bp, bs, buf, size);
 end;
 
@@ -5837,7 +7226,11 @@ function Load_i2a_ASN1_ENUMERATED(bp: PBIO; a: PASN1_ENUMERATED): TOpenSSL_C_INT
 begin
   i2a_ASN1_ENUMERATED := LoadLibCryptoFunction('i2a_ASN1_ENUMERATED');
   if not assigned(i2a_ASN1_ENUMERATED) then
+    {$if declared(LEGACY_i2a_ASN1_ENUMERATED)}
+    i2a_ASN1_ENUMERATED := @LEGACY_i2a_ASN1_ENUMERATED;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2a_ASN1_ENUMERATED');
+    {$ifend}
   Result := i2a_ASN1_ENUMERATED(bp, a);
 end;
 
@@ -5845,7 +7238,11 @@ function Load_a2i_ASN1_ENUMERATED(bp: PBIO; bs: PASN1_ENUMERATED; buf: PAnsiChar
 begin
   a2i_ASN1_ENUMERATED := LoadLibCryptoFunction('a2i_ASN1_ENUMERATED');
   if not assigned(a2i_ASN1_ENUMERATED) then
+    {$if declared(LEGACY_a2i_ASN1_ENUMERATED)}
+    a2i_ASN1_ENUMERATED := @LEGACY_a2i_ASN1_ENUMERATED;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('a2i_ASN1_ENUMERATED');
+    {$ifend}
   Result := a2i_ASN1_ENUMERATED(bp, bs, buf, size);
 end;
 
@@ -5853,7 +7250,11 @@ function Load_i2a_ASN1_OBJECT(bp: PBIO; a: PASN1_OBJECT): TOpenSSL_C_INT; cdecl;
 begin
   i2a_ASN1_OBJECT := LoadLibCryptoFunction('i2a_ASN1_OBJECT');
   if not assigned(i2a_ASN1_OBJECT) then
+    {$if declared(LEGACY_i2a_ASN1_OBJECT)}
+    i2a_ASN1_OBJECT := @LEGACY_i2a_ASN1_OBJECT;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2a_ASN1_OBJECT');
+    {$ifend}
   Result := i2a_ASN1_OBJECT(bp, a);
 end;
 
@@ -5861,7 +7262,11 @@ function Load_a2i_ASN1_STRING(bp: PBIO; bs: PASN1_STRING; buf: PAnsiChar; size: 
 begin
   a2i_ASN1_STRING := LoadLibCryptoFunction('a2i_ASN1_STRING');
   if not assigned(a2i_ASN1_STRING) then
+    {$if declared(LEGACY_a2i_ASN1_STRING)}
+    a2i_ASN1_STRING := @LEGACY_a2i_ASN1_STRING;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('a2i_ASN1_STRING');
+    {$ifend}
   Result := a2i_ASN1_STRING(bp, bs, buf, size);
 end;
 
@@ -5869,7 +7274,11 @@ function Load_i2a_ASN1_STRING(bp: PBIO; a: PASN1_STRING; type_: TOpenSSL_C_INT):
 begin
   i2a_ASN1_STRING := LoadLibCryptoFunction('i2a_ASN1_STRING');
   if not assigned(i2a_ASN1_STRING) then
+    {$if declared(LEGACY_i2a_ASN1_STRING)}
+    i2a_ASN1_STRING := @LEGACY_i2a_ASN1_STRING;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2a_ASN1_STRING');
+    {$ifend}
   Result := i2a_ASN1_STRING(bp, a, type_);
 end;
 
@@ -5877,7 +7286,11 @@ function Load_i2t_ASN1_OBJECT(buf: PAnsiChar; buf_len: TOpenSSL_C_INT; a: PASN1_
 begin
   i2t_ASN1_OBJECT := LoadLibCryptoFunction('i2t_ASN1_OBJECT');
   if not assigned(i2t_ASN1_OBJECT) then
+    {$if declared(LEGACY_i2t_ASN1_OBJECT)}
+    i2t_ASN1_OBJECT := @LEGACY_i2t_ASN1_OBJECT;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2t_ASN1_OBJECT');
+    {$ifend}
   Result := i2t_ASN1_OBJECT(buf, buf_len, a);
 end;
 
@@ -5885,7 +7298,11 @@ function Load_a2d_ASN1_OBJECT(out_: Pbyte; olen: TOpenSSL_C_INT; buf: PAnsiChar;
 begin
   a2d_ASN1_OBJECT := LoadLibCryptoFunction('a2d_ASN1_OBJECT');
   if not assigned(a2d_ASN1_OBJECT) then
+    {$if declared(LEGACY_a2d_ASN1_OBJECT)}
+    a2d_ASN1_OBJECT := @LEGACY_a2d_ASN1_OBJECT;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('a2d_ASN1_OBJECT');
+    {$ifend}
   Result := a2d_ASN1_OBJECT(out_, olen, buf, num);
 end;
 
@@ -5893,7 +7310,11 @@ function Load_ASN1_OBJECT_create(nid: TOpenSSL_C_INT; data: Pbyte; len: TOpenSSL
 begin
   ASN1_OBJECT_create := LoadLibCryptoFunction('ASN1_OBJECT_create');
   if not assigned(ASN1_OBJECT_create) then
+    {$if declared(LEGACY_ASN1_OBJECT_create)}
+    ASN1_OBJECT_create := @LEGACY_ASN1_OBJECT_create;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_OBJECT_create');
+    {$ifend}
   Result := ASN1_OBJECT_create(nid, data, len, sn, ln);
 end;
 
@@ -5901,7 +7322,11 @@ function Load_ASN1_INTEGER_get_int64(pr: POpenSSL_C_LONG; a: PASN1_INTEGER): TOp
 begin
   ASN1_INTEGER_get_int64 := LoadLibCryptoFunction('ASN1_INTEGER_get_int64');
   if not assigned(ASN1_INTEGER_get_int64) then
+    {$if declared(LEGACY_ASN1_INTEGER_get_int64)}
+    ASN1_INTEGER_get_int64 := @LEGACY_ASN1_INTEGER_get_int64;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_INTEGER_get_int64');
+    {$ifend}
   Result := ASN1_INTEGER_get_int64(pr, a);
 end;
 
@@ -5909,7 +7334,11 @@ function Load_ASN1_INTEGER_set_int64(a: PASN1_INTEGER; r: TOpenSSL_C_LONG): TOpe
 begin
   ASN1_INTEGER_set_int64 := LoadLibCryptoFunction('ASN1_INTEGER_set_int64');
   if not assigned(ASN1_INTEGER_set_int64) then
+    {$if declared(LEGACY_ASN1_INTEGER_set_int64)}
+    ASN1_INTEGER_set_int64 := @LEGACY_ASN1_INTEGER_set_int64;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_INTEGER_set_int64');
+    {$ifend}
   Result := ASN1_INTEGER_set_int64(a, r);
 end;
 
@@ -5917,7 +7346,11 @@ function Load_ASN1_INTEGER_get_uint64(pr: Pqword; a: PASN1_INTEGER): TOpenSSL_C_
 begin
   ASN1_INTEGER_get_uint64 := LoadLibCryptoFunction('ASN1_INTEGER_get_uint64');
   if not assigned(ASN1_INTEGER_get_uint64) then
+    {$if declared(LEGACY_ASN1_INTEGER_get_uint64)}
+    ASN1_INTEGER_get_uint64 := @LEGACY_ASN1_INTEGER_get_uint64;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_INTEGER_get_uint64');
+    {$ifend}
   Result := ASN1_INTEGER_get_uint64(pr, a);
 end;
 
@@ -5925,7 +7358,11 @@ function Load_ASN1_INTEGER_set_uint64(a: PASN1_INTEGER; r: qword): TOpenSSL_C_IN
 begin
   ASN1_INTEGER_set_uint64 := LoadLibCryptoFunction('ASN1_INTEGER_set_uint64');
   if not assigned(ASN1_INTEGER_set_uint64) then
+    {$if declared(LEGACY_ASN1_INTEGER_set_uint64)}
+    ASN1_INTEGER_set_uint64 := @LEGACY_ASN1_INTEGER_set_uint64;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_INTEGER_set_uint64');
+    {$ifend}
   Result := ASN1_INTEGER_set_uint64(a, r);
 end;
 
@@ -5933,7 +7370,11 @@ function Load_ASN1_INTEGER_set(a: PASN1_INTEGER; v: TOpenSSL_C_INT): TOpenSSL_C_
 begin
   ASN1_INTEGER_set := LoadLibCryptoFunction('ASN1_INTEGER_set');
   if not assigned(ASN1_INTEGER_set) then
+    {$if declared(LEGACY_ASN1_INTEGER_set)}
+    ASN1_INTEGER_set := @LEGACY_ASN1_INTEGER_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_INTEGER_set');
+    {$ifend}
   Result := ASN1_INTEGER_set(a, v);
 end;
 
@@ -5941,7 +7382,11 @@ function Load_ASN1_INTEGER_get(a: PASN1_INTEGER): TOpenSSL_C_INT; cdecl;
 begin
   ASN1_INTEGER_get := LoadLibCryptoFunction('ASN1_INTEGER_get');
   if not assigned(ASN1_INTEGER_get) then
+    {$if declared(LEGACY_ASN1_INTEGER_get)}
+    ASN1_INTEGER_get := @LEGACY_ASN1_INTEGER_get;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_INTEGER_get');
+    {$ifend}
   Result := ASN1_INTEGER_get(a);
 end;
 
@@ -5949,7 +7394,11 @@ function Load_BN_to_ASN1_INTEGER(bn: PBIGNUM; ai: PASN1_INTEGER): PASN1_INTEGER;
 begin
   BN_to_ASN1_INTEGER := LoadLibCryptoFunction('BN_to_ASN1_INTEGER');
   if not assigned(BN_to_ASN1_INTEGER) then
+    {$if declared(LEGACY_BN_to_ASN1_INTEGER)}
+    BN_to_ASN1_INTEGER := @LEGACY_BN_to_ASN1_INTEGER;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_to_ASN1_INTEGER');
+    {$ifend}
   Result := BN_to_ASN1_INTEGER(bn, ai);
 end;
 
@@ -5957,7 +7406,11 @@ function Load_ASN1_INTEGER_to_BN(ai: PASN1_INTEGER; bn: PBIGNUM): PBIGNUM; cdecl
 begin
   ASN1_INTEGER_to_BN := LoadLibCryptoFunction('ASN1_INTEGER_to_BN');
   if not assigned(ASN1_INTEGER_to_BN) then
+    {$if declared(LEGACY_ASN1_INTEGER_to_BN)}
+    ASN1_INTEGER_to_BN := @LEGACY_ASN1_INTEGER_to_BN;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_INTEGER_to_BN');
+    {$ifend}
   Result := ASN1_INTEGER_to_BN(ai, bn);
 end;
 
@@ -5965,7 +7418,11 @@ function Load_ASN1_ENUMERATED_get_int64(pr: POpenSSL_C_LONG; a: PASN1_ENUMERATED
 begin
   ASN1_ENUMERATED_get_int64 := LoadLibCryptoFunction('ASN1_ENUMERATED_get_int64');
   if not assigned(ASN1_ENUMERATED_get_int64) then
+    {$if declared(LEGACY_ASN1_ENUMERATED_get_int64)}
+    ASN1_ENUMERATED_get_int64 := @LEGACY_ASN1_ENUMERATED_get_int64;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_ENUMERATED_get_int64');
+    {$ifend}
   Result := ASN1_ENUMERATED_get_int64(pr, a);
 end;
 
@@ -5973,7 +7430,11 @@ function Load_ASN1_ENUMERATED_set_int64(a: PASN1_ENUMERATED; r: TOpenSSL_C_LONG)
 begin
   ASN1_ENUMERATED_set_int64 := LoadLibCryptoFunction('ASN1_ENUMERATED_set_int64');
   if not assigned(ASN1_ENUMERATED_set_int64) then
+    {$if declared(LEGACY_ASN1_ENUMERATED_set_int64)}
+    ASN1_ENUMERATED_set_int64 := @LEGACY_ASN1_ENUMERATED_set_int64;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_ENUMERATED_set_int64');
+    {$ifend}
   Result := ASN1_ENUMERATED_set_int64(a, r);
 end;
 
@@ -5981,7 +7442,11 @@ function Load_ASN1_ENUMERATED_set(a: PASN1_ENUMERATED; v: TOpenSSL_C_INT): TOpen
 begin
   ASN1_ENUMERATED_set := LoadLibCryptoFunction('ASN1_ENUMERATED_set');
   if not assigned(ASN1_ENUMERATED_set) then
+    {$if declared(LEGACY_ASN1_ENUMERATED_set)}
+    ASN1_ENUMERATED_set := @LEGACY_ASN1_ENUMERATED_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_ENUMERATED_set');
+    {$ifend}
   Result := ASN1_ENUMERATED_set(a, v);
 end;
 
@@ -5989,7 +7454,11 @@ function Load_ASN1_ENUMERATED_get(a: PASN1_ENUMERATED): TOpenSSL_C_INT; cdecl;
 begin
   ASN1_ENUMERATED_get := LoadLibCryptoFunction('ASN1_ENUMERATED_get');
   if not assigned(ASN1_ENUMERATED_get) then
+    {$if declared(LEGACY_ASN1_ENUMERATED_get)}
+    ASN1_ENUMERATED_get := @LEGACY_ASN1_ENUMERATED_get;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_ENUMERATED_get');
+    {$ifend}
   Result := ASN1_ENUMERATED_get(a);
 end;
 
@@ -5997,7 +7466,11 @@ function Load_BN_to_ASN1_ENUMERATED(bn: PBIGNUM; ai: PASN1_ENUMERATED): PASN1_EN
 begin
   BN_to_ASN1_ENUMERATED := LoadLibCryptoFunction('BN_to_ASN1_ENUMERATED');
   if not assigned(BN_to_ASN1_ENUMERATED) then
+    {$if declared(LEGACY_BN_to_ASN1_ENUMERATED)}
+    BN_to_ASN1_ENUMERATED := @LEGACY_BN_to_ASN1_ENUMERATED;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_to_ASN1_ENUMERATED');
+    {$ifend}
   Result := BN_to_ASN1_ENUMERATED(bn, ai);
 end;
 
@@ -6005,7 +7478,11 @@ function Load_ASN1_ENUMERATED_to_BN(ai: PASN1_ENUMERATED; bn: PBIGNUM): PBIGNUM;
 begin
   ASN1_ENUMERATED_to_BN := LoadLibCryptoFunction('ASN1_ENUMERATED_to_BN');
   if not assigned(ASN1_ENUMERATED_to_BN) then
+    {$if declared(LEGACY_ASN1_ENUMERATED_to_BN)}
+    ASN1_ENUMERATED_to_BN := @LEGACY_ASN1_ENUMERATED_to_BN;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_ENUMERATED_to_BN');
+    {$ifend}
   Result := ASN1_ENUMERATED_to_BN(ai, bn);
 end;
 
@@ -6013,7 +7490,11 @@ function Load_ASN1_PRINTABLE_type(s: Pbyte; max: TOpenSSL_C_INT): TOpenSSL_C_INT
 begin
   ASN1_PRINTABLE_type := LoadLibCryptoFunction('ASN1_PRINTABLE_type');
   if not assigned(ASN1_PRINTABLE_type) then
+    {$if declared(LEGACY_ASN1_PRINTABLE_type)}
+    ASN1_PRINTABLE_type := @LEGACY_ASN1_PRINTABLE_type;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_PRINTABLE_type');
+    {$ifend}
   Result := ASN1_PRINTABLE_type(s, max);
 end;
 
@@ -6021,7 +7502,11 @@ function Load_ASN1_tag2bit(tag: TOpenSSL_C_INT): TOpenSSL_C_UINT; cdecl;
 begin
   ASN1_tag2bit := LoadLibCryptoFunction('ASN1_tag2bit');
   if not assigned(ASN1_tag2bit) then
+    {$if declared(LEGACY_ASN1_tag2bit)}
+    ASN1_tag2bit := @LEGACY_ASN1_tag2bit;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_tag2bit');
+    {$ifend}
   Result := ASN1_tag2bit(tag);
 end;
 
@@ -6029,7 +7514,11 @@ function Load_ASN1_get_object(pp: PPbyte; plength: POpenSSL_C_INT; ptag: POpenSS
 begin
   ASN1_get_object := LoadLibCryptoFunction('ASN1_get_object');
   if not assigned(ASN1_get_object) then
+    {$if declared(LEGACY_ASN1_get_object)}
+    ASN1_get_object := @LEGACY_ASN1_get_object;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_get_object');
+    {$ifend}
   Result := ASN1_get_object(pp, plength, ptag, pclass, omax);
 end;
 
@@ -6037,7 +7526,11 @@ function Load_ASN1_check_infinite_end(p: PPbyte; len: TOpenSSL_C_INT): TOpenSSL_
 begin
   ASN1_check_infinite_end := LoadLibCryptoFunction('ASN1_check_infinite_end');
   if not assigned(ASN1_check_infinite_end) then
+    {$if declared(LEGACY_ASN1_check_infinite_end)}
+    ASN1_check_infinite_end := @LEGACY_ASN1_check_infinite_end;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_check_infinite_end');
+    {$ifend}
   Result := ASN1_check_infinite_end(p, len);
 end;
 
@@ -6045,7 +7538,11 @@ function Load_ASN1_const_check_infinite_end(p: PPbyte; len: TOpenSSL_C_INT): TOp
 begin
   ASN1_const_check_infinite_end := LoadLibCryptoFunction('ASN1_const_check_infinite_end');
   if not assigned(ASN1_const_check_infinite_end) then
+    {$if declared(LEGACY_ASN1_const_check_infinite_end)}
+    ASN1_const_check_infinite_end := @LEGACY_ASN1_const_check_infinite_end;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_const_check_infinite_end');
+    {$ifend}
   Result := ASN1_const_check_infinite_end(p, len);
 end;
 
@@ -6053,7 +7550,11 @@ procedure Load_ASN1_put_object(pp: PPbyte; constructed: TOpenSSL_C_INT; length: 
 begin
   ASN1_put_object := LoadLibCryptoFunction('ASN1_put_object');
   if not assigned(ASN1_put_object) then
+    {$if declared(LEGACY_ASN1_put_object)}
+    ASN1_put_object := @LEGACY_ASN1_put_object;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_put_object');
+    {$ifend}
   ASN1_put_object(pp, constructed, length, tag, xclass);
 end;
 
@@ -6061,7 +7562,11 @@ function Load_ASN1_put_eoc(pp: PPbyte): TOpenSSL_C_INT; cdecl;
 begin
   ASN1_put_eoc := LoadLibCryptoFunction('ASN1_put_eoc');
   if not assigned(ASN1_put_eoc) then
+    {$if declared(LEGACY_ASN1_put_eoc)}
+    ASN1_put_eoc := @LEGACY_ASN1_put_eoc;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_put_eoc');
+    {$ifend}
   Result := ASN1_put_eoc(pp);
 end;
 
@@ -6069,7 +7574,11 @@ function Load_ASN1_object_size(constructed: TOpenSSL_C_INT; length: TOpenSSL_C_I
 begin
   ASN1_object_size := LoadLibCryptoFunction('ASN1_object_size');
   if not assigned(ASN1_object_size) then
+    {$if declared(LEGACY_ASN1_object_size)}
+    ASN1_object_size := @LEGACY_ASN1_object_size;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_object_size');
+    {$ifend}
   Result := ASN1_object_size(constructed, length, tag);
 end;
 
@@ -6077,7 +7586,11 @@ function Load_ASN1_dup(i2d: Pi2d_of_void; d2i: Pd2i_of_void; x: pointer): pointe
 begin
   ASN1_dup := LoadLibCryptoFunction('ASN1_dup');
   if not assigned(ASN1_dup) then
+    {$if declared(LEGACY_ASN1_dup)}
+    ASN1_dup := @LEGACY_ASN1_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_dup');
+    {$ifend}
   Result := ASN1_dup(i2d, d2i, x);
 end;
 
@@ -6085,7 +7598,11 @@ function Load_ASN1_item_dup(it: PASN1_ITEM; x: pointer): pointer; cdecl;
 begin
   ASN1_item_dup := LoadLibCryptoFunction('ASN1_item_dup');
   if not assigned(ASN1_item_dup) then
+    {$if declared(LEGACY_ASN1_item_dup)}
+    ASN1_item_dup := @LEGACY_ASN1_item_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_item_dup');
+    {$ifend}
   Result := ASN1_item_dup(it, x);
 end;
 
@@ -6093,7 +7610,11 @@ function Load_ASN1_item_sign_ex(it: PASN1_ITEM; algor1: PX509_ALGOR; algor2: PX5
 begin
   ASN1_item_sign_ex := LoadLibCryptoFunction('ASN1_item_sign_ex');
   if not assigned(ASN1_item_sign_ex) then
+    {$if declared(LEGACY_ASN1_item_sign_ex)}
+    ASN1_item_sign_ex := @LEGACY_ASN1_item_sign_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_item_sign_ex');
+    {$ifend}
   Result := ASN1_item_sign_ex(it, algor1, algor2, signature, data, id, pkey, md, libctx, propq);
 end;
 
@@ -6101,7 +7622,11 @@ function Load_ASN1_item_verify_ex(it: PASN1_ITEM; alg: PX509_ALGOR; signature: P
 begin
   ASN1_item_verify_ex := LoadLibCryptoFunction('ASN1_item_verify_ex');
   if not assigned(ASN1_item_verify_ex) then
+    {$if declared(LEGACY_ASN1_item_verify_ex)}
+    ASN1_item_verify_ex := @LEGACY_ASN1_item_verify_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_item_verify_ex');
+    {$ifend}
   Result := ASN1_item_verify_ex(it, alg, signature, data, id, pkey, libctx, propq);
 end;
 
@@ -6110,7 +7635,11 @@ function Load_ASN1_d2i_fp(xnew: TFuncType000; d2i: Pd2i_of_void; in_: PFILE; x: 
 begin
   ASN1_d2i_fp := LoadLibCryptoFunction('ASN1_d2i_fp');
   if not assigned(ASN1_d2i_fp) then
+    {$if declared(LEGACY_ASN1_d2i_fp)}
+    ASN1_d2i_fp := @LEGACY_ASN1_d2i_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_d2i_fp');
+    {$ifend}
   Result := ASN1_d2i_fp(xnew, d2i, in_, x);
 end;
 
@@ -6118,7 +7647,11 @@ function Load_ASN1_item_d2i_fp_ex(it: PASN1_ITEM; in_: PFILE; x: pointer; libctx
 begin
   ASN1_item_d2i_fp_ex := LoadLibCryptoFunction('ASN1_item_d2i_fp_ex');
   if not assigned(ASN1_item_d2i_fp_ex) then
+    {$if declared(LEGACY_ASN1_item_d2i_fp_ex)}
+    ASN1_item_d2i_fp_ex := @LEGACY_ASN1_item_d2i_fp_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_item_d2i_fp_ex');
+    {$ifend}
   Result := ASN1_item_d2i_fp_ex(it, in_, x, libctx, propq);
 end;
 
@@ -6126,7 +7659,11 @@ function Load_ASN1_item_d2i_fp(it: PASN1_ITEM; in_: PFILE; x: pointer): pointer;
 begin
   ASN1_item_d2i_fp := LoadLibCryptoFunction('ASN1_item_d2i_fp');
   if not assigned(ASN1_item_d2i_fp) then
+    {$if declared(LEGACY_ASN1_item_d2i_fp)}
+    ASN1_item_d2i_fp := @LEGACY_ASN1_item_d2i_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_item_d2i_fp');
+    {$ifend}
   Result := ASN1_item_d2i_fp(it, in_, x);
 end;
 
@@ -6134,7 +7671,11 @@ function Load_ASN1_i2d_fp(i2d: Pi2d_of_void; out_: PFILE; x: pointer): TOpenSSL_
 begin
   ASN1_i2d_fp := LoadLibCryptoFunction('ASN1_i2d_fp');
   if not assigned(ASN1_i2d_fp) then
+    {$if declared(LEGACY_ASN1_i2d_fp)}
+    ASN1_i2d_fp := @LEGACY_ASN1_i2d_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_i2d_fp');
+    {$ifend}
   Result := ASN1_i2d_fp(i2d, out_, x);
 end;
 
@@ -6142,7 +7683,11 @@ function Load_ASN1_item_i2d_fp(it: PASN1_ITEM; out_: PFILE; x: pointer): TOpenSS
 begin
   ASN1_item_i2d_fp := LoadLibCryptoFunction('ASN1_item_i2d_fp');
   if not assigned(ASN1_item_i2d_fp) then
+    {$if declared(LEGACY_ASN1_item_i2d_fp)}
+    ASN1_item_i2d_fp := @LEGACY_ASN1_item_i2d_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_item_i2d_fp');
+    {$ifend}
   Result := ASN1_item_i2d_fp(it, out_, x);
 end;
 
@@ -6150,7 +7695,11 @@ function Load_ASN1_STRING_print_ex_fp(fp: PFILE; str: PASN1_STRING; flags: TOpen
 begin
   ASN1_STRING_print_ex_fp := LoadLibCryptoFunction('ASN1_STRING_print_ex_fp');
   if not assigned(ASN1_STRING_print_ex_fp) then
+    {$if declared(LEGACY_ASN1_STRING_print_ex_fp)}
+    ASN1_STRING_print_ex_fp := @LEGACY_ASN1_STRING_print_ex_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_STRING_print_ex_fp');
+    {$ifend}
   Result := ASN1_STRING_print_ex_fp(fp, str, flags);
 end;
 
@@ -6159,7 +7708,11 @@ function Load_ASN1_STRING_to_UTF8(out_: PPbyte; in_: PASN1_STRING): TOpenSSL_C_I
 begin
   ASN1_STRING_to_UTF8 := LoadLibCryptoFunction('ASN1_STRING_to_UTF8');
   if not assigned(ASN1_STRING_to_UTF8) then
+    {$if declared(LEGACY_ASN1_STRING_to_UTF8)}
+    ASN1_STRING_to_UTF8 := @LEGACY_ASN1_STRING_to_UTF8;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_STRING_to_UTF8');
+    {$ifend}
   Result := ASN1_STRING_to_UTF8(out_, in_);
 end;
 
@@ -6167,7 +7720,11 @@ function Load_ASN1_d2i_bio(xnew: TFuncType001; d2i: Pd2i_of_void; in_: PBIO; x: 
 begin
   ASN1_d2i_bio := LoadLibCryptoFunction('ASN1_d2i_bio');
   if not assigned(ASN1_d2i_bio) then
+    {$if declared(LEGACY_ASN1_d2i_bio)}
+    ASN1_d2i_bio := @LEGACY_ASN1_d2i_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_d2i_bio');
+    {$ifend}
   Result := ASN1_d2i_bio(xnew, d2i, in_, x);
 end;
 
@@ -6175,7 +7732,11 @@ function Load_ASN1_item_d2i_bio_ex(it: PASN1_ITEM; in_: PBIO; pval: pointer; lib
 begin
   ASN1_item_d2i_bio_ex := LoadLibCryptoFunction('ASN1_item_d2i_bio_ex');
   if not assigned(ASN1_item_d2i_bio_ex) then
+    {$if declared(LEGACY_ASN1_item_d2i_bio_ex)}
+    ASN1_item_d2i_bio_ex := @LEGACY_ASN1_item_d2i_bio_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_item_d2i_bio_ex');
+    {$ifend}
   Result := ASN1_item_d2i_bio_ex(it, in_, pval, libctx, propq);
 end;
 
@@ -6183,7 +7744,11 @@ function Load_ASN1_item_d2i_bio(it: PASN1_ITEM; in_: PBIO; pval: pointer): point
 begin
   ASN1_item_d2i_bio := LoadLibCryptoFunction('ASN1_item_d2i_bio');
   if not assigned(ASN1_item_d2i_bio) then
+    {$if declared(LEGACY_ASN1_item_d2i_bio)}
+    ASN1_item_d2i_bio := @LEGACY_ASN1_item_d2i_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_item_d2i_bio');
+    {$ifend}
   Result := ASN1_item_d2i_bio(it, in_, pval);
 end;
 
@@ -6191,7 +7756,11 @@ function Load_ASN1_i2d_bio(i2d: Pi2d_of_void; out_: PBIO; x: pointer): TOpenSSL_
 begin
   ASN1_i2d_bio := LoadLibCryptoFunction('ASN1_i2d_bio');
   if not assigned(ASN1_i2d_bio) then
+    {$if declared(LEGACY_ASN1_i2d_bio)}
+    ASN1_i2d_bio := @LEGACY_ASN1_i2d_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_i2d_bio');
+    {$ifend}
   Result := ASN1_i2d_bio(i2d, out_, x);
 end;
 
@@ -6199,7 +7768,11 @@ function Load_ASN1_item_i2d_bio(it: PASN1_ITEM; out_: PBIO; x: pointer): TOpenSS
 begin
   ASN1_item_i2d_bio := LoadLibCryptoFunction('ASN1_item_i2d_bio');
   if not assigned(ASN1_item_i2d_bio) then
+    {$if declared(LEGACY_ASN1_item_i2d_bio)}
+    ASN1_item_i2d_bio := @LEGACY_ASN1_item_i2d_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_item_i2d_bio');
+    {$ifend}
   Result := ASN1_item_i2d_bio(it, out_, x);
 end;
 
@@ -6207,7 +7780,11 @@ function Load_ASN1_item_i2d_mem_bio(it: PASN1_ITEM; val: PASN1_VALUE): PBIO; cde
 begin
   ASN1_item_i2d_mem_bio := LoadLibCryptoFunction('ASN1_item_i2d_mem_bio');
   if not assigned(ASN1_item_i2d_mem_bio) then
+    {$if declared(LEGACY_ASN1_item_i2d_mem_bio)}
+    ASN1_item_i2d_mem_bio := @LEGACY_ASN1_item_i2d_mem_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_item_i2d_mem_bio');
+    {$ifend}
   Result := ASN1_item_i2d_mem_bio(it, val);
 end;
 
@@ -6215,7 +7792,11 @@ function Load_ASN1_UTCTIME_print(fp: PBIO; a: PASN1_UTCTIME): TOpenSSL_C_INT; cd
 begin
   ASN1_UTCTIME_print := LoadLibCryptoFunction('ASN1_UTCTIME_print');
   if not assigned(ASN1_UTCTIME_print) then
+    {$if declared(LEGACY_ASN1_UTCTIME_print)}
+    ASN1_UTCTIME_print := @LEGACY_ASN1_UTCTIME_print;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_UTCTIME_print');
+    {$ifend}
   Result := ASN1_UTCTIME_print(fp, a);
 end;
 
@@ -6223,7 +7804,11 @@ function Load_ASN1_GENERALIZEDTIME_print(fp: PBIO; a: PASN1_GENERALIZEDTIME): TO
 begin
   ASN1_GENERALIZEDTIME_print := LoadLibCryptoFunction('ASN1_GENERALIZEDTIME_print');
   if not assigned(ASN1_GENERALIZEDTIME_print) then
+    {$if declared(LEGACY_ASN1_GENERALIZEDTIME_print)}
+    ASN1_GENERALIZEDTIME_print := @LEGACY_ASN1_GENERALIZEDTIME_print;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_GENERALIZEDTIME_print');
+    {$ifend}
   Result := ASN1_GENERALIZEDTIME_print(fp, a);
 end;
 
@@ -6231,7 +7816,11 @@ function Load_ASN1_TIME_print(bp: PBIO; tm: PASN1_TIME): TOpenSSL_C_INT; cdecl;
 begin
   ASN1_TIME_print := LoadLibCryptoFunction('ASN1_TIME_print');
   if not assigned(ASN1_TIME_print) then
+    {$if declared(LEGACY_ASN1_TIME_print)}
+    ASN1_TIME_print := @LEGACY_ASN1_TIME_print;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_TIME_print');
+    {$ifend}
   Result := ASN1_TIME_print(bp, tm);
 end;
 
@@ -6239,7 +7828,11 @@ function Load_ASN1_TIME_print_ex(bp: PBIO; tm: PASN1_TIME; flags: TOpenSSL_C_UIN
 begin
   ASN1_TIME_print_ex := LoadLibCryptoFunction('ASN1_TIME_print_ex');
   if not assigned(ASN1_TIME_print_ex) then
+    {$if declared(LEGACY_ASN1_TIME_print_ex)}
+    ASN1_TIME_print_ex := @LEGACY_ASN1_TIME_print_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_TIME_print_ex');
+    {$ifend}
   Result := ASN1_TIME_print_ex(bp, tm, flags);
 end;
 
@@ -6247,7 +7840,11 @@ function Load_ASN1_STRING_print(bp: PBIO; v: PASN1_STRING): TOpenSSL_C_INT; cdec
 begin
   ASN1_STRING_print := LoadLibCryptoFunction('ASN1_STRING_print');
   if not assigned(ASN1_STRING_print) then
+    {$if declared(LEGACY_ASN1_STRING_print)}
+    ASN1_STRING_print := @LEGACY_ASN1_STRING_print;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_STRING_print');
+    {$ifend}
   Result := ASN1_STRING_print(bp, v);
 end;
 
@@ -6255,7 +7852,11 @@ function Load_ASN1_STRING_print_ex(out_: PBIO; str: PASN1_STRING; flags: TOpenSS
 begin
   ASN1_STRING_print_ex := LoadLibCryptoFunction('ASN1_STRING_print_ex');
   if not assigned(ASN1_STRING_print_ex) then
+    {$if declared(LEGACY_ASN1_STRING_print_ex)}
+    ASN1_STRING_print_ex := @LEGACY_ASN1_STRING_print_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_STRING_print_ex');
+    {$ifend}
   Result := ASN1_STRING_print_ex(out_, str, flags);
 end;
 
@@ -6263,7 +7864,11 @@ function Load_ASN1_buf_print(bp: PBIO; buf: Pbyte; buflen: TOpenSSL_C_SIZET; off
 begin
   ASN1_buf_print := LoadLibCryptoFunction('ASN1_buf_print');
   if not assigned(ASN1_buf_print) then
+    {$if declared(LEGACY_ASN1_buf_print)}
+    ASN1_buf_print := @LEGACY_ASN1_buf_print;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_buf_print');
+    {$ifend}
   Result := ASN1_buf_print(bp, buf, buflen, off);
 end;
 
@@ -6271,7 +7876,11 @@ function Load_ASN1_bn_print(bp: PBIO; number: PAnsiChar; num: PBIGNUM; buf: Pbyt
 begin
   ASN1_bn_print := LoadLibCryptoFunction('ASN1_bn_print');
   if not assigned(ASN1_bn_print) then
+    {$if declared(LEGACY_ASN1_bn_print)}
+    ASN1_bn_print := @LEGACY_ASN1_bn_print;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_bn_print');
+    {$ifend}
   Result := ASN1_bn_print(bp, number, num, buf, off);
 end;
 
@@ -6279,7 +7888,11 @@ function Load_ASN1_parse(bp: PBIO; pp: Pbyte; len: TOpenSSL_C_INT; indent: TOpen
 begin
   ASN1_parse := LoadLibCryptoFunction('ASN1_parse');
   if not assigned(ASN1_parse) then
+    {$if declared(LEGACY_ASN1_parse)}
+    ASN1_parse := @LEGACY_ASN1_parse;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_parse');
+    {$ifend}
   Result := ASN1_parse(bp, pp, len, indent);
 end;
 
@@ -6287,7 +7900,11 @@ function Load_ASN1_parse_dump(bp: PBIO; pp: Pbyte; len: TOpenSSL_C_INT; indent: 
 begin
   ASN1_parse_dump := LoadLibCryptoFunction('ASN1_parse_dump');
   if not assigned(ASN1_parse_dump) then
+    {$if declared(LEGACY_ASN1_parse_dump)}
+    ASN1_parse_dump := @LEGACY_ASN1_parse_dump;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_parse_dump');
+    {$ifend}
   Result := ASN1_parse_dump(bp, pp, len, indent, dump);
 end;
 
@@ -6295,7 +7912,11 @@ function Load_ASN1_tag2str(tag: TOpenSSL_C_INT): PAnsiChar; cdecl;
 begin
   ASN1_tag2str := LoadLibCryptoFunction('ASN1_tag2str');
   if not assigned(ASN1_tag2str) then
+    {$if declared(LEGACY_ASN1_tag2str)}
+    ASN1_tag2str := @LEGACY_ASN1_tag2str;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_tag2str');
+    {$ifend}
   Result := ASN1_tag2str(tag);
 end;
 
@@ -6303,7 +7924,11 @@ function Load_ASN1_UNIVERSALSTRING_to_string(s: PASN1_UNIVERSALSTRING): TOpenSSL
 begin
   ASN1_UNIVERSALSTRING_to_string := LoadLibCryptoFunction('ASN1_UNIVERSALSTRING_to_string');
   if not assigned(ASN1_UNIVERSALSTRING_to_string) then
+    {$if declared(LEGACY_ASN1_UNIVERSALSTRING_to_string)}
+    ASN1_UNIVERSALSTRING_to_string := @LEGACY_ASN1_UNIVERSALSTRING_to_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_UNIVERSALSTRING_to_string');
+    {$ifend}
   Result := ASN1_UNIVERSALSTRING_to_string(s);
 end;
 
@@ -6311,7 +7936,11 @@ function Load_ASN1_TYPE_set_octetstring(a: PASN1_TYPE; data: Pbyte; len: TOpenSS
 begin
   ASN1_TYPE_set_octetstring := LoadLibCryptoFunction('ASN1_TYPE_set_octetstring');
   if not assigned(ASN1_TYPE_set_octetstring) then
+    {$if declared(LEGACY_ASN1_TYPE_set_octetstring)}
+    ASN1_TYPE_set_octetstring := @LEGACY_ASN1_TYPE_set_octetstring;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_TYPE_set_octetstring');
+    {$ifend}
   Result := ASN1_TYPE_set_octetstring(a, data, len);
 end;
 
@@ -6319,7 +7948,11 @@ function Load_ASN1_TYPE_get_octetstring(a: PASN1_TYPE; data: Pbyte; max_len: TOp
 begin
   ASN1_TYPE_get_octetstring := LoadLibCryptoFunction('ASN1_TYPE_get_octetstring');
   if not assigned(ASN1_TYPE_get_octetstring) then
+    {$if declared(LEGACY_ASN1_TYPE_get_octetstring)}
+    ASN1_TYPE_get_octetstring := @LEGACY_ASN1_TYPE_get_octetstring;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_TYPE_get_octetstring');
+    {$ifend}
   Result := ASN1_TYPE_get_octetstring(a, data, max_len);
 end;
 
@@ -6327,7 +7960,11 @@ function Load_ASN1_TYPE_set_int_octetstring(a: PASN1_TYPE; num: TOpenSSL_C_INT; 
 begin
   ASN1_TYPE_set_int_octetstring := LoadLibCryptoFunction('ASN1_TYPE_set_int_octetstring');
   if not assigned(ASN1_TYPE_set_int_octetstring) then
+    {$if declared(LEGACY_ASN1_TYPE_set_int_octetstring)}
+    ASN1_TYPE_set_int_octetstring := @LEGACY_ASN1_TYPE_set_int_octetstring;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_TYPE_set_int_octetstring');
+    {$ifend}
   Result := ASN1_TYPE_set_int_octetstring(a, num, data, len);
 end;
 
@@ -6335,7 +7972,11 @@ function Load_ASN1_TYPE_get_int_octetstring(a: PASN1_TYPE; num: POpenSSL_C_INT; 
 begin
   ASN1_TYPE_get_int_octetstring := LoadLibCryptoFunction('ASN1_TYPE_get_int_octetstring');
   if not assigned(ASN1_TYPE_get_int_octetstring) then
+    {$if declared(LEGACY_ASN1_TYPE_get_int_octetstring)}
+    ASN1_TYPE_get_int_octetstring := @LEGACY_ASN1_TYPE_get_int_octetstring;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_TYPE_get_int_octetstring');
+    {$ifend}
   Result := ASN1_TYPE_get_int_octetstring(a, num, data, max_len);
 end;
 
@@ -6343,7 +7984,11 @@ function Load_ASN1_item_unpack(oct: PASN1_STRING; it: PASN1_ITEM): pointer; cdec
 begin
   ASN1_item_unpack := LoadLibCryptoFunction('ASN1_item_unpack');
   if not assigned(ASN1_item_unpack) then
+    {$if declared(LEGACY_ASN1_item_unpack)}
+    ASN1_item_unpack := @LEGACY_ASN1_item_unpack;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_item_unpack');
+    {$ifend}
   Result := ASN1_item_unpack(oct, it);
 end;
 
@@ -6351,7 +7996,11 @@ function Load_ASN1_item_pack(obj: pointer; it: PASN1_ITEM; oct: PPASN1_OCTET_STR
 begin
   ASN1_item_pack := LoadLibCryptoFunction('ASN1_item_pack');
   if not assigned(ASN1_item_pack) then
+    {$if declared(LEGACY_ASN1_item_pack)}
+    ASN1_item_pack := @LEGACY_ASN1_item_pack;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_item_pack');
+    {$ifend}
   Result := ASN1_item_pack(obj, it, oct);
 end;
 
@@ -6359,7 +8008,11 @@ procedure Load_ASN1_STRING_set_default_mask(mask: TOpenSSL_C_UINT); cdecl;
 begin
   ASN1_STRING_set_default_mask := LoadLibCryptoFunction('ASN1_STRING_set_default_mask');
   if not assigned(ASN1_STRING_set_default_mask) then
+    {$if declared(LEGACY_ASN1_STRING_set_default_mask)}
+    ASN1_STRING_set_default_mask := @LEGACY_ASN1_STRING_set_default_mask;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_STRING_set_default_mask');
+    {$ifend}
   ASN1_STRING_set_default_mask(mask);
 end;
 
@@ -6367,7 +8020,11 @@ function Load_ASN1_STRING_set_default_mask_asc(p: PAnsiChar): TOpenSSL_C_INT; cd
 begin
   ASN1_STRING_set_default_mask_asc := LoadLibCryptoFunction('ASN1_STRING_set_default_mask_asc');
   if not assigned(ASN1_STRING_set_default_mask_asc) then
+    {$if declared(LEGACY_ASN1_STRING_set_default_mask_asc)}
+    ASN1_STRING_set_default_mask_asc := @LEGACY_ASN1_STRING_set_default_mask_asc;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_STRING_set_default_mask_asc');
+    {$ifend}
   Result := ASN1_STRING_set_default_mask_asc(p);
 end;
 
@@ -6375,7 +8032,11 @@ function Load_ASN1_STRING_get_default_mask: TOpenSSL_C_UINT; cdecl;
 begin
   ASN1_STRING_get_default_mask := LoadLibCryptoFunction('ASN1_STRING_get_default_mask');
   if not assigned(ASN1_STRING_get_default_mask) then
+    {$if declared(LEGACY_ASN1_STRING_get_default_mask)}
+    ASN1_STRING_get_default_mask := @LEGACY_ASN1_STRING_get_default_mask;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_STRING_get_default_mask');
+    {$ifend}
   Result := ASN1_STRING_get_default_mask;
 end;
 
@@ -6383,7 +8044,11 @@ function Load_ASN1_mbstring_copy(out_: PPASN1_STRING; in_: Pbyte; len: TOpenSSL_
 begin
   ASN1_mbstring_copy := LoadLibCryptoFunction('ASN1_mbstring_copy');
   if not assigned(ASN1_mbstring_copy) then
+    {$if declared(LEGACY_ASN1_mbstring_copy)}
+    ASN1_mbstring_copy := @LEGACY_ASN1_mbstring_copy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_mbstring_copy');
+    {$ifend}
   Result := ASN1_mbstring_copy(out_, in_, len, inform, mask);
 end;
 
@@ -6391,7 +8056,11 @@ function Load_ASN1_mbstring_ncopy(out_: PPASN1_STRING; in_: Pbyte; len: TOpenSSL
 begin
   ASN1_mbstring_ncopy := LoadLibCryptoFunction('ASN1_mbstring_ncopy');
   if not assigned(ASN1_mbstring_ncopy) then
+    {$if declared(LEGACY_ASN1_mbstring_ncopy)}
+    ASN1_mbstring_ncopy := @LEGACY_ASN1_mbstring_ncopy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_mbstring_ncopy');
+    {$ifend}
   Result := ASN1_mbstring_ncopy(out_, in_, len, inform, mask, minsize, maxsize);
 end;
 
@@ -6399,7 +8068,11 @@ function Load_ASN1_STRING_set_by_NID(out_: PPASN1_STRING; in_: Pbyte; inlen: TOp
 begin
   ASN1_STRING_set_by_NID := LoadLibCryptoFunction('ASN1_STRING_set_by_NID');
   if not assigned(ASN1_STRING_set_by_NID) then
+    {$if declared(LEGACY_ASN1_STRING_set_by_NID)}
+    ASN1_STRING_set_by_NID := @LEGACY_ASN1_STRING_set_by_NID;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_STRING_set_by_NID');
+    {$ifend}
   Result := ASN1_STRING_set_by_NID(out_, in_, inlen, inform, nid);
 end;
 
@@ -6407,7 +8080,11 @@ function Load_ASN1_STRING_TABLE_get(nid: TOpenSSL_C_INT): PASN1_STRING_TABLE; cd
 begin
   ASN1_STRING_TABLE_get := LoadLibCryptoFunction('ASN1_STRING_TABLE_get');
   if not assigned(ASN1_STRING_TABLE_get) then
+    {$if declared(LEGACY_ASN1_STRING_TABLE_get)}
+    ASN1_STRING_TABLE_get := @LEGACY_ASN1_STRING_TABLE_get;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_STRING_TABLE_get');
+    {$ifend}
   Result := ASN1_STRING_TABLE_get(nid);
 end;
 
@@ -6415,7 +8092,11 @@ function Load_ASN1_STRING_TABLE_add(_param1: TOpenSSL_C_INT; _param2: TOpenSSL_C
 begin
   ASN1_STRING_TABLE_add := LoadLibCryptoFunction('ASN1_STRING_TABLE_add');
   if not assigned(ASN1_STRING_TABLE_add) then
+    {$if declared(LEGACY_ASN1_STRING_TABLE_add)}
+    ASN1_STRING_TABLE_add := @LEGACY_ASN1_STRING_TABLE_add;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_STRING_TABLE_add');
+    {$ifend}
   Result := ASN1_STRING_TABLE_add(_param1, _param2, _param3, _param4, _param5);
 end;
 
@@ -6423,7 +8104,11 @@ procedure Load_ASN1_STRING_TABLE_cleanup; cdecl;
 begin
   ASN1_STRING_TABLE_cleanup := LoadLibCryptoFunction('ASN1_STRING_TABLE_cleanup');
   if not assigned(ASN1_STRING_TABLE_cleanup) then
+    {$if declared(LEGACY_ASN1_STRING_TABLE_cleanup)}
+    ASN1_STRING_TABLE_cleanup := @LEGACY_ASN1_STRING_TABLE_cleanup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_STRING_TABLE_cleanup');
+    {$ifend}
   ASN1_STRING_TABLE_cleanup;
 end;
 
@@ -6431,7 +8116,11 @@ function Load_ASN1_item_new(it: PASN1_ITEM): PASN1_VALUE; cdecl;
 begin
   ASN1_item_new := LoadLibCryptoFunction('ASN1_item_new');
   if not assigned(ASN1_item_new) then
+    {$if declared(LEGACY_ASN1_item_new)}
+    ASN1_item_new := @LEGACY_ASN1_item_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_item_new');
+    {$ifend}
   Result := ASN1_item_new(it);
 end;
 
@@ -6439,7 +8128,11 @@ function Load_ASN1_item_new_ex(it: PASN1_ITEM; libctx: POSSL_LIB_CTX; propq: PAn
 begin
   ASN1_item_new_ex := LoadLibCryptoFunction('ASN1_item_new_ex');
   if not assigned(ASN1_item_new_ex) then
+    {$if declared(LEGACY_ASN1_item_new_ex)}
+    ASN1_item_new_ex := @LEGACY_ASN1_item_new_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_item_new_ex');
+    {$ifend}
   Result := ASN1_item_new_ex(it, libctx, propq);
 end;
 
@@ -6447,7 +8140,11 @@ procedure Load_ASN1_item_free(val: PASN1_VALUE; it: PASN1_ITEM); cdecl;
 begin
   ASN1_item_free := LoadLibCryptoFunction('ASN1_item_free');
   if not assigned(ASN1_item_free) then
+    {$if declared(LEGACY_ASN1_item_free)}
+    ASN1_item_free := @LEGACY_ASN1_item_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_item_free');
+    {$ifend}
   ASN1_item_free(val, it);
 end;
 
@@ -6455,7 +8152,11 @@ function Load_ASN1_item_d2i_ex(val: PPASN1_VALUE; in_: PPbyte; len: TOpenSSL_C_I
 begin
   ASN1_item_d2i_ex := LoadLibCryptoFunction('ASN1_item_d2i_ex');
   if not assigned(ASN1_item_d2i_ex) then
+    {$if declared(LEGACY_ASN1_item_d2i_ex)}
+    ASN1_item_d2i_ex := @LEGACY_ASN1_item_d2i_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_item_d2i_ex');
+    {$ifend}
   Result := ASN1_item_d2i_ex(val, in_, len, it, libctx, propq);
 end;
 
@@ -6463,7 +8164,11 @@ function Load_ASN1_item_d2i(val: PPASN1_VALUE; in_: PPbyte; len: TOpenSSL_C_INT;
 begin
   ASN1_item_d2i := LoadLibCryptoFunction('ASN1_item_d2i');
   if not assigned(ASN1_item_d2i) then
+    {$if declared(LEGACY_ASN1_item_d2i)}
+    ASN1_item_d2i := @LEGACY_ASN1_item_d2i;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_item_d2i');
+    {$ifend}
   Result := ASN1_item_d2i(val, in_, len, it);
 end;
 
@@ -6471,7 +8176,11 @@ function Load_ASN1_item_i2d(val: PASN1_VALUE; out_: PPbyte; it: PASN1_ITEM): TOp
 begin
   ASN1_item_i2d := LoadLibCryptoFunction('ASN1_item_i2d');
   if not assigned(ASN1_item_i2d) then
+    {$if declared(LEGACY_ASN1_item_i2d)}
+    ASN1_item_i2d := @LEGACY_ASN1_item_i2d;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_item_i2d');
+    {$ifend}
   Result := ASN1_item_i2d(val, out_, it);
 end;
 
@@ -6479,7 +8188,11 @@ function Load_ASN1_item_ndef_i2d(val: PASN1_VALUE; out_: PPbyte; it: PASN1_ITEM)
 begin
   ASN1_item_ndef_i2d := LoadLibCryptoFunction('ASN1_item_ndef_i2d');
   if not assigned(ASN1_item_ndef_i2d) then
+    {$if declared(LEGACY_ASN1_item_ndef_i2d)}
+    ASN1_item_ndef_i2d := @LEGACY_ASN1_item_ndef_i2d;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_item_ndef_i2d');
+    {$ifend}
   Result := ASN1_item_ndef_i2d(val, out_, it);
 end;
 
@@ -6487,7 +8200,11 @@ procedure Load_ASN1_add_oid_module; cdecl;
 begin
   ASN1_add_oid_module := LoadLibCryptoFunction('ASN1_add_oid_module');
   if not assigned(ASN1_add_oid_module) then
+    {$if declared(LEGACY_ASN1_add_oid_module)}
+    ASN1_add_oid_module := @LEGACY_ASN1_add_oid_module;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_add_oid_module');
+    {$ifend}
   ASN1_add_oid_module;
 end;
 
@@ -6495,7 +8212,11 @@ procedure Load_ASN1_add_stable_module; cdecl;
 begin
   ASN1_add_stable_module := LoadLibCryptoFunction('ASN1_add_stable_module');
   if not assigned(ASN1_add_stable_module) then
+    {$if declared(LEGACY_ASN1_add_stable_module)}
+    ASN1_add_stable_module := @LEGACY_ASN1_add_stable_module;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_add_stable_module');
+    {$ifend}
   ASN1_add_stable_module;
 end;
 
@@ -6503,7 +8224,11 @@ function Load_ASN1_generate_nconf(str: PAnsiChar; nconf: PCONF): PASN1_TYPE; cde
 begin
   ASN1_generate_nconf := LoadLibCryptoFunction('ASN1_generate_nconf');
   if not assigned(ASN1_generate_nconf) then
+    {$if declared(LEGACY_ASN1_generate_nconf)}
+    ASN1_generate_nconf := @LEGACY_ASN1_generate_nconf;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_generate_nconf');
+    {$ifend}
   Result := ASN1_generate_nconf(str, nconf);
 end;
 
@@ -6511,7 +8236,11 @@ function Load_ASN1_generate_v3(str: PAnsiChar; cnf: PX509V3_CTX): PASN1_TYPE; cd
 begin
   ASN1_generate_v3 := LoadLibCryptoFunction('ASN1_generate_v3');
   if not assigned(ASN1_generate_v3) then
+    {$if declared(LEGACY_ASN1_generate_v3)}
+    ASN1_generate_v3 := @LEGACY_ASN1_generate_v3;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_generate_v3');
+    {$ifend}
   Result := ASN1_generate_v3(str, cnf);
 end;
 
@@ -6519,7 +8248,11 @@ function Load_ASN1_str2mask(str: PAnsiChar; pmask: POpenSSL_C_UINT): TOpenSSL_C_
 begin
   ASN1_str2mask := LoadLibCryptoFunction('ASN1_str2mask');
   if not assigned(ASN1_str2mask) then
+    {$if declared(LEGACY_ASN1_str2mask)}
+    ASN1_str2mask := @LEGACY_ASN1_str2mask;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_str2mask');
+    {$ifend}
   Result := ASN1_str2mask(str, pmask);
 end;
 
@@ -6527,7 +8260,11 @@ function Load_ASN1_item_print(out_: PBIO; ifld: PASN1_VALUE; indent: TOpenSSL_C_
 begin
   ASN1_item_print := LoadLibCryptoFunction('ASN1_item_print');
   if not assigned(ASN1_item_print) then
+    {$if declared(LEGACY_ASN1_item_print)}
+    ASN1_item_print := @LEGACY_ASN1_item_print;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_item_print');
+    {$ifend}
   Result := ASN1_item_print(out_, ifld, indent, it, pctx);
 end;
 
@@ -6535,7 +8272,11 @@ function Load_ASN1_PCTX_new: PASN1_PCTX; cdecl;
 begin
   ASN1_PCTX_new := LoadLibCryptoFunction('ASN1_PCTX_new');
   if not assigned(ASN1_PCTX_new) then
+    {$if declared(LEGACY_ASN1_PCTX_new)}
+    ASN1_PCTX_new := @LEGACY_ASN1_PCTX_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_PCTX_new');
+    {$ifend}
   Result := ASN1_PCTX_new;
 end;
 
@@ -6543,7 +8284,11 @@ procedure Load_ASN1_PCTX_free(p: PASN1_PCTX); cdecl;
 begin
   ASN1_PCTX_free := LoadLibCryptoFunction('ASN1_PCTX_free');
   if not assigned(ASN1_PCTX_free) then
+    {$if declared(LEGACY_ASN1_PCTX_free)}
+    ASN1_PCTX_free := @LEGACY_ASN1_PCTX_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_PCTX_free');
+    {$ifend}
   ASN1_PCTX_free(p);
 end;
 
@@ -6551,7 +8296,11 @@ function Load_ASN1_PCTX_get_flags(p: PASN1_PCTX): TOpenSSL_C_UINT; cdecl;
 begin
   ASN1_PCTX_get_flags := LoadLibCryptoFunction('ASN1_PCTX_get_flags');
   if not assigned(ASN1_PCTX_get_flags) then
+    {$if declared(LEGACY_ASN1_PCTX_get_flags)}
+    ASN1_PCTX_get_flags := @LEGACY_ASN1_PCTX_get_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_PCTX_get_flags');
+    {$ifend}
   Result := ASN1_PCTX_get_flags(p);
 end;
 
@@ -6559,7 +8308,11 @@ procedure Load_ASN1_PCTX_set_flags(p: PASN1_PCTX; flags: TOpenSSL_C_UINT); cdecl
 begin
   ASN1_PCTX_set_flags := LoadLibCryptoFunction('ASN1_PCTX_set_flags');
   if not assigned(ASN1_PCTX_set_flags) then
+    {$if declared(LEGACY_ASN1_PCTX_set_flags)}
+    ASN1_PCTX_set_flags := @LEGACY_ASN1_PCTX_set_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_PCTX_set_flags');
+    {$ifend}
   ASN1_PCTX_set_flags(p, flags);
 end;
 
@@ -6567,7 +8320,11 @@ function Load_ASN1_PCTX_get_nm_flags(p: PASN1_PCTX): TOpenSSL_C_UINT; cdecl;
 begin
   ASN1_PCTX_get_nm_flags := LoadLibCryptoFunction('ASN1_PCTX_get_nm_flags');
   if not assigned(ASN1_PCTX_get_nm_flags) then
+    {$if declared(LEGACY_ASN1_PCTX_get_nm_flags)}
+    ASN1_PCTX_get_nm_flags := @LEGACY_ASN1_PCTX_get_nm_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_PCTX_get_nm_flags');
+    {$ifend}
   Result := ASN1_PCTX_get_nm_flags(p);
 end;
 
@@ -6575,7 +8332,11 @@ procedure Load_ASN1_PCTX_set_nm_flags(p: PASN1_PCTX; flags: TOpenSSL_C_UINT); cd
 begin
   ASN1_PCTX_set_nm_flags := LoadLibCryptoFunction('ASN1_PCTX_set_nm_flags');
   if not assigned(ASN1_PCTX_set_nm_flags) then
+    {$if declared(LEGACY_ASN1_PCTX_set_nm_flags)}
+    ASN1_PCTX_set_nm_flags := @LEGACY_ASN1_PCTX_set_nm_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_PCTX_set_nm_flags');
+    {$ifend}
   ASN1_PCTX_set_nm_flags(p, flags);
 end;
 
@@ -6583,7 +8344,11 @@ function Load_ASN1_PCTX_get_cert_flags(p: PASN1_PCTX): TOpenSSL_C_UINT; cdecl;
 begin
   ASN1_PCTX_get_cert_flags := LoadLibCryptoFunction('ASN1_PCTX_get_cert_flags');
   if not assigned(ASN1_PCTX_get_cert_flags) then
+    {$if declared(LEGACY_ASN1_PCTX_get_cert_flags)}
+    ASN1_PCTX_get_cert_flags := @LEGACY_ASN1_PCTX_get_cert_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_PCTX_get_cert_flags');
+    {$ifend}
   Result := ASN1_PCTX_get_cert_flags(p);
 end;
 
@@ -6591,7 +8356,11 @@ procedure Load_ASN1_PCTX_set_cert_flags(p: PASN1_PCTX; flags: TOpenSSL_C_UINT); 
 begin
   ASN1_PCTX_set_cert_flags := LoadLibCryptoFunction('ASN1_PCTX_set_cert_flags');
   if not assigned(ASN1_PCTX_set_cert_flags) then
+    {$if declared(LEGACY_ASN1_PCTX_set_cert_flags)}
+    ASN1_PCTX_set_cert_flags := @LEGACY_ASN1_PCTX_set_cert_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_PCTX_set_cert_flags');
+    {$ifend}
   ASN1_PCTX_set_cert_flags(p, flags);
 end;
 
@@ -6599,7 +8368,11 @@ function Load_ASN1_PCTX_get_oid_flags(p: PASN1_PCTX): TOpenSSL_C_UINT; cdecl;
 begin
   ASN1_PCTX_get_oid_flags := LoadLibCryptoFunction('ASN1_PCTX_get_oid_flags');
   if not assigned(ASN1_PCTX_get_oid_flags) then
+    {$if declared(LEGACY_ASN1_PCTX_get_oid_flags)}
+    ASN1_PCTX_get_oid_flags := @LEGACY_ASN1_PCTX_get_oid_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_PCTX_get_oid_flags');
+    {$ifend}
   Result := ASN1_PCTX_get_oid_flags(p);
 end;
 
@@ -6607,7 +8380,11 @@ procedure Load_ASN1_PCTX_set_oid_flags(p: PASN1_PCTX; flags: TOpenSSL_C_UINT); c
 begin
   ASN1_PCTX_set_oid_flags := LoadLibCryptoFunction('ASN1_PCTX_set_oid_flags');
   if not assigned(ASN1_PCTX_set_oid_flags) then
+    {$if declared(LEGACY_ASN1_PCTX_set_oid_flags)}
+    ASN1_PCTX_set_oid_flags := @LEGACY_ASN1_PCTX_set_oid_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_PCTX_set_oid_flags');
+    {$ifend}
   ASN1_PCTX_set_oid_flags(p, flags);
 end;
 
@@ -6615,7 +8392,11 @@ function Load_ASN1_PCTX_get_str_flags(p: PASN1_PCTX): TOpenSSL_C_UINT; cdecl;
 begin
   ASN1_PCTX_get_str_flags := LoadLibCryptoFunction('ASN1_PCTX_get_str_flags');
   if not assigned(ASN1_PCTX_get_str_flags) then
+    {$if declared(LEGACY_ASN1_PCTX_get_str_flags)}
+    ASN1_PCTX_get_str_flags := @LEGACY_ASN1_PCTX_get_str_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_PCTX_get_str_flags');
+    {$ifend}
   Result := ASN1_PCTX_get_str_flags(p);
 end;
 
@@ -6623,7 +8404,11 @@ procedure Load_ASN1_PCTX_set_str_flags(p: PASN1_PCTX; flags: TOpenSSL_C_UINT); c
 begin
   ASN1_PCTX_set_str_flags := LoadLibCryptoFunction('ASN1_PCTX_set_str_flags');
   if not assigned(ASN1_PCTX_set_str_flags) then
+    {$if declared(LEGACY_ASN1_PCTX_set_str_flags)}
+    ASN1_PCTX_set_str_flags := @LEGACY_ASN1_PCTX_set_str_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_PCTX_set_str_flags');
+    {$ifend}
   ASN1_PCTX_set_str_flags(p, flags);
 end;
 
@@ -6631,7 +8416,11 @@ function Load_ASN1_SCTX_new(scan_cb: TFuncType002): PASN1_SCTX; cdecl;
 begin
   ASN1_SCTX_new := LoadLibCryptoFunction('ASN1_SCTX_new');
   if not assigned(ASN1_SCTX_new) then
+    {$if declared(LEGACY_ASN1_SCTX_new)}
+    ASN1_SCTX_new := @LEGACY_ASN1_SCTX_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_SCTX_new');
+    {$ifend}
   Result := ASN1_SCTX_new(scan_cb);
 end;
 
@@ -6639,7 +8428,11 @@ procedure Load_ASN1_SCTX_free(p: PASN1_SCTX); cdecl;
 begin
   ASN1_SCTX_free := LoadLibCryptoFunction('ASN1_SCTX_free');
   if not assigned(ASN1_SCTX_free) then
+    {$if declared(LEGACY_ASN1_SCTX_free)}
+    ASN1_SCTX_free := @LEGACY_ASN1_SCTX_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_SCTX_free');
+    {$ifend}
   ASN1_SCTX_free(p);
 end;
 
@@ -6647,7 +8440,11 @@ function Load_ASN1_SCTX_get_item(p: PASN1_SCTX): PASN1_ITEM; cdecl;
 begin
   ASN1_SCTX_get_item := LoadLibCryptoFunction('ASN1_SCTX_get_item');
   if not assigned(ASN1_SCTX_get_item) then
+    {$if declared(LEGACY_ASN1_SCTX_get_item)}
+    ASN1_SCTX_get_item := @LEGACY_ASN1_SCTX_get_item;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_SCTX_get_item');
+    {$ifend}
   Result := ASN1_SCTX_get_item(p);
 end;
 
@@ -6655,7 +8452,11 @@ function Load_ASN1_SCTX_get_template(p: PASN1_SCTX): PASN1_TEMPLATE; cdecl;
 begin
   ASN1_SCTX_get_template := LoadLibCryptoFunction('ASN1_SCTX_get_template');
   if not assigned(ASN1_SCTX_get_template) then
+    {$if declared(LEGACY_ASN1_SCTX_get_template)}
+    ASN1_SCTX_get_template := @LEGACY_ASN1_SCTX_get_template;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_SCTX_get_template');
+    {$ifend}
   Result := ASN1_SCTX_get_template(p);
 end;
 
@@ -6663,7 +8464,11 @@ function Load_ASN1_SCTX_get_flags(p: PASN1_SCTX): TOpenSSL_C_UINT; cdecl;
 begin
   ASN1_SCTX_get_flags := LoadLibCryptoFunction('ASN1_SCTX_get_flags');
   if not assigned(ASN1_SCTX_get_flags) then
+    {$if declared(LEGACY_ASN1_SCTX_get_flags)}
+    ASN1_SCTX_get_flags := @LEGACY_ASN1_SCTX_get_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_SCTX_get_flags');
+    {$ifend}
   Result := ASN1_SCTX_get_flags(p);
 end;
 
@@ -6671,7 +8476,11 @@ procedure Load_ASN1_SCTX_set_app_data(p: PASN1_SCTX; data: pointer); cdecl;
 begin
   ASN1_SCTX_set_app_data := LoadLibCryptoFunction('ASN1_SCTX_set_app_data');
   if not assigned(ASN1_SCTX_set_app_data) then
+    {$if declared(LEGACY_ASN1_SCTX_set_app_data)}
+    ASN1_SCTX_set_app_data := @LEGACY_ASN1_SCTX_set_app_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_SCTX_set_app_data');
+    {$ifend}
   ASN1_SCTX_set_app_data(p, data);
 end;
 
@@ -6679,7 +8488,11 @@ function Load_ASN1_SCTX_get_app_data(p: PASN1_SCTX): pointer; cdecl;
 begin
   ASN1_SCTX_get_app_data := LoadLibCryptoFunction('ASN1_SCTX_get_app_data');
   if not assigned(ASN1_SCTX_get_app_data) then
+    {$if declared(LEGACY_ASN1_SCTX_get_app_data)}
+    ASN1_SCTX_get_app_data := @LEGACY_ASN1_SCTX_get_app_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_SCTX_get_app_data');
+    {$ifend}
   Result := ASN1_SCTX_get_app_data(p);
 end;
 
@@ -6687,7 +8500,11 @@ function Load_BIO_f_asn1: PBIO_METHOD; cdecl;
 begin
   BIO_f_asn1 := LoadLibCryptoFunction('BIO_f_asn1');
   if not assigned(BIO_f_asn1) then
+    {$if declared(LEGACY_BIO_f_asn1)}
+    BIO_f_asn1 := @LEGACY_BIO_f_asn1;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_f_asn1');
+    {$ifend}
   Result := BIO_f_asn1;
 end;
 
@@ -6695,7 +8512,11 @@ function Load_BIO_new_NDEF(out_: PBIO; val: PASN1_VALUE; it: PASN1_ITEM): PBIO; 
 begin
   BIO_new_NDEF := LoadLibCryptoFunction('BIO_new_NDEF');
   if not assigned(BIO_new_NDEF) then
+    {$if declared(LEGACY_BIO_new_NDEF)}
+    BIO_new_NDEF := @LEGACY_BIO_new_NDEF;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BIO_new_NDEF');
+    {$ifend}
   Result := BIO_new_NDEF(out_, val, it);
 end;
 
@@ -6703,7 +8524,11 @@ function Load_i2d_ASN1_bio_stream(out_: PBIO; val: PASN1_VALUE; in_: PBIO; flags
 begin
   i2d_ASN1_bio_stream := LoadLibCryptoFunction('i2d_ASN1_bio_stream');
   if not assigned(i2d_ASN1_bio_stream) then
+    {$if declared(LEGACY_i2d_ASN1_bio_stream)}
+    i2d_ASN1_bio_stream := @LEGACY_i2d_ASN1_bio_stream;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_ASN1_bio_stream');
+    {$ifend}
   Result := i2d_ASN1_bio_stream(out_, val, in_, flags, it);
 end;
 
@@ -6711,7 +8536,11 @@ function Load_PEM_write_bio_ASN1_stream(out_: PBIO; val: PASN1_VALUE; in_: PBIO;
 begin
   PEM_write_bio_ASN1_stream := LoadLibCryptoFunction('PEM_write_bio_ASN1_stream');
   if not assigned(PEM_write_bio_ASN1_stream) then
+    {$if declared(LEGACY_PEM_write_bio_ASN1_stream)}
+    PEM_write_bio_ASN1_stream := @LEGACY_PEM_write_bio_ASN1_stream;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_write_bio_ASN1_stream');
+    {$ifend}
   Result := PEM_write_bio_ASN1_stream(out_, val, in_, flags, hdr, it);
 end;
 
@@ -6719,7 +8548,11 @@ function Load_SMIME_write_ASN1(bio: PBIO; val: PASN1_VALUE; data: PBIO; flags: T
 begin
   SMIME_write_ASN1 := LoadLibCryptoFunction('SMIME_write_ASN1');
   if not assigned(SMIME_write_ASN1) then
+    {$if declared(LEGACY_SMIME_write_ASN1)}
+    SMIME_write_ASN1 := @LEGACY_SMIME_write_ASN1;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SMIME_write_ASN1');
+    {$ifend}
   Result := SMIME_write_ASN1(bio, val, data, flags, ctype_nid, econt_nid, mdalgs, it);
 end;
 
@@ -6727,7 +8560,11 @@ function Load_SMIME_write_ASN1_ex(bio: PBIO; val: PASN1_VALUE; data: PBIO; flags
 begin
   SMIME_write_ASN1_ex := LoadLibCryptoFunction('SMIME_write_ASN1_ex');
   if not assigned(SMIME_write_ASN1_ex) then
+    {$if declared(LEGACY_SMIME_write_ASN1_ex)}
+    SMIME_write_ASN1_ex := @LEGACY_SMIME_write_ASN1_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SMIME_write_ASN1_ex');
+    {$ifend}
   Result := SMIME_write_ASN1_ex(bio, val, data, flags, ctype_nid, econt_nid, mdalgs, it, libctx, propq);
 end;
 
@@ -6735,7 +8572,11 @@ function Load_SMIME_read_ASN1(bio: PBIO; bcont: PPBIO; it: PASN1_ITEM): PASN1_VA
 begin
   SMIME_read_ASN1 := LoadLibCryptoFunction('SMIME_read_ASN1');
   if not assigned(SMIME_read_ASN1) then
+    {$if declared(LEGACY_SMIME_read_ASN1)}
+    SMIME_read_ASN1 := @LEGACY_SMIME_read_ASN1;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SMIME_read_ASN1');
+    {$ifend}
   Result := SMIME_read_ASN1(bio, bcont, it);
 end;
 
@@ -6743,7 +8584,11 @@ function Load_SMIME_read_ASN1_ex(bio: PBIO; flags: TOpenSSL_C_INT; bcont: PPBIO;
 begin
   SMIME_read_ASN1_ex := LoadLibCryptoFunction('SMIME_read_ASN1_ex');
   if not assigned(SMIME_read_ASN1_ex) then
+    {$if declared(LEGACY_SMIME_read_ASN1_ex)}
+    SMIME_read_ASN1_ex := @LEGACY_SMIME_read_ASN1_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SMIME_read_ASN1_ex');
+    {$ifend}
   Result := SMIME_read_ASN1_ex(bio, flags, bcont, it, x, libctx, propq);
 end;
 
@@ -6751,7 +8596,11 @@ function Load_SMIME_crlf_copy(in_: PBIO; out_: PBIO; flags: TOpenSSL_C_INT): TOp
 begin
   SMIME_crlf_copy := LoadLibCryptoFunction('SMIME_crlf_copy');
   if not assigned(SMIME_crlf_copy) then
+    {$if declared(LEGACY_SMIME_crlf_copy)}
+    SMIME_crlf_copy := @LEGACY_SMIME_crlf_copy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SMIME_crlf_copy');
+    {$ifend}
   Result := SMIME_crlf_copy(in_, out_, flags);
 end;
 
@@ -6759,7 +8608,11 @@ function Load_SMIME_text(in_: PBIO; out_: PBIO): TOpenSSL_C_INT; cdecl;
 begin
   SMIME_text := LoadLibCryptoFunction('SMIME_text');
   if not assigned(SMIME_text) then
+    {$if declared(LEGACY_SMIME_text)}
+    SMIME_text := @LEGACY_SMIME_text;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SMIME_text');
+    {$ifend}
   Result := SMIME_text(in_, out_);
 end;
 
@@ -6767,7 +8620,11 @@ function Load_ASN1_ITEM_lookup(name: PAnsiChar): PASN1_ITEM; cdecl;
 begin
   ASN1_ITEM_lookup := LoadLibCryptoFunction('ASN1_ITEM_lookup');
   if not assigned(ASN1_ITEM_lookup) then
+    {$if declared(LEGACY_ASN1_ITEM_lookup)}
+    ASN1_ITEM_lookup := @LEGACY_ASN1_ITEM_lookup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_ITEM_lookup');
+    {$ifend}
   Result := ASN1_ITEM_lookup(name);
 end;
 
@@ -6775,7 +8632,11 @@ function Load_ASN1_ITEM_get(i: TOpenSSL_C_SIZET): PASN1_ITEM; cdecl;
 begin
   ASN1_ITEM_get := LoadLibCryptoFunction('ASN1_ITEM_get');
   if not assigned(ASN1_ITEM_get) then
+    {$if declared(LEGACY_ASN1_ITEM_get)}
+    ASN1_ITEM_get := @LEGACY_ASN1_ITEM_get;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASN1_ITEM_get');
+    {$ifend}
   Result := ASN1_ITEM_get(i);
 end;
 

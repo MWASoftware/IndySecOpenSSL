@@ -18,7 +18,8 @@
 unit openssl_md5;
 
 {
-  Generated from OpenSSL 3.0.20 Header File md5.h - Wed  6 May 13:06:11 BST 2026
+  Generated from OpenSSL 3.0.20 Header File md5.h - Wed  6 May 13:15:20 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -153,7 +154,11 @@ function Load_MD5_Init(c: PMD5_CTX): TOpenSSL_C_INT; cdecl;
 begin
   MD5_Init := LoadLibCryptoFunction('MD5_Init');
   if not assigned(MD5_Init) then
+    {$if declared(LEGACY_MD5_Init)}
+    MD5_Init := @LEGACY_MD5_Init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('MD5_Init');
+    {$ifend}
   Result := MD5_Init(c);
 end;
 
@@ -161,7 +166,11 @@ function Load_MD5_Update(c: PMD5_CTX; data: pointer; len: TOpenSSL_C_SIZET): TOp
 begin
   MD5_Update := LoadLibCryptoFunction('MD5_Update');
   if not assigned(MD5_Update) then
+    {$if declared(LEGACY_MD5_Update)}
+    MD5_Update := @LEGACY_MD5_Update;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('MD5_Update');
+    {$ifend}
   Result := MD5_Update(c, data, len);
 end;
 
@@ -169,7 +178,11 @@ function Load_MD5_Final(md: Pbyte; c: PMD5_CTX): TOpenSSL_C_INT; cdecl;
 begin
   MD5_Final := LoadLibCryptoFunction('MD5_Final');
   if not assigned(MD5_Final) then
+    {$if declared(LEGACY_MD5_Final)}
+    MD5_Final := @LEGACY_MD5_Final;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('MD5_Final');
+    {$ifend}
   Result := MD5_Final(md, c);
 end;
 
@@ -177,7 +190,11 @@ function Load_MD5(d: Pbyte; n: TOpenSSL_C_SIZET; md: Pbyte): Pbyte; cdecl;
 begin
   MD5 := LoadLibCryptoFunction('MD5');
   if not assigned(MD5) then
+    {$if declared(LEGACY_MD5)}
+    MD5 := @LEGACY_MD5;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('MD5');
+    {$ifend}
   Result := MD5(d, n, md);
 end;
 
@@ -185,7 +202,11 @@ procedure Load_MD5_Transform(c: PMD5_CTX; b: Pbyte); cdecl;
 begin
   MD5_Transform := LoadLibCryptoFunction('MD5_Transform');
   if not assigned(MD5_Transform) then
+    {$if declared(LEGACY_MD5_Transform)}
+    MD5_Transform := @LEGACY_MD5_Transform;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('MD5_Transform');
+    {$ifend}
   MD5_Transform(c, b);
 end;
 

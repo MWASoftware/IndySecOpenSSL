@@ -18,7 +18,8 @@
 unit openssl_cast;
 
 {
-  Generated from OpenSSL 3.0.20 Header File cast.h - Wed  6 May 13:05:33 BST 2026
+  Generated from OpenSSL 3.0.20 Header File cast.h - Wed  6 May 13:14:42 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -147,7 +148,11 @@ procedure Load_CAST_set_key(key: PCAST_KEY; len: TOpenSSL_C_INT; data: Pbyte); c
 begin
   CAST_set_key := LoadLibCryptoFunction('CAST_set_key');
   if not assigned(CAST_set_key) then
+    {$if declared(LEGACY_CAST_set_key)}
+    CAST_set_key := @LEGACY_CAST_set_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CAST_set_key');
+    {$ifend}
   CAST_set_key(key, len, data);
 end;
 
@@ -155,7 +160,11 @@ procedure Load_CAST_ecb_encrypt(in_: Pbyte; out_: Pbyte; key: PCAST_KEY; enc: TO
 begin
   CAST_ecb_encrypt := LoadLibCryptoFunction('CAST_ecb_encrypt');
   if not assigned(CAST_ecb_encrypt) then
+    {$if declared(LEGACY_CAST_ecb_encrypt)}
+    CAST_ecb_encrypt := @LEGACY_CAST_ecb_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CAST_ecb_encrypt');
+    {$ifend}
   CAST_ecb_encrypt(in_, out_, key, enc);
 end;
 
@@ -163,7 +172,11 @@ procedure Load_CAST_encrypt(data: POpenSSL_C_UINT; key: PCAST_KEY); cdecl;
 begin
   CAST_encrypt := LoadLibCryptoFunction('CAST_encrypt');
   if not assigned(CAST_encrypt) then
+    {$if declared(LEGACY_CAST_encrypt)}
+    CAST_encrypt := @LEGACY_CAST_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CAST_encrypt');
+    {$ifend}
   CAST_encrypt(data, key);
 end;
 
@@ -171,7 +184,11 @@ procedure Load_CAST_decrypt(data: POpenSSL_C_UINT; key: PCAST_KEY); cdecl;
 begin
   CAST_decrypt := LoadLibCryptoFunction('CAST_decrypt');
   if not assigned(CAST_decrypt) then
+    {$if declared(LEGACY_CAST_decrypt)}
+    CAST_decrypt := @LEGACY_CAST_decrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CAST_decrypt');
+    {$ifend}
   CAST_decrypt(data, key);
 end;
 
@@ -179,7 +196,11 @@ procedure Load_CAST_cbc_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_INT;
 begin
   CAST_cbc_encrypt := LoadLibCryptoFunction('CAST_cbc_encrypt');
   if not assigned(CAST_cbc_encrypt) then
+    {$if declared(LEGACY_CAST_cbc_encrypt)}
+    CAST_cbc_encrypt := @LEGACY_CAST_cbc_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CAST_cbc_encrypt');
+    {$ifend}
   CAST_cbc_encrypt(in_, out_, length, ks, iv, enc);
 end;
 
@@ -187,7 +208,11 @@ procedure Load_CAST_cfb64_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_IN
 begin
   CAST_cfb64_encrypt := LoadLibCryptoFunction('CAST_cfb64_encrypt');
   if not assigned(CAST_cfb64_encrypt) then
+    {$if declared(LEGACY_CAST_cfb64_encrypt)}
+    CAST_cfb64_encrypt := @LEGACY_CAST_cfb64_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CAST_cfb64_encrypt');
+    {$ifend}
   CAST_cfb64_encrypt(in_, out_, length, schedule, ivec, num, enc);
 end;
 
@@ -195,7 +220,11 @@ procedure Load_CAST_ofb64_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_IN
 begin
   CAST_ofb64_encrypt := LoadLibCryptoFunction('CAST_ofb64_encrypt');
   if not assigned(CAST_ofb64_encrypt) then
+    {$if declared(LEGACY_CAST_ofb64_encrypt)}
+    CAST_ofb64_encrypt := @LEGACY_CAST_ofb64_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CAST_ofb64_encrypt');
+    {$ifend}
   CAST_ofb64_encrypt(in_, out_, length, schedule, ivec, num);
 end;
 

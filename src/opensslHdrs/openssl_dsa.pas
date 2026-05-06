@@ -18,7 +18,8 @@
 unit openssl_dsa;
 
 {
-  Generated from OpenSSL 3.0.20 Header File dsa.h - Wed  6 May 13:05:54 BST 2026
+  Generated from OpenSSL 3.0.20 Header File dsa.h - Wed  6 May 13:15:04 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -885,7 +886,11 @@ function Load_EVP_PKEY_CTX_set_dsa_paramgen_bits(ctx: PEVP_PKEY_CTX; nbits: TOpe
 begin
   EVP_PKEY_CTX_set_dsa_paramgen_bits := LoadLibCryptoFunction('EVP_PKEY_CTX_set_dsa_paramgen_bits');
   if not assigned(EVP_PKEY_CTX_set_dsa_paramgen_bits) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_dsa_paramgen_bits)}
+    EVP_PKEY_CTX_set_dsa_paramgen_bits := @LEGACY_EVP_PKEY_CTX_set_dsa_paramgen_bits;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_dsa_paramgen_bits');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_dsa_paramgen_bits(ctx, nbits);
 end;
 
@@ -893,7 +898,11 @@ function Load_EVP_PKEY_CTX_set_dsa_paramgen_q_bits(ctx: PEVP_PKEY_CTX; qbits: TO
 begin
   EVP_PKEY_CTX_set_dsa_paramgen_q_bits := LoadLibCryptoFunction('EVP_PKEY_CTX_set_dsa_paramgen_q_bits');
   if not assigned(EVP_PKEY_CTX_set_dsa_paramgen_q_bits) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_dsa_paramgen_q_bits)}
+    EVP_PKEY_CTX_set_dsa_paramgen_q_bits := @LEGACY_EVP_PKEY_CTX_set_dsa_paramgen_q_bits;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_dsa_paramgen_q_bits');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_dsa_paramgen_q_bits(ctx, qbits);
 end;
 
@@ -901,7 +910,11 @@ function Load_EVP_PKEY_CTX_set_dsa_paramgen_md_props(ctx: PEVP_PKEY_CTX; md_name
 begin
   EVP_PKEY_CTX_set_dsa_paramgen_md_props := LoadLibCryptoFunction('EVP_PKEY_CTX_set_dsa_paramgen_md_props');
   if not assigned(EVP_PKEY_CTX_set_dsa_paramgen_md_props) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_dsa_paramgen_md_props)}
+    EVP_PKEY_CTX_set_dsa_paramgen_md_props := @LEGACY_EVP_PKEY_CTX_set_dsa_paramgen_md_props;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_dsa_paramgen_md_props');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_dsa_paramgen_md_props(ctx, md_name, md_properties);
 end;
 
@@ -909,7 +922,11 @@ function Load_EVP_PKEY_CTX_set_dsa_paramgen_gindex(ctx: PEVP_PKEY_CTX; gindex: T
 begin
   EVP_PKEY_CTX_set_dsa_paramgen_gindex := LoadLibCryptoFunction('EVP_PKEY_CTX_set_dsa_paramgen_gindex');
   if not assigned(EVP_PKEY_CTX_set_dsa_paramgen_gindex) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_dsa_paramgen_gindex)}
+    EVP_PKEY_CTX_set_dsa_paramgen_gindex := @LEGACY_EVP_PKEY_CTX_set_dsa_paramgen_gindex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_dsa_paramgen_gindex');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_dsa_paramgen_gindex(ctx, gindex);
 end;
 
@@ -917,7 +934,11 @@ function Load_EVP_PKEY_CTX_set_dsa_paramgen_type(ctx: PEVP_PKEY_CTX; name: PAnsi
 begin
   EVP_PKEY_CTX_set_dsa_paramgen_type := LoadLibCryptoFunction('EVP_PKEY_CTX_set_dsa_paramgen_type');
   if not assigned(EVP_PKEY_CTX_set_dsa_paramgen_type) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_dsa_paramgen_type)}
+    EVP_PKEY_CTX_set_dsa_paramgen_type := @LEGACY_EVP_PKEY_CTX_set_dsa_paramgen_type;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_dsa_paramgen_type');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_dsa_paramgen_type(ctx, name);
 end;
 
@@ -925,7 +946,11 @@ function Load_EVP_PKEY_CTX_set_dsa_paramgen_seed(ctx: PEVP_PKEY_CTX; seed: Pbyte
 begin
   EVP_PKEY_CTX_set_dsa_paramgen_seed := LoadLibCryptoFunction('EVP_PKEY_CTX_set_dsa_paramgen_seed');
   if not assigned(EVP_PKEY_CTX_set_dsa_paramgen_seed) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_dsa_paramgen_seed)}
+    EVP_PKEY_CTX_set_dsa_paramgen_seed := @LEGACY_EVP_PKEY_CTX_set_dsa_paramgen_seed;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_dsa_paramgen_seed');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_dsa_paramgen_seed(ctx, seed, seedlen);
 end;
 
@@ -933,7 +958,11 @@ function Load_EVP_PKEY_CTX_set_dsa_paramgen_md(ctx: PEVP_PKEY_CTX; md: PEVP_MD):
 begin
   EVP_PKEY_CTX_set_dsa_paramgen_md := LoadLibCryptoFunction('EVP_PKEY_CTX_set_dsa_paramgen_md');
   if not assigned(EVP_PKEY_CTX_set_dsa_paramgen_md) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_dsa_paramgen_md)}
+    EVP_PKEY_CTX_set_dsa_paramgen_md := @LEGACY_EVP_PKEY_CTX_set_dsa_paramgen_md;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_dsa_paramgen_md');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_dsa_paramgen_md(ctx, md);
 end;
 
@@ -942,7 +971,11 @@ function Load_DSA_SIG_new: PDSA_SIG; cdecl;
 begin
   DSA_SIG_new := LoadLibCryptoFunction('DSA_SIG_new');
   if not assigned(DSA_SIG_new) then
+    {$if declared(LEGACY_DSA_SIG_new)}
+    DSA_SIG_new := @LEGACY_DSA_SIG_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_SIG_new');
+    {$ifend}
   Result := DSA_SIG_new;
 end;
 
@@ -950,7 +983,11 @@ procedure Load_DSA_SIG_free(a: PDSA_SIG); cdecl;
 begin
   DSA_SIG_free := LoadLibCryptoFunction('DSA_SIG_free');
   if not assigned(DSA_SIG_free) then
+    {$if declared(LEGACY_DSA_SIG_free)}
+    DSA_SIG_free := @LEGACY_DSA_SIG_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_SIG_free');
+    {$ifend}
   DSA_SIG_free(a);
 end;
 
@@ -958,7 +995,11 @@ function Load_d2i_DSA_SIG(a: PPDSA_SIG; in_: PPbyte; len: TOpenSSL_C_INT): PDSA_
 begin
   d2i_DSA_SIG := LoadLibCryptoFunction('d2i_DSA_SIG');
   if not assigned(d2i_DSA_SIG) then
+    {$if declared(LEGACY_d2i_DSA_SIG)}
+    d2i_DSA_SIG := @LEGACY_d2i_DSA_SIG;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_DSA_SIG');
+    {$ifend}
   Result := d2i_DSA_SIG(a, in_, len);
 end;
 
@@ -966,7 +1007,11 @@ function Load_i2d_DSA_SIG(a: PDSA_SIG; out_: PPbyte): TOpenSSL_C_INT; cdecl;
 begin
   i2d_DSA_SIG := LoadLibCryptoFunction('i2d_DSA_SIG');
   if not assigned(i2d_DSA_SIG) then
+    {$if declared(LEGACY_i2d_DSA_SIG)}
+    i2d_DSA_SIG := @LEGACY_i2d_DSA_SIG;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_DSA_SIG');
+    {$ifend}
   Result := i2d_DSA_SIG(a, out_);
 end;
 
@@ -974,7 +1019,11 @@ procedure Load_DSA_SIG_get0(sig: PDSA_SIG; pr: PPBIGNUM; ps: PPBIGNUM); cdecl;
 begin
   DSA_SIG_get0 := LoadLibCryptoFunction('DSA_SIG_get0');
   if not assigned(DSA_SIG_get0) then
+    {$if declared(LEGACY_DSA_SIG_get0)}
+    DSA_SIG_get0 := @LEGACY_DSA_SIG_get0;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_SIG_get0');
+    {$ifend}
   DSA_SIG_get0(sig, pr, ps);
 end;
 
@@ -982,7 +1031,11 @@ function Load_DSA_SIG_set0(sig: PDSA_SIG; r: PBIGNUM; s: PBIGNUM): TOpenSSL_C_IN
 begin
   DSA_SIG_set0 := LoadLibCryptoFunction('DSA_SIG_set0');
   if not assigned(DSA_SIG_set0) then
+    {$if declared(LEGACY_DSA_SIG_set0)}
+    DSA_SIG_set0 := @LEGACY_DSA_SIG_set0;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_SIG_set0');
+    {$ifend}
   Result := DSA_SIG_set0(sig, r, s);
 end;
 
@@ -991,7 +1044,11 @@ function Load_DSAparams_dup(a: PDSA): PDSA; cdecl;
 begin
   DSAparams_dup := LoadLibCryptoFunction('DSAparams_dup');
   if not assigned(DSAparams_dup) then
+    {$if declared(LEGACY_DSAparams_dup)}
+    DSAparams_dup := @LEGACY_DSAparams_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSAparams_dup');
+    {$ifend}
   Result := DSAparams_dup(a);
 end;
 
@@ -999,7 +1056,11 @@ function Load_DSA_do_sign(dgst: Pbyte; dlen: TOpenSSL_C_INT; dsa: PDSA): PDSA_SI
 begin
   DSA_do_sign := LoadLibCryptoFunction('DSA_do_sign');
   if not assigned(DSA_do_sign) then
+    {$if declared(LEGACY_DSA_do_sign)}
+    DSA_do_sign := @LEGACY_DSA_do_sign;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_do_sign');
+    {$ifend}
   Result := DSA_do_sign(dgst, dlen, dsa);
 end;
 
@@ -1007,7 +1068,11 @@ function Load_DSA_do_verify(dgst: Pbyte; dgst_len: TOpenSSL_C_INT; sig: PDSA_SIG
 begin
   DSA_do_verify := LoadLibCryptoFunction('DSA_do_verify');
   if not assigned(DSA_do_verify) then
+    {$if declared(LEGACY_DSA_do_verify)}
+    DSA_do_verify := @LEGACY_DSA_do_verify;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_do_verify');
+    {$ifend}
   Result := DSA_do_verify(dgst, dgst_len, sig, dsa);
 end;
 
@@ -1015,7 +1080,11 @@ function Load_DSA_OpenSSL: PDSA_METHOD; cdecl;
 begin
   DSA_OpenSSL := LoadLibCryptoFunction('DSA_OpenSSL');
   if not assigned(DSA_OpenSSL) then
+    {$if declared(LEGACY_DSA_OpenSSL)}
+    DSA_OpenSSL := @LEGACY_DSA_OpenSSL;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_OpenSSL');
+    {$ifend}
   Result := DSA_OpenSSL;
 end;
 
@@ -1023,7 +1092,11 @@ procedure Load_DSA_set_default_method(_param1: PDSA_METHOD); cdecl;
 begin
   DSA_set_default_method := LoadLibCryptoFunction('DSA_set_default_method');
   if not assigned(DSA_set_default_method) then
+    {$if declared(LEGACY_DSA_set_default_method)}
+    DSA_set_default_method := @LEGACY_DSA_set_default_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_set_default_method');
+    {$ifend}
   DSA_set_default_method(_param1);
 end;
 
@@ -1031,7 +1104,11 @@ function Load_DSA_get_default_method: PDSA_METHOD; cdecl;
 begin
   DSA_get_default_method := LoadLibCryptoFunction('DSA_get_default_method');
   if not assigned(DSA_get_default_method) then
+    {$if declared(LEGACY_DSA_get_default_method)}
+    DSA_get_default_method := @LEGACY_DSA_get_default_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_get_default_method');
+    {$ifend}
   Result := DSA_get_default_method;
 end;
 
@@ -1039,7 +1116,11 @@ function Load_DSA_set_method(dsa: PDSA; _param2: PDSA_METHOD): TOpenSSL_C_INT; c
 begin
   DSA_set_method := LoadLibCryptoFunction('DSA_set_method');
   if not assigned(DSA_set_method) then
+    {$if declared(LEGACY_DSA_set_method)}
+    DSA_set_method := @LEGACY_DSA_set_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_set_method');
+    {$ifend}
   Result := DSA_set_method(dsa, _param2);
 end;
 
@@ -1047,7 +1128,11 @@ function Load_DSA_get_method(d: PDSA): PDSA_METHOD; cdecl;
 begin
   DSA_get_method := LoadLibCryptoFunction('DSA_get_method');
   if not assigned(DSA_get_method) then
+    {$if declared(LEGACY_DSA_get_method)}
+    DSA_get_method := @LEGACY_DSA_get_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_get_method');
+    {$ifend}
   Result := DSA_get_method(d);
 end;
 
@@ -1055,7 +1140,11 @@ function Load_DSA_new: PDSA; cdecl;
 begin
   DSA_new := LoadLibCryptoFunction('DSA_new');
   if not assigned(DSA_new) then
+    {$if declared(LEGACY_DSA_new)}
+    DSA_new := @LEGACY_DSA_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_new');
+    {$ifend}
   Result := DSA_new;
 end;
 
@@ -1063,7 +1152,11 @@ function Load_DSA_new_method(engine: PENGINE): PDSA; cdecl;
 begin
   DSA_new_method := LoadLibCryptoFunction('DSA_new_method');
   if not assigned(DSA_new_method) then
+    {$if declared(LEGACY_DSA_new_method)}
+    DSA_new_method := @LEGACY_DSA_new_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_new_method');
+    {$ifend}
   Result := DSA_new_method(engine);
 end;
 
@@ -1071,7 +1164,11 @@ procedure Load_DSA_free(r: PDSA); cdecl;
 begin
   DSA_free := LoadLibCryptoFunction('DSA_free');
   if not assigned(DSA_free) then
+    {$if declared(LEGACY_DSA_free)}
+    DSA_free := @LEGACY_DSA_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_free');
+    {$ifend}
   DSA_free(r);
 end;
 
@@ -1079,7 +1176,11 @@ function Load_DSA_up_ref(r: PDSA): TOpenSSL_C_INT; cdecl;
 begin
   DSA_up_ref := LoadLibCryptoFunction('DSA_up_ref');
   if not assigned(DSA_up_ref) then
+    {$if declared(LEGACY_DSA_up_ref)}
+    DSA_up_ref := @LEGACY_DSA_up_ref;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_up_ref');
+    {$ifend}
   Result := DSA_up_ref(r);
 end;
 
@@ -1087,7 +1188,11 @@ function Load_DSA_size(_param1: PDSA): TOpenSSL_C_INT; cdecl;
 begin
   DSA_size := LoadLibCryptoFunction('DSA_size');
   if not assigned(DSA_size) then
+    {$if declared(LEGACY_DSA_size)}
+    DSA_size := @LEGACY_DSA_size;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_size');
+    {$ifend}
   Result := DSA_size(_param1);
 end;
 
@@ -1095,7 +1200,11 @@ function Load_DSA_bits(d: PDSA): TOpenSSL_C_INT; cdecl;
 begin
   DSA_bits := LoadLibCryptoFunction('DSA_bits');
   if not assigned(DSA_bits) then
+    {$if declared(LEGACY_DSA_bits)}
+    DSA_bits := @LEGACY_DSA_bits;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_bits');
+    {$ifend}
   Result := DSA_bits(d);
 end;
 
@@ -1103,7 +1212,11 @@ function Load_DSA_security_bits(d: PDSA): TOpenSSL_C_INT; cdecl;
 begin
   DSA_security_bits := LoadLibCryptoFunction('DSA_security_bits');
   if not assigned(DSA_security_bits) then
+    {$if declared(LEGACY_DSA_security_bits)}
+    DSA_security_bits := @LEGACY_DSA_security_bits;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_security_bits');
+    {$ifend}
   Result := DSA_security_bits(d);
 end;
 
@@ -1111,7 +1224,11 @@ function Load_DSA_sign_setup(dsa: PDSA; ctx_in: PBN_CTX; kinvp: PPBIGNUM; rp: PP
 begin
   DSA_sign_setup := LoadLibCryptoFunction('DSA_sign_setup');
   if not assigned(DSA_sign_setup) then
+    {$if declared(LEGACY_DSA_sign_setup)}
+    DSA_sign_setup := @LEGACY_DSA_sign_setup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_sign_setup');
+    {$ifend}
   Result := DSA_sign_setup(dsa, ctx_in, kinvp, rp);
 end;
 
@@ -1119,7 +1236,11 @@ function Load_DSA_sign(type_: TOpenSSL_C_INT; dgst: Pbyte; dlen: TOpenSSL_C_INT;
 begin
   DSA_sign := LoadLibCryptoFunction('DSA_sign');
   if not assigned(DSA_sign) then
+    {$if declared(LEGACY_DSA_sign)}
+    DSA_sign := @LEGACY_DSA_sign;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_sign');
+    {$ifend}
   Result := DSA_sign(type_, dgst, dlen, sig, siglen, dsa);
 end;
 
@@ -1127,7 +1248,11 @@ function Load_DSA_verify(type_: TOpenSSL_C_INT; dgst: Pbyte; dgst_len: TOpenSSL_
 begin
   DSA_verify := LoadLibCryptoFunction('DSA_verify');
   if not assigned(DSA_verify) then
+    {$if declared(LEGACY_DSA_verify)}
+    DSA_verify := @LEGACY_DSA_verify;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_verify');
+    {$ifend}
   Result := DSA_verify(type_, dgst, dgst_len, sigbuf, siglen, dsa);
 end;
 
@@ -1135,7 +1260,11 @@ function Load_DSA_set_ex_data(d: PDSA; idx: TOpenSSL_C_INT; arg: pointer): TOpen
 begin
   DSA_set_ex_data := LoadLibCryptoFunction('DSA_set_ex_data');
   if not assigned(DSA_set_ex_data) then
+    {$if declared(LEGACY_DSA_set_ex_data)}
+    DSA_set_ex_data := @LEGACY_DSA_set_ex_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_set_ex_data');
+    {$ifend}
   Result := DSA_set_ex_data(d, idx, arg);
 end;
 
@@ -1143,7 +1272,11 @@ function Load_DSA_get_ex_data(d: PDSA; idx: TOpenSSL_C_INT): pointer; cdecl;
 begin
   DSA_get_ex_data := LoadLibCryptoFunction('DSA_get_ex_data');
   if not assigned(DSA_get_ex_data) then
+    {$if declared(LEGACY_DSA_get_ex_data)}
+    DSA_get_ex_data := @LEGACY_DSA_get_ex_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_get_ex_data');
+    {$ifend}
   Result := DSA_get_ex_data(d, idx);
 end;
 
@@ -1151,7 +1284,11 @@ function Load_d2i_DSAPublicKey(a: PPDSA; in_: PPbyte; len: TOpenSSL_C_INT): PDSA
 begin
   d2i_DSAPublicKey := LoadLibCryptoFunction('d2i_DSAPublicKey');
   if not assigned(d2i_DSAPublicKey) then
+    {$if declared(LEGACY_d2i_DSAPublicKey)}
+    d2i_DSAPublicKey := @LEGACY_d2i_DSAPublicKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_DSAPublicKey');
+    {$ifend}
   Result := d2i_DSAPublicKey(a, in_, len);
 end;
 
@@ -1159,7 +1296,11 @@ function Load_i2d_DSAPublicKey(a: PDSA; out_: PPbyte): TOpenSSL_C_INT; cdecl;
 begin
   i2d_DSAPublicKey := LoadLibCryptoFunction('i2d_DSAPublicKey');
   if not assigned(i2d_DSAPublicKey) then
+    {$if declared(LEGACY_i2d_DSAPublicKey)}
+    i2d_DSAPublicKey := @LEGACY_i2d_DSAPublicKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_DSAPublicKey');
+    {$ifend}
   Result := i2d_DSAPublicKey(a, out_);
 end;
 
@@ -1167,7 +1308,11 @@ function Load_d2i_DSAPrivateKey(a: PPDSA; in_: PPbyte; len: TOpenSSL_C_INT): PDS
 begin
   d2i_DSAPrivateKey := LoadLibCryptoFunction('d2i_DSAPrivateKey');
   if not assigned(d2i_DSAPrivateKey) then
+    {$if declared(LEGACY_d2i_DSAPrivateKey)}
+    d2i_DSAPrivateKey := @LEGACY_d2i_DSAPrivateKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_DSAPrivateKey');
+    {$ifend}
   Result := d2i_DSAPrivateKey(a, in_, len);
 end;
 
@@ -1175,7 +1320,11 @@ function Load_i2d_DSAPrivateKey(a: PDSA; out_: PPbyte): TOpenSSL_C_INT; cdecl;
 begin
   i2d_DSAPrivateKey := LoadLibCryptoFunction('i2d_DSAPrivateKey');
   if not assigned(i2d_DSAPrivateKey) then
+    {$if declared(LEGACY_i2d_DSAPrivateKey)}
+    i2d_DSAPrivateKey := @LEGACY_i2d_DSAPrivateKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_DSAPrivateKey');
+    {$ifend}
   Result := i2d_DSAPrivateKey(a, out_);
 end;
 
@@ -1183,7 +1332,11 @@ function Load_d2i_DSAparams(a: PPDSA; in_: PPbyte; len: TOpenSSL_C_INT): PDSA; c
 begin
   d2i_DSAparams := LoadLibCryptoFunction('d2i_DSAparams');
   if not assigned(d2i_DSAparams) then
+    {$if declared(LEGACY_d2i_DSAparams)}
+    d2i_DSAparams := @LEGACY_d2i_DSAparams;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_DSAparams');
+    {$ifend}
   Result := d2i_DSAparams(a, in_, len);
 end;
 
@@ -1191,7 +1344,11 @@ function Load_i2d_DSAparams(a: PDSA; out_: PPbyte): TOpenSSL_C_INT; cdecl;
 begin
   i2d_DSAparams := LoadLibCryptoFunction('i2d_DSAparams');
   if not assigned(i2d_DSAparams) then
+    {$if declared(LEGACY_i2d_DSAparams)}
+    i2d_DSAparams := @LEGACY_i2d_DSAparams;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_DSAparams');
+    {$ifend}
   Result := i2d_DSAparams(a, out_);
 end;
 
@@ -1201,7 +1358,11 @@ function Load_DSA_generate_parameters(bits: TOpenSSL_C_INT; seed: Pbyte; seed_le
 begin
   DSA_generate_parameters := LoadLibCryptoFunction('DSA_generate_parameters');
   if not assigned(DSA_generate_parameters) then
+    {$if declared(LEGACY_DSA_generate_parameters)}
+    DSA_generate_parameters := @LEGACY_DSA_generate_parameters;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_generate_parameters');
+    {$ifend}
   Result := DSA_generate_parameters(bits, seed, seed_len, counter_ret, h_ret, callback, cb_arg);
 end;
 
@@ -1211,7 +1372,11 @@ function Load_DSA_generate_parameters_ex(dsa: PDSA; bits: TOpenSSL_C_INT; seed: 
 begin
   DSA_generate_parameters_ex := LoadLibCryptoFunction('DSA_generate_parameters_ex');
   if not assigned(DSA_generate_parameters_ex) then
+    {$if declared(LEGACY_DSA_generate_parameters_ex)}
+    DSA_generate_parameters_ex := @LEGACY_DSA_generate_parameters_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_generate_parameters_ex');
+    {$ifend}
   Result := DSA_generate_parameters_ex(dsa, bits, seed, seed_len, counter_ret, h_ret, cb);
 end;
 
@@ -1219,7 +1384,11 @@ function Load_DSA_generate_key(a: PDSA): TOpenSSL_C_INT; cdecl;
 begin
   DSA_generate_key := LoadLibCryptoFunction('DSA_generate_key');
   if not assigned(DSA_generate_key) then
+    {$if declared(LEGACY_DSA_generate_key)}
+    DSA_generate_key := @LEGACY_DSA_generate_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_generate_key');
+    {$ifend}
   Result := DSA_generate_key(a);
 end;
 
@@ -1227,7 +1396,11 @@ function Load_DSAparams_print(bp: PBIO; x: PDSA): TOpenSSL_C_INT; cdecl;
 begin
   DSAparams_print := LoadLibCryptoFunction('DSAparams_print');
   if not assigned(DSAparams_print) then
+    {$if declared(LEGACY_DSAparams_print)}
+    DSAparams_print := @LEGACY_DSAparams_print;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSAparams_print');
+    {$ifend}
   Result := DSAparams_print(bp, x);
 end;
 
@@ -1235,7 +1408,11 @@ function Load_DSA_print(bp: PBIO; x: PDSA; off: TOpenSSL_C_INT): TOpenSSL_C_INT;
 begin
   DSA_print := LoadLibCryptoFunction('DSA_print');
   if not assigned(DSA_print) then
+    {$if declared(LEGACY_DSA_print)}
+    DSA_print := @LEGACY_DSA_print;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_print');
+    {$ifend}
   Result := DSA_print(bp, x, off);
 end;
 
@@ -1244,7 +1421,11 @@ function Load_DSAparams_print_fp(fp: PFILE; x: PDSA): TOpenSSL_C_INT; cdecl;
 begin
   DSAparams_print_fp := LoadLibCryptoFunction('DSAparams_print_fp');
   if not assigned(DSAparams_print_fp) then
+    {$if declared(LEGACY_DSAparams_print_fp)}
+    DSAparams_print_fp := @LEGACY_DSAparams_print_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSAparams_print_fp');
+    {$ifend}
   Result := DSAparams_print_fp(fp, x);
 end;
 
@@ -1252,7 +1433,11 @@ function Load_DSA_print_fp(bp: PFILE; x: PDSA; off: TOpenSSL_C_INT): TOpenSSL_C_
 begin
   DSA_print_fp := LoadLibCryptoFunction('DSA_print_fp');
   if not assigned(DSA_print_fp) then
+    {$if declared(LEGACY_DSA_print_fp)}
+    DSA_print_fp := @LEGACY_DSA_print_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_print_fp');
+    {$ifend}
   Result := DSA_print_fp(bp, x, off);
 end;
 
@@ -1262,7 +1447,11 @@ function Load_DSA_dup_DH(r: PDSA): PDH; cdecl;
 begin
   DSA_dup_DH := LoadLibCryptoFunction('DSA_dup_DH');
   if not assigned(DSA_dup_DH) then
+    {$if declared(LEGACY_DSA_dup_DH)}
+    DSA_dup_DH := @LEGACY_DSA_dup_DH;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_dup_DH');
+    {$ifend}
   Result := DSA_dup_DH(r);
 end;
 
@@ -1271,7 +1460,11 @@ procedure Load_DSA_get0_pqg(d: PDSA; p: PPBIGNUM; q: PPBIGNUM; g: PPBIGNUM); cde
 begin
   DSA_get0_pqg := LoadLibCryptoFunction('DSA_get0_pqg');
   if not assigned(DSA_get0_pqg) then
+    {$if declared(LEGACY_DSA_get0_pqg)}
+    DSA_get0_pqg := @LEGACY_DSA_get0_pqg;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_get0_pqg');
+    {$ifend}
   DSA_get0_pqg(d, p, q, g);
 end;
 
@@ -1279,7 +1472,11 @@ function Load_DSA_set0_pqg(d: PDSA; p: PBIGNUM; q: PBIGNUM; g: PBIGNUM): TOpenSS
 begin
   DSA_set0_pqg := LoadLibCryptoFunction('DSA_set0_pqg');
   if not assigned(DSA_set0_pqg) then
+    {$if declared(LEGACY_DSA_set0_pqg)}
+    DSA_set0_pqg := @LEGACY_DSA_set0_pqg;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_set0_pqg');
+    {$ifend}
   Result := DSA_set0_pqg(d, p, q, g);
 end;
 
@@ -1287,7 +1484,11 @@ procedure Load_DSA_get0_key(d: PDSA; pub_key: PPBIGNUM; priv_key: PPBIGNUM); cde
 begin
   DSA_get0_key := LoadLibCryptoFunction('DSA_get0_key');
   if not assigned(DSA_get0_key) then
+    {$if declared(LEGACY_DSA_get0_key)}
+    DSA_get0_key := @LEGACY_DSA_get0_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_get0_key');
+    {$ifend}
   DSA_get0_key(d, pub_key, priv_key);
 end;
 
@@ -1295,7 +1496,11 @@ function Load_DSA_set0_key(d: PDSA; pub_key: PBIGNUM; priv_key: PBIGNUM): TOpenS
 begin
   DSA_set0_key := LoadLibCryptoFunction('DSA_set0_key');
   if not assigned(DSA_set0_key) then
+    {$if declared(LEGACY_DSA_set0_key)}
+    DSA_set0_key := @LEGACY_DSA_set0_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_set0_key');
+    {$ifend}
   Result := DSA_set0_key(d, pub_key, priv_key);
 end;
 
@@ -1303,7 +1508,11 @@ function Load_DSA_get0_p(d: PDSA): PBIGNUM; cdecl;
 begin
   DSA_get0_p := LoadLibCryptoFunction('DSA_get0_p');
   if not assigned(DSA_get0_p) then
+    {$if declared(LEGACY_DSA_get0_p)}
+    DSA_get0_p := @LEGACY_DSA_get0_p;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_get0_p');
+    {$ifend}
   Result := DSA_get0_p(d);
 end;
 
@@ -1311,7 +1520,11 @@ function Load_DSA_get0_q(d: PDSA): PBIGNUM; cdecl;
 begin
   DSA_get0_q := LoadLibCryptoFunction('DSA_get0_q');
   if not assigned(DSA_get0_q) then
+    {$if declared(LEGACY_DSA_get0_q)}
+    DSA_get0_q := @LEGACY_DSA_get0_q;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_get0_q');
+    {$ifend}
   Result := DSA_get0_q(d);
 end;
 
@@ -1319,7 +1532,11 @@ function Load_DSA_get0_g(d: PDSA): PBIGNUM; cdecl;
 begin
   DSA_get0_g := LoadLibCryptoFunction('DSA_get0_g');
   if not assigned(DSA_get0_g) then
+    {$if declared(LEGACY_DSA_get0_g)}
+    DSA_get0_g := @LEGACY_DSA_get0_g;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_get0_g');
+    {$ifend}
   Result := DSA_get0_g(d);
 end;
 
@@ -1327,7 +1544,11 @@ function Load_DSA_get0_pub_key(d: PDSA): PBIGNUM; cdecl;
 begin
   DSA_get0_pub_key := LoadLibCryptoFunction('DSA_get0_pub_key');
   if not assigned(DSA_get0_pub_key) then
+    {$if declared(LEGACY_DSA_get0_pub_key)}
+    DSA_get0_pub_key := @LEGACY_DSA_get0_pub_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_get0_pub_key');
+    {$ifend}
   Result := DSA_get0_pub_key(d);
 end;
 
@@ -1335,7 +1556,11 @@ function Load_DSA_get0_priv_key(d: PDSA): PBIGNUM; cdecl;
 begin
   DSA_get0_priv_key := LoadLibCryptoFunction('DSA_get0_priv_key');
   if not assigned(DSA_get0_priv_key) then
+    {$if declared(LEGACY_DSA_get0_priv_key)}
+    DSA_get0_priv_key := @LEGACY_DSA_get0_priv_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_get0_priv_key');
+    {$ifend}
   Result := DSA_get0_priv_key(d);
 end;
 
@@ -1343,7 +1568,11 @@ procedure Load_DSA_clear_flags(d: PDSA; flags: TOpenSSL_C_INT); cdecl;
 begin
   DSA_clear_flags := LoadLibCryptoFunction('DSA_clear_flags');
   if not assigned(DSA_clear_flags) then
+    {$if declared(LEGACY_DSA_clear_flags)}
+    DSA_clear_flags := @LEGACY_DSA_clear_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_clear_flags');
+    {$ifend}
   DSA_clear_flags(d, flags);
 end;
 
@@ -1351,7 +1580,11 @@ function Load_DSA_test_flags(d: PDSA; flags: TOpenSSL_C_INT): TOpenSSL_C_INT; cd
 begin
   DSA_test_flags := LoadLibCryptoFunction('DSA_test_flags');
   if not assigned(DSA_test_flags) then
+    {$if declared(LEGACY_DSA_test_flags)}
+    DSA_test_flags := @LEGACY_DSA_test_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_test_flags');
+    {$ifend}
   Result := DSA_test_flags(d, flags);
 end;
 
@@ -1359,7 +1592,11 @@ procedure Load_DSA_set_flags(d: PDSA; flags: TOpenSSL_C_INT); cdecl;
 begin
   DSA_set_flags := LoadLibCryptoFunction('DSA_set_flags');
   if not assigned(DSA_set_flags) then
+    {$if declared(LEGACY_DSA_set_flags)}
+    DSA_set_flags := @LEGACY_DSA_set_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_set_flags');
+    {$ifend}
   DSA_set_flags(d, flags);
 end;
 
@@ -1367,7 +1604,11 @@ function Load_DSA_get0_engine(d: PDSA): PENGINE; cdecl;
 begin
   DSA_get0_engine := LoadLibCryptoFunction('DSA_get0_engine');
   if not assigned(DSA_get0_engine) then
+    {$if declared(LEGACY_DSA_get0_engine)}
+    DSA_get0_engine := @LEGACY_DSA_get0_engine;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_get0_engine');
+    {$ifend}
   Result := DSA_get0_engine(d);
 end;
 
@@ -1375,7 +1616,11 @@ function Load_DSA_meth_new(name: PAnsiChar; flags: TOpenSSL_C_INT): PDSA_METHOD;
 begin
   DSA_meth_new := LoadLibCryptoFunction('DSA_meth_new');
   if not assigned(DSA_meth_new) then
+    {$if declared(LEGACY_DSA_meth_new)}
+    DSA_meth_new := @LEGACY_DSA_meth_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_meth_new');
+    {$ifend}
   Result := DSA_meth_new(name, flags);
 end;
 
@@ -1383,7 +1628,11 @@ procedure Load_DSA_meth_free(dsam: PDSA_METHOD); cdecl;
 begin
   DSA_meth_free := LoadLibCryptoFunction('DSA_meth_free');
   if not assigned(DSA_meth_free) then
+    {$if declared(LEGACY_DSA_meth_free)}
+    DSA_meth_free := @LEGACY_DSA_meth_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_meth_free');
+    {$ifend}
   DSA_meth_free(dsam);
 end;
 
@@ -1391,7 +1640,11 @@ function Load_DSA_meth_dup(dsam: PDSA_METHOD): PDSA_METHOD; cdecl;
 begin
   DSA_meth_dup := LoadLibCryptoFunction('DSA_meth_dup');
   if not assigned(DSA_meth_dup) then
+    {$if declared(LEGACY_DSA_meth_dup)}
+    DSA_meth_dup := @LEGACY_DSA_meth_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_meth_dup');
+    {$ifend}
   Result := DSA_meth_dup(dsam);
 end;
 
@@ -1399,7 +1652,11 @@ function Load_DSA_meth_get0_name(dsam: PDSA_METHOD): PAnsiChar; cdecl;
 begin
   DSA_meth_get0_name := LoadLibCryptoFunction('DSA_meth_get0_name');
   if not assigned(DSA_meth_get0_name) then
+    {$if declared(LEGACY_DSA_meth_get0_name)}
+    DSA_meth_get0_name := @LEGACY_DSA_meth_get0_name;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_meth_get0_name');
+    {$ifend}
   Result := DSA_meth_get0_name(dsam);
 end;
 
@@ -1407,7 +1664,11 @@ function Load_DSA_meth_set1_name(dsam: PDSA_METHOD; name: PAnsiChar): TOpenSSL_C
 begin
   DSA_meth_set1_name := LoadLibCryptoFunction('DSA_meth_set1_name');
   if not assigned(DSA_meth_set1_name) then
+    {$if declared(LEGACY_DSA_meth_set1_name)}
+    DSA_meth_set1_name := @LEGACY_DSA_meth_set1_name;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_meth_set1_name');
+    {$ifend}
   Result := DSA_meth_set1_name(dsam, name);
 end;
 
@@ -1415,7 +1676,11 @@ function Load_DSA_meth_get_flags(dsam: PDSA_METHOD): TOpenSSL_C_INT; cdecl;
 begin
   DSA_meth_get_flags := LoadLibCryptoFunction('DSA_meth_get_flags');
   if not assigned(DSA_meth_get_flags) then
+    {$if declared(LEGACY_DSA_meth_get_flags)}
+    DSA_meth_get_flags := @LEGACY_DSA_meth_get_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_meth_get_flags');
+    {$ifend}
   Result := DSA_meth_get_flags(dsam);
 end;
 
@@ -1423,7 +1688,11 @@ function Load_DSA_meth_set_flags(dsam: PDSA_METHOD; flags: TOpenSSL_C_INT): TOpe
 begin
   DSA_meth_set_flags := LoadLibCryptoFunction('DSA_meth_set_flags');
   if not assigned(DSA_meth_set_flags) then
+    {$if declared(LEGACY_DSA_meth_set_flags)}
+    DSA_meth_set_flags := @LEGACY_DSA_meth_set_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_meth_set_flags');
+    {$ifend}
   Result := DSA_meth_set_flags(dsam, flags);
 end;
 
@@ -1431,7 +1700,11 @@ function Load_DSA_meth_get0_app_data(dsam: PDSA_METHOD): pointer; cdecl;
 begin
   DSA_meth_get0_app_data := LoadLibCryptoFunction('DSA_meth_get0_app_data');
   if not assigned(DSA_meth_get0_app_data) then
+    {$if declared(LEGACY_DSA_meth_get0_app_data)}
+    DSA_meth_get0_app_data := @LEGACY_DSA_meth_get0_app_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_meth_get0_app_data');
+    {$ifend}
   Result := DSA_meth_get0_app_data(dsam);
 end;
 
@@ -1439,7 +1712,11 @@ function Load_DSA_meth_set0_app_data(dsam: PDSA_METHOD; app_data: pointer): TOpe
 begin
   DSA_meth_set0_app_data := LoadLibCryptoFunction('DSA_meth_set0_app_data');
   if not assigned(DSA_meth_set0_app_data) then
+    {$if declared(LEGACY_DSA_meth_set0_app_data)}
+    DSA_meth_set0_app_data := @LEGACY_DSA_meth_set0_app_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_meth_set0_app_data');
+    {$ifend}
   Result := DSA_meth_set0_app_data(dsam, app_data);
 end;
 
@@ -1447,7 +1724,11 @@ function Load_DSA_meth_get_sign(dsam: PDSA_METHOD): TFuncType001; cdecl;
 begin
   DSA_meth_get_sign := LoadLibCryptoFunction('DSA_meth_get_sign');
   if not assigned(DSA_meth_get_sign) then
+    {$if declared(LEGACY_DSA_meth_get_sign)}
+    DSA_meth_get_sign := @LEGACY_DSA_meth_get_sign;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_meth_get_sign');
+    {$ifend}
   Result := DSA_meth_get_sign(dsam);
 end;
 
@@ -1455,7 +1736,11 @@ function Load_DSA_meth_set_sign(dsam: PDSA_METHOD; sign: TFuncType002): TOpenSSL
 begin
   DSA_meth_set_sign := LoadLibCryptoFunction('DSA_meth_set_sign');
   if not assigned(DSA_meth_set_sign) then
+    {$if declared(LEGACY_DSA_meth_set_sign)}
+    DSA_meth_set_sign := @LEGACY_DSA_meth_set_sign;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_meth_set_sign');
+    {$ifend}
   Result := DSA_meth_set_sign(dsam, sign);
 end;
 
@@ -1463,7 +1748,11 @@ function Load_DSA_meth_get_sign_setup(dsam: PDSA_METHOD): TFuncType003; cdecl;
 begin
   DSA_meth_get_sign_setup := LoadLibCryptoFunction('DSA_meth_get_sign_setup');
   if not assigned(DSA_meth_get_sign_setup) then
+    {$if declared(LEGACY_DSA_meth_get_sign_setup)}
+    DSA_meth_get_sign_setup := @LEGACY_DSA_meth_get_sign_setup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_meth_get_sign_setup');
+    {$ifend}
   Result := DSA_meth_get_sign_setup(dsam);
 end;
 
@@ -1471,7 +1760,11 @@ function Load_DSA_meth_set_sign_setup(dsam: PDSA_METHOD; sign_setup: TFuncType00
 begin
   DSA_meth_set_sign_setup := LoadLibCryptoFunction('DSA_meth_set_sign_setup');
   if not assigned(DSA_meth_set_sign_setup) then
+    {$if declared(LEGACY_DSA_meth_set_sign_setup)}
+    DSA_meth_set_sign_setup := @LEGACY_DSA_meth_set_sign_setup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_meth_set_sign_setup');
+    {$ifend}
   Result := DSA_meth_set_sign_setup(dsam, sign_setup);
 end;
 
@@ -1479,7 +1772,11 @@ function Load_DSA_meth_get_verify(dsam: PDSA_METHOD): TFuncType005; cdecl;
 begin
   DSA_meth_get_verify := LoadLibCryptoFunction('DSA_meth_get_verify');
   if not assigned(DSA_meth_get_verify) then
+    {$if declared(LEGACY_DSA_meth_get_verify)}
+    DSA_meth_get_verify := @LEGACY_DSA_meth_get_verify;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_meth_get_verify');
+    {$ifend}
   Result := DSA_meth_get_verify(dsam);
 end;
 
@@ -1487,7 +1784,11 @@ function Load_DSA_meth_set_verify(dsam: PDSA_METHOD; verify: TFuncType006): TOpe
 begin
   DSA_meth_set_verify := LoadLibCryptoFunction('DSA_meth_set_verify');
   if not assigned(DSA_meth_set_verify) then
+    {$if declared(LEGACY_DSA_meth_set_verify)}
+    DSA_meth_set_verify := @LEGACY_DSA_meth_set_verify;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_meth_set_verify');
+    {$ifend}
   Result := DSA_meth_set_verify(dsam, verify);
 end;
 
@@ -1495,7 +1796,11 @@ function Load_DSA_meth_get_mod_exp(dsam: PDSA_METHOD): TFuncType007; cdecl;
 begin
   DSA_meth_get_mod_exp := LoadLibCryptoFunction('DSA_meth_get_mod_exp');
   if not assigned(DSA_meth_get_mod_exp) then
+    {$if declared(LEGACY_DSA_meth_get_mod_exp)}
+    DSA_meth_get_mod_exp := @LEGACY_DSA_meth_get_mod_exp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_meth_get_mod_exp');
+    {$ifend}
   Result := DSA_meth_get_mod_exp(dsam);
 end;
 
@@ -1503,7 +1808,11 @@ function Load_DSA_meth_set_mod_exp(dsam: PDSA_METHOD; mod_exp: TFuncType008): TO
 begin
   DSA_meth_set_mod_exp := LoadLibCryptoFunction('DSA_meth_set_mod_exp');
   if not assigned(DSA_meth_set_mod_exp) then
+    {$if declared(LEGACY_DSA_meth_set_mod_exp)}
+    DSA_meth_set_mod_exp := @LEGACY_DSA_meth_set_mod_exp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_meth_set_mod_exp');
+    {$ifend}
   Result := DSA_meth_set_mod_exp(dsam, mod_exp);
 end;
 
@@ -1511,7 +1820,11 @@ function Load_DSA_meth_get_bn_mod_exp(dsam: PDSA_METHOD): TFuncType009; cdecl;
 begin
   DSA_meth_get_bn_mod_exp := LoadLibCryptoFunction('DSA_meth_get_bn_mod_exp');
   if not assigned(DSA_meth_get_bn_mod_exp) then
+    {$if declared(LEGACY_DSA_meth_get_bn_mod_exp)}
+    DSA_meth_get_bn_mod_exp := @LEGACY_DSA_meth_get_bn_mod_exp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_meth_get_bn_mod_exp');
+    {$ifend}
   Result := DSA_meth_get_bn_mod_exp(dsam);
 end;
 
@@ -1519,7 +1832,11 @@ function Load_DSA_meth_set_bn_mod_exp(dsam: PDSA_METHOD; bn_mod_exp: TFuncType01
 begin
   DSA_meth_set_bn_mod_exp := LoadLibCryptoFunction('DSA_meth_set_bn_mod_exp');
   if not assigned(DSA_meth_set_bn_mod_exp) then
+    {$if declared(LEGACY_DSA_meth_set_bn_mod_exp)}
+    DSA_meth_set_bn_mod_exp := @LEGACY_DSA_meth_set_bn_mod_exp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_meth_set_bn_mod_exp');
+    {$ifend}
   Result := DSA_meth_set_bn_mod_exp(dsam, bn_mod_exp);
 end;
 
@@ -1527,7 +1844,11 @@ function Load_DSA_meth_get_init(dsam: PDSA_METHOD): TFuncType011; cdecl;
 begin
   DSA_meth_get_init := LoadLibCryptoFunction('DSA_meth_get_init');
   if not assigned(DSA_meth_get_init) then
+    {$if declared(LEGACY_DSA_meth_get_init)}
+    DSA_meth_get_init := @LEGACY_DSA_meth_get_init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_meth_get_init');
+    {$ifend}
   Result := DSA_meth_get_init(dsam);
 end;
 
@@ -1535,7 +1856,11 @@ function Load_DSA_meth_set_init(dsam: PDSA_METHOD; init: TFuncType012): TOpenSSL
 begin
   DSA_meth_set_init := LoadLibCryptoFunction('DSA_meth_set_init');
   if not assigned(DSA_meth_set_init) then
+    {$if declared(LEGACY_DSA_meth_set_init)}
+    DSA_meth_set_init := @LEGACY_DSA_meth_set_init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_meth_set_init');
+    {$ifend}
   Result := DSA_meth_set_init(dsam, init);
 end;
 
@@ -1543,7 +1868,11 @@ function Load_DSA_meth_get_finish(dsam: PDSA_METHOD): TFuncType013; cdecl;
 begin
   DSA_meth_get_finish := LoadLibCryptoFunction('DSA_meth_get_finish');
   if not assigned(DSA_meth_get_finish) then
+    {$if declared(LEGACY_DSA_meth_get_finish)}
+    DSA_meth_get_finish := @LEGACY_DSA_meth_get_finish;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_meth_get_finish');
+    {$ifend}
   Result := DSA_meth_get_finish(dsam);
 end;
 
@@ -1551,7 +1880,11 @@ function Load_DSA_meth_set_finish(dsam: PDSA_METHOD; finish: TFuncType014): TOpe
 begin
   DSA_meth_set_finish := LoadLibCryptoFunction('DSA_meth_set_finish');
   if not assigned(DSA_meth_set_finish) then
+    {$if declared(LEGACY_DSA_meth_set_finish)}
+    DSA_meth_set_finish := @LEGACY_DSA_meth_set_finish;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_meth_set_finish');
+    {$ifend}
   Result := DSA_meth_set_finish(dsam, finish);
 end;
 
@@ -1559,7 +1892,11 @@ function Load_DSA_meth_get_paramgen(dsam: PDSA_METHOD): TFuncType015; cdecl;
 begin
   DSA_meth_get_paramgen := LoadLibCryptoFunction('DSA_meth_get_paramgen');
   if not assigned(DSA_meth_get_paramgen) then
+    {$if declared(LEGACY_DSA_meth_get_paramgen)}
+    DSA_meth_get_paramgen := @LEGACY_DSA_meth_get_paramgen;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_meth_get_paramgen');
+    {$ifend}
   Result := DSA_meth_get_paramgen(dsam);
 end;
 
@@ -1567,7 +1904,11 @@ function Load_DSA_meth_set_paramgen(dsam: PDSA_METHOD; paramgen: TFuncType016): 
 begin
   DSA_meth_set_paramgen := LoadLibCryptoFunction('DSA_meth_set_paramgen');
   if not assigned(DSA_meth_set_paramgen) then
+    {$if declared(LEGACY_DSA_meth_set_paramgen)}
+    DSA_meth_set_paramgen := @LEGACY_DSA_meth_set_paramgen;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_meth_set_paramgen');
+    {$ifend}
   Result := DSA_meth_set_paramgen(dsam, paramgen);
 end;
 
@@ -1575,7 +1916,11 @@ function Load_DSA_meth_get_keygen(dsam: PDSA_METHOD): TFuncType017; cdecl;
 begin
   DSA_meth_get_keygen := LoadLibCryptoFunction('DSA_meth_get_keygen');
   if not assigned(DSA_meth_get_keygen) then
+    {$if declared(LEGACY_DSA_meth_get_keygen)}
+    DSA_meth_get_keygen := @LEGACY_DSA_meth_get_keygen;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_meth_get_keygen');
+    {$ifend}
   Result := DSA_meth_get_keygen(dsam);
 end;
 
@@ -1583,7 +1928,11 @@ function Load_DSA_meth_set_keygen(dsam: PDSA_METHOD; keygen: TFuncType018): TOpe
 begin
   DSA_meth_set_keygen := LoadLibCryptoFunction('DSA_meth_set_keygen');
   if not assigned(DSA_meth_set_keygen) then
+    {$if declared(LEGACY_DSA_meth_set_keygen)}
+    DSA_meth_set_keygen := @LEGACY_DSA_meth_set_keygen;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_meth_set_keygen');
+    {$ifend}
   Result := DSA_meth_set_keygen(dsam, keygen);
 end;
 

@@ -18,7 +18,8 @@
 unit openssl_objects;
 
 {
-  Generated from OpenSSL 3.0.20 Header File objects.h - Wed  6 May 13:06:13 BST 2026
+  Generated from OpenSSL 3.0.20 Header File objects.h - Wed  6 May 13:15:22 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -386,7 +387,11 @@ function Load_OBJ_NAME_init: TOpenSSL_C_INT; cdecl;
 begin
   OBJ_NAME_init := LoadLibCryptoFunction('OBJ_NAME_init');
   if not assigned(OBJ_NAME_init) then
+    {$if declared(LEGACY_OBJ_NAME_init)}
+    OBJ_NAME_init := @LEGACY_OBJ_NAME_init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OBJ_NAME_init');
+    {$ifend}
   Result := OBJ_NAME_init;
 end;
 
@@ -394,7 +399,11 @@ function Load_OBJ_NAME_new_index(hash_func: TFuncType000; cmp_func: TFuncType001
 begin
   OBJ_NAME_new_index := LoadLibCryptoFunction('OBJ_NAME_new_index');
   if not assigned(OBJ_NAME_new_index) then
+    {$if declared(LEGACY_OBJ_NAME_new_index)}
+    OBJ_NAME_new_index := @LEGACY_OBJ_NAME_new_index;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OBJ_NAME_new_index');
+    {$ifend}
   Result := OBJ_NAME_new_index(hash_func, cmp_func, free_func);
 end;
 
@@ -402,7 +411,11 @@ function Load_OBJ_NAME_get(name: PAnsiChar; type_: TOpenSSL_C_INT): PAnsiChar; c
 begin
   OBJ_NAME_get := LoadLibCryptoFunction('OBJ_NAME_get');
   if not assigned(OBJ_NAME_get) then
+    {$if declared(LEGACY_OBJ_NAME_get)}
+    OBJ_NAME_get := @LEGACY_OBJ_NAME_get;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OBJ_NAME_get');
+    {$ifend}
   Result := OBJ_NAME_get(name, type_);
 end;
 
@@ -410,7 +423,11 @@ function Load_OBJ_NAME_add(name: PAnsiChar; type_: TOpenSSL_C_INT; data: PAnsiCh
 begin
   OBJ_NAME_add := LoadLibCryptoFunction('OBJ_NAME_add');
   if not assigned(OBJ_NAME_add) then
+    {$if declared(LEGACY_OBJ_NAME_add)}
+    OBJ_NAME_add := @LEGACY_OBJ_NAME_add;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OBJ_NAME_add');
+    {$ifend}
   Result := OBJ_NAME_add(name, type_, data);
 end;
 
@@ -418,7 +435,11 @@ function Load_OBJ_NAME_remove(name: PAnsiChar; type_: TOpenSSL_C_INT): TOpenSSL_
 begin
   OBJ_NAME_remove := LoadLibCryptoFunction('OBJ_NAME_remove');
   if not assigned(OBJ_NAME_remove) then
+    {$if declared(LEGACY_OBJ_NAME_remove)}
+    OBJ_NAME_remove := @LEGACY_OBJ_NAME_remove;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OBJ_NAME_remove');
+    {$ifend}
   Result := OBJ_NAME_remove(name, type_);
 end;
 
@@ -426,7 +447,11 @@ procedure Load_OBJ_NAME_cleanup(type_: TOpenSSL_C_INT); cdecl;
 begin
   OBJ_NAME_cleanup := LoadLibCryptoFunction('OBJ_NAME_cleanup');
   if not assigned(OBJ_NAME_cleanup) then
+    {$if declared(LEGACY_OBJ_NAME_cleanup)}
+    OBJ_NAME_cleanup := @LEGACY_OBJ_NAME_cleanup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OBJ_NAME_cleanup');
+    {$ifend}
   OBJ_NAME_cleanup(type_);
 end;
 
@@ -434,7 +459,11 @@ procedure Load_OBJ_NAME_do_all(type_: TOpenSSL_C_INT; fn: TFuncType003; arg: poi
 begin
   OBJ_NAME_do_all := LoadLibCryptoFunction('OBJ_NAME_do_all');
   if not assigned(OBJ_NAME_do_all) then
+    {$if declared(LEGACY_OBJ_NAME_do_all)}
+    OBJ_NAME_do_all := @LEGACY_OBJ_NAME_do_all;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OBJ_NAME_do_all');
+    {$ifend}
   OBJ_NAME_do_all(type_, fn, arg);
 end;
 
@@ -442,7 +471,11 @@ procedure Load_OBJ_NAME_do_all_sorted(type_: TOpenSSL_C_INT; fn: TFuncType004; a
 begin
   OBJ_NAME_do_all_sorted := LoadLibCryptoFunction('OBJ_NAME_do_all_sorted');
   if not assigned(OBJ_NAME_do_all_sorted) then
+    {$if declared(LEGACY_OBJ_NAME_do_all_sorted)}
+    OBJ_NAME_do_all_sorted := @LEGACY_OBJ_NAME_do_all_sorted;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OBJ_NAME_do_all_sorted');
+    {$ifend}
   OBJ_NAME_do_all_sorted(type_, fn, arg);
 end;
 
@@ -450,7 +483,11 @@ function Load_OBJ_dup(a: PASN1_OBJECT): PASN1_OBJECT; cdecl;
 begin
   OBJ_dup := LoadLibCryptoFunction('OBJ_dup');
   if not assigned(OBJ_dup) then
+    {$if declared(LEGACY_OBJ_dup)}
+    OBJ_dup := @LEGACY_OBJ_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OBJ_dup');
+    {$ifend}
   Result := OBJ_dup(a);
 end;
 
@@ -458,7 +495,11 @@ function Load_OBJ_nid2obj(n: TOpenSSL_C_INT): PASN1_OBJECT; cdecl;
 begin
   OBJ_nid2obj := LoadLibCryptoFunction('OBJ_nid2obj');
   if not assigned(OBJ_nid2obj) then
+    {$if declared(LEGACY_OBJ_nid2obj)}
+    OBJ_nid2obj := @LEGACY_OBJ_nid2obj;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OBJ_nid2obj');
+    {$ifend}
   Result := OBJ_nid2obj(n);
 end;
 
@@ -466,7 +507,11 @@ function Load_OBJ_nid2ln(n: TOpenSSL_C_INT): PAnsiChar; cdecl;
 begin
   OBJ_nid2ln := LoadLibCryptoFunction('OBJ_nid2ln');
   if not assigned(OBJ_nid2ln) then
+    {$if declared(LEGACY_OBJ_nid2ln)}
+    OBJ_nid2ln := @LEGACY_OBJ_nid2ln;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OBJ_nid2ln');
+    {$ifend}
   Result := OBJ_nid2ln(n);
 end;
 
@@ -474,7 +519,11 @@ function Load_OBJ_nid2sn(n: TOpenSSL_C_INT): PAnsiChar; cdecl;
 begin
   OBJ_nid2sn := LoadLibCryptoFunction('OBJ_nid2sn');
   if not assigned(OBJ_nid2sn) then
+    {$if declared(LEGACY_OBJ_nid2sn)}
+    OBJ_nid2sn := @LEGACY_OBJ_nid2sn;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OBJ_nid2sn');
+    {$ifend}
   Result := OBJ_nid2sn(n);
 end;
 
@@ -482,7 +531,11 @@ function Load_OBJ_obj2nid(o: PASN1_OBJECT): TOpenSSL_C_INT; cdecl;
 begin
   OBJ_obj2nid := LoadLibCryptoFunction('OBJ_obj2nid');
   if not assigned(OBJ_obj2nid) then
+    {$if declared(LEGACY_OBJ_obj2nid)}
+    OBJ_obj2nid := @LEGACY_OBJ_obj2nid;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OBJ_obj2nid');
+    {$ifend}
   Result := OBJ_obj2nid(o);
 end;
 
@@ -490,7 +543,11 @@ function Load_OBJ_txt2obj(s: PAnsiChar; no_name: TOpenSSL_C_INT): PASN1_OBJECT; 
 begin
   OBJ_txt2obj := LoadLibCryptoFunction('OBJ_txt2obj');
   if not assigned(OBJ_txt2obj) then
+    {$if declared(LEGACY_OBJ_txt2obj)}
+    OBJ_txt2obj := @LEGACY_OBJ_txt2obj;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OBJ_txt2obj');
+    {$ifend}
   Result := OBJ_txt2obj(s, no_name);
 end;
 
@@ -498,7 +555,11 @@ function Load_OBJ_obj2txt(buf: PAnsiChar; buf_len: TOpenSSL_C_INT; a: PASN1_OBJE
 begin
   OBJ_obj2txt := LoadLibCryptoFunction('OBJ_obj2txt');
   if not assigned(OBJ_obj2txt) then
+    {$if declared(LEGACY_OBJ_obj2txt)}
+    OBJ_obj2txt := @LEGACY_OBJ_obj2txt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OBJ_obj2txt');
+    {$ifend}
   Result := OBJ_obj2txt(buf, buf_len, a, no_name);
 end;
 
@@ -506,7 +567,11 @@ function Load_OBJ_txt2nid(s: PAnsiChar): TOpenSSL_C_INT; cdecl;
 begin
   OBJ_txt2nid := LoadLibCryptoFunction('OBJ_txt2nid');
   if not assigned(OBJ_txt2nid) then
+    {$if declared(LEGACY_OBJ_txt2nid)}
+    OBJ_txt2nid := @LEGACY_OBJ_txt2nid;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OBJ_txt2nid');
+    {$ifend}
   Result := OBJ_txt2nid(s);
 end;
 
@@ -514,7 +579,11 @@ function Load_OBJ_ln2nid(s: PAnsiChar): TOpenSSL_C_INT; cdecl;
 begin
   OBJ_ln2nid := LoadLibCryptoFunction('OBJ_ln2nid');
   if not assigned(OBJ_ln2nid) then
+    {$if declared(LEGACY_OBJ_ln2nid)}
+    OBJ_ln2nid := @LEGACY_OBJ_ln2nid;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OBJ_ln2nid');
+    {$ifend}
   Result := OBJ_ln2nid(s);
 end;
 
@@ -522,7 +591,11 @@ function Load_OBJ_sn2nid(s: PAnsiChar): TOpenSSL_C_INT; cdecl;
 begin
   OBJ_sn2nid := LoadLibCryptoFunction('OBJ_sn2nid');
   if not assigned(OBJ_sn2nid) then
+    {$if declared(LEGACY_OBJ_sn2nid)}
+    OBJ_sn2nid := @LEGACY_OBJ_sn2nid;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OBJ_sn2nid');
+    {$ifend}
   Result := OBJ_sn2nid(s);
 end;
 
@@ -530,7 +603,11 @@ function Load_OBJ_cmp(a: PASN1_OBJECT; b: PASN1_OBJECT): TOpenSSL_C_INT; cdecl;
 begin
   OBJ_cmp := LoadLibCryptoFunction('OBJ_cmp');
   if not assigned(OBJ_cmp) then
+    {$if declared(LEGACY_OBJ_cmp)}
+    OBJ_cmp := @LEGACY_OBJ_cmp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OBJ_cmp');
+    {$ifend}
   Result := OBJ_cmp(a, b);
 end;
 
@@ -538,7 +615,11 @@ function Load_OBJ_bsearch_(key: pointer; base: pointer; num: TOpenSSL_C_INT; siz
 begin
   OBJ_bsearch_ := LoadLibCryptoFunction('OBJ_bsearch_');
   if not assigned(OBJ_bsearch_) then
+    {$if declared(LEGACY_OBJ_bsearch_)}
+    OBJ_bsearch_ := @LEGACY_OBJ_bsearch_;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OBJ_bsearch_');
+    {$ifend}
   Result := OBJ_bsearch_(key, base, num, size, cmp);
 end;
 
@@ -546,7 +627,11 @@ function Load_OBJ_bsearch_ex_(key: pointer; base: pointer; num: TOpenSSL_C_INT; 
 begin
   OBJ_bsearch_ex_ := LoadLibCryptoFunction('OBJ_bsearch_ex_');
   if not assigned(OBJ_bsearch_ex_) then
+    {$if declared(LEGACY_OBJ_bsearch_ex_)}
+    OBJ_bsearch_ex_ := @LEGACY_OBJ_bsearch_ex_;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OBJ_bsearch_ex_');
+    {$ifend}
   Result := OBJ_bsearch_ex_(key, base, num, size, cmp, flags);
 end;
 
@@ -554,7 +639,11 @@ function Load_OBJ_new_nid(num: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
 begin
   OBJ_new_nid := LoadLibCryptoFunction('OBJ_new_nid');
   if not assigned(OBJ_new_nid) then
+    {$if declared(LEGACY_OBJ_new_nid)}
+    OBJ_new_nid := @LEGACY_OBJ_new_nid;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OBJ_new_nid');
+    {$ifend}
   Result := OBJ_new_nid(num);
 end;
 
@@ -562,7 +651,11 @@ function Load_OBJ_add_object(obj: PASN1_OBJECT): TOpenSSL_C_INT; cdecl;
 begin
   OBJ_add_object := LoadLibCryptoFunction('OBJ_add_object');
   if not assigned(OBJ_add_object) then
+    {$if declared(LEGACY_OBJ_add_object)}
+    OBJ_add_object := @LEGACY_OBJ_add_object;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OBJ_add_object');
+    {$ifend}
   Result := OBJ_add_object(obj);
 end;
 
@@ -570,7 +663,11 @@ function Load_OBJ_create(oid: PAnsiChar; sn: PAnsiChar; ln: PAnsiChar): TOpenSSL
 begin
   OBJ_create := LoadLibCryptoFunction('OBJ_create');
   if not assigned(OBJ_create) then
+    {$if declared(LEGACY_OBJ_create)}
+    OBJ_create := @LEGACY_OBJ_create;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OBJ_create');
+    {$ifend}
   Result := OBJ_create(oid, sn, ln);
 end;
 
@@ -578,7 +675,11 @@ function Load_OBJ_create_objects(in_: PBIO): TOpenSSL_C_INT; cdecl;
 begin
   OBJ_create_objects := LoadLibCryptoFunction('OBJ_create_objects');
   if not assigned(OBJ_create_objects) then
+    {$if declared(LEGACY_OBJ_create_objects)}
+    OBJ_create_objects := @LEGACY_OBJ_create_objects;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OBJ_create_objects');
+    {$ifend}
   Result := OBJ_create_objects(in_);
 end;
 
@@ -586,7 +687,11 @@ function Load_OBJ_length(obj: PASN1_OBJECT): TOpenSSL_C_SIZET; cdecl;
 begin
   OBJ_length := LoadLibCryptoFunction('OBJ_length');
   if not assigned(OBJ_length) then
+    {$if declared(LEGACY_OBJ_length)}
+    OBJ_length := @LEGACY_OBJ_length;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OBJ_length');
+    {$ifend}
   Result := OBJ_length(obj);
 end;
 
@@ -594,7 +699,11 @@ function Load_OBJ_get0_data(obj: PASN1_OBJECT): Pbyte; cdecl;
 begin
   OBJ_get0_data := LoadLibCryptoFunction('OBJ_get0_data');
   if not assigned(OBJ_get0_data) then
+    {$if declared(LEGACY_OBJ_get0_data)}
+    OBJ_get0_data := @LEGACY_OBJ_get0_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OBJ_get0_data');
+    {$ifend}
   Result := OBJ_get0_data(obj);
 end;
 
@@ -602,7 +711,11 @@ function Load_OBJ_find_sigid_algs(signid: TOpenSSL_C_INT; pdig_nid: POpenSSL_C_I
 begin
   OBJ_find_sigid_algs := LoadLibCryptoFunction('OBJ_find_sigid_algs');
   if not assigned(OBJ_find_sigid_algs) then
+    {$if declared(LEGACY_OBJ_find_sigid_algs)}
+    OBJ_find_sigid_algs := @LEGACY_OBJ_find_sigid_algs;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OBJ_find_sigid_algs');
+    {$ifend}
   Result := OBJ_find_sigid_algs(signid, pdig_nid, ppkey_nid);
 end;
 
@@ -610,7 +723,11 @@ function Load_OBJ_find_sigid_by_algs(psignid: POpenSSL_C_INT; dig_nid: TOpenSSL_
 begin
   OBJ_find_sigid_by_algs := LoadLibCryptoFunction('OBJ_find_sigid_by_algs');
   if not assigned(OBJ_find_sigid_by_algs) then
+    {$if declared(LEGACY_OBJ_find_sigid_by_algs)}
+    OBJ_find_sigid_by_algs := @LEGACY_OBJ_find_sigid_by_algs;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OBJ_find_sigid_by_algs');
+    {$ifend}
   Result := OBJ_find_sigid_by_algs(psignid, dig_nid, pkey_nid);
 end;
 
@@ -618,7 +735,11 @@ function Load_OBJ_add_sigid(signid: TOpenSSL_C_INT; dig_id: TOpenSSL_C_INT; pkey
 begin
   OBJ_add_sigid := LoadLibCryptoFunction('OBJ_add_sigid');
   if not assigned(OBJ_add_sigid) then
+    {$if declared(LEGACY_OBJ_add_sigid)}
+    OBJ_add_sigid := @LEGACY_OBJ_add_sigid;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OBJ_add_sigid');
+    {$ifend}
   Result := OBJ_add_sigid(signid, dig_id, pkey_id);
 end;
 
@@ -626,7 +747,11 @@ procedure Load_OBJ_sigid_free; cdecl;
 begin
   OBJ_sigid_free := LoadLibCryptoFunction('OBJ_sigid_free');
   if not assigned(OBJ_sigid_free) then
+    {$if declared(LEGACY_OBJ_sigid_free)}
+    OBJ_sigid_free := @LEGACY_OBJ_sigid_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OBJ_sigid_free');
+    {$ifend}
   OBJ_sigid_free;
 end;
 

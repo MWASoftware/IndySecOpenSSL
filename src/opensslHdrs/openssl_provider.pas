@@ -18,7 +18,8 @@
 unit openssl_provider;
 
 {
-  Generated from OpenSSL 3.0.20 Header File provider.h - Wed  6 May 13:06:25 BST 2026
+  Generated from OpenSSL 3.0.20 Header File provider.h - Wed  6 May 13:15:34 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -167,7 +168,11 @@ function Load_OSSL_PROVIDER_set_default_search_path(_param1: POSSL_LIB_CTX; path
 begin
   OSSL_PROVIDER_set_default_search_path := LoadLibCryptoFunction('OSSL_PROVIDER_set_default_search_path');
   if not assigned(OSSL_PROVIDER_set_default_search_path) then
+    {$if declared(LEGACY_OSSL_PROVIDER_set_default_search_path)}
+    OSSL_PROVIDER_set_default_search_path := @LEGACY_OSSL_PROVIDER_set_default_search_path;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PROVIDER_set_default_search_path');
+    {$ifend}
   Result := OSSL_PROVIDER_set_default_search_path(_param1, path);
 end;
 
@@ -175,7 +180,11 @@ function Load_OSSL_PROVIDER_load(_param1: POSSL_LIB_CTX; name: PAnsiChar): POSSL
 begin
   OSSL_PROVIDER_load := LoadLibCryptoFunction('OSSL_PROVIDER_load');
   if not assigned(OSSL_PROVIDER_load) then
+    {$if declared(LEGACY_OSSL_PROVIDER_load)}
+    OSSL_PROVIDER_load := @LEGACY_OSSL_PROVIDER_load;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PROVIDER_load');
+    {$ifend}
   Result := OSSL_PROVIDER_load(_param1, name);
 end;
 
@@ -183,7 +192,11 @@ function Load_OSSL_PROVIDER_try_load(_param1: POSSL_LIB_CTX; name: PAnsiChar; re
 begin
   OSSL_PROVIDER_try_load := LoadLibCryptoFunction('OSSL_PROVIDER_try_load');
   if not assigned(OSSL_PROVIDER_try_load) then
+    {$if declared(LEGACY_OSSL_PROVIDER_try_load)}
+    OSSL_PROVIDER_try_load := @LEGACY_OSSL_PROVIDER_try_load;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PROVIDER_try_load');
+    {$ifend}
   Result := OSSL_PROVIDER_try_load(_param1, name, retain_fallbacks);
 end;
 
@@ -191,7 +204,11 @@ function Load_OSSL_PROVIDER_unload(prov: POSSL_PROVIDER): TOpenSSL_C_INT; cdecl;
 begin
   OSSL_PROVIDER_unload := LoadLibCryptoFunction('OSSL_PROVIDER_unload');
   if not assigned(OSSL_PROVIDER_unload) then
+    {$if declared(LEGACY_OSSL_PROVIDER_unload)}
+    OSSL_PROVIDER_unload := @LEGACY_OSSL_PROVIDER_unload;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PROVIDER_unload');
+    {$ifend}
   Result := OSSL_PROVIDER_unload(prov);
 end;
 
@@ -199,7 +216,11 @@ function Load_OSSL_PROVIDER_available(_param1: POSSL_LIB_CTX; name: PAnsiChar): 
 begin
   OSSL_PROVIDER_available := LoadLibCryptoFunction('OSSL_PROVIDER_available');
   if not assigned(OSSL_PROVIDER_available) then
+    {$if declared(LEGACY_OSSL_PROVIDER_available)}
+    OSSL_PROVIDER_available := @LEGACY_OSSL_PROVIDER_available;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PROVIDER_available');
+    {$ifend}
   Result := OSSL_PROVIDER_available(_param1, name);
 end;
 
@@ -207,7 +228,11 @@ function Load_OSSL_PROVIDER_do_all(ctx: POSSL_LIB_CTX; cb: TFuncType000; cbdata:
 begin
   OSSL_PROVIDER_do_all := LoadLibCryptoFunction('OSSL_PROVIDER_do_all');
   if not assigned(OSSL_PROVIDER_do_all) then
+    {$if declared(LEGACY_OSSL_PROVIDER_do_all)}
+    OSSL_PROVIDER_do_all := @LEGACY_OSSL_PROVIDER_do_all;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PROVIDER_do_all');
+    {$ifend}
   Result := OSSL_PROVIDER_do_all(ctx, cb, cbdata);
 end;
 
@@ -215,7 +240,11 @@ function Load_OSSL_PROVIDER_gettable_params(prov: POSSL_PROVIDER): POSSL_PARAM; 
 begin
   OSSL_PROVIDER_gettable_params := LoadLibCryptoFunction('OSSL_PROVIDER_gettable_params');
   if not assigned(OSSL_PROVIDER_gettable_params) then
+    {$if declared(LEGACY_OSSL_PROVIDER_gettable_params)}
+    OSSL_PROVIDER_gettable_params := @LEGACY_OSSL_PROVIDER_gettable_params;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PROVIDER_gettable_params');
+    {$ifend}
   Result := OSSL_PROVIDER_gettable_params(prov);
 end;
 
@@ -223,7 +252,11 @@ function Load_OSSL_PROVIDER_get_params(prov: POSSL_PROVIDER; params: POSSL_PARAM
 begin
   OSSL_PROVIDER_get_params := LoadLibCryptoFunction('OSSL_PROVIDER_get_params');
   if not assigned(OSSL_PROVIDER_get_params) then
+    {$if declared(LEGACY_OSSL_PROVIDER_get_params)}
+    OSSL_PROVIDER_get_params := @LEGACY_OSSL_PROVIDER_get_params;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PROVIDER_get_params');
+    {$ifend}
   Result := OSSL_PROVIDER_get_params(prov, params);
 end;
 
@@ -231,7 +264,11 @@ function Load_OSSL_PROVIDER_self_test(prov: POSSL_PROVIDER): TOpenSSL_C_INT; cde
 begin
   OSSL_PROVIDER_self_test := LoadLibCryptoFunction('OSSL_PROVIDER_self_test');
   if not assigned(OSSL_PROVIDER_self_test) then
+    {$if declared(LEGACY_OSSL_PROVIDER_self_test)}
+    OSSL_PROVIDER_self_test := @LEGACY_OSSL_PROVIDER_self_test;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PROVIDER_self_test');
+    {$ifend}
   Result := OSSL_PROVIDER_self_test(prov);
 end;
 
@@ -239,7 +276,11 @@ function Load_OSSL_PROVIDER_get_capabilities(prov: POSSL_PROVIDER; capability: P
 begin
   OSSL_PROVIDER_get_capabilities := LoadLibCryptoFunction('OSSL_PROVIDER_get_capabilities');
   if not assigned(OSSL_PROVIDER_get_capabilities) then
+    {$if declared(LEGACY_OSSL_PROVIDER_get_capabilities)}
+    OSSL_PROVIDER_get_capabilities := @LEGACY_OSSL_PROVIDER_get_capabilities;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PROVIDER_get_capabilities');
+    {$ifend}
   Result := OSSL_PROVIDER_get_capabilities(prov, capability, cb, arg);
 end;
 
@@ -247,7 +288,11 @@ function Load_OSSL_PROVIDER_query_operation(prov: POSSL_PROVIDER; operation_id: 
 begin
   OSSL_PROVIDER_query_operation := LoadLibCryptoFunction('OSSL_PROVIDER_query_operation');
   if not assigned(OSSL_PROVIDER_query_operation) then
+    {$if declared(LEGACY_OSSL_PROVIDER_query_operation)}
+    OSSL_PROVIDER_query_operation := @LEGACY_OSSL_PROVIDER_query_operation;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PROVIDER_query_operation');
+    {$ifend}
   Result := OSSL_PROVIDER_query_operation(prov, operation_id, no_cache);
 end;
 
@@ -255,7 +300,11 @@ procedure Load_OSSL_PROVIDER_unquery_operation(prov: POSSL_PROVIDER; operation_i
 begin
   OSSL_PROVIDER_unquery_operation := LoadLibCryptoFunction('OSSL_PROVIDER_unquery_operation');
   if not assigned(OSSL_PROVIDER_unquery_operation) then
+    {$if declared(LEGACY_OSSL_PROVIDER_unquery_operation)}
+    OSSL_PROVIDER_unquery_operation := @LEGACY_OSSL_PROVIDER_unquery_operation;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PROVIDER_unquery_operation');
+    {$ifend}
   OSSL_PROVIDER_unquery_operation(prov, operation_id, algs);
 end;
 
@@ -263,7 +312,11 @@ function Load_OSSL_PROVIDER_get0_provider_ctx(prov: POSSL_PROVIDER): pointer; cd
 begin
   OSSL_PROVIDER_get0_provider_ctx := LoadLibCryptoFunction('OSSL_PROVIDER_get0_provider_ctx');
   if not assigned(OSSL_PROVIDER_get0_provider_ctx) then
+    {$if declared(LEGACY_OSSL_PROVIDER_get0_provider_ctx)}
+    OSSL_PROVIDER_get0_provider_ctx := @LEGACY_OSSL_PROVIDER_get0_provider_ctx;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PROVIDER_get0_provider_ctx');
+    {$ifend}
   Result := OSSL_PROVIDER_get0_provider_ctx(prov);
 end;
 
@@ -271,7 +324,11 @@ function Load_OSSL_PROVIDER_get0_dispatch(prov: POSSL_PROVIDER): POSSL_DISPATCH;
 begin
   OSSL_PROVIDER_get0_dispatch := LoadLibCryptoFunction('OSSL_PROVIDER_get0_dispatch');
   if not assigned(OSSL_PROVIDER_get0_dispatch) then
+    {$if declared(LEGACY_OSSL_PROVIDER_get0_dispatch)}
+    OSSL_PROVIDER_get0_dispatch := @LEGACY_OSSL_PROVIDER_get0_dispatch;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PROVIDER_get0_dispatch');
+    {$ifend}
   Result := OSSL_PROVIDER_get0_dispatch(prov);
 end;
 
@@ -279,7 +336,11 @@ function Load_OSSL_PROVIDER_add_builtin(_param1: POSSL_LIB_CTX; name: PAnsiChar;
 begin
   OSSL_PROVIDER_add_builtin := LoadLibCryptoFunction('OSSL_PROVIDER_add_builtin');
   if not assigned(OSSL_PROVIDER_add_builtin) then
+    {$if declared(LEGACY_OSSL_PROVIDER_add_builtin)}
+    OSSL_PROVIDER_add_builtin := @LEGACY_OSSL_PROVIDER_add_builtin;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PROVIDER_add_builtin');
+    {$ifend}
   Result := OSSL_PROVIDER_add_builtin(_param1, name, init_fn);
 end;
 
@@ -287,7 +348,11 @@ function Load_OSSL_PROVIDER_get0_name(prov: POSSL_PROVIDER): PAnsiChar; cdecl;
 begin
   OSSL_PROVIDER_get0_name := LoadLibCryptoFunction('OSSL_PROVIDER_get0_name');
   if not assigned(OSSL_PROVIDER_get0_name) then
+    {$if declared(LEGACY_OSSL_PROVIDER_get0_name)}
+    OSSL_PROVIDER_get0_name := @LEGACY_OSSL_PROVIDER_get0_name;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PROVIDER_get0_name');
+    {$ifend}
   Result := OSSL_PROVIDER_get0_name(prov);
 end;
 

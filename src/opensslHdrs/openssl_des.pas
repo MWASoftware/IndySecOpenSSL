@@ -18,7 +18,8 @@
 unit openssl_des;
 
 {
-  Generated from OpenSSL 3.0.20 Header File des.h - Wed  6 May 13:05:52 BST 2026
+  Generated from OpenSSL 3.0.20 Header File des.h - Wed  6 May 13:15:01 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -382,7 +383,11 @@ procedure Load_DES_fixup_key_parity(key: PDES_cblock); cdecl;
 begin
   DES_fixup_key_parity := LoadLibCryptoFunction('DES_set_odd_parity');
   if not assigned(DES_fixup_key_parity) then
+    {$if declared(LEGACY_DES_set_odd_parity)}
+    DES_fixup_key_parity := @LEGACY_DES_set_odd_parity;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_set_odd_parity');
+    {$ifend}
   DES_fixup_key_parity(key);
 end;
 
@@ -392,7 +397,11 @@ function Load_DES_options: PAnsiChar; cdecl;
 begin
   DES_options := LoadLibCryptoFunction('DES_options');
   if not assigned(DES_options) then
+    {$if declared(LEGACY_DES_options)}
+    DES_options := @LEGACY_DES_options;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_options');
+    {$ifend}
   Result := DES_options;
 end;
 
@@ -400,7 +409,11 @@ procedure Load_DES_ecb3_encrypt(input: Pconst_DES_cblock; output: PDES_cblock; k
 begin
   DES_ecb3_encrypt := LoadLibCryptoFunction('DES_ecb3_encrypt');
   if not assigned(DES_ecb3_encrypt) then
+    {$if declared(LEGACY_DES_ecb3_encrypt)}
+    DES_ecb3_encrypt := @LEGACY_DES_ecb3_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_ecb3_encrypt');
+    {$ifend}
   DES_ecb3_encrypt(input, output, ks1, ks2, ks3, enc);
 end;
 
@@ -408,7 +421,11 @@ function Load_DES_cbc_cksum(input: Pbyte; output: PDES_cblock; length: TOpenSSL_
 begin
   DES_cbc_cksum := LoadLibCryptoFunction('DES_cbc_cksum');
   if not assigned(DES_cbc_cksum) then
+    {$if declared(LEGACY_DES_cbc_cksum)}
+    DES_cbc_cksum := @LEGACY_DES_cbc_cksum;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_cbc_cksum');
+    {$ifend}
   Result := DES_cbc_cksum(input, output, length, schedule, ivec);
 end;
 
@@ -418,7 +435,11 @@ procedure Load_DES_cbc_encrypt(input: Pbyte; output: Pbyte; length: TOpenSSL_C_I
 begin
   DES_cbc_encrypt := LoadLibCryptoFunction('DES_cbc_encrypt');
   if not assigned(DES_cbc_encrypt) then
+    {$if declared(LEGACY_DES_cbc_encrypt)}
+    DES_cbc_encrypt := @LEGACY_DES_cbc_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_cbc_encrypt');
+    {$ifend}
   DES_cbc_encrypt(input, output, length, schedule, ivec, enc);
 end;
 
@@ -426,7 +447,11 @@ procedure Load_DES_ncbc_encrypt(input: Pbyte; output: Pbyte; length: TOpenSSL_C_
 begin
   DES_ncbc_encrypt := LoadLibCryptoFunction('DES_ncbc_encrypt');
   if not assigned(DES_ncbc_encrypt) then
+    {$if declared(LEGACY_DES_ncbc_encrypt)}
+    DES_ncbc_encrypt := @LEGACY_DES_ncbc_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_ncbc_encrypt');
+    {$ifend}
   DES_ncbc_encrypt(input, output, length, schedule, ivec, enc);
 end;
 
@@ -434,7 +459,11 @@ procedure Load_DES_xcbc_encrypt(input: Pbyte; output: Pbyte; length: TOpenSSL_C_
 begin
   DES_xcbc_encrypt := LoadLibCryptoFunction('DES_xcbc_encrypt');
   if not assigned(DES_xcbc_encrypt) then
+    {$if declared(LEGACY_DES_xcbc_encrypt)}
+    DES_xcbc_encrypt := @LEGACY_DES_xcbc_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_xcbc_encrypt');
+    {$ifend}
   DES_xcbc_encrypt(input, output, length, schedule, ivec, inw, outw, enc);
 end;
 
@@ -442,7 +471,11 @@ procedure Load_DES_cfb_encrypt(in_: Pbyte; out_: Pbyte; numbits: TOpenSSL_C_INT;
 begin
   DES_cfb_encrypt := LoadLibCryptoFunction('DES_cfb_encrypt');
   if not assigned(DES_cfb_encrypt) then
+    {$if declared(LEGACY_DES_cfb_encrypt)}
+    DES_cfb_encrypt := @LEGACY_DES_cfb_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_cfb_encrypt');
+    {$ifend}
   DES_cfb_encrypt(in_, out_, numbits, length, schedule, ivec, enc);
 end;
 
@@ -450,7 +483,11 @@ procedure Load_DES_ecb_encrypt(input: Pconst_DES_cblock; output: PDES_cblock; ks
 begin
   DES_ecb_encrypt := LoadLibCryptoFunction('DES_ecb_encrypt');
   if not assigned(DES_ecb_encrypt) then
+    {$if declared(LEGACY_DES_ecb_encrypt)}
+    DES_ecb_encrypt := @LEGACY_DES_ecb_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_ecb_encrypt');
+    {$ifend}
   DES_ecb_encrypt(input, output, ks, enc);
 end;
 
@@ -460,7 +497,11 @@ procedure Load_DES_encrypt1(data: PDES_LONG; ks: PDES_key_schedule; enc: TOpenSS
 begin
   DES_encrypt1 := LoadLibCryptoFunction('DES_encrypt1');
   if not assigned(DES_encrypt1) then
+    {$if declared(LEGACY_DES_encrypt1)}
+    DES_encrypt1 := @LEGACY_DES_encrypt1;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_encrypt1');
+    {$ifend}
   DES_encrypt1(data, ks, enc);
 end;
 
@@ -470,7 +511,11 @@ procedure Load_DES_encrypt2(data: PDES_LONG; ks: PDES_key_schedule; enc: TOpenSS
 begin
   DES_encrypt2 := LoadLibCryptoFunction('DES_encrypt2');
   if not assigned(DES_encrypt2) then
+    {$if declared(LEGACY_DES_encrypt2)}
+    DES_encrypt2 := @LEGACY_DES_encrypt2;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_encrypt2');
+    {$ifend}
   DES_encrypt2(data, ks, enc);
 end;
 
@@ -478,7 +523,11 @@ procedure Load_DES_encrypt3(data: PDES_LONG; ks1: PDES_key_schedule; ks2: PDES_k
 begin
   DES_encrypt3 := LoadLibCryptoFunction('DES_encrypt3');
   if not assigned(DES_encrypt3) then
+    {$if declared(LEGACY_DES_encrypt3)}
+    DES_encrypt3 := @LEGACY_DES_encrypt3;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_encrypt3');
+    {$ifend}
   DES_encrypt3(data, ks1, ks2, ks3);
 end;
 
@@ -486,7 +535,11 @@ procedure Load_DES_decrypt3(data: PDES_LONG; ks1: PDES_key_schedule; ks2: PDES_k
 begin
   DES_decrypt3 := LoadLibCryptoFunction('DES_decrypt3');
   if not assigned(DES_decrypt3) then
+    {$if declared(LEGACY_DES_decrypt3)}
+    DES_decrypt3 := @LEGACY_DES_decrypt3;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_decrypt3');
+    {$ifend}
   DES_decrypt3(data, ks1, ks2, ks3);
 end;
 
@@ -494,7 +547,11 @@ procedure Load_DES_ede3_cbc_encrypt(input: Pbyte; output: Pbyte; length: TOpenSS
 begin
   DES_ede3_cbc_encrypt := LoadLibCryptoFunction('DES_ede3_cbc_encrypt');
   if not assigned(DES_ede3_cbc_encrypt) then
+    {$if declared(LEGACY_DES_ede3_cbc_encrypt)}
+    DES_ede3_cbc_encrypt := @LEGACY_DES_ede3_cbc_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_ede3_cbc_encrypt');
+    {$ifend}
   DES_ede3_cbc_encrypt(input, output, length, ks1, ks2, ks3, ivec, enc);
 end;
 
@@ -502,7 +559,11 @@ procedure Load_DES_ede3_cfb64_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_
 begin
   DES_ede3_cfb64_encrypt := LoadLibCryptoFunction('DES_ede3_cfb64_encrypt');
   if not assigned(DES_ede3_cfb64_encrypt) then
+    {$if declared(LEGACY_DES_ede3_cfb64_encrypt)}
+    DES_ede3_cfb64_encrypt := @LEGACY_DES_ede3_cfb64_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_ede3_cfb64_encrypt');
+    {$ifend}
   DES_ede3_cfb64_encrypt(in_, out_, length, ks1, ks2, ks3, ivec, num, enc);
 end;
 
@@ -510,7 +571,11 @@ procedure Load_DES_ede3_cfb_encrypt(in_: Pbyte; out_: Pbyte; numbits: TOpenSSL_C
 begin
   DES_ede3_cfb_encrypt := LoadLibCryptoFunction('DES_ede3_cfb_encrypt');
   if not assigned(DES_ede3_cfb_encrypt) then
+    {$if declared(LEGACY_DES_ede3_cfb_encrypt)}
+    DES_ede3_cfb_encrypt := @LEGACY_DES_ede3_cfb_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_ede3_cfb_encrypt');
+    {$ifend}
   DES_ede3_cfb_encrypt(in_, out_, numbits, length, ks1, ks2, ks3, ivec, enc);
 end;
 
@@ -518,7 +583,11 @@ procedure Load_DES_ede3_ofb64_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_
 begin
   DES_ede3_ofb64_encrypt := LoadLibCryptoFunction('DES_ede3_ofb64_encrypt');
   if not assigned(DES_ede3_ofb64_encrypt) then
+    {$if declared(LEGACY_DES_ede3_ofb64_encrypt)}
+    DES_ede3_ofb64_encrypt := @LEGACY_DES_ede3_ofb64_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_ede3_ofb64_encrypt');
+    {$ifend}
   DES_ede3_ofb64_encrypt(in_, out_, length, ks1, ks2, ks3, ivec, num);
 end;
 
@@ -526,7 +595,11 @@ function Load_DES_fcrypt(buf: PAnsiChar; salt: PAnsiChar; ret: PAnsiChar): PAnsi
 begin
   DES_fcrypt := LoadLibCryptoFunction('DES_fcrypt');
   if not assigned(DES_fcrypt) then
+    {$if declared(LEGACY_DES_fcrypt)}
+    DES_fcrypt := @LEGACY_DES_fcrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_fcrypt');
+    {$ifend}
   Result := DES_fcrypt(buf, salt, ret);
 end;
 
@@ -534,7 +607,11 @@ function Load_DES_crypt(buf: PAnsiChar; salt: PAnsiChar): PAnsiChar; cdecl;
 begin
   DES_crypt := LoadLibCryptoFunction('DES_crypt');
   if not assigned(DES_crypt) then
+    {$if declared(LEGACY_DES_crypt)}
+    DES_crypt := @LEGACY_DES_crypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_crypt');
+    {$ifend}
   Result := DES_crypt(buf, salt);
 end;
 
@@ -542,7 +619,11 @@ procedure Load_DES_ofb_encrypt(in_: Pbyte; out_: Pbyte; numbits: TOpenSSL_C_INT;
 begin
   DES_ofb_encrypt := LoadLibCryptoFunction('DES_ofb_encrypt');
   if not assigned(DES_ofb_encrypt) then
+    {$if declared(LEGACY_DES_ofb_encrypt)}
+    DES_ofb_encrypt := @LEGACY_DES_ofb_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_ofb_encrypt');
+    {$ifend}
   DES_ofb_encrypt(in_, out_, numbits, length, schedule, ivec);
 end;
 
@@ -550,7 +631,11 @@ procedure Load_DES_pcbc_encrypt(input: Pbyte; output: Pbyte; length: TOpenSSL_C_
 begin
   DES_pcbc_encrypt := LoadLibCryptoFunction('DES_pcbc_encrypt');
   if not assigned(DES_pcbc_encrypt) then
+    {$if declared(LEGACY_DES_pcbc_encrypt)}
+    DES_pcbc_encrypt := @LEGACY_DES_pcbc_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_pcbc_encrypt');
+    {$ifend}
   DES_pcbc_encrypt(input, output, length, schedule, ivec, enc);
 end;
 
@@ -558,7 +643,11 @@ function Load_DES_quad_cksum(input: Pbyte; output: PDES_cblock; length: TOpenSSL
 begin
   DES_quad_cksum := LoadLibCryptoFunction('DES_quad_cksum');
   if not assigned(DES_quad_cksum) then
+    {$if declared(LEGACY_DES_quad_cksum)}
+    DES_quad_cksum := @LEGACY_DES_quad_cksum;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_quad_cksum');
+    {$ifend}
   Result := DES_quad_cksum(input, output, length, out_count, seed);
 end;
 
@@ -566,7 +655,11 @@ function Load_DES_random_key(ret: PDES_cblock): TOpenSSL_C_INT; cdecl;
 begin
   DES_random_key := LoadLibCryptoFunction('DES_random_key');
   if not assigned(DES_random_key) then
+    {$if declared(LEGACY_DES_random_key)}
+    DES_random_key := @LEGACY_DES_random_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_random_key');
+    {$ifend}
   Result := DES_random_key(ret);
 end;
 
@@ -574,7 +667,11 @@ procedure Load_DES_set_odd_parity(key: PDES_cblock); cdecl;
 begin
   DES_set_odd_parity := LoadLibCryptoFunction('DES_set_odd_parity');
   if not assigned(DES_set_odd_parity) then
+    {$if declared(LEGACY_DES_set_odd_parity)}
+    DES_set_odd_parity := @LEGACY_DES_set_odd_parity;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_set_odd_parity');
+    {$ifend}
   DES_set_odd_parity(key);
 end;
 
@@ -582,7 +679,11 @@ function Load_DES_check_key_parity(key: Pconst_DES_cblock): TOpenSSL_C_INT; cdec
 begin
   DES_check_key_parity := LoadLibCryptoFunction('DES_check_key_parity');
   if not assigned(DES_check_key_parity) then
+    {$if declared(LEGACY_DES_check_key_parity)}
+    DES_check_key_parity := @LEGACY_DES_check_key_parity;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_check_key_parity');
+    {$ifend}
   Result := DES_check_key_parity(key);
 end;
 
@@ -590,7 +691,11 @@ function Load_DES_is_weak_key(key: Pconst_DES_cblock): TOpenSSL_C_INT; cdecl;
 begin
   DES_is_weak_key := LoadLibCryptoFunction('DES_is_weak_key');
   if not assigned(DES_is_weak_key) then
+    {$if declared(LEGACY_DES_is_weak_key)}
+    DES_is_weak_key := @LEGACY_DES_is_weak_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_is_weak_key');
+    {$ifend}
   Result := DES_is_weak_key(key);
 end;
 
@@ -600,7 +705,11 @@ function Load_DES_set_key(key: Pconst_DES_cblock; schedule: PDES_key_schedule): 
 begin
   DES_set_key := LoadLibCryptoFunction('DES_set_key');
   if not assigned(DES_set_key) then
+    {$if declared(LEGACY_DES_set_key)}
+    DES_set_key := @LEGACY_DES_set_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_set_key');
+    {$ifend}
   Result := DES_set_key(key, schedule);
 end;
 
@@ -608,7 +717,11 @@ function Load_DES_key_sched(key: Pconst_DES_cblock; schedule: PDES_key_schedule)
 begin
   DES_key_sched := LoadLibCryptoFunction('DES_key_sched');
   if not assigned(DES_key_sched) then
+    {$if declared(LEGACY_DES_key_sched)}
+    DES_key_sched := @LEGACY_DES_key_sched;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_key_sched');
+    {$ifend}
   Result := DES_key_sched(key, schedule);
 end;
 
@@ -616,7 +729,11 @@ function Load_DES_set_key_checked(key: Pconst_DES_cblock; schedule: PDES_key_sch
 begin
   DES_set_key_checked := LoadLibCryptoFunction('DES_set_key_checked');
   if not assigned(DES_set_key_checked) then
+    {$if declared(LEGACY_DES_set_key_checked)}
+    DES_set_key_checked := @LEGACY_DES_set_key_checked;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_set_key_checked');
+    {$ifend}
   Result := DES_set_key_checked(key, schedule);
 end;
 
@@ -624,7 +741,11 @@ procedure Load_DES_set_key_unchecked(key: Pconst_DES_cblock; schedule: PDES_key_
 begin
   DES_set_key_unchecked := LoadLibCryptoFunction('DES_set_key_unchecked');
   if not assigned(DES_set_key_unchecked) then
+    {$if declared(LEGACY_DES_set_key_unchecked)}
+    DES_set_key_unchecked := @LEGACY_DES_set_key_unchecked;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_set_key_unchecked');
+    {$ifend}
   DES_set_key_unchecked(key, schedule);
 end;
 
@@ -632,7 +753,11 @@ procedure Load_DES_string_to_key(str: PAnsiChar; key: PDES_cblock); cdecl;
 begin
   DES_string_to_key := LoadLibCryptoFunction('DES_string_to_key');
   if not assigned(DES_string_to_key) then
+    {$if declared(LEGACY_DES_string_to_key)}
+    DES_string_to_key := @LEGACY_DES_string_to_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_string_to_key');
+    {$ifend}
   DES_string_to_key(str, key);
 end;
 
@@ -640,7 +765,11 @@ procedure Load_DES_string_to_2keys(str: PAnsiChar; key1: PDES_cblock; key2: PDES
 begin
   DES_string_to_2keys := LoadLibCryptoFunction('DES_string_to_2keys');
   if not assigned(DES_string_to_2keys) then
+    {$if declared(LEGACY_DES_string_to_2keys)}
+    DES_string_to_2keys := @LEGACY_DES_string_to_2keys;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_string_to_2keys');
+    {$ifend}
   DES_string_to_2keys(str, key1, key2);
 end;
 
@@ -648,7 +777,11 @@ procedure Load_DES_cfb64_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_INT
 begin
   DES_cfb64_encrypt := LoadLibCryptoFunction('DES_cfb64_encrypt');
   if not assigned(DES_cfb64_encrypt) then
+    {$if declared(LEGACY_DES_cfb64_encrypt)}
+    DES_cfb64_encrypt := @LEGACY_DES_cfb64_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_cfb64_encrypt');
+    {$ifend}
   DES_cfb64_encrypt(in_, out_, length, schedule, ivec, num, enc);
 end;
 
@@ -656,7 +789,11 @@ procedure Load_DES_ofb64_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_INT
 begin
   DES_ofb64_encrypt := LoadLibCryptoFunction('DES_ofb64_encrypt');
   if not assigned(DES_ofb64_encrypt) then
+    {$if declared(LEGACY_DES_ofb64_encrypt)}
+    DES_ofb64_encrypt := @LEGACY_DES_ofb64_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('DES_ofb64_encrypt');
+    {$ifend}
   DES_ofb64_encrypt(in_, out_, length, schedule, ivec, num);
 end;
 

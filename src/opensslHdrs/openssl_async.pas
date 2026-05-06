@@ -18,7 +18,8 @@
 unit openssl_async;
 
 {
-  Generated from OpenSSL 3.0.20 Header File async.h - Wed  6 May 13:05:30 BST 2026
+  Generated from OpenSSL 3.0.20 Header File async.h - Wed  6 May 13:14:39 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -265,7 +266,11 @@ function Load_ASYNC_init_thread(max_size: TOpenSSL_C_SIZET; init_size: TOpenSSL_
 begin
   ASYNC_init_thread := LoadLibCryptoFunction('ASYNC_init_thread');
   if not assigned(ASYNC_init_thread) then
+    {$if declared(LEGACY_ASYNC_init_thread)}
+    ASYNC_init_thread := @LEGACY_ASYNC_init_thread;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASYNC_init_thread');
+    {$ifend}
   Result := ASYNC_init_thread(max_size, init_size);
 end;
 
@@ -273,7 +278,11 @@ procedure Load_ASYNC_cleanup_thread; cdecl;
 begin
   ASYNC_cleanup_thread := LoadLibCryptoFunction('ASYNC_cleanup_thread');
   if not assigned(ASYNC_cleanup_thread) then
+    {$if declared(LEGACY_ASYNC_cleanup_thread)}
+    ASYNC_cleanup_thread := @LEGACY_ASYNC_cleanup_thread;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASYNC_cleanup_thread');
+    {$ifend}
   ASYNC_cleanup_thread;
 end;
 
@@ -282,7 +291,11 @@ function Load_ASYNC_WAIT_CTX_new: PASYNC_WAIT_CTX; cdecl;
 begin
   ASYNC_WAIT_CTX_new := LoadLibCryptoFunction('ASYNC_WAIT_CTX_new');
   if not assigned(ASYNC_WAIT_CTX_new) then
+    {$if declared(LEGACY_ASYNC_WAIT_CTX_new)}
+    ASYNC_WAIT_CTX_new := @LEGACY_ASYNC_WAIT_CTX_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASYNC_WAIT_CTX_new');
+    {$ifend}
   Result := ASYNC_WAIT_CTX_new;
 end;
 
@@ -290,7 +303,11 @@ procedure Load_ASYNC_WAIT_CTX_free(ctx: PASYNC_WAIT_CTX); cdecl;
 begin
   ASYNC_WAIT_CTX_free := LoadLibCryptoFunction('ASYNC_WAIT_CTX_free');
   if not assigned(ASYNC_WAIT_CTX_free) then
+    {$if declared(LEGACY_ASYNC_WAIT_CTX_free)}
+    ASYNC_WAIT_CTX_free := @LEGACY_ASYNC_WAIT_CTX_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASYNC_WAIT_CTX_free');
+    {$ifend}
   ASYNC_WAIT_CTX_free(ctx);
 end;
 
@@ -298,7 +315,11 @@ function Load_ASYNC_WAIT_CTX_set_wait_fd(ctx: PASYNC_WAIT_CTX; key: pointer; fd:
 begin
   ASYNC_WAIT_CTX_set_wait_fd := LoadLibCryptoFunction('ASYNC_WAIT_CTX_set_wait_fd');
   if not assigned(ASYNC_WAIT_CTX_set_wait_fd) then
+    {$if declared(LEGACY_ASYNC_WAIT_CTX_set_wait_fd)}
+    ASYNC_WAIT_CTX_set_wait_fd := @LEGACY_ASYNC_WAIT_CTX_set_wait_fd;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASYNC_WAIT_CTX_set_wait_fd');
+    {$ifend}
   Result := ASYNC_WAIT_CTX_set_wait_fd(ctx, key, fd, custom_data, cleanup);
 end;
 
@@ -306,7 +327,11 @@ function Load_ASYNC_WAIT_CTX_get_fd(ctx: PASYNC_WAIT_CTX; key: pointer; fd: POpe
 begin
   ASYNC_WAIT_CTX_get_fd := LoadLibCryptoFunction('ASYNC_WAIT_CTX_get_fd');
   if not assigned(ASYNC_WAIT_CTX_get_fd) then
+    {$if declared(LEGACY_ASYNC_WAIT_CTX_get_fd)}
+    ASYNC_WAIT_CTX_get_fd := @LEGACY_ASYNC_WAIT_CTX_get_fd;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASYNC_WAIT_CTX_get_fd');
+    {$ifend}
   Result := ASYNC_WAIT_CTX_get_fd(ctx, key, fd, custom_data);
 end;
 
@@ -314,7 +339,11 @@ function Load_ASYNC_WAIT_CTX_get_all_fds(ctx: PASYNC_WAIT_CTX; fd: POpenSSL_C_IN
 begin
   ASYNC_WAIT_CTX_get_all_fds := LoadLibCryptoFunction('ASYNC_WAIT_CTX_get_all_fds');
   if not assigned(ASYNC_WAIT_CTX_get_all_fds) then
+    {$if declared(LEGACY_ASYNC_WAIT_CTX_get_all_fds)}
+    ASYNC_WAIT_CTX_get_all_fds := @LEGACY_ASYNC_WAIT_CTX_get_all_fds;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASYNC_WAIT_CTX_get_all_fds');
+    {$ifend}
   Result := ASYNC_WAIT_CTX_get_all_fds(ctx, fd, numfds);
 end;
 
@@ -322,7 +351,11 @@ function Load_ASYNC_WAIT_CTX_get_callback(ctx: PASYNC_WAIT_CTX; callback: PASYNC
 begin
   ASYNC_WAIT_CTX_get_callback := LoadLibCryptoFunction('ASYNC_WAIT_CTX_get_callback');
   if not assigned(ASYNC_WAIT_CTX_get_callback) then
+    {$if declared(LEGACY_ASYNC_WAIT_CTX_get_callback)}
+    ASYNC_WAIT_CTX_get_callback := @LEGACY_ASYNC_WAIT_CTX_get_callback;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASYNC_WAIT_CTX_get_callback');
+    {$ifend}
   Result := ASYNC_WAIT_CTX_get_callback(ctx, callback, callback_arg);
 end;
 
@@ -330,7 +363,11 @@ function Load_ASYNC_WAIT_CTX_set_callback(ctx: PASYNC_WAIT_CTX; callback: TASYNC
 begin
   ASYNC_WAIT_CTX_set_callback := LoadLibCryptoFunction('ASYNC_WAIT_CTX_set_callback');
   if not assigned(ASYNC_WAIT_CTX_set_callback) then
+    {$if declared(LEGACY_ASYNC_WAIT_CTX_set_callback)}
+    ASYNC_WAIT_CTX_set_callback := @LEGACY_ASYNC_WAIT_CTX_set_callback;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASYNC_WAIT_CTX_set_callback');
+    {$ifend}
   Result := ASYNC_WAIT_CTX_set_callback(ctx, callback, callback_arg);
 end;
 
@@ -338,7 +375,11 @@ function Load_ASYNC_WAIT_CTX_set_status(ctx: PASYNC_WAIT_CTX; status: TOpenSSL_C
 begin
   ASYNC_WAIT_CTX_set_status := LoadLibCryptoFunction('ASYNC_WAIT_CTX_set_status');
   if not assigned(ASYNC_WAIT_CTX_set_status) then
+    {$if declared(LEGACY_ASYNC_WAIT_CTX_set_status)}
+    ASYNC_WAIT_CTX_set_status := @LEGACY_ASYNC_WAIT_CTX_set_status;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASYNC_WAIT_CTX_set_status');
+    {$ifend}
   Result := ASYNC_WAIT_CTX_set_status(ctx, status);
 end;
 
@@ -346,7 +387,11 @@ function Load_ASYNC_WAIT_CTX_get_status(ctx: PASYNC_WAIT_CTX): TOpenSSL_C_INT; c
 begin
   ASYNC_WAIT_CTX_get_status := LoadLibCryptoFunction('ASYNC_WAIT_CTX_get_status');
   if not assigned(ASYNC_WAIT_CTX_get_status) then
+    {$if declared(LEGACY_ASYNC_WAIT_CTX_get_status)}
+    ASYNC_WAIT_CTX_get_status := @LEGACY_ASYNC_WAIT_CTX_get_status;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASYNC_WAIT_CTX_get_status');
+    {$ifend}
   Result := ASYNC_WAIT_CTX_get_status(ctx);
 end;
 
@@ -354,7 +399,11 @@ function Load_ASYNC_WAIT_CTX_get_changed_fds(ctx: PASYNC_WAIT_CTX; addfd: POpenS
 begin
   ASYNC_WAIT_CTX_get_changed_fds := LoadLibCryptoFunction('ASYNC_WAIT_CTX_get_changed_fds');
   if not assigned(ASYNC_WAIT_CTX_get_changed_fds) then
+    {$if declared(LEGACY_ASYNC_WAIT_CTX_get_changed_fds)}
+    ASYNC_WAIT_CTX_get_changed_fds := @LEGACY_ASYNC_WAIT_CTX_get_changed_fds;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASYNC_WAIT_CTX_get_changed_fds');
+    {$ifend}
   Result := ASYNC_WAIT_CTX_get_changed_fds(ctx, addfd, numaddfds, delfd, numdelfds);
 end;
 
@@ -362,7 +411,11 @@ function Load_ASYNC_WAIT_CTX_clear_fd(ctx: PASYNC_WAIT_CTX; key: pointer): TOpen
 begin
   ASYNC_WAIT_CTX_clear_fd := LoadLibCryptoFunction('ASYNC_WAIT_CTX_clear_fd');
   if not assigned(ASYNC_WAIT_CTX_clear_fd) then
+    {$if declared(LEGACY_ASYNC_WAIT_CTX_clear_fd)}
+    ASYNC_WAIT_CTX_clear_fd := @LEGACY_ASYNC_WAIT_CTX_clear_fd;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASYNC_WAIT_CTX_clear_fd');
+    {$ifend}
   Result := ASYNC_WAIT_CTX_clear_fd(ctx, key);
 end;
 
@@ -371,7 +424,11 @@ function Load_ASYNC_is_capable: TOpenSSL_C_INT; cdecl;
 begin
   ASYNC_is_capable := LoadLibCryptoFunction('ASYNC_is_capable');
   if not assigned(ASYNC_is_capable) then
+    {$if declared(LEGACY_ASYNC_is_capable)}
+    ASYNC_is_capable := @LEGACY_ASYNC_is_capable;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASYNC_is_capable');
+    {$ifend}
   Result := ASYNC_is_capable;
 end;
 
@@ -379,7 +436,11 @@ function Load_ASYNC_start_job(job: PPASYNC_JOB; ctx: PASYNC_WAIT_CTX; ret: POpen
 begin
   ASYNC_start_job := LoadLibCryptoFunction('ASYNC_start_job');
   if not assigned(ASYNC_start_job) then
+    {$if declared(LEGACY_ASYNC_start_job)}
+    ASYNC_start_job := @LEGACY_ASYNC_start_job;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASYNC_start_job');
+    {$ifend}
   Result := ASYNC_start_job(job, ctx, ret, func, args, size);
 end;
 
@@ -387,7 +448,11 @@ function Load_ASYNC_pause_job: TOpenSSL_C_INT; cdecl;
 begin
   ASYNC_pause_job := LoadLibCryptoFunction('ASYNC_pause_job');
   if not assigned(ASYNC_pause_job) then
+    {$if declared(LEGACY_ASYNC_pause_job)}
+    ASYNC_pause_job := @LEGACY_ASYNC_pause_job;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASYNC_pause_job');
+    {$ifend}
   Result := ASYNC_pause_job;
 end;
 
@@ -395,7 +460,11 @@ function Load_ASYNC_get_current_job: PASYNC_JOB; cdecl;
 begin
   ASYNC_get_current_job := LoadLibCryptoFunction('ASYNC_get_current_job');
   if not assigned(ASYNC_get_current_job) then
+    {$if declared(LEGACY_ASYNC_get_current_job)}
+    ASYNC_get_current_job := @LEGACY_ASYNC_get_current_job;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASYNC_get_current_job');
+    {$ifend}
   Result := ASYNC_get_current_job;
 end;
 
@@ -403,7 +472,11 @@ function Load_ASYNC_get_wait_ctx(job: PASYNC_JOB): PASYNC_WAIT_CTX; cdecl;
 begin
   ASYNC_get_wait_ctx := LoadLibCryptoFunction('ASYNC_get_wait_ctx');
   if not assigned(ASYNC_get_wait_ctx) then
+    {$if declared(LEGACY_ASYNC_get_wait_ctx)}
+    ASYNC_get_wait_ctx := @LEGACY_ASYNC_get_wait_ctx;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASYNC_get_wait_ctx');
+    {$ifend}
   Result := ASYNC_get_wait_ctx(job);
 end;
 
@@ -411,7 +484,11 @@ procedure Load_ASYNC_block_pause; cdecl;
 begin
   ASYNC_block_pause := LoadLibCryptoFunction('ASYNC_block_pause');
   if not assigned(ASYNC_block_pause) then
+    {$if declared(LEGACY_ASYNC_block_pause)}
+    ASYNC_block_pause := @LEGACY_ASYNC_block_pause;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASYNC_block_pause');
+    {$ifend}
   ASYNC_block_pause;
 end;
 
@@ -419,7 +496,11 @@ procedure Load_ASYNC_unblock_pause; cdecl;
 begin
   ASYNC_unblock_pause := LoadLibCryptoFunction('ASYNC_unblock_pause');
   if not assigned(ASYNC_unblock_pause) then
+    {$if declared(LEGACY_ASYNC_unblock_pause)}
+    ASYNC_unblock_pause := @LEGACY_ASYNC_unblock_pause;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ASYNC_unblock_pause');
+    {$ifend}
   ASYNC_unblock_pause;
 end;
 

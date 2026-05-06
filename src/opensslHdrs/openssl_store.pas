@@ -18,7 +18,8 @@
 unit openssl_store;
 
 {
-  Generated from OpenSSL 3.0.20 Header File store.h - Wed  6 May 13:06:40 BST 2026
+  Generated from OpenSSL 3.0.20 Header File store.h - Wed  6 May 13:15:49 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -761,7 +762,11 @@ function Load_OSSL_STORE_open(uri: PAnsiChar; ui_method: PUI_METHOD; ui_data: po
 begin
   OSSL_STORE_open := LoadLibCryptoFunction('OSSL_STORE_open');
   if not assigned(OSSL_STORE_open) then
+    {$if declared(LEGACY_OSSL_STORE_open)}
+    OSSL_STORE_open := @LEGACY_OSSL_STORE_open;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_open');
+    {$ifend}
   Result := OSSL_STORE_open(uri, ui_method, ui_data, post_process, post_process_data);
 end;
 
@@ -769,7 +774,11 @@ function Load_OSSL_STORE_open_ex(uri: PAnsiChar; libctx: POSSL_LIB_CTX; propq: P
 begin
   OSSL_STORE_open_ex := LoadLibCryptoFunction('OSSL_STORE_open_ex');
   if not assigned(OSSL_STORE_open_ex) then
+    {$if declared(LEGACY_OSSL_STORE_open_ex)}
+    OSSL_STORE_open_ex := @LEGACY_OSSL_STORE_open_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_open_ex');
+    {$ifend}
   Result := OSSL_STORE_open_ex(uri, libctx, propq, ui_method, ui_data, params, post_process, post_process_data);
 end;
 
@@ -779,7 +788,11 @@ function Load_OSSL_STORE_load(ctx: POSSL_STORE_CTX): POSSL_STORE_INFO; cdecl;
 begin
   OSSL_STORE_load := LoadLibCryptoFunction('OSSL_STORE_load');
   if not assigned(OSSL_STORE_load) then
+    {$if declared(LEGACY_OSSL_STORE_load)}
+    OSSL_STORE_load := @LEGACY_OSSL_STORE_load;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_load');
+    {$ifend}
   Result := OSSL_STORE_load(ctx);
 end;
 
@@ -787,7 +800,11 @@ function Load_OSSL_STORE_eof(ctx: POSSL_STORE_CTX): TOpenSSL_C_INT; cdecl;
 begin
   OSSL_STORE_eof := LoadLibCryptoFunction('OSSL_STORE_eof');
   if not assigned(OSSL_STORE_eof) then
+    {$if declared(LEGACY_OSSL_STORE_eof)}
+    OSSL_STORE_eof := @LEGACY_OSSL_STORE_eof;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_eof');
+    {$ifend}
   Result := OSSL_STORE_eof(ctx);
 end;
 
@@ -795,7 +812,11 @@ function Load_OSSL_STORE_error(ctx: POSSL_STORE_CTX): TOpenSSL_C_INT; cdecl;
 begin
   OSSL_STORE_error := LoadLibCryptoFunction('OSSL_STORE_error');
   if not assigned(OSSL_STORE_error) then
+    {$if declared(LEGACY_OSSL_STORE_error)}
+    OSSL_STORE_error := @LEGACY_OSSL_STORE_error;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_error');
+    {$ifend}
   Result := OSSL_STORE_error(ctx);
 end;
 
@@ -803,7 +824,11 @@ function Load_OSSL_STORE_close(ctx: POSSL_STORE_CTX): TOpenSSL_C_INT; cdecl;
 begin
   OSSL_STORE_close := LoadLibCryptoFunction('OSSL_STORE_close');
   if not assigned(OSSL_STORE_close) then
+    {$if declared(LEGACY_OSSL_STORE_close)}
+    OSSL_STORE_close := @LEGACY_OSSL_STORE_close;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_close');
+    {$ifend}
   Result := OSSL_STORE_close(ctx);
 end;
 
@@ -811,7 +836,11 @@ function Load_OSSL_STORE_attach(bio: PBIO; scheme: PAnsiChar; libctx: POSSL_LIB_
 begin
   OSSL_STORE_attach := LoadLibCryptoFunction('OSSL_STORE_attach');
   if not assigned(OSSL_STORE_attach) then
+    {$if declared(LEGACY_OSSL_STORE_attach)}
+    OSSL_STORE_attach := @LEGACY_OSSL_STORE_attach;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_attach');
+    {$ifend}
   Result := OSSL_STORE_attach(bio, scheme, libctx, propq, ui_method, ui_data, params, post_process, post_process_data);
 end;
 
@@ -819,7 +848,11 @@ function Load_OSSL_STORE_INFO_new(type_: TOpenSSL_C_INT; data: pointer): POSSL_S
 begin
   OSSL_STORE_INFO_new := LoadLibCryptoFunction('OSSL_STORE_INFO_new');
   if not assigned(OSSL_STORE_INFO_new) then
+    {$if declared(LEGACY_OSSL_STORE_INFO_new)}
+    OSSL_STORE_INFO_new := @LEGACY_OSSL_STORE_INFO_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_INFO_new');
+    {$ifend}
   Result := OSSL_STORE_INFO_new(type_, data);
 end;
 
@@ -827,7 +860,11 @@ function Load_OSSL_STORE_INFO_new_NAME(name: PAnsiChar): POSSL_STORE_INFO; cdecl
 begin
   OSSL_STORE_INFO_new_NAME := LoadLibCryptoFunction('OSSL_STORE_INFO_new_NAME');
   if not assigned(OSSL_STORE_INFO_new_NAME) then
+    {$if declared(LEGACY_OSSL_STORE_INFO_new_NAME)}
+    OSSL_STORE_INFO_new_NAME := @LEGACY_OSSL_STORE_INFO_new_NAME;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_INFO_new_NAME');
+    {$ifend}
   Result := OSSL_STORE_INFO_new_NAME(name);
 end;
 
@@ -835,7 +872,11 @@ function Load_OSSL_STORE_INFO_set0_NAME_description(info: POSSL_STORE_INFO; desc
 begin
   OSSL_STORE_INFO_set0_NAME_description := LoadLibCryptoFunction('OSSL_STORE_INFO_set0_NAME_description');
   if not assigned(OSSL_STORE_INFO_set0_NAME_description) then
+    {$if declared(LEGACY_OSSL_STORE_INFO_set0_NAME_description)}
+    OSSL_STORE_INFO_set0_NAME_description := @LEGACY_OSSL_STORE_INFO_set0_NAME_description;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_INFO_set0_NAME_description');
+    {$ifend}
   Result := OSSL_STORE_INFO_set0_NAME_description(info, desc);
 end;
 
@@ -843,7 +884,11 @@ function Load_OSSL_STORE_INFO_new_PARAMS(params: PEVP_PKEY): POSSL_STORE_INFO; c
 begin
   OSSL_STORE_INFO_new_PARAMS := LoadLibCryptoFunction('OSSL_STORE_INFO_new_PARAMS');
   if not assigned(OSSL_STORE_INFO_new_PARAMS) then
+    {$if declared(LEGACY_OSSL_STORE_INFO_new_PARAMS)}
+    OSSL_STORE_INFO_new_PARAMS := @LEGACY_OSSL_STORE_INFO_new_PARAMS;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_INFO_new_PARAMS');
+    {$ifend}
   Result := OSSL_STORE_INFO_new_PARAMS(params);
 end;
 
@@ -851,7 +896,11 @@ function Load_OSSL_STORE_INFO_new_PUBKEY(pubkey: PEVP_PKEY): POSSL_STORE_INFO; c
 begin
   OSSL_STORE_INFO_new_PUBKEY := LoadLibCryptoFunction('OSSL_STORE_INFO_new_PUBKEY');
   if not assigned(OSSL_STORE_INFO_new_PUBKEY) then
+    {$if declared(LEGACY_OSSL_STORE_INFO_new_PUBKEY)}
+    OSSL_STORE_INFO_new_PUBKEY := @LEGACY_OSSL_STORE_INFO_new_PUBKEY;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_INFO_new_PUBKEY');
+    {$ifend}
   Result := OSSL_STORE_INFO_new_PUBKEY(pubkey);
 end;
 
@@ -859,7 +908,11 @@ function Load_OSSL_STORE_INFO_new_PKEY(pkey: PEVP_PKEY): POSSL_STORE_INFO; cdecl
 begin
   OSSL_STORE_INFO_new_PKEY := LoadLibCryptoFunction('OSSL_STORE_INFO_new_PKEY');
   if not assigned(OSSL_STORE_INFO_new_PKEY) then
+    {$if declared(LEGACY_OSSL_STORE_INFO_new_PKEY)}
+    OSSL_STORE_INFO_new_PKEY := @LEGACY_OSSL_STORE_INFO_new_PKEY;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_INFO_new_PKEY');
+    {$ifend}
   Result := OSSL_STORE_INFO_new_PKEY(pkey);
 end;
 
@@ -867,7 +920,11 @@ function Load_OSSL_STORE_INFO_new_CERT(x509: PX509): POSSL_STORE_INFO; cdecl;
 begin
   OSSL_STORE_INFO_new_CERT := LoadLibCryptoFunction('OSSL_STORE_INFO_new_CERT');
   if not assigned(OSSL_STORE_INFO_new_CERT) then
+    {$if declared(LEGACY_OSSL_STORE_INFO_new_CERT)}
+    OSSL_STORE_INFO_new_CERT := @LEGACY_OSSL_STORE_INFO_new_CERT;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_INFO_new_CERT');
+    {$ifend}
   Result := OSSL_STORE_INFO_new_CERT(x509);
 end;
 
@@ -875,7 +932,11 @@ function Load_OSSL_STORE_INFO_new_CRL(crl: PX509_CRL): POSSL_STORE_INFO; cdecl;
 begin
   OSSL_STORE_INFO_new_CRL := LoadLibCryptoFunction('OSSL_STORE_INFO_new_CRL');
   if not assigned(OSSL_STORE_INFO_new_CRL) then
+    {$if declared(LEGACY_OSSL_STORE_INFO_new_CRL)}
+    OSSL_STORE_INFO_new_CRL := @LEGACY_OSSL_STORE_INFO_new_CRL;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_INFO_new_CRL');
+    {$ifend}
   Result := OSSL_STORE_INFO_new_CRL(crl);
 end;
 
@@ -883,7 +944,11 @@ function Load_OSSL_STORE_INFO_get_type(info: POSSL_STORE_INFO): TOpenSSL_C_INT; 
 begin
   OSSL_STORE_INFO_get_type := LoadLibCryptoFunction('OSSL_STORE_INFO_get_type');
   if not assigned(OSSL_STORE_INFO_get_type) then
+    {$if declared(LEGACY_OSSL_STORE_INFO_get_type)}
+    OSSL_STORE_INFO_get_type := @LEGACY_OSSL_STORE_INFO_get_type;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_INFO_get_type');
+    {$ifend}
   Result := OSSL_STORE_INFO_get_type(info);
 end;
 
@@ -891,7 +956,11 @@ function Load_OSSL_STORE_INFO_get0_data(type_: TOpenSSL_C_INT; info: POSSL_STORE
 begin
   OSSL_STORE_INFO_get0_data := LoadLibCryptoFunction('OSSL_STORE_INFO_get0_data');
   if not assigned(OSSL_STORE_INFO_get0_data) then
+    {$if declared(LEGACY_OSSL_STORE_INFO_get0_data)}
+    OSSL_STORE_INFO_get0_data := @LEGACY_OSSL_STORE_INFO_get0_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_INFO_get0_data');
+    {$ifend}
   Result := OSSL_STORE_INFO_get0_data(type_, info);
 end;
 
@@ -899,7 +968,11 @@ function Load_OSSL_STORE_INFO_get0_NAME(info: POSSL_STORE_INFO): PAnsiChar; cdec
 begin
   OSSL_STORE_INFO_get0_NAME := LoadLibCryptoFunction('OSSL_STORE_INFO_get0_NAME');
   if not assigned(OSSL_STORE_INFO_get0_NAME) then
+    {$if declared(LEGACY_OSSL_STORE_INFO_get0_NAME)}
+    OSSL_STORE_INFO_get0_NAME := @LEGACY_OSSL_STORE_INFO_get0_NAME;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_INFO_get0_NAME');
+    {$ifend}
   Result := OSSL_STORE_INFO_get0_NAME(info);
 end;
 
@@ -907,7 +980,11 @@ function Load_OSSL_STORE_INFO_get1_NAME(info: POSSL_STORE_INFO): PAnsiChar; cdec
 begin
   OSSL_STORE_INFO_get1_NAME := LoadLibCryptoFunction('OSSL_STORE_INFO_get1_NAME');
   if not assigned(OSSL_STORE_INFO_get1_NAME) then
+    {$if declared(LEGACY_OSSL_STORE_INFO_get1_NAME)}
+    OSSL_STORE_INFO_get1_NAME := @LEGACY_OSSL_STORE_INFO_get1_NAME;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_INFO_get1_NAME');
+    {$ifend}
   Result := OSSL_STORE_INFO_get1_NAME(info);
 end;
 
@@ -915,7 +992,11 @@ function Load_OSSL_STORE_INFO_get0_NAME_description(info: POSSL_STORE_INFO): PAn
 begin
   OSSL_STORE_INFO_get0_NAME_description := LoadLibCryptoFunction('OSSL_STORE_INFO_get0_NAME_description');
   if not assigned(OSSL_STORE_INFO_get0_NAME_description) then
+    {$if declared(LEGACY_OSSL_STORE_INFO_get0_NAME_description)}
+    OSSL_STORE_INFO_get0_NAME_description := @LEGACY_OSSL_STORE_INFO_get0_NAME_description;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_INFO_get0_NAME_description');
+    {$ifend}
   Result := OSSL_STORE_INFO_get0_NAME_description(info);
 end;
 
@@ -923,7 +1004,11 @@ function Load_OSSL_STORE_INFO_get1_NAME_description(info: POSSL_STORE_INFO): PAn
 begin
   OSSL_STORE_INFO_get1_NAME_description := LoadLibCryptoFunction('OSSL_STORE_INFO_get1_NAME_description');
   if not assigned(OSSL_STORE_INFO_get1_NAME_description) then
+    {$if declared(LEGACY_OSSL_STORE_INFO_get1_NAME_description)}
+    OSSL_STORE_INFO_get1_NAME_description := @LEGACY_OSSL_STORE_INFO_get1_NAME_description;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_INFO_get1_NAME_description');
+    {$ifend}
   Result := OSSL_STORE_INFO_get1_NAME_description(info);
 end;
 
@@ -931,7 +1016,11 @@ function Load_OSSL_STORE_INFO_get0_PARAMS(info: POSSL_STORE_INFO): PEVP_PKEY; cd
 begin
   OSSL_STORE_INFO_get0_PARAMS := LoadLibCryptoFunction('OSSL_STORE_INFO_get0_PARAMS');
   if not assigned(OSSL_STORE_INFO_get0_PARAMS) then
+    {$if declared(LEGACY_OSSL_STORE_INFO_get0_PARAMS)}
+    OSSL_STORE_INFO_get0_PARAMS := @LEGACY_OSSL_STORE_INFO_get0_PARAMS;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_INFO_get0_PARAMS');
+    {$ifend}
   Result := OSSL_STORE_INFO_get0_PARAMS(info);
 end;
 
@@ -939,7 +1028,11 @@ function Load_OSSL_STORE_INFO_get1_PARAMS(info: POSSL_STORE_INFO): PEVP_PKEY; cd
 begin
   OSSL_STORE_INFO_get1_PARAMS := LoadLibCryptoFunction('OSSL_STORE_INFO_get1_PARAMS');
   if not assigned(OSSL_STORE_INFO_get1_PARAMS) then
+    {$if declared(LEGACY_OSSL_STORE_INFO_get1_PARAMS)}
+    OSSL_STORE_INFO_get1_PARAMS := @LEGACY_OSSL_STORE_INFO_get1_PARAMS;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_INFO_get1_PARAMS');
+    {$ifend}
   Result := OSSL_STORE_INFO_get1_PARAMS(info);
 end;
 
@@ -947,7 +1040,11 @@ function Load_OSSL_STORE_INFO_get0_PUBKEY(info: POSSL_STORE_INFO): PEVP_PKEY; cd
 begin
   OSSL_STORE_INFO_get0_PUBKEY := LoadLibCryptoFunction('OSSL_STORE_INFO_get0_PUBKEY');
   if not assigned(OSSL_STORE_INFO_get0_PUBKEY) then
+    {$if declared(LEGACY_OSSL_STORE_INFO_get0_PUBKEY)}
+    OSSL_STORE_INFO_get0_PUBKEY := @LEGACY_OSSL_STORE_INFO_get0_PUBKEY;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_INFO_get0_PUBKEY');
+    {$ifend}
   Result := OSSL_STORE_INFO_get0_PUBKEY(info);
 end;
 
@@ -955,7 +1052,11 @@ function Load_OSSL_STORE_INFO_get1_PUBKEY(info: POSSL_STORE_INFO): PEVP_PKEY; cd
 begin
   OSSL_STORE_INFO_get1_PUBKEY := LoadLibCryptoFunction('OSSL_STORE_INFO_get1_PUBKEY');
   if not assigned(OSSL_STORE_INFO_get1_PUBKEY) then
+    {$if declared(LEGACY_OSSL_STORE_INFO_get1_PUBKEY)}
+    OSSL_STORE_INFO_get1_PUBKEY := @LEGACY_OSSL_STORE_INFO_get1_PUBKEY;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_INFO_get1_PUBKEY');
+    {$ifend}
   Result := OSSL_STORE_INFO_get1_PUBKEY(info);
 end;
 
@@ -963,7 +1064,11 @@ function Load_OSSL_STORE_INFO_get0_PKEY(info: POSSL_STORE_INFO): PEVP_PKEY; cdec
 begin
   OSSL_STORE_INFO_get0_PKEY := LoadLibCryptoFunction('OSSL_STORE_INFO_get0_PKEY');
   if not assigned(OSSL_STORE_INFO_get0_PKEY) then
+    {$if declared(LEGACY_OSSL_STORE_INFO_get0_PKEY)}
+    OSSL_STORE_INFO_get0_PKEY := @LEGACY_OSSL_STORE_INFO_get0_PKEY;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_INFO_get0_PKEY');
+    {$ifend}
   Result := OSSL_STORE_INFO_get0_PKEY(info);
 end;
 
@@ -971,7 +1076,11 @@ function Load_OSSL_STORE_INFO_get1_PKEY(info: POSSL_STORE_INFO): PEVP_PKEY; cdec
 begin
   OSSL_STORE_INFO_get1_PKEY := LoadLibCryptoFunction('OSSL_STORE_INFO_get1_PKEY');
   if not assigned(OSSL_STORE_INFO_get1_PKEY) then
+    {$if declared(LEGACY_OSSL_STORE_INFO_get1_PKEY)}
+    OSSL_STORE_INFO_get1_PKEY := @LEGACY_OSSL_STORE_INFO_get1_PKEY;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_INFO_get1_PKEY');
+    {$ifend}
   Result := OSSL_STORE_INFO_get1_PKEY(info);
 end;
 
@@ -979,7 +1088,11 @@ function Load_OSSL_STORE_INFO_get0_CERT(info: POSSL_STORE_INFO): PX509; cdecl;
 begin
   OSSL_STORE_INFO_get0_CERT := LoadLibCryptoFunction('OSSL_STORE_INFO_get0_CERT');
   if not assigned(OSSL_STORE_INFO_get0_CERT) then
+    {$if declared(LEGACY_OSSL_STORE_INFO_get0_CERT)}
+    OSSL_STORE_INFO_get0_CERT := @LEGACY_OSSL_STORE_INFO_get0_CERT;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_INFO_get0_CERT');
+    {$ifend}
   Result := OSSL_STORE_INFO_get0_CERT(info);
 end;
 
@@ -987,7 +1100,11 @@ function Load_OSSL_STORE_INFO_get1_CERT(info: POSSL_STORE_INFO): PX509; cdecl;
 begin
   OSSL_STORE_INFO_get1_CERT := LoadLibCryptoFunction('OSSL_STORE_INFO_get1_CERT');
   if not assigned(OSSL_STORE_INFO_get1_CERT) then
+    {$if declared(LEGACY_OSSL_STORE_INFO_get1_CERT)}
+    OSSL_STORE_INFO_get1_CERT := @LEGACY_OSSL_STORE_INFO_get1_CERT;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_INFO_get1_CERT');
+    {$ifend}
   Result := OSSL_STORE_INFO_get1_CERT(info);
 end;
 
@@ -995,7 +1112,11 @@ function Load_OSSL_STORE_INFO_get0_CRL(info: POSSL_STORE_INFO): PX509_CRL; cdecl
 begin
   OSSL_STORE_INFO_get0_CRL := LoadLibCryptoFunction('OSSL_STORE_INFO_get0_CRL');
   if not assigned(OSSL_STORE_INFO_get0_CRL) then
+    {$if declared(LEGACY_OSSL_STORE_INFO_get0_CRL)}
+    OSSL_STORE_INFO_get0_CRL := @LEGACY_OSSL_STORE_INFO_get0_CRL;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_INFO_get0_CRL');
+    {$ifend}
   Result := OSSL_STORE_INFO_get0_CRL(info);
 end;
 
@@ -1003,7 +1124,11 @@ function Load_OSSL_STORE_INFO_get1_CRL(info: POSSL_STORE_INFO): PX509_CRL; cdecl
 begin
   OSSL_STORE_INFO_get1_CRL := LoadLibCryptoFunction('OSSL_STORE_INFO_get1_CRL');
   if not assigned(OSSL_STORE_INFO_get1_CRL) then
+    {$if declared(LEGACY_OSSL_STORE_INFO_get1_CRL)}
+    OSSL_STORE_INFO_get1_CRL := @LEGACY_OSSL_STORE_INFO_get1_CRL;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_INFO_get1_CRL');
+    {$ifend}
   Result := OSSL_STORE_INFO_get1_CRL(info);
 end;
 
@@ -1011,7 +1136,11 @@ function Load_OSSL_STORE_INFO_type_string(type_: TOpenSSL_C_INT): PAnsiChar; cde
 begin
   OSSL_STORE_INFO_type_string := LoadLibCryptoFunction('OSSL_STORE_INFO_type_string');
   if not assigned(OSSL_STORE_INFO_type_string) then
+    {$if declared(LEGACY_OSSL_STORE_INFO_type_string)}
+    OSSL_STORE_INFO_type_string := @LEGACY_OSSL_STORE_INFO_type_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_INFO_type_string');
+    {$ifend}
   Result := OSSL_STORE_INFO_type_string(type_);
 end;
 
@@ -1019,7 +1148,11 @@ procedure Load_OSSL_STORE_INFO_free(info: POSSL_STORE_INFO); cdecl;
 begin
   OSSL_STORE_INFO_free := LoadLibCryptoFunction('OSSL_STORE_INFO_free');
   if not assigned(OSSL_STORE_INFO_free) then
+    {$if declared(LEGACY_OSSL_STORE_INFO_free)}
+    OSSL_STORE_INFO_free := @LEGACY_OSSL_STORE_INFO_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_INFO_free');
+    {$ifend}
   OSSL_STORE_INFO_free(info);
 end;
 
@@ -1027,7 +1160,11 @@ function Load_OSSL_STORE_supports_search(ctx: POSSL_STORE_CTX; search_type: TOpe
 begin
   OSSL_STORE_supports_search := LoadLibCryptoFunction('OSSL_STORE_supports_search');
   if not assigned(OSSL_STORE_supports_search) then
+    {$if declared(LEGACY_OSSL_STORE_supports_search)}
+    OSSL_STORE_supports_search := @LEGACY_OSSL_STORE_supports_search;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_supports_search');
+    {$ifend}
   Result := OSSL_STORE_supports_search(ctx, search_type);
 end;
 
@@ -1035,7 +1172,11 @@ function Load_OSSL_STORE_SEARCH_by_name(name: PX509_NAME): POSSL_STORE_SEARCH; c
 begin
   OSSL_STORE_SEARCH_by_name := LoadLibCryptoFunction('OSSL_STORE_SEARCH_by_name');
   if not assigned(OSSL_STORE_SEARCH_by_name) then
+    {$if declared(LEGACY_OSSL_STORE_SEARCH_by_name)}
+    OSSL_STORE_SEARCH_by_name := @LEGACY_OSSL_STORE_SEARCH_by_name;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_SEARCH_by_name');
+    {$ifend}
   Result := OSSL_STORE_SEARCH_by_name(name);
 end;
 
@@ -1043,7 +1184,11 @@ function Load_OSSL_STORE_SEARCH_by_issuer_serial(name: PX509_NAME; serial: PASN1
 begin
   OSSL_STORE_SEARCH_by_issuer_serial := LoadLibCryptoFunction('OSSL_STORE_SEARCH_by_issuer_serial');
   if not assigned(OSSL_STORE_SEARCH_by_issuer_serial) then
+    {$if declared(LEGACY_OSSL_STORE_SEARCH_by_issuer_serial)}
+    OSSL_STORE_SEARCH_by_issuer_serial := @LEGACY_OSSL_STORE_SEARCH_by_issuer_serial;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_SEARCH_by_issuer_serial');
+    {$ifend}
   Result := OSSL_STORE_SEARCH_by_issuer_serial(name, serial);
 end;
 
@@ -1051,7 +1196,11 @@ function Load_OSSL_STORE_SEARCH_by_key_fingerprint(digest: PEVP_MD; bytes: Pbyte
 begin
   OSSL_STORE_SEARCH_by_key_fingerprint := LoadLibCryptoFunction('OSSL_STORE_SEARCH_by_key_fingerprint');
   if not assigned(OSSL_STORE_SEARCH_by_key_fingerprint) then
+    {$if declared(LEGACY_OSSL_STORE_SEARCH_by_key_fingerprint)}
+    OSSL_STORE_SEARCH_by_key_fingerprint := @LEGACY_OSSL_STORE_SEARCH_by_key_fingerprint;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_SEARCH_by_key_fingerprint');
+    {$ifend}
   Result := OSSL_STORE_SEARCH_by_key_fingerprint(digest, bytes, len);
 end;
 
@@ -1059,7 +1208,11 @@ function Load_OSSL_STORE_SEARCH_by_alias(alias: PAnsiChar): POSSL_STORE_SEARCH; 
 begin
   OSSL_STORE_SEARCH_by_alias := LoadLibCryptoFunction('OSSL_STORE_SEARCH_by_alias');
   if not assigned(OSSL_STORE_SEARCH_by_alias) then
+    {$if declared(LEGACY_OSSL_STORE_SEARCH_by_alias)}
+    OSSL_STORE_SEARCH_by_alias := @LEGACY_OSSL_STORE_SEARCH_by_alias;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_SEARCH_by_alias');
+    {$ifend}
   Result := OSSL_STORE_SEARCH_by_alias(alias);
 end;
 
@@ -1067,7 +1220,11 @@ procedure Load_OSSL_STORE_SEARCH_free(search: POSSL_STORE_SEARCH); cdecl;
 begin
   OSSL_STORE_SEARCH_free := LoadLibCryptoFunction('OSSL_STORE_SEARCH_free');
   if not assigned(OSSL_STORE_SEARCH_free) then
+    {$if declared(LEGACY_OSSL_STORE_SEARCH_free)}
+    OSSL_STORE_SEARCH_free := @LEGACY_OSSL_STORE_SEARCH_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_SEARCH_free');
+    {$ifend}
   OSSL_STORE_SEARCH_free(search);
 end;
 
@@ -1075,7 +1232,11 @@ function Load_OSSL_STORE_SEARCH_get_type(criterion: POSSL_STORE_SEARCH): TOpenSS
 begin
   OSSL_STORE_SEARCH_get_type := LoadLibCryptoFunction('OSSL_STORE_SEARCH_get_type');
   if not assigned(OSSL_STORE_SEARCH_get_type) then
+    {$if declared(LEGACY_OSSL_STORE_SEARCH_get_type)}
+    OSSL_STORE_SEARCH_get_type := @LEGACY_OSSL_STORE_SEARCH_get_type;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_SEARCH_get_type');
+    {$ifend}
   Result := OSSL_STORE_SEARCH_get_type(criterion);
 end;
 
@@ -1083,7 +1244,11 @@ function Load_OSSL_STORE_SEARCH_get0_name(criterion: POSSL_STORE_SEARCH): PX509_
 begin
   OSSL_STORE_SEARCH_get0_name := LoadLibCryptoFunction('OSSL_STORE_SEARCH_get0_name');
   if not assigned(OSSL_STORE_SEARCH_get0_name) then
+    {$if declared(LEGACY_OSSL_STORE_SEARCH_get0_name)}
+    OSSL_STORE_SEARCH_get0_name := @LEGACY_OSSL_STORE_SEARCH_get0_name;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_SEARCH_get0_name');
+    {$ifend}
   Result := OSSL_STORE_SEARCH_get0_name(criterion);
 end;
 
@@ -1091,7 +1256,11 @@ function Load_OSSL_STORE_SEARCH_get0_serial(criterion: POSSL_STORE_SEARCH): PASN
 begin
   OSSL_STORE_SEARCH_get0_serial := LoadLibCryptoFunction('OSSL_STORE_SEARCH_get0_serial');
   if not assigned(OSSL_STORE_SEARCH_get0_serial) then
+    {$if declared(LEGACY_OSSL_STORE_SEARCH_get0_serial)}
+    OSSL_STORE_SEARCH_get0_serial := @LEGACY_OSSL_STORE_SEARCH_get0_serial;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_SEARCH_get0_serial');
+    {$ifend}
   Result := OSSL_STORE_SEARCH_get0_serial(criterion);
 end;
 
@@ -1099,7 +1268,11 @@ function Load_OSSL_STORE_SEARCH_get0_bytes(criterion: POSSL_STORE_SEARCH; length
 begin
   OSSL_STORE_SEARCH_get0_bytes := LoadLibCryptoFunction('OSSL_STORE_SEARCH_get0_bytes');
   if not assigned(OSSL_STORE_SEARCH_get0_bytes) then
+    {$if declared(LEGACY_OSSL_STORE_SEARCH_get0_bytes)}
+    OSSL_STORE_SEARCH_get0_bytes := @LEGACY_OSSL_STORE_SEARCH_get0_bytes;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_SEARCH_get0_bytes');
+    {$ifend}
   Result := OSSL_STORE_SEARCH_get0_bytes(criterion, length);
 end;
 
@@ -1107,7 +1280,11 @@ function Load_OSSL_STORE_SEARCH_get0_string(criterion: POSSL_STORE_SEARCH): PAns
 begin
   OSSL_STORE_SEARCH_get0_string := LoadLibCryptoFunction('OSSL_STORE_SEARCH_get0_string');
   if not assigned(OSSL_STORE_SEARCH_get0_string) then
+    {$if declared(LEGACY_OSSL_STORE_SEARCH_get0_string)}
+    OSSL_STORE_SEARCH_get0_string := @LEGACY_OSSL_STORE_SEARCH_get0_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_SEARCH_get0_string');
+    {$ifend}
   Result := OSSL_STORE_SEARCH_get0_string(criterion);
 end;
 
@@ -1115,7 +1292,11 @@ function Load_OSSL_STORE_SEARCH_get0_digest(criterion: POSSL_STORE_SEARCH): PEVP
 begin
   OSSL_STORE_SEARCH_get0_digest := LoadLibCryptoFunction('OSSL_STORE_SEARCH_get0_digest');
   if not assigned(OSSL_STORE_SEARCH_get0_digest) then
+    {$if declared(LEGACY_OSSL_STORE_SEARCH_get0_digest)}
+    OSSL_STORE_SEARCH_get0_digest := @LEGACY_OSSL_STORE_SEARCH_get0_digest;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_SEARCH_get0_digest');
+    {$ifend}
   Result := OSSL_STORE_SEARCH_get0_digest(criterion);
 end;
 
@@ -1123,7 +1304,11 @@ function Load_OSSL_STORE_expect(ctx: POSSL_STORE_CTX; expected_type: TOpenSSL_C_
 begin
   OSSL_STORE_expect := LoadLibCryptoFunction('OSSL_STORE_expect');
   if not assigned(OSSL_STORE_expect) then
+    {$if declared(LEGACY_OSSL_STORE_expect)}
+    OSSL_STORE_expect := @LEGACY_OSSL_STORE_expect;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_expect');
+    {$ifend}
   Result := OSSL_STORE_expect(ctx, expected_type);
 end;
 
@@ -1131,7 +1316,11 @@ function Load_OSSL_STORE_find(ctx: POSSL_STORE_CTX; search: POSSL_STORE_SEARCH):
 begin
   OSSL_STORE_find := LoadLibCryptoFunction('OSSL_STORE_find');
   if not assigned(OSSL_STORE_find) then
+    {$if declared(LEGACY_OSSL_STORE_find)}
+    OSSL_STORE_find := @LEGACY_OSSL_STORE_find;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_find');
+    {$ifend}
   Result := OSSL_STORE_find(ctx, search);
 end;
 
@@ -1139,7 +1328,11 @@ function Load_OSSL_STORE_LOADER_fetch(libctx: POSSL_LIB_CTX; scheme: PAnsiChar; 
 begin
   OSSL_STORE_LOADER_fetch := LoadLibCryptoFunction('OSSL_STORE_LOADER_fetch');
   if not assigned(OSSL_STORE_LOADER_fetch) then
+    {$if declared(LEGACY_OSSL_STORE_LOADER_fetch)}
+    OSSL_STORE_LOADER_fetch := @LEGACY_OSSL_STORE_LOADER_fetch;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_LOADER_fetch');
+    {$ifend}
   Result := OSSL_STORE_LOADER_fetch(libctx, scheme, properties);
 end;
 
@@ -1147,7 +1340,11 @@ function Load_OSSL_STORE_LOADER_up_ref(loader: POSSL_STORE_LOADER): TOpenSSL_C_I
 begin
   OSSL_STORE_LOADER_up_ref := LoadLibCryptoFunction('OSSL_STORE_LOADER_up_ref');
   if not assigned(OSSL_STORE_LOADER_up_ref) then
+    {$if declared(LEGACY_OSSL_STORE_LOADER_up_ref)}
+    OSSL_STORE_LOADER_up_ref := @LEGACY_OSSL_STORE_LOADER_up_ref;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_LOADER_up_ref');
+    {$ifend}
   Result := OSSL_STORE_LOADER_up_ref(loader);
 end;
 
@@ -1155,7 +1352,11 @@ procedure Load_OSSL_STORE_LOADER_free(loader: POSSL_STORE_LOADER); cdecl;
 begin
   OSSL_STORE_LOADER_free := LoadLibCryptoFunction('OSSL_STORE_LOADER_free');
   if not assigned(OSSL_STORE_LOADER_free) then
+    {$if declared(LEGACY_OSSL_STORE_LOADER_free)}
+    OSSL_STORE_LOADER_free := @LEGACY_OSSL_STORE_LOADER_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_LOADER_free');
+    {$ifend}
   OSSL_STORE_LOADER_free(loader);
 end;
 
@@ -1163,7 +1364,11 @@ function Load_OSSL_STORE_LOADER_get0_provider(loader: POSSL_STORE_LOADER): POSSL
 begin
   OSSL_STORE_LOADER_get0_provider := LoadLibCryptoFunction('OSSL_STORE_LOADER_get0_provider');
   if not assigned(OSSL_STORE_LOADER_get0_provider) then
+    {$if declared(LEGACY_OSSL_STORE_LOADER_get0_provider)}
+    OSSL_STORE_LOADER_get0_provider := @LEGACY_OSSL_STORE_LOADER_get0_provider;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_LOADER_get0_provider');
+    {$ifend}
   Result := OSSL_STORE_LOADER_get0_provider(loader);
 end;
 
@@ -1171,7 +1376,11 @@ function Load_OSSL_STORE_LOADER_get0_properties(loader: POSSL_STORE_LOADER): PAn
 begin
   OSSL_STORE_LOADER_get0_properties := LoadLibCryptoFunction('OSSL_STORE_LOADER_get0_properties');
   if not assigned(OSSL_STORE_LOADER_get0_properties) then
+    {$if declared(LEGACY_OSSL_STORE_LOADER_get0_properties)}
+    OSSL_STORE_LOADER_get0_properties := @LEGACY_OSSL_STORE_LOADER_get0_properties;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_LOADER_get0_properties');
+    {$ifend}
   Result := OSSL_STORE_LOADER_get0_properties(loader);
 end;
 
@@ -1179,7 +1388,11 @@ function Load_OSSL_STORE_LOADER_get0_description(loader: POSSL_STORE_LOADER): PA
 begin
   OSSL_STORE_LOADER_get0_description := LoadLibCryptoFunction('OSSL_STORE_LOADER_get0_description');
   if not assigned(OSSL_STORE_LOADER_get0_description) then
+    {$if declared(LEGACY_OSSL_STORE_LOADER_get0_description)}
+    OSSL_STORE_LOADER_get0_description := @LEGACY_OSSL_STORE_LOADER_get0_description;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_LOADER_get0_description');
+    {$ifend}
   Result := OSSL_STORE_LOADER_get0_description(loader);
 end;
 
@@ -1187,7 +1400,11 @@ function Load_OSSL_STORE_LOADER_is_a(loader: POSSL_STORE_LOADER; scheme: PAnsiCh
 begin
   OSSL_STORE_LOADER_is_a := LoadLibCryptoFunction('OSSL_STORE_LOADER_is_a');
   if not assigned(OSSL_STORE_LOADER_is_a) then
+    {$if declared(LEGACY_OSSL_STORE_LOADER_is_a)}
+    OSSL_STORE_LOADER_is_a := @LEGACY_OSSL_STORE_LOADER_is_a;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_LOADER_is_a');
+    {$ifend}
   Result := OSSL_STORE_LOADER_is_a(loader, scheme);
 end;
 
@@ -1195,7 +1412,11 @@ procedure Load_OSSL_STORE_LOADER_do_all_provided(libctx: POSSL_LIB_CTX; fn: TFun
 begin
   OSSL_STORE_LOADER_do_all_provided := LoadLibCryptoFunction('OSSL_STORE_LOADER_do_all_provided');
   if not assigned(OSSL_STORE_LOADER_do_all_provided) then
+    {$if declared(LEGACY_OSSL_STORE_LOADER_do_all_provided)}
+    OSSL_STORE_LOADER_do_all_provided := @LEGACY_OSSL_STORE_LOADER_do_all_provided;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_LOADER_do_all_provided');
+    {$ifend}
   OSSL_STORE_LOADER_do_all_provided(libctx, fn, arg);
 end;
 
@@ -1203,7 +1424,11 @@ function Load_OSSL_STORE_LOADER_names_do_all(loader: POSSL_STORE_LOADER; fn: TFu
 begin
   OSSL_STORE_LOADER_names_do_all := LoadLibCryptoFunction('OSSL_STORE_LOADER_names_do_all');
   if not assigned(OSSL_STORE_LOADER_names_do_all) then
+    {$if declared(LEGACY_OSSL_STORE_LOADER_names_do_all)}
+    OSSL_STORE_LOADER_names_do_all := @LEGACY_OSSL_STORE_LOADER_names_do_all;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_LOADER_names_do_all');
+    {$ifend}
   Result := OSSL_STORE_LOADER_names_do_all(loader, fn, data);
 end;
 
@@ -1212,7 +1437,11 @@ function Load_OSSL_STORE_LOADER_new(e: PENGINE; scheme: PAnsiChar): POSSL_STORE_
 begin
   OSSL_STORE_LOADER_new := LoadLibCryptoFunction('OSSL_STORE_LOADER_new');
   if not assigned(OSSL_STORE_LOADER_new) then
+    {$if declared(LEGACY_OSSL_STORE_LOADER_new)}
+    OSSL_STORE_LOADER_new := @LEGACY_OSSL_STORE_LOADER_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_LOADER_new');
+    {$ifend}
   Result := OSSL_STORE_LOADER_new(e, scheme);
 end;
 
@@ -1220,7 +1449,11 @@ function Load_OSSL_STORE_LOADER_set_open(loader: POSSL_STORE_LOADER; open_functi
 begin
   OSSL_STORE_LOADER_set_open := LoadLibCryptoFunction('OSSL_STORE_LOADER_set_open');
   if not assigned(OSSL_STORE_LOADER_set_open) then
+    {$if declared(LEGACY_OSSL_STORE_LOADER_set_open)}
+    OSSL_STORE_LOADER_set_open := @LEGACY_OSSL_STORE_LOADER_set_open;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_LOADER_set_open');
+    {$ifend}
   Result := OSSL_STORE_LOADER_set_open(loader, open_function);
 end;
 
@@ -1228,7 +1461,11 @@ function Load_OSSL_STORE_LOADER_set_open_ex(loader: POSSL_STORE_LOADER; open_ex_
 begin
   OSSL_STORE_LOADER_set_open_ex := LoadLibCryptoFunction('OSSL_STORE_LOADER_set_open_ex');
   if not assigned(OSSL_STORE_LOADER_set_open_ex) then
+    {$if declared(LEGACY_OSSL_STORE_LOADER_set_open_ex)}
+    OSSL_STORE_LOADER_set_open_ex := @LEGACY_OSSL_STORE_LOADER_set_open_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_LOADER_set_open_ex');
+    {$ifend}
   Result := OSSL_STORE_LOADER_set_open_ex(loader, open_ex_function);
 end;
 
@@ -1236,7 +1473,11 @@ function Load_OSSL_STORE_LOADER_set_attach(loader: POSSL_STORE_LOADER; attach_fu
 begin
   OSSL_STORE_LOADER_set_attach := LoadLibCryptoFunction('OSSL_STORE_LOADER_set_attach');
   if not assigned(OSSL_STORE_LOADER_set_attach) then
+    {$if declared(LEGACY_OSSL_STORE_LOADER_set_attach)}
+    OSSL_STORE_LOADER_set_attach := @LEGACY_OSSL_STORE_LOADER_set_attach;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_LOADER_set_attach');
+    {$ifend}
   Result := OSSL_STORE_LOADER_set_attach(loader, attach_function);
 end;
 
@@ -1244,7 +1485,11 @@ function Load_OSSL_STORE_LOADER_set_ctrl(loader: POSSL_STORE_LOADER; ctrl_functi
 begin
   OSSL_STORE_LOADER_set_ctrl := LoadLibCryptoFunction('OSSL_STORE_LOADER_set_ctrl');
   if not assigned(OSSL_STORE_LOADER_set_ctrl) then
+    {$if declared(LEGACY_OSSL_STORE_LOADER_set_ctrl)}
+    OSSL_STORE_LOADER_set_ctrl := @LEGACY_OSSL_STORE_LOADER_set_ctrl;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_LOADER_set_ctrl');
+    {$ifend}
   Result := OSSL_STORE_LOADER_set_ctrl(loader, ctrl_function);
 end;
 
@@ -1252,7 +1497,11 @@ function Load_OSSL_STORE_LOADER_set_expect(loader: POSSL_STORE_LOADER; expect_fu
 begin
   OSSL_STORE_LOADER_set_expect := LoadLibCryptoFunction('OSSL_STORE_LOADER_set_expect');
   if not assigned(OSSL_STORE_LOADER_set_expect) then
+    {$if declared(LEGACY_OSSL_STORE_LOADER_set_expect)}
+    OSSL_STORE_LOADER_set_expect := @LEGACY_OSSL_STORE_LOADER_set_expect;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_LOADER_set_expect');
+    {$ifend}
   Result := OSSL_STORE_LOADER_set_expect(loader, expect_function);
 end;
 
@@ -1260,7 +1509,11 @@ function Load_OSSL_STORE_LOADER_set_find(loader: POSSL_STORE_LOADER; find_functi
 begin
   OSSL_STORE_LOADER_set_find := LoadLibCryptoFunction('OSSL_STORE_LOADER_set_find');
   if not assigned(OSSL_STORE_LOADER_set_find) then
+    {$if declared(LEGACY_OSSL_STORE_LOADER_set_find)}
+    OSSL_STORE_LOADER_set_find := @LEGACY_OSSL_STORE_LOADER_set_find;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_LOADER_set_find');
+    {$ifend}
   Result := OSSL_STORE_LOADER_set_find(loader, find_function);
 end;
 
@@ -1268,7 +1521,11 @@ function Load_OSSL_STORE_LOADER_set_load(loader: POSSL_STORE_LOADER; load_functi
 begin
   OSSL_STORE_LOADER_set_load := LoadLibCryptoFunction('OSSL_STORE_LOADER_set_load');
   if not assigned(OSSL_STORE_LOADER_set_load) then
+    {$if declared(LEGACY_OSSL_STORE_LOADER_set_load)}
+    OSSL_STORE_LOADER_set_load := @LEGACY_OSSL_STORE_LOADER_set_load;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_LOADER_set_load');
+    {$ifend}
   Result := OSSL_STORE_LOADER_set_load(loader, load_function);
 end;
 
@@ -1276,7 +1533,11 @@ function Load_OSSL_STORE_LOADER_set_eof(loader: POSSL_STORE_LOADER; eof_function
 begin
   OSSL_STORE_LOADER_set_eof := LoadLibCryptoFunction('OSSL_STORE_LOADER_set_eof');
   if not assigned(OSSL_STORE_LOADER_set_eof) then
+    {$if declared(LEGACY_OSSL_STORE_LOADER_set_eof)}
+    OSSL_STORE_LOADER_set_eof := @LEGACY_OSSL_STORE_LOADER_set_eof;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_LOADER_set_eof');
+    {$ifend}
   Result := OSSL_STORE_LOADER_set_eof(loader, eof_function);
 end;
 
@@ -1284,7 +1545,11 @@ function Load_OSSL_STORE_LOADER_set_error(loader: POSSL_STORE_LOADER; error_func
 begin
   OSSL_STORE_LOADER_set_error := LoadLibCryptoFunction('OSSL_STORE_LOADER_set_error');
   if not assigned(OSSL_STORE_LOADER_set_error) then
+    {$if declared(LEGACY_OSSL_STORE_LOADER_set_error)}
+    OSSL_STORE_LOADER_set_error := @LEGACY_OSSL_STORE_LOADER_set_error;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_LOADER_set_error');
+    {$ifend}
   Result := OSSL_STORE_LOADER_set_error(loader, error_function);
 end;
 
@@ -1292,7 +1557,11 @@ function Load_OSSL_STORE_LOADER_set_close(loader: POSSL_STORE_LOADER; close_func
 begin
   OSSL_STORE_LOADER_set_close := LoadLibCryptoFunction('OSSL_STORE_LOADER_set_close');
   if not assigned(OSSL_STORE_LOADER_set_close) then
+    {$if declared(LEGACY_OSSL_STORE_LOADER_set_close)}
+    OSSL_STORE_LOADER_set_close := @LEGACY_OSSL_STORE_LOADER_set_close;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_LOADER_set_close');
+    {$ifend}
   Result := OSSL_STORE_LOADER_set_close(loader, close_function);
 end;
 
@@ -1300,7 +1569,11 @@ function Load_OSSL_STORE_LOADER_get0_engine(loader: POSSL_STORE_LOADER): PENGINE
 begin
   OSSL_STORE_LOADER_get0_engine := LoadLibCryptoFunction('OSSL_STORE_LOADER_get0_engine');
   if not assigned(OSSL_STORE_LOADER_get0_engine) then
+    {$if declared(LEGACY_OSSL_STORE_LOADER_get0_engine)}
+    OSSL_STORE_LOADER_get0_engine := @LEGACY_OSSL_STORE_LOADER_get0_engine;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_LOADER_get0_engine');
+    {$ifend}
   Result := OSSL_STORE_LOADER_get0_engine(loader);
 end;
 
@@ -1308,7 +1581,11 @@ function Load_OSSL_STORE_LOADER_get0_scheme(loader: POSSL_STORE_LOADER): PAnsiCh
 begin
   OSSL_STORE_LOADER_get0_scheme := LoadLibCryptoFunction('OSSL_STORE_LOADER_get0_scheme');
   if not assigned(OSSL_STORE_LOADER_get0_scheme) then
+    {$if declared(LEGACY_OSSL_STORE_LOADER_get0_scheme)}
+    OSSL_STORE_LOADER_get0_scheme := @LEGACY_OSSL_STORE_LOADER_get0_scheme;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_LOADER_get0_scheme');
+    {$ifend}
   Result := OSSL_STORE_LOADER_get0_scheme(loader);
 end;
 
@@ -1316,7 +1593,11 @@ function Load_OSSL_STORE_register_loader(loader: POSSL_STORE_LOADER): TOpenSSL_C
 begin
   OSSL_STORE_register_loader := LoadLibCryptoFunction('OSSL_STORE_register_loader');
   if not assigned(OSSL_STORE_register_loader) then
+    {$if declared(LEGACY_OSSL_STORE_register_loader)}
+    OSSL_STORE_register_loader := @LEGACY_OSSL_STORE_register_loader;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_register_loader');
+    {$ifend}
   Result := OSSL_STORE_register_loader(loader);
 end;
 
@@ -1324,7 +1605,11 @@ function Load_OSSL_STORE_unregister_loader(scheme: PAnsiChar): POSSL_STORE_LOADE
 begin
   OSSL_STORE_unregister_loader := LoadLibCryptoFunction('OSSL_STORE_unregister_loader');
   if not assigned(OSSL_STORE_unregister_loader) then
+    {$if declared(LEGACY_OSSL_STORE_unregister_loader)}
+    OSSL_STORE_unregister_loader := @LEGACY_OSSL_STORE_unregister_loader;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_unregister_loader');
+    {$ifend}
   Result := OSSL_STORE_unregister_loader(scheme);
 end;
 
@@ -1334,7 +1619,11 @@ function Load_OSSL_STORE_do_all_loaders(do_function: TFuncType002; do_arg: point
 begin
   OSSL_STORE_do_all_loaders := LoadLibCryptoFunction('OSSL_STORE_do_all_loaders');
   if not assigned(OSSL_STORE_do_all_loaders) then
+    {$if declared(LEGACY_OSSL_STORE_do_all_loaders)}
+    OSSL_STORE_do_all_loaders := @LEGACY_OSSL_STORE_do_all_loaders;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_do_all_loaders');
+    {$ifend}
   Result := OSSL_STORE_do_all_loaders(do_function, do_arg);
 end;
 

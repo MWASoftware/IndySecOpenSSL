@@ -18,7 +18,8 @@
 unit openssl_self_test;
 
 {
-  Generated from OpenSSL 3.0.20 Header File self_test.h - Wed  6 May 13:06:29 BST 2026
+  Generated from OpenSSL 3.0.20 Header File self_test.h - Wed  6 May 13:15:38 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -165,7 +166,11 @@ procedure Load_OSSL_SELF_TEST_set_callback(libctx: POSSL_LIB_CTX; cb: POSSL_CALL
 begin
   OSSL_SELF_TEST_set_callback := LoadLibCryptoFunction('OSSL_SELF_TEST_set_callback');
   if not assigned(OSSL_SELF_TEST_set_callback) then
+    {$if declared(LEGACY_OSSL_SELF_TEST_set_callback)}
+    OSSL_SELF_TEST_set_callback := @LEGACY_OSSL_SELF_TEST_set_callback;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_SELF_TEST_set_callback');
+    {$ifend}
   OSSL_SELF_TEST_set_callback(libctx, cb, cbarg);
 end;
 
@@ -173,7 +178,11 @@ procedure Load_OSSL_SELF_TEST_get_callback(libctx: POSSL_LIB_CTX; cb: PPOSSL_CAL
 begin
   OSSL_SELF_TEST_get_callback := LoadLibCryptoFunction('OSSL_SELF_TEST_get_callback');
   if not assigned(OSSL_SELF_TEST_get_callback) then
+    {$if declared(LEGACY_OSSL_SELF_TEST_get_callback)}
+    OSSL_SELF_TEST_get_callback := @LEGACY_OSSL_SELF_TEST_get_callback;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_SELF_TEST_get_callback');
+    {$ifend}
   OSSL_SELF_TEST_get_callback(libctx, cb, cbarg);
 end;
 
@@ -181,7 +190,11 @@ function Load_OSSL_SELF_TEST_new(cb: POSSL_CALLBACK; cbarg: pointer): POSSL_SELF
 begin
   OSSL_SELF_TEST_new := LoadLibCryptoFunction('OSSL_SELF_TEST_new');
   if not assigned(OSSL_SELF_TEST_new) then
+    {$if declared(LEGACY_OSSL_SELF_TEST_new)}
+    OSSL_SELF_TEST_new := @LEGACY_OSSL_SELF_TEST_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_SELF_TEST_new');
+    {$ifend}
   Result := OSSL_SELF_TEST_new(cb, cbarg);
 end;
 
@@ -189,7 +202,11 @@ procedure Load_OSSL_SELF_TEST_free(st: POSSL_SELF_TEST); cdecl;
 begin
   OSSL_SELF_TEST_free := LoadLibCryptoFunction('OSSL_SELF_TEST_free');
   if not assigned(OSSL_SELF_TEST_free) then
+    {$if declared(LEGACY_OSSL_SELF_TEST_free)}
+    OSSL_SELF_TEST_free := @LEGACY_OSSL_SELF_TEST_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_SELF_TEST_free');
+    {$ifend}
   OSSL_SELF_TEST_free(st);
 end;
 
@@ -197,7 +214,11 @@ procedure Load_OSSL_SELF_TEST_onbegin(st: POSSL_SELF_TEST; type_: PAnsiChar; des
 begin
   OSSL_SELF_TEST_onbegin := LoadLibCryptoFunction('OSSL_SELF_TEST_onbegin');
   if not assigned(OSSL_SELF_TEST_onbegin) then
+    {$if declared(LEGACY_OSSL_SELF_TEST_onbegin)}
+    OSSL_SELF_TEST_onbegin := @LEGACY_OSSL_SELF_TEST_onbegin;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_SELF_TEST_onbegin');
+    {$ifend}
   OSSL_SELF_TEST_onbegin(st, type_, desc);
 end;
 
@@ -205,7 +226,11 @@ function Load_OSSL_SELF_TEST_oncorrupt_byte(st: POSSL_SELF_TEST; bytes: Pbyte): 
 begin
   OSSL_SELF_TEST_oncorrupt_byte := LoadLibCryptoFunction('OSSL_SELF_TEST_oncorrupt_byte');
   if not assigned(OSSL_SELF_TEST_oncorrupt_byte) then
+    {$if declared(LEGACY_OSSL_SELF_TEST_oncorrupt_byte)}
+    OSSL_SELF_TEST_oncorrupt_byte := @LEGACY_OSSL_SELF_TEST_oncorrupt_byte;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_SELF_TEST_oncorrupt_byte');
+    {$ifend}
   Result := OSSL_SELF_TEST_oncorrupt_byte(st, bytes);
 end;
 
@@ -213,7 +238,11 @@ procedure Load_OSSL_SELF_TEST_onend(st: POSSL_SELF_TEST; ret: TOpenSSL_C_INT); c
 begin
   OSSL_SELF_TEST_onend := LoadLibCryptoFunction('OSSL_SELF_TEST_onend');
   if not assigned(OSSL_SELF_TEST_onend) then
+    {$if declared(LEGACY_OSSL_SELF_TEST_onend)}
+    OSSL_SELF_TEST_onend := @LEGACY_OSSL_SELF_TEST_onend;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_SELF_TEST_onend');
+    {$ifend}
   OSSL_SELF_TEST_onend(st, ret);
 end;
 

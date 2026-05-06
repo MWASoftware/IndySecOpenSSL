@@ -18,7 +18,8 @@
 unit openssl_conf_api;
 
 {
-  Generated from OpenSSL 3.0.20 Header File conf_api.h - Wed  6 May 13:05:42 BST 2026
+  Generated from OpenSSL 3.0.20 Header File conf_api.h - Wed  6 May 13:14:52 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -121,7 +122,11 @@ function Load__CONF_new_section(conf: PCONF; section: PAnsiChar): PCONF_VALUE; c
 begin
   _CONF_new_section := LoadLibCryptoFunction('_CONF_new_section');
   if not assigned(_CONF_new_section) then
+    {$if declared(LEGACY__CONF_new_section)}
+    _CONF_new_section := @LEGACY__CONF_new_section;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('_CONF_new_section');
+    {$ifend}
   Result := _CONF_new_section(conf, section);
 end;
 
@@ -129,7 +134,11 @@ function Load__CONF_get_section(conf: PCONF; section: PAnsiChar): PCONF_VALUE; c
 begin
   _CONF_get_section := LoadLibCryptoFunction('_CONF_get_section');
   if not assigned(_CONF_get_section) then
+    {$if declared(LEGACY__CONF_get_section)}
+    _CONF_get_section := @LEGACY__CONF_get_section;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('_CONF_get_section');
+    {$ifend}
   Result := _CONF_get_section(conf, section);
 end;
 
@@ -137,7 +146,11 @@ function Load__CONF_get_section_values(conf: PCONF; section: PAnsiChar): Pstack_
 begin
   _CONF_get_section_values := LoadLibCryptoFunction('_CONF_get_section_values');
   if not assigned(_CONF_get_section_values) then
+    {$if declared(LEGACY__CONF_get_section_values)}
+    _CONF_get_section_values := @LEGACY__CONF_get_section_values;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('_CONF_get_section_values');
+    {$ifend}
   Result := _CONF_get_section_values(conf, section);
 end;
 
@@ -145,7 +158,11 @@ function Load__CONF_add_string(conf: PCONF; section: PCONF_VALUE; value: PCONF_V
 begin
   _CONF_add_string := LoadLibCryptoFunction('_CONF_add_string');
   if not assigned(_CONF_add_string) then
+    {$if declared(LEGACY__CONF_add_string)}
+    _CONF_add_string := @LEGACY__CONF_add_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('_CONF_add_string');
+    {$ifend}
   Result := _CONF_add_string(conf, section, value);
 end;
 
@@ -153,7 +170,11 @@ function Load__CONF_get_string(conf: PCONF; section: PAnsiChar; name: PAnsiChar)
 begin
   _CONF_get_string := LoadLibCryptoFunction('_CONF_get_string');
   if not assigned(_CONF_get_string) then
+    {$if declared(LEGACY__CONF_get_string)}
+    _CONF_get_string := @LEGACY__CONF_get_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('_CONF_get_string');
+    {$ifend}
   Result := _CONF_get_string(conf, section, name);
 end;
 
@@ -161,7 +182,11 @@ function Load__CONF_get_number(conf: PCONF; section: PAnsiChar; name: PAnsiChar)
 begin
   _CONF_get_number := LoadLibCryptoFunction('_CONF_get_number');
   if not assigned(_CONF_get_number) then
+    {$if declared(LEGACY__CONF_get_number)}
+    _CONF_get_number := @LEGACY__CONF_get_number;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('_CONF_get_number');
+    {$ifend}
   Result := _CONF_get_number(conf, section, name);
 end;
 
@@ -169,7 +194,11 @@ function Load__CONF_new_data(conf: PCONF): TOpenSSL_C_INT; cdecl;
 begin
   _CONF_new_data := LoadLibCryptoFunction('_CONF_new_data');
   if not assigned(_CONF_new_data) then
+    {$if declared(LEGACY__CONF_new_data)}
+    _CONF_new_data := @LEGACY__CONF_new_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('_CONF_new_data');
+    {$ifend}
   Result := _CONF_new_data(conf);
 end;
 
@@ -177,7 +206,11 @@ procedure Load__CONF_free_data(conf: PCONF); cdecl;
 begin
   _CONF_free_data := LoadLibCryptoFunction('_CONF_free_data');
   if not assigned(_CONF_free_data) then
+    {$if declared(LEGACY__CONF_free_data)}
+    _CONF_free_data := @LEGACY__CONF_free_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('_CONF_free_data');
+    {$ifend}
   _CONF_free_data(conf);
 end;
 

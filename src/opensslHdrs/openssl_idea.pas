@@ -18,7 +18,8 @@
 unit openssl_idea;
 
 {
-  Generated from OpenSSL 3.0.20 Header File idea.h - Wed  6 May 13:06:09 BST 2026
+  Generated from OpenSSL 3.0.20 Header File idea.h - Wed  6 May 13:15:18 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -196,7 +197,11 @@ function Load_IDEA_options: PAnsiChar; cdecl;
 begin
   IDEA_options := LoadLibCryptoFunction('IDEA_options');
   if not assigned(IDEA_options) then
+    {$if declared(LEGACY_IDEA_options)}
+    IDEA_options := @LEGACY_IDEA_options;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('IDEA_options');
+    {$ifend}
   Result := IDEA_options;
 end;
 
@@ -204,7 +209,11 @@ procedure Load_IDEA_ecb_encrypt(in_: Pbyte; out_: Pbyte; ks: PIDEA_KEY_SCHEDULE)
 begin
   IDEA_ecb_encrypt := LoadLibCryptoFunction('IDEA_ecb_encrypt');
   if not assigned(IDEA_ecb_encrypt) then
+    {$if declared(LEGACY_IDEA_ecb_encrypt)}
+    IDEA_ecb_encrypt := @LEGACY_IDEA_ecb_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('IDEA_ecb_encrypt');
+    {$ifend}
   IDEA_ecb_encrypt(in_, out_, ks);
 end;
 
@@ -212,7 +221,11 @@ procedure Load_IDEA_set_encrypt_key(key: Pbyte; ks: PIDEA_KEY_SCHEDULE); cdecl;
 begin
   IDEA_set_encrypt_key := LoadLibCryptoFunction('IDEA_set_encrypt_key');
   if not assigned(IDEA_set_encrypt_key) then
+    {$if declared(LEGACY_IDEA_set_encrypt_key)}
+    IDEA_set_encrypt_key := @LEGACY_IDEA_set_encrypt_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('IDEA_set_encrypt_key');
+    {$ifend}
   IDEA_set_encrypt_key(key, ks);
 end;
 
@@ -220,7 +233,11 @@ procedure Load_IDEA_set_decrypt_key(ek: PIDEA_KEY_SCHEDULE; dk: PIDEA_KEY_SCHEDU
 begin
   IDEA_set_decrypt_key := LoadLibCryptoFunction('IDEA_set_decrypt_key');
   if not assigned(IDEA_set_decrypt_key) then
+    {$if declared(LEGACY_IDEA_set_decrypt_key)}
+    IDEA_set_decrypt_key := @LEGACY_IDEA_set_decrypt_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('IDEA_set_decrypt_key');
+    {$ifend}
   IDEA_set_decrypt_key(ek, dk);
 end;
 
@@ -228,7 +245,11 @@ procedure Load_IDEA_cbc_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_INT;
 begin
   IDEA_cbc_encrypt := LoadLibCryptoFunction('IDEA_cbc_encrypt');
   if not assigned(IDEA_cbc_encrypt) then
+    {$if declared(LEGACY_IDEA_cbc_encrypt)}
+    IDEA_cbc_encrypt := @LEGACY_IDEA_cbc_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('IDEA_cbc_encrypt');
+    {$ifend}
   IDEA_cbc_encrypt(in_, out_, length, ks, iv, enc);
 end;
 
@@ -236,7 +257,11 @@ procedure Load_IDEA_cfb64_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_IN
 begin
   IDEA_cfb64_encrypt := LoadLibCryptoFunction('IDEA_cfb64_encrypt');
   if not assigned(IDEA_cfb64_encrypt) then
+    {$if declared(LEGACY_IDEA_cfb64_encrypt)}
+    IDEA_cfb64_encrypt := @LEGACY_IDEA_cfb64_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('IDEA_cfb64_encrypt');
+    {$ifend}
   IDEA_cfb64_encrypt(in_, out_, length, ks, iv, num, enc);
 end;
 
@@ -244,7 +269,11 @@ procedure Load_IDEA_ofb64_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_IN
 begin
   IDEA_ofb64_encrypt := LoadLibCryptoFunction('IDEA_ofb64_encrypt');
   if not assigned(IDEA_ofb64_encrypt) then
+    {$if declared(LEGACY_IDEA_ofb64_encrypt)}
+    IDEA_ofb64_encrypt := @LEGACY_IDEA_ofb64_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('IDEA_ofb64_encrypt');
+    {$ifend}
   IDEA_ofb64_encrypt(in_, out_, length, ks, iv, num);
 end;
 
@@ -252,7 +281,11 @@ procedure Load_IDEA_encrypt(in_: POpenSSL_C_UINT; ks: PIDEA_KEY_SCHEDULE); cdecl
 begin
   IDEA_encrypt := LoadLibCryptoFunction('IDEA_encrypt');
   if not assigned(IDEA_encrypt) then
+    {$if declared(LEGACY_IDEA_encrypt)}
+    IDEA_encrypt := @LEGACY_IDEA_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('IDEA_encrypt');
+    {$ifend}
   IDEA_encrypt(in_, ks);
 end;
 
@@ -262,7 +295,11 @@ function Load_idea_options_: PAnsiChar; cdecl;
 begin
   idea_options_ := LoadLibCryptoFunction('IDEA_options');
   if not assigned(idea_options_) then
+    {$if declared(LEGACY_IDEA_options)}
+    idea_options_ := @LEGACY_IDEA_options;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('IDEA_options');
+    {$ifend}
   Result := idea_options_;
 end;
 
@@ -270,7 +307,11 @@ procedure Load_idea_ecb_encrypt_(in_: Pbyte; out_: Pbyte; ks: PIDEA_KEY_SCHEDULE
 begin
   idea_ecb_encrypt_ := LoadLibCryptoFunction('IDEA_ecb_encrypt');
   if not assigned(idea_ecb_encrypt_) then
+    {$if declared(LEGACY_IDEA_ecb_encrypt)}
+    idea_ecb_encrypt_ := @LEGACY_IDEA_ecb_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('IDEA_ecb_encrypt');
+    {$ifend}
   idea_ecb_encrypt_(in_, out_, ks);
 end;
 
@@ -278,7 +319,11 @@ procedure Load_idea_set_encrypt_key_(key: Pbyte; ks: PIDEA_KEY_SCHEDULE); cdecl;
 begin
   idea_set_encrypt_key_ := LoadLibCryptoFunction('IDEA_set_encrypt_key');
   if not assigned(idea_set_encrypt_key_) then
+    {$if declared(LEGACY_IDEA_set_encrypt_key)}
+    idea_set_encrypt_key_ := @LEGACY_IDEA_set_encrypt_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('IDEA_set_encrypt_key');
+    {$ifend}
   idea_set_encrypt_key_(key, ks);
 end;
 
@@ -286,7 +331,11 @@ procedure Load_idea_set_decrypt_key_(ek: PIDEA_KEY_SCHEDULE; dk: PIDEA_KEY_SCHED
 begin
   idea_set_decrypt_key_ := LoadLibCryptoFunction('IDEA_set_decrypt_key');
   if not assigned(idea_set_decrypt_key_) then
+    {$if declared(LEGACY_IDEA_set_decrypt_key)}
+    idea_set_decrypt_key_ := @LEGACY_IDEA_set_decrypt_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('IDEA_set_decrypt_key');
+    {$ifend}
   idea_set_decrypt_key_(ek, dk);
 end;
 
@@ -294,7 +343,11 @@ procedure Load_idea_cbc_encrypt_(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_INT
 begin
   idea_cbc_encrypt_ := LoadLibCryptoFunction('IDEA_cbc_encrypt');
   if not assigned(idea_cbc_encrypt_) then
+    {$if declared(LEGACY_IDEA_cbc_encrypt)}
+    idea_cbc_encrypt_ := @LEGACY_IDEA_cbc_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('IDEA_cbc_encrypt');
+    {$ifend}
   idea_cbc_encrypt_(in_, out_, length, ks, iv, enc);
 end;
 
@@ -302,7 +355,11 @@ procedure Load_idea_cfb64_encrypt_(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_I
 begin
   idea_cfb64_encrypt_ := LoadLibCryptoFunction('IDEA_cfb64_encrypt');
   if not assigned(idea_cfb64_encrypt_) then
+    {$if declared(LEGACY_IDEA_cfb64_encrypt)}
+    idea_cfb64_encrypt_ := @LEGACY_IDEA_cfb64_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('IDEA_cfb64_encrypt');
+    {$ifend}
   idea_cfb64_encrypt_(in_, out_, length, ks, iv, num, enc);
 end;
 
@@ -310,7 +367,11 @@ procedure Load_idea_ofb64_encrypt_(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_I
 begin
   idea_ofb64_encrypt_ := LoadLibCryptoFunction('IDEA_ofb64_encrypt');
   if not assigned(idea_ofb64_encrypt_) then
+    {$if declared(LEGACY_IDEA_ofb64_encrypt)}
+    idea_ofb64_encrypt_ := @LEGACY_IDEA_ofb64_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('IDEA_ofb64_encrypt');
+    {$ifend}
   idea_ofb64_encrypt_(in_, out_, length, ks, iv, num);
 end;
 
@@ -318,7 +379,11 @@ procedure Load_idea_encrypt__(in_: POpenSSL_C_UINT; ks: PIDEA_KEY_SCHEDULE); cde
 begin
   idea_encrypt__ := LoadLibCryptoFunction('IDEA_encrypt');
   if not assigned(idea_encrypt__) then
+    {$if declared(LEGACY_IDEA_encrypt)}
+    idea_encrypt__ := @LEGACY_IDEA_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('IDEA_encrypt');
+    {$ifend}
   idea_encrypt__(in_, ks);
 end;
 

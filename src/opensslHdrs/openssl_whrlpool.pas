@@ -18,7 +18,8 @@
 unit openssl_whrlpool;
 
 {
-  Generated from OpenSSL 3.0.20 Header File whrlpool.h - Wed  6 May 13:06:50 BST 2026
+  Generated from OpenSSL 3.0.20 Header File whrlpool.h - Wed  6 May 13:15:59 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -137,7 +138,11 @@ function Load_WHIRLPOOL_Init(c: PWHIRLPOOL_CTX): TOpenSSL_C_INT; cdecl;
 begin
   WHIRLPOOL_Init := LoadLibCryptoFunction('WHIRLPOOL_Init');
   if not assigned(WHIRLPOOL_Init) then
+    {$if declared(LEGACY_WHIRLPOOL_Init)}
+    WHIRLPOOL_Init := @LEGACY_WHIRLPOOL_Init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('WHIRLPOOL_Init');
+    {$ifend}
   Result := WHIRLPOOL_Init(c);
 end;
 
@@ -145,7 +150,11 @@ function Load_WHIRLPOOL_Update(c: PWHIRLPOOL_CTX; inp: pointer; bytes: TOpenSSL_
 begin
   WHIRLPOOL_Update := LoadLibCryptoFunction('WHIRLPOOL_Update');
   if not assigned(WHIRLPOOL_Update) then
+    {$if declared(LEGACY_WHIRLPOOL_Update)}
+    WHIRLPOOL_Update := @LEGACY_WHIRLPOOL_Update;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('WHIRLPOOL_Update');
+    {$ifend}
   Result := WHIRLPOOL_Update(c, inp, bytes);
 end;
 
@@ -153,7 +162,11 @@ procedure Load_WHIRLPOOL_BitUpdate(c: PWHIRLPOOL_CTX; inp: pointer; bits: TOpenS
 begin
   WHIRLPOOL_BitUpdate := LoadLibCryptoFunction('WHIRLPOOL_BitUpdate');
   if not assigned(WHIRLPOOL_BitUpdate) then
+    {$if declared(LEGACY_WHIRLPOOL_BitUpdate)}
+    WHIRLPOOL_BitUpdate := @LEGACY_WHIRLPOOL_BitUpdate;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('WHIRLPOOL_BitUpdate');
+    {$ifend}
   WHIRLPOOL_BitUpdate(c, inp, bits);
 end;
 
@@ -161,7 +174,11 @@ function Load_WHIRLPOOL_Final(md: Pbyte; c: PWHIRLPOOL_CTX): TOpenSSL_C_INT; cde
 begin
   WHIRLPOOL_Final := LoadLibCryptoFunction('WHIRLPOOL_Final');
   if not assigned(WHIRLPOOL_Final) then
+    {$if declared(LEGACY_WHIRLPOOL_Final)}
+    WHIRLPOOL_Final := @LEGACY_WHIRLPOOL_Final;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('WHIRLPOOL_Final');
+    {$ifend}
   Result := WHIRLPOOL_Final(md, c);
 end;
 
@@ -169,7 +186,11 @@ function Load_WHIRLPOOL(inp: pointer; bytes: TOpenSSL_C_SIZET; md: Pbyte): Pbyte
 begin
   WHIRLPOOL := LoadLibCryptoFunction('WHIRLPOOL');
   if not assigned(WHIRLPOOL) then
+    {$if declared(LEGACY_WHIRLPOOL)}
+    WHIRLPOOL := @LEGACY_WHIRLPOOL;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('WHIRLPOOL');
+    {$ifend}
   Result := WHIRLPOOL(inp, bytes, md);
 end;
 

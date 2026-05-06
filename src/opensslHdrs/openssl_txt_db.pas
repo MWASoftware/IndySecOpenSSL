@@ -18,7 +18,8 @@
 unit openssl_txt_db;
 
 {
-  Generated from OpenSSL 3.0.20 Header File txt_db.h - Wed  6 May 13:06:47 BST 2026
+  Generated from OpenSSL 3.0.20 Header File txt_db.h - Wed  6 May 13:15:56 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -331,7 +332,11 @@ function Load_TXT_DB_read(in_: PBIO; num: TOpenSSL_C_INT): PTXT_DB; cdecl;
 begin
   TXT_DB_read := LoadLibCryptoFunction('TXT_DB_read');
   if not assigned(TXT_DB_read) then
+    {$if declared(LEGACY_TXT_DB_read)}
+    TXT_DB_read := @LEGACY_TXT_DB_read;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TXT_DB_read');
+    {$ifend}
   Result := TXT_DB_read(in_, num);
 end;
 
@@ -339,7 +344,11 @@ function Load_TXT_DB_write(out_: PBIO; db: PTXT_DB): TOpenSSL_C_INT; cdecl;
 begin
   TXT_DB_write := LoadLibCryptoFunction('TXT_DB_write');
   if not assigned(TXT_DB_write) then
+    {$if declared(LEGACY_TXT_DB_write)}
+    TXT_DB_write := @LEGACY_TXT_DB_write;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TXT_DB_write');
+    {$ifend}
   Result := TXT_DB_write(out_, db);
 end;
 
@@ -347,7 +356,11 @@ function Load_TXT_DB_create_index(db: PTXT_DB; field: TOpenSSL_C_INT; qual: TFun
 begin
   TXT_DB_create_index := LoadLibCryptoFunction('TXT_DB_create_index');
   if not assigned(TXT_DB_create_index) then
+    {$if declared(LEGACY_TXT_DB_create_index)}
+    TXT_DB_create_index := @LEGACY_TXT_DB_create_index;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TXT_DB_create_index');
+    {$ifend}
   Result := TXT_DB_create_index(db, field, qual, hash, cmp);
 end;
 
@@ -355,7 +368,11 @@ procedure Load_TXT_DB_free(db: PTXT_DB); cdecl;
 begin
   TXT_DB_free := LoadLibCryptoFunction('TXT_DB_free');
   if not assigned(TXT_DB_free) then
+    {$if declared(LEGACY_TXT_DB_free)}
+    TXT_DB_free := @LEGACY_TXT_DB_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TXT_DB_free');
+    {$ifend}
   TXT_DB_free(db);
 end;
 
@@ -363,7 +380,11 @@ function Load_TXT_DB_get_by_index(db: PTXT_DB; idx: TOpenSSL_C_INT; value: POPEN
 begin
   TXT_DB_get_by_index := LoadLibCryptoFunction('TXT_DB_get_by_index');
   if not assigned(TXT_DB_get_by_index) then
+    {$if declared(LEGACY_TXT_DB_get_by_index)}
+    TXT_DB_get_by_index := @LEGACY_TXT_DB_get_by_index;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TXT_DB_get_by_index');
+    {$ifend}
   Result := TXT_DB_get_by_index(db, idx, value);
 end;
 
@@ -371,7 +392,11 @@ function Load_TXT_DB_insert(db: PTXT_DB; value: POPENSSL_STRING): TOpenSSL_C_INT
 begin
   TXT_DB_insert := LoadLibCryptoFunction('TXT_DB_insert');
   if not assigned(TXT_DB_insert) then
+    {$if declared(LEGACY_TXT_DB_insert)}
+    TXT_DB_insert := @LEGACY_TXT_DB_insert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('TXT_DB_insert');
+    {$ifend}
   Result := TXT_DB_insert(db, value);
 end;
 

@@ -18,7 +18,8 @@
 unit openssl_kdf;
 
 {
-  Generated from OpenSSL 3.0.20 Header File kdf.h - Wed  6 May 13:06:09 BST 2026
+  Generated from OpenSSL 3.0.20 Header File kdf.h - Wed  6 May 13:15:19 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -309,7 +310,11 @@ function Load_EVP_KDF_up_ref(kdf: PEVP_KDF): TOpenSSL_C_INT; cdecl;
 begin
   EVP_KDF_up_ref := LoadLibCryptoFunction('EVP_KDF_up_ref');
   if not assigned(EVP_KDF_up_ref) then
+    {$if declared(LEGACY_EVP_KDF_up_ref)}
+    EVP_KDF_up_ref := @LEGACY_EVP_KDF_up_ref;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_KDF_up_ref');
+    {$ifend}
   Result := EVP_KDF_up_ref(kdf);
 end;
 
@@ -317,7 +322,11 @@ procedure Load_EVP_KDF_free(kdf: PEVP_KDF); cdecl;
 begin
   EVP_KDF_free := LoadLibCryptoFunction('EVP_KDF_free');
   if not assigned(EVP_KDF_free) then
+    {$if declared(LEGACY_EVP_KDF_free)}
+    EVP_KDF_free := @LEGACY_EVP_KDF_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_KDF_free');
+    {$ifend}
   EVP_KDF_free(kdf);
 end;
 
@@ -325,7 +334,11 @@ function Load_EVP_KDF_fetch(libctx: POSSL_LIB_CTX; algorithm: PAnsiChar; propert
 begin
   EVP_KDF_fetch := LoadLibCryptoFunction('EVP_KDF_fetch');
   if not assigned(EVP_KDF_fetch) then
+    {$if declared(LEGACY_EVP_KDF_fetch)}
+    EVP_KDF_fetch := @LEGACY_EVP_KDF_fetch;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_KDF_fetch');
+    {$ifend}
   Result := EVP_KDF_fetch(libctx, algorithm, properties);
 end;
 
@@ -333,7 +346,11 @@ function Load_EVP_KDF_CTX_new(kdf: PEVP_KDF): PEVP_KDF_CTX; cdecl;
 begin
   EVP_KDF_CTX_new := LoadLibCryptoFunction('EVP_KDF_CTX_new');
   if not assigned(EVP_KDF_CTX_new) then
+    {$if declared(LEGACY_EVP_KDF_CTX_new)}
+    EVP_KDF_CTX_new := @LEGACY_EVP_KDF_CTX_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_KDF_CTX_new');
+    {$ifend}
   Result := EVP_KDF_CTX_new(kdf);
 end;
 
@@ -341,7 +358,11 @@ procedure Load_EVP_KDF_CTX_free(ctx: PEVP_KDF_CTX); cdecl;
 begin
   EVP_KDF_CTX_free := LoadLibCryptoFunction('EVP_KDF_CTX_free');
   if not assigned(EVP_KDF_CTX_free) then
+    {$if declared(LEGACY_EVP_KDF_CTX_free)}
+    EVP_KDF_CTX_free := @LEGACY_EVP_KDF_CTX_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_KDF_CTX_free');
+    {$ifend}
   EVP_KDF_CTX_free(ctx);
 end;
 
@@ -349,7 +370,11 @@ function Load_EVP_KDF_CTX_dup(src: PEVP_KDF_CTX): PEVP_KDF_CTX; cdecl;
 begin
   EVP_KDF_CTX_dup := LoadLibCryptoFunction('EVP_KDF_CTX_dup');
   if not assigned(EVP_KDF_CTX_dup) then
+    {$if declared(LEGACY_EVP_KDF_CTX_dup)}
+    EVP_KDF_CTX_dup := @LEGACY_EVP_KDF_CTX_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_KDF_CTX_dup');
+    {$ifend}
   Result := EVP_KDF_CTX_dup(src);
 end;
 
@@ -357,7 +382,11 @@ function Load_EVP_KDF_get0_description(kdf: PEVP_KDF): PAnsiChar; cdecl;
 begin
   EVP_KDF_get0_description := LoadLibCryptoFunction('EVP_KDF_get0_description');
   if not assigned(EVP_KDF_get0_description) then
+    {$if declared(LEGACY_EVP_KDF_get0_description)}
+    EVP_KDF_get0_description := @LEGACY_EVP_KDF_get0_description;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_KDF_get0_description');
+    {$ifend}
   Result := EVP_KDF_get0_description(kdf);
 end;
 
@@ -365,7 +394,11 @@ function Load_EVP_KDF_is_a(kdf: PEVP_KDF; name: PAnsiChar): TOpenSSL_C_INT; cdec
 begin
   EVP_KDF_is_a := LoadLibCryptoFunction('EVP_KDF_is_a');
   if not assigned(EVP_KDF_is_a) then
+    {$if declared(LEGACY_EVP_KDF_is_a)}
+    EVP_KDF_is_a := @LEGACY_EVP_KDF_is_a;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_KDF_is_a');
+    {$ifend}
   Result := EVP_KDF_is_a(kdf, name);
 end;
 
@@ -373,7 +406,11 @@ function Load_EVP_KDF_get0_name(kdf: PEVP_KDF): PAnsiChar; cdecl;
 begin
   EVP_KDF_get0_name := LoadLibCryptoFunction('EVP_KDF_get0_name');
   if not assigned(EVP_KDF_get0_name) then
+    {$if declared(LEGACY_EVP_KDF_get0_name)}
+    EVP_KDF_get0_name := @LEGACY_EVP_KDF_get0_name;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_KDF_get0_name');
+    {$ifend}
   Result := EVP_KDF_get0_name(kdf);
 end;
 
@@ -381,7 +418,11 @@ function Load_EVP_KDF_get0_provider(kdf: PEVP_KDF): POSSL_PROVIDER; cdecl;
 begin
   EVP_KDF_get0_provider := LoadLibCryptoFunction('EVP_KDF_get0_provider');
   if not assigned(EVP_KDF_get0_provider) then
+    {$if declared(LEGACY_EVP_KDF_get0_provider)}
+    EVP_KDF_get0_provider := @LEGACY_EVP_KDF_get0_provider;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_KDF_get0_provider');
+    {$ifend}
   Result := EVP_KDF_get0_provider(kdf);
 end;
 
@@ -389,7 +430,11 @@ function Load_EVP_KDF_CTX_kdf(ctx: PEVP_KDF_CTX): PEVP_KDF; cdecl;
 begin
   EVP_KDF_CTX_kdf := LoadLibCryptoFunction('EVP_KDF_CTX_kdf');
   if not assigned(EVP_KDF_CTX_kdf) then
+    {$if declared(LEGACY_EVP_KDF_CTX_kdf)}
+    EVP_KDF_CTX_kdf := @LEGACY_EVP_KDF_CTX_kdf;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_KDF_CTX_kdf');
+    {$ifend}
   Result := EVP_KDF_CTX_kdf(ctx);
 end;
 
@@ -397,7 +442,11 @@ procedure Load_EVP_KDF_CTX_reset(ctx: PEVP_KDF_CTX); cdecl;
 begin
   EVP_KDF_CTX_reset := LoadLibCryptoFunction('EVP_KDF_CTX_reset');
   if not assigned(EVP_KDF_CTX_reset) then
+    {$if declared(LEGACY_EVP_KDF_CTX_reset)}
+    EVP_KDF_CTX_reset := @LEGACY_EVP_KDF_CTX_reset;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_KDF_CTX_reset');
+    {$ifend}
   EVP_KDF_CTX_reset(ctx);
 end;
 
@@ -405,7 +454,11 @@ function Load_EVP_KDF_CTX_get_kdf_size(ctx: PEVP_KDF_CTX): TOpenSSL_C_SIZET; cde
 begin
   EVP_KDF_CTX_get_kdf_size := LoadLibCryptoFunction('EVP_KDF_CTX_get_kdf_size');
   if not assigned(EVP_KDF_CTX_get_kdf_size) then
+    {$if declared(LEGACY_EVP_KDF_CTX_get_kdf_size)}
+    EVP_KDF_CTX_get_kdf_size := @LEGACY_EVP_KDF_CTX_get_kdf_size;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_KDF_CTX_get_kdf_size');
+    {$ifend}
   Result := EVP_KDF_CTX_get_kdf_size(ctx);
 end;
 
@@ -413,7 +466,11 @@ function Load_EVP_KDF_derive(ctx: PEVP_KDF_CTX; key: Pbyte; keylen: TOpenSSL_C_S
 begin
   EVP_KDF_derive := LoadLibCryptoFunction('EVP_KDF_derive');
   if not assigned(EVP_KDF_derive) then
+    {$if declared(LEGACY_EVP_KDF_derive)}
+    EVP_KDF_derive := @LEGACY_EVP_KDF_derive;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_KDF_derive');
+    {$ifend}
   Result := EVP_KDF_derive(ctx, key, keylen, params);
 end;
 
@@ -421,7 +478,11 @@ function Load_EVP_KDF_get_params(kdf: PEVP_KDF; params: POSSL_PARAM): TOpenSSL_C
 begin
   EVP_KDF_get_params := LoadLibCryptoFunction('EVP_KDF_get_params');
   if not assigned(EVP_KDF_get_params) then
+    {$if declared(LEGACY_EVP_KDF_get_params)}
+    EVP_KDF_get_params := @LEGACY_EVP_KDF_get_params;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_KDF_get_params');
+    {$ifend}
   Result := EVP_KDF_get_params(kdf, params);
 end;
 
@@ -429,7 +490,11 @@ function Load_EVP_KDF_CTX_get_params(ctx: PEVP_KDF_CTX; params: POSSL_PARAM): TO
 begin
   EVP_KDF_CTX_get_params := LoadLibCryptoFunction('EVP_KDF_CTX_get_params');
   if not assigned(EVP_KDF_CTX_get_params) then
+    {$if declared(LEGACY_EVP_KDF_CTX_get_params)}
+    EVP_KDF_CTX_get_params := @LEGACY_EVP_KDF_CTX_get_params;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_KDF_CTX_get_params');
+    {$ifend}
   Result := EVP_KDF_CTX_get_params(ctx, params);
 end;
 
@@ -437,7 +502,11 @@ function Load_EVP_KDF_CTX_set_params(ctx: PEVP_KDF_CTX; params: POSSL_PARAM): TO
 begin
   EVP_KDF_CTX_set_params := LoadLibCryptoFunction('EVP_KDF_CTX_set_params');
   if not assigned(EVP_KDF_CTX_set_params) then
+    {$if declared(LEGACY_EVP_KDF_CTX_set_params)}
+    EVP_KDF_CTX_set_params := @LEGACY_EVP_KDF_CTX_set_params;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_KDF_CTX_set_params');
+    {$ifend}
   Result := EVP_KDF_CTX_set_params(ctx, params);
 end;
 
@@ -445,7 +514,11 @@ function Load_EVP_KDF_gettable_params(kdf: PEVP_KDF): POSSL_PARAM; cdecl;
 begin
   EVP_KDF_gettable_params := LoadLibCryptoFunction('EVP_KDF_gettable_params');
   if not assigned(EVP_KDF_gettable_params) then
+    {$if declared(LEGACY_EVP_KDF_gettable_params)}
+    EVP_KDF_gettable_params := @LEGACY_EVP_KDF_gettable_params;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_KDF_gettable_params');
+    {$ifend}
   Result := EVP_KDF_gettable_params(kdf);
 end;
 
@@ -453,7 +526,11 @@ function Load_EVP_KDF_gettable_ctx_params(kdf: PEVP_KDF): POSSL_PARAM; cdecl;
 begin
   EVP_KDF_gettable_ctx_params := LoadLibCryptoFunction('EVP_KDF_gettable_ctx_params');
   if not assigned(EVP_KDF_gettable_ctx_params) then
+    {$if declared(LEGACY_EVP_KDF_gettable_ctx_params)}
+    EVP_KDF_gettable_ctx_params := @LEGACY_EVP_KDF_gettable_ctx_params;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_KDF_gettable_ctx_params');
+    {$ifend}
   Result := EVP_KDF_gettable_ctx_params(kdf);
 end;
 
@@ -461,7 +538,11 @@ function Load_EVP_KDF_settable_ctx_params(kdf: PEVP_KDF): POSSL_PARAM; cdecl;
 begin
   EVP_KDF_settable_ctx_params := LoadLibCryptoFunction('EVP_KDF_settable_ctx_params');
   if not assigned(EVP_KDF_settable_ctx_params) then
+    {$if declared(LEGACY_EVP_KDF_settable_ctx_params)}
+    EVP_KDF_settable_ctx_params := @LEGACY_EVP_KDF_settable_ctx_params;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_KDF_settable_ctx_params');
+    {$ifend}
   Result := EVP_KDF_settable_ctx_params(kdf);
 end;
 
@@ -469,7 +550,11 @@ function Load_EVP_KDF_CTX_gettable_params(ctx: PEVP_KDF_CTX): POSSL_PARAM; cdecl
 begin
   EVP_KDF_CTX_gettable_params := LoadLibCryptoFunction('EVP_KDF_CTX_gettable_params');
   if not assigned(EVP_KDF_CTX_gettable_params) then
+    {$if declared(LEGACY_EVP_KDF_CTX_gettable_params)}
+    EVP_KDF_CTX_gettable_params := @LEGACY_EVP_KDF_CTX_gettable_params;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_KDF_CTX_gettable_params');
+    {$ifend}
   Result := EVP_KDF_CTX_gettable_params(ctx);
 end;
 
@@ -477,7 +562,11 @@ function Load_EVP_KDF_CTX_settable_params(ctx: PEVP_KDF_CTX): POSSL_PARAM; cdecl
 begin
   EVP_KDF_CTX_settable_params := LoadLibCryptoFunction('EVP_KDF_CTX_settable_params');
   if not assigned(EVP_KDF_CTX_settable_params) then
+    {$if declared(LEGACY_EVP_KDF_CTX_settable_params)}
+    EVP_KDF_CTX_settable_params := @LEGACY_EVP_KDF_CTX_settable_params;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_KDF_CTX_settable_params');
+    {$ifend}
   Result := EVP_KDF_CTX_settable_params(ctx);
 end;
 
@@ -485,7 +574,11 @@ procedure Load_EVP_KDF_do_all_provided(libctx: POSSL_LIB_CTX; fn: TFuncType000; 
 begin
   EVP_KDF_do_all_provided := LoadLibCryptoFunction('EVP_KDF_do_all_provided');
   if not assigned(EVP_KDF_do_all_provided) then
+    {$if declared(LEGACY_EVP_KDF_do_all_provided)}
+    EVP_KDF_do_all_provided := @LEGACY_EVP_KDF_do_all_provided;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_KDF_do_all_provided');
+    {$ifend}
   EVP_KDF_do_all_provided(libctx, fn, arg);
 end;
 
@@ -493,7 +586,11 @@ function Load_EVP_KDF_names_do_all(kdf: PEVP_KDF; fn: TFuncType001; data: pointe
 begin
   EVP_KDF_names_do_all := LoadLibCryptoFunction('EVP_KDF_names_do_all');
   if not assigned(EVP_KDF_names_do_all) then
+    {$if declared(LEGACY_EVP_KDF_names_do_all)}
+    EVP_KDF_names_do_all := @LEGACY_EVP_KDF_names_do_all;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_KDF_names_do_all');
+    {$ifend}
   Result := EVP_KDF_names_do_all(kdf, fn, data);
 end;
 
@@ -501,7 +598,11 @@ function Load_EVP_PKEY_CTX_set_tls1_prf_md(ctx: PEVP_PKEY_CTX; md: PEVP_MD): TOp
 begin
   EVP_PKEY_CTX_set_tls1_prf_md := LoadLibCryptoFunction('EVP_PKEY_CTX_set_tls1_prf_md');
   if not assigned(EVP_PKEY_CTX_set_tls1_prf_md) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_tls1_prf_md)}
+    EVP_PKEY_CTX_set_tls1_prf_md := @LEGACY_EVP_PKEY_CTX_set_tls1_prf_md;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_tls1_prf_md');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_tls1_prf_md(ctx, md);
 end;
 
@@ -509,7 +610,11 @@ function Load_EVP_PKEY_CTX_set1_tls1_prf_secret(pctx: PEVP_PKEY_CTX; sec: Pbyte;
 begin
   EVP_PKEY_CTX_set1_tls1_prf_secret := LoadLibCryptoFunction('EVP_PKEY_CTX_set1_tls1_prf_secret');
   if not assigned(EVP_PKEY_CTX_set1_tls1_prf_secret) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set1_tls1_prf_secret)}
+    EVP_PKEY_CTX_set1_tls1_prf_secret := @LEGACY_EVP_PKEY_CTX_set1_tls1_prf_secret;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set1_tls1_prf_secret');
+    {$ifend}
   Result := EVP_PKEY_CTX_set1_tls1_prf_secret(pctx, sec, seclen);
 end;
 
@@ -517,7 +622,11 @@ function Load_EVP_PKEY_CTX_add1_tls1_prf_seed(pctx: PEVP_PKEY_CTX; seed: Pbyte; 
 begin
   EVP_PKEY_CTX_add1_tls1_prf_seed := LoadLibCryptoFunction('EVP_PKEY_CTX_add1_tls1_prf_seed');
   if not assigned(EVP_PKEY_CTX_add1_tls1_prf_seed) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_add1_tls1_prf_seed)}
+    EVP_PKEY_CTX_add1_tls1_prf_seed := @LEGACY_EVP_PKEY_CTX_add1_tls1_prf_seed;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_add1_tls1_prf_seed');
+    {$ifend}
   Result := EVP_PKEY_CTX_add1_tls1_prf_seed(pctx, seed, seedlen);
 end;
 
@@ -525,7 +634,11 @@ function Load_EVP_PKEY_CTX_set_hkdf_md(ctx: PEVP_PKEY_CTX; md: PEVP_MD): TOpenSS
 begin
   EVP_PKEY_CTX_set_hkdf_md := LoadLibCryptoFunction('EVP_PKEY_CTX_set_hkdf_md');
   if not assigned(EVP_PKEY_CTX_set_hkdf_md) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_hkdf_md)}
+    EVP_PKEY_CTX_set_hkdf_md := @LEGACY_EVP_PKEY_CTX_set_hkdf_md;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_hkdf_md');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_hkdf_md(ctx, md);
 end;
 
@@ -533,7 +646,11 @@ function Load_EVP_PKEY_CTX_set1_hkdf_salt(ctx: PEVP_PKEY_CTX; salt: Pbyte; saltl
 begin
   EVP_PKEY_CTX_set1_hkdf_salt := LoadLibCryptoFunction('EVP_PKEY_CTX_set1_hkdf_salt');
   if not assigned(EVP_PKEY_CTX_set1_hkdf_salt) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set1_hkdf_salt)}
+    EVP_PKEY_CTX_set1_hkdf_salt := @LEGACY_EVP_PKEY_CTX_set1_hkdf_salt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set1_hkdf_salt');
+    {$ifend}
   Result := EVP_PKEY_CTX_set1_hkdf_salt(ctx, salt, saltlen);
 end;
 
@@ -541,7 +658,11 @@ function Load_EVP_PKEY_CTX_set1_hkdf_key(ctx: PEVP_PKEY_CTX; key: Pbyte; keylen:
 begin
   EVP_PKEY_CTX_set1_hkdf_key := LoadLibCryptoFunction('EVP_PKEY_CTX_set1_hkdf_key');
   if not assigned(EVP_PKEY_CTX_set1_hkdf_key) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set1_hkdf_key)}
+    EVP_PKEY_CTX_set1_hkdf_key := @LEGACY_EVP_PKEY_CTX_set1_hkdf_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set1_hkdf_key');
+    {$ifend}
   Result := EVP_PKEY_CTX_set1_hkdf_key(ctx, key, keylen);
 end;
 
@@ -549,7 +670,11 @@ function Load_EVP_PKEY_CTX_add1_hkdf_info(ctx: PEVP_PKEY_CTX; info: Pbyte; infol
 begin
   EVP_PKEY_CTX_add1_hkdf_info := LoadLibCryptoFunction('EVP_PKEY_CTX_add1_hkdf_info');
   if not assigned(EVP_PKEY_CTX_add1_hkdf_info) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_add1_hkdf_info)}
+    EVP_PKEY_CTX_add1_hkdf_info := @LEGACY_EVP_PKEY_CTX_add1_hkdf_info;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_add1_hkdf_info');
+    {$ifend}
   Result := EVP_PKEY_CTX_add1_hkdf_info(ctx, info, infolen);
 end;
 
@@ -557,7 +682,11 @@ function Load_EVP_PKEY_CTX_set_hkdf_mode(ctx: PEVP_PKEY_CTX; mode: TOpenSSL_C_IN
 begin
   EVP_PKEY_CTX_set_hkdf_mode := LoadLibCryptoFunction('EVP_PKEY_CTX_set_hkdf_mode');
   if not assigned(EVP_PKEY_CTX_set_hkdf_mode) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_hkdf_mode)}
+    EVP_PKEY_CTX_set_hkdf_mode := @LEGACY_EVP_PKEY_CTX_set_hkdf_mode;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_hkdf_mode');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_hkdf_mode(ctx, mode);
 end;
 
@@ -565,7 +694,11 @@ function Load_EVP_PKEY_CTX_hkdf_mode(ctx: PEVP_PKEY_CTX; mode: TOpenSSL_C_INT): 
 begin
   EVP_PKEY_CTX_hkdf_mode := LoadLibCryptoFunction('EVP_PKEY_CTX_set_hkdf_mode');
   if not assigned(EVP_PKEY_CTX_hkdf_mode) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_hkdf_mode)}
+    EVP_PKEY_CTX_hkdf_mode := @LEGACY_EVP_PKEY_CTX_set_hkdf_mode;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_hkdf_mode');
+    {$ifend}
   Result := EVP_PKEY_CTX_hkdf_mode(ctx, mode);
 end;
 
@@ -573,7 +706,11 @@ function Load_EVP_PKEY_CTX_set1_pbe_pass(ctx: PEVP_PKEY_CTX; pass: PAnsiChar; pa
 begin
   EVP_PKEY_CTX_set1_pbe_pass := LoadLibCryptoFunction('EVP_PKEY_CTX_set1_pbe_pass');
   if not assigned(EVP_PKEY_CTX_set1_pbe_pass) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set1_pbe_pass)}
+    EVP_PKEY_CTX_set1_pbe_pass := @LEGACY_EVP_PKEY_CTX_set1_pbe_pass;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set1_pbe_pass');
+    {$ifend}
   Result := EVP_PKEY_CTX_set1_pbe_pass(ctx, pass, passlen);
 end;
 
@@ -581,7 +718,11 @@ function Load_EVP_PKEY_CTX_set1_scrypt_salt(ctx: PEVP_PKEY_CTX; salt: Pbyte; sal
 begin
   EVP_PKEY_CTX_set1_scrypt_salt := LoadLibCryptoFunction('EVP_PKEY_CTX_set1_scrypt_salt');
   if not assigned(EVP_PKEY_CTX_set1_scrypt_salt) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set1_scrypt_salt)}
+    EVP_PKEY_CTX_set1_scrypt_salt := @LEGACY_EVP_PKEY_CTX_set1_scrypt_salt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set1_scrypt_salt');
+    {$ifend}
   Result := EVP_PKEY_CTX_set1_scrypt_salt(ctx, salt, saltlen);
 end;
 
@@ -589,7 +730,11 @@ function Load_EVP_PKEY_CTX_set_scrypt_N(ctx: PEVP_PKEY_CTX; n: qword): TOpenSSL_
 begin
   EVP_PKEY_CTX_set_scrypt_N := LoadLibCryptoFunction('EVP_PKEY_CTX_set_scrypt_N');
   if not assigned(EVP_PKEY_CTX_set_scrypt_N) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_scrypt_N)}
+    EVP_PKEY_CTX_set_scrypt_N := @LEGACY_EVP_PKEY_CTX_set_scrypt_N;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_scrypt_N');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_scrypt_N(ctx, n);
 end;
 
@@ -597,7 +742,11 @@ function Load_EVP_PKEY_CTX_set_scrypt_r(ctx: PEVP_PKEY_CTX; r: qword): TOpenSSL_
 begin
   EVP_PKEY_CTX_set_scrypt_r := LoadLibCryptoFunction('EVP_PKEY_CTX_set_scrypt_r');
   if not assigned(EVP_PKEY_CTX_set_scrypt_r) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_scrypt_r)}
+    EVP_PKEY_CTX_set_scrypt_r := @LEGACY_EVP_PKEY_CTX_set_scrypt_r;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_scrypt_r');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_scrypt_r(ctx, r);
 end;
 
@@ -605,7 +754,11 @@ function Load_EVP_PKEY_CTX_set_scrypt_p(ctx: PEVP_PKEY_CTX; p: qword): TOpenSSL_
 begin
   EVP_PKEY_CTX_set_scrypt_p := LoadLibCryptoFunction('EVP_PKEY_CTX_set_scrypt_p');
   if not assigned(EVP_PKEY_CTX_set_scrypt_p) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_scrypt_p)}
+    EVP_PKEY_CTX_set_scrypt_p := @LEGACY_EVP_PKEY_CTX_set_scrypt_p;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_scrypt_p');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_scrypt_p(ctx, p);
 end;
 
@@ -613,7 +766,11 @@ function Load_EVP_PKEY_CTX_set_scrypt_maxmem_bytes(ctx: PEVP_PKEY_CTX; maxmem_by
 begin
   EVP_PKEY_CTX_set_scrypt_maxmem_bytes := LoadLibCryptoFunction('EVP_PKEY_CTX_set_scrypt_maxmem_bytes');
   if not assigned(EVP_PKEY_CTX_set_scrypt_maxmem_bytes) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_scrypt_maxmem_bytes)}
+    EVP_PKEY_CTX_set_scrypt_maxmem_bytes := @LEGACY_EVP_PKEY_CTX_set_scrypt_maxmem_bytes;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_scrypt_maxmem_bytes');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_scrypt_maxmem_bytes(ctx, maxmem_bytes);
 end;
 

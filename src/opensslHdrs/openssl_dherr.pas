@@ -18,7 +18,8 @@
 unit openssl_dherr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File dherr.h - Wed  6 May 13:05:52 BST 2026
+  Generated from OpenSSL 3.0.20 Header File dherr.h - Wed  6 May 13:15:02 BST 2026
+  With Legacy Support Option
 }
 
 interface

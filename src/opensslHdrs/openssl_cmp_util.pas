@@ -18,7 +18,8 @@
 unit openssl_cmp_util;
 
 {
-  Generated from OpenSSL 3.0.20 Header File cmp_util.h - Wed  6 May 13:05:38 BST 2026
+  Generated from OpenSSL 3.0.20 Header File cmp_util.h - Wed  6 May 13:14:47 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -149,7 +150,11 @@ function Load_OSSL_CMP_log_open: TOpenSSL_C_INT; cdecl;
 begin
   OSSL_CMP_log_open := LoadLibCryptoFunction('OSSL_CMP_log_open');
   if not assigned(OSSL_CMP_log_open) then
+    {$if declared(LEGACY_OSSL_CMP_log_open)}
+    OSSL_CMP_log_open := @LEGACY_OSSL_CMP_log_open;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CMP_log_open');
+    {$ifend}
   Result := OSSL_CMP_log_open;
 end;
 
@@ -157,7 +162,11 @@ procedure Load_OSSL_CMP_log_close; cdecl;
 begin
   OSSL_CMP_log_close := LoadLibCryptoFunction('OSSL_CMP_log_close');
   if not assigned(OSSL_CMP_log_close) then
+    {$if declared(LEGACY_OSSL_CMP_log_close)}
+    OSSL_CMP_log_close := @LEGACY_OSSL_CMP_log_close;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CMP_log_close');
+    {$ifend}
   OSSL_CMP_log_close;
 end;
 
@@ -165,7 +174,11 @@ function Load_OSSL_CMP_print_to_bio(bio: PBIO; component: PAnsiChar; file_: PAns
 begin
   OSSL_CMP_print_to_bio := LoadLibCryptoFunction('OSSL_CMP_print_to_bio');
   if not assigned(OSSL_CMP_print_to_bio) then
+    {$if declared(LEGACY_OSSL_CMP_print_to_bio)}
+    OSSL_CMP_print_to_bio := @LEGACY_OSSL_CMP_print_to_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CMP_print_to_bio');
+    {$ifend}
   Result := OSSL_CMP_print_to_bio(bio, component, file_, line, level, msg);
 end;
 
@@ -173,7 +186,11 @@ procedure Load_OSSL_CMP_print_errors_cb(log_fn: TOSSL_CMP_log_cb_t); cdecl;
 begin
   OSSL_CMP_print_errors_cb := LoadLibCryptoFunction('OSSL_CMP_print_errors_cb');
   if not assigned(OSSL_CMP_print_errors_cb) then
+    {$if declared(LEGACY_OSSL_CMP_print_errors_cb)}
+    OSSL_CMP_print_errors_cb := @LEGACY_OSSL_CMP_print_errors_cb;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_CMP_print_errors_cb');
+    {$ifend}
   OSSL_CMP_print_errors_cb(log_fn);
 end;
 

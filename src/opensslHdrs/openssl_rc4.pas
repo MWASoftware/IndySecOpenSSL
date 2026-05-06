@@ -18,7 +18,8 @@
 unit openssl_rc4;
 
 {
-  Generated from OpenSSL 3.0.20 Header File rc4.h - Wed  6 May 13:06:26 BST 2026
+  Generated from OpenSSL 3.0.20 Header File rc4.h - Wed  6 May 13:15:35 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -120,7 +121,11 @@ function Load_RC4_options: PAnsiChar; cdecl;
 begin
   RC4_options := LoadLibCryptoFunction('RC4_options');
   if not assigned(RC4_options) then
+    {$if declared(LEGACY_RC4_options)}
+    RC4_options := @LEGACY_RC4_options;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RC4_options');
+    {$ifend}
   Result := RC4_options;
 end;
 
@@ -128,7 +133,11 @@ procedure Load_RC4_set_key(key: PRC4_KEY; len: TOpenSSL_C_INT; data: Pbyte); cde
 begin
   RC4_set_key := LoadLibCryptoFunction('RC4_set_key');
   if not assigned(RC4_set_key) then
+    {$if declared(LEGACY_RC4_set_key)}
+    RC4_set_key := @LEGACY_RC4_set_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RC4_set_key');
+    {$ifend}
   RC4_set_key(key, len, data);
 end;
 
@@ -136,7 +145,11 @@ procedure Load_RC4(key: PRC4_KEY; len: TOpenSSL_C_SIZET; indata: Pbyte; outdata:
 begin
   RC4 := LoadLibCryptoFunction('RC4');
   if not assigned(RC4) then
+    {$if declared(LEGACY_RC4)}
+    RC4 := @LEGACY_RC4;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RC4');
+    {$ifend}
   RC4(key, len, indata, outdata);
 end;
 

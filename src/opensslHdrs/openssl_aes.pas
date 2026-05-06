@@ -18,7 +18,8 @@
 unit openssl_aes;
 
 {
-  Generated from OpenSSL 3.0.20 Header File aes.h - Wed  6 May 13:05:26 BST 2026
+  Generated from OpenSSL 3.0.20 Header File aes.h - Wed  6 May 13:14:35 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -181,7 +182,11 @@ function Load_AES_options: PAnsiChar; cdecl;
 begin
   AES_options := LoadLibCryptoFunction('AES_options');
   if not assigned(AES_options) then
+    {$if declared(LEGACY_AES_options)}
+    AES_options := @LEGACY_AES_options;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('AES_options');
+    {$ifend}
   Result := AES_options;
 end;
 
@@ -189,7 +194,11 @@ function Load_AES_set_encrypt_key(userKey: Pbyte; bits: TOpenSSL_C_INT; key: PAE
 begin
   AES_set_encrypt_key := LoadLibCryptoFunction('AES_set_encrypt_key');
   if not assigned(AES_set_encrypt_key) then
+    {$if declared(LEGACY_AES_set_encrypt_key)}
+    AES_set_encrypt_key := @LEGACY_AES_set_encrypt_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('AES_set_encrypt_key');
+    {$ifend}
   Result := AES_set_encrypt_key(userKey, bits, key);
 end;
 
@@ -197,7 +206,11 @@ function Load_AES_set_decrypt_key(userKey: Pbyte; bits: TOpenSSL_C_INT; key: PAE
 begin
   AES_set_decrypt_key := LoadLibCryptoFunction('AES_set_decrypt_key');
   if not assigned(AES_set_decrypt_key) then
+    {$if declared(LEGACY_AES_set_decrypt_key)}
+    AES_set_decrypt_key := @LEGACY_AES_set_decrypt_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('AES_set_decrypt_key');
+    {$ifend}
   Result := AES_set_decrypt_key(userKey, bits, key);
 end;
 
@@ -205,7 +218,11 @@ procedure Load_AES_encrypt(in_: Pbyte; out_: Pbyte; key: PAES_KEY); cdecl;
 begin
   AES_encrypt := LoadLibCryptoFunction('AES_encrypt');
   if not assigned(AES_encrypt) then
+    {$if declared(LEGACY_AES_encrypt)}
+    AES_encrypt := @LEGACY_AES_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('AES_encrypt');
+    {$ifend}
   AES_encrypt(in_, out_, key);
 end;
 
@@ -213,7 +230,11 @@ procedure Load_AES_decrypt(in_: Pbyte; out_: Pbyte; key: PAES_KEY); cdecl;
 begin
   AES_decrypt := LoadLibCryptoFunction('AES_decrypt');
   if not assigned(AES_decrypt) then
+    {$if declared(LEGACY_AES_decrypt)}
+    AES_decrypt := @LEGACY_AES_decrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('AES_decrypt');
+    {$ifend}
   AES_decrypt(in_, out_, key);
 end;
 
@@ -221,7 +242,11 @@ procedure Load_AES_ecb_encrypt(in_: Pbyte; out_: Pbyte; key: PAES_KEY; enc: TOpe
 begin
   AES_ecb_encrypt := LoadLibCryptoFunction('AES_ecb_encrypt');
   if not assigned(AES_ecb_encrypt) then
+    {$if declared(LEGACY_AES_ecb_encrypt)}
+    AES_ecb_encrypt := @LEGACY_AES_ecb_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('AES_ecb_encrypt');
+    {$ifend}
   AES_ecb_encrypt(in_, out_, key, enc);
 end;
 
@@ -229,7 +254,11 @@ procedure Load_AES_cbc_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_SIZET
 begin
   AES_cbc_encrypt := LoadLibCryptoFunction('AES_cbc_encrypt');
   if not assigned(AES_cbc_encrypt) then
+    {$if declared(LEGACY_AES_cbc_encrypt)}
+    AES_cbc_encrypt := @LEGACY_AES_cbc_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('AES_cbc_encrypt');
+    {$ifend}
   AES_cbc_encrypt(in_, out_, length, key, ivec, enc);
 end;
 
@@ -237,7 +266,11 @@ procedure Load_AES_cfb128_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_SI
 begin
   AES_cfb128_encrypt := LoadLibCryptoFunction('AES_cfb128_encrypt');
   if not assigned(AES_cfb128_encrypt) then
+    {$if declared(LEGACY_AES_cfb128_encrypt)}
+    AES_cfb128_encrypt := @LEGACY_AES_cfb128_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('AES_cfb128_encrypt');
+    {$ifend}
   AES_cfb128_encrypt(in_, out_, length, key, ivec, num, enc);
 end;
 
@@ -245,7 +278,11 @@ procedure Load_AES_cfb1_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_SIZE
 begin
   AES_cfb1_encrypt := LoadLibCryptoFunction('AES_cfb1_encrypt');
   if not assigned(AES_cfb1_encrypt) then
+    {$if declared(LEGACY_AES_cfb1_encrypt)}
+    AES_cfb1_encrypt := @LEGACY_AES_cfb1_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('AES_cfb1_encrypt');
+    {$ifend}
   AES_cfb1_encrypt(in_, out_, length, key, ivec, num, enc);
 end;
 
@@ -253,7 +290,11 @@ procedure Load_AES_cfb8_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_SIZE
 begin
   AES_cfb8_encrypt := LoadLibCryptoFunction('AES_cfb8_encrypt');
   if not assigned(AES_cfb8_encrypt) then
+    {$if declared(LEGACY_AES_cfb8_encrypt)}
+    AES_cfb8_encrypt := @LEGACY_AES_cfb8_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('AES_cfb8_encrypt');
+    {$ifend}
   AES_cfb8_encrypt(in_, out_, length, key, ivec, num, enc);
 end;
 
@@ -261,7 +302,11 @@ procedure Load_AES_ofb128_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_SI
 begin
   AES_ofb128_encrypt := LoadLibCryptoFunction('AES_ofb128_encrypt');
   if not assigned(AES_ofb128_encrypt) then
+    {$if declared(LEGACY_AES_ofb128_encrypt)}
+    AES_ofb128_encrypt := @LEGACY_AES_ofb128_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('AES_ofb128_encrypt');
+    {$ifend}
   AES_ofb128_encrypt(in_, out_, length, key, ivec, num);
 end;
 
@@ -269,7 +314,11 @@ procedure Load_AES_ige_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_SIZET
 begin
   AES_ige_encrypt := LoadLibCryptoFunction('AES_ige_encrypt');
   if not assigned(AES_ige_encrypt) then
+    {$if declared(LEGACY_AES_ige_encrypt)}
+    AES_ige_encrypt := @LEGACY_AES_ige_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('AES_ige_encrypt');
+    {$ifend}
   AES_ige_encrypt(in_, out_, length, key, ivec, enc);
 end;
 
@@ -277,7 +326,11 @@ procedure Load_AES_bi_ige_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_SI
 begin
   AES_bi_ige_encrypt := LoadLibCryptoFunction('AES_bi_ige_encrypt');
   if not assigned(AES_bi_ige_encrypt) then
+    {$if declared(LEGACY_AES_bi_ige_encrypt)}
+    AES_bi_ige_encrypt := @LEGACY_AES_bi_ige_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('AES_bi_ige_encrypt');
+    {$ifend}
   AES_bi_ige_encrypt(in_, out_, length, key, key2, ivec, enc);
 end;
 
@@ -285,7 +338,11 @@ function Load_AES_wrap_key(key: PAES_KEY; iv: Pbyte; out_: Pbyte; in_: Pbyte; in
 begin
   AES_wrap_key := LoadLibCryptoFunction('AES_wrap_key');
   if not assigned(AES_wrap_key) then
+    {$if declared(LEGACY_AES_wrap_key)}
+    AES_wrap_key := @LEGACY_AES_wrap_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('AES_wrap_key');
+    {$ifend}
   Result := AES_wrap_key(key, iv, out_, in_, inlen);
 end;
 
@@ -293,7 +350,11 @@ function Load_AES_unwrap_key(key: PAES_KEY; iv: Pbyte; out_: Pbyte; in_: Pbyte; 
 begin
   AES_unwrap_key := LoadLibCryptoFunction('AES_unwrap_key');
   if not assigned(AES_unwrap_key) then
+    {$if declared(LEGACY_AES_unwrap_key)}
+    AES_unwrap_key := @LEGACY_AES_unwrap_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('AES_unwrap_key');
+    {$ifend}
   Result := AES_unwrap_key(key, iv, out_, in_, inlen);
 end;
 

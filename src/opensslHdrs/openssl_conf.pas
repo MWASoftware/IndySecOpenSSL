@@ -18,7 +18,8 @@
 unit openssl_conf;
 
 {
-  Generated from OpenSSL 3.0.20 Header File conf.h - Wed  6 May 13:05:43 BST 2026
+  Generated from OpenSSL 3.0.20 Header File conf.h - Wed  6 May 13:14:53 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -781,7 +782,11 @@ function Load_sk_CONF_VALUE_num(_para: Pstack_st_CONF_VALUE): TOpenSSL_C_INT; cd
 begin
   sk_CONF_VALUE_num := LoadLibCryptoFunction('OPENSSL_sk_num');
   if not assigned(sk_CONF_VALUE_num) then
+    {$if declared(LEGACY_OPENSSL_sk_num)}
+    sk_CONF_VALUE_num := @LEGACY_OPENSSL_sk_num;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_num');
+    {$ifend}
   Result := sk_CONF_VALUE_num(_para);
 end;
 
@@ -789,7 +794,11 @@ function Load_sk_CONF_VALUE_value(_para: Pstack_st_CONF_VALUE; _para2: TOpenSSL_
 begin
   sk_CONF_VALUE_value := LoadLibCryptoFunction('OPENSSL_sk_value');
   if not assigned(sk_CONF_VALUE_value) then
+    {$if declared(LEGACY_OPENSSL_sk_value)}
+    sk_CONF_VALUE_value := @LEGACY_OPENSSL_sk_value;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_value');
+    {$ifend}
   Result := sk_CONF_VALUE_value(_para, _para2);
 end;
 
@@ -797,7 +806,11 @@ function Load_sk_CONF_VALUE_new(cmp: Tsk_CONF_VALUE_compfunc): Pstack_st_CONF_VA
 begin
   sk_CONF_VALUE_new := LoadLibCryptoFunction('OPENSSL_sk_new');
   if not assigned(sk_CONF_VALUE_new) then
+    {$if declared(LEGACY_OPENSSL_sk_new)}
+    sk_CONF_VALUE_new := @LEGACY_OPENSSL_sk_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new');
+    {$ifend}
   Result := sk_CONF_VALUE_new(cmp);
 end;
 
@@ -805,7 +818,11 @@ function Load_sk_CONF_VALUE_new_null: Pstack_st_CONF_VALUE; cdecl;
 begin
   sk_CONF_VALUE_new_null := LoadLibCryptoFunction('OPENSSL_sk_new_null');
   if not assigned(sk_CONF_VALUE_new_null) then
+    {$if declared(LEGACY_OPENSSL_sk_new_null)}
+    sk_CONF_VALUE_new_null := @LEGACY_OPENSSL_sk_new_null;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_null');
+    {$ifend}
   Result := sk_CONF_VALUE_new_null;
 end;
 
@@ -813,7 +830,11 @@ function Load_sk_CONF_VALUE_new_reserve(cmp: Tsk_CONF_VALUE_compfunc; n: TOpenSS
 begin
   sk_CONF_VALUE_new_reserve := LoadLibCryptoFunction('OPENSSL_sk_new_reserve');
   if not assigned(sk_CONF_VALUE_new_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_new_reserve)}
+    sk_CONF_VALUE_new_reserve := @LEGACY_OPENSSL_sk_new_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_reserve');
+    {$ifend}
   Result := sk_CONF_VALUE_new_reserve(cmp, n);
 end;
 
@@ -821,7 +842,11 @@ function Load_sk_CONF_VALUE_reserve(_para: Pstack_st_CONF_VALUE; n: TOpenSSL_C_I
 begin
   sk_CONF_VALUE_reserve := LoadLibCryptoFunction('OPENSSL_sk_reserve');
   if not assigned(sk_CONF_VALUE_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_reserve)}
+    sk_CONF_VALUE_reserve := @LEGACY_OPENSSL_sk_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_reserve');
+    {$ifend}
   Result := sk_CONF_VALUE_reserve(_para, n);
 end;
 
@@ -829,7 +854,11 @@ function Load_sk_CONF_VALUE_free(_para: Pstack_st_CONF_VALUE): TOpenSSL_C_INT; c
 begin
   sk_CONF_VALUE_free := LoadLibCryptoFunction('OPENSSL_sk_free');
   if not assigned(sk_CONF_VALUE_free) then
+    {$if declared(LEGACY_OPENSSL_sk_free)}
+    sk_CONF_VALUE_free := @LEGACY_OPENSSL_sk_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_free');
+    {$ifend}
   Result := sk_CONF_VALUE_free(_para);
 end;
 
@@ -837,7 +866,11 @@ function Load_sk_CONF_VALUE_zero(_para: Pstack_st_CONF_VALUE): TOpenSSL_C_INT; c
 begin
   sk_CONF_VALUE_zero := LoadLibCryptoFunction('OPENSSL_sk_zero');
   if not assigned(sk_CONF_VALUE_zero) then
+    {$if declared(LEGACY_OPENSSL_sk_zero)}
+    sk_CONF_VALUE_zero := @LEGACY_OPENSSL_sk_zero;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_zero');
+    {$ifend}
   Result := sk_CONF_VALUE_zero(_para);
 end;
 
@@ -845,7 +878,11 @@ function Load_sk_CONF_VALUE_delete(st: Pstack_st_CONF_VALUE; loc: TOpenSSL_C_INT
 begin
   sk_CONF_VALUE_delete := LoadLibCryptoFunction('OPENSSL_sk_delete');
   if not assigned(sk_CONF_VALUE_delete) then
+    {$if declared(LEGACY_OPENSSL_sk_delete)}
+    sk_CONF_VALUE_delete := @LEGACY_OPENSSL_sk_delete;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete');
+    {$ifend}
   Result := sk_CONF_VALUE_delete(st, loc);
 end;
 
@@ -853,7 +890,11 @@ function Load_sk_CONF_VALUE_delete_ptr(st: Pstack_st_CONF_VALUE; ptr: Pstack_st_
 begin
   sk_CONF_VALUE_delete_ptr := LoadLibCryptoFunction('OPENSSL_sk_delete_ptr');
   if not assigned(sk_CONF_VALUE_delete_ptr) then
+    {$if declared(LEGACY_OPENSSL_sk_delete_ptr)}
+    sk_CONF_VALUE_delete_ptr := @LEGACY_OPENSSL_sk_delete_ptr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete_ptr');
+    {$ifend}
   Result := sk_CONF_VALUE_delete_ptr(st, ptr);
 end;
 
@@ -861,7 +902,11 @@ function Load_sk_CONF_VALUE_push(st: Pstack_st_CONF_VALUE; data: pointer): TOpen
 begin
   sk_CONF_VALUE_push := LoadLibCryptoFunction('OPENSSL_sk_push');
   if not assigned(sk_CONF_VALUE_push) then
+    {$if declared(LEGACY_OPENSSL_sk_push)}
+    sk_CONF_VALUE_push := @LEGACY_OPENSSL_sk_push;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_push');
+    {$ifend}
   Result := sk_CONF_VALUE_push(st, data);
 end;
 
@@ -869,7 +914,11 @@ function Load_sk_CONF_VALUE_unshift(st: Pstack_st_CONF_VALUE; data: pointer): TO
 begin
   sk_CONF_VALUE_unshift := LoadLibCryptoFunction('OPENSSL_sk_unshift');
   if not assigned(sk_CONF_VALUE_unshift) then
+    {$if declared(LEGACY_OPENSSL_sk_unshift)}
+    sk_CONF_VALUE_unshift := @LEGACY_OPENSSL_sk_unshift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_unshift');
+    {$ifend}
   Result := sk_CONF_VALUE_unshift(st, data);
 end;
 
@@ -877,7 +926,11 @@ function Load_sk_CONF_VALUE_pop(_para: Pstack_st_CONF_VALUE): Pstack_st_CONF_VAL
 begin
   sk_CONF_VALUE_pop := LoadLibCryptoFunction('OPENSSL_sk_pop');
   if not assigned(sk_CONF_VALUE_pop) then
+    {$if declared(LEGACY_OPENSSL_sk_pop)}
+    sk_CONF_VALUE_pop := @LEGACY_OPENSSL_sk_pop;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop');
+    {$ifend}
   Result := sk_CONF_VALUE_pop(_para);
 end;
 
@@ -885,7 +938,11 @@ function Load_sk_CONF_VALUE_shift(_para: Pstack_st_CONF_VALUE): Pstack_st_CONF_V
 begin
   sk_CONF_VALUE_shift := LoadLibCryptoFunction('OPENSSL_sk_shift');
   if not assigned(sk_CONF_VALUE_shift) then
+    {$if declared(LEGACY_OPENSSL_sk_shift)}
+    sk_CONF_VALUE_shift := @LEGACY_OPENSSL_sk_shift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_shift');
+    {$ifend}
   Result := sk_CONF_VALUE_shift(_para);
 end;
 
@@ -893,7 +950,11 @@ procedure Load_sk_CONF_VALUE_pop_free(st: Pstack_st_CONF_VALUE; func: Tsk_CONF_V
 begin
   sk_CONF_VALUE_pop_free := LoadLibCryptoFunction('OPENSSL_sk_pop_free');
   if not assigned(sk_CONF_VALUE_pop_free) then
+    {$if declared(LEGACY_OPENSSL_sk_pop_free)}
+    sk_CONF_VALUE_pop_free := @LEGACY_OPENSSL_sk_pop_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop_free');
+    {$ifend}
   sk_CONF_VALUE_pop_free(st, func);
 end;
 
@@ -901,7 +962,11 @@ function Load_sk_CONF_VALUE_insert(st: Pstack_st_CONF_VALUE; data: pointer; wher
 begin
   sk_CONF_VALUE_insert := LoadLibCryptoFunction('OPENSSL_sk_insert');
   if not assigned(sk_CONF_VALUE_insert) then
+    {$if declared(LEGACY_OPENSSL_sk_insert)}
+    sk_CONF_VALUE_insert := @LEGACY_OPENSSL_sk_insert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_insert');
+    {$ifend}
   Result := sk_CONF_VALUE_insert(st, data, where);
 end;
 
@@ -909,7 +974,11 @@ function Load_sk_CONF_VALUE_set(st: Pstack_st_CONF_VALUE; i: TOpenSSL_C_INT; dat
 begin
   sk_CONF_VALUE_set := LoadLibCryptoFunction('OPENSSL_sk_set');
   if not assigned(sk_CONF_VALUE_set) then
+    {$if declared(LEGACY_OPENSSL_sk_set)}
+    sk_CONF_VALUE_set := @LEGACY_OPENSSL_sk_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set');
+    {$ifend}
   Result := sk_CONF_VALUE_set(st, i, data);
 end;
 
@@ -917,7 +986,11 @@ function Load_sk_CONF_VALUE_find(st: Pstack_st_CONF_VALUE; data: pointer): TOpen
 begin
   sk_CONF_VALUE_find := LoadLibCryptoFunction('OPENSSL_sk_find');
   if not assigned(sk_CONF_VALUE_find) then
+    {$if declared(LEGACY_OPENSSL_sk_find)}
+    sk_CONF_VALUE_find := @LEGACY_OPENSSL_sk_find;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find');
+    {$ifend}
   Result := sk_CONF_VALUE_find(st, data);
 end;
 
@@ -925,7 +998,11 @@ function Load_sk_CONF_VALUE_find_ex(st: Pstack_st_CONF_VALUE; data: pointer): TO
 begin
   sk_CONF_VALUE_find_ex := LoadLibCryptoFunction('OPENSSL_sk_find_ex');
   if not assigned(sk_CONF_VALUE_find_ex) then
+    {$if declared(LEGACY_OPENSSL_sk_find_ex)}
+    sk_CONF_VALUE_find_ex := @LEGACY_OPENSSL_sk_find_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_ex');
+    {$ifend}
   Result := sk_CONF_VALUE_find_ex(st, data);
 end;
 
@@ -933,7 +1010,11 @@ function Load_sk_CONF_VALUE_find_all(st: Pstack_st_CONF_VALUE; data: pointer; pn
 begin
   sk_CONF_VALUE_find_all := LoadLibCryptoFunction('OPENSSL_sk_find_all');
   if not assigned(sk_CONF_VALUE_find_all) then
+    {$if declared(LEGACY_OPENSSL_sk_find_all)}
+    sk_CONF_VALUE_find_all := @LEGACY_OPENSSL_sk_find_all;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_all');
+    {$ifend}
   Result := sk_CONF_VALUE_find_all(st, data, pnum);
 end;
 
@@ -941,7 +1022,11 @@ function Load_sk_CONF_VALUE_sort(_para: Pstack_st_CONF_VALUE): TOpenSSL_C_INT; c
 begin
   sk_CONF_VALUE_sort := LoadLibCryptoFunction('OPENSSL_sk_sort');
   if not assigned(sk_CONF_VALUE_sort) then
+    {$if declared(LEGACY_OPENSSL_sk_sort)}
+    sk_CONF_VALUE_sort := @LEGACY_OPENSSL_sk_sort;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_sort');
+    {$ifend}
   Result := sk_CONF_VALUE_sort(_para);
 end;
 
@@ -949,7 +1034,11 @@ function Load_sk_CONF_VALUE_is_sorted(_para: Pstack_st_CONF_VALUE): TOpenSSL_C_I
 begin
   sk_CONF_VALUE_is_sorted := LoadLibCryptoFunction('OPENSSL_sk_is_sorted');
   if not assigned(sk_CONF_VALUE_is_sorted) then
+    {$if declared(LEGACY_OPENSSL_sk_is_sorted)}
+    sk_CONF_VALUE_is_sorted := @LEGACY_OPENSSL_sk_is_sorted;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_is_sorted');
+    {$ifend}
   Result := sk_CONF_VALUE_is_sorted(_para);
 end;
 
@@ -957,7 +1046,11 @@ function Load_sk_CONF_VALUE_dup(st: Pstack_st_CONF_VALUE): Pstack_st_CONF_VALUE;
 begin
   sk_CONF_VALUE_dup := LoadLibCryptoFunction('OPENSSL_sk_dup');
   if not assigned(sk_CONF_VALUE_dup) then
+    {$if declared(LEGACY_OPENSSL_sk_dup)}
+    sk_CONF_VALUE_dup := @LEGACY_OPENSSL_sk_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_dup');
+    {$ifend}
   Result := sk_CONF_VALUE_dup(st);
 end;
 
@@ -965,7 +1058,11 @@ function Load_sk_CONF_VALUE_deep_copy(st: Pstack_st_CONF_VALUE; c: Tsk_CONF_VALU
 begin
   sk_CONF_VALUE_deep_copy := LoadLibCryptoFunction('OPENSSL_sk_deep_copy');
   if not assigned(sk_CONF_VALUE_deep_copy) then
+    {$if declared(LEGACY_OPENSSL_sk_deep_copy)}
+    sk_CONF_VALUE_deep_copy := @LEGACY_OPENSSL_sk_deep_copy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_deep_copy');
+    {$ifend}
   Result := sk_CONF_VALUE_deep_copy(st, c, f);
 end;
 
@@ -973,7 +1070,11 @@ function Load_sk_CONF_VALUE_set_cmp_func(st: Pstack_st_CONF_VALUE; cmp: Tsk_CONF
 begin
   sk_CONF_VALUE_set_cmp_func := LoadLibCryptoFunction('OPENSSL_sk_set_cmp_func');
   if not assigned(sk_CONF_VALUE_set_cmp_func) then
+    {$if declared(LEGACY_OPENSSL_sk_set_cmp_func)}
+    sk_CONF_VALUE_set_cmp_func := @LEGACY_OPENSSL_sk_set_cmp_func;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set_cmp_func');
+    {$ifend}
   Result := sk_CONF_VALUE_set_cmp_func(st, cmp);
 end;
 
@@ -981,7 +1082,11 @@ function Load_CONF_set_default_method(meth: PCONF_METHOD): TOpenSSL_C_INT; cdecl
 begin
   CONF_set_default_method := LoadLibCryptoFunction('CONF_set_default_method');
   if not assigned(CONF_set_default_method) then
+    {$if declared(LEGACY_CONF_set_default_method)}
+    CONF_set_default_method := @LEGACY_CONF_set_default_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CONF_set_default_method');
+    {$ifend}
   Result := CONF_set_default_method(meth);
 end;
 
@@ -989,7 +1094,11 @@ procedure Load_CONF_set_nconf(conf: PCONF; hash: Plhash_st_CONF_VALUE); cdecl;
 begin
   CONF_set_nconf := LoadLibCryptoFunction('CONF_set_nconf');
   if not assigned(CONF_set_nconf) then
+    {$if declared(LEGACY_CONF_set_nconf)}
+    CONF_set_nconf := @LEGACY_CONF_set_nconf;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CONF_set_nconf');
+    {$ifend}
   CONF_set_nconf(conf, hash);
 end;
 
@@ -997,7 +1106,11 @@ function Load_CONF_load(conf: Plhash_st_CONF_VALUE; file_: PAnsiChar; eline: POp
 begin
   CONF_load := LoadLibCryptoFunction('CONF_load');
   if not assigned(CONF_load) then
+    {$if declared(LEGACY_CONF_load)}
+    CONF_load := @LEGACY_CONF_load;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CONF_load');
+    {$ifend}
   Result := CONF_load(conf, file_, eline);
 end;
 
@@ -1006,7 +1119,11 @@ function Load_CONF_load_fp(conf: Plhash_st_CONF_VALUE; fp: PFILE; eline: POpenSS
 begin
   CONF_load_fp := LoadLibCryptoFunction('CONF_load_fp');
   if not assigned(CONF_load_fp) then
+    {$if declared(LEGACY_CONF_load_fp)}
+    CONF_load_fp := @LEGACY_CONF_load_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CONF_load_fp');
+    {$ifend}
   Result := CONF_load_fp(conf, fp, eline);
 end;
 
@@ -1015,7 +1132,11 @@ function Load_CONF_load_bio(conf: Plhash_st_CONF_VALUE; bp: PBIO; eline: POpenSS
 begin
   CONF_load_bio := LoadLibCryptoFunction('CONF_load_bio');
   if not assigned(CONF_load_bio) then
+    {$if declared(LEGACY_CONF_load_bio)}
+    CONF_load_bio := @LEGACY_CONF_load_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CONF_load_bio');
+    {$ifend}
   Result := CONF_load_bio(conf, bp, eline);
 end;
 
@@ -1023,7 +1144,11 @@ function Load_CONF_get_section(conf: Plhash_st_CONF_VALUE; section: PAnsiChar): 
 begin
   CONF_get_section := LoadLibCryptoFunction('CONF_get_section');
   if not assigned(CONF_get_section) then
+    {$if declared(LEGACY_CONF_get_section)}
+    CONF_get_section := @LEGACY_CONF_get_section;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CONF_get_section');
+    {$ifend}
   Result := CONF_get_section(conf, section);
 end;
 
@@ -1031,7 +1156,11 @@ function Load_CONF_get_string(conf: Plhash_st_CONF_VALUE; group: PAnsiChar; name
 begin
   CONF_get_string := LoadLibCryptoFunction('CONF_get_string');
   if not assigned(CONF_get_string) then
+    {$if declared(LEGACY_CONF_get_string)}
+    CONF_get_string := @LEGACY_CONF_get_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CONF_get_string');
+    {$ifend}
   Result := CONF_get_string(conf, group, name);
 end;
 
@@ -1039,7 +1168,11 @@ function Load_CONF_get_number(conf: Plhash_st_CONF_VALUE; group: PAnsiChar; name
 begin
   CONF_get_number := LoadLibCryptoFunction('CONF_get_number');
   if not assigned(CONF_get_number) then
+    {$if declared(LEGACY_CONF_get_number)}
+    CONF_get_number := @LEGACY_CONF_get_number;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CONF_get_number');
+    {$ifend}
   Result := CONF_get_number(conf, group, name);
 end;
 
@@ -1047,7 +1180,11 @@ procedure Load_CONF_free(conf: Plhash_st_CONF_VALUE); cdecl;
 begin
   CONF_free := LoadLibCryptoFunction('CONF_free');
   if not assigned(CONF_free) then
+    {$if declared(LEGACY_CONF_free)}
+    CONF_free := @LEGACY_CONF_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CONF_free');
+    {$ifend}
   CONF_free(conf);
 end;
 
@@ -1056,7 +1193,11 @@ function Load_CONF_dump_fp(conf: Plhash_st_CONF_VALUE; out_: PFILE): TOpenSSL_C_
 begin
   CONF_dump_fp := LoadLibCryptoFunction('CONF_dump_fp');
   if not assigned(CONF_dump_fp) then
+    {$if declared(LEGACY_CONF_dump_fp)}
+    CONF_dump_fp := @LEGACY_CONF_dump_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CONF_dump_fp');
+    {$ifend}
   Result := CONF_dump_fp(conf, out_);
 end;
 
@@ -1065,7 +1206,11 @@ function Load_CONF_dump_bio(conf: Plhash_st_CONF_VALUE; out_: PBIO): TOpenSSL_C_
 begin
   CONF_dump_bio := LoadLibCryptoFunction('CONF_dump_bio');
   if not assigned(CONF_dump_bio) then
+    {$if declared(LEGACY_CONF_dump_bio)}
+    CONF_dump_bio := @LEGACY_CONF_dump_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CONF_dump_bio');
+    {$ifend}
   Result := CONF_dump_bio(conf, out_);
 end;
 
@@ -1074,7 +1219,11 @@ procedure Load_OPENSSL_config(config_name: PAnsiChar); cdecl;
 begin
   OPENSSL_config := LoadLibCryptoFunction('OPENSSL_config');
   if not assigned(OPENSSL_config) then
+    {$if declared(LEGACY_OPENSSL_config)}
+    OPENSSL_config := @LEGACY_OPENSSL_config;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_config');
+    {$ifend}
   OPENSSL_config(config_name);
 end;
 
@@ -1083,7 +1232,11 @@ function Load_NCONF_new_ex(libctx: POSSL_LIB_CTX; meth: PCONF_METHOD): PCONF; cd
 begin
   NCONF_new_ex := LoadLibCryptoFunction('NCONF_new_ex');
   if not assigned(NCONF_new_ex) then
+    {$if declared(LEGACY_NCONF_new_ex)}
+    NCONF_new_ex := @LEGACY_NCONF_new_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('NCONF_new_ex');
+    {$ifend}
   Result := NCONF_new_ex(libctx, meth);
 end;
 
@@ -1091,7 +1244,11 @@ function Load_NCONF_get0_libctx(conf: PCONF): POSSL_LIB_CTX; cdecl;
 begin
   NCONF_get0_libctx := LoadLibCryptoFunction('NCONF_get0_libctx');
   if not assigned(NCONF_get0_libctx) then
+    {$if declared(LEGACY_NCONF_get0_libctx)}
+    NCONF_get0_libctx := @LEGACY_NCONF_get0_libctx;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('NCONF_get0_libctx');
+    {$ifend}
   Result := NCONF_get0_libctx(conf);
 end;
 
@@ -1099,7 +1256,11 @@ function Load_NCONF_new(meth: PCONF_METHOD): PCONF; cdecl;
 begin
   NCONF_new := LoadLibCryptoFunction('NCONF_new');
   if not assigned(NCONF_new) then
+    {$if declared(LEGACY_NCONF_new)}
+    NCONF_new := @LEGACY_NCONF_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('NCONF_new');
+    {$ifend}
   Result := NCONF_new(meth);
 end;
 
@@ -1107,7 +1268,11 @@ function Load_NCONF_default: PCONF_METHOD; cdecl;
 begin
   NCONF_default := LoadLibCryptoFunction('NCONF_default');
   if not assigned(NCONF_default) then
+    {$if declared(LEGACY_NCONF_default)}
+    NCONF_default := @LEGACY_NCONF_default;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('NCONF_default');
+    {$ifend}
   Result := NCONF_default;
 end;
 
@@ -1116,7 +1281,11 @@ function Load_NCONF_WIN32: PCONF_METHOD; cdecl;
 begin
   NCONF_WIN32 := LoadLibCryptoFunction('NCONF_WIN32');
   if not assigned(NCONF_WIN32) then
+    {$if declared(LEGACY_NCONF_WIN32)}
+    NCONF_WIN32 := @LEGACY_NCONF_WIN32;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('NCONF_WIN32');
+    {$ifend}
   Result := NCONF_WIN32;
 end;
 
@@ -1125,7 +1294,11 @@ procedure Load_NCONF_free(conf: PCONF); cdecl;
 begin
   NCONF_free := LoadLibCryptoFunction('NCONF_free');
   if not assigned(NCONF_free) then
+    {$if declared(LEGACY_NCONF_free)}
+    NCONF_free := @LEGACY_NCONF_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('NCONF_free');
+    {$ifend}
   NCONF_free(conf);
 end;
 
@@ -1133,7 +1306,11 @@ procedure Load_NCONF_free_data(conf: PCONF); cdecl;
 begin
   NCONF_free_data := LoadLibCryptoFunction('NCONF_free_data');
   if not assigned(NCONF_free_data) then
+    {$if declared(LEGACY_NCONF_free_data)}
+    NCONF_free_data := @LEGACY_NCONF_free_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('NCONF_free_data');
+    {$ifend}
   NCONF_free_data(conf);
 end;
 
@@ -1141,7 +1318,11 @@ function Load_NCONF_load(conf: PCONF; file_: PAnsiChar; eline: POpenSSL_C_INT): 
 begin
   NCONF_load := LoadLibCryptoFunction('NCONF_load');
   if not assigned(NCONF_load) then
+    {$if declared(LEGACY_NCONF_load)}
+    NCONF_load := @LEGACY_NCONF_load;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('NCONF_load');
+    {$ifend}
   Result := NCONF_load(conf, file_, eline);
 end;
 
@@ -1150,7 +1331,11 @@ function Load_NCONF_load_fp(conf: PCONF; fp: PFILE; eline: POpenSSL_C_INT): TOpe
 begin
   NCONF_load_fp := LoadLibCryptoFunction('NCONF_load_fp');
   if not assigned(NCONF_load_fp) then
+    {$if declared(LEGACY_NCONF_load_fp)}
+    NCONF_load_fp := @LEGACY_NCONF_load_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('NCONF_load_fp');
+    {$ifend}
   Result := NCONF_load_fp(conf, fp, eline);
 end;
 
@@ -1159,7 +1344,11 @@ function Load_NCONF_load_bio(conf: PCONF; bp: PBIO; eline: POpenSSL_C_INT): TOpe
 begin
   NCONF_load_bio := LoadLibCryptoFunction('NCONF_load_bio');
   if not assigned(NCONF_load_bio) then
+    {$if declared(LEGACY_NCONF_load_bio)}
+    NCONF_load_bio := @LEGACY_NCONF_load_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('NCONF_load_bio');
+    {$ifend}
   Result := NCONF_load_bio(conf, bp, eline);
 end;
 
@@ -1167,7 +1356,11 @@ function Load_NCONF_get_section_names(conf: PCONF): Pstack_st_OPENSSL_CSTRING; c
 begin
   NCONF_get_section_names := LoadLibCryptoFunction('NCONF_get_section_names');
   if not assigned(NCONF_get_section_names) then
+    {$if declared(LEGACY_NCONF_get_section_names)}
+    NCONF_get_section_names := @LEGACY_NCONF_get_section_names;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('NCONF_get_section_names');
+    {$ifend}
   Result := NCONF_get_section_names(conf);
 end;
 
@@ -1175,7 +1368,11 @@ function Load_NCONF_get_section(conf: PCONF; section: PAnsiChar): Pstack_st_CONF
 begin
   NCONF_get_section := LoadLibCryptoFunction('NCONF_get_section');
   if not assigned(NCONF_get_section) then
+    {$if declared(LEGACY_NCONF_get_section)}
+    NCONF_get_section := @LEGACY_NCONF_get_section;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('NCONF_get_section');
+    {$ifend}
   Result := NCONF_get_section(conf, section);
 end;
 
@@ -1183,7 +1380,11 @@ function Load_NCONF_get_string(conf: PCONF; group: PAnsiChar; name: PAnsiChar): 
 begin
   NCONF_get_string := LoadLibCryptoFunction('NCONF_get_string');
   if not assigned(NCONF_get_string) then
+    {$if declared(LEGACY_NCONF_get_string)}
+    NCONF_get_string := @LEGACY_NCONF_get_string;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('NCONF_get_string');
+    {$ifend}
   Result := NCONF_get_string(conf, group, name);
 end;
 
@@ -1191,7 +1392,11 @@ function Load_NCONF_get_number_e(conf: PCONF; group: PAnsiChar; name: PAnsiChar;
 begin
   NCONF_get_number_e := LoadLibCryptoFunction('NCONF_get_number_e');
   if not assigned(NCONF_get_number_e) then
+    {$if declared(LEGACY_NCONF_get_number_e)}
+    NCONF_get_number_e := @LEGACY_NCONF_get_number_e;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('NCONF_get_number_e');
+    {$ifend}
   Result := NCONF_get_number_e(conf, group, name, result_);
 end;
 
@@ -1200,7 +1405,11 @@ function Load_NCONF_dump_fp(conf: PCONF; out_: PFILE): TOpenSSL_C_INT; cdecl;
 begin
   NCONF_dump_fp := LoadLibCryptoFunction('NCONF_dump_fp');
   if not assigned(NCONF_dump_fp) then
+    {$if declared(LEGACY_NCONF_dump_fp)}
+    NCONF_dump_fp := @LEGACY_NCONF_dump_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('NCONF_dump_fp');
+    {$ifend}
   Result := NCONF_dump_fp(conf, out_);
 end;
 
@@ -1209,7 +1418,11 @@ function Load_NCONF_dump_bio(conf: PCONF; out_: PBIO): TOpenSSL_C_INT; cdecl;
 begin
   NCONF_dump_bio := LoadLibCryptoFunction('NCONF_dump_bio');
   if not assigned(NCONF_dump_bio) then
+    {$if declared(LEGACY_NCONF_dump_bio)}
+    NCONF_dump_bio := @LEGACY_NCONF_dump_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('NCONF_dump_bio');
+    {$ifend}
   Result := NCONF_dump_bio(conf, out_);
 end;
 
@@ -1217,7 +1430,11 @@ function Load_CONF_modules_load(cnf: PCONF; appname: PAnsiChar; flags: TOpenSSL_
 begin
   CONF_modules_load := LoadLibCryptoFunction('CONF_modules_load');
   if not assigned(CONF_modules_load) then
+    {$if declared(LEGACY_CONF_modules_load)}
+    CONF_modules_load := @LEGACY_CONF_modules_load;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CONF_modules_load');
+    {$ifend}
   Result := CONF_modules_load(cnf, appname, flags);
 end;
 
@@ -1225,7 +1442,11 @@ function Load_CONF_modules_load_file_ex(libctx: POSSL_LIB_CTX; filename: PAnsiCh
 begin
   CONF_modules_load_file_ex := LoadLibCryptoFunction('CONF_modules_load_file_ex');
   if not assigned(CONF_modules_load_file_ex) then
+    {$if declared(LEGACY_CONF_modules_load_file_ex)}
+    CONF_modules_load_file_ex := @LEGACY_CONF_modules_load_file_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CONF_modules_load_file_ex');
+    {$ifend}
   Result := CONF_modules_load_file_ex(libctx, filename, appname, flags);
 end;
 
@@ -1233,7 +1454,11 @@ function Load_CONF_modules_load_file(filename: PAnsiChar; appname: PAnsiChar; fl
 begin
   CONF_modules_load_file := LoadLibCryptoFunction('CONF_modules_load_file');
   if not assigned(CONF_modules_load_file) then
+    {$if declared(LEGACY_CONF_modules_load_file)}
+    CONF_modules_load_file := @LEGACY_CONF_modules_load_file;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CONF_modules_load_file');
+    {$ifend}
   Result := CONF_modules_load_file(filename, appname, flags);
 end;
 
@@ -1241,7 +1466,11 @@ procedure Load_CONF_modules_unload(all: TOpenSSL_C_INT); cdecl;
 begin
   CONF_modules_unload := LoadLibCryptoFunction('CONF_modules_unload');
   if not assigned(CONF_modules_unload) then
+    {$if declared(LEGACY_CONF_modules_unload)}
+    CONF_modules_unload := @LEGACY_CONF_modules_unload;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CONF_modules_unload');
+    {$ifend}
   CONF_modules_unload(all);
 end;
 
@@ -1249,7 +1478,11 @@ procedure Load_CONF_modules_finish; cdecl;
 begin
   CONF_modules_finish := LoadLibCryptoFunction('CONF_modules_finish');
   if not assigned(CONF_modules_finish) then
+    {$if declared(LEGACY_CONF_modules_finish)}
+    CONF_modules_finish := @LEGACY_CONF_modules_finish;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CONF_modules_finish');
+    {$ifend}
   CONF_modules_finish;
 end;
 
@@ -1257,7 +1490,11 @@ function Load_CONF_module_add(name: PAnsiChar; ifunc: Pconf_init_func; ffunc: Pc
 begin
   CONF_module_add := LoadLibCryptoFunction('CONF_module_add');
   if not assigned(CONF_module_add) then
+    {$if declared(LEGACY_CONF_module_add)}
+    CONF_module_add := @LEGACY_CONF_module_add;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CONF_module_add');
+    {$ifend}
   Result := CONF_module_add(name, ifunc, ffunc);
 end;
 
@@ -1265,7 +1502,11 @@ function Load_CONF_imodule_get_name(md: PCONF_IMODULE): PAnsiChar; cdecl;
 begin
   CONF_imodule_get_name := LoadLibCryptoFunction('CONF_imodule_get_name');
   if not assigned(CONF_imodule_get_name) then
+    {$if declared(LEGACY_CONF_imodule_get_name)}
+    CONF_imodule_get_name := @LEGACY_CONF_imodule_get_name;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CONF_imodule_get_name');
+    {$ifend}
   Result := CONF_imodule_get_name(md);
 end;
 
@@ -1273,7 +1514,11 @@ function Load_CONF_imodule_get_value(md: PCONF_IMODULE): PAnsiChar; cdecl;
 begin
   CONF_imodule_get_value := LoadLibCryptoFunction('CONF_imodule_get_value');
   if not assigned(CONF_imodule_get_value) then
+    {$if declared(LEGACY_CONF_imodule_get_value)}
+    CONF_imodule_get_value := @LEGACY_CONF_imodule_get_value;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CONF_imodule_get_value');
+    {$ifend}
   Result := CONF_imodule_get_value(md);
 end;
 
@@ -1281,7 +1526,11 @@ function Load_CONF_imodule_get_usr_data(md: PCONF_IMODULE): pointer; cdecl;
 begin
   CONF_imodule_get_usr_data := LoadLibCryptoFunction('CONF_imodule_get_usr_data');
   if not assigned(CONF_imodule_get_usr_data) then
+    {$if declared(LEGACY_CONF_imodule_get_usr_data)}
+    CONF_imodule_get_usr_data := @LEGACY_CONF_imodule_get_usr_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CONF_imodule_get_usr_data');
+    {$ifend}
   Result := CONF_imodule_get_usr_data(md);
 end;
 
@@ -1289,7 +1538,11 @@ procedure Load_CONF_imodule_set_usr_data(md: PCONF_IMODULE; usr_data: pointer); 
 begin
   CONF_imodule_set_usr_data := LoadLibCryptoFunction('CONF_imodule_set_usr_data');
   if not assigned(CONF_imodule_set_usr_data) then
+    {$if declared(LEGACY_CONF_imodule_set_usr_data)}
+    CONF_imodule_set_usr_data := @LEGACY_CONF_imodule_set_usr_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CONF_imodule_set_usr_data');
+    {$ifend}
   CONF_imodule_set_usr_data(md, usr_data);
 end;
 
@@ -1297,7 +1550,11 @@ function Load_CONF_imodule_get_module(md: PCONF_IMODULE): PCONF_MODULE; cdecl;
 begin
   CONF_imodule_get_module := LoadLibCryptoFunction('CONF_imodule_get_module');
   if not assigned(CONF_imodule_get_module) then
+    {$if declared(LEGACY_CONF_imodule_get_module)}
+    CONF_imodule_get_module := @LEGACY_CONF_imodule_get_module;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CONF_imodule_get_module');
+    {$ifend}
   Result := CONF_imodule_get_module(md);
 end;
 
@@ -1305,7 +1562,11 @@ function Load_CONF_imodule_get_flags(md: PCONF_IMODULE): TOpenSSL_C_UINT; cdecl;
 begin
   CONF_imodule_get_flags := LoadLibCryptoFunction('CONF_imodule_get_flags');
   if not assigned(CONF_imodule_get_flags) then
+    {$if declared(LEGACY_CONF_imodule_get_flags)}
+    CONF_imodule_get_flags := @LEGACY_CONF_imodule_get_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CONF_imodule_get_flags');
+    {$ifend}
   Result := CONF_imodule_get_flags(md);
 end;
 
@@ -1313,7 +1574,11 @@ procedure Load_CONF_imodule_set_flags(md: PCONF_IMODULE; flags: TOpenSSL_C_UINT)
 begin
   CONF_imodule_set_flags := LoadLibCryptoFunction('CONF_imodule_set_flags');
   if not assigned(CONF_imodule_set_flags) then
+    {$if declared(LEGACY_CONF_imodule_set_flags)}
+    CONF_imodule_set_flags := @LEGACY_CONF_imodule_set_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CONF_imodule_set_flags');
+    {$ifend}
   CONF_imodule_set_flags(md, flags);
 end;
 
@@ -1321,7 +1586,11 @@ function Load_CONF_module_get_usr_data(pmod: PCONF_MODULE): pointer; cdecl;
 begin
   CONF_module_get_usr_data := LoadLibCryptoFunction('CONF_module_get_usr_data');
   if not assigned(CONF_module_get_usr_data) then
+    {$if declared(LEGACY_CONF_module_get_usr_data)}
+    CONF_module_get_usr_data := @LEGACY_CONF_module_get_usr_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CONF_module_get_usr_data');
+    {$ifend}
   Result := CONF_module_get_usr_data(pmod);
 end;
 
@@ -1329,7 +1598,11 @@ procedure Load_CONF_module_set_usr_data(pmod: PCONF_MODULE; usr_data: pointer); 
 begin
   CONF_module_set_usr_data := LoadLibCryptoFunction('CONF_module_set_usr_data');
   if not assigned(CONF_module_set_usr_data) then
+    {$if declared(LEGACY_CONF_module_set_usr_data)}
+    CONF_module_set_usr_data := @LEGACY_CONF_module_set_usr_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CONF_module_set_usr_data');
+    {$ifend}
   CONF_module_set_usr_data(pmod, usr_data);
 end;
 
@@ -1337,7 +1610,11 @@ function Load_CONF_get1_default_config_file: PAnsiChar; cdecl;
 begin
   CONF_get1_default_config_file := LoadLibCryptoFunction('CONF_get1_default_config_file');
   if not assigned(CONF_get1_default_config_file) then
+    {$if declared(LEGACY_CONF_get1_default_config_file)}
+    CONF_get1_default_config_file := @LEGACY_CONF_get1_default_config_file;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CONF_get1_default_config_file');
+    {$ifend}
   Result := CONF_get1_default_config_file;
 end;
 
@@ -1345,7 +1622,11 @@ function Load_CONF_parse_list(list: PAnsiChar; sep: TOpenSSL_C_INT; nospc: TOpen
 begin
   CONF_parse_list := LoadLibCryptoFunction('CONF_parse_list');
   if not assigned(CONF_parse_list) then
+    {$if declared(LEGACY_CONF_parse_list)}
+    CONF_parse_list := @LEGACY_CONF_parse_list;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('CONF_parse_list');
+    {$ifend}
   Result := CONF_parse_list(list, sep, nospc, list_cb, arg);
 end;
 
@@ -1353,7 +1634,11 @@ procedure Load_OPENSSL_load_builtin_modules; cdecl;
 begin
   OPENSSL_load_builtin_modules := LoadLibCryptoFunction('OPENSSL_load_builtin_modules');
   if not assigned(OPENSSL_load_builtin_modules) then
+    {$if declared(LEGACY_OPENSSL_load_builtin_modules)}
+    OPENSSL_load_builtin_modules := @LEGACY_OPENSSL_load_builtin_modules;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_load_builtin_modules');
+    {$ifend}
   OPENSSL_load_builtin_modules;
 end;
 

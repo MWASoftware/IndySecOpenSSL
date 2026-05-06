@@ -18,7 +18,8 @@
 unit openssl_buffer;
 
 {
-  Generated from OpenSSL 3.0.20 Header File buffer.h - Wed  6 May 13:05:33 BST 2026
+  Generated from OpenSSL 3.0.20 Header File buffer.h - Wed  6 May 13:14:42 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -134,7 +135,11 @@ function Load_BUF_MEM_new: PBUF_MEM; cdecl;
 begin
   BUF_MEM_new := LoadLibCryptoFunction('BUF_MEM_new');
   if not assigned(BUF_MEM_new) then
+    {$if declared(LEGACY_BUF_MEM_new)}
+    BUF_MEM_new := @LEGACY_BUF_MEM_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BUF_MEM_new');
+    {$ifend}
   Result := BUF_MEM_new;
 end;
 
@@ -142,7 +147,11 @@ function Load_BUF_MEM_new_ex(flags: TOpenSSL_C_UINT): PBUF_MEM; cdecl;
 begin
   BUF_MEM_new_ex := LoadLibCryptoFunction('BUF_MEM_new_ex');
   if not assigned(BUF_MEM_new_ex) then
+    {$if declared(LEGACY_BUF_MEM_new_ex)}
+    BUF_MEM_new_ex := @LEGACY_BUF_MEM_new_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BUF_MEM_new_ex');
+    {$ifend}
   Result := BUF_MEM_new_ex(flags);
 end;
 
@@ -150,7 +159,11 @@ procedure Load_BUF_MEM_free(a: PBUF_MEM); cdecl;
 begin
   BUF_MEM_free := LoadLibCryptoFunction('BUF_MEM_free');
   if not assigned(BUF_MEM_free) then
+    {$if declared(LEGACY_BUF_MEM_free)}
+    BUF_MEM_free := @LEGACY_BUF_MEM_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BUF_MEM_free');
+    {$ifend}
   BUF_MEM_free(a);
 end;
 
@@ -158,7 +171,11 @@ function Load_BUF_MEM_grow(str: PBUF_MEM; len: TOpenSSL_C_SIZET): TOpenSSL_C_SIZ
 begin
   BUF_MEM_grow := LoadLibCryptoFunction('BUF_MEM_grow');
   if not assigned(BUF_MEM_grow) then
+    {$if declared(LEGACY_BUF_MEM_grow)}
+    BUF_MEM_grow := @LEGACY_BUF_MEM_grow;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BUF_MEM_grow');
+    {$ifend}
   Result := BUF_MEM_grow(str, len);
 end;
 
@@ -166,7 +183,11 @@ function Load_BUF_MEM_grow_clean(str: PBUF_MEM; len: TOpenSSL_C_SIZET): TOpenSSL
 begin
   BUF_MEM_grow_clean := LoadLibCryptoFunction('BUF_MEM_grow_clean');
   if not assigned(BUF_MEM_grow_clean) then
+    {$if declared(LEGACY_BUF_MEM_grow_clean)}
+    BUF_MEM_grow_clean := @LEGACY_BUF_MEM_grow_clean;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BUF_MEM_grow_clean');
+    {$ifend}
   Result := BUF_MEM_grow_clean(str, len);
 end;
 
@@ -174,7 +195,11 @@ procedure Load_BUF_reverse(out_: Pbyte; in_: Pbyte; siz: TOpenSSL_C_SIZET); cdec
 begin
   BUF_reverse := LoadLibCryptoFunction('BUF_reverse');
   if not assigned(BUF_reverse) then
+    {$if declared(LEGACY_BUF_reverse)}
+    BUF_reverse := @LEGACY_BUF_reverse;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('BUF_reverse');
+    {$ifend}
   BUF_reverse(out_, in_, siz);
 end;
 

@@ -18,7 +18,8 @@
 unit openssl_rc2;
 
 {
-  Generated from OpenSSL 3.0.20 Header File rc2.h - Wed  6 May 13:06:26 BST 2026
+  Generated from OpenSSL 3.0.20 Header File rc2.h - Wed  6 May 13:15:35 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -150,7 +151,11 @@ procedure Load_RC2_set_key(key: PRC2_KEY; len: TOpenSSL_C_INT; data: Pbyte; bits
 begin
   RC2_set_key := LoadLibCryptoFunction('RC2_set_key');
   if not assigned(RC2_set_key) then
+    {$if declared(LEGACY_RC2_set_key)}
+    RC2_set_key := @LEGACY_RC2_set_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RC2_set_key');
+    {$ifend}
   RC2_set_key(key, len, data, bits);
 end;
 
@@ -158,7 +163,11 @@ procedure Load_RC2_ecb_encrypt(in_: Pbyte; out_: Pbyte; key: PRC2_KEY; enc: TOpe
 begin
   RC2_ecb_encrypt := LoadLibCryptoFunction('RC2_ecb_encrypt');
   if not assigned(RC2_ecb_encrypt) then
+    {$if declared(LEGACY_RC2_ecb_encrypt)}
+    RC2_ecb_encrypt := @LEGACY_RC2_ecb_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RC2_ecb_encrypt');
+    {$ifend}
   RC2_ecb_encrypt(in_, out_, key, enc);
 end;
 
@@ -166,7 +175,11 @@ procedure Load_RC2_encrypt(data: POpenSSL_C_UINT; key: PRC2_KEY); cdecl;
 begin
   RC2_encrypt := LoadLibCryptoFunction('RC2_encrypt');
   if not assigned(RC2_encrypt) then
+    {$if declared(LEGACY_RC2_encrypt)}
+    RC2_encrypt := @LEGACY_RC2_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RC2_encrypt');
+    {$ifend}
   RC2_encrypt(data, key);
 end;
 
@@ -174,7 +187,11 @@ procedure Load_RC2_decrypt(data: POpenSSL_C_UINT; key: PRC2_KEY); cdecl;
 begin
   RC2_decrypt := LoadLibCryptoFunction('RC2_decrypt');
   if not assigned(RC2_decrypt) then
+    {$if declared(LEGACY_RC2_decrypt)}
+    RC2_decrypt := @LEGACY_RC2_decrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RC2_decrypt');
+    {$ifend}
   RC2_decrypt(data, key);
 end;
 
@@ -182,7 +199,11 @@ procedure Load_RC2_cbc_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_INT; 
 begin
   RC2_cbc_encrypt := LoadLibCryptoFunction('RC2_cbc_encrypt');
   if not assigned(RC2_cbc_encrypt) then
+    {$if declared(LEGACY_RC2_cbc_encrypt)}
+    RC2_cbc_encrypt := @LEGACY_RC2_cbc_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RC2_cbc_encrypt');
+    {$ifend}
   RC2_cbc_encrypt(in_, out_, length, ks, iv, enc);
 end;
 
@@ -190,7 +211,11 @@ procedure Load_RC2_cfb64_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_INT
 begin
   RC2_cfb64_encrypt := LoadLibCryptoFunction('RC2_cfb64_encrypt');
   if not assigned(RC2_cfb64_encrypt) then
+    {$if declared(LEGACY_RC2_cfb64_encrypt)}
+    RC2_cfb64_encrypt := @LEGACY_RC2_cfb64_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RC2_cfb64_encrypt');
+    {$ifend}
   RC2_cfb64_encrypt(in_, out_, length, schedule, ivec, num, enc);
 end;
 
@@ -198,7 +223,11 @@ procedure Load_RC2_ofb64_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_INT
 begin
   RC2_ofb64_encrypt := LoadLibCryptoFunction('RC2_ofb64_encrypt');
   if not assigned(RC2_ofb64_encrypt) then
+    {$if declared(LEGACY_RC2_ofb64_encrypt)}
+    RC2_ofb64_encrypt := @LEGACY_RC2_ofb64_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('RC2_ofb64_encrypt');
+    {$ifend}
   RC2_ofb64_encrypt(in_, out_, length, schedule, ivec, num);
 end;
 

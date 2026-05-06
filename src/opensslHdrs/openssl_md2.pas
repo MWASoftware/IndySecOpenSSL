@@ -18,7 +18,8 @@
 unit openssl_md2;
 
 {
-  Generated from OpenSSL 3.0.20 Header File md2.h - Wed  6 May 13:06:11 BST 2026
+  Generated from OpenSSL 3.0.20 Header File md2.h - Wed  6 May 13:15:20 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -143,7 +144,11 @@ function Load_MD2_options: PAnsiChar; cdecl;
 begin
   MD2_options := LoadLibCryptoFunction('MD2_options');
   if not assigned(MD2_options) then
+    {$if declared(LEGACY_MD2_options)}
+    MD2_options := @LEGACY_MD2_options;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('MD2_options');
+    {$ifend}
   Result := MD2_options;
 end;
 
@@ -151,7 +156,11 @@ function Load_MD2_Init(c: PMD2_CTX): TOpenSSL_C_INT; cdecl;
 begin
   MD2_Init := LoadLibCryptoFunction('MD2_Init');
   if not assigned(MD2_Init) then
+    {$if declared(LEGACY_MD2_Init)}
+    MD2_Init := @LEGACY_MD2_Init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('MD2_Init');
+    {$ifend}
   Result := MD2_Init(c);
 end;
 
@@ -159,7 +168,11 @@ function Load_MD2_Update(c: PMD2_CTX; data: Pbyte; len: TOpenSSL_C_SIZET): TOpen
 begin
   MD2_Update := LoadLibCryptoFunction('MD2_Update');
   if not assigned(MD2_Update) then
+    {$if declared(LEGACY_MD2_Update)}
+    MD2_Update := @LEGACY_MD2_Update;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('MD2_Update');
+    {$ifend}
   Result := MD2_Update(c, data, len);
 end;
 
@@ -167,7 +180,11 @@ function Load_MD2_Final(md: Pbyte; c: PMD2_CTX): TOpenSSL_C_INT; cdecl;
 begin
   MD2_Final := LoadLibCryptoFunction('MD2_Final');
   if not assigned(MD2_Final) then
+    {$if declared(LEGACY_MD2_Final)}
+    MD2_Final := @LEGACY_MD2_Final;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('MD2_Final');
+    {$ifend}
   Result := MD2_Final(md, c);
 end;
 
@@ -175,7 +192,11 @@ function Load_MD2(d: Pbyte; n: TOpenSSL_C_SIZET; md: Pbyte): Pbyte; cdecl;
 begin
   MD2 := LoadLibCryptoFunction('MD2');
   if not assigned(MD2) then
+    {$if declared(LEGACY_MD2)}
+    MD2 := @LEGACY_MD2;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('MD2');
+    {$ifend}
   Result := MD2(d, n, md);
 end;
 

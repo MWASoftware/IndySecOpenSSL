@@ -18,7 +18,8 @@
 unit openssl_ec;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ec.h - Wed  6 May 13:05:58 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ec.h - Wed  6 May 13:15:07 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -3085,7 +3086,11 @@ function Load_EVP_PKEY_CTX_set_ec_paramgen_curve_nid(ctx: PEVP_PKEY_CTX; nid: TO
 begin
   EVP_PKEY_CTX_set_ec_paramgen_curve_nid := LoadLibCryptoFunction('EVP_PKEY_CTX_set_ec_paramgen_curve_nid');
   if not assigned(EVP_PKEY_CTX_set_ec_paramgen_curve_nid) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_ec_paramgen_curve_nid)}
+    EVP_PKEY_CTX_set_ec_paramgen_curve_nid := @LEGACY_EVP_PKEY_CTX_set_ec_paramgen_curve_nid;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_ec_paramgen_curve_nid');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_ec_paramgen_curve_nid(ctx, nid);
 end;
 
@@ -3093,7 +3098,11 @@ function Load_EVP_PKEY_CTX_set_ec_param_enc(ctx: PEVP_PKEY_CTX; param_enc: TOpen
 begin
   EVP_PKEY_CTX_set_ec_param_enc := LoadLibCryptoFunction('EVP_PKEY_CTX_set_ec_param_enc');
   if not assigned(EVP_PKEY_CTX_set_ec_param_enc) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_ec_param_enc)}
+    EVP_PKEY_CTX_set_ec_param_enc := @LEGACY_EVP_PKEY_CTX_set_ec_param_enc;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_ec_param_enc');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_ec_param_enc(ctx, param_enc);
 end;
 
@@ -3101,7 +3110,11 @@ function Load_EVP_PKEY_CTX_set_ecdh_cofactor_mode(ctx: PEVP_PKEY_CTX; cofactor_m
 begin
   EVP_PKEY_CTX_set_ecdh_cofactor_mode := LoadLibCryptoFunction('EVP_PKEY_CTX_set_ecdh_cofactor_mode');
   if not assigned(EVP_PKEY_CTX_set_ecdh_cofactor_mode) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_ecdh_cofactor_mode)}
+    EVP_PKEY_CTX_set_ecdh_cofactor_mode := @LEGACY_EVP_PKEY_CTX_set_ecdh_cofactor_mode;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_ecdh_cofactor_mode');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_ecdh_cofactor_mode(ctx, cofactor_mode);
 end;
 
@@ -3109,7 +3122,11 @@ function Load_EVP_PKEY_CTX_get_ecdh_cofactor_mode(ctx: PEVP_PKEY_CTX): TOpenSSL_
 begin
   EVP_PKEY_CTX_get_ecdh_cofactor_mode := LoadLibCryptoFunction('EVP_PKEY_CTX_get_ecdh_cofactor_mode');
   if not assigned(EVP_PKEY_CTX_get_ecdh_cofactor_mode) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_get_ecdh_cofactor_mode)}
+    EVP_PKEY_CTX_get_ecdh_cofactor_mode := @LEGACY_EVP_PKEY_CTX_get_ecdh_cofactor_mode;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_get_ecdh_cofactor_mode');
+    {$ifend}
   Result := EVP_PKEY_CTX_get_ecdh_cofactor_mode(ctx);
 end;
 
@@ -3117,7 +3134,11 @@ function Load_EVP_PKEY_CTX_set_ecdh_kdf_type(ctx: PEVP_PKEY_CTX; kdf: TOpenSSL_C
 begin
   EVP_PKEY_CTX_set_ecdh_kdf_type := LoadLibCryptoFunction('EVP_PKEY_CTX_set_ecdh_kdf_type');
   if not assigned(EVP_PKEY_CTX_set_ecdh_kdf_type) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_ecdh_kdf_type)}
+    EVP_PKEY_CTX_set_ecdh_kdf_type := @LEGACY_EVP_PKEY_CTX_set_ecdh_kdf_type;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_ecdh_kdf_type');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_ecdh_kdf_type(ctx, kdf);
 end;
 
@@ -3125,7 +3146,11 @@ function Load_EVP_PKEY_CTX_get_ecdh_kdf_type(ctx: PEVP_PKEY_CTX): TOpenSSL_C_INT
 begin
   EVP_PKEY_CTX_get_ecdh_kdf_type := LoadLibCryptoFunction('EVP_PKEY_CTX_get_ecdh_kdf_type');
   if not assigned(EVP_PKEY_CTX_get_ecdh_kdf_type) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_get_ecdh_kdf_type)}
+    EVP_PKEY_CTX_get_ecdh_kdf_type := @LEGACY_EVP_PKEY_CTX_get_ecdh_kdf_type;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_get_ecdh_kdf_type');
+    {$ifend}
   Result := EVP_PKEY_CTX_get_ecdh_kdf_type(ctx);
 end;
 
@@ -3133,7 +3158,11 @@ function Load_EVP_PKEY_CTX_set_ecdh_kdf_md(ctx: PEVP_PKEY_CTX; md: PEVP_MD): TOp
 begin
   EVP_PKEY_CTX_set_ecdh_kdf_md := LoadLibCryptoFunction('EVP_PKEY_CTX_set_ecdh_kdf_md');
   if not assigned(EVP_PKEY_CTX_set_ecdh_kdf_md) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_ecdh_kdf_md)}
+    EVP_PKEY_CTX_set_ecdh_kdf_md := @LEGACY_EVP_PKEY_CTX_set_ecdh_kdf_md;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_ecdh_kdf_md');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_ecdh_kdf_md(ctx, md);
 end;
 
@@ -3141,7 +3170,11 @@ function Load_EVP_PKEY_CTX_get_ecdh_kdf_md(ctx: PEVP_PKEY_CTX; md: PPEVP_MD): TO
 begin
   EVP_PKEY_CTX_get_ecdh_kdf_md := LoadLibCryptoFunction('EVP_PKEY_CTX_get_ecdh_kdf_md');
   if not assigned(EVP_PKEY_CTX_get_ecdh_kdf_md) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_get_ecdh_kdf_md)}
+    EVP_PKEY_CTX_get_ecdh_kdf_md := @LEGACY_EVP_PKEY_CTX_get_ecdh_kdf_md;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_get_ecdh_kdf_md');
+    {$ifend}
   Result := EVP_PKEY_CTX_get_ecdh_kdf_md(ctx, md);
 end;
 
@@ -3149,7 +3182,11 @@ function Load_EVP_PKEY_CTX_set_ecdh_kdf_outlen(ctx: PEVP_PKEY_CTX; len: TOpenSSL
 begin
   EVP_PKEY_CTX_set_ecdh_kdf_outlen := LoadLibCryptoFunction('EVP_PKEY_CTX_set_ecdh_kdf_outlen');
   if not assigned(EVP_PKEY_CTX_set_ecdh_kdf_outlen) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set_ecdh_kdf_outlen)}
+    EVP_PKEY_CTX_set_ecdh_kdf_outlen := @LEGACY_EVP_PKEY_CTX_set_ecdh_kdf_outlen;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set_ecdh_kdf_outlen');
+    {$ifend}
   Result := EVP_PKEY_CTX_set_ecdh_kdf_outlen(ctx, len);
 end;
 
@@ -3157,7 +3194,11 @@ function Load_EVP_PKEY_CTX_get_ecdh_kdf_outlen(ctx: PEVP_PKEY_CTX; len: POpenSSL
 begin
   EVP_PKEY_CTX_get_ecdh_kdf_outlen := LoadLibCryptoFunction('EVP_PKEY_CTX_get_ecdh_kdf_outlen');
   if not assigned(EVP_PKEY_CTX_get_ecdh_kdf_outlen) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_get_ecdh_kdf_outlen)}
+    EVP_PKEY_CTX_get_ecdh_kdf_outlen := @LEGACY_EVP_PKEY_CTX_get_ecdh_kdf_outlen;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_get_ecdh_kdf_outlen');
+    {$ifend}
   Result := EVP_PKEY_CTX_get_ecdh_kdf_outlen(ctx, len);
 end;
 
@@ -3165,7 +3206,11 @@ function Load_EVP_PKEY_CTX_set0_ecdh_kdf_ukm(ctx: PEVP_PKEY_CTX; ukm: Pbyte; len
 begin
   EVP_PKEY_CTX_set0_ecdh_kdf_ukm := LoadLibCryptoFunction('EVP_PKEY_CTX_set0_ecdh_kdf_ukm');
   if not assigned(EVP_PKEY_CTX_set0_ecdh_kdf_ukm) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_set0_ecdh_kdf_ukm)}
+    EVP_PKEY_CTX_set0_ecdh_kdf_ukm := @LEGACY_EVP_PKEY_CTX_set0_ecdh_kdf_ukm;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_set0_ecdh_kdf_ukm');
+    {$ifend}
   Result := EVP_PKEY_CTX_set0_ecdh_kdf_ukm(ctx, ukm, len);
 end;
 
@@ -3174,7 +3219,11 @@ function Load_EVP_PKEY_CTX_get0_ecdh_kdf_ukm(ctx: PEVP_PKEY_CTX; ukm: PPbyte): T
 begin
   EVP_PKEY_CTX_get0_ecdh_kdf_ukm := LoadLibCryptoFunction('EVP_PKEY_CTX_get0_ecdh_kdf_ukm');
   if not assigned(EVP_PKEY_CTX_get0_ecdh_kdf_ukm) then
+    {$if declared(LEGACY_EVP_PKEY_CTX_get0_ecdh_kdf_ukm)}
+    EVP_PKEY_CTX_get0_ecdh_kdf_ukm := @LEGACY_EVP_PKEY_CTX_get0_ecdh_kdf_ukm;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_CTX_get0_ecdh_kdf_ukm');
+    {$ifend}
   Result := EVP_PKEY_CTX_get0_ecdh_kdf_ukm(ctx, ukm);
 end;
 
@@ -3183,7 +3232,11 @@ function Load_OSSL_EC_curve_nid2name(nid: TOpenSSL_C_INT): PAnsiChar; cdecl;
 begin
   OSSL_EC_curve_nid2name := LoadLibCryptoFunction('OSSL_EC_curve_nid2name');
   if not assigned(OSSL_EC_curve_nid2name) then
+    {$if declared(LEGACY_OSSL_EC_curve_nid2name)}
+    OSSL_EC_curve_nid2name := @LEGACY_OSSL_EC_curve_nid2name;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_EC_curve_nid2name');
+    {$ifend}
   Result := OSSL_EC_curve_nid2name(nid);
 end;
 
@@ -3193,7 +3246,11 @@ function Load_EC_GFp_simple_method: PEC_METHOD; cdecl;
 begin
   EC_GFp_simple_method := LoadLibCryptoFunction('EC_GFp_simple_method');
   if not assigned(EC_GFp_simple_method) then
+    {$if declared(LEGACY_EC_GFp_simple_method)}
+    EC_GFp_simple_method := @LEGACY_EC_GFp_simple_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GFp_simple_method');
+    {$ifend}
   Result := EC_GFp_simple_method;
 end;
 
@@ -3201,7 +3258,11 @@ function Load_EC_GFp_mont_method: PEC_METHOD; cdecl;
 begin
   EC_GFp_mont_method := LoadLibCryptoFunction('EC_GFp_mont_method');
   if not assigned(EC_GFp_mont_method) then
+    {$if declared(LEGACY_EC_GFp_mont_method)}
+    EC_GFp_mont_method := @LEGACY_EC_GFp_mont_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GFp_mont_method');
+    {$ifend}
   Result := EC_GFp_mont_method;
 end;
 
@@ -3209,7 +3270,11 @@ function Load_EC_GFp_nist_method: PEC_METHOD; cdecl;
 begin
   EC_GFp_nist_method := LoadLibCryptoFunction('EC_GFp_nist_method');
   if not assigned(EC_GFp_nist_method) then
+    {$if declared(LEGACY_EC_GFp_nist_method)}
+    EC_GFp_nist_method := @LEGACY_EC_GFp_nist_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GFp_nist_method');
+    {$ifend}
   Result := EC_GFp_nist_method;
 end;
 
@@ -3218,7 +3283,11 @@ function Load_EC_GFp_nistp224_method: PEC_METHOD; cdecl;
 begin
   EC_GFp_nistp224_method := LoadLibCryptoFunction('EC_GFp_nistp224_method');
   if not assigned(EC_GFp_nistp224_method) then
+    {$if declared(LEGACY_EC_GFp_nistp224_method)}
+    EC_GFp_nistp224_method := @LEGACY_EC_GFp_nistp224_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GFp_nistp224_method');
+    {$ifend}
   Result := EC_GFp_nistp224_method;
 end;
 
@@ -3226,7 +3295,11 @@ function Load_EC_GFp_nistp256_method: PEC_METHOD; cdecl;
 begin
   EC_GFp_nistp256_method := LoadLibCryptoFunction('EC_GFp_nistp256_method');
   if not assigned(EC_GFp_nistp256_method) then
+    {$if declared(LEGACY_EC_GFp_nistp256_method)}
+    EC_GFp_nistp256_method := @LEGACY_EC_GFp_nistp256_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GFp_nistp256_method');
+    {$ifend}
   Result := EC_GFp_nistp256_method;
 end;
 
@@ -3234,7 +3307,11 @@ function Load_EC_GFp_nistp521_method: PEC_METHOD; cdecl;
 begin
   EC_GFp_nistp521_method := LoadLibCryptoFunction('EC_GFp_nistp521_method');
   if not assigned(EC_GFp_nistp521_method) then
+    {$if declared(LEGACY_EC_GFp_nistp521_method)}
+    EC_GFp_nistp521_method := @LEGACY_EC_GFp_nistp521_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GFp_nistp521_method');
+    {$ifend}
   Result := EC_GFp_nistp521_method;
 end;
 
@@ -3244,7 +3321,11 @@ function Load_EC_GF2m_simple_method: PEC_METHOD; cdecl;
 begin
   EC_GF2m_simple_method := LoadLibCryptoFunction('EC_GF2m_simple_method');
   if not assigned(EC_GF2m_simple_method) then
+    {$if declared(LEGACY_EC_GF2m_simple_method)}
+    EC_GF2m_simple_method := @LEGACY_EC_GF2m_simple_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GF2m_simple_method');
+    {$ifend}
   Result := EC_GF2m_simple_method;
 end;
 
@@ -3253,7 +3334,11 @@ function Load_EC_GROUP_new(meth: PEC_METHOD): PEC_GROUP; cdecl;
 begin
   EC_GROUP_new := LoadLibCryptoFunction('EC_GROUP_new');
   if not assigned(EC_GROUP_new) then
+    {$if declared(LEGACY_EC_GROUP_new)}
+    EC_GROUP_new := @LEGACY_EC_GROUP_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_new');
+    {$ifend}
   Result := EC_GROUP_new(meth);
 end;
 
@@ -3261,7 +3346,11 @@ procedure Load_EC_GROUP_clear_free(group: PEC_GROUP); cdecl;
 begin
   EC_GROUP_clear_free := LoadLibCryptoFunction('EC_GROUP_clear_free');
   if not assigned(EC_GROUP_clear_free) then
+    {$if declared(LEGACY_EC_GROUP_clear_free)}
+    EC_GROUP_clear_free := @LEGACY_EC_GROUP_clear_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_clear_free');
+    {$ifend}
   EC_GROUP_clear_free(group);
 end;
 
@@ -3269,7 +3358,11 @@ function Load_EC_GROUP_method_of(group: PEC_GROUP): PEC_METHOD; cdecl;
 begin
   EC_GROUP_method_of := LoadLibCryptoFunction('EC_GROUP_method_of');
   if not assigned(EC_GROUP_method_of) then
+    {$if declared(LEGACY_EC_GROUP_method_of)}
+    EC_GROUP_method_of := @LEGACY_EC_GROUP_method_of;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_method_of');
+    {$ifend}
   Result := EC_GROUP_method_of(group);
 end;
 
@@ -3277,7 +3370,11 @@ function Load_EC_METHOD_get_field_type(meth: PEC_METHOD): TOpenSSL_C_INT; cdecl;
 begin
   EC_METHOD_get_field_type := LoadLibCryptoFunction('EC_METHOD_get_field_type');
   if not assigned(EC_METHOD_get_field_type) then
+    {$if declared(LEGACY_EC_METHOD_get_field_type)}
+    EC_METHOD_get_field_type := @LEGACY_EC_METHOD_get_field_type;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_METHOD_get_field_type');
+    {$ifend}
   Result := EC_METHOD_get_field_type(meth);
 end;
 
@@ -3286,7 +3383,11 @@ procedure Load_EC_GROUP_free(group: PEC_GROUP); cdecl;
 begin
   EC_GROUP_free := LoadLibCryptoFunction('EC_GROUP_free');
   if not assigned(EC_GROUP_free) then
+    {$if declared(LEGACY_EC_GROUP_free)}
+    EC_GROUP_free := @LEGACY_EC_GROUP_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_free');
+    {$ifend}
   EC_GROUP_free(group);
 end;
 
@@ -3294,7 +3395,11 @@ function Load_EC_GROUP_copy(dst: PEC_GROUP; src: PEC_GROUP): TOpenSSL_C_INT; cde
 begin
   EC_GROUP_copy := LoadLibCryptoFunction('EC_GROUP_copy');
   if not assigned(EC_GROUP_copy) then
+    {$if declared(LEGACY_EC_GROUP_copy)}
+    EC_GROUP_copy := @LEGACY_EC_GROUP_copy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_copy');
+    {$ifend}
   Result := EC_GROUP_copy(dst, src);
 end;
 
@@ -3302,7 +3407,11 @@ function Load_EC_GROUP_dup(src: PEC_GROUP): PEC_GROUP; cdecl;
 begin
   EC_GROUP_dup := LoadLibCryptoFunction('EC_GROUP_dup');
   if not assigned(EC_GROUP_dup) then
+    {$if declared(LEGACY_EC_GROUP_dup)}
+    EC_GROUP_dup := @LEGACY_EC_GROUP_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_dup');
+    {$ifend}
   Result := EC_GROUP_dup(src);
 end;
 
@@ -3310,7 +3419,11 @@ function Load_EC_GROUP_set_generator(group: PEC_GROUP; generator: PEC_POINT; ord
 begin
   EC_GROUP_set_generator := LoadLibCryptoFunction('EC_GROUP_set_generator');
   if not assigned(EC_GROUP_set_generator) then
+    {$if declared(LEGACY_EC_GROUP_set_generator)}
+    EC_GROUP_set_generator := @LEGACY_EC_GROUP_set_generator;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_set_generator');
+    {$ifend}
   Result := EC_GROUP_set_generator(group, generator, order, cofactor);
 end;
 
@@ -3318,7 +3431,11 @@ function Load_EC_GROUP_get0_generator(group: PEC_GROUP): PEC_POINT; cdecl;
 begin
   EC_GROUP_get0_generator := LoadLibCryptoFunction('EC_GROUP_get0_generator');
   if not assigned(EC_GROUP_get0_generator) then
+    {$if declared(LEGACY_EC_GROUP_get0_generator)}
+    EC_GROUP_get0_generator := @LEGACY_EC_GROUP_get0_generator;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_get0_generator');
+    {$ifend}
   Result := EC_GROUP_get0_generator(group);
 end;
 
@@ -3326,7 +3443,11 @@ function Load_EC_GROUP_get_mont_data(group: PEC_GROUP): PBN_MONT_CTX; cdecl;
 begin
   EC_GROUP_get_mont_data := LoadLibCryptoFunction('EC_GROUP_get_mont_data');
   if not assigned(EC_GROUP_get_mont_data) then
+    {$if declared(LEGACY_EC_GROUP_get_mont_data)}
+    EC_GROUP_get_mont_data := @LEGACY_EC_GROUP_get_mont_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_get_mont_data');
+    {$ifend}
   Result := EC_GROUP_get_mont_data(group);
 end;
 
@@ -3334,7 +3455,11 @@ function Load_EC_GROUP_get_order(group: PEC_GROUP; order: PBIGNUM; ctx: PBN_CTX)
 begin
   EC_GROUP_get_order := LoadLibCryptoFunction('EC_GROUP_get_order');
   if not assigned(EC_GROUP_get_order) then
+    {$if declared(LEGACY_EC_GROUP_get_order)}
+    EC_GROUP_get_order := @LEGACY_EC_GROUP_get_order;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_get_order');
+    {$ifend}
   Result := EC_GROUP_get_order(group, order, ctx);
 end;
 
@@ -3342,7 +3467,11 @@ function Load_EC_GROUP_get0_order(group: PEC_GROUP): PBIGNUM; cdecl;
 begin
   EC_GROUP_get0_order := LoadLibCryptoFunction('EC_GROUP_get0_order');
   if not assigned(EC_GROUP_get0_order) then
+    {$if declared(LEGACY_EC_GROUP_get0_order)}
+    EC_GROUP_get0_order := @LEGACY_EC_GROUP_get0_order;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_get0_order');
+    {$ifend}
   Result := EC_GROUP_get0_order(group);
 end;
 
@@ -3350,7 +3479,11 @@ function Load_EC_GROUP_order_bits(group: PEC_GROUP): TOpenSSL_C_INT; cdecl;
 begin
   EC_GROUP_order_bits := LoadLibCryptoFunction('EC_GROUP_order_bits');
   if not assigned(EC_GROUP_order_bits) then
+    {$if declared(LEGACY_EC_GROUP_order_bits)}
+    EC_GROUP_order_bits := @LEGACY_EC_GROUP_order_bits;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_order_bits');
+    {$ifend}
   Result := EC_GROUP_order_bits(group);
 end;
 
@@ -3358,7 +3491,11 @@ function Load_EC_GROUP_get_cofactor(group: PEC_GROUP; cofactor: PBIGNUM; ctx: PB
 begin
   EC_GROUP_get_cofactor := LoadLibCryptoFunction('EC_GROUP_get_cofactor');
   if not assigned(EC_GROUP_get_cofactor) then
+    {$if declared(LEGACY_EC_GROUP_get_cofactor)}
+    EC_GROUP_get_cofactor := @LEGACY_EC_GROUP_get_cofactor;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_get_cofactor');
+    {$ifend}
   Result := EC_GROUP_get_cofactor(group, cofactor, ctx);
 end;
 
@@ -3366,7 +3503,11 @@ function Load_EC_GROUP_get0_cofactor(group: PEC_GROUP): PBIGNUM; cdecl;
 begin
   EC_GROUP_get0_cofactor := LoadLibCryptoFunction('EC_GROUP_get0_cofactor');
   if not assigned(EC_GROUP_get0_cofactor) then
+    {$if declared(LEGACY_EC_GROUP_get0_cofactor)}
+    EC_GROUP_get0_cofactor := @LEGACY_EC_GROUP_get0_cofactor;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_get0_cofactor');
+    {$ifend}
   Result := EC_GROUP_get0_cofactor(group);
 end;
 
@@ -3374,7 +3515,11 @@ procedure Load_EC_GROUP_set_curve_name(group: PEC_GROUP; nid: TOpenSSL_C_INT); c
 begin
   EC_GROUP_set_curve_name := LoadLibCryptoFunction('EC_GROUP_set_curve_name');
   if not assigned(EC_GROUP_set_curve_name) then
+    {$if declared(LEGACY_EC_GROUP_set_curve_name)}
+    EC_GROUP_set_curve_name := @LEGACY_EC_GROUP_set_curve_name;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_set_curve_name');
+    {$ifend}
   EC_GROUP_set_curve_name(group, nid);
 end;
 
@@ -3382,7 +3527,11 @@ function Load_EC_GROUP_get_curve_name(group: PEC_GROUP): TOpenSSL_C_INT; cdecl;
 begin
   EC_GROUP_get_curve_name := LoadLibCryptoFunction('EC_GROUP_get_curve_name');
   if not assigned(EC_GROUP_get_curve_name) then
+    {$if declared(LEGACY_EC_GROUP_get_curve_name)}
+    EC_GROUP_get_curve_name := @LEGACY_EC_GROUP_get_curve_name;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_get_curve_name');
+    {$ifend}
   Result := EC_GROUP_get_curve_name(group);
 end;
 
@@ -3390,7 +3539,11 @@ function Load_EC_GROUP_get0_field(group: PEC_GROUP): PBIGNUM; cdecl;
 begin
   EC_GROUP_get0_field := LoadLibCryptoFunction('EC_GROUP_get0_field');
   if not assigned(EC_GROUP_get0_field) then
+    {$if declared(LEGACY_EC_GROUP_get0_field)}
+    EC_GROUP_get0_field := @LEGACY_EC_GROUP_get0_field;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_get0_field');
+    {$ifend}
   Result := EC_GROUP_get0_field(group);
 end;
 
@@ -3398,7 +3551,11 @@ function Load_EC_GROUP_get_field_type(group: PEC_GROUP): TOpenSSL_C_INT; cdecl;
 begin
   EC_GROUP_get_field_type := LoadLibCryptoFunction('EC_GROUP_get_field_type');
   if not assigned(EC_GROUP_get_field_type) then
+    {$if declared(LEGACY_EC_GROUP_get_field_type)}
+    EC_GROUP_get_field_type := @LEGACY_EC_GROUP_get_field_type;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_get_field_type');
+    {$ifend}
   Result := EC_GROUP_get_field_type(group);
 end;
 
@@ -3406,7 +3563,11 @@ procedure Load_EC_GROUP_set_asn1_flag(group: PEC_GROUP; flag: TOpenSSL_C_INT); c
 begin
   EC_GROUP_set_asn1_flag := LoadLibCryptoFunction('EC_GROUP_set_asn1_flag');
   if not assigned(EC_GROUP_set_asn1_flag) then
+    {$if declared(LEGACY_EC_GROUP_set_asn1_flag)}
+    EC_GROUP_set_asn1_flag := @LEGACY_EC_GROUP_set_asn1_flag;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_set_asn1_flag');
+    {$ifend}
   EC_GROUP_set_asn1_flag(group, flag);
 end;
 
@@ -3414,7 +3575,11 @@ function Load_EC_GROUP_get_asn1_flag(group: PEC_GROUP): TOpenSSL_C_INT; cdecl;
 begin
   EC_GROUP_get_asn1_flag := LoadLibCryptoFunction('EC_GROUP_get_asn1_flag');
   if not assigned(EC_GROUP_get_asn1_flag) then
+    {$if declared(LEGACY_EC_GROUP_get_asn1_flag)}
+    EC_GROUP_get_asn1_flag := @LEGACY_EC_GROUP_get_asn1_flag;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_get_asn1_flag');
+    {$ifend}
   Result := EC_GROUP_get_asn1_flag(group);
 end;
 
@@ -3422,7 +3587,11 @@ procedure Load_EC_GROUP_set_point_conversion_form(group: PEC_GROUP; form: Tpoint
 begin
   EC_GROUP_set_point_conversion_form := LoadLibCryptoFunction('EC_GROUP_set_point_conversion_form');
   if not assigned(EC_GROUP_set_point_conversion_form) then
+    {$if declared(LEGACY_EC_GROUP_set_point_conversion_form)}
+    EC_GROUP_set_point_conversion_form := @LEGACY_EC_GROUP_set_point_conversion_form;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_set_point_conversion_form');
+    {$ifend}
   EC_GROUP_set_point_conversion_form(group, form);
 end;
 
@@ -3430,7 +3599,11 @@ function Load_EC_GROUP_get_point_conversion_form(_param1: PEC_GROUP): Tpoint_con
 begin
   EC_GROUP_get_point_conversion_form := LoadLibCryptoFunction('EC_GROUP_get_point_conversion_form');
   if not assigned(EC_GROUP_get_point_conversion_form) then
+    {$if declared(LEGACY_EC_GROUP_get_point_conversion_form)}
+    EC_GROUP_get_point_conversion_form := @LEGACY_EC_GROUP_get_point_conversion_form;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_get_point_conversion_form');
+    {$ifend}
   Result := EC_GROUP_get_point_conversion_form(_param1);
 end;
 
@@ -3438,7 +3611,11 @@ function Load_EC_GROUP_get0_seed(x: PEC_GROUP): Pbyte; cdecl;
 begin
   EC_GROUP_get0_seed := LoadLibCryptoFunction('EC_GROUP_get0_seed');
   if not assigned(EC_GROUP_get0_seed) then
+    {$if declared(LEGACY_EC_GROUP_get0_seed)}
+    EC_GROUP_get0_seed := @LEGACY_EC_GROUP_get0_seed;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_get0_seed');
+    {$ifend}
   Result := EC_GROUP_get0_seed(x);
 end;
 
@@ -3446,7 +3623,11 @@ function Load_EC_GROUP_get_seed_len(_param1: PEC_GROUP): TOpenSSL_C_SIZET; cdecl
 begin
   EC_GROUP_get_seed_len := LoadLibCryptoFunction('EC_GROUP_get_seed_len');
   if not assigned(EC_GROUP_get_seed_len) then
+    {$if declared(LEGACY_EC_GROUP_get_seed_len)}
+    EC_GROUP_get_seed_len := @LEGACY_EC_GROUP_get_seed_len;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_get_seed_len');
+    {$ifend}
   Result := EC_GROUP_get_seed_len(_param1);
 end;
 
@@ -3454,7 +3635,11 @@ function Load_EC_GROUP_set_seed(_param1: PEC_GROUP; _param2: Pbyte; len: TOpenSS
 begin
   EC_GROUP_set_seed := LoadLibCryptoFunction('EC_GROUP_set_seed');
   if not assigned(EC_GROUP_set_seed) then
+    {$if declared(LEGACY_EC_GROUP_set_seed)}
+    EC_GROUP_set_seed := @LEGACY_EC_GROUP_set_seed;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_set_seed');
+    {$ifend}
   Result := EC_GROUP_set_seed(_param1, _param2, len);
 end;
 
@@ -3462,7 +3647,11 @@ function Load_EC_GROUP_set_curve(group: PEC_GROUP; p: PBIGNUM; a: PBIGNUM; b: PB
 begin
   EC_GROUP_set_curve := LoadLibCryptoFunction('EC_GROUP_set_curve');
   if not assigned(EC_GROUP_set_curve) then
+    {$if declared(LEGACY_EC_GROUP_set_curve)}
+    EC_GROUP_set_curve := @LEGACY_EC_GROUP_set_curve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_set_curve');
+    {$ifend}
   Result := EC_GROUP_set_curve(group, p, a, b, ctx);
 end;
 
@@ -3470,7 +3659,11 @@ function Load_EC_GROUP_get_curve(group: PEC_GROUP; p: PBIGNUM; a: PBIGNUM; b: PB
 begin
   EC_GROUP_get_curve := LoadLibCryptoFunction('EC_GROUP_get_curve');
   if not assigned(EC_GROUP_get_curve) then
+    {$if declared(LEGACY_EC_GROUP_get_curve)}
+    EC_GROUP_get_curve := @LEGACY_EC_GROUP_get_curve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_get_curve');
+    {$ifend}
   Result := EC_GROUP_get_curve(group, p, a, b, ctx);
 end;
 
@@ -3479,7 +3672,11 @@ function Load_EC_GROUP_set_curve_GFp(group: PEC_GROUP; p: PBIGNUM; a: PBIGNUM; b
 begin
   EC_GROUP_set_curve_GFp := LoadLibCryptoFunction('EC_GROUP_set_curve_GFp');
   if not assigned(EC_GROUP_set_curve_GFp) then
+    {$if declared(LEGACY_EC_GROUP_set_curve_GFp)}
+    EC_GROUP_set_curve_GFp := @LEGACY_EC_GROUP_set_curve_GFp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_set_curve_GFp');
+    {$ifend}
   Result := EC_GROUP_set_curve_GFp(group, p, a, b, ctx);
 end;
 
@@ -3487,7 +3684,11 @@ function Load_EC_GROUP_get_curve_GFp(group: PEC_GROUP; p: PBIGNUM; a: PBIGNUM; b
 begin
   EC_GROUP_get_curve_GFp := LoadLibCryptoFunction('EC_GROUP_get_curve_GFp');
   if not assigned(EC_GROUP_get_curve_GFp) then
+    {$if declared(LEGACY_EC_GROUP_get_curve_GFp)}
+    EC_GROUP_get_curve_GFp := @LEGACY_EC_GROUP_get_curve_GFp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_get_curve_GFp');
+    {$ifend}
   Result := EC_GROUP_get_curve_GFp(group, p, a, b, ctx);
 end;
 
@@ -3496,7 +3697,11 @@ function Load_EC_GROUP_set_curve_GF2m(group: PEC_GROUP; p: PBIGNUM; a: PBIGNUM; 
 begin
   EC_GROUP_set_curve_GF2m := LoadLibCryptoFunction('EC_GROUP_set_curve_GF2m');
   if not assigned(EC_GROUP_set_curve_GF2m) then
+    {$if declared(LEGACY_EC_GROUP_set_curve_GF2m)}
+    EC_GROUP_set_curve_GF2m := @LEGACY_EC_GROUP_set_curve_GF2m;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_set_curve_GF2m');
+    {$ifend}
   Result := EC_GROUP_set_curve_GF2m(group, p, a, b, ctx);
 end;
 
@@ -3504,7 +3709,11 @@ function Load_EC_GROUP_get_curve_GF2m(group: PEC_GROUP; p: PBIGNUM; a: PBIGNUM; 
 begin
   EC_GROUP_get_curve_GF2m := LoadLibCryptoFunction('EC_GROUP_get_curve_GF2m');
   if not assigned(EC_GROUP_get_curve_GF2m) then
+    {$if declared(LEGACY_EC_GROUP_get_curve_GF2m)}
+    EC_GROUP_get_curve_GF2m := @LEGACY_EC_GROUP_get_curve_GF2m;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_get_curve_GF2m');
+    {$ifend}
   Result := EC_GROUP_get_curve_GF2m(group, p, a, b, ctx);
 end;
 
@@ -3514,7 +3723,11 @@ function Load_EC_GROUP_get_degree(group: PEC_GROUP): TOpenSSL_C_INT; cdecl;
 begin
   EC_GROUP_get_degree := LoadLibCryptoFunction('EC_GROUP_get_degree');
   if not assigned(EC_GROUP_get_degree) then
+    {$if declared(LEGACY_EC_GROUP_get_degree)}
+    EC_GROUP_get_degree := @LEGACY_EC_GROUP_get_degree;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_get_degree');
+    {$ifend}
   Result := EC_GROUP_get_degree(group);
 end;
 
@@ -3522,7 +3735,11 @@ function Load_EC_GROUP_check(group: PEC_GROUP; ctx: PBN_CTX): TOpenSSL_C_INT; cd
 begin
   EC_GROUP_check := LoadLibCryptoFunction('EC_GROUP_check');
   if not assigned(EC_GROUP_check) then
+    {$if declared(LEGACY_EC_GROUP_check)}
+    EC_GROUP_check := @LEGACY_EC_GROUP_check;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_check');
+    {$ifend}
   Result := EC_GROUP_check(group, ctx);
 end;
 
@@ -3530,7 +3747,11 @@ function Load_EC_GROUP_check_discriminant(group: PEC_GROUP; ctx: PBN_CTX): TOpen
 begin
   EC_GROUP_check_discriminant := LoadLibCryptoFunction('EC_GROUP_check_discriminant');
   if not assigned(EC_GROUP_check_discriminant) then
+    {$if declared(LEGACY_EC_GROUP_check_discriminant)}
+    EC_GROUP_check_discriminant := @LEGACY_EC_GROUP_check_discriminant;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_check_discriminant');
+    {$ifend}
   Result := EC_GROUP_check_discriminant(group, ctx);
 end;
 
@@ -3538,7 +3759,11 @@ function Load_EC_GROUP_cmp(a: PEC_GROUP; b: PEC_GROUP; ctx: PBN_CTX): TOpenSSL_C
 begin
   EC_GROUP_cmp := LoadLibCryptoFunction('EC_GROUP_cmp');
   if not assigned(EC_GROUP_cmp) then
+    {$if declared(LEGACY_EC_GROUP_cmp)}
+    EC_GROUP_cmp := @LEGACY_EC_GROUP_cmp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_cmp');
+    {$ifend}
   Result := EC_GROUP_cmp(a, b, ctx);
 end;
 
@@ -3546,7 +3771,11 @@ function Load_EC_GROUP_new_curve_GFp(p: PBIGNUM; a: PBIGNUM; b: PBIGNUM; ctx: PB
 begin
   EC_GROUP_new_curve_GFp := LoadLibCryptoFunction('EC_GROUP_new_curve_GFp');
   if not assigned(EC_GROUP_new_curve_GFp) then
+    {$if declared(LEGACY_EC_GROUP_new_curve_GFp)}
+    EC_GROUP_new_curve_GFp := @LEGACY_EC_GROUP_new_curve_GFp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_new_curve_GFp');
+    {$ifend}
   Result := EC_GROUP_new_curve_GFp(p, a, b, ctx);
 end;
 
@@ -3555,7 +3784,11 @@ function Load_EC_GROUP_new_curve_GF2m(p: PBIGNUM; a: PBIGNUM; b: PBIGNUM; ctx: P
 begin
   EC_GROUP_new_curve_GF2m := LoadLibCryptoFunction('EC_GROUP_new_curve_GF2m');
   if not assigned(EC_GROUP_new_curve_GF2m) then
+    {$if declared(LEGACY_EC_GROUP_new_curve_GF2m)}
+    EC_GROUP_new_curve_GF2m := @LEGACY_EC_GROUP_new_curve_GF2m;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_new_curve_GF2m');
+    {$ifend}
   Result := EC_GROUP_new_curve_GF2m(p, a, b, ctx);
 end;
 
@@ -3564,7 +3797,11 @@ function Load_EC_GROUP_new_from_params(params: POSSL_PARAM; libctx: POSSL_LIB_CT
 begin
   EC_GROUP_new_from_params := LoadLibCryptoFunction('EC_GROUP_new_from_params');
   if not assigned(EC_GROUP_new_from_params) then
+    {$if declared(LEGACY_EC_GROUP_new_from_params)}
+    EC_GROUP_new_from_params := @LEGACY_EC_GROUP_new_from_params;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_new_from_params');
+    {$ifend}
   Result := EC_GROUP_new_from_params(params, libctx, propq);
 end;
 
@@ -3572,7 +3809,11 @@ function Load_EC_GROUP_new_by_curve_name_ex(libctx: POSSL_LIB_CTX; propq: PAnsiC
 begin
   EC_GROUP_new_by_curve_name_ex := LoadLibCryptoFunction('EC_GROUP_new_by_curve_name_ex');
   if not assigned(EC_GROUP_new_by_curve_name_ex) then
+    {$if declared(LEGACY_EC_GROUP_new_by_curve_name_ex)}
+    EC_GROUP_new_by_curve_name_ex := @LEGACY_EC_GROUP_new_by_curve_name_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_new_by_curve_name_ex');
+    {$ifend}
   Result := EC_GROUP_new_by_curve_name_ex(libctx, propq, nid);
 end;
 
@@ -3580,7 +3821,11 @@ function Load_EC_GROUP_new_by_curve_name(nid: TOpenSSL_C_INT): PEC_GROUP; cdecl;
 begin
   EC_GROUP_new_by_curve_name := LoadLibCryptoFunction('EC_GROUP_new_by_curve_name');
   if not assigned(EC_GROUP_new_by_curve_name) then
+    {$if declared(LEGACY_EC_GROUP_new_by_curve_name)}
+    EC_GROUP_new_by_curve_name := @LEGACY_EC_GROUP_new_by_curve_name;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_new_by_curve_name');
+    {$ifend}
   Result := EC_GROUP_new_by_curve_name(nid);
 end;
 
@@ -3588,7 +3833,11 @@ function Load_EC_GROUP_new_from_ecparameters(params: PECPARAMETERS): PEC_GROUP; 
 begin
   EC_GROUP_new_from_ecparameters := LoadLibCryptoFunction('EC_GROUP_new_from_ecparameters');
   if not assigned(EC_GROUP_new_from_ecparameters) then
+    {$if declared(LEGACY_EC_GROUP_new_from_ecparameters)}
+    EC_GROUP_new_from_ecparameters := @LEGACY_EC_GROUP_new_from_ecparameters;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_new_from_ecparameters');
+    {$ifend}
   Result := EC_GROUP_new_from_ecparameters(params);
 end;
 
@@ -3596,7 +3845,11 @@ function Load_EC_GROUP_get_ecparameters(group: PEC_GROUP; params: PECPARAMETERS)
 begin
   EC_GROUP_get_ecparameters := LoadLibCryptoFunction('EC_GROUP_get_ecparameters');
   if not assigned(EC_GROUP_get_ecparameters) then
+    {$if declared(LEGACY_EC_GROUP_get_ecparameters)}
+    EC_GROUP_get_ecparameters := @LEGACY_EC_GROUP_get_ecparameters;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_get_ecparameters');
+    {$ifend}
   Result := EC_GROUP_get_ecparameters(group, params);
 end;
 
@@ -3604,7 +3857,11 @@ function Load_EC_GROUP_new_from_ecpkparameters(params: PECPKPARAMETERS): PEC_GRO
 begin
   EC_GROUP_new_from_ecpkparameters := LoadLibCryptoFunction('EC_GROUP_new_from_ecpkparameters');
   if not assigned(EC_GROUP_new_from_ecpkparameters) then
+    {$if declared(LEGACY_EC_GROUP_new_from_ecpkparameters)}
+    EC_GROUP_new_from_ecpkparameters := @LEGACY_EC_GROUP_new_from_ecpkparameters;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_new_from_ecpkparameters');
+    {$ifend}
   Result := EC_GROUP_new_from_ecpkparameters(params);
 end;
 
@@ -3612,7 +3869,11 @@ function Load_EC_GROUP_get_ecpkparameters(group: PEC_GROUP; params: PECPKPARAMET
 begin
   EC_GROUP_get_ecpkparameters := LoadLibCryptoFunction('EC_GROUP_get_ecpkparameters');
   if not assigned(EC_GROUP_get_ecpkparameters) then
+    {$if declared(LEGACY_EC_GROUP_get_ecpkparameters)}
+    EC_GROUP_get_ecpkparameters := @LEGACY_EC_GROUP_get_ecpkparameters;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_get_ecpkparameters');
+    {$ifend}
   Result := EC_GROUP_get_ecpkparameters(group, params);
 end;
 
@@ -3620,7 +3881,11 @@ function Load_EC_get_builtin_curves(r: PEC_builtin_curve; nitems: TOpenSSL_C_SIZ
 begin
   EC_get_builtin_curves := LoadLibCryptoFunction('EC_get_builtin_curves');
   if not assigned(EC_get_builtin_curves) then
+    {$if declared(LEGACY_EC_get_builtin_curves)}
+    EC_get_builtin_curves := @LEGACY_EC_get_builtin_curves;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_get_builtin_curves');
+    {$ifend}
   Result := EC_get_builtin_curves(r, nitems);
 end;
 
@@ -3628,7 +3893,11 @@ function Load_EC_curve_nid2nist(nid: TOpenSSL_C_INT): PAnsiChar; cdecl;
 begin
   EC_curve_nid2nist := LoadLibCryptoFunction('EC_curve_nid2nist');
   if not assigned(EC_curve_nid2nist) then
+    {$if declared(LEGACY_EC_curve_nid2nist)}
+    EC_curve_nid2nist := @LEGACY_EC_curve_nid2nist;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_curve_nid2nist');
+    {$ifend}
   Result := EC_curve_nid2nist(nid);
 end;
 
@@ -3636,7 +3905,11 @@ function Load_EC_curve_nist2nid(name: PAnsiChar): TOpenSSL_C_INT; cdecl;
 begin
   EC_curve_nist2nid := LoadLibCryptoFunction('EC_curve_nist2nid');
   if not assigned(EC_curve_nist2nid) then
+    {$if declared(LEGACY_EC_curve_nist2nid)}
+    EC_curve_nist2nid := @LEGACY_EC_curve_nist2nid;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_curve_nist2nid');
+    {$ifend}
   Result := EC_curve_nist2nid(name);
 end;
 
@@ -3644,7 +3917,11 @@ function Load_EC_GROUP_check_named_curve(group: PEC_GROUP; nist_only: TOpenSSL_C
 begin
   EC_GROUP_check_named_curve := LoadLibCryptoFunction('EC_GROUP_check_named_curve');
   if not assigned(EC_GROUP_check_named_curve) then
+    {$if declared(LEGACY_EC_GROUP_check_named_curve)}
+    EC_GROUP_check_named_curve := @LEGACY_EC_GROUP_check_named_curve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_check_named_curve');
+    {$ifend}
   Result := EC_GROUP_check_named_curve(group, nist_only, ctx);
 end;
 
@@ -3652,7 +3929,11 @@ function Load_EC_POINT_new(group: PEC_GROUP): PEC_POINT; cdecl;
 begin
   EC_POINT_new := LoadLibCryptoFunction('EC_POINT_new');
   if not assigned(EC_POINT_new) then
+    {$if declared(LEGACY_EC_POINT_new)}
+    EC_POINT_new := @LEGACY_EC_POINT_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINT_new');
+    {$ifend}
   Result := EC_POINT_new(group);
 end;
 
@@ -3660,7 +3941,11 @@ procedure Load_EC_POINT_free(point: PEC_POINT); cdecl;
 begin
   EC_POINT_free := LoadLibCryptoFunction('EC_POINT_free');
   if not assigned(EC_POINT_free) then
+    {$if declared(LEGACY_EC_POINT_free)}
+    EC_POINT_free := @LEGACY_EC_POINT_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINT_free');
+    {$ifend}
   EC_POINT_free(point);
 end;
 
@@ -3668,7 +3953,11 @@ procedure Load_EC_POINT_clear_free(point: PEC_POINT); cdecl;
 begin
   EC_POINT_clear_free := LoadLibCryptoFunction('EC_POINT_clear_free');
   if not assigned(EC_POINT_clear_free) then
+    {$if declared(LEGACY_EC_POINT_clear_free)}
+    EC_POINT_clear_free := @LEGACY_EC_POINT_clear_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINT_clear_free');
+    {$ifend}
   EC_POINT_clear_free(point);
 end;
 
@@ -3676,7 +3965,11 @@ function Load_EC_POINT_copy(dst: PEC_POINT; src: PEC_POINT): TOpenSSL_C_INT; cde
 begin
   EC_POINT_copy := LoadLibCryptoFunction('EC_POINT_copy');
   if not assigned(EC_POINT_copy) then
+    {$if declared(LEGACY_EC_POINT_copy)}
+    EC_POINT_copy := @LEGACY_EC_POINT_copy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINT_copy');
+    {$ifend}
   Result := EC_POINT_copy(dst, src);
 end;
 
@@ -3684,7 +3977,11 @@ function Load_EC_POINT_dup(src: PEC_POINT; group: PEC_GROUP): PEC_POINT; cdecl;
 begin
   EC_POINT_dup := LoadLibCryptoFunction('EC_POINT_dup');
   if not assigned(EC_POINT_dup) then
+    {$if declared(LEGACY_EC_POINT_dup)}
+    EC_POINT_dup := @LEGACY_EC_POINT_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINT_dup');
+    {$ifend}
   Result := EC_POINT_dup(src, group);
 end;
 
@@ -3692,7 +3989,11 @@ function Load_EC_POINT_set_to_infinity(group: PEC_GROUP; point: PEC_POINT): TOpe
 begin
   EC_POINT_set_to_infinity := LoadLibCryptoFunction('EC_POINT_set_to_infinity');
   if not assigned(EC_POINT_set_to_infinity) then
+    {$if declared(LEGACY_EC_POINT_set_to_infinity)}
+    EC_POINT_set_to_infinity := @LEGACY_EC_POINT_set_to_infinity;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINT_set_to_infinity');
+    {$ifend}
   Result := EC_POINT_set_to_infinity(group, point);
 end;
 
@@ -3701,7 +4002,11 @@ function Load_EC_POINT_method_of(point: PEC_POINT): PEC_METHOD; cdecl;
 begin
   EC_POINT_method_of := LoadLibCryptoFunction('EC_POINT_method_of');
   if not assigned(EC_POINT_method_of) then
+    {$if declared(LEGACY_EC_POINT_method_of)}
+    EC_POINT_method_of := @LEGACY_EC_POINT_method_of;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINT_method_of');
+    {$ifend}
   Result := EC_POINT_method_of(point);
 end;
 
@@ -3709,7 +4014,11 @@ function Load_EC_POINT_set_Jprojective_coordinates_GFp(group: PEC_GROUP; p: PEC_
 begin
   EC_POINT_set_Jprojective_coordinates_GFp := LoadLibCryptoFunction('EC_POINT_set_Jprojective_coordinates_GFp');
   if not assigned(EC_POINT_set_Jprojective_coordinates_GFp) then
+    {$if declared(LEGACY_EC_POINT_set_Jprojective_coordinates_GFp)}
+    EC_POINT_set_Jprojective_coordinates_GFp := @LEGACY_EC_POINT_set_Jprojective_coordinates_GFp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINT_set_Jprojective_coordinates_GFp');
+    {$ifend}
   Result := EC_POINT_set_Jprojective_coordinates_GFp(group, p, x, y, z, ctx);
 end;
 
@@ -3717,7 +4026,11 @@ function Load_EC_POINT_get_Jprojective_coordinates_GFp(group: PEC_GROUP; p: PEC_
 begin
   EC_POINT_get_Jprojective_coordinates_GFp := LoadLibCryptoFunction('EC_POINT_get_Jprojective_coordinates_GFp');
   if not assigned(EC_POINT_get_Jprojective_coordinates_GFp) then
+    {$if declared(LEGACY_EC_POINT_get_Jprojective_coordinates_GFp)}
+    EC_POINT_get_Jprojective_coordinates_GFp := @LEGACY_EC_POINT_get_Jprojective_coordinates_GFp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINT_get_Jprojective_coordinates_GFp');
+    {$ifend}
   Result := EC_POINT_get_Jprojective_coordinates_GFp(group, p, x, y, z, ctx);
 end;
 
@@ -3726,7 +4039,11 @@ function Load_EC_POINT_set_affine_coordinates(group: PEC_GROUP; p: PEC_POINT; x:
 begin
   EC_POINT_set_affine_coordinates := LoadLibCryptoFunction('EC_POINT_set_affine_coordinates');
   if not assigned(EC_POINT_set_affine_coordinates) then
+    {$if declared(LEGACY_EC_POINT_set_affine_coordinates)}
+    EC_POINT_set_affine_coordinates := @LEGACY_EC_POINT_set_affine_coordinates;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINT_set_affine_coordinates');
+    {$ifend}
   Result := EC_POINT_set_affine_coordinates(group, p, x, y, ctx);
 end;
 
@@ -3734,7 +4051,11 @@ function Load_EC_POINT_get_affine_coordinates(group: PEC_GROUP; p: PEC_POINT; x:
 begin
   EC_POINT_get_affine_coordinates := LoadLibCryptoFunction('EC_POINT_get_affine_coordinates');
   if not assigned(EC_POINT_get_affine_coordinates) then
+    {$if declared(LEGACY_EC_POINT_get_affine_coordinates)}
+    EC_POINT_get_affine_coordinates := @LEGACY_EC_POINT_get_affine_coordinates;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINT_get_affine_coordinates');
+    {$ifend}
   Result := EC_POINT_get_affine_coordinates(group, p, x, y, ctx);
 end;
 
@@ -3743,7 +4064,11 @@ function Load_EC_POINT_set_affine_coordinates_GFp(group: PEC_GROUP; p: PEC_POINT
 begin
   EC_POINT_set_affine_coordinates_GFp := LoadLibCryptoFunction('EC_POINT_set_affine_coordinates_GFp');
   if not assigned(EC_POINT_set_affine_coordinates_GFp) then
+    {$if declared(LEGACY_EC_POINT_set_affine_coordinates_GFp)}
+    EC_POINT_set_affine_coordinates_GFp := @LEGACY_EC_POINT_set_affine_coordinates_GFp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINT_set_affine_coordinates_GFp');
+    {$ifend}
   Result := EC_POINT_set_affine_coordinates_GFp(group, p, x, y, ctx);
 end;
 
@@ -3751,7 +4076,11 @@ function Load_EC_POINT_get_affine_coordinates_GFp(group: PEC_GROUP; p: PEC_POINT
 begin
   EC_POINT_get_affine_coordinates_GFp := LoadLibCryptoFunction('EC_POINT_get_affine_coordinates_GFp');
   if not assigned(EC_POINT_get_affine_coordinates_GFp) then
+    {$if declared(LEGACY_EC_POINT_get_affine_coordinates_GFp)}
+    EC_POINT_get_affine_coordinates_GFp := @LEGACY_EC_POINT_get_affine_coordinates_GFp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINT_get_affine_coordinates_GFp');
+    {$ifend}
   Result := EC_POINT_get_affine_coordinates_GFp(group, p, x, y, ctx);
 end;
 
@@ -3760,7 +4089,11 @@ function Load_EC_POINT_set_compressed_coordinates(group: PEC_GROUP; p: PEC_POINT
 begin
   EC_POINT_set_compressed_coordinates := LoadLibCryptoFunction('EC_POINT_set_compressed_coordinates');
   if not assigned(EC_POINT_set_compressed_coordinates) then
+    {$if declared(LEGACY_EC_POINT_set_compressed_coordinates)}
+    EC_POINT_set_compressed_coordinates := @LEGACY_EC_POINT_set_compressed_coordinates;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINT_set_compressed_coordinates');
+    {$ifend}
   Result := EC_POINT_set_compressed_coordinates(group, p, x, y_bit, ctx);
 end;
 
@@ -3769,7 +4102,11 @@ function Load_EC_POINT_set_compressed_coordinates_GFp(group: PEC_GROUP; p: PEC_P
 begin
   EC_POINT_set_compressed_coordinates_GFp := LoadLibCryptoFunction('EC_POINT_set_compressed_coordinates_GFp');
   if not assigned(EC_POINT_set_compressed_coordinates_GFp) then
+    {$if declared(LEGACY_EC_POINT_set_compressed_coordinates_GFp)}
+    EC_POINT_set_compressed_coordinates_GFp := @LEGACY_EC_POINT_set_compressed_coordinates_GFp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINT_set_compressed_coordinates_GFp');
+    {$ifend}
   Result := EC_POINT_set_compressed_coordinates_GFp(group, p, x, y_bit, ctx);
 end;
 
@@ -3778,7 +4115,11 @@ function Load_EC_POINT_set_affine_coordinates_GF2m(group: PEC_GROUP; p: PEC_POIN
 begin
   EC_POINT_set_affine_coordinates_GF2m := LoadLibCryptoFunction('EC_POINT_set_affine_coordinates_GF2m');
   if not assigned(EC_POINT_set_affine_coordinates_GF2m) then
+    {$if declared(LEGACY_EC_POINT_set_affine_coordinates_GF2m)}
+    EC_POINT_set_affine_coordinates_GF2m := @LEGACY_EC_POINT_set_affine_coordinates_GF2m;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINT_set_affine_coordinates_GF2m');
+    {$ifend}
   Result := EC_POINT_set_affine_coordinates_GF2m(group, p, x, y, ctx);
 end;
 
@@ -3786,7 +4127,11 @@ function Load_EC_POINT_get_affine_coordinates_GF2m(group: PEC_GROUP; p: PEC_POIN
 begin
   EC_POINT_get_affine_coordinates_GF2m := LoadLibCryptoFunction('EC_POINT_get_affine_coordinates_GF2m');
   if not assigned(EC_POINT_get_affine_coordinates_GF2m) then
+    {$if declared(LEGACY_EC_POINT_get_affine_coordinates_GF2m)}
+    EC_POINT_get_affine_coordinates_GF2m := @LEGACY_EC_POINT_get_affine_coordinates_GF2m;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINT_get_affine_coordinates_GF2m');
+    {$ifend}
   Result := EC_POINT_get_affine_coordinates_GF2m(group, p, x, y, ctx);
 end;
 
@@ -3794,7 +4139,11 @@ function Load_EC_POINT_set_compressed_coordinates_GF2m(group: PEC_GROUP; p: PEC_
 begin
   EC_POINT_set_compressed_coordinates_GF2m := LoadLibCryptoFunction('EC_POINT_set_compressed_coordinates_GF2m');
   if not assigned(EC_POINT_set_compressed_coordinates_GF2m) then
+    {$if declared(LEGACY_EC_POINT_set_compressed_coordinates_GF2m)}
+    EC_POINT_set_compressed_coordinates_GF2m := @LEGACY_EC_POINT_set_compressed_coordinates_GF2m;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINT_set_compressed_coordinates_GF2m');
+    {$ifend}
   Result := EC_POINT_set_compressed_coordinates_GF2m(group, p, x, y_bit, ctx);
 end;
 
@@ -3804,7 +4153,11 @@ function Load_EC_POINT_point2oct(group: PEC_GROUP; p: PEC_POINT; form: Tpoint_co
 begin
   EC_POINT_point2oct := LoadLibCryptoFunction('EC_POINT_point2oct');
   if not assigned(EC_POINT_point2oct) then
+    {$if declared(LEGACY_EC_POINT_point2oct)}
+    EC_POINT_point2oct := @LEGACY_EC_POINT_point2oct;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINT_point2oct');
+    {$ifend}
   Result := EC_POINT_point2oct(group, p, form, buf, len, ctx);
 end;
 
@@ -3812,7 +4165,11 @@ function Load_EC_POINT_oct2point(group: PEC_GROUP; p: PEC_POINT; buf: Pbyte; len
 begin
   EC_POINT_oct2point := LoadLibCryptoFunction('EC_POINT_oct2point');
   if not assigned(EC_POINT_oct2point) then
+    {$if declared(LEGACY_EC_POINT_oct2point)}
+    EC_POINT_oct2point := @LEGACY_EC_POINT_oct2point;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINT_oct2point');
+    {$ifend}
   Result := EC_POINT_oct2point(group, p, buf, len, ctx);
 end;
 
@@ -3820,7 +4177,11 @@ function Load_EC_POINT_point2buf(group: PEC_GROUP; point: PEC_POINT; form: Tpoin
 begin
   EC_POINT_point2buf := LoadLibCryptoFunction('EC_POINT_point2buf');
   if not assigned(EC_POINT_point2buf) then
+    {$if declared(LEGACY_EC_POINT_point2buf)}
+    EC_POINT_point2buf := @LEGACY_EC_POINT_point2buf;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINT_point2buf');
+    {$ifend}
   Result := EC_POINT_point2buf(group, point, form, pbuf, ctx);
 end;
 
@@ -3829,7 +4190,11 @@ function Load_EC_POINT_point2bn(_param1: PEC_GROUP; _param2: PEC_POINT; form: Tp
 begin
   EC_POINT_point2bn := LoadLibCryptoFunction('EC_POINT_point2bn');
   if not assigned(EC_POINT_point2bn) then
+    {$if declared(LEGACY_EC_POINT_point2bn)}
+    EC_POINT_point2bn := @LEGACY_EC_POINT_point2bn;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINT_point2bn');
+    {$ifend}
   Result := EC_POINT_point2bn(_param1, _param2, form, _param4, _param5);
 end;
 
@@ -3837,7 +4202,11 @@ function Load_EC_POINT_bn2point(_param1: PEC_GROUP; _param2: PBIGNUM; _param3: P
 begin
   EC_POINT_bn2point := LoadLibCryptoFunction('EC_POINT_bn2point');
   if not assigned(EC_POINT_bn2point) then
+    {$if declared(LEGACY_EC_POINT_bn2point)}
+    EC_POINT_bn2point := @LEGACY_EC_POINT_bn2point;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINT_bn2point');
+    {$ifend}
   Result := EC_POINT_bn2point(_param1, _param2, _param3, _param4);
 end;
 
@@ -3846,7 +4215,11 @@ function Load_EC_POINT_point2hex(_param1: PEC_GROUP; _param2: PEC_POINT; form: T
 begin
   EC_POINT_point2hex := LoadLibCryptoFunction('EC_POINT_point2hex');
   if not assigned(EC_POINT_point2hex) then
+    {$if declared(LEGACY_EC_POINT_point2hex)}
+    EC_POINT_point2hex := @LEGACY_EC_POINT_point2hex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINT_point2hex');
+    {$ifend}
   Result := EC_POINT_point2hex(_param1, _param2, form, _param4);
 end;
 
@@ -3854,7 +4227,11 @@ function Load_EC_POINT_hex2point(_param1: PEC_GROUP; _param2: PAnsiChar; _param3
 begin
   EC_POINT_hex2point := LoadLibCryptoFunction('EC_POINT_hex2point');
   if not assigned(EC_POINT_hex2point) then
+    {$if declared(LEGACY_EC_POINT_hex2point)}
+    EC_POINT_hex2point := @LEGACY_EC_POINT_hex2point;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINT_hex2point');
+    {$ifend}
   Result := EC_POINT_hex2point(_param1, _param2, _param3, _param4);
 end;
 
@@ -3862,7 +4239,11 @@ function Load_EC_POINT_add(group: PEC_GROUP; r: PEC_POINT; a: PEC_POINT; b: PEC_
 begin
   EC_POINT_add := LoadLibCryptoFunction('EC_POINT_add');
   if not assigned(EC_POINT_add) then
+    {$if declared(LEGACY_EC_POINT_add)}
+    EC_POINT_add := @LEGACY_EC_POINT_add;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINT_add');
+    {$ifend}
   Result := EC_POINT_add(group, r, a, b, ctx);
 end;
 
@@ -3870,7 +4251,11 @@ function Load_EC_POINT_dbl(group: PEC_GROUP; r: PEC_POINT; a: PEC_POINT; ctx: PB
 begin
   EC_POINT_dbl := LoadLibCryptoFunction('EC_POINT_dbl');
   if not assigned(EC_POINT_dbl) then
+    {$if declared(LEGACY_EC_POINT_dbl)}
+    EC_POINT_dbl := @LEGACY_EC_POINT_dbl;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINT_dbl');
+    {$ifend}
   Result := EC_POINT_dbl(group, r, a, ctx);
 end;
 
@@ -3878,7 +4263,11 @@ function Load_EC_POINT_invert(group: PEC_GROUP; a: PEC_POINT; ctx: PBN_CTX): TOp
 begin
   EC_POINT_invert := LoadLibCryptoFunction('EC_POINT_invert');
   if not assigned(EC_POINT_invert) then
+    {$if declared(LEGACY_EC_POINT_invert)}
+    EC_POINT_invert := @LEGACY_EC_POINT_invert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINT_invert');
+    {$ifend}
   Result := EC_POINT_invert(group, a, ctx);
 end;
 
@@ -3886,7 +4275,11 @@ function Load_EC_POINT_is_at_infinity(group: PEC_GROUP; p: PEC_POINT): TOpenSSL_
 begin
   EC_POINT_is_at_infinity := LoadLibCryptoFunction('EC_POINT_is_at_infinity');
   if not assigned(EC_POINT_is_at_infinity) then
+    {$if declared(LEGACY_EC_POINT_is_at_infinity)}
+    EC_POINT_is_at_infinity := @LEGACY_EC_POINT_is_at_infinity;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINT_is_at_infinity');
+    {$ifend}
   Result := EC_POINT_is_at_infinity(group, p);
 end;
 
@@ -3894,7 +4287,11 @@ function Load_EC_POINT_is_on_curve(group: PEC_GROUP; point: PEC_POINT; ctx: PBN_
 begin
   EC_POINT_is_on_curve := LoadLibCryptoFunction('EC_POINT_is_on_curve');
   if not assigned(EC_POINT_is_on_curve) then
+    {$if declared(LEGACY_EC_POINT_is_on_curve)}
+    EC_POINT_is_on_curve := @LEGACY_EC_POINT_is_on_curve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINT_is_on_curve');
+    {$ifend}
   Result := EC_POINT_is_on_curve(group, point, ctx);
 end;
 
@@ -3902,7 +4299,11 @@ function Load_EC_POINT_cmp(group: PEC_GROUP; a: PEC_POINT; b: PEC_POINT; ctx: PB
 begin
   EC_POINT_cmp := LoadLibCryptoFunction('EC_POINT_cmp');
   if not assigned(EC_POINT_cmp) then
+    {$if declared(LEGACY_EC_POINT_cmp)}
+    EC_POINT_cmp := @LEGACY_EC_POINT_cmp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINT_cmp');
+    {$ifend}
   Result := EC_POINT_cmp(group, a, b, ctx);
 end;
 
@@ -3911,7 +4312,11 @@ function Load_EC_POINT_make_affine(group: PEC_GROUP; point: PEC_POINT; ctx: PBN_
 begin
   EC_POINT_make_affine := LoadLibCryptoFunction('EC_POINT_make_affine');
   if not assigned(EC_POINT_make_affine) then
+    {$if declared(LEGACY_EC_POINT_make_affine)}
+    EC_POINT_make_affine := @LEGACY_EC_POINT_make_affine;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINT_make_affine');
+    {$ifend}
   Result := EC_POINT_make_affine(group, point, ctx);
 end;
 
@@ -3919,7 +4324,11 @@ function Load_EC_POINTs_make_affine(group: PEC_GROUP; num: TOpenSSL_C_SIZET; poi
 begin
   EC_POINTs_make_affine := LoadLibCryptoFunction('EC_POINTs_make_affine');
   if not assigned(EC_POINTs_make_affine) then
+    {$if declared(LEGACY_EC_POINTs_make_affine)}
+    EC_POINTs_make_affine := @LEGACY_EC_POINTs_make_affine;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINTs_make_affine');
+    {$ifend}
   Result := EC_POINTs_make_affine(group, num, points, ctx);
 end;
 
@@ -3927,7 +4336,11 @@ function Load_EC_POINTs_mul(group: PEC_GROUP; r: PEC_POINT; n: PBIGNUM; num: TOp
 begin
   EC_POINTs_mul := LoadLibCryptoFunction('EC_POINTs_mul');
   if not assigned(EC_POINTs_mul) then
+    {$if declared(LEGACY_EC_POINTs_mul)}
+    EC_POINTs_mul := @LEGACY_EC_POINTs_mul;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINTs_mul');
+    {$ifend}
   Result := EC_POINTs_mul(group, r, n, num, p, m, ctx);
 end;
 
@@ -3936,7 +4349,11 @@ function Load_EC_POINT_mul(group: PEC_GROUP; r: PEC_POINT; n: PBIGNUM; q: PEC_PO
 begin
   EC_POINT_mul := LoadLibCryptoFunction('EC_POINT_mul');
   if not assigned(EC_POINT_mul) then
+    {$if declared(LEGACY_EC_POINT_mul)}
+    EC_POINT_mul := @LEGACY_EC_POINT_mul;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_POINT_mul');
+    {$ifend}
   Result := EC_POINT_mul(group, r, n, q, m, ctx);
 end;
 
@@ -3945,7 +4362,11 @@ function Load_EC_GROUP_precompute_mult(group: PEC_GROUP; ctx: PBN_CTX): TOpenSSL
 begin
   EC_GROUP_precompute_mult := LoadLibCryptoFunction('EC_GROUP_precompute_mult');
   if not assigned(EC_GROUP_precompute_mult) then
+    {$if declared(LEGACY_EC_GROUP_precompute_mult)}
+    EC_GROUP_precompute_mult := @LEGACY_EC_GROUP_precompute_mult;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_precompute_mult');
+    {$ifend}
   Result := EC_GROUP_precompute_mult(group, ctx);
 end;
 
@@ -3953,7 +4374,11 @@ function Load_EC_GROUP_have_precompute_mult(group: PEC_GROUP): TOpenSSL_C_INT; c
 begin
   EC_GROUP_have_precompute_mult := LoadLibCryptoFunction('EC_GROUP_have_precompute_mult');
   if not assigned(EC_GROUP_have_precompute_mult) then
+    {$if declared(LEGACY_EC_GROUP_have_precompute_mult)}
+    EC_GROUP_have_precompute_mult := @LEGACY_EC_GROUP_have_precompute_mult;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_have_precompute_mult');
+    {$ifend}
   Result := EC_GROUP_have_precompute_mult(group);
 end;
 
@@ -3962,7 +4387,11 @@ function Load_ECPKPARAMETERS_it: PASN1_ITEM; cdecl;
 begin
   ECPKPARAMETERS_it := LoadLibCryptoFunction('ECPKPARAMETERS_it');
   if not assigned(ECPKPARAMETERS_it) then
+    {$if declared(LEGACY_ECPKPARAMETERS_it)}
+    ECPKPARAMETERS_it := @LEGACY_ECPKPARAMETERS_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ECPKPARAMETERS_it');
+    {$ifend}
   Result := ECPKPARAMETERS_it;
 end;
 
@@ -3970,7 +4399,11 @@ function Load_ECPKPARAMETERS_new: PECPKPARAMETERS; cdecl;
 begin
   ECPKPARAMETERS_new := LoadLibCryptoFunction('ECPKPARAMETERS_new');
   if not assigned(ECPKPARAMETERS_new) then
+    {$if declared(LEGACY_ECPKPARAMETERS_new)}
+    ECPKPARAMETERS_new := @LEGACY_ECPKPARAMETERS_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ECPKPARAMETERS_new');
+    {$ifend}
   Result := ECPKPARAMETERS_new;
 end;
 
@@ -3978,7 +4411,11 @@ procedure Load_ECPKPARAMETERS_free(a: PECPKPARAMETERS); cdecl;
 begin
   ECPKPARAMETERS_free := LoadLibCryptoFunction('ECPKPARAMETERS_free');
   if not assigned(ECPKPARAMETERS_free) then
+    {$if declared(LEGACY_ECPKPARAMETERS_free)}
+    ECPKPARAMETERS_free := @LEGACY_ECPKPARAMETERS_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ECPKPARAMETERS_free');
+    {$ifend}
   ECPKPARAMETERS_free(a);
 end;
 
@@ -3986,7 +4423,11 @@ function Load_ECPARAMETERS_it: PASN1_ITEM; cdecl;
 begin
   ECPARAMETERS_it := LoadLibCryptoFunction('ECPARAMETERS_it');
   if not assigned(ECPARAMETERS_it) then
+    {$if declared(LEGACY_ECPARAMETERS_it)}
+    ECPARAMETERS_it := @LEGACY_ECPARAMETERS_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ECPARAMETERS_it');
+    {$ifend}
   Result := ECPARAMETERS_it;
 end;
 
@@ -3994,7 +4435,11 @@ function Load_ECPARAMETERS_new: PECPARAMETERS; cdecl;
 begin
   ECPARAMETERS_new := LoadLibCryptoFunction('ECPARAMETERS_new');
   if not assigned(ECPARAMETERS_new) then
+    {$if declared(LEGACY_ECPARAMETERS_new)}
+    ECPARAMETERS_new := @LEGACY_ECPARAMETERS_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ECPARAMETERS_new');
+    {$ifend}
   Result := ECPARAMETERS_new;
 end;
 
@@ -4002,7 +4447,11 @@ procedure Load_ECPARAMETERS_free(a: PECPARAMETERS); cdecl;
 begin
   ECPARAMETERS_free := LoadLibCryptoFunction('ECPARAMETERS_free');
   if not assigned(ECPARAMETERS_free) then
+    {$if declared(LEGACY_ECPARAMETERS_free)}
+    ECPARAMETERS_free := @LEGACY_ECPARAMETERS_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ECPARAMETERS_free');
+    {$ifend}
   ECPARAMETERS_free(a);
 end;
 
@@ -4010,7 +4459,11 @@ function Load_EC_GROUP_get_basis_type(_param1: PEC_GROUP): TOpenSSL_C_INT; cdecl
 begin
   EC_GROUP_get_basis_type := LoadLibCryptoFunction('EC_GROUP_get_basis_type');
   if not assigned(EC_GROUP_get_basis_type) then
+    {$if declared(LEGACY_EC_GROUP_get_basis_type)}
+    EC_GROUP_get_basis_type := @LEGACY_EC_GROUP_get_basis_type;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_get_basis_type');
+    {$ifend}
   Result := EC_GROUP_get_basis_type(_param1);
 end;
 
@@ -4019,7 +4472,11 @@ function Load_EC_GROUP_get_trinomial_basis(_param1: PEC_GROUP; k: POpenSSL_C_UIN
 begin
   EC_GROUP_get_trinomial_basis := LoadLibCryptoFunction('EC_GROUP_get_trinomial_basis');
   if not assigned(EC_GROUP_get_trinomial_basis) then
+    {$if declared(LEGACY_EC_GROUP_get_trinomial_basis)}
+    EC_GROUP_get_trinomial_basis := @LEGACY_EC_GROUP_get_trinomial_basis;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_get_trinomial_basis');
+    {$ifend}
   Result := EC_GROUP_get_trinomial_basis(_param1, k);
 end;
 
@@ -4027,7 +4484,11 @@ function Load_EC_GROUP_get_pentanomial_basis(_param1: PEC_GROUP; k1: POpenSSL_C_
 begin
   EC_GROUP_get_pentanomial_basis := LoadLibCryptoFunction('EC_GROUP_get_pentanomial_basis');
   if not assigned(EC_GROUP_get_pentanomial_basis) then
+    {$if declared(LEGACY_EC_GROUP_get_pentanomial_basis)}
+    EC_GROUP_get_pentanomial_basis := @LEGACY_EC_GROUP_get_pentanomial_basis;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_get_pentanomial_basis');
+    {$ifend}
   Result := EC_GROUP_get_pentanomial_basis(_param1, k1, k2, k3);
 end;
 
@@ -4036,7 +4497,11 @@ function Load_d2i_ECPKParameters(_param1: PPEC_GROUP; in_: PPbyte; len: TOpenSSL
 begin
   d2i_ECPKParameters := LoadLibCryptoFunction('d2i_ECPKParameters');
   if not assigned(d2i_ECPKParameters) then
+    {$if declared(LEGACY_d2i_ECPKParameters)}
+    d2i_ECPKParameters := @LEGACY_d2i_ECPKParameters;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_ECPKParameters');
+    {$ifend}
   Result := d2i_ECPKParameters(_param1, in_, len);
 end;
 
@@ -4044,7 +4509,11 @@ function Load_i2d_ECPKParameters(_param1: PEC_GROUP; out_: PPbyte): TOpenSSL_C_I
 begin
   i2d_ECPKParameters := LoadLibCryptoFunction('i2d_ECPKParameters');
   if not assigned(i2d_ECPKParameters) then
+    {$if declared(LEGACY_i2d_ECPKParameters)}
+    i2d_ECPKParameters := @LEGACY_i2d_ECPKParameters;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_ECPKParameters');
+    {$ifend}
   Result := i2d_ECPKParameters(_param1, out_);
 end;
 
@@ -4053,7 +4522,11 @@ function Load_ECPKParameters_print(bp: PBIO; x: PEC_GROUP; off: TOpenSSL_C_INT):
 begin
   ECPKParameters_print := LoadLibCryptoFunction('ECPKParameters_print');
   if not assigned(ECPKParameters_print) then
+    {$if declared(LEGACY_ECPKParameters_print)}
+    ECPKParameters_print := @LEGACY_ECPKParameters_print;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ECPKParameters_print');
+    {$ifend}
   Result := ECPKParameters_print(bp, x, off);
 end;
 
@@ -4062,7 +4535,11 @@ function Load_ECPKParameters_print_fp(fp: PFILE; x: PEC_GROUP; off: TOpenSSL_C_I
 begin
   ECPKParameters_print_fp := LoadLibCryptoFunction('ECPKParameters_print_fp');
   if not assigned(ECPKParameters_print_fp) then
+    {$if declared(LEGACY_ECPKParameters_print_fp)}
+    ECPKParameters_print_fp := @LEGACY_ECPKParameters_print_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ECPKParameters_print_fp');
+    {$ifend}
   Result := ECPKParameters_print_fp(fp, x, off);
 end;
 
@@ -4073,7 +4550,11 @@ function Load_EC_KEY_new_ex(ctx: POSSL_LIB_CTX; propq: PAnsiChar): PEC_KEY; cdec
 begin
   EC_KEY_new_ex := LoadLibCryptoFunction('EC_KEY_new_ex');
   if not assigned(EC_KEY_new_ex) then
+    {$if declared(LEGACY_EC_KEY_new_ex)}
+    EC_KEY_new_ex := @LEGACY_EC_KEY_new_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_new_ex');
+    {$ifend}
   Result := EC_KEY_new_ex(ctx, propq);
 end;
 
@@ -4081,7 +4562,11 @@ function Load_EC_KEY_new: PEC_KEY; cdecl;
 begin
   EC_KEY_new := LoadLibCryptoFunction('EC_KEY_new');
   if not assigned(EC_KEY_new) then
+    {$if declared(LEGACY_EC_KEY_new)}
+    EC_KEY_new := @LEGACY_EC_KEY_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_new');
+    {$ifend}
   Result := EC_KEY_new;
 end;
 
@@ -4089,7 +4574,11 @@ function Load_EC_KEY_get_flags(key: PEC_KEY): TOpenSSL_C_INT; cdecl;
 begin
   EC_KEY_get_flags := LoadLibCryptoFunction('EC_KEY_get_flags');
   if not assigned(EC_KEY_get_flags) then
+    {$if declared(LEGACY_EC_KEY_get_flags)}
+    EC_KEY_get_flags := @LEGACY_EC_KEY_get_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_get_flags');
+    {$ifend}
   Result := EC_KEY_get_flags(key);
 end;
 
@@ -4097,7 +4586,11 @@ procedure Load_EC_KEY_set_flags(key: PEC_KEY; flags: TOpenSSL_C_INT); cdecl;
 begin
   EC_KEY_set_flags := LoadLibCryptoFunction('EC_KEY_set_flags');
   if not assigned(EC_KEY_set_flags) then
+    {$if declared(LEGACY_EC_KEY_set_flags)}
+    EC_KEY_set_flags := @LEGACY_EC_KEY_set_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_set_flags');
+    {$ifend}
   EC_KEY_set_flags(key, flags);
 end;
 
@@ -4105,7 +4598,11 @@ procedure Load_EC_KEY_clear_flags(key: PEC_KEY; flags: TOpenSSL_C_INT); cdecl;
 begin
   EC_KEY_clear_flags := LoadLibCryptoFunction('EC_KEY_clear_flags');
   if not assigned(EC_KEY_clear_flags) then
+    {$if declared(LEGACY_EC_KEY_clear_flags)}
+    EC_KEY_clear_flags := @LEGACY_EC_KEY_clear_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_clear_flags');
+    {$ifend}
   EC_KEY_clear_flags(key, flags);
 end;
 
@@ -4113,7 +4610,11 @@ function Load_EC_KEY_decoded_from_explicit_params(key: PEC_KEY): TOpenSSL_C_INT;
 begin
   EC_KEY_decoded_from_explicit_params := LoadLibCryptoFunction('EC_KEY_decoded_from_explicit_params');
   if not assigned(EC_KEY_decoded_from_explicit_params) then
+    {$if declared(LEGACY_EC_KEY_decoded_from_explicit_params)}
+    EC_KEY_decoded_from_explicit_params := @LEGACY_EC_KEY_decoded_from_explicit_params;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_decoded_from_explicit_params');
+    {$ifend}
   Result := EC_KEY_decoded_from_explicit_params(key);
 end;
 
@@ -4121,7 +4622,11 @@ function Load_EC_KEY_new_by_curve_name_ex(ctx: POSSL_LIB_CTX; propq: PAnsiChar; 
 begin
   EC_KEY_new_by_curve_name_ex := LoadLibCryptoFunction('EC_KEY_new_by_curve_name_ex');
   if not assigned(EC_KEY_new_by_curve_name_ex) then
+    {$if declared(LEGACY_EC_KEY_new_by_curve_name_ex)}
+    EC_KEY_new_by_curve_name_ex := @LEGACY_EC_KEY_new_by_curve_name_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_new_by_curve_name_ex');
+    {$ifend}
   Result := EC_KEY_new_by_curve_name_ex(ctx, propq, nid);
 end;
 
@@ -4129,7 +4634,11 @@ function Load_EC_KEY_new_by_curve_name(nid: TOpenSSL_C_INT): PEC_KEY; cdecl;
 begin
   EC_KEY_new_by_curve_name := LoadLibCryptoFunction('EC_KEY_new_by_curve_name');
   if not assigned(EC_KEY_new_by_curve_name) then
+    {$if declared(LEGACY_EC_KEY_new_by_curve_name)}
+    EC_KEY_new_by_curve_name := @LEGACY_EC_KEY_new_by_curve_name;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_new_by_curve_name');
+    {$ifend}
   Result := EC_KEY_new_by_curve_name(nid);
 end;
 
@@ -4137,7 +4646,11 @@ procedure Load_EC_KEY_free(key: PEC_KEY); cdecl;
 begin
   EC_KEY_free := LoadLibCryptoFunction('EC_KEY_free');
   if not assigned(EC_KEY_free) then
+    {$if declared(LEGACY_EC_KEY_free)}
+    EC_KEY_free := @LEGACY_EC_KEY_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_free');
+    {$ifend}
   EC_KEY_free(key);
 end;
 
@@ -4145,7 +4658,11 @@ function Load_EC_KEY_copy(dst: PEC_KEY; src: PEC_KEY): PEC_KEY; cdecl;
 begin
   EC_KEY_copy := LoadLibCryptoFunction('EC_KEY_copy');
   if not assigned(EC_KEY_copy) then
+    {$if declared(LEGACY_EC_KEY_copy)}
+    EC_KEY_copy := @LEGACY_EC_KEY_copy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_copy');
+    {$ifend}
   Result := EC_KEY_copy(dst, src);
 end;
 
@@ -4153,7 +4670,11 @@ function Load_EC_KEY_dup(src: PEC_KEY): PEC_KEY; cdecl;
 begin
   EC_KEY_dup := LoadLibCryptoFunction('EC_KEY_dup');
   if not assigned(EC_KEY_dup) then
+    {$if declared(LEGACY_EC_KEY_dup)}
+    EC_KEY_dup := @LEGACY_EC_KEY_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_dup');
+    {$ifend}
   Result := EC_KEY_dup(src);
 end;
 
@@ -4161,7 +4682,11 @@ function Load_EC_KEY_up_ref(key: PEC_KEY): TOpenSSL_C_INT; cdecl;
 begin
   EC_KEY_up_ref := LoadLibCryptoFunction('EC_KEY_up_ref');
   if not assigned(EC_KEY_up_ref) then
+    {$if declared(LEGACY_EC_KEY_up_ref)}
+    EC_KEY_up_ref := @LEGACY_EC_KEY_up_ref;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_up_ref');
+    {$ifend}
   Result := EC_KEY_up_ref(key);
 end;
 
@@ -4169,7 +4694,11 @@ function Load_EC_KEY_get0_engine(eckey: PEC_KEY): PENGINE; cdecl;
 begin
   EC_KEY_get0_engine := LoadLibCryptoFunction('EC_KEY_get0_engine');
   if not assigned(EC_KEY_get0_engine) then
+    {$if declared(LEGACY_EC_KEY_get0_engine)}
+    EC_KEY_get0_engine := @LEGACY_EC_KEY_get0_engine;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_get0_engine');
+    {$ifend}
   Result := EC_KEY_get0_engine(eckey);
 end;
 
@@ -4177,7 +4706,11 @@ function Load_EC_KEY_get0_group(key: PEC_KEY): PEC_GROUP; cdecl;
 begin
   EC_KEY_get0_group := LoadLibCryptoFunction('EC_KEY_get0_group');
   if not assigned(EC_KEY_get0_group) then
+    {$if declared(LEGACY_EC_KEY_get0_group)}
+    EC_KEY_get0_group := @LEGACY_EC_KEY_get0_group;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_get0_group');
+    {$ifend}
   Result := EC_KEY_get0_group(key);
 end;
 
@@ -4185,7 +4718,11 @@ function Load_EC_KEY_set_group(key: PEC_KEY; group: PEC_GROUP): TOpenSSL_C_INT; 
 begin
   EC_KEY_set_group := LoadLibCryptoFunction('EC_KEY_set_group');
   if not assigned(EC_KEY_set_group) then
+    {$if declared(LEGACY_EC_KEY_set_group)}
+    EC_KEY_set_group := @LEGACY_EC_KEY_set_group;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_set_group');
+    {$ifend}
   Result := EC_KEY_set_group(key, group);
 end;
 
@@ -4193,7 +4730,11 @@ function Load_EC_KEY_get0_private_key(key: PEC_KEY): PBIGNUM; cdecl;
 begin
   EC_KEY_get0_private_key := LoadLibCryptoFunction('EC_KEY_get0_private_key');
   if not assigned(EC_KEY_get0_private_key) then
+    {$if declared(LEGACY_EC_KEY_get0_private_key)}
+    EC_KEY_get0_private_key := @LEGACY_EC_KEY_get0_private_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_get0_private_key');
+    {$ifend}
   Result := EC_KEY_get0_private_key(key);
 end;
 
@@ -4201,7 +4742,11 @@ function Load_EC_KEY_set_private_key(key: PEC_KEY; prv: PBIGNUM): TOpenSSL_C_INT
 begin
   EC_KEY_set_private_key := LoadLibCryptoFunction('EC_KEY_set_private_key');
   if not assigned(EC_KEY_set_private_key) then
+    {$if declared(LEGACY_EC_KEY_set_private_key)}
+    EC_KEY_set_private_key := @LEGACY_EC_KEY_set_private_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_set_private_key');
+    {$ifend}
   Result := EC_KEY_set_private_key(key, prv);
 end;
 
@@ -4209,7 +4754,11 @@ function Load_EC_KEY_get0_public_key(key: PEC_KEY): PEC_POINT; cdecl;
 begin
   EC_KEY_get0_public_key := LoadLibCryptoFunction('EC_KEY_get0_public_key');
   if not assigned(EC_KEY_get0_public_key) then
+    {$if declared(LEGACY_EC_KEY_get0_public_key)}
+    EC_KEY_get0_public_key := @LEGACY_EC_KEY_get0_public_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_get0_public_key');
+    {$ifend}
   Result := EC_KEY_get0_public_key(key);
 end;
 
@@ -4217,7 +4766,11 @@ function Load_EC_KEY_set_public_key(key: PEC_KEY; pub: PEC_POINT): TOpenSSL_C_IN
 begin
   EC_KEY_set_public_key := LoadLibCryptoFunction('EC_KEY_set_public_key');
   if not assigned(EC_KEY_set_public_key) then
+    {$if declared(LEGACY_EC_KEY_set_public_key)}
+    EC_KEY_set_public_key := @LEGACY_EC_KEY_set_public_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_set_public_key');
+    {$ifend}
   Result := EC_KEY_set_public_key(key, pub);
 end;
 
@@ -4225,7 +4778,11 @@ function Load_EC_KEY_get_enc_flags(key: PEC_KEY): TOpenSSL_C_UINT; cdecl;
 begin
   EC_KEY_get_enc_flags := LoadLibCryptoFunction('EC_KEY_get_enc_flags');
   if not assigned(EC_KEY_get_enc_flags) then
+    {$if declared(LEGACY_EC_KEY_get_enc_flags)}
+    EC_KEY_get_enc_flags := @LEGACY_EC_KEY_get_enc_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_get_enc_flags');
+    {$ifend}
   Result := EC_KEY_get_enc_flags(key);
 end;
 
@@ -4233,7 +4790,11 @@ procedure Load_EC_KEY_set_enc_flags(eckey: PEC_KEY; flags: TOpenSSL_C_UINT); cde
 begin
   EC_KEY_set_enc_flags := LoadLibCryptoFunction('EC_KEY_set_enc_flags');
   if not assigned(EC_KEY_set_enc_flags) then
+    {$if declared(LEGACY_EC_KEY_set_enc_flags)}
+    EC_KEY_set_enc_flags := @LEGACY_EC_KEY_set_enc_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_set_enc_flags');
+    {$ifend}
   EC_KEY_set_enc_flags(eckey, flags);
 end;
 
@@ -4241,7 +4802,11 @@ function Load_EC_KEY_get_conv_form(key: PEC_KEY): Tpoint_conversion_form_t; cdec
 begin
   EC_KEY_get_conv_form := LoadLibCryptoFunction('EC_KEY_get_conv_form');
   if not assigned(EC_KEY_get_conv_form) then
+    {$if declared(LEGACY_EC_KEY_get_conv_form)}
+    EC_KEY_get_conv_form := @LEGACY_EC_KEY_get_conv_form;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_get_conv_form');
+    {$ifend}
   Result := EC_KEY_get_conv_form(key);
 end;
 
@@ -4249,7 +4814,11 @@ procedure Load_EC_KEY_set_conv_form(eckey: PEC_KEY; cform: Tpoint_conversion_for
 begin
   EC_KEY_set_conv_form := LoadLibCryptoFunction('EC_KEY_set_conv_form');
   if not assigned(EC_KEY_set_conv_form) then
+    {$if declared(LEGACY_EC_KEY_set_conv_form)}
+    EC_KEY_set_conv_form := @LEGACY_EC_KEY_set_conv_form;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_set_conv_form');
+    {$ifend}
   EC_KEY_set_conv_form(eckey, cform);
 end;
 
@@ -4259,7 +4828,11 @@ function Load_EC_KEY_set_ex_data(key: PEC_KEY; idx: TOpenSSL_C_INT; arg: pointer
 begin
   EC_KEY_set_ex_data := LoadLibCryptoFunction('EC_KEY_set_ex_data');
   if not assigned(EC_KEY_set_ex_data) then
+    {$if declared(LEGACY_EC_KEY_set_ex_data)}
+    EC_KEY_set_ex_data := @LEGACY_EC_KEY_set_ex_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_set_ex_data');
+    {$ifend}
   Result := EC_KEY_set_ex_data(key, idx, arg);
 end;
 
@@ -4267,7 +4840,11 @@ function Load_EC_KEY_get_ex_data(key: PEC_KEY; idx: TOpenSSL_C_INT): pointer; cd
 begin
   EC_KEY_get_ex_data := LoadLibCryptoFunction('EC_KEY_get_ex_data');
   if not assigned(EC_KEY_get_ex_data) then
+    {$if declared(LEGACY_EC_KEY_get_ex_data)}
+    EC_KEY_get_ex_data := @LEGACY_EC_KEY_get_ex_data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_get_ex_data');
+    {$ifend}
   Result := EC_KEY_get_ex_data(key, idx);
 end;
 
@@ -4275,7 +4852,11 @@ procedure Load_EC_KEY_set_asn1_flag(eckey: PEC_KEY; asn1_flag: TOpenSSL_C_INT); 
 begin
   EC_KEY_set_asn1_flag := LoadLibCryptoFunction('EC_KEY_set_asn1_flag');
   if not assigned(EC_KEY_set_asn1_flag) then
+    {$if declared(LEGACY_EC_KEY_set_asn1_flag)}
+    EC_KEY_set_asn1_flag := @LEGACY_EC_KEY_set_asn1_flag;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_set_asn1_flag');
+    {$ifend}
   EC_KEY_set_asn1_flag(eckey, asn1_flag);
 end;
 
@@ -4283,7 +4864,11 @@ function Load_EC_KEY_precompute_mult(key: PEC_KEY; ctx: PBN_CTX): TOpenSSL_C_INT
 begin
   EC_KEY_precompute_mult := LoadLibCryptoFunction('EC_KEY_precompute_mult');
   if not assigned(EC_KEY_precompute_mult) then
+    {$if declared(LEGACY_EC_KEY_precompute_mult)}
+    EC_KEY_precompute_mult := @LEGACY_EC_KEY_precompute_mult;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_precompute_mult');
+    {$ifend}
   Result := EC_KEY_precompute_mult(key, ctx);
 end;
 
@@ -4291,7 +4876,11 @@ function Load_EC_KEY_generate_key(key: PEC_KEY): TOpenSSL_C_INT; cdecl;
 begin
   EC_KEY_generate_key := LoadLibCryptoFunction('EC_KEY_generate_key');
   if not assigned(EC_KEY_generate_key) then
+    {$if declared(LEGACY_EC_KEY_generate_key)}
+    EC_KEY_generate_key := @LEGACY_EC_KEY_generate_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_generate_key');
+    {$ifend}
   Result := EC_KEY_generate_key(key);
 end;
 
@@ -4299,7 +4888,11 @@ function Load_EC_KEY_check_key(key: PEC_KEY): TOpenSSL_C_INT; cdecl;
 begin
   EC_KEY_check_key := LoadLibCryptoFunction('EC_KEY_check_key');
   if not assigned(EC_KEY_check_key) then
+    {$if declared(LEGACY_EC_KEY_check_key)}
+    EC_KEY_check_key := @LEGACY_EC_KEY_check_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_check_key');
+    {$ifend}
   Result := EC_KEY_check_key(key);
 end;
 
@@ -4307,7 +4900,11 @@ function Load_EC_KEY_can_sign(eckey: PEC_KEY): TOpenSSL_C_INT; cdecl;
 begin
   EC_KEY_can_sign := LoadLibCryptoFunction('EC_KEY_can_sign');
   if not assigned(EC_KEY_can_sign) then
+    {$if declared(LEGACY_EC_KEY_can_sign)}
+    EC_KEY_can_sign := @LEGACY_EC_KEY_can_sign;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_can_sign');
+    {$ifend}
   Result := EC_KEY_can_sign(eckey);
 end;
 
@@ -4315,7 +4912,11 @@ function Load_EC_KEY_set_public_key_affine_coordinates(key: PEC_KEY; x: PBIGNUM;
 begin
   EC_KEY_set_public_key_affine_coordinates := LoadLibCryptoFunction('EC_KEY_set_public_key_affine_coordinates');
   if not assigned(EC_KEY_set_public_key_affine_coordinates) then
+    {$if declared(LEGACY_EC_KEY_set_public_key_affine_coordinates)}
+    EC_KEY_set_public_key_affine_coordinates := @LEGACY_EC_KEY_set_public_key_affine_coordinates;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_set_public_key_affine_coordinates');
+    {$ifend}
   Result := EC_KEY_set_public_key_affine_coordinates(key, x, y);
 end;
 
@@ -4323,7 +4924,11 @@ function Load_EC_KEY_key2buf(key: PEC_KEY; form: Tpoint_conversion_form_t; pbuf:
 begin
   EC_KEY_key2buf := LoadLibCryptoFunction('EC_KEY_key2buf');
   if not assigned(EC_KEY_key2buf) then
+    {$if declared(LEGACY_EC_KEY_key2buf)}
+    EC_KEY_key2buf := @LEGACY_EC_KEY_key2buf;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_key2buf');
+    {$ifend}
   Result := EC_KEY_key2buf(key, form, pbuf, ctx);
 end;
 
@@ -4331,7 +4936,11 @@ function Load_EC_KEY_oct2key(key: PEC_KEY; buf: Pbyte; len: TOpenSSL_C_SIZET; ct
 begin
   EC_KEY_oct2key := LoadLibCryptoFunction('EC_KEY_oct2key');
   if not assigned(EC_KEY_oct2key) then
+    {$if declared(LEGACY_EC_KEY_oct2key)}
+    EC_KEY_oct2key := @LEGACY_EC_KEY_oct2key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_oct2key');
+    {$ifend}
   Result := EC_KEY_oct2key(key, buf, len, ctx);
 end;
 
@@ -4339,7 +4948,11 @@ function Load_EC_KEY_oct2priv(key: PEC_KEY; buf: Pbyte; len: TOpenSSL_C_SIZET): 
 begin
   EC_KEY_oct2priv := LoadLibCryptoFunction('EC_KEY_oct2priv');
   if not assigned(EC_KEY_oct2priv) then
+    {$if declared(LEGACY_EC_KEY_oct2priv)}
+    EC_KEY_oct2priv := @LEGACY_EC_KEY_oct2priv;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_oct2priv');
+    {$ifend}
   Result := EC_KEY_oct2priv(key, buf, len);
 end;
 
@@ -4347,7 +4960,11 @@ function Load_EC_KEY_priv2oct(key: PEC_KEY; buf: Pbyte; len: TOpenSSL_C_SIZET): 
 begin
   EC_KEY_priv2oct := LoadLibCryptoFunction('EC_KEY_priv2oct');
   if not assigned(EC_KEY_priv2oct) then
+    {$if declared(LEGACY_EC_KEY_priv2oct)}
+    EC_KEY_priv2oct := @LEGACY_EC_KEY_priv2oct;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_priv2oct');
+    {$ifend}
   Result := EC_KEY_priv2oct(key, buf, len);
 end;
 
@@ -4355,7 +4972,11 @@ function Load_EC_KEY_priv2buf(eckey: PEC_KEY; pbuf: PPbyte): TOpenSSL_C_SIZET; c
 begin
   EC_KEY_priv2buf := LoadLibCryptoFunction('EC_KEY_priv2buf');
   if not assigned(EC_KEY_priv2buf) then
+    {$if declared(LEGACY_EC_KEY_priv2buf)}
+    EC_KEY_priv2buf := @LEGACY_EC_KEY_priv2buf;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_priv2buf');
+    {$ifend}
   Result := EC_KEY_priv2buf(eckey, pbuf);
 end;
 
@@ -4363,7 +4984,11 @@ function Load_d2i_ECPrivateKey(key: PPEC_KEY; in_: PPbyte; len: TOpenSSL_C_INT):
 begin
   d2i_ECPrivateKey := LoadLibCryptoFunction('d2i_ECPrivateKey');
   if not assigned(d2i_ECPrivateKey) then
+    {$if declared(LEGACY_d2i_ECPrivateKey)}
+    d2i_ECPrivateKey := @LEGACY_d2i_ECPrivateKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_ECPrivateKey');
+    {$ifend}
   Result := d2i_ECPrivateKey(key, in_, len);
 end;
 
@@ -4371,7 +4996,11 @@ function Load_i2d_ECPrivateKey(key: PEC_KEY; out_: PPbyte): TOpenSSL_C_INT; cdec
 begin
   i2d_ECPrivateKey := LoadLibCryptoFunction('i2d_ECPrivateKey');
   if not assigned(i2d_ECPrivateKey) then
+    {$if declared(LEGACY_i2d_ECPrivateKey)}
+    i2d_ECPrivateKey := @LEGACY_i2d_ECPrivateKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_ECPrivateKey');
+    {$ifend}
   Result := i2d_ECPrivateKey(key, out_);
 end;
 
@@ -4379,7 +5008,11 @@ function Load_d2i_ECParameters(key: PPEC_KEY; in_: PPbyte; len: TOpenSSL_C_INT):
 begin
   d2i_ECParameters := LoadLibCryptoFunction('d2i_ECParameters');
   if not assigned(d2i_ECParameters) then
+    {$if declared(LEGACY_d2i_ECParameters)}
+    d2i_ECParameters := @LEGACY_d2i_ECParameters;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_ECParameters');
+    {$ifend}
   Result := d2i_ECParameters(key, in_, len);
 end;
 
@@ -4387,7 +5020,11 @@ function Load_i2d_ECParameters(key: PEC_KEY; out_: PPbyte): TOpenSSL_C_INT; cdec
 begin
   i2d_ECParameters := LoadLibCryptoFunction('i2d_ECParameters');
   if not assigned(i2d_ECParameters) then
+    {$if declared(LEGACY_i2d_ECParameters)}
+    i2d_ECParameters := @LEGACY_i2d_ECParameters;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_ECParameters');
+    {$ifend}
   Result := i2d_ECParameters(key, out_);
 end;
 
@@ -4395,7 +5032,11 @@ function Load_o2i_ECPublicKey(key: PPEC_KEY; in_: PPbyte; len: TOpenSSL_C_INT): 
 begin
   o2i_ECPublicKey := LoadLibCryptoFunction('o2i_ECPublicKey');
   if not assigned(o2i_ECPublicKey) then
+    {$if declared(LEGACY_o2i_ECPublicKey)}
+    o2i_ECPublicKey := @LEGACY_o2i_ECPublicKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('o2i_ECPublicKey');
+    {$ifend}
   Result := o2i_ECPublicKey(key, in_, len);
 end;
 
@@ -4403,7 +5044,11 @@ function Load_i2o_ECPublicKey(key: PEC_KEY; out_: PPbyte): TOpenSSL_C_INT; cdecl
 begin
   i2o_ECPublicKey := LoadLibCryptoFunction('i2o_ECPublicKey');
   if not assigned(i2o_ECPublicKey) then
+    {$if declared(LEGACY_i2o_ECPublicKey)}
+    i2o_ECPublicKey := @LEGACY_i2o_ECPublicKey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2o_ECPublicKey');
+    {$ifend}
   Result := i2o_ECPublicKey(key, out_);
 end;
 
@@ -4411,7 +5056,11 @@ function Load_ECParameters_print(bp: PBIO; key: PEC_KEY): TOpenSSL_C_INT; cdecl;
 begin
   ECParameters_print := LoadLibCryptoFunction('ECParameters_print');
   if not assigned(ECParameters_print) then
+    {$if declared(LEGACY_ECParameters_print)}
+    ECParameters_print := @LEGACY_ECParameters_print;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ECParameters_print');
+    {$ifend}
   Result := ECParameters_print(bp, key);
 end;
 
@@ -4419,7 +5068,11 @@ function Load_EC_KEY_print(bp: PBIO; key: PEC_KEY; off: TOpenSSL_C_INT): TOpenSS
 begin
   EC_KEY_print := LoadLibCryptoFunction('EC_KEY_print');
   if not assigned(EC_KEY_print) then
+    {$if declared(LEGACY_EC_KEY_print)}
+    EC_KEY_print := @LEGACY_EC_KEY_print;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_print');
+    {$ifend}
   Result := EC_KEY_print(bp, key, off);
 end;
 
@@ -4428,7 +5081,11 @@ function Load_ECParameters_print_fp(fp: PFILE; key: PEC_KEY): TOpenSSL_C_INT; cd
 begin
   ECParameters_print_fp := LoadLibCryptoFunction('ECParameters_print_fp');
   if not assigned(ECParameters_print_fp) then
+    {$if declared(LEGACY_ECParameters_print_fp)}
+    ECParameters_print_fp := @LEGACY_ECParameters_print_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ECParameters_print_fp');
+    {$ifend}
   Result := ECParameters_print_fp(fp, key);
 end;
 
@@ -4436,7 +5093,11 @@ function Load_EC_KEY_print_fp(fp: PFILE; key: PEC_KEY; off: TOpenSSL_C_INT): TOp
 begin
   EC_KEY_print_fp := LoadLibCryptoFunction('EC_KEY_print_fp');
   if not assigned(EC_KEY_print_fp) then
+    {$if declared(LEGACY_EC_KEY_print_fp)}
+    EC_KEY_print_fp := @LEGACY_EC_KEY_print_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_print_fp');
+    {$ifend}
   Result := EC_KEY_print_fp(fp, key, off);
 end;
 
@@ -4445,7 +5106,11 @@ function Load_EC_KEY_OpenSSL: PEC_KEY_METHOD; cdecl;
 begin
   EC_KEY_OpenSSL := LoadLibCryptoFunction('EC_KEY_OpenSSL');
   if not assigned(EC_KEY_OpenSSL) then
+    {$if declared(LEGACY_EC_KEY_OpenSSL)}
+    EC_KEY_OpenSSL := @LEGACY_EC_KEY_OpenSSL;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_OpenSSL');
+    {$ifend}
   Result := EC_KEY_OpenSSL;
 end;
 
@@ -4453,7 +5118,11 @@ function Load_EC_KEY_get_default_method: PEC_KEY_METHOD; cdecl;
 begin
   EC_KEY_get_default_method := LoadLibCryptoFunction('EC_KEY_get_default_method');
   if not assigned(EC_KEY_get_default_method) then
+    {$if declared(LEGACY_EC_KEY_get_default_method)}
+    EC_KEY_get_default_method := @LEGACY_EC_KEY_get_default_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_get_default_method');
+    {$ifend}
   Result := EC_KEY_get_default_method;
 end;
 
@@ -4461,7 +5130,11 @@ procedure Load_EC_KEY_set_default_method(meth: PEC_KEY_METHOD); cdecl;
 begin
   EC_KEY_set_default_method := LoadLibCryptoFunction('EC_KEY_set_default_method');
   if not assigned(EC_KEY_set_default_method) then
+    {$if declared(LEGACY_EC_KEY_set_default_method)}
+    EC_KEY_set_default_method := @LEGACY_EC_KEY_set_default_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_set_default_method');
+    {$ifend}
   EC_KEY_set_default_method(meth);
 end;
 
@@ -4469,7 +5142,11 @@ function Load_EC_KEY_get_method(key: PEC_KEY): PEC_KEY_METHOD; cdecl;
 begin
   EC_KEY_get_method := LoadLibCryptoFunction('EC_KEY_get_method');
   if not assigned(EC_KEY_get_method) then
+    {$if declared(LEGACY_EC_KEY_get_method)}
+    EC_KEY_get_method := @LEGACY_EC_KEY_get_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_get_method');
+    {$ifend}
   Result := EC_KEY_get_method(key);
 end;
 
@@ -4477,7 +5154,11 @@ function Load_EC_KEY_set_method(key: PEC_KEY; meth: PEC_KEY_METHOD): TOpenSSL_C_
 begin
   EC_KEY_set_method := LoadLibCryptoFunction('EC_KEY_set_method');
   if not assigned(EC_KEY_set_method) then
+    {$if declared(LEGACY_EC_KEY_set_method)}
+    EC_KEY_set_method := @LEGACY_EC_KEY_set_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_set_method');
+    {$ifend}
   Result := EC_KEY_set_method(key, meth);
 end;
 
@@ -4485,7 +5166,11 @@ function Load_EC_KEY_new_method(engine: PENGINE): PEC_KEY; cdecl;
 begin
   EC_KEY_new_method := LoadLibCryptoFunction('EC_KEY_new_method');
   if not assigned(EC_KEY_new_method) then
+    {$if declared(LEGACY_EC_KEY_new_method)}
+    EC_KEY_new_method := @LEGACY_EC_KEY_new_method;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_new_method');
+    {$ifend}
   Result := EC_KEY_new_method(engine);
 end;
 
@@ -4493,7 +5178,11 @@ function Load_ECDH_KDF_X9_62(out_: Pbyte; outlen: TOpenSSL_C_SIZET; Z: Pbyte; Zl
 begin
   ECDH_KDF_X9_62 := LoadLibCryptoFunction('ECDH_KDF_X9_62');
   if not assigned(ECDH_KDF_X9_62) then
+    {$if declared(LEGACY_ECDH_KDF_X9_62)}
+    ECDH_KDF_X9_62 := @LEGACY_ECDH_KDF_X9_62;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ECDH_KDF_X9_62');
+    {$ifend}
   Result := ECDH_KDF_X9_62(out_, outlen, Z, Zlen, sinfo, sinfolen, md);
 end;
 
@@ -4501,7 +5190,11 @@ function Load_ECDH_compute_key(out_: pointer; outlen: TOpenSSL_C_SIZET; pub_key:
 begin
   ECDH_compute_key := LoadLibCryptoFunction('ECDH_compute_key');
   if not assigned(ECDH_compute_key) then
+    {$if declared(LEGACY_ECDH_compute_key)}
+    ECDH_compute_key := @LEGACY_ECDH_compute_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ECDH_compute_key');
+    {$ifend}
   Result := ECDH_compute_key(out_, outlen, pub_key, ecdh, KDF);
 end;
 
@@ -4510,7 +5203,11 @@ function Load_ECDSA_SIG_new: PECDSA_SIG; cdecl;
 begin
   ECDSA_SIG_new := LoadLibCryptoFunction('ECDSA_SIG_new');
   if not assigned(ECDSA_SIG_new) then
+    {$if declared(LEGACY_ECDSA_SIG_new)}
+    ECDSA_SIG_new := @LEGACY_ECDSA_SIG_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ECDSA_SIG_new');
+    {$ifend}
   Result := ECDSA_SIG_new;
 end;
 
@@ -4518,7 +5215,11 @@ procedure Load_ECDSA_SIG_free(sig: PECDSA_SIG); cdecl;
 begin
   ECDSA_SIG_free := LoadLibCryptoFunction('ECDSA_SIG_free');
   if not assigned(ECDSA_SIG_free) then
+    {$if declared(LEGACY_ECDSA_SIG_free)}
+    ECDSA_SIG_free := @LEGACY_ECDSA_SIG_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ECDSA_SIG_free');
+    {$ifend}
   ECDSA_SIG_free(sig);
 end;
 
@@ -4526,7 +5227,11 @@ function Load_d2i_ECDSA_SIG(a: PPECDSA_SIG; in_: PPbyte; len: TOpenSSL_C_INT): P
 begin
   d2i_ECDSA_SIG := LoadLibCryptoFunction('d2i_ECDSA_SIG');
   if not assigned(d2i_ECDSA_SIG) then
+    {$if declared(LEGACY_d2i_ECDSA_SIG)}
+    d2i_ECDSA_SIG := @LEGACY_d2i_ECDSA_SIG;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_ECDSA_SIG');
+    {$ifend}
   Result := d2i_ECDSA_SIG(a, in_, len);
 end;
 
@@ -4534,7 +5239,11 @@ function Load_i2d_ECDSA_SIG(a: PECDSA_SIG; out_: PPbyte): TOpenSSL_C_INT; cdecl;
 begin
   i2d_ECDSA_SIG := LoadLibCryptoFunction('i2d_ECDSA_SIG');
   if not assigned(i2d_ECDSA_SIG) then
+    {$if declared(LEGACY_i2d_ECDSA_SIG)}
+    i2d_ECDSA_SIG := @LEGACY_i2d_ECDSA_SIG;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_ECDSA_SIG');
+    {$ifend}
   Result := i2d_ECDSA_SIG(a, out_);
 end;
 
@@ -4542,7 +5251,11 @@ procedure Load_ECDSA_SIG_get0(sig: PECDSA_SIG; pr: PPBIGNUM; ps: PPBIGNUM); cdec
 begin
   ECDSA_SIG_get0 := LoadLibCryptoFunction('ECDSA_SIG_get0');
   if not assigned(ECDSA_SIG_get0) then
+    {$if declared(LEGACY_ECDSA_SIG_get0)}
+    ECDSA_SIG_get0 := @LEGACY_ECDSA_SIG_get0;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ECDSA_SIG_get0');
+    {$ifend}
   ECDSA_SIG_get0(sig, pr, ps);
 end;
 
@@ -4550,7 +5263,11 @@ function Load_ECDSA_SIG_get0_r(sig: PECDSA_SIG): PBIGNUM; cdecl;
 begin
   ECDSA_SIG_get0_r := LoadLibCryptoFunction('ECDSA_SIG_get0_r');
   if not assigned(ECDSA_SIG_get0_r) then
+    {$if declared(LEGACY_ECDSA_SIG_get0_r)}
+    ECDSA_SIG_get0_r := @LEGACY_ECDSA_SIG_get0_r;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ECDSA_SIG_get0_r');
+    {$ifend}
   Result := ECDSA_SIG_get0_r(sig);
 end;
 
@@ -4558,7 +5275,11 @@ function Load_ECDSA_SIG_get0_s(sig: PECDSA_SIG): PBIGNUM; cdecl;
 begin
   ECDSA_SIG_get0_s := LoadLibCryptoFunction('ECDSA_SIG_get0_s');
   if not assigned(ECDSA_SIG_get0_s) then
+    {$if declared(LEGACY_ECDSA_SIG_get0_s)}
+    ECDSA_SIG_get0_s := @LEGACY_ECDSA_SIG_get0_s;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ECDSA_SIG_get0_s');
+    {$ifend}
   Result := ECDSA_SIG_get0_s(sig);
 end;
 
@@ -4566,7 +5287,11 @@ function Load_ECDSA_SIG_set0(sig: PECDSA_SIG; r: PBIGNUM; s: PBIGNUM): TOpenSSL_
 begin
   ECDSA_SIG_set0 := LoadLibCryptoFunction('ECDSA_SIG_set0');
   if not assigned(ECDSA_SIG_set0) then
+    {$if declared(LEGACY_ECDSA_SIG_set0)}
+    ECDSA_SIG_set0 := @LEGACY_ECDSA_SIG_set0;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ECDSA_SIG_set0');
+    {$ifend}
   Result := ECDSA_SIG_set0(sig, r, s);
 end;
 
@@ -4575,7 +5300,11 @@ function Load_ECDSA_do_sign(dgst: Pbyte; dgst_len: TOpenSSL_C_INT; eckey: PEC_KE
 begin
   ECDSA_do_sign := LoadLibCryptoFunction('ECDSA_do_sign');
   if not assigned(ECDSA_do_sign) then
+    {$if declared(LEGACY_ECDSA_do_sign)}
+    ECDSA_do_sign := @LEGACY_ECDSA_do_sign;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ECDSA_do_sign');
+    {$ifend}
   Result := ECDSA_do_sign(dgst, dgst_len, eckey);
 end;
 
@@ -4583,7 +5312,11 @@ function Load_ECDSA_do_sign_ex(dgst: Pbyte; dgstlen: TOpenSSL_C_INT; kinv: PBIGN
 begin
   ECDSA_do_sign_ex := LoadLibCryptoFunction('ECDSA_do_sign_ex');
   if not assigned(ECDSA_do_sign_ex) then
+    {$if declared(LEGACY_ECDSA_do_sign_ex)}
+    ECDSA_do_sign_ex := @LEGACY_ECDSA_do_sign_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ECDSA_do_sign_ex');
+    {$ifend}
   Result := ECDSA_do_sign_ex(dgst, dgstlen, kinv, rp, eckey);
 end;
 
@@ -4591,7 +5324,11 @@ function Load_ECDSA_do_verify(dgst: Pbyte; dgst_len: TOpenSSL_C_INT; sig: PECDSA
 begin
   ECDSA_do_verify := LoadLibCryptoFunction('ECDSA_do_verify');
   if not assigned(ECDSA_do_verify) then
+    {$if declared(LEGACY_ECDSA_do_verify)}
+    ECDSA_do_verify := @LEGACY_ECDSA_do_verify;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ECDSA_do_verify');
+    {$ifend}
   Result := ECDSA_do_verify(dgst, dgst_len, sig, eckey);
 end;
 
@@ -4599,7 +5336,11 @@ function Load_ECDSA_sign_setup(eckey: PEC_KEY; ctx: PBN_CTX; kinv: PPBIGNUM; rp:
 begin
   ECDSA_sign_setup := LoadLibCryptoFunction('ECDSA_sign_setup');
   if not assigned(ECDSA_sign_setup) then
+    {$if declared(LEGACY_ECDSA_sign_setup)}
+    ECDSA_sign_setup := @LEGACY_ECDSA_sign_setup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ECDSA_sign_setup');
+    {$ifend}
   Result := ECDSA_sign_setup(eckey, ctx, kinv, rp);
 end;
 
@@ -4607,7 +5348,11 @@ function Load_ECDSA_sign(type_: TOpenSSL_C_INT; dgst: Pbyte; dgstlen: TOpenSSL_C
 begin
   ECDSA_sign := LoadLibCryptoFunction('ECDSA_sign');
   if not assigned(ECDSA_sign) then
+    {$if declared(LEGACY_ECDSA_sign)}
+    ECDSA_sign := @LEGACY_ECDSA_sign;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ECDSA_sign');
+    {$ifend}
   Result := ECDSA_sign(type_, dgst, dgstlen, sig, siglen, eckey);
 end;
 
@@ -4615,7 +5360,11 @@ function Load_ECDSA_sign_ex(type_: TOpenSSL_C_INT; dgst: Pbyte; dgstlen: TOpenSS
 begin
   ECDSA_sign_ex := LoadLibCryptoFunction('ECDSA_sign_ex');
   if not assigned(ECDSA_sign_ex) then
+    {$if declared(LEGACY_ECDSA_sign_ex)}
+    ECDSA_sign_ex := @LEGACY_ECDSA_sign_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ECDSA_sign_ex');
+    {$ifend}
   Result := ECDSA_sign_ex(type_, dgst, dgstlen, sig, siglen, kinv, rp, eckey);
 end;
 
@@ -4623,7 +5372,11 @@ function Load_ECDSA_verify(type_: TOpenSSL_C_INT; dgst: Pbyte; dgstlen: TOpenSSL
 begin
   ECDSA_verify := LoadLibCryptoFunction('ECDSA_verify');
   if not assigned(ECDSA_verify) then
+    {$if declared(LEGACY_ECDSA_verify)}
+    ECDSA_verify := @LEGACY_ECDSA_verify;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ECDSA_verify');
+    {$ifend}
   Result := ECDSA_verify(type_, dgst, dgstlen, sig, siglen, eckey);
 end;
 
@@ -4631,7 +5384,11 @@ function Load_ECDSA_size(eckey: PEC_KEY): TOpenSSL_C_INT; cdecl;
 begin
   ECDSA_size := LoadLibCryptoFunction('ECDSA_size');
   if not assigned(ECDSA_size) then
+    {$if declared(LEGACY_ECDSA_size)}
+    ECDSA_size := @LEGACY_ECDSA_size;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('ECDSA_size');
+    {$ifend}
   Result := ECDSA_size(eckey);
 end;
 
@@ -4639,7 +5396,11 @@ function Load_EC_KEY_METHOD_new(meth: PEC_KEY_METHOD): PEC_KEY_METHOD; cdecl;
 begin
   EC_KEY_METHOD_new := LoadLibCryptoFunction('EC_KEY_METHOD_new');
   if not assigned(EC_KEY_METHOD_new) then
+    {$if declared(LEGACY_EC_KEY_METHOD_new)}
+    EC_KEY_METHOD_new := @LEGACY_EC_KEY_METHOD_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_METHOD_new');
+    {$ifend}
   Result := EC_KEY_METHOD_new(meth);
 end;
 
@@ -4647,7 +5408,11 @@ procedure Load_EC_KEY_METHOD_free(meth: PEC_KEY_METHOD); cdecl;
 begin
   EC_KEY_METHOD_free := LoadLibCryptoFunction('EC_KEY_METHOD_free');
   if not assigned(EC_KEY_METHOD_free) then
+    {$if declared(LEGACY_EC_KEY_METHOD_free)}
+    EC_KEY_METHOD_free := @LEGACY_EC_KEY_METHOD_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_METHOD_free');
+    {$ifend}
   EC_KEY_METHOD_free(meth);
 end;
 
@@ -4655,7 +5420,11 @@ procedure Load_EC_KEY_METHOD_set_init(meth: PEC_KEY_METHOD; init: TFuncType001; 
 begin
   EC_KEY_METHOD_set_init := LoadLibCryptoFunction('EC_KEY_METHOD_set_init');
   if not assigned(EC_KEY_METHOD_set_init) then
+    {$if declared(LEGACY_EC_KEY_METHOD_set_init)}
+    EC_KEY_METHOD_set_init := @LEGACY_EC_KEY_METHOD_set_init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_METHOD_set_init');
+    {$ifend}
   EC_KEY_METHOD_set_init(meth, init, finish, copy, set_group, set_private, set_public);
 end;
 
@@ -4663,7 +5432,11 @@ procedure Load_EC_KEY_METHOD_set_keygen(meth: PEC_KEY_METHOD; keygen: TFuncType0
 begin
   EC_KEY_METHOD_set_keygen := LoadLibCryptoFunction('EC_KEY_METHOD_set_keygen');
   if not assigned(EC_KEY_METHOD_set_keygen) then
+    {$if declared(LEGACY_EC_KEY_METHOD_set_keygen)}
+    EC_KEY_METHOD_set_keygen := @LEGACY_EC_KEY_METHOD_set_keygen;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_METHOD_set_keygen');
+    {$ifend}
   EC_KEY_METHOD_set_keygen(meth, keygen);
 end;
 
@@ -4671,7 +5444,11 @@ procedure Load_EC_KEY_METHOD_set_compute_key(meth: PEC_KEY_METHOD; ckey: TFuncTy
 begin
   EC_KEY_METHOD_set_compute_key := LoadLibCryptoFunction('EC_KEY_METHOD_set_compute_key');
   if not assigned(EC_KEY_METHOD_set_compute_key) then
+    {$if declared(LEGACY_EC_KEY_METHOD_set_compute_key)}
+    EC_KEY_METHOD_set_compute_key := @LEGACY_EC_KEY_METHOD_set_compute_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_METHOD_set_compute_key');
+    {$ifend}
   EC_KEY_METHOD_set_compute_key(meth, ckey);
 end;
 
@@ -4679,7 +5456,11 @@ procedure Load_EC_KEY_METHOD_set_sign(meth: PEC_KEY_METHOD; sign: TFuncType009; 
 begin
   EC_KEY_METHOD_set_sign := LoadLibCryptoFunction('EC_KEY_METHOD_set_sign');
   if not assigned(EC_KEY_METHOD_set_sign) then
+    {$if declared(LEGACY_EC_KEY_METHOD_set_sign)}
+    EC_KEY_METHOD_set_sign := @LEGACY_EC_KEY_METHOD_set_sign;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_METHOD_set_sign');
+    {$ifend}
   EC_KEY_METHOD_set_sign(meth, sign, sign_setup, sign_sig);
 end;
 
@@ -4687,7 +5468,11 @@ procedure Load_EC_KEY_METHOD_set_verify(meth: PEC_KEY_METHOD; verify: TFuncType0
 begin
   EC_KEY_METHOD_set_verify := LoadLibCryptoFunction('EC_KEY_METHOD_set_verify');
   if not assigned(EC_KEY_METHOD_set_verify) then
+    {$if declared(LEGACY_EC_KEY_METHOD_set_verify)}
+    EC_KEY_METHOD_set_verify := @LEGACY_EC_KEY_METHOD_set_verify;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_METHOD_set_verify');
+    {$ifend}
   EC_KEY_METHOD_set_verify(meth, verify, verify_sig);
 end;
 
@@ -4695,7 +5480,11 @@ procedure Load_EC_KEY_METHOD_get_init(meth: PEC_KEY_METHOD; pinit: TFuncType014;
 begin
   EC_KEY_METHOD_get_init := LoadLibCryptoFunction('EC_KEY_METHOD_get_init');
   if not assigned(EC_KEY_METHOD_get_init) then
+    {$if declared(LEGACY_EC_KEY_METHOD_get_init)}
+    EC_KEY_METHOD_get_init := @LEGACY_EC_KEY_METHOD_get_init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_METHOD_get_init');
+    {$ifend}
   EC_KEY_METHOD_get_init(meth, pinit, pfinish, pcopy, pset_group, pset_private, pset_public);
 end;
 
@@ -4703,7 +5492,11 @@ procedure Load_EC_KEY_METHOD_get_keygen(meth: PEC_KEY_METHOD; pkeygen: TFuncType
 begin
   EC_KEY_METHOD_get_keygen := LoadLibCryptoFunction('EC_KEY_METHOD_get_keygen');
   if not assigned(EC_KEY_METHOD_get_keygen) then
+    {$if declared(LEGACY_EC_KEY_METHOD_get_keygen)}
+    EC_KEY_METHOD_get_keygen := @LEGACY_EC_KEY_METHOD_get_keygen;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_METHOD_get_keygen');
+    {$ifend}
   EC_KEY_METHOD_get_keygen(meth, pkeygen);
 end;
 
@@ -4711,7 +5504,11 @@ procedure Load_EC_KEY_METHOD_get_compute_key(meth: PEC_KEY_METHOD; pck: TFuncTyp
 begin
   EC_KEY_METHOD_get_compute_key := LoadLibCryptoFunction('EC_KEY_METHOD_get_compute_key');
   if not assigned(EC_KEY_METHOD_get_compute_key) then
+    {$if declared(LEGACY_EC_KEY_METHOD_get_compute_key)}
+    EC_KEY_METHOD_get_compute_key := @LEGACY_EC_KEY_METHOD_get_compute_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_METHOD_get_compute_key');
+    {$ifend}
   EC_KEY_METHOD_get_compute_key(meth, pck);
 end;
 
@@ -4719,7 +5516,11 @@ procedure Load_EC_KEY_METHOD_get_sign(meth: PEC_KEY_METHOD; psign: TFuncType022;
 begin
   EC_KEY_METHOD_get_sign := LoadLibCryptoFunction('EC_KEY_METHOD_get_sign');
   if not assigned(EC_KEY_METHOD_get_sign) then
+    {$if declared(LEGACY_EC_KEY_METHOD_get_sign)}
+    EC_KEY_METHOD_get_sign := @LEGACY_EC_KEY_METHOD_get_sign;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_METHOD_get_sign');
+    {$ifend}
   EC_KEY_METHOD_get_sign(meth, psign, psign_setup, psign_sig);
 end;
 
@@ -4727,7 +5528,11 @@ procedure Load_EC_KEY_METHOD_get_verify(meth: PEC_KEY_METHOD; pverify: TFuncType
 begin
   EC_KEY_METHOD_get_verify := LoadLibCryptoFunction('EC_KEY_METHOD_get_verify');
   if not assigned(EC_KEY_METHOD_get_verify) then
+    {$if declared(LEGACY_EC_KEY_METHOD_get_verify)}
+    EC_KEY_METHOD_get_verify := @LEGACY_EC_KEY_METHOD_get_verify;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_METHOD_get_verify');
+    {$ifend}
   EC_KEY_METHOD_get_verify(meth, pverify, pverify_sig);
 end;
 

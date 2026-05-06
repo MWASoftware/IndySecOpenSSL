@@ -18,7 +18,8 @@
 unit openssl_hmac;
 
 {
-  Generated from OpenSSL 3.0.20 Header File hmac.h - Wed  6 May 13:06:08 BST 2026
+  Generated from OpenSSL 3.0.20 Header File hmac.h - Wed  6 May 13:15:17 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -164,12 +165,17 @@ const
   OPENSSL_LINE  = 0;
 
 {$ifndef OPENSSL_STATIC_LINK_MODEL}
+{$include legacy_hmac.inc}
 {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 function Load_HMAC_size(e: PHMAC_CTX): TOpenSSL_C_SIZET; cdecl;
 begin
   HMAC_size := LoadLibCryptoFunction('HMAC_size');
   if not assigned(HMAC_size) then
+    {$if declared(LEGACY_HMAC_size)}
+    HMAC_size := @LEGACY_HMAC_size;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('HMAC_size');
+    {$ifend}
   Result := HMAC_size(e);
 end;
 
@@ -177,7 +183,11 @@ function Load_HMAC_CTX_new: PHMAC_CTX; cdecl;
 begin
   HMAC_CTX_new := LoadLibCryptoFunction('HMAC_CTX_new');
   if not assigned(HMAC_CTX_new) then
+    {$if declared(LEGACY_HMAC_CTX_new)}
+    HMAC_CTX_new := @LEGACY_HMAC_CTX_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('HMAC_CTX_new');
+    {$ifend}
   Result := HMAC_CTX_new;
 end;
 
@@ -185,7 +195,11 @@ function Load_HMAC_CTX_reset(ctx: PHMAC_CTX): TOpenSSL_C_INT; cdecl;
 begin
   HMAC_CTX_reset := LoadLibCryptoFunction('HMAC_CTX_reset');
   if not assigned(HMAC_CTX_reset) then
+    {$if declared(LEGACY_HMAC_CTX_reset)}
+    HMAC_CTX_reset := @LEGACY_HMAC_CTX_reset;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('HMAC_CTX_reset');
+    {$ifend}
   Result := HMAC_CTX_reset(ctx);
 end;
 
@@ -193,7 +207,11 @@ procedure Load_HMAC_CTX_free(ctx: PHMAC_CTX); cdecl;
 begin
   HMAC_CTX_free := LoadLibCryptoFunction('HMAC_CTX_free');
   if not assigned(HMAC_CTX_free) then
+    {$if declared(LEGACY_HMAC_CTX_free)}
+    HMAC_CTX_free := @LEGACY_HMAC_CTX_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('HMAC_CTX_free');
+    {$ifend}
   HMAC_CTX_free(ctx);
 end;
 
@@ -203,7 +221,11 @@ function Load_HMAC_Init(ctx: PHMAC_CTX; key: pointer; len: TOpenSSL_C_INT; md: P
 begin
   HMAC_Init := LoadLibCryptoFunction('HMAC_Init');
   if not assigned(HMAC_Init) then
+    {$if declared(LEGACY_HMAC_Init)}
+    HMAC_Init := @LEGACY_HMAC_Init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('HMAC_Init');
+    {$ifend}
   Result := HMAC_Init(ctx, key, len, md);
 end;
 
@@ -213,7 +235,11 @@ function Load_HMAC_Init_ex(ctx: PHMAC_CTX; key: pointer; len: TOpenSSL_C_INT; md
 begin
   HMAC_Init_ex := LoadLibCryptoFunction('HMAC_Init_ex');
   if not assigned(HMAC_Init_ex) then
+    {$if declared(LEGACY_HMAC_Init_ex)}
+    HMAC_Init_ex := @LEGACY_HMAC_Init_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('HMAC_Init_ex');
+    {$ifend}
   Result := HMAC_Init_ex(ctx, key, len, md, impl);
 end;
 
@@ -221,7 +247,11 @@ function Load_HMAC_Update(ctx: PHMAC_CTX; data: Pbyte; len: TOpenSSL_C_SIZET): T
 begin
   HMAC_Update := LoadLibCryptoFunction('HMAC_Update');
   if not assigned(HMAC_Update) then
+    {$if declared(LEGACY_HMAC_Update)}
+    HMAC_Update := @LEGACY_HMAC_Update;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('HMAC_Update');
+    {$ifend}
   Result := HMAC_Update(ctx, data, len);
 end;
 
@@ -229,7 +259,11 @@ function Load_HMAC_Final(ctx: PHMAC_CTX; md: Pbyte; len: POpenSSL_C_UINT): TOpen
 begin
   HMAC_Final := LoadLibCryptoFunction('HMAC_Final');
   if not assigned(HMAC_Final) then
+    {$if declared(LEGACY_HMAC_Final)}
+    HMAC_Final := @LEGACY_HMAC_Final;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('HMAC_Final');
+    {$ifend}
   Result := HMAC_Final(ctx, md, len);
 end;
 
@@ -237,7 +271,11 @@ function Load_HMAC_CTX_copy(dctx: PHMAC_CTX; sctx: PHMAC_CTX): TOpenSSL_C_INT; c
 begin
   HMAC_CTX_copy := LoadLibCryptoFunction('HMAC_CTX_copy');
   if not assigned(HMAC_CTX_copy) then
+    {$if declared(LEGACY_HMAC_CTX_copy)}
+    HMAC_CTX_copy := @LEGACY_HMAC_CTX_copy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('HMAC_CTX_copy');
+    {$ifend}
   Result := HMAC_CTX_copy(dctx, sctx);
 end;
 
@@ -245,7 +283,11 @@ procedure Load_HMAC_CTX_set_flags(ctx: PHMAC_CTX; flags: TOpenSSL_C_UINT); cdecl
 begin
   HMAC_CTX_set_flags := LoadLibCryptoFunction('HMAC_CTX_set_flags');
   if not assigned(HMAC_CTX_set_flags) then
+    {$if declared(LEGACY_HMAC_CTX_set_flags)}
+    HMAC_CTX_set_flags := @LEGACY_HMAC_CTX_set_flags;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('HMAC_CTX_set_flags');
+    {$ifend}
   HMAC_CTX_set_flags(ctx, flags);
 end;
 
@@ -253,7 +295,11 @@ function Load_HMAC_CTX_get_md(ctx: PHMAC_CTX): PEVP_MD; cdecl;
 begin
   HMAC_CTX_get_md := LoadLibCryptoFunction('HMAC_CTX_get_md');
   if not assigned(HMAC_CTX_get_md) then
+    {$if declared(LEGACY_HMAC_CTX_get_md)}
+    HMAC_CTX_get_md := @LEGACY_HMAC_CTX_get_md;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('HMAC_CTX_get_md');
+    {$ifend}
   Result := HMAC_CTX_get_md(ctx);
 end;
 
@@ -262,7 +308,11 @@ function Load_HMAC(evp_md: PEVP_MD; key: pointer; key_len: TOpenSSL_C_INT; data:
 begin
   HMAC := LoadLibCryptoFunction('HMAC');
   if not assigned(HMAC) then
+    {$if declared(LEGACY_HMAC)}
+    HMAC := @LEGACY_HMAC;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('HMAC');
+    {$ifend}
   Result := HMAC(evp_md, key, key_len, data, data_len, md, md_len);
 end;
 

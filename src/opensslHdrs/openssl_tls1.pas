@@ -18,7 +18,8 @@
 unit openssl_tls1;
 
 {
-  Generated from OpenSSL 3.0.20 Header File tls1.h - Wed  6 May 13:06:42 BST 2026
+  Generated from OpenSSL 3.0.20 Header File tls1.h - Wed  6 May 13:15:51 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -1211,7 +1212,11 @@ function Load_SSL_CTX_set_tlsext_max_fragment_length(ctx: PSSL_CTX; mode: byte):
 begin
   SSL_CTX_set_tlsext_max_fragment_length := LoadLibSSLFunction('SSL_CTX_set_tlsext_max_fragment_length');
   if not assigned(SSL_CTX_set_tlsext_max_fragment_length) then
+    {$if declared(LEGACY_SSL_CTX_set_tlsext_max_fragment_length)}
+    SSL_CTX_set_tlsext_max_fragment_length := @LEGACY_SSL_CTX_set_tlsext_max_fragment_length;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SSL_CTX_set_tlsext_max_fragment_length');
+    {$ifend}
   Result := SSL_CTX_set_tlsext_max_fragment_length(ctx, mode);
 end;
 
@@ -1219,7 +1224,11 @@ function Load_SSL_set_tlsext_max_fragment_length(ssl: PSSL; mode: byte): TOpenSS
 begin
   SSL_set_tlsext_max_fragment_length := LoadLibSSLFunction('SSL_set_tlsext_max_fragment_length');
   if not assigned(SSL_set_tlsext_max_fragment_length) then
+    {$if declared(LEGACY_SSL_set_tlsext_max_fragment_length)}
+    SSL_set_tlsext_max_fragment_length := @LEGACY_SSL_set_tlsext_max_fragment_length;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SSL_set_tlsext_max_fragment_length');
+    {$ifend}
   Result := SSL_set_tlsext_max_fragment_length(ssl, mode);
 end;
 
@@ -1227,7 +1236,11 @@ function Load_SSL_get_servername(s: PSSL; type_: TOpenSSL_C_INT): PAnsiChar; cde
 begin
   SSL_get_servername := LoadLibSSLFunction('SSL_get_servername');
   if not assigned(SSL_get_servername) then
+    {$if declared(LEGACY_SSL_get_servername)}
+    SSL_get_servername := @LEGACY_SSL_get_servername;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SSL_get_servername');
+    {$ifend}
   Result := SSL_get_servername(s, type_);
 end;
 
@@ -1235,7 +1248,11 @@ function Load_SSL_get_servername_type(s: PSSL): TOpenSSL_C_INT; cdecl;
 begin
   SSL_get_servername_type := LoadLibSSLFunction('SSL_get_servername_type');
   if not assigned(SSL_get_servername_type) then
+    {$if declared(LEGACY_SSL_get_servername_type)}
+    SSL_get_servername_type := @LEGACY_SSL_get_servername_type;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SSL_get_servername_type');
+    {$ifend}
   Result := SSL_get_servername_type(s);
 end;
 
@@ -1243,7 +1260,11 @@ function Load_SSL_export_keying_material(s: PSSL; out_: Pbyte; olen: TOpenSSL_C_
 begin
   SSL_export_keying_material := LoadLibSSLFunction('SSL_export_keying_material');
   if not assigned(SSL_export_keying_material) then
+    {$if declared(LEGACY_SSL_export_keying_material)}
+    SSL_export_keying_material := @LEGACY_SSL_export_keying_material;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SSL_export_keying_material');
+    {$ifend}
   Result := SSL_export_keying_material(s, out_, olen, label_, llen, context, contextlen, use_context);
 end;
 
@@ -1251,7 +1272,11 @@ function Load_SSL_export_keying_material_early(s: PSSL; out_: Pbyte; olen: TOpen
 begin
   SSL_export_keying_material_early := LoadLibSSLFunction('SSL_export_keying_material_early');
   if not assigned(SSL_export_keying_material_early) then
+    {$if declared(LEGACY_SSL_export_keying_material_early)}
+    SSL_export_keying_material_early := @LEGACY_SSL_export_keying_material_early;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SSL_export_keying_material_early');
+    {$ifend}
   Result := SSL_export_keying_material_early(s, out_, olen, label_, llen, context, contextlen);
 end;
 
@@ -1259,7 +1284,11 @@ function Load_SSL_get_peer_signature_type_nid(s: PSSL; pnid: POpenSSL_C_INT): TO
 begin
   SSL_get_peer_signature_type_nid := LoadLibSSLFunction('SSL_get_peer_signature_type_nid');
   if not assigned(SSL_get_peer_signature_type_nid) then
+    {$if declared(LEGACY_SSL_get_peer_signature_type_nid)}
+    SSL_get_peer_signature_type_nid := @LEGACY_SSL_get_peer_signature_type_nid;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SSL_get_peer_signature_type_nid');
+    {$ifend}
   Result := SSL_get_peer_signature_type_nid(s, pnid);
 end;
 
@@ -1267,7 +1296,11 @@ function Load_SSL_get_signature_type_nid(s: PSSL; pnid: POpenSSL_C_INT): TOpenSS
 begin
   SSL_get_signature_type_nid := LoadLibSSLFunction('SSL_get_signature_type_nid');
   if not assigned(SSL_get_signature_type_nid) then
+    {$if declared(LEGACY_SSL_get_signature_type_nid)}
+    SSL_get_signature_type_nid := @LEGACY_SSL_get_signature_type_nid;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SSL_get_signature_type_nid');
+    {$ifend}
   Result := SSL_get_signature_type_nid(s, pnid);
 end;
 
@@ -1275,7 +1308,11 @@ function Load_SSL_get_sigalgs(s: PSSL; idx: TOpenSSL_C_INT; psign: POpenSSL_C_IN
 begin
   SSL_get_sigalgs := LoadLibSSLFunction('SSL_get_sigalgs');
   if not assigned(SSL_get_sigalgs) then
+    {$if declared(LEGACY_SSL_get_sigalgs)}
+    SSL_get_sigalgs := @LEGACY_SSL_get_sigalgs;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SSL_get_sigalgs');
+    {$ifend}
   Result := SSL_get_sigalgs(s, idx, psign, phash, psignandhash, rsig, rhash);
 end;
 
@@ -1283,7 +1320,11 @@ function Load_SSL_get_shared_sigalgs(s: PSSL; idx: TOpenSSL_C_INT; psign: POpenS
 begin
   SSL_get_shared_sigalgs := LoadLibSSLFunction('SSL_get_shared_sigalgs');
   if not assigned(SSL_get_shared_sigalgs) then
+    {$if declared(LEGACY_SSL_get_shared_sigalgs)}
+    SSL_get_shared_sigalgs := @LEGACY_SSL_get_shared_sigalgs;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SSL_get_shared_sigalgs');
+    {$ifend}
   Result := SSL_get_shared_sigalgs(s, idx, psign, phash, psignandhash, rsig, rhash);
 end;
 
@@ -1291,7 +1332,11 @@ function Load_SSL_check_chain(s: PSSL; x: PX509; pk: PEVP_PKEY; chain: Pstack_st
 begin
   SSL_check_chain := LoadLibSSLFunction('SSL_check_chain');
   if not assigned(SSL_check_chain) then
+    {$if declared(LEGACY_SSL_check_chain)}
+    SSL_check_chain := @LEGACY_SSL_check_chain;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SSL_check_chain');
+    {$ifend}
   Result := SSL_check_chain(s, x, pk, chain);
 end;
 
@@ -1299,7 +1344,11 @@ function Load_SSL_CTX_set_tlsext_ticket_key_evp_cb(ctx: PSSL_CTX; fp: TFuncType0
 begin
   SSL_CTX_set_tlsext_ticket_key_evp_cb := LoadLibSSLFunction('SSL_CTX_set_tlsext_ticket_key_evp_cb');
   if not assigned(SSL_CTX_set_tlsext_ticket_key_evp_cb) then
+    {$if declared(LEGACY_SSL_CTX_set_tlsext_ticket_key_evp_cb)}
+    SSL_CTX_set_tlsext_ticket_key_evp_cb := @LEGACY_SSL_CTX_set_tlsext_ticket_key_evp_cb;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('SSL_CTX_set_tlsext_ticket_key_evp_cb');
+    {$ifend}
   Result := SSL_CTX_set_tlsext_ticket_key_evp_cb(ctx, fp);
 end;
 

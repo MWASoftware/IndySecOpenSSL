@@ -18,7 +18,8 @@
 unit openssl_pkcs12;
 
 {
-  Generated from OpenSSL 3.0.20 Header File pkcs12.h - Wed  6 May 13:06:23 BST 2026
+  Generated from OpenSSL 3.0.20 Header File pkcs12.h - Wed  6 May 13:15:32 BST 2026
+  With Legacy Support Option
 }
 
 interface
@@ -878,7 +879,11 @@ function Load_PKCS12_key_gen(pass: PAnsiChar; passlen: TOpenSSL_C_INT; salt: Pby
 begin
   PKCS12_key_gen := LoadLibCryptoFunction('PKCS12_key_gen_utf8');
   if not assigned(PKCS12_key_gen) then
+    {$if declared(LEGACY_PKCS12_key_gen_utf8)}
+    PKCS12_key_gen := @LEGACY_PKCS12_key_gen_utf8;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_key_gen_utf8');
+    {$ifend}
   Result := PKCS12_key_gen(pass, passlen, salt, saltlen, id, iter, n, out_, md_type);
 end;
 
@@ -886,7 +891,11 @@ function Load_PKCS12_add_friendlyname(bag: PPKCS12_SAFEBAG; name: PAnsiChar; nam
 begin
   PKCS12_add_friendlyname := LoadLibCryptoFunction('PKCS12_add_friendlyname_utf8');
   if not assigned(PKCS12_add_friendlyname) then
+    {$if declared(LEGACY_PKCS12_add_friendlyname_utf8)}
+    PKCS12_add_friendlyname := @LEGACY_PKCS12_add_friendlyname_utf8;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_add_friendlyname_utf8');
+    {$ifend}
   Result := PKCS12_add_friendlyname(bag, name, namelen);
 end;
 
@@ -894,7 +903,11 @@ function Load_sk_PKCS12_SAFEBAG_num(_para: Pstack_st_PKCS12_SAFEBAG): TOpenSSL_C
 begin
   sk_PKCS12_SAFEBAG_num := LoadLibCryptoFunction('OPENSSL_sk_num');
   if not assigned(sk_PKCS12_SAFEBAG_num) then
+    {$if declared(LEGACY_OPENSSL_sk_num)}
+    sk_PKCS12_SAFEBAG_num := @LEGACY_OPENSSL_sk_num;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_num');
+    {$ifend}
   Result := sk_PKCS12_SAFEBAG_num(_para);
 end;
 
@@ -902,7 +915,11 @@ function Load_sk_PKCS12_SAFEBAG_value(_para: Pstack_st_PKCS12_SAFEBAG; _para2: T
 begin
   sk_PKCS12_SAFEBAG_value := LoadLibCryptoFunction('OPENSSL_sk_value');
   if not assigned(sk_PKCS12_SAFEBAG_value) then
+    {$if declared(LEGACY_OPENSSL_sk_value)}
+    sk_PKCS12_SAFEBAG_value := @LEGACY_OPENSSL_sk_value;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_value');
+    {$ifend}
   Result := sk_PKCS12_SAFEBAG_value(_para, _para2);
 end;
 
@@ -910,7 +927,11 @@ function Load_sk_PKCS12_SAFEBAG_new(cmp: Tsk_PKCS12_SAFEBAG_compfunc): Pstack_st
 begin
   sk_PKCS12_SAFEBAG_new := LoadLibCryptoFunction('OPENSSL_sk_new');
   if not assigned(sk_PKCS12_SAFEBAG_new) then
+    {$if declared(LEGACY_OPENSSL_sk_new)}
+    sk_PKCS12_SAFEBAG_new := @LEGACY_OPENSSL_sk_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new');
+    {$ifend}
   Result := sk_PKCS12_SAFEBAG_new(cmp);
 end;
 
@@ -918,7 +939,11 @@ function Load_sk_PKCS12_SAFEBAG_new_null: Pstack_st_PKCS12_SAFEBAG; cdecl;
 begin
   sk_PKCS12_SAFEBAG_new_null := LoadLibCryptoFunction('OPENSSL_sk_new_null');
   if not assigned(sk_PKCS12_SAFEBAG_new_null) then
+    {$if declared(LEGACY_OPENSSL_sk_new_null)}
+    sk_PKCS12_SAFEBAG_new_null := @LEGACY_OPENSSL_sk_new_null;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_null');
+    {$ifend}
   Result := sk_PKCS12_SAFEBAG_new_null;
 end;
 
@@ -926,7 +951,11 @@ function Load_sk_PKCS12_SAFEBAG_new_reserve(cmp: Tsk_PKCS12_SAFEBAG_compfunc; n:
 begin
   sk_PKCS12_SAFEBAG_new_reserve := LoadLibCryptoFunction('OPENSSL_sk_new_reserve');
   if not assigned(sk_PKCS12_SAFEBAG_new_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_new_reserve)}
+    sk_PKCS12_SAFEBAG_new_reserve := @LEGACY_OPENSSL_sk_new_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_new_reserve');
+    {$ifend}
   Result := sk_PKCS12_SAFEBAG_new_reserve(cmp, n);
 end;
 
@@ -934,7 +963,11 @@ function Load_sk_PKCS12_SAFEBAG_reserve(_para: Pstack_st_PKCS12_SAFEBAG; n: TOpe
 begin
   sk_PKCS12_SAFEBAG_reserve := LoadLibCryptoFunction('OPENSSL_sk_reserve');
   if not assigned(sk_PKCS12_SAFEBAG_reserve) then
+    {$if declared(LEGACY_OPENSSL_sk_reserve)}
+    sk_PKCS12_SAFEBAG_reserve := @LEGACY_OPENSSL_sk_reserve;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_reserve');
+    {$ifend}
   Result := sk_PKCS12_SAFEBAG_reserve(_para, n);
 end;
 
@@ -942,7 +975,11 @@ function Load_sk_PKCS12_SAFEBAG_free(_para: Pstack_st_PKCS12_SAFEBAG): TOpenSSL_
 begin
   sk_PKCS12_SAFEBAG_free := LoadLibCryptoFunction('OPENSSL_sk_free');
   if not assigned(sk_PKCS12_SAFEBAG_free) then
+    {$if declared(LEGACY_OPENSSL_sk_free)}
+    sk_PKCS12_SAFEBAG_free := @LEGACY_OPENSSL_sk_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_free');
+    {$ifend}
   Result := sk_PKCS12_SAFEBAG_free(_para);
 end;
 
@@ -950,7 +987,11 @@ function Load_sk_PKCS12_SAFEBAG_zero(_para: Pstack_st_PKCS12_SAFEBAG): TOpenSSL_
 begin
   sk_PKCS12_SAFEBAG_zero := LoadLibCryptoFunction('OPENSSL_sk_zero');
   if not assigned(sk_PKCS12_SAFEBAG_zero) then
+    {$if declared(LEGACY_OPENSSL_sk_zero)}
+    sk_PKCS12_SAFEBAG_zero := @LEGACY_OPENSSL_sk_zero;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_zero');
+    {$ifend}
   Result := sk_PKCS12_SAFEBAG_zero(_para);
 end;
 
@@ -958,7 +999,11 @@ function Load_sk_PKCS12_SAFEBAG_delete(st: Pstack_st_PKCS12_SAFEBAG; loc: TOpenS
 begin
   sk_PKCS12_SAFEBAG_delete := LoadLibCryptoFunction('OPENSSL_sk_delete');
   if not assigned(sk_PKCS12_SAFEBAG_delete) then
+    {$if declared(LEGACY_OPENSSL_sk_delete)}
+    sk_PKCS12_SAFEBAG_delete := @LEGACY_OPENSSL_sk_delete;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete');
+    {$ifend}
   Result := sk_PKCS12_SAFEBAG_delete(st, loc);
 end;
 
@@ -966,7 +1011,11 @@ function Load_sk_PKCS12_SAFEBAG_delete_ptr(st: Pstack_st_PKCS12_SAFEBAG; ptr: Ps
 begin
   sk_PKCS12_SAFEBAG_delete_ptr := LoadLibCryptoFunction('OPENSSL_sk_delete_ptr');
   if not assigned(sk_PKCS12_SAFEBAG_delete_ptr) then
+    {$if declared(LEGACY_OPENSSL_sk_delete_ptr)}
+    sk_PKCS12_SAFEBAG_delete_ptr := @LEGACY_OPENSSL_sk_delete_ptr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_delete_ptr');
+    {$ifend}
   Result := sk_PKCS12_SAFEBAG_delete_ptr(st, ptr);
 end;
 
@@ -974,7 +1023,11 @@ function Load_sk_PKCS12_SAFEBAG_push(st: Pstack_st_PKCS12_SAFEBAG; data: pointer
 begin
   sk_PKCS12_SAFEBAG_push := LoadLibCryptoFunction('OPENSSL_sk_push');
   if not assigned(sk_PKCS12_SAFEBAG_push) then
+    {$if declared(LEGACY_OPENSSL_sk_push)}
+    sk_PKCS12_SAFEBAG_push := @LEGACY_OPENSSL_sk_push;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_push');
+    {$ifend}
   Result := sk_PKCS12_SAFEBAG_push(st, data);
 end;
 
@@ -982,7 +1035,11 @@ function Load_sk_PKCS12_SAFEBAG_unshift(st: Pstack_st_PKCS12_SAFEBAG; data: poin
 begin
   sk_PKCS12_SAFEBAG_unshift := LoadLibCryptoFunction('OPENSSL_sk_unshift');
   if not assigned(sk_PKCS12_SAFEBAG_unshift) then
+    {$if declared(LEGACY_OPENSSL_sk_unshift)}
+    sk_PKCS12_SAFEBAG_unshift := @LEGACY_OPENSSL_sk_unshift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_unshift');
+    {$ifend}
   Result := sk_PKCS12_SAFEBAG_unshift(st, data);
 end;
 
@@ -990,7 +1047,11 @@ function Load_sk_PKCS12_SAFEBAG_pop(_para: Pstack_st_PKCS12_SAFEBAG): Pstack_st_
 begin
   sk_PKCS12_SAFEBAG_pop := LoadLibCryptoFunction('OPENSSL_sk_pop');
   if not assigned(sk_PKCS12_SAFEBAG_pop) then
+    {$if declared(LEGACY_OPENSSL_sk_pop)}
+    sk_PKCS12_SAFEBAG_pop := @LEGACY_OPENSSL_sk_pop;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop');
+    {$ifend}
   Result := sk_PKCS12_SAFEBAG_pop(_para);
 end;
 
@@ -998,7 +1059,11 @@ function Load_sk_PKCS12_SAFEBAG_shift(_para: Pstack_st_PKCS12_SAFEBAG): Pstack_s
 begin
   sk_PKCS12_SAFEBAG_shift := LoadLibCryptoFunction('OPENSSL_sk_shift');
   if not assigned(sk_PKCS12_SAFEBAG_shift) then
+    {$if declared(LEGACY_OPENSSL_sk_shift)}
+    sk_PKCS12_SAFEBAG_shift := @LEGACY_OPENSSL_sk_shift;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_shift');
+    {$ifend}
   Result := sk_PKCS12_SAFEBAG_shift(_para);
 end;
 
@@ -1006,7 +1071,11 @@ procedure Load_sk_PKCS12_SAFEBAG_pop_free(st: Pstack_st_PKCS12_SAFEBAG; func: Ts
 begin
   sk_PKCS12_SAFEBAG_pop_free := LoadLibCryptoFunction('OPENSSL_sk_pop_free');
   if not assigned(sk_PKCS12_SAFEBAG_pop_free) then
+    {$if declared(LEGACY_OPENSSL_sk_pop_free)}
+    sk_PKCS12_SAFEBAG_pop_free := @LEGACY_OPENSSL_sk_pop_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_pop_free');
+    {$ifend}
   sk_PKCS12_SAFEBAG_pop_free(st, func);
 end;
 
@@ -1014,7 +1083,11 @@ function Load_sk_PKCS12_SAFEBAG_insert(st: Pstack_st_PKCS12_SAFEBAG; data: point
 begin
   sk_PKCS12_SAFEBAG_insert := LoadLibCryptoFunction('OPENSSL_sk_insert');
   if not assigned(sk_PKCS12_SAFEBAG_insert) then
+    {$if declared(LEGACY_OPENSSL_sk_insert)}
+    sk_PKCS12_SAFEBAG_insert := @LEGACY_OPENSSL_sk_insert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_insert');
+    {$ifend}
   Result := sk_PKCS12_SAFEBAG_insert(st, data, where);
 end;
 
@@ -1022,7 +1095,11 @@ function Load_sk_PKCS12_SAFEBAG_set(st: Pstack_st_PKCS12_SAFEBAG; i: TOpenSSL_C_
 begin
   sk_PKCS12_SAFEBAG_set := LoadLibCryptoFunction('OPENSSL_sk_set');
   if not assigned(sk_PKCS12_SAFEBAG_set) then
+    {$if declared(LEGACY_OPENSSL_sk_set)}
+    sk_PKCS12_SAFEBAG_set := @LEGACY_OPENSSL_sk_set;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set');
+    {$ifend}
   Result := sk_PKCS12_SAFEBAG_set(st, i, data);
 end;
 
@@ -1030,7 +1107,11 @@ function Load_sk_PKCS12_SAFEBAG_find(st: Pstack_st_PKCS12_SAFEBAG; data: pointer
 begin
   sk_PKCS12_SAFEBAG_find := LoadLibCryptoFunction('OPENSSL_sk_find');
   if not assigned(sk_PKCS12_SAFEBAG_find) then
+    {$if declared(LEGACY_OPENSSL_sk_find)}
+    sk_PKCS12_SAFEBAG_find := @LEGACY_OPENSSL_sk_find;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find');
+    {$ifend}
   Result := sk_PKCS12_SAFEBAG_find(st, data);
 end;
 
@@ -1038,7 +1119,11 @@ function Load_sk_PKCS12_SAFEBAG_find_ex(st: Pstack_st_PKCS12_SAFEBAG; data: poin
 begin
   sk_PKCS12_SAFEBAG_find_ex := LoadLibCryptoFunction('OPENSSL_sk_find_ex');
   if not assigned(sk_PKCS12_SAFEBAG_find_ex) then
+    {$if declared(LEGACY_OPENSSL_sk_find_ex)}
+    sk_PKCS12_SAFEBAG_find_ex := @LEGACY_OPENSSL_sk_find_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_ex');
+    {$ifend}
   Result := sk_PKCS12_SAFEBAG_find_ex(st, data);
 end;
 
@@ -1046,7 +1131,11 @@ function Load_sk_PKCS12_SAFEBAG_find_all(st: Pstack_st_PKCS12_SAFEBAG; data: poi
 begin
   sk_PKCS12_SAFEBAG_find_all := LoadLibCryptoFunction('OPENSSL_sk_find_all');
   if not assigned(sk_PKCS12_SAFEBAG_find_all) then
+    {$if declared(LEGACY_OPENSSL_sk_find_all)}
+    sk_PKCS12_SAFEBAG_find_all := @LEGACY_OPENSSL_sk_find_all;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_find_all');
+    {$ifend}
   Result := sk_PKCS12_SAFEBAG_find_all(st, data, pnum);
 end;
 
@@ -1054,7 +1143,11 @@ function Load_sk_PKCS12_SAFEBAG_sort(_para: Pstack_st_PKCS12_SAFEBAG): TOpenSSL_
 begin
   sk_PKCS12_SAFEBAG_sort := LoadLibCryptoFunction('OPENSSL_sk_sort');
   if not assigned(sk_PKCS12_SAFEBAG_sort) then
+    {$if declared(LEGACY_OPENSSL_sk_sort)}
+    sk_PKCS12_SAFEBAG_sort := @LEGACY_OPENSSL_sk_sort;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_sort');
+    {$ifend}
   Result := sk_PKCS12_SAFEBAG_sort(_para);
 end;
 
@@ -1062,7 +1155,11 @@ function Load_sk_PKCS12_SAFEBAG_is_sorted(_para: Pstack_st_PKCS12_SAFEBAG): TOpe
 begin
   sk_PKCS12_SAFEBAG_is_sorted := LoadLibCryptoFunction('OPENSSL_sk_is_sorted');
   if not assigned(sk_PKCS12_SAFEBAG_is_sorted) then
+    {$if declared(LEGACY_OPENSSL_sk_is_sorted)}
+    sk_PKCS12_SAFEBAG_is_sorted := @LEGACY_OPENSSL_sk_is_sorted;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_is_sorted');
+    {$ifend}
   Result := sk_PKCS12_SAFEBAG_is_sorted(_para);
 end;
 
@@ -1070,7 +1167,11 @@ function Load_sk_PKCS12_SAFEBAG_dup(st: Pstack_st_PKCS12_SAFEBAG): Pstack_st_PKC
 begin
   sk_PKCS12_SAFEBAG_dup := LoadLibCryptoFunction('OPENSSL_sk_dup');
   if not assigned(sk_PKCS12_SAFEBAG_dup) then
+    {$if declared(LEGACY_OPENSSL_sk_dup)}
+    sk_PKCS12_SAFEBAG_dup := @LEGACY_OPENSSL_sk_dup;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_dup');
+    {$ifend}
   Result := sk_PKCS12_SAFEBAG_dup(st);
 end;
 
@@ -1078,7 +1179,11 @@ function Load_sk_PKCS12_SAFEBAG_deep_copy(st: Pstack_st_PKCS12_SAFEBAG; c: Tsk_P
 begin
   sk_PKCS12_SAFEBAG_deep_copy := LoadLibCryptoFunction('OPENSSL_sk_deep_copy');
   if not assigned(sk_PKCS12_SAFEBAG_deep_copy) then
+    {$if declared(LEGACY_OPENSSL_sk_deep_copy)}
+    sk_PKCS12_SAFEBAG_deep_copy := @LEGACY_OPENSSL_sk_deep_copy;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_deep_copy');
+    {$ifend}
   Result := sk_PKCS12_SAFEBAG_deep_copy(st, c, f);
 end;
 
@@ -1086,7 +1191,11 @@ function Load_sk_PKCS12_SAFEBAG_set_cmp_func(st: Pstack_st_PKCS12_SAFEBAG; cmp: 
 begin
   sk_PKCS12_SAFEBAG_set_cmp_func := LoadLibCryptoFunction('OPENSSL_sk_set_cmp_func');
   if not assigned(sk_PKCS12_SAFEBAG_set_cmp_func) then
+    {$if declared(LEGACY_OPENSSL_sk_set_cmp_func)}
+    sk_PKCS12_SAFEBAG_set_cmp_func := @LEGACY_OPENSSL_sk_set_cmp_func;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set_cmp_func');
+    {$ifend}
   Result := sk_PKCS12_SAFEBAG_set_cmp_func(st, cmp);
 end;
 
@@ -1095,7 +1204,11 @@ function Load_PKCS12_certbag2x509(bag: PPKCS12_SAFEBAG): PX509; cdecl;
 begin
   PKCS12_certbag2x509 := LoadLibCryptoFunction('PKCS12_SAFEBAG_get1_cert');
   if not assigned(PKCS12_certbag2x509) then
+    {$if declared(LEGACY_PKCS12_SAFEBAG_get1_cert)}
+    PKCS12_certbag2x509 := @LEGACY_PKCS12_SAFEBAG_get1_cert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAG_get1_cert');
+    {$ifend}
   Result := PKCS12_certbag2x509(bag);
 end;
 
@@ -1103,7 +1216,11 @@ function Load_PKCS12_certbag2scrl(bag: PPKCS12_SAFEBAG): PX509_CRL; cdecl;
 begin
   PKCS12_certbag2scrl := LoadLibCryptoFunction('PKCS12_SAFEBAG_get1_crl');
   if not assigned(PKCS12_certbag2scrl) then
+    {$if declared(LEGACY_PKCS12_SAFEBAG_get1_crl)}
+    PKCS12_certbag2scrl := @LEGACY_PKCS12_SAFEBAG_get1_crl;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAG_get1_crl');
+    {$ifend}
   Result := PKCS12_certbag2scrl(bag);
 end;
 
@@ -1111,7 +1228,11 @@ function Load_PKCS12_bag_type(bag: PPKCS12_SAFEBAG): TOpenSSL_C_INT; cdecl;
 begin
   PKCS12_bag_type := LoadLibCryptoFunction('PKCS12_SAFEBAG_get_nid');
   if not assigned(PKCS12_bag_type) then
+    {$if declared(LEGACY_PKCS12_SAFEBAG_get_nid)}
+    PKCS12_bag_type := @LEGACY_PKCS12_SAFEBAG_get_nid;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAG_get_nid');
+    {$ifend}
   Result := PKCS12_bag_type(bag);
 end;
 
@@ -1119,7 +1240,11 @@ function Load_PKCS12_cert_bag_type(bag: PPKCS12_SAFEBAG): TOpenSSL_C_INT; cdecl;
 begin
   PKCS12_cert_bag_type := LoadLibCryptoFunction('PKCS12_SAFEBAG_get_bag_nid');
   if not assigned(PKCS12_cert_bag_type) then
+    {$if declared(LEGACY_PKCS12_SAFEBAG_get_bag_nid)}
+    PKCS12_cert_bag_type := @LEGACY_PKCS12_SAFEBAG_get_bag_nid;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAG_get_bag_nid');
+    {$ifend}
   Result := PKCS12_cert_bag_type(bag);
 end;
 
@@ -1127,7 +1252,11 @@ function Load_PKCS12_x5092certbag(x509: PX509): PPKCS12_SAFEBAG; cdecl;
 begin
   PKCS12_x5092certbag := LoadLibCryptoFunction('PKCS12_SAFEBAG_create_cert');
   if not assigned(PKCS12_x5092certbag) then
+    {$if declared(LEGACY_PKCS12_SAFEBAG_create_cert)}
+    PKCS12_x5092certbag := @LEGACY_PKCS12_SAFEBAG_create_cert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAG_create_cert');
+    {$ifend}
   Result := PKCS12_x5092certbag(x509);
 end;
 
@@ -1135,7 +1264,11 @@ function Load_PKCS12_x509crl2certbag(crl: PX509_CRL): PPKCS12_SAFEBAG; cdecl;
 begin
   PKCS12_x509crl2certbag := LoadLibCryptoFunction('PKCS12_SAFEBAG_create_crl');
   if not assigned(PKCS12_x509crl2certbag) then
+    {$if declared(LEGACY_PKCS12_SAFEBAG_create_crl)}
+    PKCS12_x509crl2certbag := @LEGACY_PKCS12_SAFEBAG_create_crl;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAG_create_crl');
+    {$ifend}
   Result := PKCS12_x509crl2certbag(crl);
 end;
 
@@ -1143,7 +1276,11 @@ function Load_PKCS12_MAKE_KEYBAG(p8: PPKCS8_PRIV_KEY_INFO): PPKCS12_SAFEBAG; cde
 begin
   PKCS12_MAKE_KEYBAG := LoadLibCryptoFunction('PKCS12_SAFEBAG_create0_p8inf');
   if not assigned(PKCS12_MAKE_KEYBAG) then
+    {$if declared(LEGACY_PKCS12_SAFEBAG_create0_p8inf)}
+    PKCS12_MAKE_KEYBAG := @LEGACY_PKCS12_SAFEBAG_create0_p8inf;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAG_create0_p8inf');
+    {$ifend}
   Result := PKCS12_MAKE_KEYBAG(p8);
 end;
 
@@ -1151,7 +1288,11 @@ function Load_PKCS12_MAKE_SHKEYBAG(pbe_nid: TOpenSSL_C_INT; pass: PAnsiChar; pas
 begin
   PKCS12_MAKE_SHKEYBAG := LoadLibCryptoFunction('PKCS12_SAFEBAG_create_pkcs8_encrypt');
   if not assigned(PKCS12_MAKE_SHKEYBAG) then
+    {$if declared(LEGACY_PKCS12_SAFEBAG_create_pkcs8_encrypt)}
+    PKCS12_MAKE_SHKEYBAG := @LEGACY_PKCS12_SAFEBAG_create_pkcs8_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAG_create_pkcs8_encrypt');
+    {$ifend}
   Result := PKCS12_MAKE_SHKEYBAG(pbe_nid, pass, passlen, salt, saltlen, iter, p8inf);
 end;
 
@@ -1159,7 +1300,11 @@ function Load_M_PKCS12_bag_type(bag: PPKCS12_SAFEBAG): TOpenSSL_C_INT; cdecl;
 begin
   M_PKCS12_bag_type := LoadLibCryptoFunction('PKCS12_SAFEBAG_get_nid');
   if not assigned(M_PKCS12_bag_type) then
+    {$if declared(LEGACY_PKCS12_SAFEBAG_get_nid)}
+    M_PKCS12_bag_type := @LEGACY_PKCS12_SAFEBAG_get_nid;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAG_get_nid');
+    {$ifend}
   Result := M_PKCS12_bag_type(bag);
 end;
 
@@ -1167,7 +1312,11 @@ function Load_M_PKCS12_cert_bag_type(bag: PPKCS12_SAFEBAG): TOpenSSL_C_INT; cdec
 begin
   M_PKCS12_cert_bag_type := LoadLibCryptoFunction('PKCS12_SAFEBAG_get_bag_nid');
   if not assigned(M_PKCS12_cert_bag_type) then
+    {$if declared(LEGACY_PKCS12_SAFEBAG_get_bag_nid)}
+    M_PKCS12_cert_bag_type := @LEGACY_PKCS12_SAFEBAG_get_bag_nid;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAG_get_bag_nid');
+    {$ifend}
   Result := M_PKCS12_cert_bag_type(bag);
 end;
 
@@ -1175,7 +1324,11 @@ function Load_M_PKCS12_crl_bag_type(bag: PPKCS12_SAFEBAG): TOpenSSL_C_INT; cdecl
 begin
   M_PKCS12_crl_bag_type := LoadLibCryptoFunction('PKCS12_SAFEBAG_get_bag_nid');
   if not assigned(M_PKCS12_crl_bag_type) then
+    {$if declared(LEGACY_PKCS12_SAFEBAG_get_bag_nid)}
+    M_PKCS12_crl_bag_type := @LEGACY_PKCS12_SAFEBAG_get_bag_nid;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAG_get_bag_nid');
+    {$ifend}
   Result := M_PKCS12_crl_bag_type(bag);
 end;
 
@@ -1185,7 +1338,11 @@ function Load_PKCS12_get_attr(bag: PPKCS12_SAFEBAG; attr_nid: TOpenSSL_C_INT): P
 begin
   PKCS12_get_attr := LoadLibCryptoFunction('PKCS12_get_attr');
   if not assigned(PKCS12_get_attr) then
+    {$if declared(LEGACY_PKCS12_get_attr)}
+    PKCS12_get_attr := @LEGACY_PKCS12_get_attr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_get_attr');
+    {$ifend}
   Result := PKCS12_get_attr(bag, attr_nid);
 end;
 
@@ -1194,7 +1351,11 @@ function Load_PKCS8_get_attr(p8: PPKCS8_PRIV_KEY_INFO; attr_nid: TOpenSSL_C_INT)
 begin
   PKCS8_get_attr := LoadLibCryptoFunction('PKCS8_get_attr');
   if not assigned(PKCS8_get_attr) then
+    {$if declared(LEGACY_PKCS8_get_attr)}
+    PKCS8_get_attr := @LEGACY_PKCS8_get_attr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS8_get_attr');
+    {$ifend}
   Result := PKCS8_get_attr(p8, attr_nid);
 end;
 
@@ -1202,7 +1363,11 @@ function Load_PKCS12_mac_present(p12: PPKCS12): TOpenSSL_C_INT; cdecl;
 begin
   PKCS12_mac_present := LoadLibCryptoFunction('PKCS12_mac_present');
   if not assigned(PKCS12_mac_present) then
+    {$if declared(LEGACY_PKCS12_mac_present)}
+    PKCS12_mac_present := @LEGACY_PKCS12_mac_present;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_mac_present');
+    {$ifend}
   Result := PKCS12_mac_present(p12);
 end;
 
@@ -1210,7 +1375,11 @@ procedure Load_PKCS12_get0_mac(pmac: PPASN1_OCTET_STRING; pmacalg: PPX509_ALGOR;
 begin
   PKCS12_get0_mac := LoadLibCryptoFunction('PKCS12_get0_mac');
   if not assigned(PKCS12_get0_mac) then
+    {$if declared(LEGACY_PKCS12_get0_mac)}
+    PKCS12_get0_mac := @LEGACY_PKCS12_get0_mac;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_get0_mac');
+    {$ifend}
   PKCS12_get0_mac(pmac, pmacalg, psalt, piter, p12);
 end;
 
@@ -1218,7 +1387,11 @@ function Load_PKCS12_SAFEBAG_get0_attr(bag: PPKCS12_SAFEBAG; attr_nid: TOpenSSL_
 begin
   PKCS12_SAFEBAG_get0_attr := LoadLibCryptoFunction('PKCS12_SAFEBAG_get0_attr');
   if not assigned(PKCS12_SAFEBAG_get0_attr) then
+    {$if declared(LEGACY_PKCS12_SAFEBAG_get0_attr)}
+    PKCS12_SAFEBAG_get0_attr := @LEGACY_PKCS12_SAFEBAG_get0_attr;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAG_get0_attr');
+    {$ifend}
   Result := PKCS12_SAFEBAG_get0_attr(bag, attr_nid);
 end;
 
@@ -1226,7 +1399,11 @@ function Load_PKCS12_SAFEBAG_get0_type(bag: PPKCS12_SAFEBAG): PASN1_OBJECT; cdec
 begin
   PKCS12_SAFEBAG_get0_type := LoadLibCryptoFunction('PKCS12_SAFEBAG_get0_type');
   if not assigned(PKCS12_SAFEBAG_get0_type) then
+    {$if declared(LEGACY_PKCS12_SAFEBAG_get0_type)}
+    PKCS12_SAFEBAG_get0_type := @LEGACY_PKCS12_SAFEBAG_get0_type;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAG_get0_type');
+    {$ifend}
   Result := PKCS12_SAFEBAG_get0_type(bag);
 end;
 
@@ -1234,7 +1411,11 @@ function Load_PKCS12_SAFEBAG_get_nid(bag: PPKCS12_SAFEBAG): TOpenSSL_C_INT; cdec
 begin
   PKCS12_SAFEBAG_get_nid := LoadLibCryptoFunction('PKCS12_SAFEBAG_get_nid');
   if not assigned(PKCS12_SAFEBAG_get_nid) then
+    {$if declared(LEGACY_PKCS12_SAFEBAG_get_nid)}
+    PKCS12_SAFEBAG_get_nid := @LEGACY_PKCS12_SAFEBAG_get_nid;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAG_get_nid');
+    {$ifend}
   Result := PKCS12_SAFEBAG_get_nid(bag);
 end;
 
@@ -1242,7 +1423,11 @@ function Load_PKCS12_SAFEBAG_get_bag_nid(bag: PPKCS12_SAFEBAG): TOpenSSL_C_INT; 
 begin
   PKCS12_SAFEBAG_get_bag_nid := LoadLibCryptoFunction('PKCS12_SAFEBAG_get_bag_nid');
   if not assigned(PKCS12_SAFEBAG_get_bag_nid) then
+    {$if declared(LEGACY_PKCS12_SAFEBAG_get_bag_nid)}
+    PKCS12_SAFEBAG_get_bag_nid := @LEGACY_PKCS12_SAFEBAG_get_bag_nid;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAG_get_bag_nid');
+    {$ifend}
   Result := PKCS12_SAFEBAG_get_bag_nid(bag);
 end;
 
@@ -1250,7 +1435,11 @@ function Load_PKCS12_SAFEBAG_get0_bag_obj(bag: PPKCS12_SAFEBAG): PASN1_TYPE; cde
 begin
   PKCS12_SAFEBAG_get0_bag_obj := LoadLibCryptoFunction('PKCS12_SAFEBAG_get0_bag_obj');
   if not assigned(PKCS12_SAFEBAG_get0_bag_obj) then
+    {$if declared(LEGACY_PKCS12_SAFEBAG_get0_bag_obj)}
+    PKCS12_SAFEBAG_get0_bag_obj := @LEGACY_PKCS12_SAFEBAG_get0_bag_obj;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAG_get0_bag_obj');
+    {$ifend}
   Result := PKCS12_SAFEBAG_get0_bag_obj(bag);
 end;
 
@@ -1258,7 +1447,11 @@ function Load_PKCS12_SAFEBAG_get0_bag_type(bag: PPKCS12_SAFEBAG): PASN1_OBJECT; 
 begin
   PKCS12_SAFEBAG_get0_bag_type := LoadLibCryptoFunction('PKCS12_SAFEBAG_get0_bag_type');
   if not assigned(PKCS12_SAFEBAG_get0_bag_type) then
+    {$if declared(LEGACY_PKCS12_SAFEBAG_get0_bag_type)}
+    PKCS12_SAFEBAG_get0_bag_type := @LEGACY_PKCS12_SAFEBAG_get0_bag_type;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAG_get0_bag_type');
+    {$ifend}
   Result := PKCS12_SAFEBAG_get0_bag_type(bag);
 end;
 
@@ -1266,7 +1459,11 @@ function Load_PKCS12_SAFEBAG_get1_cert(bag: PPKCS12_SAFEBAG): PX509; cdecl;
 begin
   PKCS12_SAFEBAG_get1_cert := LoadLibCryptoFunction('PKCS12_SAFEBAG_get1_cert');
   if not assigned(PKCS12_SAFEBAG_get1_cert) then
+    {$if declared(LEGACY_PKCS12_SAFEBAG_get1_cert)}
+    PKCS12_SAFEBAG_get1_cert := @LEGACY_PKCS12_SAFEBAG_get1_cert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAG_get1_cert');
+    {$ifend}
   Result := PKCS12_SAFEBAG_get1_cert(bag);
 end;
 
@@ -1274,7 +1471,11 @@ function Load_PKCS12_SAFEBAG_get1_crl(bag: PPKCS12_SAFEBAG): PX509_CRL; cdecl;
 begin
   PKCS12_SAFEBAG_get1_crl := LoadLibCryptoFunction('PKCS12_SAFEBAG_get1_crl');
   if not assigned(PKCS12_SAFEBAG_get1_crl) then
+    {$if declared(LEGACY_PKCS12_SAFEBAG_get1_crl)}
+    PKCS12_SAFEBAG_get1_crl := @LEGACY_PKCS12_SAFEBAG_get1_crl;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAG_get1_crl');
+    {$ifend}
   Result := PKCS12_SAFEBAG_get1_crl(bag);
 end;
 
@@ -1282,7 +1483,11 @@ function Load_PKCS12_SAFEBAG_get0_safes(bag: PPKCS12_SAFEBAG): Pstack_st_PKCS12_
 begin
   PKCS12_SAFEBAG_get0_safes := LoadLibCryptoFunction('PKCS12_SAFEBAG_get0_safes');
   if not assigned(PKCS12_SAFEBAG_get0_safes) then
+    {$if declared(LEGACY_PKCS12_SAFEBAG_get0_safes)}
+    PKCS12_SAFEBAG_get0_safes := @LEGACY_PKCS12_SAFEBAG_get0_safes;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAG_get0_safes');
+    {$ifend}
   Result := PKCS12_SAFEBAG_get0_safes(bag);
 end;
 
@@ -1290,7 +1495,11 @@ function Load_PKCS12_SAFEBAG_get0_p8inf(bag: PPKCS12_SAFEBAG): PPKCS8_PRIV_KEY_I
 begin
   PKCS12_SAFEBAG_get0_p8inf := LoadLibCryptoFunction('PKCS12_SAFEBAG_get0_p8inf');
   if not assigned(PKCS12_SAFEBAG_get0_p8inf) then
+    {$if declared(LEGACY_PKCS12_SAFEBAG_get0_p8inf)}
+    PKCS12_SAFEBAG_get0_p8inf := @LEGACY_PKCS12_SAFEBAG_get0_p8inf;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAG_get0_p8inf');
+    {$ifend}
   Result := PKCS12_SAFEBAG_get0_p8inf(bag);
 end;
 
@@ -1298,7 +1507,11 @@ function Load_PKCS12_SAFEBAG_get0_pkcs8(bag: PPKCS12_SAFEBAG): PX509_SIG; cdecl;
 begin
   PKCS12_SAFEBAG_get0_pkcs8 := LoadLibCryptoFunction('PKCS12_SAFEBAG_get0_pkcs8');
   if not assigned(PKCS12_SAFEBAG_get0_pkcs8) then
+    {$if declared(LEGACY_PKCS12_SAFEBAG_get0_pkcs8)}
+    PKCS12_SAFEBAG_get0_pkcs8 := @LEGACY_PKCS12_SAFEBAG_get0_pkcs8;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAG_get0_pkcs8');
+    {$ifend}
   Result := PKCS12_SAFEBAG_get0_pkcs8(bag);
 end;
 
@@ -1306,7 +1519,11 @@ function Load_PKCS12_SAFEBAG_create_cert(x509: PX509): PPKCS12_SAFEBAG; cdecl;
 begin
   PKCS12_SAFEBAG_create_cert := LoadLibCryptoFunction('PKCS12_SAFEBAG_create_cert');
   if not assigned(PKCS12_SAFEBAG_create_cert) then
+    {$if declared(LEGACY_PKCS12_SAFEBAG_create_cert)}
+    PKCS12_SAFEBAG_create_cert := @LEGACY_PKCS12_SAFEBAG_create_cert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAG_create_cert');
+    {$ifend}
   Result := PKCS12_SAFEBAG_create_cert(x509);
 end;
 
@@ -1314,7 +1531,11 @@ function Load_PKCS12_SAFEBAG_create_crl(crl: PX509_CRL): PPKCS12_SAFEBAG; cdecl;
 begin
   PKCS12_SAFEBAG_create_crl := LoadLibCryptoFunction('PKCS12_SAFEBAG_create_crl');
   if not assigned(PKCS12_SAFEBAG_create_crl) then
+    {$if declared(LEGACY_PKCS12_SAFEBAG_create_crl)}
+    PKCS12_SAFEBAG_create_crl := @LEGACY_PKCS12_SAFEBAG_create_crl;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAG_create_crl');
+    {$ifend}
   Result := PKCS12_SAFEBAG_create_crl(crl);
 end;
 
@@ -1322,7 +1543,11 @@ function Load_PKCS12_SAFEBAG_create_secret(type_: TOpenSSL_C_INT; vtype: TOpenSS
 begin
   PKCS12_SAFEBAG_create_secret := LoadLibCryptoFunction('PKCS12_SAFEBAG_create_secret');
   if not assigned(PKCS12_SAFEBAG_create_secret) then
+    {$if declared(LEGACY_PKCS12_SAFEBAG_create_secret)}
+    PKCS12_SAFEBAG_create_secret := @LEGACY_PKCS12_SAFEBAG_create_secret;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAG_create_secret');
+    {$ifend}
   Result := PKCS12_SAFEBAG_create_secret(type_, vtype, value, len);
 end;
 
@@ -1330,7 +1555,11 @@ function Load_PKCS12_SAFEBAG_create0_p8inf(p8: PPKCS8_PRIV_KEY_INFO): PPKCS12_SA
 begin
   PKCS12_SAFEBAG_create0_p8inf := LoadLibCryptoFunction('PKCS12_SAFEBAG_create0_p8inf');
   if not assigned(PKCS12_SAFEBAG_create0_p8inf) then
+    {$if declared(LEGACY_PKCS12_SAFEBAG_create0_p8inf)}
+    PKCS12_SAFEBAG_create0_p8inf := @LEGACY_PKCS12_SAFEBAG_create0_p8inf;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAG_create0_p8inf');
+    {$ifend}
   Result := PKCS12_SAFEBAG_create0_p8inf(p8);
 end;
 
@@ -1338,7 +1567,11 @@ function Load_PKCS12_SAFEBAG_create0_pkcs8(p8: PX509_SIG): PPKCS12_SAFEBAG; cdec
 begin
   PKCS12_SAFEBAG_create0_pkcs8 := LoadLibCryptoFunction('PKCS12_SAFEBAG_create0_pkcs8');
   if not assigned(PKCS12_SAFEBAG_create0_pkcs8) then
+    {$if declared(LEGACY_PKCS12_SAFEBAG_create0_pkcs8)}
+    PKCS12_SAFEBAG_create0_pkcs8 := @LEGACY_PKCS12_SAFEBAG_create0_pkcs8;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAG_create0_pkcs8');
+    {$ifend}
   Result := PKCS12_SAFEBAG_create0_pkcs8(p8);
 end;
 
@@ -1346,7 +1579,11 @@ function Load_PKCS12_SAFEBAG_create_pkcs8_encrypt(pbe_nid: TOpenSSL_C_INT; pass:
 begin
   PKCS12_SAFEBAG_create_pkcs8_encrypt := LoadLibCryptoFunction('PKCS12_SAFEBAG_create_pkcs8_encrypt');
   if not assigned(PKCS12_SAFEBAG_create_pkcs8_encrypt) then
+    {$if declared(LEGACY_PKCS12_SAFEBAG_create_pkcs8_encrypt)}
+    PKCS12_SAFEBAG_create_pkcs8_encrypt := @LEGACY_PKCS12_SAFEBAG_create_pkcs8_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAG_create_pkcs8_encrypt');
+    {$ifend}
   Result := PKCS12_SAFEBAG_create_pkcs8_encrypt(pbe_nid, pass, passlen, salt, saltlen, iter, p8inf);
 end;
 
@@ -1354,7 +1591,11 @@ function Load_PKCS12_SAFEBAG_create_pkcs8_encrypt_ex(pbe_nid: TOpenSSL_C_INT; pa
 begin
   PKCS12_SAFEBAG_create_pkcs8_encrypt_ex := LoadLibCryptoFunction('PKCS12_SAFEBAG_create_pkcs8_encrypt_ex');
   if not assigned(PKCS12_SAFEBAG_create_pkcs8_encrypt_ex) then
+    {$if declared(LEGACY_PKCS12_SAFEBAG_create_pkcs8_encrypt_ex)}
+    PKCS12_SAFEBAG_create_pkcs8_encrypt_ex := @LEGACY_PKCS12_SAFEBAG_create_pkcs8_encrypt_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAG_create_pkcs8_encrypt_ex');
+    {$ifend}
   Result := PKCS12_SAFEBAG_create_pkcs8_encrypt_ex(pbe_nid, pass, passlen, salt, saltlen, iter, p8inf, ctx, propq);
 end;
 
@@ -1362,7 +1603,11 @@ function Load_PKCS12_item_pack_safebag(obj: pointer; it: PASN1_ITEM; nid1: TOpen
 begin
   PKCS12_item_pack_safebag := LoadLibCryptoFunction('PKCS12_item_pack_safebag');
   if not assigned(PKCS12_item_pack_safebag) then
+    {$if declared(LEGACY_PKCS12_item_pack_safebag)}
+    PKCS12_item_pack_safebag := @LEGACY_PKCS12_item_pack_safebag;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_item_pack_safebag');
+    {$ifend}
   Result := PKCS12_item_pack_safebag(obj, it, nid1, nid2);
 end;
 
@@ -1370,7 +1615,11 @@ function Load_PKCS8_decrypt(p8: PX509_SIG; pass: PAnsiChar; passlen: TOpenSSL_C_
 begin
   PKCS8_decrypt := LoadLibCryptoFunction('PKCS8_decrypt');
   if not assigned(PKCS8_decrypt) then
+    {$if declared(LEGACY_PKCS8_decrypt)}
+    PKCS8_decrypt := @LEGACY_PKCS8_decrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS8_decrypt');
+    {$ifend}
   Result := PKCS8_decrypt(p8, pass, passlen);
 end;
 
@@ -1378,7 +1627,11 @@ function Load_PKCS8_decrypt_ex(p8: PX509_SIG; pass: PAnsiChar; passlen: TOpenSSL
 begin
   PKCS8_decrypt_ex := LoadLibCryptoFunction('PKCS8_decrypt_ex');
   if not assigned(PKCS8_decrypt_ex) then
+    {$if declared(LEGACY_PKCS8_decrypt_ex)}
+    PKCS8_decrypt_ex := @LEGACY_PKCS8_decrypt_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS8_decrypt_ex');
+    {$ifend}
   Result := PKCS8_decrypt_ex(p8, pass, passlen, ctx, propq);
 end;
 
@@ -1386,7 +1639,11 @@ function Load_PKCS12_decrypt_skey(bag: PPKCS12_SAFEBAG; pass: PAnsiChar; passlen
 begin
   PKCS12_decrypt_skey := LoadLibCryptoFunction('PKCS12_decrypt_skey');
   if not assigned(PKCS12_decrypt_skey) then
+    {$if declared(LEGACY_PKCS12_decrypt_skey)}
+    PKCS12_decrypt_skey := @LEGACY_PKCS12_decrypt_skey;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_decrypt_skey');
+    {$ifend}
   Result := PKCS12_decrypt_skey(bag, pass, passlen);
 end;
 
@@ -1394,7 +1651,11 @@ function Load_PKCS12_decrypt_skey_ex(bag: PPKCS12_SAFEBAG; pass: PAnsiChar; pass
 begin
   PKCS12_decrypt_skey_ex := LoadLibCryptoFunction('PKCS12_decrypt_skey_ex');
   if not assigned(PKCS12_decrypt_skey_ex) then
+    {$if declared(LEGACY_PKCS12_decrypt_skey_ex)}
+    PKCS12_decrypt_skey_ex := @LEGACY_PKCS12_decrypt_skey_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_decrypt_skey_ex');
+    {$ifend}
   Result := PKCS12_decrypt_skey_ex(bag, pass, passlen, ctx, propq);
 end;
 
@@ -1402,7 +1663,11 @@ function Load_PKCS8_encrypt(pbe_nid: TOpenSSL_C_INT; cipher: PEVP_CIPHER; pass: 
 begin
   PKCS8_encrypt := LoadLibCryptoFunction('PKCS8_encrypt');
   if not assigned(PKCS8_encrypt) then
+    {$if declared(LEGACY_PKCS8_encrypt)}
+    PKCS8_encrypt := @LEGACY_PKCS8_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS8_encrypt');
+    {$ifend}
   Result := PKCS8_encrypt(pbe_nid, cipher, pass, passlen, salt, saltlen, iter, p8);
 end;
 
@@ -1410,7 +1675,11 @@ function Load_PKCS8_encrypt_ex(pbe_nid: TOpenSSL_C_INT; cipher: PEVP_CIPHER; pas
 begin
   PKCS8_encrypt_ex := LoadLibCryptoFunction('PKCS8_encrypt_ex');
   if not assigned(PKCS8_encrypt_ex) then
+    {$if declared(LEGACY_PKCS8_encrypt_ex)}
+    PKCS8_encrypt_ex := @LEGACY_PKCS8_encrypt_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS8_encrypt_ex');
+    {$ifend}
   Result := PKCS8_encrypt_ex(pbe_nid, cipher, pass, passlen, salt, saltlen, iter, p8, ctx, propq);
 end;
 
@@ -1418,7 +1687,11 @@ function Load_PKCS8_set0_pbe(pass: PAnsiChar; passlen: TOpenSSL_C_INT; p8inf: PP
 begin
   PKCS8_set0_pbe := LoadLibCryptoFunction('PKCS8_set0_pbe');
   if not assigned(PKCS8_set0_pbe) then
+    {$if declared(LEGACY_PKCS8_set0_pbe)}
+    PKCS8_set0_pbe := @LEGACY_PKCS8_set0_pbe;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS8_set0_pbe');
+    {$ifend}
   Result := PKCS8_set0_pbe(pass, passlen, p8inf, pbe);
 end;
 
@@ -1426,7 +1699,11 @@ function Load_PKCS8_set0_pbe_ex(pass: PAnsiChar; passlen: TOpenSSL_C_INT; p8inf:
 begin
   PKCS8_set0_pbe_ex := LoadLibCryptoFunction('PKCS8_set0_pbe_ex');
   if not assigned(PKCS8_set0_pbe_ex) then
+    {$if declared(LEGACY_PKCS8_set0_pbe_ex)}
+    PKCS8_set0_pbe_ex := @LEGACY_PKCS8_set0_pbe_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS8_set0_pbe_ex');
+    {$ifend}
   Result := PKCS8_set0_pbe_ex(pass, passlen, p8inf, pbe, ctx, propq);
 end;
 
@@ -1434,7 +1711,11 @@ function Load_PKCS12_pack_p7data(sk: Pstack_st_PKCS12_SAFEBAG): PPKCS7; cdecl;
 begin
   PKCS12_pack_p7data := LoadLibCryptoFunction('PKCS12_pack_p7data');
   if not assigned(PKCS12_pack_p7data) then
+    {$if declared(LEGACY_PKCS12_pack_p7data)}
+    PKCS12_pack_p7data := @LEGACY_PKCS12_pack_p7data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_pack_p7data');
+    {$ifend}
   Result := PKCS12_pack_p7data(sk);
 end;
 
@@ -1442,7 +1723,11 @@ function Load_PKCS12_unpack_p7data(p7: PPKCS7): Pstack_st_PKCS12_SAFEBAG; cdecl;
 begin
   PKCS12_unpack_p7data := LoadLibCryptoFunction('PKCS12_unpack_p7data');
   if not assigned(PKCS12_unpack_p7data) then
+    {$if declared(LEGACY_PKCS12_unpack_p7data)}
+    PKCS12_unpack_p7data := @LEGACY_PKCS12_unpack_p7data;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_unpack_p7data');
+    {$ifend}
   Result := PKCS12_unpack_p7data(p7);
 end;
 
@@ -1450,7 +1735,11 @@ function Load_PKCS12_pack_p7encdata(pbe_nid: TOpenSSL_C_INT; pass: PAnsiChar; pa
 begin
   PKCS12_pack_p7encdata := LoadLibCryptoFunction('PKCS12_pack_p7encdata');
   if not assigned(PKCS12_pack_p7encdata) then
+    {$if declared(LEGACY_PKCS12_pack_p7encdata)}
+    PKCS12_pack_p7encdata := @LEGACY_PKCS12_pack_p7encdata;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_pack_p7encdata');
+    {$ifend}
   Result := PKCS12_pack_p7encdata(pbe_nid, pass, passlen, salt, saltlen, iter, bags);
 end;
 
@@ -1458,7 +1747,11 @@ function Load_PKCS12_pack_p7encdata_ex(pbe_nid: TOpenSSL_C_INT; pass: PAnsiChar;
 begin
   PKCS12_pack_p7encdata_ex := LoadLibCryptoFunction('PKCS12_pack_p7encdata_ex');
   if not assigned(PKCS12_pack_p7encdata_ex) then
+    {$if declared(LEGACY_PKCS12_pack_p7encdata_ex)}
+    PKCS12_pack_p7encdata_ex := @LEGACY_PKCS12_pack_p7encdata_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_pack_p7encdata_ex');
+    {$ifend}
   Result := PKCS12_pack_p7encdata_ex(pbe_nid, pass, passlen, salt, saltlen, iter, bags, ctx, propq);
 end;
 
@@ -1466,7 +1759,11 @@ function Load_PKCS12_unpack_p7encdata(p7: PPKCS7; pass: PAnsiChar; passlen: TOpe
 begin
   PKCS12_unpack_p7encdata := LoadLibCryptoFunction('PKCS12_unpack_p7encdata');
   if not assigned(PKCS12_unpack_p7encdata) then
+    {$if declared(LEGACY_PKCS12_unpack_p7encdata)}
+    PKCS12_unpack_p7encdata := @LEGACY_PKCS12_unpack_p7encdata;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_unpack_p7encdata');
+    {$ifend}
   Result := PKCS12_unpack_p7encdata(p7, pass, passlen);
 end;
 
@@ -1474,7 +1771,11 @@ function Load_PKCS12_pack_authsafes(p12: PPKCS12; safes: Pstack_st_PKCS7): TOpen
 begin
   PKCS12_pack_authsafes := LoadLibCryptoFunction('PKCS12_pack_authsafes');
   if not assigned(PKCS12_pack_authsafes) then
+    {$if declared(LEGACY_PKCS12_pack_authsafes)}
+    PKCS12_pack_authsafes := @LEGACY_PKCS12_pack_authsafes;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_pack_authsafes');
+    {$ifend}
   Result := PKCS12_pack_authsafes(p12, safes);
 end;
 
@@ -1482,7 +1783,11 @@ function Load_PKCS12_unpack_authsafes(p12: PPKCS12): Pstack_st_PKCS7; cdecl;
 begin
   PKCS12_unpack_authsafes := LoadLibCryptoFunction('PKCS12_unpack_authsafes');
   if not assigned(PKCS12_unpack_authsafes) then
+    {$if declared(LEGACY_PKCS12_unpack_authsafes)}
+    PKCS12_unpack_authsafes := @LEGACY_PKCS12_unpack_authsafes;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_unpack_authsafes');
+    {$ifend}
   Result := PKCS12_unpack_authsafes(p12);
 end;
 
@@ -1490,7 +1795,11 @@ function Load_PKCS12_add_localkeyid(bag: PPKCS12_SAFEBAG; name: Pbyte; namelen: 
 begin
   PKCS12_add_localkeyid := LoadLibCryptoFunction('PKCS12_add_localkeyid');
   if not assigned(PKCS12_add_localkeyid) then
+    {$if declared(LEGACY_PKCS12_add_localkeyid)}
+    PKCS12_add_localkeyid := @LEGACY_PKCS12_add_localkeyid;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_add_localkeyid');
+    {$ifend}
   Result := PKCS12_add_localkeyid(bag, name, namelen);
 end;
 
@@ -1498,7 +1807,11 @@ function Load_PKCS12_add_friendlyname_asc(bag: PPKCS12_SAFEBAG; name: PAnsiChar;
 begin
   PKCS12_add_friendlyname_asc := LoadLibCryptoFunction('PKCS12_add_friendlyname_asc');
   if not assigned(PKCS12_add_friendlyname_asc) then
+    {$if declared(LEGACY_PKCS12_add_friendlyname_asc)}
+    PKCS12_add_friendlyname_asc := @LEGACY_PKCS12_add_friendlyname_asc;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_add_friendlyname_asc');
+    {$ifend}
   Result := PKCS12_add_friendlyname_asc(bag, name, namelen);
 end;
 
@@ -1506,7 +1819,11 @@ function Load_PKCS12_add_friendlyname_utf8(bag: PPKCS12_SAFEBAG; name: PAnsiChar
 begin
   PKCS12_add_friendlyname_utf8 := LoadLibCryptoFunction('PKCS12_add_friendlyname_utf8');
   if not assigned(PKCS12_add_friendlyname_utf8) then
+    {$if declared(LEGACY_PKCS12_add_friendlyname_utf8)}
+    PKCS12_add_friendlyname_utf8 := @LEGACY_PKCS12_add_friendlyname_utf8;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_add_friendlyname_utf8');
+    {$ifend}
   Result := PKCS12_add_friendlyname_utf8(bag, name, namelen);
 end;
 
@@ -1514,7 +1831,11 @@ function Load_PKCS12_add_CSPName_asc(bag: PPKCS12_SAFEBAG; name: PAnsiChar; name
 begin
   PKCS12_add_CSPName_asc := LoadLibCryptoFunction('PKCS12_add_CSPName_asc');
   if not assigned(PKCS12_add_CSPName_asc) then
+    {$if declared(LEGACY_PKCS12_add_CSPName_asc)}
+    PKCS12_add_CSPName_asc := @LEGACY_PKCS12_add_CSPName_asc;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_add_CSPName_asc');
+    {$ifend}
   Result := PKCS12_add_CSPName_asc(bag, name, namelen);
 end;
 
@@ -1522,7 +1843,11 @@ function Load_PKCS12_add_friendlyname_uni(bag: PPKCS12_SAFEBAG; name: Pbyte; nam
 begin
   PKCS12_add_friendlyname_uni := LoadLibCryptoFunction('PKCS12_add_friendlyname_uni');
   if not assigned(PKCS12_add_friendlyname_uni) then
+    {$if declared(LEGACY_PKCS12_add_friendlyname_uni)}
+    PKCS12_add_friendlyname_uni := @LEGACY_PKCS12_add_friendlyname_uni;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_add_friendlyname_uni');
+    {$ifend}
   Result := PKCS12_add_friendlyname_uni(bag, name, namelen);
 end;
 
@@ -1530,7 +1855,11 @@ function Load_PKCS12_add1_attr_by_NID(bag: PPKCS12_SAFEBAG; nid: TOpenSSL_C_INT;
 begin
   PKCS12_add1_attr_by_NID := LoadLibCryptoFunction('PKCS12_add1_attr_by_NID');
   if not assigned(PKCS12_add1_attr_by_NID) then
+    {$if declared(LEGACY_PKCS12_add1_attr_by_NID)}
+    PKCS12_add1_attr_by_NID := @LEGACY_PKCS12_add1_attr_by_NID;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_add1_attr_by_NID');
+    {$ifend}
   Result := PKCS12_add1_attr_by_NID(bag, nid, type_, bytes, len);
 end;
 
@@ -1538,7 +1867,11 @@ function Load_PKCS12_add1_attr_by_txt(bag: PPKCS12_SAFEBAG; attrname: PAnsiChar;
 begin
   PKCS12_add1_attr_by_txt := LoadLibCryptoFunction('PKCS12_add1_attr_by_txt');
   if not assigned(PKCS12_add1_attr_by_txt) then
+    {$if declared(LEGACY_PKCS12_add1_attr_by_txt)}
+    PKCS12_add1_attr_by_txt := @LEGACY_PKCS12_add1_attr_by_txt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_add1_attr_by_txt');
+    {$ifend}
   Result := PKCS12_add1_attr_by_txt(bag, attrname, type_, bytes, len);
 end;
 
@@ -1546,7 +1879,11 @@ function Load_PKCS8_add_keyusage(p8: PPKCS8_PRIV_KEY_INFO; usage: TOpenSSL_C_INT
 begin
   PKCS8_add_keyusage := LoadLibCryptoFunction('PKCS8_add_keyusage');
   if not assigned(PKCS8_add_keyusage) then
+    {$if declared(LEGACY_PKCS8_add_keyusage)}
+    PKCS8_add_keyusage := @LEGACY_PKCS8_add_keyusage;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS8_add_keyusage');
+    {$ifend}
   Result := PKCS8_add_keyusage(p8, usage);
 end;
 
@@ -1554,7 +1891,11 @@ function Load_PKCS12_get_attr_gen(attrs: Pstack_st_X509_ATTRIBUTE; attr_nid: TOp
 begin
   PKCS12_get_attr_gen := LoadLibCryptoFunction('PKCS12_get_attr_gen');
   if not assigned(PKCS12_get_attr_gen) then
+    {$if declared(LEGACY_PKCS12_get_attr_gen)}
+    PKCS12_get_attr_gen := @LEGACY_PKCS12_get_attr_gen;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_get_attr_gen');
+    {$ifend}
   Result := PKCS12_get_attr_gen(attrs, attr_nid);
 end;
 
@@ -1562,7 +1903,11 @@ function Load_PKCS12_get_friendlyname(bag: PPKCS12_SAFEBAG): PAnsiChar; cdecl;
 begin
   PKCS12_get_friendlyname := LoadLibCryptoFunction('PKCS12_get_friendlyname');
   if not assigned(PKCS12_get_friendlyname) then
+    {$if declared(LEGACY_PKCS12_get_friendlyname)}
+    PKCS12_get_friendlyname := @LEGACY_PKCS12_get_friendlyname;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_get_friendlyname');
+    {$ifend}
   Result := PKCS12_get_friendlyname(bag);
 end;
 
@@ -1570,7 +1915,11 @@ function Load_PKCS12_SAFEBAG_get0_attrs(bag: PPKCS12_SAFEBAG): Pstack_st_X509_AT
 begin
   PKCS12_SAFEBAG_get0_attrs := LoadLibCryptoFunction('PKCS12_SAFEBAG_get0_attrs');
   if not assigned(PKCS12_SAFEBAG_get0_attrs) then
+    {$if declared(LEGACY_PKCS12_SAFEBAG_get0_attrs)}
+    PKCS12_SAFEBAG_get0_attrs := @LEGACY_PKCS12_SAFEBAG_get0_attrs;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAG_get0_attrs');
+    {$ifend}
   Result := PKCS12_SAFEBAG_get0_attrs(bag);
 end;
 
@@ -1578,7 +1927,11 @@ function Load_PKCS12_pbe_crypt(algor: PX509_ALGOR; pass: PAnsiChar; passlen: TOp
 begin
   PKCS12_pbe_crypt := LoadLibCryptoFunction('PKCS12_pbe_crypt');
   if not assigned(PKCS12_pbe_crypt) then
+    {$if declared(LEGACY_PKCS12_pbe_crypt)}
+    PKCS12_pbe_crypt := @LEGACY_PKCS12_pbe_crypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_pbe_crypt');
+    {$ifend}
   Result := PKCS12_pbe_crypt(algor, pass, passlen, in_, inlen, data, datalen, en_de);
 end;
 
@@ -1586,7 +1939,11 @@ function Load_PKCS12_pbe_crypt_ex(algor: PX509_ALGOR; pass: PAnsiChar; passlen: 
 begin
   PKCS12_pbe_crypt_ex := LoadLibCryptoFunction('PKCS12_pbe_crypt_ex');
   if not assigned(PKCS12_pbe_crypt_ex) then
+    {$if declared(LEGACY_PKCS12_pbe_crypt_ex)}
+    PKCS12_pbe_crypt_ex := @LEGACY_PKCS12_pbe_crypt_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_pbe_crypt_ex');
+    {$ifend}
   Result := PKCS12_pbe_crypt_ex(algor, pass, passlen, in_, inlen, data, datalen, en_de, libctx, propq);
 end;
 
@@ -1594,7 +1951,11 @@ function Load_PKCS12_item_decrypt_d2i(algor: PX509_ALGOR; it: PASN1_ITEM; pass: 
 begin
   PKCS12_item_decrypt_d2i := LoadLibCryptoFunction('PKCS12_item_decrypt_d2i');
   if not assigned(PKCS12_item_decrypt_d2i) then
+    {$if declared(LEGACY_PKCS12_item_decrypt_d2i)}
+    PKCS12_item_decrypt_d2i := @LEGACY_PKCS12_item_decrypt_d2i;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_item_decrypt_d2i');
+    {$ifend}
   Result := PKCS12_item_decrypt_d2i(algor, it, pass, passlen, oct, zbuf);
 end;
 
@@ -1602,7 +1963,11 @@ function Load_PKCS12_item_decrypt_d2i_ex(algor: PX509_ALGOR; it: PASN1_ITEM; pas
 begin
   PKCS12_item_decrypt_d2i_ex := LoadLibCryptoFunction('PKCS12_item_decrypt_d2i_ex');
   if not assigned(PKCS12_item_decrypt_d2i_ex) then
+    {$if declared(LEGACY_PKCS12_item_decrypt_d2i_ex)}
+    PKCS12_item_decrypt_d2i_ex := @LEGACY_PKCS12_item_decrypt_d2i_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_item_decrypt_d2i_ex');
+    {$ifend}
   Result := PKCS12_item_decrypt_d2i_ex(algor, it, pass, passlen, oct, zbuf, libctx, propq);
 end;
 
@@ -1610,7 +1975,11 @@ function Load_PKCS12_item_i2d_encrypt(algor: PX509_ALGOR; it: PASN1_ITEM; pass: 
 begin
   PKCS12_item_i2d_encrypt := LoadLibCryptoFunction('PKCS12_item_i2d_encrypt');
   if not assigned(PKCS12_item_i2d_encrypt) then
+    {$if declared(LEGACY_PKCS12_item_i2d_encrypt)}
+    PKCS12_item_i2d_encrypt := @LEGACY_PKCS12_item_i2d_encrypt;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_item_i2d_encrypt');
+    {$ifend}
   Result := PKCS12_item_i2d_encrypt(algor, it, pass, passlen, obj, zbuf);
 end;
 
@@ -1618,7 +1987,11 @@ function Load_PKCS12_item_i2d_encrypt_ex(algor: PX509_ALGOR; it: PASN1_ITEM; pas
 begin
   PKCS12_item_i2d_encrypt_ex := LoadLibCryptoFunction('PKCS12_item_i2d_encrypt_ex');
   if not assigned(PKCS12_item_i2d_encrypt_ex) then
+    {$if declared(LEGACY_PKCS12_item_i2d_encrypt_ex)}
+    PKCS12_item_i2d_encrypt_ex := @LEGACY_PKCS12_item_i2d_encrypt_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_item_i2d_encrypt_ex');
+    {$ifend}
   Result := PKCS12_item_i2d_encrypt_ex(algor, it, pass, passlen, obj, zbuf, ctx, propq);
 end;
 
@@ -1626,7 +1999,11 @@ function Load_PKCS12_init(mode: TOpenSSL_C_INT): PPKCS12; cdecl;
 begin
   PKCS12_init := LoadLibCryptoFunction('PKCS12_init');
   if not assigned(PKCS12_init) then
+    {$if declared(LEGACY_PKCS12_init)}
+    PKCS12_init := @LEGACY_PKCS12_init;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_init');
+    {$ifend}
   Result := PKCS12_init(mode);
 end;
 
@@ -1634,7 +2011,11 @@ function Load_PKCS12_init_ex(mode: TOpenSSL_C_INT; ctx: POSSL_LIB_CTX; propq: PA
 begin
   PKCS12_init_ex := LoadLibCryptoFunction('PKCS12_init_ex');
   if not assigned(PKCS12_init_ex) then
+    {$if declared(LEGACY_PKCS12_init_ex)}
+    PKCS12_init_ex := @LEGACY_PKCS12_init_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_init_ex');
+    {$ifend}
   Result := PKCS12_init_ex(mode, ctx, propq);
 end;
 
@@ -1642,7 +2023,11 @@ function Load_PKCS12_key_gen_asc(pass: PAnsiChar; passlen: TOpenSSL_C_INT; salt:
 begin
   PKCS12_key_gen_asc := LoadLibCryptoFunction('PKCS12_key_gen_asc');
   if not assigned(PKCS12_key_gen_asc) then
+    {$if declared(LEGACY_PKCS12_key_gen_asc)}
+    PKCS12_key_gen_asc := @LEGACY_PKCS12_key_gen_asc;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_key_gen_asc');
+    {$ifend}
   Result := PKCS12_key_gen_asc(pass, passlen, salt, saltlen, id, iter, n, out_, md_type);
 end;
 
@@ -1650,7 +2035,11 @@ function Load_PKCS12_key_gen_asc_ex(pass: PAnsiChar; passlen: TOpenSSL_C_INT; sa
 begin
   PKCS12_key_gen_asc_ex := LoadLibCryptoFunction('PKCS12_key_gen_asc_ex');
   if not assigned(PKCS12_key_gen_asc_ex) then
+    {$if declared(LEGACY_PKCS12_key_gen_asc_ex)}
+    PKCS12_key_gen_asc_ex := @LEGACY_PKCS12_key_gen_asc_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_key_gen_asc_ex');
+    {$ifend}
   Result := PKCS12_key_gen_asc_ex(pass, passlen, salt, saltlen, id, iter, n, out_, md_type, ctx, propq);
 end;
 
@@ -1658,7 +2047,11 @@ function Load_PKCS12_key_gen_uni(pass: Pbyte; passlen: TOpenSSL_C_INT; salt: Pby
 begin
   PKCS12_key_gen_uni := LoadLibCryptoFunction('PKCS12_key_gen_uni');
   if not assigned(PKCS12_key_gen_uni) then
+    {$if declared(LEGACY_PKCS12_key_gen_uni)}
+    PKCS12_key_gen_uni := @LEGACY_PKCS12_key_gen_uni;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_key_gen_uni');
+    {$ifend}
   Result := PKCS12_key_gen_uni(pass, passlen, salt, saltlen, id, iter, n, out_, md_type);
 end;
 
@@ -1666,7 +2059,11 @@ function Load_PKCS12_key_gen_uni_ex(pass: Pbyte; passlen: TOpenSSL_C_INT; salt: 
 begin
   PKCS12_key_gen_uni_ex := LoadLibCryptoFunction('PKCS12_key_gen_uni_ex');
   if not assigned(PKCS12_key_gen_uni_ex) then
+    {$if declared(LEGACY_PKCS12_key_gen_uni_ex)}
+    PKCS12_key_gen_uni_ex := @LEGACY_PKCS12_key_gen_uni_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_key_gen_uni_ex');
+    {$ifend}
   Result := PKCS12_key_gen_uni_ex(pass, passlen, salt, saltlen, id, iter, n, out_, md_type, ctx, propq);
 end;
 
@@ -1674,7 +2071,11 @@ function Load_PKCS12_key_gen_utf8(pass: PAnsiChar; passlen: TOpenSSL_C_INT; salt
 begin
   PKCS12_key_gen_utf8 := LoadLibCryptoFunction('PKCS12_key_gen_utf8');
   if not assigned(PKCS12_key_gen_utf8) then
+    {$if declared(LEGACY_PKCS12_key_gen_utf8)}
+    PKCS12_key_gen_utf8 := @LEGACY_PKCS12_key_gen_utf8;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_key_gen_utf8');
+    {$ifend}
   Result := PKCS12_key_gen_utf8(pass, passlen, salt, saltlen, id, iter, n, out_, md_type);
 end;
 
@@ -1682,7 +2083,11 @@ function Load_PKCS12_key_gen_utf8_ex(pass: PAnsiChar; passlen: TOpenSSL_C_INT; s
 begin
   PKCS12_key_gen_utf8_ex := LoadLibCryptoFunction('PKCS12_key_gen_utf8_ex');
   if not assigned(PKCS12_key_gen_utf8_ex) then
+    {$if declared(LEGACY_PKCS12_key_gen_utf8_ex)}
+    PKCS12_key_gen_utf8_ex := @LEGACY_PKCS12_key_gen_utf8_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_key_gen_utf8_ex');
+    {$ifend}
   Result := PKCS12_key_gen_utf8_ex(pass, passlen, salt, saltlen, id, iter, n, out_, md_type, ctx, propq);
 end;
 
@@ -1690,7 +2095,11 @@ function Load_PKCS12_PBE_keyivgen(ctx: PEVP_CIPHER_CTX; pass: PAnsiChar; passlen
 begin
   PKCS12_PBE_keyivgen := LoadLibCryptoFunction('PKCS12_PBE_keyivgen');
   if not assigned(PKCS12_PBE_keyivgen) then
+    {$if declared(LEGACY_PKCS12_PBE_keyivgen)}
+    PKCS12_PBE_keyivgen := @LEGACY_PKCS12_PBE_keyivgen;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_PBE_keyivgen');
+    {$ifend}
   Result := PKCS12_PBE_keyivgen(ctx, pass, passlen, param, cipher, md_type, en_de);
 end;
 
@@ -1698,7 +2107,11 @@ function Load_PKCS12_PBE_keyivgen_ex(ctx: PEVP_CIPHER_CTX; pass: PAnsiChar; pass
 begin
   PKCS12_PBE_keyivgen_ex := LoadLibCryptoFunction('PKCS12_PBE_keyivgen_ex');
   if not assigned(PKCS12_PBE_keyivgen_ex) then
+    {$if declared(LEGACY_PKCS12_PBE_keyivgen_ex)}
+    PKCS12_PBE_keyivgen_ex := @LEGACY_PKCS12_PBE_keyivgen_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_PBE_keyivgen_ex');
+    {$ifend}
   Result := PKCS12_PBE_keyivgen_ex(ctx, pass, passlen, param, cipher, md_type, en_de, libctx, propq);
 end;
 
@@ -1706,7 +2119,11 @@ function Load_PKCS12_gen_mac(p12: PPKCS12; pass: PAnsiChar; passlen: TOpenSSL_C_
 begin
   PKCS12_gen_mac := LoadLibCryptoFunction('PKCS12_gen_mac');
   if not assigned(PKCS12_gen_mac) then
+    {$if declared(LEGACY_PKCS12_gen_mac)}
+    PKCS12_gen_mac := @LEGACY_PKCS12_gen_mac;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_gen_mac');
+    {$ifend}
   Result := PKCS12_gen_mac(p12, pass, passlen, mac, maclen);
 end;
 
@@ -1714,7 +2131,11 @@ function Load_PKCS12_verify_mac(p12: PPKCS12; pass: PAnsiChar; passlen: TOpenSSL
 begin
   PKCS12_verify_mac := LoadLibCryptoFunction('PKCS12_verify_mac');
   if not assigned(PKCS12_verify_mac) then
+    {$if declared(LEGACY_PKCS12_verify_mac)}
+    PKCS12_verify_mac := @LEGACY_PKCS12_verify_mac;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_verify_mac');
+    {$ifend}
   Result := PKCS12_verify_mac(p12, pass, passlen);
 end;
 
@@ -1722,7 +2143,11 @@ function Load_PKCS12_set_mac(p12: PPKCS12; pass: PAnsiChar; passlen: TOpenSSL_C_
 begin
   PKCS12_set_mac := LoadLibCryptoFunction('PKCS12_set_mac');
   if not assigned(PKCS12_set_mac) then
+    {$if declared(LEGACY_PKCS12_set_mac)}
+    PKCS12_set_mac := @LEGACY_PKCS12_set_mac;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_set_mac');
+    {$ifend}
   Result := PKCS12_set_mac(p12, pass, passlen, salt, saltlen, iter, md_type);
 end;
 
@@ -1730,7 +2155,11 @@ function Load_PKCS12_setup_mac(p12: PPKCS12; iter: TOpenSSL_C_INT; salt: Pbyte; 
 begin
   PKCS12_setup_mac := LoadLibCryptoFunction('PKCS12_setup_mac');
   if not assigned(PKCS12_setup_mac) then
+    {$if declared(LEGACY_PKCS12_setup_mac)}
+    PKCS12_setup_mac := @LEGACY_PKCS12_setup_mac;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_setup_mac');
+    {$ifend}
   Result := PKCS12_setup_mac(p12, iter, salt, saltlen, md_type);
 end;
 
@@ -1738,7 +2167,11 @@ function Load_OPENSSL_asc2uni(asc: PAnsiChar; asclen: TOpenSSL_C_INT; uni: PPbyt
 begin
   OPENSSL_asc2uni := LoadLibCryptoFunction('OPENSSL_asc2uni');
   if not assigned(OPENSSL_asc2uni) then
+    {$if declared(LEGACY_OPENSSL_asc2uni)}
+    OPENSSL_asc2uni := @LEGACY_OPENSSL_asc2uni;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_asc2uni');
+    {$ifend}
   Result := OPENSSL_asc2uni(asc, asclen, uni, unilen);
 end;
 
@@ -1746,7 +2179,11 @@ function Load_OPENSSL_uni2asc(uni: Pbyte; unilen: TOpenSSL_C_INT): PAnsiChar; cd
 begin
   OPENSSL_uni2asc := LoadLibCryptoFunction('OPENSSL_uni2asc');
   if not assigned(OPENSSL_uni2asc) then
+    {$if declared(LEGACY_OPENSSL_uni2asc)}
+    OPENSSL_uni2asc := @LEGACY_OPENSSL_uni2asc;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_uni2asc');
+    {$ifend}
   Result := OPENSSL_uni2asc(uni, unilen);
 end;
 
@@ -1754,7 +2191,11 @@ function Load_OPENSSL_utf82uni(asc: PAnsiChar; asclen: TOpenSSL_C_INT; uni: PPby
 begin
   OPENSSL_utf82uni := LoadLibCryptoFunction('OPENSSL_utf82uni');
   if not assigned(OPENSSL_utf82uni) then
+    {$if declared(LEGACY_OPENSSL_utf82uni)}
+    OPENSSL_utf82uni := @LEGACY_OPENSSL_utf82uni;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_utf82uni');
+    {$ifend}
   Result := OPENSSL_utf82uni(asc, asclen, uni, unilen);
 end;
 
@@ -1762,7 +2203,11 @@ function Load_OPENSSL_uni2utf8(uni: Pbyte; unilen: TOpenSSL_C_INT): PAnsiChar; c
 begin
   OPENSSL_uni2utf8 := LoadLibCryptoFunction('OPENSSL_uni2utf8');
   if not assigned(OPENSSL_uni2utf8) then
+    {$if declared(LEGACY_OPENSSL_uni2utf8)}
+    OPENSSL_uni2utf8 := @LEGACY_OPENSSL_uni2utf8;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_uni2utf8');
+    {$ifend}
   Result := OPENSSL_uni2utf8(uni, unilen);
 end;
 
@@ -1770,7 +2215,11 @@ function Load_PKCS12_new: PPKCS12; cdecl;
 begin
   PKCS12_new := LoadLibCryptoFunction('PKCS12_new');
   if not assigned(PKCS12_new) then
+    {$if declared(LEGACY_PKCS12_new)}
+    PKCS12_new := @LEGACY_PKCS12_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_new');
+    {$ifend}
   Result := PKCS12_new;
 end;
 
@@ -1778,7 +2227,11 @@ procedure Load_PKCS12_free(a: PPKCS12); cdecl;
 begin
   PKCS12_free := LoadLibCryptoFunction('PKCS12_free');
   if not assigned(PKCS12_free) then
+    {$if declared(LEGACY_PKCS12_free)}
+    PKCS12_free := @LEGACY_PKCS12_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_free');
+    {$ifend}
   PKCS12_free(a);
 end;
 
@@ -1786,7 +2239,11 @@ function Load_d2i_PKCS12(a: PPPKCS12; in_: PPbyte; len: TOpenSSL_C_INT): PPKCS12
 begin
   d2i_PKCS12 := LoadLibCryptoFunction('d2i_PKCS12');
   if not assigned(d2i_PKCS12) then
+    {$if declared(LEGACY_d2i_PKCS12)}
+    d2i_PKCS12 := @LEGACY_d2i_PKCS12;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_PKCS12');
+    {$ifend}
   Result := d2i_PKCS12(a, in_, len);
 end;
 
@@ -1794,7 +2251,11 @@ function Load_i2d_PKCS12(a: PPKCS12; out_: PPbyte): TOpenSSL_C_INT; cdecl;
 begin
   i2d_PKCS12 := LoadLibCryptoFunction('i2d_PKCS12');
   if not assigned(i2d_PKCS12) then
+    {$if declared(LEGACY_i2d_PKCS12)}
+    i2d_PKCS12 := @LEGACY_i2d_PKCS12;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_PKCS12');
+    {$ifend}
   Result := i2d_PKCS12(a, out_);
 end;
 
@@ -1802,7 +2263,11 @@ function Load_PKCS12_it: PASN1_ITEM; cdecl;
 begin
   PKCS12_it := LoadLibCryptoFunction('PKCS12_it');
   if not assigned(PKCS12_it) then
+    {$if declared(LEGACY_PKCS12_it)}
+    PKCS12_it := @LEGACY_PKCS12_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_it');
+    {$ifend}
   Result := PKCS12_it;
 end;
 
@@ -1810,7 +2275,11 @@ function Load_PKCS12_MAC_DATA_new: PPKCS12_MAC_DATA; cdecl;
 begin
   PKCS12_MAC_DATA_new := LoadLibCryptoFunction('PKCS12_MAC_DATA_new');
   if not assigned(PKCS12_MAC_DATA_new) then
+    {$if declared(LEGACY_PKCS12_MAC_DATA_new)}
+    PKCS12_MAC_DATA_new := @LEGACY_PKCS12_MAC_DATA_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_MAC_DATA_new');
+    {$ifend}
   Result := PKCS12_MAC_DATA_new;
 end;
 
@@ -1818,7 +2287,11 @@ procedure Load_PKCS12_MAC_DATA_free(a: PPKCS12_MAC_DATA); cdecl;
 begin
   PKCS12_MAC_DATA_free := LoadLibCryptoFunction('PKCS12_MAC_DATA_free');
   if not assigned(PKCS12_MAC_DATA_free) then
+    {$if declared(LEGACY_PKCS12_MAC_DATA_free)}
+    PKCS12_MAC_DATA_free := @LEGACY_PKCS12_MAC_DATA_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_MAC_DATA_free');
+    {$ifend}
   PKCS12_MAC_DATA_free(a);
 end;
 
@@ -1826,7 +2299,11 @@ function Load_d2i_PKCS12_MAC_DATA(a: PPPKCS12_MAC_DATA; in_: PPbyte; len: TOpenS
 begin
   d2i_PKCS12_MAC_DATA := LoadLibCryptoFunction('d2i_PKCS12_MAC_DATA');
   if not assigned(d2i_PKCS12_MAC_DATA) then
+    {$if declared(LEGACY_d2i_PKCS12_MAC_DATA)}
+    d2i_PKCS12_MAC_DATA := @LEGACY_d2i_PKCS12_MAC_DATA;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_PKCS12_MAC_DATA');
+    {$ifend}
   Result := d2i_PKCS12_MAC_DATA(a, in_, len);
 end;
 
@@ -1834,7 +2311,11 @@ function Load_i2d_PKCS12_MAC_DATA(a: PPKCS12_MAC_DATA; out_: PPbyte): TOpenSSL_C
 begin
   i2d_PKCS12_MAC_DATA := LoadLibCryptoFunction('i2d_PKCS12_MAC_DATA');
   if not assigned(i2d_PKCS12_MAC_DATA) then
+    {$if declared(LEGACY_i2d_PKCS12_MAC_DATA)}
+    i2d_PKCS12_MAC_DATA := @LEGACY_i2d_PKCS12_MAC_DATA;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_PKCS12_MAC_DATA');
+    {$ifend}
   Result := i2d_PKCS12_MAC_DATA(a, out_);
 end;
 
@@ -1842,7 +2323,11 @@ function Load_PKCS12_MAC_DATA_it: PASN1_ITEM; cdecl;
 begin
   PKCS12_MAC_DATA_it := LoadLibCryptoFunction('PKCS12_MAC_DATA_it');
   if not assigned(PKCS12_MAC_DATA_it) then
+    {$if declared(LEGACY_PKCS12_MAC_DATA_it)}
+    PKCS12_MAC_DATA_it := @LEGACY_PKCS12_MAC_DATA_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_MAC_DATA_it');
+    {$ifend}
   Result := PKCS12_MAC_DATA_it;
 end;
 
@@ -1850,7 +2335,11 @@ function Load_PKCS12_SAFEBAG_new: PPKCS12_SAFEBAG; cdecl;
 begin
   PKCS12_SAFEBAG_new := LoadLibCryptoFunction('PKCS12_SAFEBAG_new');
   if not assigned(PKCS12_SAFEBAG_new) then
+    {$if declared(LEGACY_PKCS12_SAFEBAG_new)}
+    PKCS12_SAFEBAG_new := @LEGACY_PKCS12_SAFEBAG_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAG_new');
+    {$ifend}
   Result := PKCS12_SAFEBAG_new;
 end;
 
@@ -1858,7 +2347,11 @@ procedure Load_PKCS12_SAFEBAG_free(a: PPKCS12_SAFEBAG); cdecl;
 begin
   PKCS12_SAFEBAG_free := LoadLibCryptoFunction('PKCS12_SAFEBAG_free');
   if not assigned(PKCS12_SAFEBAG_free) then
+    {$if declared(LEGACY_PKCS12_SAFEBAG_free)}
+    PKCS12_SAFEBAG_free := @LEGACY_PKCS12_SAFEBAG_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAG_free');
+    {$ifend}
   PKCS12_SAFEBAG_free(a);
 end;
 
@@ -1866,7 +2359,11 @@ function Load_d2i_PKCS12_SAFEBAG(a: PPPKCS12_SAFEBAG; in_: PPbyte; len: TOpenSSL
 begin
   d2i_PKCS12_SAFEBAG := LoadLibCryptoFunction('d2i_PKCS12_SAFEBAG');
   if not assigned(d2i_PKCS12_SAFEBAG) then
+    {$if declared(LEGACY_d2i_PKCS12_SAFEBAG)}
+    d2i_PKCS12_SAFEBAG := @LEGACY_d2i_PKCS12_SAFEBAG;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_PKCS12_SAFEBAG');
+    {$ifend}
   Result := d2i_PKCS12_SAFEBAG(a, in_, len);
 end;
 
@@ -1874,7 +2371,11 @@ function Load_i2d_PKCS12_SAFEBAG(a: PPKCS12_SAFEBAG; out_: PPbyte): TOpenSSL_C_I
 begin
   i2d_PKCS12_SAFEBAG := LoadLibCryptoFunction('i2d_PKCS12_SAFEBAG');
   if not assigned(i2d_PKCS12_SAFEBAG) then
+    {$if declared(LEGACY_i2d_PKCS12_SAFEBAG)}
+    i2d_PKCS12_SAFEBAG := @LEGACY_i2d_PKCS12_SAFEBAG;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_PKCS12_SAFEBAG');
+    {$ifend}
   Result := i2d_PKCS12_SAFEBAG(a, out_);
 end;
 
@@ -1882,7 +2383,11 @@ function Load_PKCS12_SAFEBAG_it: PASN1_ITEM; cdecl;
 begin
   PKCS12_SAFEBAG_it := LoadLibCryptoFunction('PKCS12_SAFEBAG_it');
   if not assigned(PKCS12_SAFEBAG_it) then
+    {$if declared(LEGACY_PKCS12_SAFEBAG_it)}
+    PKCS12_SAFEBAG_it := @LEGACY_PKCS12_SAFEBAG_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAG_it');
+    {$ifend}
   Result := PKCS12_SAFEBAG_it;
 end;
 
@@ -1890,7 +2395,11 @@ function Load_PKCS12_BAGS_new: PPKCS12_BAGS; cdecl;
 begin
   PKCS12_BAGS_new := LoadLibCryptoFunction('PKCS12_BAGS_new');
   if not assigned(PKCS12_BAGS_new) then
+    {$if declared(LEGACY_PKCS12_BAGS_new)}
+    PKCS12_BAGS_new := @LEGACY_PKCS12_BAGS_new;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_BAGS_new');
+    {$ifend}
   Result := PKCS12_BAGS_new;
 end;
 
@@ -1898,7 +2407,11 @@ procedure Load_PKCS12_BAGS_free(a: PPKCS12_BAGS); cdecl;
 begin
   PKCS12_BAGS_free := LoadLibCryptoFunction('PKCS12_BAGS_free');
   if not assigned(PKCS12_BAGS_free) then
+    {$if declared(LEGACY_PKCS12_BAGS_free)}
+    PKCS12_BAGS_free := @LEGACY_PKCS12_BAGS_free;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_BAGS_free');
+    {$ifend}
   PKCS12_BAGS_free(a);
 end;
 
@@ -1906,7 +2419,11 @@ function Load_d2i_PKCS12_BAGS(a: PPPKCS12_BAGS; in_: PPbyte; len: TOpenSSL_C_INT
 begin
   d2i_PKCS12_BAGS := LoadLibCryptoFunction('d2i_PKCS12_BAGS');
   if not assigned(d2i_PKCS12_BAGS) then
+    {$if declared(LEGACY_d2i_PKCS12_BAGS)}
+    d2i_PKCS12_BAGS := @LEGACY_d2i_PKCS12_BAGS;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_PKCS12_BAGS');
+    {$ifend}
   Result := d2i_PKCS12_BAGS(a, in_, len);
 end;
 
@@ -1914,7 +2431,11 @@ function Load_i2d_PKCS12_BAGS(a: PPKCS12_BAGS; out_: PPbyte): TOpenSSL_C_INT; cd
 begin
   i2d_PKCS12_BAGS := LoadLibCryptoFunction('i2d_PKCS12_BAGS');
   if not assigned(i2d_PKCS12_BAGS) then
+    {$if declared(LEGACY_i2d_PKCS12_BAGS)}
+    i2d_PKCS12_BAGS := @LEGACY_i2d_PKCS12_BAGS;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_PKCS12_BAGS');
+    {$ifend}
   Result := i2d_PKCS12_BAGS(a, out_);
 end;
 
@@ -1922,7 +2443,11 @@ function Load_PKCS12_BAGS_it: PASN1_ITEM; cdecl;
 begin
   PKCS12_BAGS_it := LoadLibCryptoFunction('PKCS12_BAGS_it');
   if not assigned(PKCS12_BAGS_it) then
+    {$if declared(LEGACY_PKCS12_BAGS_it)}
+    PKCS12_BAGS_it := @LEGACY_PKCS12_BAGS_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_BAGS_it');
+    {$ifend}
   Result := PKCS12_BAGS_it;
 end;
 
@@ -1930,7 +2455,11 @@ function Load_PKCS12_SAFEBAGS_it: PASN1_ITEM; cdecl;
 begin
   PKCS12_SAFEBAGS_it := LoadLibCryptoFunction('PKCS12_SAFEBAGS_it');
   if not assigned(PKCS12_SAFEBAGS_it) then
+    {$if declared(LEGACY_PKCS12_SAFEBAGS_it)}
+    PKCS12_SAFEBAGS_it := @LEGACY_PKCS12_SAFEBAGS_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_SAFEBAGS_it');
+    {$ifend}
   Result := PKCS12_SAFEBAGS_it;
 end;
 
@@ -1938,7 +2467,11 @@ function Load_PKCS12_AUTHSAFES_it: PASN1_ITEM; cdecl;
 begin
   PKCS12_AUTHSAFES_it := LoadLibCryptoFunction('PKCS12_AUTHSAFES_it');
   if not assigned(PKCS12_AUTHSAFES_it) then
+    {$if declared(LEGACY_PKCS12_AUTHSAFES_it)}
+    PKCS12_AUTHSAFES_it := @LEGACY_PKCS12_AUTHSAFES_it;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_AUTHSAFES_it');
+    {$ifend}
   Result := PKCS12_AUTHSAFES_it;
 end;
 
@@ -1946,7 +2479,11 @@ procedure Load_PKCS12_PBE_add; cdecl;
 begin
   PKCS12_PBE_add := LoadLibCryptoFunction('PKCS12_PBE_add');
   if not assigned(PKCS12_PBE_add) then
+    {$if declared(LEGACY_PKCS12_PBE_add)}
+    PKCS12_PBE_add := @LEGACY_PKCS12_PBE_add;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_PBE_add');
+    {$ifend}
   PKCS12_PBE_add;
 end;
 
@@ -1954,7 +2491,11 @@ function Load_PKCS12_parse(p12: PPKCS12; pass: PAnsiChar; pkey: PPEVP_PKEY; cert
 begin
   PKCS12_parse := LoadLibCryptoFunction('PKCS12_parse');
   if not assigned(PKCS12_parse) then
+    {$if declared(LEGACY_PKCS12_parse)}
+    PKCS12_parse := @LEGACY_PKCS12_parse;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_parse');
+    {$ifend}
   Result := PKCS12_parse(p12, pass, pkey, cert, ca);
 end;
 
@@ -1962,7 +2503,11 @@ function Load_PKCS12_create(pass: PAnsiChar; name: PAnsiChar; pkey: PEVP_PKEY; c
 begin
   PKCS12_create := LoadLibCryptoFunction('PKCS12_create');
   if not assigned(PKCS12_create) then
+    {$if declared(LEGACY_PKCS12_create)}
+    PKCS12_create := @LEGACY_PKCS12_create;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_create');
+    {$ifend}
   Result := PKCS12_create(pass, name, pkey, cert, ca, nid_key, nid_cert, iter, mac_iter, keytype);
 end;
 
@@ -1970,7 +2515,11 @@ function Load_PKCS12_create_ex(pass: PAnsiChar; name: PAnsiChar; pkey: PEVP_PKEY
 begin
   PKCS12_create_ex := LoadLibCryptoFunction('PKCS12_create_ex');
   if not assigned(PKCS12_create_ex) then
+    {$if declared(LEGACY_PKCS12_create_ex)}
+    PKCS12_create_ex := @LEGACY_PKCS12_create_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_create_ex');
+    {$ifend}
   Result := PKCS12_create_ex(pass, name, pkey, cert, ca, nid_key, nid_cert, iter, mac_iter, keytype, ctx, propq);
 end;
 
@@ -1978,7 +2527,11 @@ function Load_PKCS12_add_cert(pbags: PPstack_st_PKCS12_SAFEBAG; cert: PX509): PP
 begin
   PKCS12_add_cert := LoadLibCryptoFunction('PKCS12_add_cert');
   if not assigned(PKCS12_add_cert) then
+    {$if declared(LEGACY_PKCS12_add_cert)}
+    PKCS12_add_cert := @LEGACY_PKCS12_add_cert;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_add_cert');
+    {$ifend}
   Result := PKCS12_add_cert(pbags, cert);
 end;
 
@@ -1986,7 +2539,11 @@ function Load_PKCS12_add_key(pbags: PPstack_st_PKCS12_SAFEBAG; key: PEVP_PKEY; k
 begin
   PKCS12_add_key := LoadLibCryptoFunction('PKCS12_add_key');
   if not assigned(PKCS12_add_key) then
+    {$if declared(LEGACY_PKCS12_add_key)}
+    PKCS12_add_key := @LEGACY_PKCS12_add_key;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_add_key');
+    {$ifend}
   Result := PKCS12_add_key(pbags, key, key_usage, iter, key_nid, pass);
 end;
 
@@ -1994,7 +2551,11 @@ function Load_PKCS12_add_key_ex(pbags: PPstack_st_PKCS12_SAFEBAG; key: PEVP_PKEY
 begin
   PKCS12_add_key_ex := LoadLibCryptoFunction('PKCS12_add_key_ex');
   if not assigned(PKCS12_add_key_ex) then
+    {$if declared(LEGACY_PKCS12_add_key_ex)}
+    PKCS12_add_key_ex := @LEGACY_PKCS12_add_key_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_add_key_ex');
+    {$ifend}
   Result := PKCS12_add_key_ex(pbags, key, key_usage, iter, key_nid, pass, ctx, propq);
 end;
 
@@ -2002,7 +2563,11 @@ function Load_PKCS12_add_secret(pbags: PPstack_st_PKCS12_SAFEBAG; nid_type: TOpe
 begin
   PKCS12_add_secret := LoadLibCryptoFunction('PKCS12_add_secret');
   if not assigned(PKCS12_add_secret) then
+    {$if declared(LEGACY_PKCS12_add_secret)}
+    PKCS12_add_secret := @LEGACY_PKCS12_add_secret;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_add_secret');
+    {$ifend}
   Result := PKCS12_add_secret(pbags, nid_type, value, len);
 end;
 
@@ -2010,7 +2575,11 @@ function Load_PKCS12_add_safe(psafes: PPstack_st_PKCS7; bags: Pstack_st_PKCS12_S
 begin
   PKCS12_add_safe := LoadLibCryptoFunction('PKCS12_add_safe');
   if not assigned(PKCS12_add_safe) then
+    {$if declared(LEGACY_PKCS12_add_safe)}
+    PKCS12_add_safe := @LEGACY_PKCS12_add_safe;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_add_safe');
+    {$ifend}
   Result := PKCS12_add_safe(psafes, bags, safe_nid, iter, pass);
 end;
 
@@ -2018,7 +2587,11 @@ function Load_PKCS12_add_safe_ex(psafes: PPstack_st_PKCS7; bags: Pstack_st_PKCS1
 begin
   PKCS12_add_safe_ex := LoadLibCryptoFunction('PKCS12_add_safe_ex');
   if not assigned(PKCS12_add_safe_ex) then
+    {$if declared(LEGACY_PKCS12_add_safe_ex)}
+    PKCS12_add_safe_ex := @LEGACY_PKCS12_add_safe_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_add_safe_ex');
+    {$ifend}
   Result := PKCS12_add_safe_ex(psafes, bags, safe_nid, iter, pass, ctx, propq);
 end;
 
@@ -2026,7 +2599,11 @@ function Load_PKCS12_add_safes(safes: Pstack_st_PKCS7; p7_nid: TOpenSSL_C_INT): 
 begin
   PKCS12_add_safes := LoadLibCryptoFunction('PKCS12_add_safes');
   if not assigned(PKCS12_add_safes) then
+    {$if declared(LEGACY_PKCS12_add_safes)}
+    PKCS12_add_safes := @LEGACY_PKCS12_add_safes;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_add_safes');
+    {$ifend}
   Result := PKCS12_add_safes(safes, p7_nid);
 end;
 
@@ -2034,7 +2611,11 @@ function Load_PKCS12_add_safes_ex(safes: Pstack_st_PKCS7; p7_nid: TOpenSSL_C_INT
 begin
   PKCS12_add_safes_ex := LoadLibCryptoFunction('PKCS12_add_safes_ex');
   if not assigned(PKCS12_add_safes_ex) then
+    {$if declared(LEGACY_PKCS12_add_safes_ex)}
+    PKCS12_add_safes_ex := @LEGACY_PKCS12_add_safes_ex;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_add_safes_ex');
+    {$ifend}
   Result := PKCS12_add_safes_ex(safes, p7_nid, ctx, propq);
 end;
 
@@ -2042,7 +2623,11 @@ function Load_i2d_PKCS12_bio(bp: PBIO; p12: PPKCS12): TOpenSSL_C_INT; cdecl;
 begin
   i2d_PKCS12_bio := LoadLibCryptoFunction('i2d_PKCS12_bio');
   if not assigned(i2d_PKCS12_bio) then
+    {$if declared(LEGACY_i2d_PKCS12_bio)}
+    i2d_PKCS12_bio := @LEGACY_i2d_PKCS12_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_PKCS12_bio');
+    {$ifend}
   Result := i2d_PKCS12_bio(bp, p12);
 end;
 
@@ -2051,7 +2636,11 @@ function Load_i2d_PKCS12_fp(fp: PFILE; p12: PPKCS12): TOpenSSL_C_INT; cdecl;
 begin
   i2d_PKCS12_fp := LoadLibCryptoFunction('i2d_PKCS12_fp');
   if not assigned(i2d_PKCS12_fp) then
+    {$if declared(LEGACY_i2d_PKCS12_fp)}
+    i2d_PKCS12_fp := @LEGACY_i2d_PKCS12_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_PKCS12_fp');
+    {$ifend}
   Result := i2d_PKCS12_fp(fp, p12);
 end;
 
@@ -2060,7 +2649,11 @@ function Load_d2i_PKCS12_bio(bp: PBIO; p12: PPPKCS12): PPKCS12; cdecl;
 begin
   d2i_PKCS12_bio := LoadLibCryptoFunction('d2i_PKCS12_bio');
   if not assigned(d2i_PKCS12_bio) then
+    {$if declared(LEGACY_d2i_PKCS12_bio)}
+    d2i_PKCS12_bio := @LEGACY_d2i_PKCS12_bio;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_PKCS12_bio');
+    {$ifend}
   Result := d2i_PKCS12_bio(bp, p12);
 end;
 
@@ -2069,7 +2662,11 @@ function Load_d2i_PKCS12_fp(fp: PFILE; p12: PPPKCS12): PPKCS12; cdecl;
 begin
   d2i_PKCS12_fp := LoadLibCryptoFunction('d2i_PKCS12_fp');
   if not assigned(d2i_PKCS12_fp) then
+    {$if declared(LEGACY_d2i_PKCS12_fp)}
+    d2i_PKCS12_fp := @LEGACY_d2i_PKCS12_fp;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('d2i_PKCS12_fp');
+    {$ifend}
   Result := d2i_PKCS12_fp(fp, p12);
 end;
 
@@ -2078,7 +2675,11 @@ function Load_PKCS12_newpass(p12: PPKCS12; oldpass: PAnsiChar; newpass: PAnsiCha
 begin
   PKCS12_newpass := LoadLibCryptoFunction('PKCS12_newpass');
   if not assigned(PKCS12_newpass) then
+    {$if declared(LEGACY_PKCS12_newpass)}
+    PKCS12_newpass := @LEGACY_PKCS12_newpass;
+    {$else}
     EOpenSSLAPIFunctionNotPresent.RaiseException('PKCS12_newpass');
+    {$ifend}
   Result := PKCS12_newpass(p12, oldpass, newpass);
 end;
 
