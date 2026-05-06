@@ -18,7 +18,7 @@
 unit openssl_tserr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File tserr.h - Wed  6 May 14:06:03 BST 2026
+  Generated from OpenSSL 3.0.20 Header File tserr.h - Wed  6 May 14:32:44 BST 2026
   With Legacy Support Option
 }
 

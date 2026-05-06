@@ -18,7 +18,7 @@
 unit openssl_ecerr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ecerr.h - Wed  6 May 14:05:15 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ecerr.h - Wed  6 May 14:31:55 BST 2026
   With Legacy Support Option
 }
 

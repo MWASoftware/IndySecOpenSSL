@@ -18,7 +18,7 @@
 unit openssl_bio;
 
 {
-  Generated from OpenSSL 3.0.20 Header File bio.h - Wed  6 May 14:04:49 BST 2026
+  Generated from OpenSSL 3.0.20 Header File bio.h - Wed  6 May 14:31:27 BST 2026
   With Legacy Support Option
 }
 

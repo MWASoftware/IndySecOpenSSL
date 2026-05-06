@@ -18,7 +18,7 @@
 unit openssl_ssl;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ssl.h - Wed  6 May 14:05:56 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ssl.h - Wed  6 May 14:32:37 BST 2026
   With Legacy Support Option
 }
 

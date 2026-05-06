@@ -18,7 +18,7 @@
 unit openssl_comperr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File comperr.h - Wed  6 May 14:04:59 BST 2026
+  Generated from OpenSSL 3.0.20 Header File comperr.h - Wed  6 May 14:31:38 BST 2026
   With Legacy Support Option
 }
 
