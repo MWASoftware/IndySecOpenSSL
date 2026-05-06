@@ -18,7 +18,7 @@
 unit openssl_ssl;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ssl.h - Wed  6 May 10:56:53 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ssl.h - Wed  6 May 12:08:09 BST 2026
 }
 
 interface
@@ -3049,6 +3049,10 @@ var
   function SSL_set_generate_session_id(s: PSSL; cb: TGEN_SESSION_CB): TOpenSSL_C_INT; cdecl; external CLibSSL name 'SSL_set_generate_session_id';
   function SSL_has_matching_session_id(s: PSSL; id: Pbyte; id_len: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl; external CLibSSL name 'SSL_has_matching_session_id';
   function d2i_SSL_SESSION(a: PPSSL_SESSION; pp: PPbyte; length: TOpenSSL_C_INT): PSSL_SESSION; cdecl; external CLibSSL name 'd2i_SSL_SESSION';
+  {#ifdef OPENSSL_X509_H}
+  function SSL_get0_peer_certificate(s: PSSL): PX509; cdecl; external CLibSSL name 'SSL_get0_peer_certificate';
+  function SSL_get1_peer_certificate(s: PSSL): PX509; cdecl; external CLibSSL name 'SSL_get1_peer_certificate';
+  { Deprecated in 3.0.0 }
   {$else}
   {$EXTERNALSYM SSL_SESSION_print}
   {$EXTERNALSYM SSL_SESSION_print_keylog}
@@ -3062,6 +3066,8 @@ var
   {$EXTERNALSYM SSL_set_generate_session_id}
   {$EXTERNALSYM SSL_has_matching_session_id}
   {$EXTERNALSYM d2i_SSL_SESSION}
+  {$EXTERNALSYM SSL_get0_peer_certificate}
+  {$EXTERNALSYM SSL_get1_peer_certificate}
   {Do not call Function LoadDeclarations. Internal use only}
   function Load_SSL_SESSION_print(fp: PBIO; ses: PSSL_SESSION): TOpenSSL_C_INT; cdecl;
   function Load_SSL_SESSION_print_keylog(bp: PBIO; x: PSSL_SESSION): TOpenSSL_C_INT; cdecl;
@@ -3075,6 +3081,8 @@ var
   function Load_SSL_set_generate_session_id(s: PSSL; cb: TGEN_SESSION_CB): TOpenSSL_C_INT; cdecl;
   function Load_SSL_has_matching_session_id(s: PSSL; id: Pbyte; id_len: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl;
   function Load_d2i_SSL_SESSION(a: PPSSL_SESSION; pp: PPbyte; length: TOpenSSL_C_INT): PSSL_SESSION; cdecl;
+  function Load_SSL_get0_peer_certificate(s: PSSL): PX509; cdecl;
+  function Load_SSL_get1_peer_certificate(s: PSSL): PX509; cdecl;
 
 var
   SSL_SESSION_print: function(fp: PBIO; ses: PSSL_SESSION): TOpenSSL_C_INT; cdecl = Load_SSL_SESSION_print;
@@ -3089,43 +3097,28 @@ var
   SSL_set_generate_session_id: function(s: PSSL; cb: TGEN_SESSION_CB): TOpenSSL_C_INT; cdecl = Load_SSL_set_generate_session_id;
   SSL_has_matching_session_id: function(s: PSSL; id: Pbyte; id_len: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl = Load_SSL_has_matching_session_id;
   d2i_SSL_SESSION: function(a: PPSSL_SESSION; pp: PPbyte; length: TOpenSSL_C_INT): PSSL_SESSION; cdecl = Load_d2i_SSL_SESSION;
-  {$endif} {OPENSSL_STATIC_LINK_MODEL}
-  {$ifdef OPENSSL_X509_H}
-
-
-    {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function SSL_get0_peer_certificate(s: PSSL): PX509; cdecl; external CLibSSL name 'SSL_get0_peer_certificate';
-  function SSL_get1_peer_certificate(s: PSSL): PX509; cdecl; external CLibSSL name 'SSL_get1_peer_certificate';
-  { Deprecated in 3.0.0 }
-    {$else}
-  {$EXTERNALSYM SSL_get0_peer_certificate}
-  {$EXTERNALSYM SSL_get1_peer_certificate}
-  {Do not call Function LoadDeclarations. Internal use only}
-  function Load_SSL_get0_peer_certificate(s: PSSL): PX509; cdecl;
-  function Load_SSL_get1_peer_certificate(s: PSSL): PX509; cdecl;
-
-var
+  {#ifdef OPENSSL_X509_H}
   SSL_get0_peer_certificate: function(s: PSSL): PX509; cdecl = Load_SSL_get0_peer_certificate;
   SSL_get1_peer_certificate: function(s: PSSL): PX509; cdecl = Load_SSL_get1_peer_certificate;
   { Deprecated in 3.0.0 }
-    {$endif} {OPENSSL_STATIC_LINK_MODEL}
-    {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
+  {$endif} {OPENSSL_STATIC_LINK_MODEL}
+  {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
 
-      {$ifdef OPENSSL_STATIC_LINK_MODEL}
+    {$ifdef OPENSSL_STATIC_LINK_MODEL}
   function SSL_get_peer_certificate(s: PSSL): PX509; cdecl; external CLibSSL name 'SSL_get1_peer_certificate';
-      {$else}
+    {$else}
   {$EXTERNALSYM SSL_get_peer_certificate}
   {Do not call Function LoadDeclarations. Internal use only}
   function Load_SSL_get_peer_certificate(s: PSSL): PX509; cdecl;
 
 var
   SSL_get_peer_certificate: function(s: PSSL): PX509; cdecl = Load_SSL_get_peer_certificate;
-      {$endif} {OPENSSL_STATIC_LINK_MODEL}
-    {$endif}
+    {$endif} {OPENSSL_STATIC_LINK_MODEL}
   {$endif}
 
 
+  {#endif}
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
   function SSL_get_peer_cert_chain(s: PSSL): Pstack_st_X509; cdecl; external CLibSSL name 'SSL_get_peer_cert_chain';
   function SSL_CTX_get_verify_mode(ctx: PSSL_CTX): TOpenSSL_C_INT; cdecl; external CLibSSL name 'SSL_CTX_get_verify_mode';
@@ -9161,7 +9154,6 @@ begin
   Result := d2i_SSL_SESSION(a, pp, length);
 end;
 
-{$ifdef OPENSSL_X509_H}
 function Load_SSL_get0_peer_certificate(s: PSSL): PX509; cdecl;
 begin
   SSL_get0_peer_certificate := LoadLibSSLFunction('SSL_get0_peer_certificate');
@@ -9178,7 +9170,7 @@ begin
   Result := SSL_get1_peer_certificate(s);
 end;
 
-    {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
+{$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 function Load_SSL_get_peer_certificate(s: PSSL): PX509; cdecl;
 begin
   SSL_get_peer_certificate := LoadLibSSLFunction('SSL_get1_peer_certificate');
@@ -9187,8 +9179,7 @@ begin
   Result := SSL_get_peer_certificate(s);
 end;
 
-    {$endif} { OPENSSL_NO_DEPRECATED_3_0}
-{$endif} {OPENSSL_X509_H}
+{$endif} { OPENSSL_NO_DEPRECATED_3_0}
 function Load_SSL_get_peer_cert_chain(s: PSSL): Pstack_st_X509; cdecl;
 begin
   SSL_get_peer_cert_chain := LoadLibSSLFunction('SSL_get_peer_cert_chain');
@@ -11587,10 +11578,8 @@ begin
 {$endif} { OPENSSL_NO_DEPRECATED_3_0}
 {$ifndef  OPENSSL_NO_STDIO}
 {$endif} { OPENSSL_NO_STDIO}
-{$ifdef OPENSSL_X509_H}
-    {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
-    {$endif} { OPENSSL_NO_DEPRECATED_3_0}
-{$endif} {OPENSSL_X509_H}
+{$ifndef  OPENSSL_NO_DEPRECATED_3_0}
+{$endif} { OPENSSL_NO_DEPRECATED_3_0}
 {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 {$endif} { OPENSSL_NO_DEPRECATED_3_0}
 {$ifndef  OPENSSL_NO_SRP}
@@ -11956,13 +11945,11 @@ begin
   SSL_set_generate_session_id := Load_SSL_set_generate_session_id;
   SSL_has_matching_session_id := Load_SSL_has_matching_session_id;
   d2i_SSL_SESSION := Load_d2i_SSL_SESSION;
-{$ifdef OPENSSL_X509_H}
   SSL_get0_peer_certificate := Load_SSL_get0_peer_certificate;
   SSL_get1_peer_certificate := Load_SSL_get1_peer_certificate;
-    {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
+{$ifndef  OPENSSL_NO_DEPRECATED_3_0}
   SSL_get_peer_certificate := Load_SSL_get_peer_certificate;
-    {$endif} { OPENSSL_NO_DEPRECATED_3_0}
-{$endif} {OPENSSL_X509_H}
+{$endif} { OPENSSL_NO_DEPRECATED_3_0}
   SSL_get_peer_cert_chain := Load_SSL_get_peer_cert_chain;
   SSL_CTX_get_verify_mode := Load_SSL_CTX_get_verify_mode;
   SSL_CTX_get_verify_depth := Load_SSL_CTX_get_verify_depth;

@@ -50,9 +50,6 @@ uses
   Openssl_types
   ;
 
-{$ifdef FPC}
-{$mode delphi}
-{$endif}
 {$I IdCompilerDefines.inc}
 
 {$IFDEF WINDOWS}
@@ -294,7 +291,7 @@ begin
 end;
 
 
-procedure InfoCallback(const sslSocket: PSSL; where, ret: TIdC_INT); cdecl;
+procedure InfoCallback(sslSocket: PSSL; where, ret: TIdC_INT); cdecl;
 var
   IdSecSocket: TIdSecSocket;
   StatusStr : String;
@@ -729,7 +726,7 @@ begin
   SSL_CTX_ctrl(fContext, SSL_CTRL_CLEAR_MODE, SSL_MODE_AUTO_RETRY, nil);
   // assign a password lookup routine
 //  if PasswordRoutineOn then begin
-    SSL_CTX_set_default_passwd_cb(fContext, PasswordCallback);
+    SSL_CTX_set_default_passwd_cb(fContext, @PasswordCallback);
     SSL_CTX_set_default_passwd_cb_userdata(fContext, Self);
 //  end;
 
@@ -761,7 +758,7 @@ begin
     end;
   end;
   if StatusInfoOn then begin
-    SSL_CTX_set_info_callback(fContext, InfoCallback);
+    SSL_CTX_set_info_callback(fContext, @InfoCallback);
   end;
   //if_SSL_CTX_set_tmp_rsa_callback(hSSLContext, @RSACallback);
   if fCipherList <> '' then begin    {Do not Localize}
@@ -834,7 +831,7 @@ end;
 
 procedure TIdSecContext.SetVerifyMode(Mode: TIdSecVerifyModeSet; CheckRoutine: Boolean);
 var
-  Func: TSSL_CTX_set_verify_callback;
+  Func: TSSL_verify_cb;
 begin
   if fContext<>nil then begin
 //    SSL_CTX_set_default_verify_paths(fContext);
@@ -874,7 +871,9 @@ begin
     raise EIdOSSLModeNotSet.Create(RSOSSLModeNotSet);
   end;
 
+  {$if declared(OpenSSL_SetMethod)}
   OpenSSL_SetMethod(TOpenSSL_Version(fMethod));
+  {$ifend}
 
     {For OpenSSL 1.1.1 or later. OpenSSL will negotiate the best
      available SSL/TLS version and there is not much that we can do to influence this.

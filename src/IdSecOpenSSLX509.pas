@@ -177,7 +177,7 @@ http://csrc.nist.gov/CryptoToolkit/tkhash.html
     property Certificate: PX509 read FX509;
   end;
 
-function IndySSL_load_client_CA_file(const AFileName: String) : Pstack_st_X509_NAME_ENTRY;
+function IndySSL_load_client_CA_file(const AFileName: String) : Pstack_st_X509_NAME;
 function IndySSL_CTX_load_verify_locations(ctx: PSSL_CTX; const ACAFile, ACAPath: String): TIdC_INT;
 function IndySSL_CTX_use_certificate_file(ctx: PSSL_CTX; const AFileName: String; AType: Integer): TIdC_INT;
 function IndySSL_CTX_use_certificate_file_PKCS12(ctx: PSSL_CTX; const AFileName: String): TIdC_INT;
@@ -205,7 +205,8 @@ uses
   Openssl_dh,
   Openssl_pem,
   Openssl_bio,
-  Openssl_obj_mac
+  Openssl_obj_mac,
+  openssl_sslerr_legacy
   ;
 
 
@@ -330,7 +331,7 @@ function TIdX509Fingerprints.GetMD5: TIdSecEVP_MD;
 begin
   CheckMD5Permitted;
   X509_digest(FX509, {$if declared(EVP_MD5)}EVP_md5 {$else} EVP_sha1{$ifend},
-  PByte(@Result.MD), Result.Length);
+  PByte(@Result.MD), @Result.Length);
 end;
 
 function TIdX509Fingerprints.GetMD5AsString: String;
@@ -340,7 +341,7 @@ end;
 
 function TIdX509Fingerprints.GetSHA1: TIdSecEVP_MD;
 begin
-  X509_digest(FX509, EVP_sha1, PByte(@Result.MD), Result.Length);
+  X509_digest(FX509, EVP_sha1, PByte(@Result.MD), @Result.Length);
 end;
 
 function TIdX509Fingerprints.GetSHA1AsString: String;
@@ -351,10 +352,10 @@ end;
 function TIdX509Fingerprints.GetSHA224 : TIdSecEVP_MD;
 begin
   {$if not declared(OpenSSL_Using_Dynamic_Library_Load)}
-  X509_digest(FX509, EVP_sha224, PByte(@Result.MD), Result.Length);
+  X509_digest(FX509, EVP_sha224, PByte(@Result.MD), @Result.Length);
   {$ELSE}
   if Assigned(EVP_sha224) then begin
-    X509_digest(FX509, EVP_sha224, PByte(@Result.MD), Result.Length);
+    X509_digest(FX509, EVP_sha224, PByte(@Result.MD), @Result.Length);
   end else begin
     FillChar(Result, SizeOf(Result), 0);
   end;
@@ -377,10 +378,10 @@ end;
 function TIdX509Fingerprints.GetSHA256 : TIdSecEVP_MD;
 begin
   {$if not declared(OpenSSL_Using_Dynamic_Library_Load)}
-  X509_digest(FX509, EVP_sha256, PByte(@Result.MD), Result.Length);
+  X509_digest(FX509, EVP_sha256, PByte(@Result.MD), @Result.Length);
   {$ELSE}
   if Assigned(EVP_sha256) then begin
-    X509_digest(FX509, EVP_sha256, PByte(@Result.MD), Result.Length);
+    X509_digest(FX509, EVP_sha256, PByte(@Result.MD), @Result.Length);
   end else begin
     FillChar(Result, SizeOf(Result), 0);
   end;
@@ -403,10 +404,10 @@ end;
 function TIdX509Fingerprints.GetSHA384 : TIdSecEVP_MD;
 begin
   {$if not declared(OpenSSL_Using_Dynamic_Library_Load)}
-  X509_digest(FX509, EVP_SHA384, PByte(@Result.MD), Result.Length);
+  X509_digest(FX509, EVP_SHA384, PByte(@Result.MD), @Result.Length);
   {$ELSE}
   if Assigned(EVP_SHA384) then begin
-    X509_digest(FX509, EVP_SHA384, PByte(@Result.MD), Result.Length);
+    X509_digest(FX509, EVP_SHA384, PByte(@Result.MD), @Result.Length);
   end else begin
     FillChar(Result, SizeOf(Result), 0);
   end;
@@ -429,10 +430,10 @@ end;
 function TIdX509Fingerprints.GetSHA512 : TIdSecEVP_MD;
 begin
   {$if not declared(OpenSSL_Using_Dynamic_Library_Load)}
-  X509_digest(FX509, EVP_sha512, PByte(@Result.MD), Result.Length);
+  X509_digest(FX509, EVP_sha512, PByte(@Result.MD), @Result.Length);
   {$ELSE}
   if Assigned(EVP_sha512) then begin
-    X509_digest(FX509, EVP_sha512, PByte(@Result.MD), Result.Length);
+    X509_digest(FX509, EVP_sha512, PByte(@Result.MD), @Result.Length);
   end else begin
     FillChar(Result, SizeOf(Result), 0);
   end;
@@ -459,8 +460,8 @@ var
   sig_alg : PX509_ALGOR;
   signature : PASN1_BIT_STRING;
 begin
-  X509_get0_signature(signature,sig_alg, FX509);
-  Result := BytesToHexString(signature^.data, signature^.length);
+  X509_get0_signature(@signature,@sig_alg, FX509);
+  Result := BytesToHexString(signature, Length(PAnsiChar(signature)));
 end;
 
 function TIdX509SigInfo.GetSigType: TIdC_INT;
@@ -521,7 +522,7 @@ var
 begin
   if FX509 <> nil then begin
     LSN := X509_get_serialNumber(FX509);
-    Result := BytesToHexString(LSN.data, LSN.length);
+    Result := BytesToHexString(LSN, Length(PAnsiChar(LSN)));
   end else begin
     Result := '';
   end;
@@ -567,29 +568,29 @@ begin
   case SigInfo.GetSigType of
   {$if declared(EVP_md5)}
   NID_md5WithRSAEncryption:
-    X509_digest(FX509, EVP_md5, PByte(@Result.MD), Result.Length);
+    X509_digest(FX509, EVP_md5, PByte(@Result.MD), @Result.Length);
   {$ifend}
   NID_sha1WithRSAEncryption,
   NID_ecdsa_with_SHA1:
-    X509_digest(FX509, EVP_sha1, PByte(@Result.MD), Result.Length);
+    X509_digest(FX509, EVP_sha1, PByte(@Result.MD), @Result.Length);
   NID_sha256WithRSAEncryption,
   NID_ecdsa_with_SHA256:
-    X509_digest(FX509, EVP_sha256, PByte(@Result.MD), Result.Length);
+    X509_digest(FX509, EVP_sha256, PByte(@Result.MD), @Result.Length);
   NID_sha384WithRSAEncryption,
   NID_ecdsa_with_SHA384:
-    X509_digest(FX509, EVP_sha384, PByte(@Result.MD), Result.Length);
+    X509_digest(FX509, EVP_sha384, PByte(@Result.MD), @Result.Length);
   NID_sha512WithRSAEncryption:
-    X509_digest(FX509, EVP_sha512, PByte(@Result.MD), Result.Length);
+    X509_digest(FX509, EVP_sha512, PByte(@Result.MD), @Result.Length);
   NID_sha224WithRSAEncryption,
   NID_ecdsa_with_SHA224:
-    X509_digest(FX509, EVP_sha224, PByte(@Result.MD), Result.Length);
+    X509_digest(FX509, EVP_sha224, PByte(@Result.MD), @Result.Length);
   NID_sha512_224WithRSAEncryption,
   NID_ecdsa_with_SHA512:
-    X509_digest(FX509, EVP_sha512_224, PByte(@Result.MD), Result.Length);
+    X509_digest(FX509, EVP_sha512_224, PByte(@Result.MD), @Result.Length);
   NID_sha512_256WithRSAEncryption:
-    X509_digest(FX509, EVP_sha512_256, PByte(@Result.MD), Result.Length);
+    X509_digest(FX509, EVP_sha512_256, PByte(@Result.MD), @Result.Length);
   else
-    X509_digest(FX509, EVP_sha1, PByte(@Result.MD), Result.Length);
+    X509_digest(FX509, EVP_sha1, PByte(@Result.MD), @Result.Length);
   end;
 end;
 
@@ -625,10 +626,10 @@ var
   LKey: PEVP_PKEY;
   LCert: PX509;
   P12: PPKCS12;
-  CertChain: PSTACK_OF_X509;
+  CertChain: POPENSSL_STACK;
   LPassword: array of TIdAnsiChar;
   LPasswordPtr: PIdAnsiChar;
-  default_passwd_cb: pem_password_cb;
+  default_passwd_cb: Tpem_password_cb;
 begin
   Result := 0;
 
@@ -669,7 +670,7 @@ begin
       end;
       try
         CertChain := nil;
-        if PKCS12_parse(P12, LPasswordPtr, LKey, LCert, @CertChain) <> 1 then begin
+        if PKCS12_parse(P12, LPasswordPtr, @LKey, @LCert, @CertChain) <> 1 then begin
           SSLError(SSL_F_SSL_CTX_USE_CERTIFICATE_FILE, ERR_R_PKCS12_LIB);
           Exit;
         end;
@@ -698,10 +699,10 @@ var
   LCert: PX509;
   P12: PPKCS12;
   PKey: PEVP_PKEY;
-  CertChain: PSTACK_OF_X509;
+  CertChain: Pstack_st_X509;
   LPassword: array of TIdAnsiChar;
   LPasswordPtr: PIdAnsiChar;
-  default_passwd_callback: pem_password_cb;
+  default_passwd_callback: Tpem_password_cb;
 begin
   Result := 0;
 
@@ -743,14 +744,14 @@ begin
       end;
       try
         CertChain := nil;
-        if PKCS12_parse(P12, LPasswordPtr, PKey, LCert, @CertChain) <> 1 then begin
+        if PKCS12_parse(P12, LPasswordPtr, @PKey, @LCert, @CertChain) <> 1 then begin
           SSLError(SSL_F_SSL_CTX_USE_CERTIFICATE_FILE, ERR_R_PKCS12_LIB);
           Exit;
         end;
         try
           Result := SSL_CTX_use_certificate(ctx, LCert);
         finally
-          OPENSSL_sk_pop_free(CertChain, @X509_free);
+          sk_X509_pop_free(CertChain, @X509_free);
           X509_free(LCert);
           EVP_PKEY_free(PKey);
         end;
@@ -1605,7 +1606,8 @@ end;
 {this conditional section assumes that strings are UTF8 or perhaps use a codepage
  and the calls typically resolve to direct calls to OpenSSL}
 
-function IndySSL_load_client_CA_file(const AFileName: String) : PSTACK_OF_X509_NAME;
+function IndySSL_load_client_CA_file(const AFileName: String
+  ): Pstack_st_X509_NAME;
 {$IFDEF USE_INLINE} inline; {$ENDIF}
 begin
   Result := SSL_load_client_CA_file(PAnsiChar(AFileName));

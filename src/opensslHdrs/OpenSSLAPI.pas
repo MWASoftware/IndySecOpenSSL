@@ -38,7 +38,7 @@ uses
   , SysUtils;
   
  
-{$IFDEF OPENSSL_STATIC_LINK_MODEL}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
   {$IFDEF OPENSSL_USE_SHARED_LIBRARY}
     {$MESSAGE Error. Static and Shared Link Models cannot be requested at the same time!}
   {$ENDIF}

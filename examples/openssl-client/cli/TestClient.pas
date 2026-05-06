@@ -29,7 +29,7 @@ interface
 
 uses
   Classes, SysUtils, {$IFDEF FPC}CustApp,{$ENDIF}IdIOHandler, IdHTTP,
-  IdSSL, IdSecOpenSSL, IdSecOpenSSLX509, IdSecOpenSSLAPI;
+  IdSSL, IdSecOpenSSL, IdSecOpenSSLX509, OpenSSLAPI;
 
 const
   remoteSource = 'https://test.mwasoftware.co.uk/openssltest.txt';
