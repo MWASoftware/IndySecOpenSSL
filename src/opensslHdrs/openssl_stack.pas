@@ -18,7 +18,7 @@
 unit openssl_stack;
 
 {
-  Generated from OpenSSL 3.0.20 Header File stack.h - Wed  6 May 10:56:54 BST 2026
+  Generated from OpenSSL 3.0.20 Header File stack.h - Wed  6 May 13:06:38 BST 2026
 }
 
 interface

@@ -18,7 +18,7 @@
 unit openssl_lhash;
 
 {
-  Generated from OpenSSL 3.0.20 Header File lhash.h - Wed  6 May 10:56:27 BST 2026
+  Generated from OpenSSL 3.0.20 Header File lhash.h - Wed  6 May 13:06:10 BST 2026
 }
 
 interface

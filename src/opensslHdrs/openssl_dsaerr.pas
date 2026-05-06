@@ -18,7 +18,7 @@
 unit openssl_dsaerr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File dsaerr.h - Wed  6 May 10:56:10 BST 2026
+  Generated from OpenSSL 3.0.20 Header File dsaerr.h - Wed  6 May 13:05:53 BST 2026
 }
 
 interface

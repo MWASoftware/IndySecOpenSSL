@@ -18,7 +18,7 @@
 unit openssl_types;
 
 {
-  Generated from OpenSSL 3.0.20 Header File types.h - Wed  6 May 10:57:04 BST 2026
+  Generated from OpenSSL 3.0.20 Header File types.h - Wed  6 May 13:06:48 BST 2026
 }
 
 interface
@@ -39,20 +39,31 @@ uses OpenSSLAPI,openssl_e_os2,openssl_safestack;
 
 type
   {Auto-generated forward references}
+  Pasn1_string_st = ^Tasn1_string_st;
+  PPasn1_string_st = ^Pasn1_string_st;
   Possl_provider_st = ^TOSSL_PROVIDER;
   PPossl_provider_st = ^Possl_provider_st;
   POSSL_PROVIDER = ^TOSSL_PROVIDER;
   PPOSSL_PROVIDER = ^POSSL_PROVIDER;
-  Pasn1_string_st = ^TASN1_INTEGER;
-  PPasn1_string_st = ^Pasn1_string_st;
   PASN1_INTEGER = ^TASN1_INTEGER;
   PPASN1_INTEGER = ^PASN1_INTEGER;
   {end of auto-generated forward references}
 
+  { This is the base type that holds just about everything :-) }
+  { moved from asn1.h }
+  Tasn1_string_st = record 
+    length: TOpenSSL_C_INT;
+    type_: TOpenSSL_C_INT;
+    data: Pbyte; 
+    {* The value of the following field depends on the type being held.  It
+    * is mostly being used for BIT_STRING so if the input data has a
+    * non-zero 'unused bits' value, it will be handled correctly
+    }
+    flags: TOpenSSL_C_INT;
+  end;
   Tossl_provider_st = record end;
   TOSSL_PROVIDER = Tossl_provider_st;
   { Provider Object }
-  Tasn1_string_st = record end;
   TASN1_INTEGER = Tasn1_string_st;
   {$ifndef  NO_ASN1_TYPEDEFS}
 

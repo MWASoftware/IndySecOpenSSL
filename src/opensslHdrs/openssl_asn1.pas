@@ -18,7 +18,7 @@
 unit openssl_asn1;
 
 {
-  Generated from OpenSSL 3.0.20 Header File asn1.h - Wed  6 May 10:55:44 BST 2026
+  Generated from OpenSSL 3.0.20 Header File asn1.h - Wed  6 May 13:05:27 BST 2026
 }
 
 interface
@@ -298,8 +298,6 @@ const
 
 type
   {Auto-generated forward references}
-  Pasn1_string_st = ^Tasn1_string_st;
-  PPasn1_string_st = ^Pasn1_string_st;
   PASN1_ENCODING_st = ^ASN1_ENCODING_st;
   PPASN1_ENCODING_st = ^PASN1_ENCODING_st;
   PASN1_ENCODING = ^TASN1_ENCODING;
@@ -307,16 +305,18 @@ type
   {end of auto-generated forward references}
 
   { This is the base type that holds just about everything :-) }
-  Tasn1_string_st = record 
-    length: TOpenSSL_C_INT;
-    type_: TOpenSSL_C_INT;
-    data: Pbyte; 
-    {* The value of the following field depends on the type being held.  It
-    * is mostly being used for BIT_STRING so if the input data has a
-    * non-zero 'unused bits' value, it will be handled correctly
-    }
-    flags: TOpenSSL_C_INT;
-  end;
+  (* Moved to types.h
+  struct asn1_string_st {
+  int length;
+  int type;
+  unsigned char *data;
+  
+  * The value of the following field depends on the type being held.  It
+  * is mostly being used for BIT_STRING so if the input data has a
+  * non-zero 'unused bits' value, it will be handled correctly
+  
+  long flags;
+  };*)
   
   {* ASN1_ENCODING structure: this is used to save the received encoding of an
   * ASN1 type. This is useful to get round problems with invalid encodings
@@ -615,7 +615,7 @@ type
   }
   { ASN1_ITEM pointer exported type }
   TASN1_ITEM_EXP = function: PASN1_ITEM; cdecl;
-  {# define  ASN1_ITEM_ptr(iptr) (iptr())} {Macro Return Type unknown at line no 428}
+  {# define  ASN1_ITEM_ptr(iptr) (iptr())} {Macro Return Type unknown at line no 429}
   {# define  ASN1_ITEM_ref(iptr) (iptr ##_it)}
   {# define  ASN1_ITEM_rptr(ref) (ref ##_it())}
   {# define  DECLARE_ASN1_ITEM_attr(attr,name) attr const ASN1_ITEM *name ##_it(void);}

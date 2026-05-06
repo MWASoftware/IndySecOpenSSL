@@ -18,7 +18,7 @@
 unit openssl_dsa;
 
 {
-  Generated from OpenSSL 3.0.20 Header File dsa.h - Wed  6 May 10:56:11 BST 2026
+  Generated from OpenSSL 3.0.20 Header File dsa.h - Wed  6 May 13:05:54 BST 2026
 }
 
 interface

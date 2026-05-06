@@ -461,7 +461,7 @@ var
   signature : PASN1_BIT_STRING;
 begin
   X509_get0_signature(@signature,@sig_alg, FX509);
-  Result := BytesToHexString(signature, Length(PAnsiChar(signature)));
+  Result := BytesToHexString(signature, signature^.length);
 end;
 
 function TIdX509SigInfo.GetSigType: TIdC_INT;
@@ -522,7 +522,7 @@ var
 begin
   if FX509 <> nil then begin
     LSN := X509_get_serialNumber(FX509);
-    Result := BytesToHexString(LSN, Length(PAnsiChar(LSN)));
+    Result := BytesToHexString(LSN, LSN^.length);
   end else begin
     Result := '';
   end;

@@ -18,7 +18,7 @@
 unit openssl_des;
 
 {
-  Generated from OpenSSL 3.0.20 Header File des.h - Wed  6 May 10:56:09 BST 2026
+  Generated from OpenSSL 3.0.20 Header File des.h - Wed  6 May 13:05:52 BST 2026
 }
 
 interface

@@ -18,7 +18,7 @@
 unit openssl_core;
 
 {
-  Generated from OpenSSL 3.0.20 Header File core.h - Wed  6 May 10:56:02 BST 2026
+  Generated from OpenSSL 3.0.20 Header File core.h - Wed  6 May 13:05:45 BST 2026
 }
 
 interface

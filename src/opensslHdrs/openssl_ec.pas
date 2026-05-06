@@ -18,7 +18,7 @@
 unit openssl_ec;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ec.h - Wed  6 May 10:56:15 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ec.h - Wed  6 May 13:05:58 BST 2026
 }
 
 interface

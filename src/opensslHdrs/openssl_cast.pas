@@ -18,7 +18,7 @@
 unit openssl_cast;
 
 {
-  Generated from OpenSSL 3.0.20 Header File cast.h - Wed  6 May 10:55:50 BST 2026
+  Generated from OpenSSL 3.0.20 Header File cast.h - Wed  6 May 13:05:33 BST 2026
 }
 
 interface

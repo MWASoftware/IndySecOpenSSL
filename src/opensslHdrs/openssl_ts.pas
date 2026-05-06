@@ -18,7 +18,7 @@
 unit openssl_ts;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ts.h - Wed  6 May 10:57:03 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ts.h - Wed  6 May 13:06:46 BST 2026
 }
 
 interface
