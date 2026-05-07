@@ -15,9 +15,31 @@
 
 
 {
-  Generated from OpenSSL 3.0.20 Header File opensslv.h - Wed  6 May 14:32:15 BST 2026
+  Generated from OpenSSL 3.0.20 Header File opensslv.h - Thu  7 May 11:13:50 BST 2026
   With Legacy Support Option
 }
+
+  {$if not declared(__FILE__)}
+  const
+    {$ifdef FPC}
+    __FILE__ = {$include %FILE%};
+    {$else}
+    __FILE__ = '$(INPUTFILENAME)';
+    {$endif}
+  {$ifend}
+  {$if not declared(__LINE__)}
+  const
+    __LINE__ = 0;
+  {$ifend}
+  {$if not declared(OPENSSL_FILE)}
+  const
+    OPENSSL_FILE = __FILE__;
+  {$ifend}
+  {$if not declared(OPENSSL_LINE)}
+  const
+    OPENSSL_LINE  = 0;
+  {$ifend}
+
 
 
 {* WARNING: do not edit!
@@ -117,7 +139,6 @@ const
   { Synthesize OPENSSL_VERSION_NUMBER with the layout 0xMNN00PP0L }
   OPENSSL_VERSION_NUMBER = (((OPENSSL_VERSION_MAJOR shl 28) or (OPENSSL_VERSION_MINOR shl 20)) or (OPENSSL_VERSION_PATCH shl 4)) or $0;
   { clang-format on }
-  {$include openssl_macros.inc}
   {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
     {$define HEADER_OPENSSLV_H}
   {$endif}

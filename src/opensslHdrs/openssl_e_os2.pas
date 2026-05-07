@@ -18,7 +18,7 @@
 unit openssl_e_os2;
 
 {
-  Generated from OpenSSL 3.0.20 Header File e_os2.h - Wed  6 May 14:31:59 BST 2026
+  Generated from OpenSSL 3.0.20 Header File e_os2.h - Thu  7 May 11:13:35 BST 2026
   With Legacy Support Option
 }
 
@@ -280,25 +280,6 @@ const
   {$else}
     {$undef  OPENSSL_NO_STDINT_H}
   {$endif}
-  {$if  defined(__STDC_VERSION__)  and  __STDC_VERSION__ >= 199901  and defined(INTMAX_MAX)  and defined(UINTMAX_MAX)}
-
-type
-  {Auto-generated forward references}
-  Pintmax_t = ^Tossl_intmax_t;
-  PPintmax_t = ^Pintmax_t;
-  Possl_intmax_t = ^Tossl_intmax_t;
-  PPossl_intmax_t = ^Possl_intmax_t;
-  Puintmax_t = ^Tossl_uintmax_t;
-  PPuintmax_t = ^Puintmax_t;
-  Possl_uintmax_t = ^Tossl_uintmax_t;
-  PPossl_uintmax_t = ^Possl_uintmax_t;
-  {end of auto-generated forward references}
-
-  Tintmax_t = record end;
-  Tossl_intmax_t = Tintmax_t;
-  Tuintmax_t = record end;
-  Tossl_uintmax_t = Tuintmax_t;
-  {$else}
 
 type
   {Auto-generated forward references}
@@ -308,38 +289,37 @@ type
   PPossl_uintmax_t = ^Possl_uintmax_t;
   {end of auto-generated forward references}
 
-    { Fall back to the largest we know we require and can handle }
+  { Commented out to avoid Delphi errors
+  #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L && defined(INTMAX_MAX) && defined(UINTMAX_MAX)
+  typedef intmax_t ossl_intmax_t;
+  typedef uintmax_t ossl_uintmax_t;
+  #else }
+  { Fall back to the largest we know we require and can handle }
   Tossl_intmax_t = TOpenSSL_C_LONG;
   Tossl_uintmax_t = qword;
-  {$endif}
+  {# define  ossl_inline inline} { Blacklisted Macro}
+  {#endif}
   { ossl_inline: portable inline definition usable in public headers }
-  {$if  not defined(inline)  and  not defined(__cplusplus)}
-    {$if  defined(__STDC_VERSION__)  and  __STDC_VERSION__ >= 199901}
-
-const
-      { just use inline }
-  ossl_inline = inline_;
-    {$elseif  defined(__GNUC__)  and  __GNUC__ >= 2}
-
-const
-  ossl_inline = __inline__;
-    {$elseif  defined(_MSC_VER)}
-
-const
-      
-      {* Visual Studio: inline is available in C++ only, however
-      * __inline is available for C, see
-      * http://msdn.microsoft.com/en-us/library/z8y1yy88.aspx
-      }
-  ossl_inline = __inline;
-    {$else}
-      {$define ossl_inline}
-    {$endif}
-  {$else}
-
-const
-  ossl_inline = inline_;
-  {$endif}
+  { Causes runtime problems for Pascal - inline is reserved word
+  #if !defined(inline) && !defined(__cplusplus)
+  #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L
+   just use inline 
+  #define ossl_inline inline
+  #elif defined(__GNUC__) && __GNUC__ >= 2
+  #define ossl_inline __inline__
+  #elif defined(_MSC_VER)
+  / *
+  * Visual Studio: inline is available in C++ only, however
+  * __inline is available for C, see
+  * http://msdn.microsoft.com/en-us/library/z8y1yy88.aspx
+  * /
+  #define ossl_inline __inline
+  #else
+  #define ossl_inline
+  #endif
+  #else
+  }
+  {#endif}
   {$if  defined(__STDC_VERSION__)  and  __STDC_VERSION__ >= 201112  and  not defined(__cplusplus)}
     {#define ossl_noreturn _Noreturn}
     {$define ossl_noreturn}
@@ -373,14 +353,26 @@ uses Sysutils
   {$endif}
   ,Classes, OpenSSLExceptionHandlers;
 
-const
-  {$ifdef FPC}
-  __FILE__ = {$include %FILE%};
-  {$else}
-  __FILE__ = '$(INPUTFILENAME)';
-  {$endif}
-  OPENSSL_FILE = __FILE__;
-  OPENSSL_LINE  = 0;
+  {$if not declared(__FILE__)}
+  const
+    {$ifdef FPC}
+    __FILE__ = {$include %FILE%};
+    {$else}
+    __FILE__ = '$(INPUTFILENAME)';
+    {$endif}
+  {$ifend}
+  {$if not declared(__LINE__)}
+  const
+    __LINE__ = 0;
+  {$ifend}
+  {$if not declared(OPENSSL_FILE)}
+  const
+    OPENSSL_FILE = __FILE__;
+  {$ifend}
+  {$if not declared(OPENSSL_LINE)}
+  const
+    OPENSSL_LINE  = 0;
+  {$ifend}
 
 {$ifndef OPENSSL_STATIC_LINK_MODEL}
 procedure Load;

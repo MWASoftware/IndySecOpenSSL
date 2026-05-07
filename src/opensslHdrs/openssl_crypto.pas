@@ -18,7 +18,7 @@
 unit openssl_crypto;
 
 {
-  Generated from OpenSSL 3.0.20 Header File crypto.h - Wed  6 May 14:31:46 BST 2026
+  Generated from OpenSSL 3.0.20 Header File crypto.h - Thu  7 May 11:13:23 BST 2026
   With Legacy Support Option
 }
 
@@ -43,13 +43,12 @@ uses OpenSSLAPI,openssl_stack,openssl_e_os2,openssl_safestack,openssl_types,
 { clang-format on }
 {$ifndef  OPENSSL_CRYPTO_H}
   {$define OPENSSL_CRYPTO_H}
-  {$include openssl_macros.inc}
   {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
     {$define HEADER_CRYPTO_H}
   {$endif}
   {$ifndef  OPENSSL_NO_STDIO}
   {$endif}
-  {$include openssl_opensslconf.inc}
+  {$include openssl_configuration.inc}
   {$ifdef CHARSET_EBCDIC}
   {$endif}
   
@@ -1277,14 +1276,26 @@ uses Sysutils
   {$endif}
   ,Classes, OpenSSLExceptionHandlers,openssl_provider;
 
-const
-  {$ifdef FPC}
-  __FILE__ = {$include %FILE%};
-  {$else}
-  __FILE__ = '$(INPUTFILENAME)';
-  {$endif}
-  OPENSSL_FILE = __FILE__;
-  OPENSSL_LINE  = 0;
+  {$if not declared(__FILE__)}
+  const
+    {$ifdef FPC}
+    __FILE__ = {$include %FILE%};
+    {$else}
+    __FILE__ = '$(INPUTFILENAME)';
+    {$endif}
+  {$ifend}
+  {$if not declared(__LINE__)}
+  const
+    __LINE__ = 0;
+  {$ifend}
+  {$if not declared(OPENSSL_FILE)}
+  const
+    OPENSSL_FILE = __FILE__;
+  {$ifend}
+  {$if not declared(OPENSSL_LINE)}
+  const
+    OPENSSL_LINE  = 0;
+  {$ifend}
 
 
 {# define  OPENSSL_malloc(num) CRYPTO_malloc(num, OPENSSL_FILE, OPENSSL_LINE)}

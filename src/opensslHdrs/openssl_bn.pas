@@ -18,7 +18,7 @@
 unit openssl_bn;
 
 {
-  Generated from OpenSSL 3.0.20 Header File bn.h - Wed  6 May 14:31:29 BST 2026
+  Generated from OpenSSL 3.0.20 Header File bn.h - Thu  7 May 11:13:05 BST 2026
   With Legacy Support Option
 }
 
@@ -95,7 +95,7 @@ const
   BN_BITS = BN_BITS2*2;
 
 
-  function BN_TBIT: qword; inline;
+  function BN_TBIT: TOpenSSL_C_UINT64; inline;
 
 const
   BN_FLG_MALLOCED = $01;
@@ -1449,21 +1449,33 @@ uses Sysutils
   {$endif}
   ,Classes, OpenSSLExceptionHandlers;
 
-const
-  {$ifdef FPC}
-  __FILE__ = {$include %FILE%};
-  {$else}
-  __FILE__ = '$(INPUTFILENAME)';
-  {$endif}
-  OPENSSL_FILE = __FILE__;
-  OPENSSL_LINE  = 0;
+  {$if not declared(__FILE__)}
+  const
+    {$ifdef FPC}
+    __FILE__ = {$include %FILE%};
+    {$else}
+    __FILE__ = '$(INPUTFILENAME)';
+    {$endif}
+  {$ifend}
+  {$if not declared(__LINE__)}
+  const
+    __LINE__ = 0;
+  {$ifend}
+  {$if not declared(OPENSSL_FILE)}
+  const
+    OPENSSL_FILE = __FILE__;
+  {$ifend}
+  {$if not declared(OPENSSL_LINE)}
+  const
+    OPENSSL_LINE  = 0;
+  {$ifend}
 
 
 {# define  BN_TBIT ((BN_ULONG)1 << (BN_BITS2 - 1))}
 
-function BN_TBIT: qword;
+function BN_TBIT: TOpenSSL_C_UINT64;
 begin
-  Result := qword((TBN_ULONG(1)) shl (BN_BITS2-1));
+  Result := TOpenSSL_C_UINT64((TBN_ULONG(1)) shl (BN_BITS2-1));
 end;
 
 {# define  BN_num_bytes(a) ((BN_num_bits(a) + 7) / 8)}

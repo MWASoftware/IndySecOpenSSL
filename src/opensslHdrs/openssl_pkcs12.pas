@@ -18,7 +18,7 @@
 unit openssl_pkcs12;
 
 {
-  Generated from OpenSSL 3.0.20 Header File pkcs12.h - Wed  6 May 14:32:22 BST 2026
+  Generated from OpenSSL 3.0.20 Header File pkcs12.h - Thu  7 May 11:13:56 BST 2026
   With Legacy Support Option
 }
 
@@ -835,14 +835,26 @@ uses Sysutils
   {$endif}
   ,Classes, OpenSSLExceptionHandlers;
 
-const
-  {$ifdef FPC}
-  __FILE__ = {$include %FILE%};
-  {$else}
-  __FILE__ = '$(INPUTFILENAME)';
-  {$endif}
-  OPENSSL_FILE = __FILE__;
-  OPENSSL_LINE  = 0;
+  {$if not declared(__FILE__)}
+  const
+    {$ifdef FPC}
+    __FILE__ = {$include %FILE%};
+    {$else}
+    __FILE__ = '$(INPUTFILENAME)';
+    {$endif}
+  {$ifend}
+  {$if not declared(__LINE__)}
+  const
+    __LINE__ = 0;
+  {$ifend}
+  {$if not declared(OPENSSL_FILE)}
+  const
+    OPENSSL_FILE = __FILE__;
+  {$ifend}
+  {$if not declared(OPENSSL_LINE)}
+  const
+    OPENSSL_LINE  = 0;
+  {$ifend}
 
 function ossl_check_PKCS12_SAFEBAG_type(ptr: PPKCS12_SAFEBAG): PPKCS12_SAFEBAG{Has C Attribute: unused}; inline;
 begin

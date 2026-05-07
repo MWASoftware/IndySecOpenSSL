@@ -18,7 +18,7 @@
 unit openssl_objects;
 
 {
-  Generated from OpenSSL 3.0.20 Header File objects.h - Wed  6 May 14:32:12 BST 2026
+  Generated from OpenSSL 3.0.20 Header File objects.h - Thu  7 May 11:13:46 BST 2026
   With Legacy Support Option
 }
 
@@ -366,14 +366,26 @@ uses Sysutils
   {$endif}
   ,Classes, OpenSSLExceptionHandlers;
 
-const
-  {$ifdef FPC}
-  __FILE__ = {$include %FILE%};
-  {$else}
-  __FILE__ = '$(INPUTFILENAME)';
-  {$endif}
-  OPENSSL_FILE = __FILE__;
-  OPENSSL_LINE  = 0;
+  {$if not declared(__FILE__)}
+  const
+    {$ifdef FPC}
+    __FILE__ = {$include %FILE%};
+    {$else}
+    __FILE__ = '$(INPUTFILENAME)';
+    {$endif}
+  {$ifend}
+  {$if not declared(__LINE__)}
+  const
+    __LINE__ = 0;
+  {$ifend}
+  {$if not declared(OPENSSL_FILE)}
+  const
+    OPENSSL_FILE = __FILE__;
+  {$ifend}
+  {$if not declared(OPENSSL_LINE)}
+  const
+    OPENSSL_LINE  = 0;
+  {$ifend}
 
 
 {# define  OBJ_create_and_add_object(a,b,c) OBJ_create(a, b, c)}

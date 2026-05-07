@@ -18,7 +18,7 @@
 unit openssl_bio;
 
 {
-  Generated from OpenSSL 3.0.20 Header File bio.h - Wed  6 May 14:31:27 BST 2026
+  Generated from OpenSSL 3.0.20 Header File bio.h - Thu  7 May 11:13:04 BST 2026
   With Legacy Support Option
 }
 
@@ -289,14 +289,14 @@ const
   BIO_CB_PUTS = $04;
   BIO_CB_GETS = $05;
   BIO_CB_CTRL = $06;
+  {# define  BIO_CB_RETURN 0x80} { Blacklisted Macro}
+  {# define  BIO_CB_return(a) ((a) | BIO_CB_RETURN)} { Blacklisted Macro}
+  {# define  BIO_cb_pre(a) (!((a) & BIO_CB_RETURN))} { Blacklisted Macro}
+  {# define  BIO_cb_post(a) ((a) & BIO_CB_RETURN)} { Blacklisted Macro}
   
   {* The callback is called before and after the underling operation, The
   * BIO_CB_RETURN flag indicates if it is after the call
   }
-  BIO_CB_RETURN = $80;
-  {# define  BIO_CB_return(a) ((a) | BIO_CB_RETURN)} { Blacklisted Macro}
-  {# define  BIO_cb_pre(a) (!((a) & BIO_CB_RETURN))} { Blacklisted Macro}
-  {# define  BIO_cb_post(a) ((a) & BIO_CB_RETURN)} { Blacklisted Macro}
   {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
 type
@@ -1600,9 +1600,7 @@ var
     }
     {$if  __STDC_VERSION__ >= 199901}
       {$undef  ossl_bio__attr__}
-
-const
-  ossl_bio__attr__ = __attribute__;
+{# define  ossl_bio__attr__ __attribute__} { Blacklisted Macro}
       {$if  __GNUC__ * 10 + __GNUC_MINOR__ >= 44}
 
 const
@@ -2082,14 +2080,26 @@ uses Sysutils
   {$endif}
   ,Classes, OpenSSLExceptionHandlers;
 
-const
-  {$ifdef FPC}
-  __FILE__ = {$include %FILE%};
-  {$else}
-  __FILE__ = '$(INPUTFILENAME)';
-  {$endif}
-  OPENSSL_FILE = __FILE__;
-  OPENSSL_LINE  = 0;
+  {$if not declared(__FILE__)}
+  const
+    {$ifdef FPC}
+    __FILE__ = {$include %FILE%};
+    {$else}
+    __FILE__ = '$(INPUTFILENAME)';
+    {$endif}
+  {$ifend}
+  {$if not declared(__LINE__)}
+  const
+    __LINE__ = 0;
+  {$ifend}
+  {$if not declared(OPENSSL_FILE)}
+  const
+    OPENSSL_FILE = __FILE__;
+  {$ifend}
+  {$if not declared(OPENSSL_LINE)}
+  const
+    OPENSSL_LINE  = 0;
+  {$ifend}
 
 {$ifndef  OPENSSL_NO_KTLS}
 

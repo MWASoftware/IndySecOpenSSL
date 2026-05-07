@@ -18,7 +18,7 @@
 unit openssl_tls1;
 
 {
-  Generated from OpenSSL 3.0.20 Header File tls1.h - Wed  6 May 14:32:42 BST 2026
+  Generated from OpenSSL 3.0.20 Header File tls1.h - Thu  7 May 11:14:15 BST 2026
   With Legacy Support Option
 }
 
@@ -1198,14 +1198,26 @@ uses Sysutils
   {$endif}
   ,Classes, OpenSSLExceptionHandlers;
 
-const
-  {$ifdef FPC}
-  __FILE__ = {$include %FILE%};
-  {$else}
-  __FILE__ = '$(INPUTFILENAME)';
-  {$endif}
-  OPENSSL_FILE = __FILE__;
-  OPENSSL_LINE  = 0;
+  {$if not declared(__FILE__)}
+  const
+    {$ifdef FPC}
+    __FILE__ = {$include %FILE%};
+    {$else}
+    __FILE__ = '$(INPUTFILENAME)';
+    {$endif}
+  {$ifend}
+  {$if not declared(__LINE__)}
+  const
+    __LINE__ = 0;
+  {$ifend}
+  {$if not declared(OPENSSL_FILE)}
+  const
+    OPENSSL_FILE = __FILE__;
+  {$ifend}
+  {$if not declared(OPENSSL_LINE)}
+  const
+    OPENSSL_LINE  = 0;
+  {$ifend}
 
 {$ifndef OPENSSL_STATIC_LINK_MODEL}
 function Load_SSL_CTX_set_tlsext_max_fragment_length(ctx: PSSL_CTX; mode: byte): TOpenSSL_C_INT; cdecl;

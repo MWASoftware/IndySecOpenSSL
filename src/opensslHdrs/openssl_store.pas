@@ -18,7 +18,7 @@
 unit openssl_store;
 
 {
-  Generated from OpenSSL 3.0.20 Header File store.h - Wed  6 May 14:32:40 BST 2026
+  Generated from OpenSSL 3.0.20 Header File store.h - Thu  7 May 11:14:13 BST 2026
   With Legacy Support Option
 }
 
@@ -748,14 +748,26 @@ uses Sysutils
   {$endif}
   ,Classes, OpenSSLExceptionHandlers;
 
-const
-  {$ifdef FPC}
-  __FILE__ = {$include %FILE%};
-  {$else}
-  __FILE__ = '$(INPUTFILENAME)';
-  {$endif}
-  OPENSSL_FILE = __FILE__;
-  OPENSSL_LINE  = 0;
+  {$if not declared(__FILE__)}
+  const
+    {$ifdef FPC}
+    __FILE__ = {$include %FILE%};
+    {$else}
+    __FILE__ = '$(INPUTFILENAME)';
+    {$endif}
+  {$ifend}
+  {$if not declared(__LINE__)}
+  const
+    __LINE__ = 0;
+  {$ifend}
+  {$if not declared(OPENSSL_FILE)}
+  const
+    OPENSSL_FILE = __FILE__;
+  {$ifend}
+  {$if not declared(OPENSSL_LINE)}
+  const
+    OPENSSL_LINE  = 0;
+  {$ifend}
 
 {$ifndef OPENSSL_STATIC_LINK_MODEL}
 function Load_OSSL_STORE_open(uri: PAnsiChar; ui_method: PUI_METHOD; ui_data: pointer; post_process: TOSSL_STORE_post_process_info_fn; post_process_data: pointer): POSSL_STORE_CTX; cdecl;

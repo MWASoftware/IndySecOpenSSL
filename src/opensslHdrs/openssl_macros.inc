@@ -15,9 +15,31 @@
 
 
 {
-  Generated from OpenSSL 3.0.20 Header File macros.h - Wed  6 May 14:32:09 BST 2026
+  Generated from OpenSSL 3.0.20 Header File macros.h - Thu  7 May 11:13:44 BST 2026
   With Legacy Support Option
 }
+
+  {$if not declared(__FILE__)}
+  const
+    {$ifdef FPC}
+    __FILE__ = {$include %FILE%};
+    {$else}
+    __FILE__ = '$(INPUTFILENAME)';
+    {$endif}
+  {$ifend}
+  {$if not declared(__LINE__)}
+  const
+    __LINE__ = 0;
+  {$ifend}
+  {$if not declared(OPENSSL_FILE)}
+  const
+    OPENSSL_FILE = __FILE__;
+  {$ifend}
+  {$if not declared(OPENSSL_LINE)}
+  const
+    OPENSSL_LINE  = 0;
+  {$ifend}
+
 
 
 {* Copyright 2019-2021 The OpenSSL Project Authors. All Rights Reserved.
@@ -29,10 +51,8 @@
 }
 {$ifndef  OPENSSL_MACROS_H}
   {$define OPENSSL_MACROS_H}
-  {$include openssl_opensslconf.inc}
-  {$ifndef  OPENSSL_CRYPTO_H}
-    {$include openssl_opensslv.inc}
-  {$endif}
+  {$include openssl_configuration.inc}
+  {$include openssl_opensslv.inc}
 {# define  OPENSSL_MSTR_HELPER(x) #x}
 {# define  OPENSSL_MSTR(x) OPENSSL_MSTR_HELPER(x)} { Blacklisted Macro}
 {# define  NON_EMPTY_TRANSLATION_UNIT static void *dummy = &dummy;}
@@ -62,23 +82,27 @@
 {# define  OSSL_DEPRECATED(since) __declspec(deprecated)} { Blacklisted Macro}
 {# define  OSSL_DEPRECATED_FOR(since,message) __declspec(deprecated)} { Blacklisted Macro}
         {$endif}
-      {$elseif  defined(__GNUC__)}
-        
-        {* According to GCC documentation, deprecations with message appeared in
+        { Commented out to avoid Delphi errors
+        #elif defined(__GNUC__)
+        / *
+        * According to GCC documentation, deprecations with message appeared in
         * GCC 4.5.0
+        * /
+        #if __GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 5)
+        #define OSSL_DEPRECATED(since)     __attribute__((deprecated("Since OpenSSL " #since)))
+        )
+        #define OSSL_DEPRECATED_FOR(since, message)     __attribute__((deprecated("Since OpenSSL " #since ";" message)))
+        )
+        #elif __GNUC__ > 3 || (__GNUC__ == 3 && __GNUC_MINOR__ > 0)
+        #define OSSL_DEPRECATED(since) __attribute__((deprecated))
+        #define OSSL_DEPRECATED_FOR(since, message) __attribute__((deprecated))
+        #endif
+        #elif defined(__SUNPRO_C)
+        #if (__SUNPRO_C >= 0x5130)
+        #define OSSL_DEPRECATED(since) __attribute__((deprecated))
+        #define OSSL_DEPRECATED_FOR(since, message) __attribute__((deprecated))
+        #endif
         }
-        {$if  __GNUC__ > 4  or  (__GNUC__ == 4  and  __GNUC_MINOR__ >= 5)}
-{# define  OSSL_DEPRECATED(since) __attribute__((deprecated("Since OpenSSL " #since)))}
-{# define  OSSL_DEPRECATED_FOR(since,message) __attribute__((deprecated("Since OpenSSL " #since ";" message)))}
-        {$elseif  __GNUC__ > 3  or  (__GNUC__ == 3  and  __GNUC_MINOR__ > 0)}
-{# define  OSSL_DEPRECATED(since) __attribute__((deprecated))} { Blacklisted Macro}
-{# define  OSSL_DEPRECATED_FOR(since,message) __attribute__((deprecated))} { Blacklisted Macro}
-        {$endif}
-      {$elseif  defined(__SUNPRO_C)}
-        {$if  (__SUNPRO_C >= 0x5130)}
-{# define  OSSL_DEPRECATED(since) __attribute__((deprecated))} { Blacklisted Macro}
-{# define  OSSL_DEPRECATED_FOR(since,message) __attribute__((deprecated))} { Blacklisted Macro}
-        {$endif}
       {$endif}
     {$endif}
   {$endif}
@@ -154,14 +178,16 @@ const
   {$if  OPENSSL_API_LEVEL > (OPENSSL_VERSION_MAJOR * 10000 + OPENSSL_VERSION_MINOR * 100)}
     {$error  "OPENSSL_API_COMPAT expresses an impossible API compatibility level"}
   {$endif}
-  { OpenSSL will have no version 2.y.z }
-  {$if  OPENSSL_API_LEVEL < 30000  and  OPENSSL_API_LEVEL >= 20000}
-    {$error  "OPENSSL_API_COMPAT expresses an impossible API compatibility level"}
-  {$endif}
-  { Below 0.9.8 is unacceptably low }
-  {$if  OPENSSL_API_LEVEL < 908}
-    {$error  "OPENSSL_API_COMPAT expresses an impossible API compatibility level"}
-  {$endif}
+  {Commented out to avoid Delphi errors
+  / * OpenSSL will have no version 2.y.z * /
+  #if OPENSSL_API_LEVEL < 30000 && OPENSSL_API_LEVEL >= 20000
+  #error "OPENSSL_API_COMPAT expresses an impossible API compatibility level"
+  #endif
+  / * Below 0.9.8 is unacceptably low * /
+  #if OPENSSL_API_LEVEL < 908
+  #error "OPENSSL_API_COMPAT expresses an impossible API compatibility level"
+  #endif
+  }
   
   (** Define macros for deprecation and simulated removal purposes.
   *
@@ -289,21 +315,17 @@ const
   * and use __FUNCTION__ if that's the case.
   }
   {$ifndef  OPENSSL_FUNC}
-    {$if  defined(__STDC_VERSION__)}
-      {$if  __STDC_VERSION__ >= 199901}
-
-const
-  OPENSSL_FUNC = __func__;
-      {$elseif  defined(__GNUC__)  and  __GNUC__ >= 2}
-
-const
-  OPENSSL_FUNC = __FUNCTION__;
-      {$endif}
-    {$elseif  defined(_MSC_VER)}
-
-const
-  OPENSSL_FUNC = __FUNCTION__;
-    {$endif}
+    { Commented out to avoid Delphi errors
+    #if defined(__STDC_VERSION__)
+    #if __STDC_VERSION__ >= 199901L
+    #define OPENSSL_FUNC __func__
+    #elif defined(__GNUC__) && __GNUC__ >= 2
+    #define OPENSSL_FUNC __FUNCTION__
+    #endif
+    #elif defined(_MSC_VER)
+    #define OPENSSL_FUNC __FUNCTION__
+    #endif
+    }
     
     {* If all these possibilities are exhausted, we give up and use a
     * static string.

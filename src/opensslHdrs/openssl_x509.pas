@@ -18,7 +18,7 @@
 unit openssl_x509;
 
 {
-  Generated from OpenSSL 3.0.20 Header File x509.h - Wed  6 May 14:32:52 BST 2026
+  Generated from OpenSSL 3.0.20 Header File x509.h - Thu  7 May 11:14:25 BST 2026
   With Legacy Support Option
 }
 
@@ -4020,14 +4020,26 @@ uses Sysutils
   {$endif}
   ,Classes, OpenSSLExceptionHandlers,openssl_objects;
 
-const
-  {$ifdef FPC}
-  __FILE__ = {$include %FILE%};
-  {$else}
-  __FILE__ = '$(INPUTFILENAME)';
-  {$endif}
-  OPENSSL_FILE = __FILE__;
-  OPENSSL_LINE  = 0;
+  {$if not declared(__FILE__)}
+  const
+    {$ifdef FPC}
+    __FILE__ = {$include %FILE%};
+    {$else}
+    __FILE__ = '$(INPUTFILENAME)';
+    {$endif}
+  {$ifend}
+  {$if not declared(__LINE__)}
+  const
+    __LINE__ = 0;
+  {$ifend}
+  {$if not declared(OPENSSL_FILE)}
+  const
+    OPENSSL_FILE = __FILE__;
+  {$ifend}
+  {$if not declared(OPENSSL_LINE)}
+  const
+    OPENSSL_LINE  = 0;
+  {$ifend}
 
 function ossl_check_X509_NAME_type(ptr: PX509_NAME): PX509_NAME{Has C Attribute: unused}; inline;
 begin
@@ -4300,7 +4312,6 @@ begin
 end;
 {$endif} { OPENSSL_NO_DEPRECATED_3_0}
 {$ifndef OPENSSL_STATIC_LINK_MODEL}
-{$include legacy_stack.inc}
 {$include legacy_x509.inc}
 function Load_sk_X509_NAME_num(_para: Pstack_st_X509_NAME): TOpenSSL_C_INT; cdecl;
 begin
