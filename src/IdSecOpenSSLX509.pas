@@ -206,7 +206,8 @@ uses
   Openssl_pem,
   Openssl_bio,
   Openssl_obj_mac,
-  openssl_sslerr_legacy
+  openssl_sslerr_legacy,
+  openssl_pemerr
   ;
 
 
@@ -928,7 +929,7 @@ function Indy_unicode_X509_load_cert_crl_file(ctx: PX509_LOOKUP; const AFileName
   const _type: TIdC_INT): TIdC_INT;
 var
   LM: TMemoryStream;
-  Linf: PSTACK_OF_X509_INFO;
+  Linf: Pstack_st_X509_INFO;
   Litmp: PX509_INFO;
   Lin: PBIO;
   i, count: Integer;

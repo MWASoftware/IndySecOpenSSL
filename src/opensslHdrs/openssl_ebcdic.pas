@@ -18,7 +18,7 @@
 unit openssl_ebcdic;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ebcdic.h - Thu  7 May 12:11:42 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ebcdic.h - Thu  7 May 15:32:56 BST 2026
   With Legacy Support Option
 }
 
@@ -40,17 +40,21 @@ uses OpenSSLAPI;
   {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
     {$define HEADER_EBCDIC_H}
   {$endif}
+  {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  {$ifdef FPC}
 
 var
+  os_toascii: array[0..255] of byte cvar; public;
+  os_toebcdic: array[0..255] of byte cvar; public;
+  {$endif}
+  {$endif} {OPENSSL_STATIC_LINK_MODEL}
+
+
   { Avoid name clashes with other applications }
   {#define os_toascii _openssl_os_toascii}
   {#define os_toebcdic _openssl_os_toebcdic}
   {#define ebcdic2ascii _openssl_ebcdic2ascii}
   {#define ascii2ebcdic _openssl_ascii2ebcdic}
-  os_toascii: array[0..255] of byte cvar; public;
-  os_toebcdic: array[0..255] of byte cvar; public;
-
-
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
   function ebcdic2ascii(dest: pointer; srce: pointer; count: TOpenSSL_C_SIZET): pointer; cdecl; external CLibCrypto name 'ebcdic2ascii';
   function ascii2ebcdic(dest: pointer; srce: pointer; count: TOpenSSL_C_SIZET): pointer; cdecl; external CLibCrypto name 'ascii2ebcdic';

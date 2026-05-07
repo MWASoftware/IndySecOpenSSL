@@ -288,7 +288,7 @@ begin
   inherited Destroy;
   FCallbackList := nil;
 end;
-{$IFEND}
+
 {$ENDIF} { End of OPENSSL_NO_LEGACY_SUPPORT}
 
 
@@ -320,4 +320,5 @@ procedure LegacySupport_Finalization;
 begin
   RemoveLegacyCallbacks;
 end;
+{$ENDIF}
 {$ENDIF}

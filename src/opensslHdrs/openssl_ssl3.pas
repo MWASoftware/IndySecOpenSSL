@@ -18,7 +18,7 @@
 unit openssl_ssl3;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ssl3.h - Thu  7 May 12:12:22 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ssl3.h - Thu  7 May 15:33:36 BST 2026
   With Legacy Support Option
 }
 
@@ -155,9 +155,11 @@ const
     }
   SSL3_ALIGN_PAYLOAD = 8;
   {$else}
-    {$if  (SSL3_ALIGN_PAYLOAD & (SSL3_ALIGN_PAYLOAD - 1)) not = 0}
-      {$error  "insane SSL3_ALIGN_PAYLOAD"}
-      {$undef  SSL3_ALIGN_PAYLOAD}
+    {$ifdef FPC}
+      {$if  (SSL3_ALIGN_PAYLOAD & (SSL3_ALIGN_PAYLOAD - 1)) <> 0}
+        {$error  "insane SSL3_ALIGN_PAYLOAD"}
+        {$undef  SSL3_ALIGN_PAYLOAD}
+      {$endif}
     {$endif}
   {$endif}
 
@@ -257,8 +259,10 @@ const
   }
   SSL3_CT_NUMBER = 12;
   {$if  defined(TLS_CT_NUMBER)}
-    {$if  TLS_CT_NUMBER not = SSL3_CT_NUMBER}
-      {$error  "SSL/TLS CT_NUMBER values do not match"}
+    {$ifdef FPC}
+      {$if  TLS_CT_NUMBER <> SSL3_CT_NUMBER}
+        {$error  "SSL/TLS CT_NUMBER values do not match"}
+      {$endif}
     {$endif}
   {$endif}
 

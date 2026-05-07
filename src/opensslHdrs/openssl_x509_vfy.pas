@@ -18,7 +18,7 @@
 unit openssl_x509_vfy;
 
 {
-  Generated from OpenSSL 3.0.20 Header File x509_vfy.h - Thu  7 May 12:12:46 BST 2026
+  Generated from OpenSSL 3.0.20 Header File x509_vfy.h - Thu  7 May 15:34:00 BST 2026
   With Legacy Support Option
 }
 
@@ -2440,8 +2440,8 @@ procedure X509_STORE_set_lookup_crls_cb(ctx:PX509_STORE; func:TX509_STORE_CTX_lo
 begin
   X509_STORE_set_lookup_crls(ctx,func);
 end;
-{$ifndef OPENSSL_STATIC_LINK_MODEL}
 {$include legacy_x509_vfy.inc}
+{$ifndef OPENSSL_STATIC_LINK_MODEL}
 function Load_sk_X509_LOOKUP_num(_para: Pstack_st_X509_LOOKUP): TOpenSSL_C_INT; cdecl;
 begin
   sk_X509_LOOKUP_num := LoadLibCryptoFunction('OPENSSL_sk_num');

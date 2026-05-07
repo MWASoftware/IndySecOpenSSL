@@ -18,7 +18,7 @@
 unit openssl_ssl;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ssl.h - Thu  7 May 12:12:25 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ssl.h - Thu  7 May 15:33:39 BST 2026
   With Legacy Support Option
 }
 
@@ -6916,8 +6916,8 @@ begin
   Result := TOpenSSL_C_INT(SSL_session_reused(s));
 end;
 {$endif} { OPENSSL_NO_DEPRECATED_1_1_0}
-{$ifndef OPENSSL_STATIC_LINK_MODEL}
 {$include legacy_ssl.inc}
+{$ifndef OPENSSL_STATIC_LINK_MODEL}
 function Load_sk_SRTP_PROTECTION_PROFILE_num(_para: Pstack_st_SRTP_PROTECTION_PROFILE): TOpenSSL_C_INT; cdecl;
 begin
   sk_SRTP_PROTECTION_PROFILE_num := LoadLibCryptoFunction('OPENSSL_sk_num');
