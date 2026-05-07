@@ -18,7 +18,7 @@
 unit openssl_trace;
 
 {
-  Generated from OpenSSL 3.0.20 Header File trace.h - Thu  7 May 11:14:18 BST 2026
+  Generated from OpenSSL 3.0.20 Header File trace.h - Thu  7 May 12:12:32 BST 2026
   With Legacy Support Option
 }
 
@@ -405,11 +405,16 @@ var
 {# define  OSSL_TRACE2(category,format,arg1,arg2) OSSL_TRACEV(category, (trc_out, format, arg1, arg2))}
 {# define  OSSL_TRACE3(category,format,arg1,arg2,arg3) OSSL_TRACEV(category, (trc_out, format, arg1, arg2, arg3))}
 {# define  OSSL_TRACE4(category,format,arg1,arg2,arg3,arg4) OSSL_TRACEV(category, (trc_out, format, arg1, arg2, arg3, arg4))}
-{# define  OSSL_TRACE5(category,format,arg1,arg2,arg3,arg4,arg5) OSSL_TRACEV(category, (trc_out, format, arg1, arg2, arg3, arg4, arg5))}
-{# define  OSSL_TRACE6(category,format,arg1,arg2,arg3,arg4,arg5,arg6) OSSL_TRACEV(category, (trc_out, format, arg1, arg2, arg3, arg4, arg5, arg6))}
-{# define  OSSL_TRACE7(category,format,arg1,arg2,arg3,arg4,arg5,arg6,arg7) OSSL_TRACEV(category, (trc_out, format, arg1, arg2, arg3, arg4, arg5, arg6, arg7))}
-{# define  OSSL_TRACE8(category,format,arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8) OSSL_TRACEV(category, (trc_out, format, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8))}
-{# define  OSSL_TRACE9(category,format,arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9) OSSL_TRACEV(category, (trc_out, format, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9))}
+{# define  OSSL_TRACE5(category,format,arg1,arg2,arg3,arg4,arg5) OSSL_TRACEV(category, (trc_out, format, arg1, arg2, arg3, arg4,
+ arg5))}
+{# define  OSSL_TRACE6(category,format,arg1,arg2,arg3,arg4,arg5,arg6) OSSL_TRACEV(category, (trc_out, format, arg1, arg2, arg3, 
+arg4, arg5, arg6))}
+{# define  OSSL_TRACE7(category,format,arg1,arg2,arg3,arg4,arg5,arg6,arg7) OSSL_TRACEV(category, (trc_out, format, arg1, arg2, arg3,
+ arg4, arg5, arg6, arg7))}
+{# define  OSSL_TRACE8(category,format,arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8) OSSL_TRACEV(category, (trc_out, format, arg1, arg2,
+ arg3, arg4, arg5, arg6, arg7, arg8))}
+{# define  OSSL_TRACE9(category,format,arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9) OSSL_TRACEV(category, (trc_out, format, arg1,
+ arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9))}
 {$endif}
 
 implementation

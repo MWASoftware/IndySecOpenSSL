@@ -18,7 +18,7 @@
 unit openssl_x509_vfy;
 
 {
-  Generated from OpenSSL 3.0.20 Header File x509_vfy.h - Thu  7 May 11:14:32 BST 2026
+  Generated from OpenSSL 3.0.20 Header File x509_vfy.h - Thu  7 May 12:12:46 BST 2026
   With Legacy Support Option
 }
 
@@ -1296,7 +1296,8 @@ var
   X509_STORE_set_cleanup: procedure(ctx: PX509_STORE; cleanup: TX509_STORE_CTX_cleanup_fn); cdecl = Load_X509_STORE_set_cleanup;
   X509_STORE_get_cleanup: function(ctx: PX509_STORE): TX509_STORE_CTX_cleanup_fn; cdecl = Load_X509_STORE_get_cleanup;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
-  {# define  X509_STORE_get_ex_new_index(l,p,newf,dupf,freef) CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_X509_STORE, l, p, newf, dupf, freef)} {Macro Return Type unknown at line no 566}
+  {# define  X509_STORE_get_ex_new_index(l,p,newf,dupf,freef) CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_X509_STORE, l, p, newf, dupf,
+ freef)} {Macro Return Type unknown at line no 566}
 
 
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
@@ -1833,7 +1834,8 @@ var
   X509_STORE_load_locations_ex: function(ctx: PX509_STORE; file_: PAnsiChar; dir: PAnsiChar; libctx: POSSL_LIB_CTX; propq: PAnsiChar): TOpenSSL_C_INT; cdecl = Load_X509_STORE_load_locations_ex;
   X509_STORE_set_default_paths_ex: function(ctx: PX509_STORE; libctx: POSSL_LIB_CTX; propq: PAnsiChar): TOpenSSL_C_INT; cdecl = Load_X509_STORE_set_default_paths_ex;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
-  {# define  X509_STORE_CTX_get_ex_new_index(l,p,newf,dupf,freef) CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_X509_STORE_CTX, l, p, newf, dupf, freef)} {Macro Return Type unknown at line no 757}
+  {# define  X509_STORE_CTX_get_ex_new_index(l,p,newf,dupf,freef) CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_X509_STORE_CTX, l, p, newf,
+ dupf, freef)} {Macro Return Type unknown at line no 757}
 
 
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
@@ -2395,14 +2397,16 @@ begin
   Result := TOpenSSL_C_INT(X509_LOOKUP_ctrl(x,X509_L_LOAD_STORE,name,0,nil));
 end;
 
-{# define  X509_LOOKUP_load_file_ex(x,name,type,libctx,propq) X509_LOOKUP_ctrl_ex((x), X509_L_FILE_LOAD, (name), (long)(type), NULL, (libctx), (propq))}
+{# define  X509_LOOKUP_load_file_ex(x,name,type,libctx,propq) X509_LOOKUP_ctrl_ex((x), X509_L_FILE_LOAD, (name), (long)(type), NULL,
+ (libctx), (propq))}
 
 function X509_LOOKUP_load_file_ex(x:PX509_LOOKUP; name:PAnsiChar; type_:TOpenSSL_C_INT; libctx:POSSL_LIB_CTX; propq:PAnsiChar): TOpenSSL_C_INT;
 begin
   Result := TOpenSSL_C_INT(X509_LOOKUP_ctrl_ex(x,X509_L_FILE_LOAD,name,TOpenSSL_C_INT(type_),nil,libctx,propq));
 end;
 
-{# define  X509_LOOKUP_load_store_ex(x,name,libctx,propq) X509_LOOKUP_ctrl_ex((x), X509_L_LOAD_STORE, (name), 0, NULL, (libctx), (propq))}
+{# define  X509_LOOKUP_load_store_ex(x,name,libctx,propq) X509_LOOKUP_ctrl_ex((x), X509_L_LOAD_STORE, (name), 0, NULL, (libctx),
+ (propq))}
 
 function X509_LOOKUP_load_store_ex(x:PX509_LOOKUP; name:PAnsiChar; libctx:POSSL_LIB_CTX; propq:PAnsiChar): TOpenSSL_C_INT;
 begin

@@ -18,7 +18,7 @@
 unit openssl_cryptoerr_legacy;
 
 {
-  Generated from OpenSSL 3.0.20 Header File cryptoerr_legacy.h - Thu  7 May 11:13:22 BST 2026
+  Generated from OpenSSL 3.0.20 Header File cryptoerr_legacy.h - Thu  7 May 12:11:35 BST 2026
   With Legacy Support Option
 }
 

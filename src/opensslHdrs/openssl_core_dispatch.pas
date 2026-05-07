@@ -18,7 +18,7 @@
 unit openssl_core_dispatch;
 
 {
-  Generated from OpenSSL 3.0.20 Header File core_dispatch.h - Thu  7 May 11:13:18 BST 2026
+  Generated from OpenSSL 3.0.20 Header File core_dispatch.h - Thu  7 May 12:11:32 BST 2026
   With Legacy Support Option
 }
 
@@ -36,7 +36,8 @@ uses OpenSSLAPI,openssl_types,openssl_core;
 }
 {$ifndef  OPENSSL_CORE_NUMBERS_H}
   {$define OPENSSL_CORE_NUMBERS_H}
-(*# define  OSSL_CORE_MAKE_FUNC(type,name,args) typedef type(OSSL_FUNC_ ##name ##_fn) args; static ossl_unused ossl_inline OSSL_FUNC_ ##name ##_fn * OSSL_FUNC_ ##name(const OSSL_DISPATCH *opf) { return (OSSL_FUNC_ ##name ##_fn * )opf->function; }*)
+(*# define  OSSL_CORE_MAKE_FUNC(type,name,args) typedef type(OSSL_FUNC_ ##name ##_fn) args; static ossl_unused ossl_inline OSSL_FUNC_ 
+##name ##_fn * OSSL_FUNC_ ##name(const OSSL_DISPATCH *opf) { return (OSSL_FUNC_ ##name ##_fn * )opf->function; }*)
 
 const
   {-

@@ -18,7 +18,7 @@
 unit openssl_asn1;
 
 {
-  Generated from OpenSSL 3.0.20 Header File asn1.h - Thu  7 May 11:13:01 BST 2026
+  Generated from OpenSSL 3.0.20 Header File asn1.h - Thu  7 May 12:11:14 BST 2026
   With Legacy Support Option
 }
 
@@ -537,13 +537,16 @@ type
   {# define  DECLARE_ASN1_FUNCTIONS(type) DECLARE_ASN1_FUNCTIONS_attr(extern, type)}
   {# define  DECLARE_ASN1_ALLOC_FUNCTIONS_attr(attr,type) DECLARE_ASN1_ALLOC_FUNCTIONS_name_attr(attr, type, type)} { Blacklisted Macro}
   {# define  DECLARE_ASN1_ALLOC_FUNCTIONS(type) DECLARE_ASN1_ALLOC_FUNCTIONS_attr(extern, type)}
-  {# define  DECLARE_ASN1_FUNCTIONS_name_attr(attr,type,name) DECLARE_ASN1_ALLOC_FUNCTIONS_name_attr(attr, type, name) DECLARE_ASN1_ENCODE_FUNCTIONS_name_attr(attr, type, name)}
+  {# define  DECLARE_ASN1_FUNCTIONS_name_attr(attr,type,name) DECLARE_ASN1_ALLOC_FUNCTIONS_name_attr(attr, type, name) DECLARE_ASN1_ENCODE_FUNCTIONS_name_attr(attr,
+ type, name)}
   {# define  DECLARE_ASN1_FUNCTIONS_name(type,name) DECLARE_ASN1_FUNCTIONS_name_attr(extern, type, name)}
-  {# define  DECLARE_ASN1_ENCODE_FUNCTIONS_attr(attr,type,itname,name) DECLARE_ASN1_ENCODE_FUNCTIONS_only_attr(attr, type, name) DECLARE_ASN1_ITEM_attr(attr, itname)}
+  {# define  DECLARE_ASN1_ENCODE_FUNCTIONS_attr(attr,type,itname,name) DECLARE_ASN1_ENCODE_FUNCTIONS_only_attr(attr, type, name) DECLARE_ASN1_ITEM_attr(attr,
+ itname)}
   {# define  DECLARE_ASN1_ENCODE_FUNCTIONS(type,itname,name) DECLARE_ASN1_ENCODE_FUNCTIONS_attr(extern, type, itname, name)}
   {# define  DECLARE_ASN1_ENCODE_FUNCTIONS_name_attr(attr,type,name) DECLARE_ASN1_ENCODE_FUNCTIONS_attr(attr, type, name, name)} { Blacklisted Macro}
   {# define  DECLARE_ASN1_ENCODE_FUNCTIONS_name(type,name) DECLARE_ASN1_ENCODE_FUNCTIONS_name_attr(extern, type, name)}
-  {# define  DECLARE_ASN1_ENCODE_FUNCTIONS_only_attr(attr,type,name) attr type *d2i_ ##name(type **a, const unsigned char **in, long len); attr int i2d_ ##name(const type *a, unsigned char **out);}
+  {# define  DECLARE_ASN1_ENCODE_FUNCTIONS_only_attr(attr,type,name) attr type *d2i_ ##name(type **a, const unsigned char **in, long 
+len); attr int i2d_ ##name(const type *a, unsigned char **out);}
   {# define  DECLARE_ASN1_ENCODE_FUNCTIONS_only(type,name) DECLARE_ASN1_ENCODE_FUNCTIONS_only_attr(extern, type, name)}
   {# define  DECLARE_ASN1_NDEF_FUNCTION_attr(attr,name) attr int i2d_ ##name ##_NDEF(const name *a, unsigned char **out);}
   {# define  DECLARE_ASN1_NDEF_FUNCTION(name) DECLARE_ASN1_NDEF_FUNCTION_attr(extern, name)}
@@ -555,7 +558,8 @@ type
   {# define  DECLARE_ASN1_DUP_FUNCTION_name(type,name) DECLARE_ASN1_DUP_FUNCTION_name_attr(extern, type, name)}
   {# define  DECLARE_ASN1_PRINT_FUNCTION_attr(attr,stname) DECLARE_ASN1_PRINT_FUNCTION_fname_attr(attr, stname, stname)} { Blacklisted Macro}
   {# define  DECLARE_ASN1_PRINT_FUNCTION(stname) DECLARE_ASN1_PRINT_FUNCTION_attr(extern, stname)}
-  {# define  DECLARE_ASN1_PRINT_FUNCTION_fname_attr(attr,stname,fname) attr int fname ##_print_ctx(BIO *out, const stname *x, int indent, const ASN1_PCTX *pctx);}
+  {# define  DECLARE_ASN1_PRINT_FUNCTION_fname_attr(attr,stname,fname) attr int fname ##_print_ctx(BIO *out, const stname *x, int 
+indent, const ASN1_PCTX *pctx);}
   {# define  DECLARE_ASN1_PRINT_FUNCTION_fname(stname,fname) DECLARE_ASN1_PRINT_FUNCTION_fname_attr(extern, stname, fname)}
   {# define  D2I_OF(type) type *(*)(type **, const unsigned char **, long)}
   {# define  I2D_OF(type) int (*)(const type *, unsigned char **)}
@@ -1910,7 +1914,7 @@ type
   function ASN1_INTEGER_get_int64(pr: POpenSSL_C_LONG; a: PASN1_INTEGER): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ASN1_INTEGER_get_int64';
   function ASN1_INTEGER_set_int64(a: PASN1_INTEGER; r: TOpenSSL_C_LONG): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ASN1_INTEGER_set_int64';
   function ASN1_INTEGER_get_uint64(pr: Pqword; a: PASN1_INTEGER): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ASN1_INTEGER_get_uint64';
-  function ASN1_INTEGER_set_uint64(a: PASN1_INTEGER; r: qword): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ASN1_INTEGER_set_uint64';
+  function ASN1_INTEGER_set_uint64(a: PASN1_INTEGER; r: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ASN1_INTEGER_set_uint64';
   function ASN1_INTEGER_set(a: PASN1_INTEGER; v: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ASN1_INTEGER_set';
   function ASN1_INTEGER_get(a: PASN1_INTEGER): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ASN1_INTEGER_get';
   function BN_to_ASN1_INTEGER(bn: PBIGNUM; ai: PASN1_INTEGER): PASN1_INTEGER; cdecl; external CLibCrypto name 'BN_to_ASN1_INTEGER';
@@ -2160,7 +2164,7 @@ type
   function Load_ASN1_INTEGER_get_int64(pr: POpenSSL_C_LONG; a: PASN1_INTEGER): TOpenSSL_C_INT; cdecl;
   function Load_ASN1_INTEGER_set_int64(a: PASN1_INTEGER; r: TOpenSSL_C_LONG): TOpenSSL_C_INT; cdecl;
   function Load_ASN1_INTEGER_get_uint64(pr: Pqword; a: PASN1_INTEGER): TOpenSSL_C_INT; cdecl;
-  function Load_ASN1_INTEGER_set_uint64(a: PASN1_INTEGER; r: qword): TOpenSSL_C_INT; cdecl;
+  function Load_ASN1_INTEGER_set_uint64(a: PASN1_INTEGER; r: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl;
   function Load_ASN1_INTEGER_set(a: PASN1_INTEGER; v: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
   function Load_ASN1_INTEGER_get(a: PASN1_INTEGER): TOpenSSL_C_INT; cdecl;
   function Load_BN_to_ASN1_INTEGER(bn: PBIGNUM; ai: PASN1_INTEGER): PASN1_INTEGER; cdecl;
@@ -2285,7 +2289,7 @@ var
   ASN1_INTEGER_get_int64: function(pr: POpenSSL_C_LONG; a: PASN1_INTEGER): TOpenSSL_C_INT; cdecl = Load_ASN1_INTEGER_get_int64;
   ASN1_INTEGER_set_int64: function(a: PASN1_INTEGER; r: TOpenSSL_C_LONG): TOpenSSL_C_INT; cdecl = Load_ASN1_INTEGER_set_int64;
   ASN1_INTEGER_get_uint64: function(pr: Pqword; a: PASN1_INTEGER): TOpenSSL_C_INT; cdecl = Load_ASN1_INTEGER_get_uint64;
-  ASN1_INTEGER_set_uint64: function(a: PASN1_INTEGER; r: qword): TOpenSSL_C_INT; cdecl = Load_ASN1_INTEGER_set_uint64;
+  ASN1_INTEGER_set_uint64: function(a: PASN1_INTEGER; r: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl = Load_ASN1_INTEGER_set_uint64;
   ASN1_INTEGER_set: function(a: PASN1_INTEGER; v: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_ASN1_INTEGER_set;
   ASN1_INTEGER_get: function(a: PASN1_INTEGER): TOpenSSL_C_INT; cdecl = Load_ASN1_INTEGER_get;
   BN_to_ASN1_INTEGER: function(bn: PBIGNUM; ai: PASN1_INTEGER): PASN1_INTEGER; cdecl = Load_BN_to_ASN1_INTEGER;
@@ -2310,7 +2314,8 @@ var
   { Used to implement other functions }
   ASN1_dup: function(i2d: Pi2d_of_void; d2i: Pd2i_of_void; x: pointer): pointer; cdecl = Load_ASN1_dup;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
-  {# define  ASN1_dup_of(type,i2d,d2i,x) ((type *)ASN1_dup(CHECKED_I2D_OF(type, i2d), CHECKED_D2I_OF(type, d2i), CHECKED_PTR_OF(const type, x)))}
+  {# define  ASN1_dup_of(type,i2d,d2i,x) ((type *)ASN1_dup(CHECKED_I2D_OF(type, i2d), CHECKED_D2I_OF(type, d2i), CHECKED_PTR_OF(const 
+type, x)))}
 
 
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
@@ -2356,7 +2361,8 @@ type
 var
   ASN1_d2i_fp: function(xnew: TFuncType000; d2i: Pd2i_of_void; in_: PFILE; x: Ppointer): pointer; cdecl = Load_ASN1_d2i_fp;
     {$endif} {OPENSSL_STATIC_LINK_MODEL}
-  {# define  ASN1_d2i_fp_of(type,xnew,d2i,in,x) ((type *)ASN1_d2i_fp(CHECKED_NEW_OF(type, xnew), CHECKED_D2I_OF(type, d2i), in, CHECKED_PPTR_OF(type, x)))}
+  {# define  ASN1_d2i_fp_of(type,xnew,d2i,in,x) ((type *)ASN1_d2i_fp(CHECKED_NEW_OF(type, xnew), CHECKED_D2I_OF(type, d2i), in, CHECKED_PPTR_OF(type,
+ x)))}
 
 
     {$ifdef OPENSSL_STATIC_LINK_MODEL}
@@ -2427,7 +2433,8 @@ type
 var
   ASN1_d2i_bio: function(xnew: TFuncType001; d2i: Pd2i_of_void; in_: PBIO; x: Ppointer): pointer; cdecl = Load_ASN1_d2i_bio;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
-  {# define  ASN1_d2i_bio_of(type,xnew,d2i,in,x) ((type *)ASN1_d2i_bio(CHECKED_NEW_OF(type, xnew), CHECKED_D2I_OF(type, d2i), in, CHECKED_PPTR_OF(type, x)))}
+  {# define  ASN1_d2i_bio_of(type,xnew,d2i,in,x) ((type *)ASN1_d2i_bio(CHECKED_NEW_OF(type, xnew), CHECKED_D2I_OF(type, d2i), in, 
+CHECKED_PPTR_OF(type, x)))}
 
 
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
@@ -2808,7 +2815,8 @@ var
   ASN1_ITEM_get: function(i: TOpenSSL_C_SIZET): PASN1_ITEM; cdecl = Load_ASN1_ITEM_get;
   { Legacy compatibility }
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
-  {# define  DECLARE_ASN1_FUNCTIONS_fname(type,itname,name) DECLARE_ASN1_ALLOC_FUNCTIONS_name(type, name) DECLARE_ASN1_ENCODE_FUNCTIONS(type, itname, name)}
+  {# define  DECLARE_ASN1_FUNCTIONS_fname(type,itname,name) DECLARE_ASN1_ALLOC_FUNCTIONS_name(type, name) DECLARE_ASN1_ENCODE_FUNCTIONS(type,
+ itname, name)}
   {# define  DECLARE_ASN1_FUNCTIONS_const(type) DECLARE_ASN1_FUNCTIONS(type)} { Blacklisted Macro}
   {# define  DECLARE_ASN1_ENCODE_FUNCTIONS_const(type,name) DECLARE_ASN1_ENCODE_FUNCTIONS(type, name)} { Blacklisted Macro}
   {# define  I2D_OF_const(type) I2D_OF(type)} { Blacklisted Macro}
@@ -7366,7 +7374,7 @@ begin
   Result := ASN1_INTEGER_get_uint64(pr, a);
 end;
 
-function Load_ASN1_INTEGER_set_uint64(a: PASN1_INTEGER; r: qword): TOpenSSL_C_INT; cdecl;
+function Load_ASN1_INTEGER_set_uint64(a: PASN1_INTEGER; r: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl;
 begin
   ASN1_INTEGER_set_uint64 := LoadLibCryptoFunction('ASN1_INTEGER_set_uint64');
   if not assigned(ASN1_INTEGER_set_uint64) then

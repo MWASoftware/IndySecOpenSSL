@@ -18,7 +18,7 @@
 unit openssl_x509;
 
 {
-  Generated from OpenSSL 3.0.20 Header File x509.h - Thu  7 May 11:14:25 BST 2026
+  Generated from OpenSSL 3.0.20 Header File x509.h - Thu  7 May 12:12:40 BST 2026
   With Legacy Support Option
 }
 
@@ -3905,14 +3905,14 @@ var
 
 
     {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function PKCS5_pbe2_set_scrypt(cipher: PEVP_CIPHER; salt: Pbyte; saltlen: TOpenSSL_C_INT; aiv: Pbyte; N: qword; r: qword; p: qword): PX509_ALGOR; cdecl; external CLibCrypto name 'PKCS5_pbe2_set_scrypt';
+  function PKCS5_pbe2_set_scrypt(cipher: PEVP_CIPHER; salt: Pbyte; saltlen: TOpenSSL_C_INT; aiv: Pbyte; N: TOpenSSL_C_UINT64; r: TOpenSSL_C_UINT64; p: TOpenSSL_C_UINT64): PX509_ALGOR; cdecl; external CLibCrypto name 'PKCS5_pbe2_set_scrypt';
     {$else}
   {$EXTERNALSYM PKCS5_pbe2_set_scrypt}
   {Do not call Function LoadDeclarations. Internal use only}
-  function Load_PKCS5_pbe2_set_scrypt(cipher: PEVP_CIPHER; salt: Pbyte; saltlen: TOpenSSL_C_INT; aiv: Pbyte; N: qword; r: qword; p: qword): PX509_ALGOR; cdecl;
+  function Load_PKCS5_pbe2_set_scrypt(cipher: PEVP_CIPHER; salt: Pbyte; saltlen: TOpenSSL_C_INT; aiv: Pbyte; N: TOpenSSL_C_UINT64; r: TOpenSSL_C_UINT64; p: TOpenSSL_C_UINT64): PX509_ALGOR; cdecl;
 
 var
-  PKCS5_pbe2_set_scrypt: function(cipher: PEVP_CIPHER; salt: Pbyte; saltlen: TOpenSSL_C_INT; aiv: Pbyte; N: qword; r: qword; p: qword): PX509_ALGOR; cdecl = Load_PKCS5_pbe2_set_scrypt;
+  PKCS5_pbe2_set_scrypt: function(cipher: PEVP_CIPHER; salt: Pbyte; saltlen: TOpenSSL_C_INT; aiv: Pbyte; N: TOpenSSL_C_UINT64; r: TOpenSSL_C_UINT64; p: TOpenSSL_C_UINT64): PX509_ALGOR; cdecl = Load_PKCS5_pbe2_set_scrypt;
     {$endif} {OPENSSL_STATIC_LINK_MODEL}
   {$endif}
 
@@ -13026,7 +13026,7 @@ begin
 end;
 
 {$ifndef  OPENSSL_NO_SCRYPT}
-function Load_PKCS5_pbe2_set_scrypt(cipher: PEVP_CIPHER; salt: Pbyte; saltlen: TOpenSSL_C_INT; aiv: Pbyte; N: qword; r: qword; p: qword): PX509_ALGOR; cdecl;
+function Load_PKCS5_pbe2_set_scrypt(cipher: PEVP_CIPHER; salt: Pbyte; saltlen: TOpenSSL_C_INT; aiv: Pbyte; N: TOpenSSL_C_UINT64; r: TOpenSSL_C_UINT64; p: TOpenSSL_C_UINT64): PX509_ALGOR; cdecl;
 begin
   PKCS5_pbe2_set_scrypt := LoadLibCryptoFunction('PKCS5_pbe2_set_scrypt');
   if not assigned(PKCS5_pbe2_set_scrypt) then

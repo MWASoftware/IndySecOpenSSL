@@ -18,7 +18,7 @@
 unit openssl_sslerr_legacy;
 
 {
-  Generated from OpenSSL 3.0.20 Header File sslerr_legacy.h - Thu  7 May 11:14:08 BST 2026
+  Generated from OpenSSL 3.0.20 Header File sslerr_legacy.h - Thu  7 May 12:12:23 BST 2026
   With Legacy Support Option
 }
 

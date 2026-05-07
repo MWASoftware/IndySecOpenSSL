@@ -18,7 +18,7 @@
 unit openssl_evp;
 
 {
-  Generated from OpenSSL 3.0.20 Header File evp.h - Thu  7 May 11:13:39 BST 2026
+  Generated from OpenSSL 3.0.20 Header File evp.h - Thu  7 May 12:11:53 BST 2026
   With Legacy Support Option
 }
 
@@ -4100,8 +4100,8 @@ var
 
 
     {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function EVP_PBE_scrypt(pass: PAnsiChar; passlen: TOpenSSL_C_SIZET; salt: Pbyte; saltlen: TOpenSSL_C_SIZET; N: qword; r: qword; p: qword; maxmem: qword; key: Pbyte; keylen: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PBE_scrypt';
-  function EVP_PBE_scrypt_ex(pass: PAnsiChar; passlen: TOpenSSL_C_SIZET; salt: Pbyte; saltlen: TOpenSSL_C_SIZET; N: qword; r: qword; p: qword; maxmem: qword; key: Pbyte; keylen: TOpenSSL_C_SIZET; ctx: POSSL_LIB_CTX; propq: PAnsiChar): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PBE_scrypt_ex';
+  function EVP_PBE_scrypt(pass: PAnsiChar; passlen: TOpenSSL_C_SIZET; salt: Pbyte; saltlen: TOpenSSL_C_SIZET; N: TOpenSSL_C_UINT64; r: TOpenSSL_C_UINT64; p: TOpenSSL_C_UINT64; maxmem: TOpenSSL_C_UINT64; key: Pbyte; keylen: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PBE_scrypt';
+  function EVP_PBE_scrypt_ex(pass: PAnsiChar; passlen: TOpenSSL_C_SIZET; salt: Pbyte; saltlen: TOpenSSL_C_SIZET; N: TOpenSSL_C_UINT64; r: TOpenSSL_C_UINT64; p: TOpenSSL_C_UINT64; maxmem: TOpenSSL_C_UINT64; key: Pbyte; keylen: TOpenSSL_C_SIZET; ctx: POSSL_LIB_CTX; propq: PAnsiChar): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PBE_scrypt_ex';
   function PKCS5_v2_scrypt_keyivgen(ctx: PEVP_CIPHER_CTX; pass: PAnsiChar; passlen: TOpenSSL_C_INT; param: PASN1_TYPE; c: PEVP_CIPHER; md: PEVP_MD; en_de: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'PKCS5_v2_scrypt_keyivgen';
   function PKCS5_v2_scrypt_keyivgen_ex(ctx: PEVP_CIPHER_CTX; pass: PAnsiChar; passlen: TOpenSSL_C_INT; param: PASN1_TYPE; c: PEVP_CIPHER; md: PEVP_MD; en_de: TOpenSSL_C_INT; libctx: POSSL_LIB_CTX; propq: PAnsiChar): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'PKCS5_v2_scrypt_keyivgen_ex';
     {$else}
@@ -4110,14 +4110,14 @@ var
   {$EXTERNALSYM PKCS5_v2_scrypt_keyivgen}
   {$EXTERNALSYM PKCS5_v2_scrypt_keyivgen_ex}
   {Do not call Function LoadDeclarations. Internal use only}
-  function Load_EVP_PBE_scrypt(pass: PAnsiChar; passlen: TOpenSSL_C_SIZET; salt: Pbyte; saltlen: TOpenSSL_C_SIZET; N: qword; r: qword; p: qword; maxmem: qword; key: Pbyte; keylen: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
-  function Load_EVP_PBE_scrypt_ex(pass: PAnsiChar; passlen: TOpenSSL_C_SIZET; salt: Pbyte; saltlen: TOpenSSL_C_SIZET; N: qword; r: qword; p: qword; maxmem: qword; key: Pbyte; keylen: TOpenSSL_C_SIZET; ctx: POSSL_LIB_CTX; propq: PAnsiChar): TOpenSSL_C_INT; cdecl;
+  function Load_EVP_PBE_scrypt(pass: PAnsiChar; passlen: TOpenSSL_C_SIZET; salt: Pbyte; saltlen: TOpenSSL_C_SIZET; N: TOpenSSL_C_UINT64; r: TOpenSSL_C_UINT64; p: TOpenSSL_C_UINT64; maxmem: TOpenSSL_C_UINT64; key: Pbyte; keylen: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
+  function Load_EVP_PBE_scrypt_ex(pass: PAnsiChar; passlen: TOpenSSL_C_SIZET; salt: Pbyte; saltlen: TOpenSSL_C_SIZET; N: TOpenSSL_C_UINT64; r: TOpenSSL_C_UINT64; p: TOpenSSL_C_UINT64; maxmem: TOpenSSL_C_UINT64; key: Pbyte; keylen: TOpenSSL_C_SIZET; ctx: POSSL_LIB_CTX; propq: PAnsiChar): TOpenSSL_C_INT; cdecl;
   function Load_PKCS5_v2_scrypt_keyivgen(ctx: PEVP_CIPHER_CTX; pass: PAnsiChar; passlen: TOpenSSL_C_INT; param: PASN1_TYPE; c: PEVP_CIPHER; md: PEVP_MD; en_de: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
   function Load_PKCS5_v2_scrypt_keyivgen_ex(ctx: PEVP_CIPHER_CTX; pass: PAnsiChar; passlen: TOpenSSL_C_INT; param: PASN1_TYPE; c: PEVP_CIPHER; md: PEVP_MD; en_de: TOpenSSL_C_INT; libctx: POSSL_LIB_CTX; propq: PAnsiChar): TOpenSSL_C_INT; cdecl;
 
 var
-  EVP_PBE_scrypt: function(pass: PAnsiChar; passlen: TOpenSSL_C_SIZET; salt: Pbyte; saltlen: TOpenSSL_C_SIZET; N: qword; r: qword; p: qword; maxmem: qword; key: Pbyte; keylen: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl = Load_EVP_PBE_scrypt;
-  EVP_PBE_scrypt_ex: function(pass: PAnsiChar; passlen: TOpenSSL_C_SIZET; salt: Pbyte; saltlen: TOpenSSL_C_SIZET; N: qword; r: qword; p: qword; maxmem: qword; key: Pbyte; keylen: TOpenSSL_C_SIZET; ctx: POSSL_LIB_CTX; propq: PAnsiChar): TOpenSSL_C_INT; cdecl = Load_EVP_PBE_scrypt_ex;
+  EVP_PBE_scrypt: function(pass: PAnsiChar; passlen: TOpenSSL_C_SIZET; salt: Pbyte; saltlen: TOpenSSL_C_SIZET; N: TOpenSSL_C_UINT64; r: TOpenSSL_C_UINT64; p: TOpenSSL_C_UINT64; maxmem: TOpenSSL_C_UINT64; key: Pbyte; keylen: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl = Load_EVP_PBE_scrypt;
+  EVP_PBE_scrypt_ex: function(pass: PAnsiChar; passlen: TOpenSSL_C_SIZET; salt: Pbyte; saltlen: TOpenSSL_C_SIZET; N: TOpenSSL_C_UINT64; r: TOpenSSL_C_UINT64; p: TOpenSSL_C_UINT64; maxmem: TOpenSSL_C_UINT64; key: Pbyte; keylen: TOpenSSL_C_SIZET; ctx: POSSL_LIB_CTX; propq: PAnsiChar): TOpenSSL_C_INT; cdecl = Load_EVP_PBE_scrypt_ex;
   PKCS5_v2_scrypt_keyivgen: function(ctx: PEVP_CIPHER_CTX; pass: PAnsiChar; passlen: TOpenSSL_C_INT; param: PASN1_TYPE; c: PEVP_CIPHER; md: PEVP_MD; en_de: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_PKCS5_v2_scrypt_keyivgen;
   PKCS5_v2_scrypt_keyivgen_ex: function(ctx: PEVP_CIPHER_CTX; pass: PAnsiChar; passlen: TOpenSSL_C_INT; param: PASN1_TYPE; c: PEVP_CIPHER; md: PEVP_MD; en_de: TOpenSSL_C_INT; libctx: POSSL_LIB_CTX; propq: PAnsiChar): TOpenSSL_C_INT; cdecl = Load_PKCS5_v2_scrypt_keyivgen_ex;
     {$endif} {OPENSSL_STATIC_LINK_MODEL}
@@ -4812,7 +4812,7 @@ type
   function EVP_PKEY_CTX_settable_params(ctx: PEVP_PKEY_CTX): POSSL_PARAM; cdecl; external CLibCrypto name 'EVP_PKEY_CTX_settable_params';
   function EVP_PKEY_CTX_ctrl(ctx: PEVP_PKEY_CTX; keytype: TOpenSSL_C_INT; optype: TOpenSSL_C_INT; cmd: TOpenSSL_C_INT; p1: TOpenSSL_C_INT; p2: pointer): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_CTX_ctrl';
   function EVP_PKEY_CTX_ctrl_str(ctx: PEVP_PKEY_CTX; type_: PAnsiChar; value: PAnsiChar): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_CTX_ctrl_str';
-  function EVP_PKEY_CTX_ctrl_uint64(ctx: PEVP_PKEY_CTX; keytype: TOpenSSL_C_INT; optype: TOpenSSL_C_INT; cmd: TOpenSSL_C_INT; value: qword): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_CTX_ctrl_uint64';
+  function EVP_PKEY_CTX_ctrl_uint64(ctx: PEVP_PKEY_CTX; keytype: TOpenSSL_C_INT; optype: TOpenSSL_C_INT; cmd: TOpenSSL_C_INT; value: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_CTX_ctrl_uint64';
   function EVP_PKEY_CTX_str2ctrl(ctx: PEVP_PKEY_CTX; cmd: TOpenSSL_C_INT; str: PAnsiChar): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_CTX_str2ctrl';
   function EVP_PKEY_CTX_hex2ctrl(ctx: PEVP_PKEY_CTX; cmd: TOpenSSL_C_INT; hex: PAnsiChar): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_CTX_hex2ctrl';
   function EVP_PKEY_CTX_md(ctx: PEVP_PKEY_CTX; optype: TOpenSSL_C_INT; cmd: TOpenSSL_C_INT; md: PAnsiChar): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_CTX_md';
@@ -4874,7 +4874,7 @@ type
   function Load_EVP_PKEY_CTX_settable_params(ctx: PEVP_PKEY_CTX): POSSL_PARAM; cdecl;
   function Load_EVP_PKEY_CTX_ctrl(ctx: PEVP_PKEY_CTX; keytype: TOpenSSL_C_INT; optype: TOpenSSL_C_INT; cmd: TOpenSSL_C_INT; p1: TOpenSSL_C_INT; p2: pointer): TOpenSSL_C_INT; cdecl;
   function Load_EVP_PKEY_CTX_ctrl_str(ctx: PEVP_PKEY_CTX; type_: PAnsiChar; value: PAnsiChar): TOpenSSL_C_INT; cdecl;
-  function Load_EVP_PKEY_CTX_ctrl_uint64(ctx: PEVP_PKEY_CTX; keytype: TOpenSSL_C_INT; optype: TOpenSSL_C_INT; cmd: TOpenSSL_C_INT; value: qword): TOpenSSL_C_INT; cdecl;
+  function Load_EVP_PKEY_CTX_ctrl_uint64(ctx: PEVP_PKEY_CTX; keytype: TOpenSSL_C_INT; optype: TOpenSSL_C_INT; cmd: TOpenSSL_C_INT; value: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl;
   function Load_EVP_PKEY_CTX_str2ctrl(ctx: PEVP_PKEY_CTX; cmd: TOpenSSL_C_INT; str: PAnsiChar): TOpenSSL_C_INT; cdecl;
   function Load_EVP_PKEY_CTX_hex2ctrl(ctx: PEVP_PKEY_CTX; cmd: TOpenSSL_C_INT; hex: PAnsiChar): TOpenSSL_C_INT; cdecl;
   function Load_EVP_PKEY_CTX_md(ctx: PEVP_PKEY_CTX; optype: TOpenSSL_C_INT; cmd: TOpenSSL_C_INT; md: PAnsiChar): TOpenSSL_C_INT; cdecl;
@@ -4906,7 +4906,7 @@ var
   EVP_PKEY_CTX_settable_params: function(ctx: PEVP_PKEY_CTX): POSSL_PARAM; cdecl = Load_EVP_PKEY_CTX_settable_params;
   EVP_PKEY_CTX_ctrl: function(ctx: PEVP_PKEY_CTX; keytype: TOpenSSL_C_INT; optype: TOpenSSL_C_INT; cmd: TOpenSSL_C_INT; p1: TOpenSSL_C_INT; p2: pointer): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_CTX_ctrl;
   EVP_PKEY_CTX_ctrl_str: function(ctx: PEVP_PKEY_CTX; type_: PAnsiChar; value: PAnsiChar): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_CTX_ctrl_str;
-  EVP_PKEY_CTX_ctrl_uint64: function(ctx: PEVP_PKEY_CTX; keytype: TOpenSSL_C_INT; optype: TOpenSSL_C_INT; cmd: TOpenSSL_C_INT; value: qword): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_CTX_ctrl_uint64;
+  EVP_PKEY_CTX_ctrl_uint64: function(ctx: PEVP_PKEY_CTX; keytype: TOpenSSL_C_INT; optype: TOpenSSL_C_INT; cmd: TOpenSSL_C_INT; value: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_CTX_ctrl_uint64;
   EVP_PKEY_CTX_str2ctrl: function(ctx: PEVP_PKEY_CTX; cmd: TOpenSSL_C_INT; str: PAnsiChar): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_CTX_str2ctrl;
   EVP_PKEY_CTX_hex2ctrl: function(ctx: PEVP_PKEY_CTX; cmd: TOpenSSL_C_INT; hex: PAnsiChar): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_CTX_hex2ctrl;
   EVP_PKEY_CTX_md: function(ctx: PEVP_PKEY_CTX; optype: TOpenSSL_C_INT; cmd: TOpenSSL_C_INT; md: PAnsiChar): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_CTX_md;
@@ -6755,14 +6755,16 @@ end;
 {$endif} { OPENSSL_NO_DEPRECATED_1_1_0}
 {$ifndef  OPENSSL_NO_DEPRECATED_1_1_0}
 
-{# define  OPENSSL_add_all_algorithms_conf() OPENSSL_init_crypto(OPENSSL_INIT_ADD_ALL_CIPHERS | OPENSSL_INIT_ADD_ALL_DIGESTS | OPENSSL_INIT_LOAD_CONFIG, NULL)}
+{# define  OPENSSL_add_all_algorithms_conf() OPENSSL_init_crypto(OPENSSL_INIT_ADD_ALL_CIPHERS | OPENSSL_INIT_ADD_ALL_DIGESTS | OPENSSL_INIT_LOAD_CONFIG,
+ NULL)}
 
 function OPENSSL_add_all_algorithms_conf(): TOpenSSL_C_INT;
 begin
   Result := TOpenSSL_C_INT(OPENSSL_init_crypto((OPENSSL_INIT_ADD_ALL_CIPHERS or OPENSSL_INIT_ADD_ALL_DIGESTS) or OPENSSL_INIT_LOAD_CONFIG,nil));
 end;
 
-{# define  OPENSSL_add_all_algorithms_noconf() OPENSSL_init_crypto(OPENSSL_INIT_ADD_ALL_CIPHERS | OPENSSL_INIT_ADD_ALL_DIGESTS, NULL)}
+{# define  OPENSSL_add_all_algorithms_noconf() OPENSSL_init_crypto(OPENSSL_INIT_ADD_ALL_CIPHERS | OPENSSL_INIT_ADD_ALL_DIGESTS, 
+NULL)}
 
 function OPENSSL_add_all_algorithms_noconf(): TOpenSSL_C_INT;
 begin
@@ -13758,7 +13760,7 @@ begin
 end;
 
 {$ifndef  OPENSSL_NO_SCRYPT}
-function Load_EVP_PBE_scrypt(pass: PAnsiChar; passlen: TOpenSSL_C_SIZET; salt: Pbyte; saltlen: TOpenSSL_C_SIZET; N: qword; r: qword; p: qword; maxmem: qword; key: Pbyte; keylen: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
+function Load_EVP_PBE_scrypt(pass: PAnsiChar; passlen: TOpenSSL_C_SIZET; salt: Pbyte; saltlen: TOpenSSL_C_SIZET; N: TOpenSSL_C_UINT64; r: TOpenSSL_C_UINT64; p: TOpenSSL_C_UINT64; maxmem: TOpenSSL_C_UINT64; key: Pbyte; keylen: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
 begin
   EVP_PBE_scrypt := LoadLibCryptoFunction('EVP_PBE_scrypt');
   if not assigned(EVP_PBE_scrypt) then
@@ -13770,7 +13772,7 @@ begin
   Result := EVP_PBE_scrypt(pass, passlen, salt, saltlen, N, r, p, maxmem, key, keylen);
 end;
 
-function Load_EVP_PBE_scrypt_ex(pass: PAnsiChar; passlen: TOpenSSL_C_SIZET; salt: Pbyte; saltlen: TOpenSSL_C_SIZET; N: qword; r: qword; p: qword; maxmem: qword; key: Pbyte; keylen: TOpenSSL_C_SIZET; ctx: POSSL_LIB_CTX; propq: PAnsiChar): TOpenSSL_C_INT; cdecl;
+function Load_EVP_PBE_scrypt_ex(pass: PAnsiChar; passlen: TOpenSSL_C_SIZET; salt: Pbyte; saltlen: TOpenSSL_C_SIZET; N: TOpenSSL_C_UINT64; r: TOpenSSL_C_UINT64; p: TOpenSSL_C_UINT64; maxmem: TOpenSSL_C_UINT64; key: Pbyte; keylen: TOpenSSL_C_SIZET; ctx: POSSL_LIB_CTX; propq: PAnsiChar): TOpenSSL_C_INT; cdecl;
 begin
   EVP_PBE_scrypt_ex := LoadLibCryptoFunction('EVP_PBE_scrypt_ex');
   if not assigned(EVP_PBE_scrypt_ex) then
@@ -14733,7 +14735,7 @@ begin
   Result := EVP_PKEY_CTX_ctrl_str(ctx, type_, value);
 end;
 
-function Load_EVP_PKEY_CTX_ctrl_uint64(ctx: PEVP_PKEY_CTX; keytype: TOpenSSL_C_INT; optype: TOpenSSL_C_INT; cmd: TOpenSSL_C_INT; value: qword): TOpenSSL_C_INT; cdecl;
+function Load_EVP_PKEY_CTX_ctrl_uint64(ctx: PEVP_PKEY_CTX; keytype: TOpenSSL_C_INT; optype: TOpenSSL_C_INT; cmd: TOpenSSL_C_INT; value: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl;
 begin
   EVP_PKEY_CTX_ctrl_uint64 := LoadLibCryptoFunction('EVP_PKEY_CTX_ctrl_uint64');
   if not assigned(EVP_PKEY_CTX_ctrl_uint64) then

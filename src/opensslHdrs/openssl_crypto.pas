@@ -18,7 +18,7 @@
 unit openssl_crypto;
 
 {
-  Generated from OpenSSL 3.0.20 Header File crypto.h - Thu  7 May 11:13:23 BST 2026
+  Generated from OpenSSL 3.0.20 Header File crypto.h - Thu  7 May 12:11:36 BST 2026
   With Legacy Support Option
 }
 
@@ -74,7 +74,7 @@ type
   function CRYPTO_THREAD_unlock(lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'CRYPTO_THREAD_unlock';
   procedure CRYPTO_THREAD_lock_free(lock: PCRYPTO_RWLOCK); cdecl; external CLibCrypto name 'CRYPTO_THREAD_lock_free';
   function CRYPTO_atomic_add(val: POpenSSL_C_INT; amount: TOpenSSL_C_INT; ret: POpenSSL_C_INT; lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'CRYPTO_atomic_add';
-  function CRYPTO_atomic_or(val: Pqword; op: qword; ret: Pqword; lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'CRYPTO_atomic_or';
+  function CRYPTO_atomic_or(val: Pqword; op: TOpenSSL_C_UINT64; ret: Pqword; lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'CRYPTO_atomic_or';
   function CRYPTO_atomic_load(val: Pqword; ret: Pqword; lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'CRYPTO_atomic_load';
   { No longer needed, so this is a no-op }
   {$else}
@@ -97,7 +97,7 @@ type
   function Load_CRYPTO_THREAD_unlock(lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl;
   procedure Load_CRYPTO_THREAD_lock_free(lock: PCRYPTO_RWLOCK); cdecl;
   function Load_CRYPTO_atomic_add(val: POpenSSL_C_INT; amount: TOpenSSL_C_INT; ret: POpenSSL_C_INT; lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl;
-  function Load_CRYPTO_atomic_or(val: Pqword; op: qword; ret: Pqword; lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl;
+  function Load_CRYPTO_atomic_or(val: Pqword; op: TOpenSSL_C_UINT64; ret: Pqword; lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl;
   function Load_CRYPTO_atomic_load(val: Pqword; ret: Pqword; lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl;
 
 var
@@ -107,7 +107,7 @@ var
   CRYPTO_THREAD_unlock: function(lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl = Load_CRYPTO_THREAD_unlock;
   CRYPTO_THREAD_lock_free: procedure(lock: PCRYPTO_RWLOCK); cdecl = Load_CRYPTO_THREAD_lock_free;
   CRYPTO_atomic_add: function(val: POpenSSL_C_INT; amount: TOpenSSL_C_INT; ret: POpenSSL_C_INT; lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl = Load_CRYPTO_atomic_add;
-  CRYPTO_atomic_or: function(val: Pqword; op: qword; ret: Pqword; lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl = Load_CRYPTO_atomic_or;
+  CRYPTO_atomic_or: function(val: Pqword; op: TOpenSSL_C_UINT64; ret: Pqword; lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl = Load_CRYPTO_atomic_or;
   CRYPTO_atomic_load: function(val: Pqword; ret: Pqword; lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl = Load_CRYPTO_atomic_load;
   { No longer needed, so this is a no-op }
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
@@ -953,17 +953,17 @@ const
   { Library initialisation functions }
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
   procedure OPENSSL_cleanup; cdecl; external CLibCrypto name 'OPENSSL_cleanup';
-  function OPENSSL_init_crypto(opts: qword; settings: POPENSSL_INIT_SETTINGS): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OPENSSL_init_crypto';
+  function OPENSSL_init_crypto(opts: TOpenSSL_C_UINT64; settings: POPENSSL_INIT_SETTINGS): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OPENSSL_init_crypto';
   {$else}
   {$EXTERNALSYM OPENSSL_cleanup}
   {$EXTERNALSYM OPENSSL_init_crypto}
   {Do not call Function LoadDeclarations. Internal use only}
   procedure Load_OPENSSL_cleanup; cdecl;
-  function Load_OPENSSL_init_crypto(opts: qword; settings: POPENSSL_INIT_SETTINGS): TOpenSSL_C_INT; cdecl;
+  function Load_OPENSSL_init_crypto(opts: TOpenSSL_C_UINT64; settings: POPENSSL_INIT_SETTINGS): TOpenSSL_C_INT; cdecl;
 
 var
   OPENSSL_cleanup: procedure; cdecl = Load_OPENSSL_cleanup;
-  OPENSSL_init_crypto: function(opts: qword; settings: POPENSSL_INIT_SETTINGS): TOpenSSL_C_INT; cdecl = Load_OPENSSL_init_crypto;
+  OPENSSL_init_crypto: function(opts: TOpenSSL_C_UINT64; settings: POPENSSL_INIT_SETTINGS): TOpenSSL_C_INT; cdecl = Load_OPENSSL_init_crypto;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
 type
@@ -1565,7 +1565,7 @@ begin
   Result := CRYPTO_atomic_add(val, amount, ret, lock);
 end;
 
-function Load_CRYPTO_atomic_or(val: Pqword; op: qword; ret: Pqword; lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl;
+function Load_CRYPTO_atomic_or(val: Pqword; op: TOpenSSL_C_UINT64; ret: Pqword; lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl;
 begin
   CRYPTO_atomic_or := LoadLibCryptoFunction('CRYPTO_atomic_or');
   if not assigned(CRYPTO_atomic_or) then
@@ -2755,7 +2755,7 @@ begin
   OPENSSL_cleanup;
 end;
 
-function Load_OPENSSL_init_crypto(opts: qword; settings: POPENSSL_INIT_SETTINGS): TOpenSSL_C_INT; cdecl;
+function Load_OPENSSL_init_crypto(opts: TOpenSSL_C_UINT64; settings: POPENSSL_INIT_SETTINGS): TOpenSSL_C_INT; cdecl;
 begin
   OPENSSL_init_crypto := LoadLibCryptoFunction('OPENSSL_init_crypto');
   if not assigned(OPENSSL_init_crypto) then

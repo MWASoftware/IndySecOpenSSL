@@ -18,7 +18,7 @@
 unit openssl_e_os2;
 
 {
-  Generated from OpenSSL 3.0.20 Header File e_os2.h - Thu  7 May 11:13:35 BST 2026
+  Generated from OpenSSL 3.0.20 Header File e_os2.h - Thu  7 May 12:11:48 BST 2026
   With Legacy Support Option
 }
 
@@ -260,23 +260,26 @@ const
     {typedef UINT32 uint32_t; - Redefinition of Builtin Type}
     {typedef INT64 int64_t; - Redefinition of Builtin Type}
     {typedef UINT64 uint64_t; - Redefinition of Builtin Type}
-  {$elseif   __STDC_VERSION__ >= 199901  or defined(__osf__)  or defined(__sgi)  or defined(__hpux)  or defined(OPENSSL_SYS_VMS)  or defined(__OpenBSD__)}
-    {$undef  OPENSSL_NO_INTTYPES_H}
-    { Because the specs say that inttypes.h includes stdint.h if present }
-    {$undef  OPENSSL_NO_STDINT_H}
-  {$elseif  defined(_MSC_VER)  and  _MSC_VER < 1600}
+    { #elif  __STDC_VERSION__ >= 199901L || defined(__osf__) || defined(__sgi) || defined(__hpux) || defined(OPENSSL_SYS_VMS) || defined(__OpenBSD__)
+    #include <inttypes.h>
+    #include <inttypes.h>
+    #undef OPENSSL_NO_INTTYPES_H
+     Because the specs say that inttypes.h includes stdint.h if present 
+    #undef OPENSSL_NO_STDINT_H
+    #elif defined(_MSC_VER) && _MSC_VER < 1600
     
-    {* minimally required typdefs for systems not supporting inttypes.h or
+    * minimally required typdefs for systems not supporting inttypes.h or
     * stdint.h: currently just older VC++
+    
+    typedef signed char int8_t;
+    typedef unsigned char uint8_t;
+    typedef short int16_t;
+    typedef unsigned short uint16_t;
+    typedef int int32_t;
+    typedef unsigned int uint32_t;
+    typedef __int64 int64_t;
+    typedef unsigned __int64 uint64_t;
     }
-    {typedef signed char int8_t; - Redefinition of Builtin Type}
-    {typedef unsigned char uint8_t; - Redefinition of Builtin Type}
-    {typedef short int16_t; - Redefinition of Builtin Type}
-    {typedef unsigned short uint16_t; - Redefinition of Builtin Type}
-    {typedef int int32_t; - Redefinition of Builtin Type}
-    {typedef unsigned int uint32_t; - Redefinition of Builtin Type}
-    {typedef __int64 int64_t; - Redefinition of Builtin Type}
-    {typedef unsigned __int64 uint64_t; - Redefinition of Builtin Type}
   {$else}
     {$undef  OPENSSL_NO_STDINT_H}
   {$endif}
@@ -296,8 +299,10 @@ type
   #else }
   { Fall back to the largest we know we require and can handle }
   Tossl_intmax_t = TOpenSSL_C_LONG;
-  Tossl_uintmax_t = qword;
+  Tossl_uintmax_t = TOpenSSL_C_UINT64;
   {# define  ossl_inline inline} { Blacklisted Macro}
+  {# define  ossl_noreturn __attribute__((noreturn))} {Macro Return Type unknown}
+  {# define  ossl_unused __attribute__((unused))} {Macro Return Type unknown}
   {#endif}
   { ossl_inline: portable inline definition usable in public headers }
   { Causes runtime problems for Pascal - inline is reserved word
@@ -320,20 +325,21 @@ type
   #else
   }
   {#endif}
-  {$if  defined(__STDC_VERSION__)  and  __STDC_VERSION__ >= 201112  and  not defined(__cplusplus)}
-    {#define ossl_noreturn _Noreturn}
-    {$define ossl_noreturn}
-  {$elseif  defined(__GNUC__)  and  __GNUC__ >= 2}
-{# define  ossl_noreturn __attribute__((noreturn))} {Macro Return Type unknown}
-  {$else}
-    {$define ossl_noreturn}
-  {$endif}
+  { #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L && !defined(__cplusplus)
+  //#define ossl_noreturn _Noreturn
+  #define ossl_noreturn
+  #elif defined(__GNUC__) && __GNUC__ >= 2
+  }
+  { #else
+  #define ossl_noreturn
+  #endif
+  }
   { ossl_unused: portable unused attribute for use in public headers }
-  {$if  defined(__GNUC__)}
-{# define  ossl_unused __attribute__((unused))} {Macro Return Type unknown}
-  {$else}
-    {$define ossl_unused}
-  {$endif}
+  { #if defined(__GNUC__)}
+  { #else
+  #define ossl_unused
+  #endif
+  }
 {$endif}
 
 implementation

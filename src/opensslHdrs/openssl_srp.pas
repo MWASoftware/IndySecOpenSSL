@@ -18,7 +18,7 @@
 unit openssl_srp;
 
 {
-  Generated from OpenSSL 3.0.20 Header File srp.h - Thu  7 May 11:14:03 BST 2026
+  Generated from OpenSSL 3.0.20 Header File srp.h - Thu  7 May 12:12:17 BST 2026
   With Legacy Support Option
 }
 
@@ -81,7 +81,14 @@ type
   function ossl_check_SRP_compfunc_type(cmp: Tsk_SRP_compfunc): TOPENSSL_sk_compfunc{Has C Attribute: unused}; inline;
   function ossl_check_SRP_copyfunc_type(cpy: Tsk_SRP_copyfunc): TOPENSSL_sk_copyfunc{Has C Attribute: unused}; inline;
   function ossl_check_SRP_freefunc_type(fr: Tsk_SRP_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
-    (*struct stack_st_SRP; typedef int ( *sk_SRP_compfunc)(const SRP *const *a, const SRP *const *b); typedef void ( *sk_SRP_freefunc)(SRP * a); typedef SRP *( *sk_SRP_copyfunc)(const SRP *a); static __attribute__((unused)) inline SRP *ossl_check_SRP_type(SRP *ptr) { return ptr; } static __attribute__((unused)) inline const OPENSSL_STACK *ossl_check_const_SRP_sk_type(const struct stack_st_SRP *sk) { return (const OPENSSL_STACK * )sk; } static __attribute__((unused)) inline OPENSSL_STACK *ossl_check_SRP_sk_type(struct stack_st_SRP *sk) { return (OPENSSL_STACK * )sk; } static __attribute__((unused)) inline OPENSSL_sk_compfunc ossl_check_SRP_compfunc_type(sk_SRP_compfunc cmp) { return (OPENSSL_sk_compfunc)cmp; } static __attribute__((unused)) inline OPENSSL_sk_copyfunc ossl_check_SRP_copyfunc_type(sk_SRP_copyfunc cpy) { return (OPENSSL_sk_copyfunc)cpy; } static __attribute__((unused)) inline OPENSSL_sk_freefunc ossl_check_SRP_freefunc_type(sk_SRP_freefunc fr) { return (OPENSSL_sk_freefunc)fr; };*)
+    (*struct stack_st_SRP; typedef int ( *sk_SRP_compfunc)(const SRP *const *a, const SRP *const *b); typedef void ( *sk_SRP_freefunc)(SRP 
+* a); typedef SRP *( *sk_SRP_copyfunc)(const SRP *a); static __attribute__((unused)) inline SRP *ossl_check_SRP_type(SRP *ptr) { 
+return ptr; } static __attribute__((unused)) inline const OPENSSL_STACK *ossl_check_const_SRP_sk_type(const struct stack_st_SRP 
+*sk) { return (const OPENSSL_STACK * )sk; } static __attribute__((unused)) inline OPENSSL_STACK *ossl_check_SRP_sk_type(struct stack_st_SRP 
+*sk) { return (OPENSSL_STACK * )sk; } static __attribute__((unused)) inline OPENSSL_sk_compfunc ossl_check_SRP_compfunc_type(sk_SRP_compfunc 
+cmp) { return (OPENSSL_sk_compfunc)cmp; } static __attribute__((unused)) inline OPENSSL_sk_copyfunc ossl_check_SRP_copyfunc_type(sk_SRP_copyfunc 
+cpy) { return (OPENSSL_sk_copyfunc)cpy; } static __attribute__((unused)) inline OPENSSL_sk_freefunc ossl_check_SRP_freefunc_type(sk_SRP_freefunc 
+fr) { return (OPENSSL_sk_freefunc)fr; };*)
     {in declaration at line 47}
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
@@ -124,7 +131,8 @@ type
   {# define  sk_SRP_gN_cache_value(sk,idx) ((SRP_gN_cache *)OPENSSL_sk_value(ossl_check_const_SRP_gN_cache_sk_type(sk), (idx)))} {Function argument out of range at line no 58}
   {# define  sk_SRP_gN_cache_new(cmp) ((STACK_OF(SRP_gN_cache) *)OPENSSL_sk_new(ossl_check_SRP_gN_cache_compfunc_type(cmp)))}
   {# define  sk_SRP_gN_cache_new_null() ((STACK_OF(SRP_gN_cache) *)OPENSSL_sk_new_null())}
-  {# define  sk_SRP_gN_cache_new_reserve(cmp,n) ((STACK_OF(SRP_gN_cache) *)OPENSSL_sk_new_reserve(ossl_check_SRP_gN_cache_compfunc_type(cmp), (n)))}
+  {# define  sk_SRP_gN_cache_new_reserve(cmp,n) ((STACK_OF(SRP_gN_cache) *)OPENSSL_sk_new_reserve(ossl_check_SRP_gN_cache_compfunc_type(cmp),
+ (n)))}
   {# define  sk_SRP_gN_cache_reserve(sk,n) OPENSSL_sk_reserve(ossl_check_SRP_gN_cache_sk_type(sk), (n))} {Function argument out of range at line no 62}
   {# define  sk_SRP_gN_cache_free(sk) OPENSSL_sk_free(ossl_check_SRP_gN_cache_sk_type(sk))} {Macro Return Type unknown at line no 63}
   {# define  sk_SRP_gN_cache_zero(sk) OPENSSL_sk_zero(ossl_check_SRP_gN_cache_sk_type(sk))} {Macro Return Type unknown at line no 64}
@@ -135,15 +143,18 @@ type
   function sk_SRP_gN_cache_pop(sk:Pstack_st_SRP_gN_cache): PSRP_gN_cache; inline;
   function sk_SRP_gN_cache_shift(sk:Pstack_st_SRP_gN_cache): PSRP_gN_cache; inline;
   {# define  sk_SRP_gN_cache_pop_free(sk,freefunc) OPENSSL_sk_pop_free(ossl_check_SRP_gN_cache_sk_type(sk),ossl_check_SRP_gN_cache_freefunc_type(freefunc))} {Macro Return Type unknown at line no 71}
-  {# define  sk_SRP_gN_cache_insert(sk,ptr,idx) OPENSSL_sk_insert(ossl_check_SRP_gN_cache_sk_type(sk), ossl_check_SRP_gN_cache_type(ptr), (idx))} {Function argument out of range at line no 72}
+  {# define  sk_SRP_gN_cache_insert(sk,ptr,idx) OPENSSL_sk_insert(ossl_check_SRP_gN_cache_sk_type(sk), ossl_check_SRP_gN_cache_type(ptr),
+ (idx))} {Function argument out of range at line no 72}
   {# define  sk_SRP_gN_cache_set(sk,idx,ptr) ((SRP_gN_cache *)OPENSSL_sk_set(ossl_check_SRP_gN_cache_sk_type(sk), (idx), ossl_check_SRP_gN_cache_type(ptr)))} {Function argument out of range at line no 73}
   {# define  sk_SRP_gN_cache_find(sk,ptr) OPENSSL_sk_find(ossl_check_SRP_gN_cache_sk_type(sk), ossl_check_SRP_gN_cache_type(ptr))} {Macro Return Type unknown at line no 74}
   {# define  sk_SRP_gN_cache_find_ex(sk,ptr) OPENSSL_sk_find_ex(ossl_check_SRP_gN_cache_sk_type(sk), ossl_check_SRP_gN_cache_type(ptr))} {Macro Return Type unknown at line no 75}
-  {# define  sk_SRP_gN_cache_find_all(sk,ptr,pnum) OPENSSL_sk_find_all(ossl_check_SRP_gN_cache_sk_type(sk), ossl_check_SRP_gN_cache_type(ptr), pnum)} {Function argument out of range at line no 76}
+  {# define  sk_SRP_gN_cache_find_all(sk,ptr,pnum) OPENSSL_sk_find_all(ossl_check_SRP_gN_cache_sk_type(sk), ossl_check_SRP_gN_cache_type(ptr),
+ pnum)} {Function argument out of range at line no 76}
   {# define  sk_SRP_gN_cache_sort(sk) OPENSSL_sk_sort(ossl_check_SRP_gN_cache_sk_type(sk))} {Macro Return Type unknown at line no 77}
   {# define  sk_SRP_gN_cache_is_sorted(sk) OPENSSL_sk_is_sorted(ossl_check_const_SRP_gN_cache_sk_type(sk))} {Macro Return Type unknown at line no 78}
   {# define  sk_SRP_gN_cache_dup(sk) ((STACK_OF(SRP_gN_cache) *)OPENSSL_sk_dup(ossl_check_const_SRP_gN_cache_sk_type(sk)))}
-  {# define  sk_SRP_gN_cache_deep_copy(sk,copyfunc,freefunc) ((STACK_OF(SRP_gN_cache) *)OPENSSL_sk_deep_copy(ossl_check_const_SRP_gN_cache_sk_type(sk), ossl_check_SRP_gN_cache_copyfunc_type(copyfunc), ossl_check_SRP_gN_cache_freefunc_type(freefunc)))}
+  {# define  sk_SRP_gN_cache_deep_copy(sk,copyfunc,freefunc) ((STACK_OF(SRP_gN_cache) *)OPENSSL_sk_deep_copy(ossl_check_const_SRP_gN_cache_sk_type(sk),
+ ossl_check_SRP_gN_cache_copyfunc_type(copyfunc), ossl_check_SRP_gN_cache_freefunc_type(freefunc)))}
   function sk_SRP_gN_cache_set_cmp_func(sk:Pstack_st_SRP_gN_cache; cmp:Tsk_SRP_gN_cache_compfunc): Tsk_SRP_gN_cache_compfunc; inline;
 
 type
@@ -394,7 +405,8 @@ type
   {# define  sk_SRP_gN_sort(sk) OPENSSL_sk_sort(ossl_check_SRP_gN_sk_type(sk))} {Macro Return Type unknown at line no 179}
   {# define  sk_SRP_gN_is_sorted(sk) OPENSSL_sk_is_sorted(ossl_check_const_SRP_gN_sk_type(sk))} {Macro Return Type unknown at line no 180}
   {# define  sk_SRP_gN_dup(sk) ((STACK_OF(SRP_gN) *)OPENSSL_sk_dup(ossl_check_const_SRP_gN_sk_type(sk)))}
-  {# define  sk_SRP_gN_deep_copy(sk,copyfunc,freefunc) ((STACK_OF(SRP_gN) *)OPENSSL_sk_deep_copy(ossl_check_const_SRP_gN_sk_type(sk), ossl_check_SRP_gN_copyfunc_type(copyfunc), ossl_check_SRP_gN_freefunc_type(freefunc)))}
+  {# define  sk_SRP_gN_deep_copy(sk,copyfunc,freefunc) ((STACK_OF(SRP_gN) *)OPENSSL_sk_deep_copy(ossl_check_const_SRP_gN_sk_type(sk),
+ ossl_check_SRP_gN_copyfunc_type(copyfunc), ossl_check_SRP_gN_freefunc_type(freefunc)))}
   function sk_SRP_gN_set_cmp_func(sk:Pstack_st_SRP_gN; cmp:Tsk_SRP_gN_compfunc): Tsk_SRP_gN_compfunc; inline;
       { clang-format on }
       {$ifdef OPENSSL_STATIC_LINK_MODEL}
@@ -676,7 +688,8 @@ begin
   Result := PSRP_gN_cache(PSRP_gN_cache(OPENSSL_sk_shift(ossl_check_SRP_gN_cache_sk_type(sk))));
 end;
 
-{# define  sk_SRP_gN_cache_set_cmp_func(sk,cmp) ((sk_SRP_gN_cache_compfunc)OPENSSL_sk_set_cmp_func(ossl_check_SRP_gN_cache_sk_type(sk), ossl_check_SRP_gN_cache_compfunc_type(cmp)))}
+{# define  sk_SRP_gN_cache_set_cmp_func(sk,cmp) ((sk_SRP_gN_cache_compfunc)OPENSSL_sk_set_cmp_func(ossl_check_SRP_gN_cache_sk_type(sk),
+ ossl_check_SRP_gN_cache_compfunc_type(cmp)))}
 
 function sk_SRP_gN_cache_set_cmp_func(sk:Pstack_st_SRP_gN_cache; cmp:Tsk_SRP_gN_cache_compfunc): Tsk_SRP_gN_cache_compfunc;
 begin

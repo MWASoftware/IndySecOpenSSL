@@ -18,7 +18,7 @@
 unit openssl_rc5;
 
 {
-  Generated from OpenSSL 3.0.20 Header File rc5.h - Thu  7 May 11:14:00 BST 2026
+  Generated from OpenSSL 3.0.20 Header File rc5.h - Thu  7 May 12:12:14 BST 2026
   With Legacy Support Option
 }
 

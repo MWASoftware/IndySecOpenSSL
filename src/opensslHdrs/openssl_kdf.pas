@@ -18,7 +18,7 @@
 unit openssl_kdf;
 
 {
-  Generated from OpenSSL 3.0.20 Header File kdf.h - Thu  7 May 11:13:43 BST 2026
+  Generated from OpenSSL 3.0.20 Header File kdf.h - Thu  7 May 12:11:56 BST 2026
   With Legacy Support Option
 }
 
@@ -223,10 +223,10 @@ const
   function EVP_PKEY_CTX_hkdf_mode(ctx: PEVP_PKEY_CTX; mode: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_CTX_set_hkdf_mode';
   function EVP_PKEY_CTX_set1_pbe_pass(ctx: PEVP_PKEY_CTX; pass: PAnsiChar; passlen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_CTX_set1_pbe_pass';
   function EVP_PKEY_CTX_set1_scrypt_salt(ctx: PEVP_PKEY_CTX; salt: Pbyte; saltlen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_CTX_set1_scrypt_salt';
-  function EVP_PKEY_CTX_set_scrypt_N(ctx: PEVP_PKEY_CTX; n: qword): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_CTX_set_scrypt_N';
-  function EVP_PKEY_CTX_set_scrypt_r(ctx: PEVP_PKEY_CTX; r: qword): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_CTX_set_scrypt_r';
-  function EVP_PKEY_CTX_set_scrypt_p(ctx: PEVP_PKEY_CTX; p: qword): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_CTX_set_scrypt_p';
-  function EVP_PKEY_CTX_set_scrypt_maxmem_bytes(ctx: PEVP_PKEY_CTX; maxmem_bytes: qword): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_CTX_set_scrypt_maxmem_bytes';
+  function EVP_PKEY_CTX_set_scrypt_N(ctx: PEVP_PKEY_CTX; n: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_CTX_set_scrypt_N';
+  function EVP_PKEY_CTX_set_scrypt_r(ctx: PEVP_PKEY_CTX; r: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_CTX_set_scrypt_r';
+  function EVP_PKEY_CTX_set_scrypt_p(ctx: PEVP_PKEY_CTX; p: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_CTX_set_scrypt_p';
+  function EVP_PKEY_CTX_set_scrypt_maxmem_bytes(ctx: PEVP_PKEY_CTX; maxmem_bytes: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_CTX_set_scrypt_maxmem_bytes';
   {$else}
   {$EXTERNALSYM EVP_PKEY_CTX_set_tls1_prf_md}
   {$EXTERNALSYM EVP_PKEY_CTX_set1_tls1_prf_secret}
@@ -255,10 +255,10 @@ const
   function Load_EVP_PKEY_CTX_hkdf_mode(ctx: PEVP_PKEY_CTX; mode: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
   function Load_EVP_PKEY_CTX_set1_pbe_pass(ctx: PEVP_PKEY_CTX; pass: PAnsiChar; passlen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
   function Load_EVP_PKEY_CTX_set1_scrypt_salt(ctx: PEVP_PKEY_CTX; salt: Pbyte; saltlen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
-  function Load_EVP_PKEY_CTX_set_scrypt_N(ctx: PEVP_PKEY_CTX; n: qword): TOpenSSL_C_INT; cdecl;
-  function Load_EVP_PKEY_CTX_set_scrypt_r(ctx: PEVP_PKEY_CTX; r: qword): TOpenSSL_C_INT; cdecl;
-  function Load_EVP_PKEY_CTX_set_scrypt_p(ctx: PEVP_PKEY_CTX; p: qword): TOpenSSL_C_INT; cdecl;
-  function Load_EVP_PKEY_CTX_set_scrypt_maxmem_bytes(ctx: PEVP_PKEY_CTX; maxmem_bytes: qword): TOpenSSL_C_INT; cdecl;
+  function Load_EVP_PKEY_CTX_set_scrypt_N(ctx: PEVP_PKEY_CTX; n: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl;
+  function Load_EVP_PKEY_CTX_set_scrypt_r(ctx: PEVP_PKEY_CTX; r: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl;
+  function Load_EVP_PKEY_CTX_set_scrypt_p(ctx: PEVP_PKEY_CTX; p: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl;
+  function Load_EVP_PKEY_CTX_set_scrypt_maxmem_bytes(ctx: PEVP_PKEY_CTX; maxmem_bytes: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl;
 
 var
   EVP_PKEY_CTX_set_tls1_prf_md: function(ctx: PEVP_PKEY_CTX; md: PEVP_MD): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_CTX_set_tls1_prf_md;
@@ -272,10 +272,10 @@ var
   EVP_PKEY_CTX_hkdf_mode: function(ctx: PEVP_PKEY_CTX; mode: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_CTX_hkdf_mode;
   EVP_PKEY_CTX_set1_pbe_pass: function(ctx: PEVP_PKEY_CTX; pass: PAnsiChar; passlen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_CTX_set1_pbe_pass;
   EVP_PKEY_CTX_set1_scrypt_salt: function(ctx: PEVP_PKEY_CTX; salt: Pbyte; saltlen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_CTX_set1_scrypt_salt;
-  EVP_PKEY_CTX_set_scrypt_N: function(ctx: PEVP_PKEY_CTX; n: qword): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_CTX_set_scrypt_N;
-  EVP_PKEY_CTX_set_scrypt_r: function(ctx: PEVP_PKEY_CTX; r: qword): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_CTX_set_scrypt_r;
-  EVP_PKEY_CTX_set_scrypt_p: function(ctx: PEVP_PKEY_CTX; p: qword): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_CTX_set_scrypt_p;
-  EVP_PKEY_CTX_set_scrypt_maxmem_bytes: function(ctx: PEVP_PKEY_CTX; maxmem_bytes: qword): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_CTX_set_scrypt_maxmem_bytes;
+  EVP_PKEY_CTX_set_scrypt_N: function(ctx: PEVP_PKEY_CTX; n: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_CTX_set_scrypt_N;
+  EVP_PKEY_CTX_set_scrypt_r: function(ctx: PEVP_PKEY_CTX; r: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_CTX_set_scrypt_r;
+  EVP_PKEY_CTX_set_scrypt_p: function(ctx: PEVP_PKEY_CTX; p: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_CTX_set_scrypt_p;
+  EVP_PKEY_CTX_set_scrypt_maxmem_bytes: function(ctx: PEVP_PKEY_CTX; maxmem_bytes: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_CTX_set_scrypt_maxmem_bytes;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
 {$endif}
 
@@ -738,7 +738,7 @@ begin
   Result := EVP_PKEY_CTX_set1_scrypt_salt(ctx, salt, saltlen);
 end;
 
-function Load_EVP_PKEY_CTX_set_scrypt_N(ctx: PEVP_PKEY_CTX; n: qword): TOpenSSL_C_INT; cdecl;
+function Load_EVP_PKEY_CTX_set_scrypt_N(ctx: PEVP_PKEY_CTX; n: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl;
 begin
   EVP_PKEY_CTX_set_scrypt_N := LoadLibCryptoFunction('EVP_PKEY_CTX_set_scrypt_N');
   if not assigned(EVP_PKEY_CTX_set_scrypt_N) then
@@ -750,7 +750,7 @@ begin
   Result := EVP_PKEY_CTX_set_scrypt_N(ctx, n);
 end;
 
-function Load_EVP_PKEY_CTX_set_scrypt_r(ctx: PEVP_PKEY_CTX; r: qword): TOpenSSL_C_INT; cdecl;
+function Load_EVP_PKEY_CTX_set_scrypt_r(ctx: PEVP_PKEY_CTX; r: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl;
 begin
   EVP_PKEY_CTX_set_scrypt_r := LoadLibCryptoFunction('EVP_PKEY_CTX_set_scrypt_r');
   if not assigned(EVP_PKEY_CTX_set_scrypt_r) then
@@ -762,7 +762,7 @@ begin
   Result := EVP_PKEY_CTX_set_scrypt_r(ctx, r);
 end;
 
-function Load_EVP_PKEY_CTX_set_scrypt_p(ctx: PEVP_PKEY_CTX; p: qword): TOpenSSL_C_INT; cdecl;
+function Load_EVP_PKEY_CTX_set_scrypt_p(ctx: PEVP_PKEY_CTX; p: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl;
 begin
   EVP_PKEY_CTX_set_scrypt_p := LoadLibCryptoFunction('EVP_PKEY_CTX_set_scrypt_p');
   if not assigned(EVP_PKEY_CTX_set_scrypt_p) then
@@ -774,7 +774,7 @@ begin
   Result := EVP_PKEY_CTX_set_scrypt_p(ctx, p);
 end;
 
-function Load_EVP_PKEY_CTX_set_scrypt_maxmem_bytes(ctx: PEVP_PKEY_CTX; maxmem_bytes: qword): TOpenSSL_C_INT; cdecl;
+function Load_EVP_PKEY_CTX_set_scrypt_maxmem_bytes(ctx: PEVP_PKEY_CTX; maxmem_bytes: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl;
 begin
   EVP_PKEY_CTX_set_scrypt_maxmem_bytes := LoadLibCryptoFunction('EVP_PKEY_CTX_set_scrypt_maxmem_bytes');
   if not assigned(EVP_PKEY_CTX_set_scrypt_maxmem_bytes) then

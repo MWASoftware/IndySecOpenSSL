@@ -18,7 +18,7 @@
 unit openssl_bio;
 
 {
-  Generated from OpenSSL 3.0.20 Header File bio.h - Thu  7 May 11:13:04 BST 2026
+  Generated from OpenSSL 3.0.20 Header File bio.h - Thu  7 May 12:11:17 BST 2026
   With Legacy Support Option
 }
 
@@ -821,8 +821,8 @@ var
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
   function BIO_set_ex_data(bio: PBIO; idx: TOpenSSL_C_INT; data: pointer): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BIO_set_ex_data';
   function BIO_get_ex_data(bio: PBIO; idx: TOpenSSL_C_INT): pointer; cdecl; external CLibCrypto name 'BIO_get_ex_data';
-  function BIO_number_read(bio: PBIO): qword; cdecl; external CLibCrypto name 'BIO_number_read';
-  function BIO_number_written(bio: PBIO): qword; cdecl; external CLibCrypto name 'BIO_number_written';
+  function BIO_number_read(bio: PBIO): TOpenSSL_C_UINT64; cdecl; external CLibCrypto name 'BIO_number_read';
+  function BIO_number_written(bio: PBIO): TOpenSSL_C_UINT64; cdecl; external CLibCrypto name 'BIO_number_written';
   { For BIO_f_asn1() }
   function BIO_asn1_set_prefix(b: PBIO; prefix: Pasn1_ps_func; prefix_free: Pasn1_ps_func): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BIO_asn1_set_prefix';
   function BIO_asn1_get_prefix(b: PBIO; pprefix: PPasn1_ps_func; pprefix_free: PPasn1_ps_func): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BIO_asn1_get_prefix';
@@ -846,8 +846,8 @@ var
   {Do not call Function LoadDeclarations. Internal use only}
   function Load_BIO_set_ex_data(bio: PBIO; idx: TOpenSSL_C_INT; data: pointer): TOpenSSL_C_INT; cdecl;
   function Load_BIO_get_ex_data(bio: PBIO; idx: TOpenSSL_C_INT): pointer; cdecl;
-  function Load_BIO_number_read(bio: PBIO): qword; cdecl;
-  function Load_BIO_number_written(bio: PBIO): qword; cdecl;
+  function Load_BIO_number_read(bio: PBIO): TOpenSSL_C_UINT64; cdecl;
+  function Load_BIO_number_written(bio: PBIO): TOpenSSL_C_UINT64; cdecl;
   function Load_BIO_asn1_set_prefix(b: PBIO; prefix: Pasn1_ps_func; prefix_free: Pasn1_ps_func): TOpenSSL_C_INT; cdecl;
   function Load_BIO_asn1_get_prefix(b: PBIO; pprefix: PPasn1_ps_func; pprefix_free: PPasn1_ps_func): TOpenSSL_C_INT; cdecl;
   function Load_BIO_asn1_set_suffix(b: PBIO; suffix: Pasn1_ps_func; suffix_free: Pasn1_ps_func): TOpenSSL_C_INT; cdecl;
@@ -859,8 +859,8 @@ var
 var
   BIO_set_ex_data: function(bio: PBIO; idx: TOpenSSL_C_INT; data: pointer): TOpenSSL_C_INT; cdecl = Load_BIO_set_ex_data;
   BIO_get_ex_data: function(bio: PBIO; idx: TOpenSSL_C_INT): pointer; cdecl = Load_BIO_get_ex_data;
-  BIO_number_read: function(bio: PBIO): qword; cdecl = Load_BIO_number_read;
-  BIO_number_written: function(bio: PBIO): qword; cdecl = Load_BIO_number_written;
+  BIO_number_read: function(bio: PBIO): TOpenSSL_C_UINT64; cdecl = Load_BIO_number_read;
+  BIO_number_written: function(bio: PBIO): TOpenSSL_C_UINT64; cdecl = Load_BIO_number_written;
   { For BIO_f_asn1() }
   BIO_asn1_set_prefix: function(b: PBIO; prefix: Pasn1_ps_func; prefix_free: Pasn1_ps_func): TOpenSSL_C_INT; cdecl = Load_BIO_asn1_set_prefix;
   BIO_asn1_get_prefix: function(b: PBIO; pprefix: PPasn1_ps_func; pprefix_free: PPasn1_ps_func): TOpenSSL_C_INT; cdecl = Load_BIO_asn1_get_prefix;
@@ -3361,7 +3361,7 @@ begin
   Result := BIO_get_ex_data(bio, idx);
 end;
 
-function Load_BIO_number_read(bio: PBIO): qword; cdecl;
+function Load_BIO_number_read(bio: PBIO): TOpenSSL_C_UINT64; cdecl;
 begin
   BIO_number_read := LoadLibCryptoFunction('BIO_number_read');
   if not assigned(BIO_number_read) then
@@ -3373,7 +3373,7 @@ begin
   Result := BIO_number_read(bio);
 end;
 
-function Load_BIO_number_written(bio: PBIO): qword; cdecl;
+function Load_BIO_number_written(bio: PBIO): TOpenSSL_C_UINT64; cdecl;
 begin
   BIO_number_written := LoadLibCryptoFunction('BIO_number_written');
   if not assigned(BIO_number_written) then

@@ -18,7 +18,7 @@
 unit openssl_ct;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ct.h - Thu  7 May 11:13:25 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ct.h - Thu  7 May 12:11:38 BST 2026
   With Legacy Support Option
 }
 
@@ -406,14 +406,14 @@ type
   * current time when checking whether an SCT was issued in the future.
   * Such SCTs will fail validation, as required by RFC6962.
   }
-  function CT_POLICY_EVAL_CTX_get_time(ctx: PCT_POLICY_EVAL_CTX): qword; cdecl; external CLibCrypto name 'CT_POLICY_EVAL_CTX_get_time';
+  function CT_POLICY_EVAL_CTX_get_time(ctx: PCT_POLICY_EVAL_CTX): TOpenSSL_C_UINT64; cdecl; external CLibCrypto name 'CT_POLICY_EVAL_CTX_get_time';
   
   {* Sets the time to evaluate SCTs against, in milliseconds since the Unix epoch.
   * If an SCT's timestamp is after this time, it will be interpreted as having
   * been issued in the future. RFC6962 states that "TLS clients MUST reject SCTs
   * whose timestamp is in the future", so an SCT will not validate in this case.
   }
-  procedure CT_POLICY_EVAL_CTX_set_time(ctx: PCT_POLICY_EVAL_CTX; time_in_ms: qword); cdecl; external CLibCrypto name 'CT_POLICY_EVAL_CTX_set_time';
+  procedure CT_POLICY_EVAL_CTX_set_time(ctx: PCT_POLICY_EVAL_CTX; time_in_ms: TOpenSSL_C_UINT64); cdecl; external CLibCrypto name 'CT_POLICY_EVAL_CTX_set_time';
   {****************
   * SCT functions *
   ****************}
@@ -426,7 +426,7 @@ type
   {* Creates a new SCT from some base64-encoded strings.
   * The caller is responsible for calling SCT_free when finished with the SCT.
   }
-  function SCT_new_from_base64(version: byte; logid_base64: PAnsiChar; entry_type: Tct_log_entry_type_t; timestamp: qword; extensions_base64: PAnsiChar; signature_base64: PAnsiChar): PSCT; cdecl; external CLibCrypto name 'SCT_new_from_base64';
+  function SCT_new_from_base64(version: byte; logid_base64: PAnsiChar; entry_type: Tct_log_entry_type_t; timestamp: TOpenSSL_C_UINT64; extensions_base64: PAnsiChar; signature_base64: PAnsiChar): PSCT; cdecl; external CLibCrypto name 'SCT_new_from_base64';
   
   {* Frees the SCT and the underlying data structures.
   }
@@ -475,11 +475,11 @@ type
   
   {* Returns the timestamp for the SCT (epoch time in milliseconds).
   }
-  function SCT_get_timestamp(sct: PSCT): qword; cdecl; external CLibCrypto name 'SCT_get_timestamp';
+  function SCT_get_timestamp(sct: PSCT): TOpenSSL_C_UINT64; cdecl; external CLibCrypto name 'SCT_get_timestamp';
   
   {* Set the timestamp of an SCT (epoch time in milliseconds).
   }
-  procedure SCT_set_timestamp(sct: PSCT; timestamp: qword); cdecl; external CLibCrypto name 'SCT_set_timestamp';
+  procedure SCT_set_timestamp(sct: PSCT; timestamp: TOpenSSL_C_UINT64); cdecl; external CLibCrypto name 'SCT_set_timestamp';
   
   {* Return the NID for the signature used by the SCT.
   * For CT v1, this will be either NID_sha256WithRSAEncryption or
@@ -795,10 +795,10 @@ type
   function Load_CT_POLICY_EVAL_CTX_set1_issuer(ctx: PCT_POLICY_EVAL_CTX; issuer: PX509): TOpenSSL_C_INT; cdecl;
   function Load_CT_POLICY_EVAL_CTX_get0_log_store(ctx: PCT_POLICY_EVAL_CTX): PCTLOG_STORE; cdecl;
   procedure Load_CT_POLICY_EVAL_CTX_set_shared_CTLOG_STORE(ctx: PCT_POLICY_EVAL_CTX; log_store: PCTLOG_STORE); cdecl;
-  function Load_CT_POLICY_EVAL_CTX_get_time(ctx: PCT_POLICY_EVAL_CTX): qword; cdecl;
-  procedure Load_CT_POLICY_EVAL_CTX_set_time(ctx: PCT_POLICY_EVAL_CTX; time_in_ms: qword); cdecl;
+  function Load_CT_POLICY_EVAL_CTX_get_time(ctx: PCT_POLICY_EVAL_CTX): TOpenSSL_C_UINT64; cdecl;
+  procedure Load_CT_POLICY_EVAL_CTX_set_time(ctx: PCT_POLICY_EVAL_CTX; time_in_ms: TOpenSSL_C_UINT64); cdecl;
   function Load_SCT_new: PSCT; cdecl;
-  function Load_SCT_new_from_base64(version: byte; logid_base64: PAnsiChar; entry_type: Tct_log_entry_type_t; timestamp: qword; extensions_base64: PAnsiChar; signature_base64: PAnsiChar): PSCT; cdecl;
+  function Load_SCT_new_from_base64(version: byte; logid_base64: PAnsiChar; entry_type: Tct_log_entry_type_t; timestamp: TOpenSSL_C_UINT64; extensions_base64: PAnsiChar; signature_base64: PAnsiChar): PSCT; cdecl;
   procedure Load_SCT_free(sct: PSCT); cdecl;
   procedure Load_SCT_LIST_free(a: Pstack_st_SCT); cdecl;
   function Load_SCT_get_version(sct: PSCT): Tsct_version_t; cdecl;
@@ -808,8 +808,8 @@ type
   function Load_SCT_get0_log_id(sct: PSCT; log_id: PPbyte): TOpenSSL_C_SIZET; cdecl;
   function Load_SCT_set0_log_id(sct: PSCT; log_id: Pbyte; log_id_len: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
   function Load_SCT_set1_log_id(sct: PSCT; log_id: Pbyte; log_id_len: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
-  function Load_SCT_get_timestamp(sct: PSCT): qword; cdecl;
-  procedure Load_SCT_set_timestamp(sct: PSCT; timestamp: qword); cdecl;
+  function Load_SCT_get_timestamp(sct: PSCT): TOpenSSL_C_UINT64; cdecl;
+  procedure Load_SCT_set_timestamp(sct: PSCT; timestamp: TOpenSSL_C_UINT64); cdecl;
   function Load_SCT_get_signature_nid(sct: PSCT): TOpenSSL_C_INT; cdecl;
   function Load_SCT_set_signature_nid(sct: PSCT; nid: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
   function Load_SCT_get0_extensions(sct: PSCT; ext: PPbyte): TOpenSSL_C_SIZET; cdecl;
@@ -881,14 +881,14 @@ var
   * current time when checking whether an SCT was issued in the future.
   * Such SCTs will fail validation, as required by RFC6962.
   }
-  CT_POLICY_EVAL_CTX_get_time: function(ctx: PCT_POLICY_EVAL_CTX): qword; cdecl = Load_CT_POLICY_EVAL_CTX_get_time;
+  CT_POLICY_EVAL_CTX_get_time: function(ctx: PCT_POLICY_EVAL_CTX): TOpenSSL_C_UINT64; cdecl = Load_CT_POLICY_EVAL_CTX_get_time;
   
   {* Sets the time to evaluate SCTs against, in milliseconds since the Unix epoch.
   * If an SCT's timestamp is after this time, it will be interpreted as having
   * been issued in the future. RFC6962 states that "TLS clients MUST reject SCTs
   * whose timestamp is in the future", so an SCT will not validate in this case.
   }
-  CT_POLICY_EVAL_CTX_set_time: procedure(ctx: PCT_POLICY_EVAL_CTX; time_in_ms: qword); cdecl = Load_CT_POLICY_EVAL_CTX_set_time;
+  CT_POLICY_EVAL_CTX_set_time: procedure(ctx: PCT_POLICY_EVAL_CTX; time_in_ms: TOpenSSL_C_UINT64); cdecl = Load_CT_POLICY_EVAL_CTX_set_time;
   {****************
   * SCT functions *
   ****************}
@@ -901,7 +901,7 @@ var
   {* Creates a new SCT from some base64-encoded strings.
   * The caller is responsible for calling SCT_free when finished with the SCT.
   }
-  SCT_new_from_base64: function(version: byte; logid_base64: PAnsiChar; entry_type: Tct_log_entry_type_t; timestamp: qword; extensions_base64: PAnsiChar; signature_base64: PAnsiChar): PSCT; cdecl = Load_SCT_new_from_base64;
+  SCT_new_from_base64: function(version: byte; logid_base64: PAnsiChar; entry_type: Tct_log_entry_type_t; timestamp: TOpenSSL_C_UINT64; extensions_base64: PAnsiChar; signature_base64: PAnsiChar): PSCT; cdecl = Load_SCT_new_from_base64;
   
   {* Frees the SCT and the underlying data structures.
   }
@@ -950,11 +950,11 @@ var
   
   {* Returns the timestamp for the SCT (epoch time in milliseconds).
   }
-  SCT_get_timestamp: function(sct: PSCT): qword; cdecl = Load_SCT_get_timestamp;
+  SCT_get_timestamp: function(sct: PSCT): TOpenSSL_C_UINT64; cdecl = Load_SCT_get_timestamp;
   
   {* Set the timestamp of an SCT (epoch time in milliseconds).
   }
-  SCT_set_timestamp: procedure(sct: PSCT; timestamp: qword); cdecl = Load_SCT_set_timestamp;
+  SCT_set_timestamp: procedure(sct: PSCT; timestamp: TOpenSSL_C_UINT64); cdecl = Load_SCT_set_timestamp;
   
   {* Return the NID for the signature used by the SCT.
   * For CT v1, this will be either NID_sha256WithRSAEncryption or
@@ -2013,7 +2013,7 @@ begin
   CT_POLICY_EVAL_CTX_set_shared_CTLOG_STORE(ctx, log_store);
 end;
 
-function Load_CT_POLICY_EVAL_CTX_get_time(ctx: PCT_POLICY_EVAL_CTX): qword; cdecl;
+function Load_CT_POLICY_EVAL_CTX_get_time(ctx: PCT_POLICY_EVAL_CTX): TOpenSSL_C_UINT64; cdecl;
 begin
   CT_POLICY_EVAL_CTX_get_time := LoadLibCryptoFunction('CT_POLICY_EVAL_CTX_get_time');
   if not assigned(CT_POLICY_EVAL_CTX_get_time) then
@@ -2025,7 +2025,7 @@ begin
   Result := CT_POLICY_EVAL_CTX_get_time(ctx);
 end;
 
-procedure Load_CT_POLICY_EVAL_CTX_set_time(ctx: PCT_POLICY_EVAL_CTX; time_in_ms: qword); cdecl;
+procedure Load_CT_POLICY_EVAL_CTX_set_time(ctx: PCT_POLICY_EVAL_CTX; time_in_ms: TOpenSSL_C_UINT64); cdecl;
 begin
   CT_POLICY_EVAL_CTX_set_time := LoadLibCryptoFunction('CT_POLICY_EVAL_CTX_set_time');
   if not assigned(CT_POLICY_EVAL_CTX_set_time) then
@@ -2049,7 +2049,7 @@ begin
   Result := SCT_new;
 end;
 
-function Load_SCT_new_from_base64(version: byte; logid_base64: PAnsiChar; entry_type: Tct_log_entry_type_t; timestamp: qword; extensions_base64: PAnsiChar; signature_base64: PAnsiChar): PSCT; cdecl;
+function Load_SCT_new_from_base64(version: byte; logid_base64: PAnsiChar; entry_type: Tct_log_entry_type_t; timestamp: TOpenSSL_C_UINT64; extensions_base64: PAnsiChar; signature_base64: PAnsiChar): PSCT; cdecl;
 begin
   SCT_new_from_base64 := LoadLibCryptoFunction('SCT_new_from_base64');
   if not assigned(SCT_new_from_base64) then
@@ -2169,7 +2169,7 @@ begin
   Result := SCT_set1_log_id(sct, log_id, log_id_len);
 end;
 
-function Load_SCT_get_timestamp(sct: PSCT): qword; cdecl;
+function Load_SCT_get_timestamp(sct: PSCT): TOpenSSL_C_UINT64; cdecl;
 begin
   SCT_get_timestamp := LoadLibCryptoFunction('SCT_get_timestamp');
   if not assigned(SCT_get_timestamp) then
@@ -2181,7 +2181,7 @@ begin
   Result := SCT_get_timestamp(sct);
 end;
 
-procedure Load_SCT_set_timestamp(sct: PSCT; timestamp: qword); cdecl;
+procedure Load_SCT_set_timestamp(sct: PSCT; timestamp: TOpenSSL_C_UINT64); cdecl;
 begin
   SCT_set_timestamp := LoadLibCryptoFunction('SCT_set_timestamp');
   if not assigned(SCT_set_timestamp) then

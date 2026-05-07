@@ -15,7 +15,7 @@
 
 
 {
-  Generated from OpenSSL 3.0.20 Header File macros.h - Thu  7 May 11:13:44 BST 2026
+  Generated from OpenSSL 3.0.20 Header File macros.h - Thu  7 May 12:11:57 BST 2026
   With Legacy Support Option
 }
 
@@ -288,19 +288,17 @@ const
   
   {* Make our own variants of __FILE__ and __LINE__, depending on configuration
   }
-  {$ifndef  OPENSSL_FILE}
-    {$ifdef OPENSSL_NO_FILENAMES}
-
-const
-  OPENSSL_FILE = '';
-  OPENSSL_LINE = 0;
-    {$else}
-
-const
-  OPENSSL_FILE = __FILE__;
-  OPENSSL_LINE = __LINE__;
-    {$endif}
-  {$endif}
+  
+  {#ifndef OPENSSL_FILE
+  #ifdef OPENSSL_NO_FILENAMES
+  #define OPENSSL_FILE ""
+  #define OPENSSL_LINE 0
+  #else
+  #define OPENSSL_FILE __FILE__
+  #define OPENSSL_LINE __LINE__
+  #endif
+  #endif
+  }
   
   {* __func__ was standardized in C99, so for any compiler that claims
   * to implement that language level or newer, we assume we can safely

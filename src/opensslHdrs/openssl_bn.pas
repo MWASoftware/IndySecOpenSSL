@@ -18,7 +18,7 @@
 unit openssl_bn;
 
 {
-  Generated from OpenSSL 3.0.20 Header File bn.h - Thu  7 May 11:13:05 BST 2026
+  Generated from OpenSSL 3.0.20 Header File bn.h - Thu  7 May 12:11:19 BST 2026
   With Legacy Support Option
 }
 
@@ -71,7 +71,7 @@ type
   PPBN_ULONG = ^PBN_ULONG;
   {end of auto-generated forward references}
 
-  TBN_ULONG = qword;
+  TBN_ULONG = TOpenSSL_C_UINT64;
 
 const
   BN_BYTES = 8;
@@ -229,7 +229,8 @@ var
 
 const
   BN_prime_checks = 0;
-  {# define  BN_prime_checks_for_size(b) ((b) >= 3747 ? 3 : (b) >= 1345 ? 4 : (b) >= 476 ? 5 : (b) >= 400 ? 6 : (b) >= 347 ? 7 : (b) >= 308 ? 8 : (b) >= 55 ? 27 : 34)} {Param Type resolution error - calls function in another unit? at line no 180}
+  {# define  BN_prime_checks_for_size(b) ((b) >= 3747 ? 3 : (b) >= 1345 ? 4 : (b) >= 476 ? 5 : (b) >= 400 ? 6 : (b) >= 347 ? 7 : (b) 
+>= 308 ? 8 : (b) >= 55 ? 27 : 34)} {Param Type resolution error - calls function in another unit? at line no 180}
     
     {* BN_prime_checks_for_size() returns the number of Miller-Rabin iterations
     * that will be done for checking that a random number is probably prime. The

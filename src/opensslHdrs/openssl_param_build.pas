@@ -18,7 +18,7 @@
 unit openssl_param_build;
 
 {
-  Generated from OpenSSL 3.0.20 Header File param_build.h - Thu  7 May 11:13:51 BST 2026
+  Generated from OpenSSL 3.0.20 Header File param_build.h - Thu  7 May 12:12:05 BST 2026
   With Legacy Support Option
 }
 
@@ -50,7 +50,7 @@ uses OpenSSLAPI,openssl_params,openssl_types;
   function OSSL_PARAM_BLD_push_int32(bld: POSSL_PARAM_BLD; key: PAnsiChar; val: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PARAM_BLD_push_int32';
   function OSSL_PARAM_BLD_push_uint32(bld: POSSL_PARAM_BLD; key: PAnsiChar; val: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PARAM_BLD_push_uint32';
   function OSSL_PARAM_BLD_push_int64(bld: POSSL_PARAM_BLD; key: PAnsiChar; val: TOpenSSL_C_LONG): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PARAM_BLD_push_int64';
-  function OSSL_PARAM_BLD_push_uint64(bld: POSSL_PARAM_BLD; key: PAnsiChar; val: qword): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PARAM_BLD_push_uint64';
+  function OSSL_PARAM_BLD_push_uint64(bld: POSSL_PARAM_BLD; key: PAnsiChar; val: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PARAM_BLD_push_uint64';
   function OSSL_PARAM_BLD_push_size_t(bld: POSSL_PARAM_BLD; key: PAnsiChar; val: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PARAM_BLD_push_size_t';
   function OSSL_PARAM_BLD_push_time_t(bld: POSSL_PARAM_BLD; key: PAnsiChar; val: TOpenSSL_C_TIMET): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PARAM_BLD_push_time_t';
   function OSSL_PARAM_BLD_push_double(bld: POSSL_PARAM_BLD; key: PAnsiChar; val: TOpenSSL_C_DOUBLE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PARAM_BLD_push_double';
@@ -96,7 +96,7 @@ uses OpenSSLAPI,openssl_params,openssl_types;
   function Load_OSSL_PARAM_BLD_push_int32(bld: POSSL_PARAM_BLD; key: PAnsiChar; val: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
   function Load_OSSL_PARAM_BLD_push_uint32(bld: POSSL_PARAM_BLD; key: PAnsiChar; val: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl;
   function Load_OSSL_PARAM_BLD_push_int64(bld: POSSL_PARAM_BLD; key: PAnsiChar; val: TOpenSSL_C_LONG): TOpenSSL_C_INT; cdecl;
-  function Load_OSSL_PARAM_BLD_push_uint64(bld: POSSL_PARAM_BLD; key: PAnsiChar; val: qword): TOpenSSL_C_INT; cdecl;
+  function Load_OSSL_PARAM_BLD_push_uint64(bld: POSSL_PARAM_BLD; key: PAnsiChar; val: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl;
   function Load_OSSL_PARAM_BLD_push_size_t(bld: POSSL_PARAM_BLD; key: PAnsiChar; val: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
   function Load_OSSL_PARAM_BLD_push_time_t(bld: POSSL_PARAM_BLD; key: PAnsiChar; val: TOpenSSL_C_TIMET): TOpenSSL_C_INT; cdecl;
   function Load_OSSL_PARAM_BLD_push_double(bld: POSSL_PARAM_BLD; key: PAnsiChar; val: TOpenSSL_C_DOUBLE): TOpenSSL_C_INT; cdecl;
@@ -118,7 +118,7 @@ var
   OSSL_PARAM_BLD_push_int32: function(bld: POSSL_PARAM_BLD; key: PAnsiChar; val: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_OSSL_PARAM_BLD_push_int32;
   OSSL_PARAM_BLD_push_uint32: function(bld: POSSL_PARAM_BLD; key: PAnsiChar; val: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl = Load_OSSL_PARAM_BLD_push_uint32;
   OSSL_PARAM_BLD_push_int64: function(bld: POSSL_PARAM_BLD; key: PAnsiChar; val: TOpenSSL_C_LONG): TOpenSSL_C_INT; cdecl = Load_OSSL_PARAM_BLD_push_int64;
-  OSSL_PARAM_BLD_push_uint64: function(bld: POSSL_PARAM_BLD; key: PAnsiChar; val: qword): TOpenSSL_C_INT; cdecl = Load_OSSL_PARAM_BLD_push_uint64;
+  OSSL_PARAM_BLD_push_uint64: function(bld: POSSL_PARAM_BLD; key: PAnsiChar; val: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl = Load_OSSL_PARAM_BLD_push_uint64;
   OSSL_PARAM_BLD_push_size_t: function(bld: POSSL_PARAM_BLD; key: PAnsiChar; val: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl = Load_OSSL_PARAM_BLD_push_size_t;
   OSSL_PARAM_BLD_push_time_t: function(bld: POSSL_PARAM_BLD; key: PAnsiChar; val: TOpenSSL_C_TIMET): TOpenSSL_C_INT; cdecl = Load_OSSL_PARAM_BLD_push_time_t;
   OSSL_PARAM_BLD_push_double: function(bld: POSSL_PARAM_BLD; key: PAnsiChar; val: TOpenSSL_C_DOUBLE): TOpenSSL_C_INT; cdecl = Load_OSSL_PARAM_BLD_push_double;
@@ -291,7 +291,7 @@ begin
   Result := OSSL_PARAM_BLD_push_int64(bld, key, val);
 end;
 
-function Load_OSSL_PARAM_BLD_push_uint64(bld: POSSL_PARAM_BLD; key: PAnsiChar; val: qword): TOpenSSL_C_INT; cdecl;
+function Load_OSSL_PARAM_BLD_push_uint64(bld: POSSL_PARAM_BLD; key: PAnsiChar; val: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl;
 begin
   OSSL_PARAM_BLD_push_uint64 := LoadLibCryptoFunction('OSSL_PARAM_BLD_push_uint64');
   if not assigned(OSSL_PARAM_BLD_push_uint64) then

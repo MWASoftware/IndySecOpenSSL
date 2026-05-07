@@ -18,7 +18,7 @@
 unit openssl_cms;
 
 {
-  Generated from OpenSSL 3.0.20 Header File cms.h - Thu  7 May 11:13:13 BST 2026
+  Generated from OpenSSL 3.0.20 Header File cms.h - Thu  7 May 12:11:26 BST 2026
   With Legacy Support Option
 }
 
@@ -131,7 +131,8 @@ type
   {# define  sk_CMS_SignerInfo_value(sk,idx) ((CMS_SignerInfo *)OPENSSL_sk_value(ossl_check_const_CMS_SignerInfo_sk_type(sk), (idx)))} {Function argument out of range at line no 49}
   {# define  sk_CMS_SignerInfo_new(cmp) ((STACK_OF(CMS_SignerInfo) *)OPENSSL_sk_new(ossl_check_CMS_SignerInfo_compfunc_type(cmp)))}
   {# define  sk_CMS_SignerInfo_new_null() ((STACK_OF(CMS_SignerInfo) *)OPENSSL_sk_new_null())}
-  {# define  sk_CMS_SignerInfo_new_reserve(cmp,n) ((STACK_OF(CMS_SignerInfo) *)OPENSSL_sk_new_reserve(ossl_check_CMS_SignerInfo_compfunc_type(cmp), (n)))}
+  {# define  sk_CMS_SignerInfo_new_reserve(cmp,n) ((STACK_OF(CMS_SignerInfo) *)OPENSSL_sk_new_reserve(ossl_check_CMS_SignerInfo_compfunc_type(cmp),
+ (n)))}
   {# define  sk_CMS_SignerInfo_reserve(sk,n) OPENSSL_sk_reserve(ossl_check_CMS_SignerInfo_sk_type(sk), (n))} {Function argument out of range at line no 53}
   {# define  sk_CMS_SignerInfo_free(sk) OPENSSL_sk_free(ossl_check_CMS_SignerInfo_sk_type(sk))} {Macro Return Type unknown at line no 54}
   {# define  sk_CMS_SignerInfo_zero(sk) OPENSSL_sk_zero(ossl_check_CMS_SignerInfo_sk_type(sk))} {Macro Return Type unknown at line no 55}
@@ -142,15 +143,18 @@ type
   function sk_CMS_SignerInfo_pop(sk:Pstack_st_CMS_SignerInfo): PCMS_SignerInfo; inline;
   function sk_CMS_SignerInfo_shift(sk:Pstack_st_CMS_SignerInfo): PCMS_SignerInfo; inline;
   {# define  sk_CMS_SignerInfo_pop_free(sk,freefunc) OPENSSL_sk_pop_free(ossl_check_CMS_SignerInfo_sk_type(sk),ossl_check_CMS_SignerInfo_freefunc_type(freefunc))} {Macro Return Type unknown at line no 62}
-  {# define  sk_CMS_SignerInfo_insert(sk,ptr,idx) OPENSSL_sk_insert(ossl_check_CMS_SignerInfo_sk_type(sk), ossl_check_CMS_SignerInfo_type(ptr), (idx))} {Function argument out of range at line no 63}
+  {# define  sk_CMS_SignerInfo_insert(sk,ptr,idx) OPENSSL_sk_insert(ossl_check_CMS_SignerInfo_sk_type(sk), ossl_check_CMS_SignerInfo_type(ptr),
+ (idx))} {Function argument out of range at line no 63}
   {# define  sk_CMS_SignerInfo_set(sk,idx,ptr) ((CMS_SignerInfo *)OPENSSL_sk_set(ossl_check_CMS_SignerInfo_sk_type(sk), (idx), ossl_check_CMS_SignerInfo_type(ptr)))} {Function argument out of range at line no 64}
   {# define  sk_CMS_SignerInfo_find(sk,ptr) OPENSSL_sk_find(ossl_check_CMS_SignerInfo_sk_type(sk), ossl_check_CMS_SignerInfo_type(ptr))} {Macro Return Type unknown at line no 65}
   {# define  sk_CMS_SignerInfo_find_ex(sk,ptr) OPENSSL_sk_find_ex(ossl_check_CMS_SignerInfo_sk_type(sk), ossl_check_CMS_SignerInfo_type(ptr))} {Macro Return Type unknown at line no 66}
-  {# define  sk_CMS_SignerInfo_find_all(sk,ptr,pnum) OPENSSL_sk_find_all(ossl_check_CMS_SignerInfo_sk_type(sk), ossl_check_CMS_SignerInfo_type(ptr), pnum)} {Function argument out of range at line no 67}
+  {# define  sk_CMS_SignerInfo_find_all(sk,ptr,pnum) OPENSSL_sk_find_all(ossl_check_CMS_SignerInfo_sk_type(sk), ossl_check_CMS_SignerInfo_type(ptr),
+ pnum)} {Function argument out of range at line no 67}
   {# define  sk_CMS_SignerInfo_sort(sk) OPENSSL_sk_sort(ossl_check_CMS_SignerInfo_sk_type(sk))} {Macro Return Type unknown at line no 68}
   {# define  sk_CMS_SignerInfo_is_sorted(sk) OPENSSL_sk_is_sorted(ossl_check_const_CMS_SignerInfo_sk_type(sk))} {Macro Return Type unknown at line no 69}
   {# define  sk_CMS_SignerInfo_dup(sk) ((STACK_OF(CMS_SignerInfo) *)OPENSSL_sk_dup(ossl_check_const_CMS_SignerInfo_sk_type(sk)))}
-  {# define  sk_CMS_SignerInfo_deep_copy(sk,copyfunc,freefunc) ((STACK_OF(CMS_SignerInfo) *)OPENSSL_sk_deep_copy(ossl_check_const_CMS_SignerInfo_sk_type(sk), ossl_check_CMS_SignerInfo_copyfunc_type(copyfunc), ossl_check_CMS_SignerInfo_freefunc_type(freefunc)))}
+  {# define  sk_CMS_SignerInfo_deep_copy(sk,copyfunc,freefunc) ((STACK_OF(CMS_SignerInfo) *)OPENSSL_sk_deep_copy(ossl_check_const_CMS_SignerInfo_sk_type(sk),
+ ossl_check_CMS_SignerInfo_copyfunc_type(copyfunc), ossl_check_CMS_SignerInfo_freefunc_type(freefunc)))}
   function sk_CMS_SignerInfo_set_cmp_func(sk:Pstack_st_CMS_SignerInfo; cmp:Tsk_CMS_SignerInfo_compfunc): Tsk_CMS_SignerInfo_compfunc; inline;
 
 type
@@ -179,29 +183,37 @@ type
   function ossl_check_CMS_RecipientEncryptedKey_copyfunc_type(cpy: Tsk_CMS_RecipientEncryptedKey_copyfunc): TOPENSSL_sk_copyfunc{Has C Attribute: unused}; inline;
   function ossl_check_CMS_RecipientEncryptedKey_freefunc_type(fr: Tsk_CMS_RecipientEncryptedKey_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
   {# define  sk_CMS_RecipientEncryptedKey_num(sk) OPENSSL_sk_num(ossl_check_const_CMS_RecipientEncryptedKey_sk_type(sk))} {Macro Return Type unknown at line no 74}
-  {# define  sk_CMS_RecipientEncryptedKey_value(sk,idx) ((CMS_RecipientEncryptedKey *)OPENSSL_sk_value(ossl_check_const_CMS_RecipientEncryptedKey_sk_type(sk), (idx)))} {Function argument out of range at line no 75}
+  {# define  sk_CMS_RecipientEncryptedKey_value(sk,idx) ((CMS_RecipientEncryptedKey *)OPENSSL_sk_value(ossl_check_const_CMS_RecipientEncryptedKey_sk_type(sk),
+ (idx)))} {Function argument out of range at line no 75}
   {# define  sk_CMS_RecipientEncryptedKey_new(cmp) ((STACK_OF(CMS_RecipientEncryptedKey) *)OPENSSL_sk_new(ossl_check_CMS_RecipientEncryptedKey_compfunc_type(cmp)))}
   {# define  sk_CMS_RecipientEncryptedKey_new_null() ((STACK_OF(CMS_RecipientEncryptedKey) *)OPENSSL_sk_new_null())}
-  {# define  sk_CMS_RecipientEncryptedKey_new_reserve(cmp,n) ((STACK_OF(CMS_RecipientEncryptedKey) *)OPENSSL_sk_new_reserve(ossl_check_CMS_RecipientEncryptedKey_compfunc_type(cmp), (n)))}
+  {# define  sk_CMS_RecipientEncryptedKey_new_reserve(cmp,n) ((STACK_OF(CMS_RecipientEncryptedKey) *)OPENSSL_sk_new_reserve(ossl_check_CMS_RecipientEncryptedKey_compfunc_type(cmp),
+ (n)))}
   {# define  sk_CMS_RecipientEncryptedKey_reserve(sk,n) OPENSSL_sk_reserve(ossl_check_CMS_RecipientEncryptedKey_sk_type(sk), (n))} {Function argument out of range at line no 79}
   {# define  sk_CMS_RecipientEncryptedKey_free(sk) OPENSSL_sk_free(ossl_check_CMS_RecipientEncryptedKey_sk_type(sk))} {Macro Return Type unknown at line no 80}
   {# define  sk_CMS_RecipientEncryptedKey_zero(sk) OPENSSL_sk_zero(ossl_check_CMS_RecipientEncryptedKey_sk_type(sk))} {Macro Return Type unknown at line no 81}
-  {# define  sk_CMS_RecipientEncryptedKey_delete(sk,i) ((CMS_RecipientEncryptedKey *)OPENSSL_sk_delete(ossl_check_CMS_RecipientEncryptedKey_sk_type(sk), (i)))} {Function argument out of range at line no 82}
+  {# define  sk_CMS_RecipientEncryptedKey_delete(sk,i) ((CMS_RecipientEncryptedKey *)OPENSSL_sk_delete(ossl_check_CMS_RecipientEncryptedKey_sk_type(sk),
+ (i)))} {Function argument out of range at line no 82}
   function sk_CMS_RecipientEncryptedKey_delete_ptr(sk:Pstack_st_CMS_RecipientEncryptedKey; ptr:PCMS_RecipientEncryptedKey): PCMS_RecipientEncryptedKey; inline;
   {# define  sk_CMS_RecipientEncryptedKey_push(sk,ptr) OPENSSL_sk_push(ossl_check_CMS_RecipientEncryptedKey_sk_type(sk), ossl_check_CMS_RecipientEncryptedKey_type(ptr))} {Macro Return Type unknown at line no 84}
   {# define  sk_CMS_RecipientEncryptedKey_unshift(sk,ptr) OPENSSL_sk_unshift(ossl_check_CMS_RecipientEncryptedKey_sk_type(sk), ossl_check_CMS_RecipientEncryptedKey_type(ptr))} {Macro Return Type unknown at line no 85}
   function sk_CMS_RecipientEncryptedKey_pop(sk:Pstack_st_CMS_RecipientEncryptedKey): PCMS_RecipientEncryptedKey; inline;
   function sk_CMS_RecipientEncryptedKey_shift(sk:Pstack_st_CMS_RecipientEncryptedKey): PCMS_RecipientEncryptedKey; inline;
-  {# define  sk_CMS_RecipientEncryptedKey_pop_free(sk,freefunc) OPENSSL_sk_pop_free(ossl_check_CMS_RecipientEncryptedKey_sk_type(sk),ossl_check_CMS_RecipientEncryptedKey_freefunc_type(freefunc))} {Macro Return Type unknown at line no 88}
-  {# define  sk_CMS_RecipientEncryptedKey_insert(sk,ptr,idx) OPENSSL_sk_insert(ossl_check_CMS_RecipientEncryptedKey_sk_type(sk), ossl_check_CMS_RecipientEncryptedKey_type(ptr), (idx))} {Function argument out of range at line no 89}
-  {# define  sk_CMS_RecipientEncryptedKey_set(sk,idx,ptr) ((CMS_RecipientEncryptedKey *)OPENSSL_sk_set(ossl_check_CMS_RecipientEncryptedKey_sk_type(sk), (idx), ossl_check_CMS_RecipientEncryptedKey_type(ptr)))} {Function argument out of range at line no 90}
+  {# define  sk_CMS_RecipientEncryptedKey_pop_free(sk,freefunc) OPENSSL_sk_pop_free(ossl_check_CMS_RecipientEncryptedKey_sk_type(sk),
+ossl_check_CMS_RecipientEncryptedKey_freefunc_type(freefunc))} {Macro Return Type unknown at line no 88}
+  {# define  sk_CMS_RecipientEncryptedKey_insert(sk,ptr,idx) OPENSSL_sk_insert(ossl_check_CMS_RecipientEncryptedKey_sk_type(sk), ossl_check_CMS_RecipientEncryptedKey_type(ptr),
+ (idx))} {Function argument out of range at line no 89}
+  {# define  sk_CMS_RecipientEncryptedKey_set(sk,idx,ptr) ((CMS_RecipientEncryptedKey *)OPENSSL_sk_set(ossl_check_CMS_RecipientEncryptedKey_sk_type(sk),
+ (idx), ossl_check_CMS_RecipientEncryptedKey_type(ptr)))} {Function argument out of range at line no 90}
   {# define  sk_CMS_RecipientEncryptedKey_find(sk,ptr) OPENSSL_sk_find(ossl_check_CMS_RecipientEncryptedKey_sk_type(sk), ossl_check_CMS_RecipientEncryptedKey_type(ptr))} {Macro Return Type unknown at line no 91}
   {# define  sk_CMS_RecipientEncryptedKey_find_ex(sk,ptr) OPENSSL_sk_find_ex(ossl_check_CMS_RecipientEncryptedKey_sk_type(sk), ossl_check_CMS_RecipientEncryptedKey_type(ptr))} {Macro Return Type unknown at line no 92}
-  {# define  sk_CMS_RecipientEncryptedKey_find_all(sk,ptr,pnum) OPENSSL_sk_find_all(ossl_check_CMS_RecipientEncryptedKey_sk_type(sk), ossl_check_CMS_RecipientEncryptedKey_type(ptr), pnum)} {Function argument out of range at line no 93}
+  {# define  sk_CMS_RecipientEncryptedKey_find_all(sk,ptr,pnum) OPENSSL_sk_find_all(ossl_check_CMS_RecipientEncryptedKey_sk_type(sk),
+ ossl_check_CMS_RecipientEncryptedKey_type(ptr), pnum)} {Function argument out of range at line no 93}
   {# define  sk_CMS_RecipientEncryptedKey_sort(sk) OPENSSL_sk_sort(ossl_check_CMS_RecipientEncryptedKey_sk_type(sk))} {Macro Return Type unknown at line no 94}
   {# define  sk_CMS_RecipientEncryptedKey_is_sorted(sk) OPENSSL_sk_is_sorted(ossl_check_const_CMS_RecipientEncryptedKey_sk_type(sk))} {Macro Return Type unknown at line no 95}
   {# define  sk_CMS_RecipientEncryptedKey_dup(sk) ((STACK_OF(CMS_RecipientEncryptedKey) *)OPENSSL_sk_dup(ossl_check_const_CMS_RecipientEncryptedKey_sk_type(sk)))}
-  {# define  sk_CMS_RecipientEncryptedKey_deep_copy(sk,copyfunc,freefunc) ((STACK_OF(CMS_RecipientEncryptedKey) *)OPENSSL_sk_deep_copy(ossl_check_const_CMS_RecipientEncryptedKey_sk_type(sk), ossl_check_CMS_RecipientEncryptedKey_copyfunc_type(copyfunc), ossl_check_CMS_RecipientEncryptedKey_freefunc_type(freefunc)))}
+  {# define  sk_CMS_RecipientEncryptedKey_deep_copy(sk,copyfunc,freefunc) ((STACK_OF(CMS_RecipientEncryptedKey) *)OPENSSL_sk_deep_copy(ossl_check_const_CMS_RecipientEncryptedKey_sk_type(sk),
+ ossl_check_CMS_RecipientEncryptedKey_copyfunc_type(copyfunc), ossl_check_CMS_RecipientEncryptedKey_freefunc_type(freefunc)))}
   function sk_CMS_RecipientEncryptedKey_set_cmp_func(sk:Pstack_st_CMS_RecipientEncryptedKey; cmp:Tsk_CMS_RecipientEncryptedKey_compfunc): Tsk_CMS_RecipientEncryptedKey_compfunc; inline;
 
 type
@@ -230,10 +242,12 @@ type
   function ossl_check_CMS_RecipientInfo_copyfunc_type(cpy: Tsk_CMS_RecipientInfo_copyfunc): TOPENSSL_sk_copyfunc{Has C Attribute: unused}; inline;
   function ossl_check_CMS_RecipientInfo_freefunc_type(fr: Tsk_CMS_RecipientInfo_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
   {# define  sk_CMS_RecipientInfo_num(sk) OPENSSL_sk_num(ossl_check_const_CMS_RecipientInfo_sk_type(sk))} {Macro Return Type unknown at line no 100}
-  {# define  sk_CMS_RecipientInfo_value(sk,idx) ((CMS_RecipientInfo *)OPENSSL_sk_value(ossl_check_const_CMS_RecipientInfo_sk_type(sk), (idx)))} {Function argument out of range at line no 101}
+  {# define  sk_CMS_RecipientInfo_value(sk,idx) ((CMS_RecipientInfo *)OPENSSL_sk_value(ossl_check_const_CMS_RecipientInfo_sk_type(sk),
+ (idx)))} {Function argument out of range at line no 101}
   {# define  sk_CMS_RecipientInfo_new(cmp) ((STACK_OF(CMS_RecipientInfo) *)OPENSSL_sk_new(ossl_check_CMS_RecipientInfo_compfunc_type(cmp)))}
   {# define  sk_CMS_RecipientInfo_new_null() ((STACK_OF(CMS_RecipientInfo) *)OPENSSL_sk_new_null())}
-  {# define  sk_CMS_RecipientInfo_new_reserve(cmp,n) ((STACK_OF(CMS_RecipientInfo) *)OPENSSL_sk_new_reserve(ossl_check_CMS_RecipientInfo_compfunc_type(cmp), (n)))}
+  {# define  sk_CMS_RecipientInfo_new_reserve(cmp,n) ((STACK_OF(CMS_RecipientInfo) *)OPENSSL_sk_new_reserve(ossl_check_CMS_RecipientInfo_compfunc_type(cmp),
+ (n)))}
   {# define  sk_CMS_RecipientInfo_reserve(sk,n) OPENSSL_sk_reserve(ossl_check_CMS_RecipientInfo_sk_type(sk), (n))} {Function argument out of range at line no 105}
   {# define  sk_CMS_RecipientInfo_free(sk) OPENSSL_sk_free(ossl_check_CMS_RecipientInfo_sk_type(sk))} {Macro Return Type unknown at line no 106}
   {# define  sk_CMS_RecipientInfo_zero(sk) OPENSSL_sk_zero(ossl_check_CMS_RecipientInfo_sk_type(sk))} {Macro Return Type unknown at line no 107}
@@ -244,15 +258,19 @@ type
   function sk_CMS_RecipientInfo_pop(sk:Pstack_st_CMS_RecipientInfo): PCMS_RecipientInfo; inline;
   function sk_CMS_RecipientInfo_shift(sk:Pstack_st_CMS_RecipientInfo): PCMS_RecipientInfo; inline;
   {# define  sk_CMS_RecipientInfo_pop_free(sk,freefunc) OPENSSL_sk_pop_free(ossl_check_CMS_RecipientInfo_sk_type(sk),ossl_check_CMS_RecipientInfo_freefunc_type(freefunc))} {Macro Return Type unknown at line no 114}
-  {# define  sk_CMS_RecipientInfo_insert(sk,ptr,idx) OPENSSL_sk_insert(ossl_check_CMS_RecipientInfo_sk_type(sk), ossl_check_CMS_RecipientInfo_type(ptr), (idx))} {Function argument out of range at line no 115}
-  {# define  sk_CMS_RecipientInfo_set(sk,idx,ptr) ((CMS_RecipientInfo *)OPENSSL_sk_set(ossl_check_CMS_RecipientInfo_sk_type(sk), (idx), ossl_check_CMS_RecipientInfo_type(ptr)))} {Function argument out of range at line no 116}
+  {# define  sk_CMS_RecipientInfo_insert(sk,ptr,idx) OPENSSL_sk_insert(ossl_check_CMS_RecipientInfo_sk_type(sk), ossl_check_CMS_RecipientInfo_type(ptr),
+ (idx))} {Function argument out of range at line no 115}
+  {# define  sk_CMS_RecipientInfo_set(sk,idx,ptr) ((CMS_RecipientInfo *)OPENSSL_sk_set(ossl_check_CMS_RecipientInfo_sk_type(sk), (idx),
+ ossl_check_CMS_RecipientInfo_type(ptr)))} {Function argument out of range at line no 116}
   {# define  sk_CMS_RecipientInfo_find(sk,ptr) OPENSSL_sk_find(ossl_check_CMS_RecipientInfo_sk_type(sk), ossl_check_CMS_RecipientInfo_type(ptr))} {Macro Return Type unknown at line no 117}
   {# define  sk_CMS_RecipientInfo_find_ex(sk,ptr) OPENSSL_sk_find_ex(ossl_check_CMS_RecipientInfo_sk_type(sk), ossl_check_CMS_RecipientInfo_type(ptr))} {Macro Return Type unknown at line no 118}
-  {# define  sk_CMS_RecipientInfo_find_all(sk,ptr,pnum) OPENSSL_sk_find_all(ossl_check_CMS_RecipientInfo_sk_type(sk), ossl_check_CMS_RecipientInfo_type(ptr), pnum)} {Function argument out of range at line no 119}
+  {# define  sk_CMS_RecipientInfo_find_all(sk,ptr,pnum) OPENSSL_sk_find_all(ossl_check_CMS_RecipientInfo_sk_type(sk), ossl_check_CMS_RecipientInfo_type(ptr),
+ pnum)} {Function argument out of range at line no 119}
   {# define  sk_CMS_RecipientInfo_sort(sk) OPENSSL_sk_sort(ossl_check_CMS_RecipientInfo_sk_type(sk))} {Macro Return Type unknown at line no 120}
   {# define  sk_CMS_RecipientInfo_is_sorted(sk) OPENSSL_sk_is_sorted(ossl_check_const_CMS_RecipientInfo_sk_type(sk))} {Macro Return Type unknown at line no 121}
   {# define  sk_CMS_RecipientInfo_dup(sk) ((STACK_OF(CMS_RecipientInfo) *)OPENSSL_sk_dup(ossl_check_const_CMS_RecipientInfo_sk_type(sk)))}
-  {# define  sk_CMS_RecipientInfo_deep_copy(sk,copyfunc,freefunc) ((STACK_OF(CMS_RecipientInfo) *)OPENSSL_sk_deep_copy(ossl_check_const_CMS_RecipientInfo_sk_type(sk), ossl_check_CMS_RecipientInfo_copyfunc_type(copyfunc), ossl_check_CMS_RecipientInfo_freefunc_type(freefunc)))}
+  {# define  sk_CMS_RecipientInfo_deep_copy(sk,copyfunc,freefunc) ((STACK_OF(CMS_RecipientInfo) *)OPENSSL_sk_deep_copy(ossl_check_const_CMS_RecipientInfo_sk_type(sk),
+ ossl_check_CMS_RecipientInfo_copyfunc_type(copyfunc), ossl_check_CMS_RecipientInfo_freefunc_type(freefunc)))}
   function sk_CMS_RecipientInfo_set_cmp_func(sk:Pstack_st_CMS_RecipientInfo; cmp:Tsk_CMS_RecipientInfo_compfunc): Tsk_CMS_RecipientInfo_compfunc; inline;
 
 type
@@ -281,29 +299,37 @@ type
   function ossl_check_CMS_RevocationInfoChoice_copyfunc_type(cpy: Tsk_CMS_RevocationInfoChoice_copyfunc): TOPENSSL_sk_copyfunc{Has C Attribute: unused}; inline;
   function ossl_check_CMS_RevocationInfoChoice_freefunc_type(fr: Tsk_CMS_RevocationInfoChoice_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
   {# define  sk_CMS_RevocationInfoChoice_num(sk) OPENSSL_sk_num(ossl_check_const_CMS_RevocationInfoChoice_sk_type(sk))} {Macro Return Type unknown at line no 126}
-  {# define  sk_CMS_RevocationInfoChoice_value(sk,idx) ((CMS_RevocationInfoChoice *)OPENSSL_sk_value(ossl_check_const_CMS_RevocationInfoChoice_sk_type(sk), (idx)))} {Function argument out of range at line no 127}
+  {# define  sk_CMS_RevocationInfoChoice_value(sk,idx) ((CMS_RevocationInfoChoice *)OPENSSL_sk_value(ossl_check_const_CMS_RevocationInfoChoice_sk_type(sk),
+ (idx)))} {Function argument out of range at line no 127}
   {# define  sk_CMS_RevocationInfoChoice_new(cmp) ((STACK_OF(CMS_RevocationInfoChoice) *)OPENSSL_sk_new(ossl_check_CMS_RevocationInfoChoice_compfunc_type(cmp)))}
   {# define  sk_CMS_RevocationInfoChoice_new_null() ((STACK_OF(CMS_RevocationInfoChoice) *)OPENSSL_sk_new_null())}
-  {# define  sk_CMS_RevocationInfoChoice_new_reserve(cmp,n) ((STACK_OF(CMS_RevocationInfoChoice) *)OPENSSL_sk_new_reserve(ossl_check_CMS_RevocationInfoChoice_compfunc_type(cmp), (n)))}
+  {# define  sk_CMS_RevocationInfoChoice_new_reserve(cmp,n) ((STACK_OF(CMS_RevocationInfoChoice) *)OPENSSL_sk_new_reserve(ossl_check_CMS_RevocationInfoChoice_compfunc_type(cmp),
+ (n)))}
   {# define  sk_CMS_RevocationInfoChoice_reserve(sk,n) OPENSSL_sk_reserve(ossl_check_CMS_RevocationInfoChoice_sk_type(sk), (n))} {Function argument out of range at line no 131}
   {# define  sk_CMS_RevocationInfoChoice_free(sk) OPENSSL_sk_free(ossl_check_CMS_RevocationInfoChoice_sk_type(sk))} {Macro Return Type unknown at line no 132}
   {# define  sk_CMS_RevocationInfoChoice_zero(sk) OPENSSL_sk_zero(ossl_check_CMS_RevocationInfoChoice_sk_type(sk))} {Macro Return Type unknown at line no 133}
-  {# define  sk_CMS_RevocationInfoChoice_delete(sk,i) ((CMS_RevocationInfoChoice *)OPENSSL_sk_delete(ossl_check_CMS_RevocationInfoChoice_sk_type(sk), (i)))} {Function argument out of range at line no 134}
+  {# define  sk_CMS_RevocationInfoChoice_delete(sk,i) ((CMS_RevocationInfoChoice *)OPENSSL_sk_delete(ossl_check_CMS_RevocationInfoChoice_sk_type(sk),
+ (i)))} {Function argument out of range at line no 134}
   function sk_CMS_RevocationInfoChoice_delete_ptr(sk:Pstack_st_CMS_RevocationInfoChoice; ptr:PCMS_RevocationInfoChoice): PCMS_RevocationInfoChoice; inline;
   {# define  sk_CMS_RevocationInfoChoice_push(sk,ptr) OPENSSL_sk_push(ossl_check_CMS_RevocationInfoChoice_sk_type(sk), ossl_check_CMS_RevocationInfoChoice_type(ptr))} {Macro Return Type unknown at line no 136}
   {# define  sk_CMS_RevocationInfoChoice_unshift(sk,ptr) OPENSSL_sk_unshift(ossl_check_CMS_RevocationInfoChoice_sk_type(sk), ossl_check_CMS_RevocationInfoChoice_type(ptr))} {Macro Return Type unknown at line no 137}
   function sk_CMS_RevocationInfoChoice_pop(sk:Pstack_st_CMS_RevocationInfoChoice): PCMS_RevocationInfoChoice; inline;
   function sk_CMS_RevocationInfoChoice_shift(sk:Pstack_st_CMS_RevocationInfoChoice): PCMS_RevocationInfoChoice; inline;
-  {# define  sk_CMS_RevocationInfoChoice_pop_free(sk,freefunc) OPENSSL_sk_pop_free(ossl_check_CMS_RevocationInfoChoice_sk_type(sk),ossl_check_CMS_RevocationInfoChoice_freefunc_type(freefunc))} {Macro Return Type unknown at line no 140}
-  {# define  sk_CMS_RevocationInfoChoice_insert(sk,ptr,idx) OPENSSL_sk_insert(ossl_check_CMS_RevocationInfoChoice_sk_type(sk), ossl_check_CMS_RevocationInfoChoice_type(ptr), (idx))} {Function argument out of range at line no 141}
-  {# define  sk_CMS_RevocationInfoChoice_set(sk,idx,ptr) ((CMS_RevocationInfoChoice *)OPENSSL_sk_set(ossl_check_CMS_RevocationInfoChoice_sk_type(sk), (idx), ossl_check_CMS_RevocationInfoChoice_type(ptr)))} {Function argument out of range at line no 142}
+  {# define  sk_CMS_RevocationInfoChoice_pop_free(sk,freefunc) OPENSSL_sk_pop_free(ossl_check_CMS_RevocationInfoChoice_sk_type(sk),
+ossl_check_CMS_RevocationInfoChoice_freefunc_type(freefunc))} {Macro Return Type unknown at line no 140}
+  {# define  sk_CMS_RevocationInfoChoice_insert(sk,ptr,idx) OPENSSL_sk_insert(ossl_check_CMS_RevocationInfoChoice_sk_type(sk), ossl_check_CMS_RevocationInfoChoice_type(ptr),
+ (idx))} {Function argument out of range at line no 141}
+  {# define  sk_CMS_RevocationInfoChoice_set(sk,idx,ptr) ((CMS_RevocationInfoChoice *)OPENSSL_sk_set(ossl_check_CMS_RevocationInfoChoice_sk_type(sk),
+ (idx), ossl_check_CMS_RevocationInfoChoice_type(ptr)))} {Function argument out of range at line no 142}
   {# define  sk_CMS_RevocationInfoChoice_find(sk,ptr) OPENSSL_sk_find(ossl_check_CMS_RevocationInfoChoice_sk_type(sk), ossl_check_CMS_RevocationInfoChoice_type(ptr))} {Macro Return Type unknown at line no 143}
   {# define  sk_CMS_RevocationInfoChoice_find_ex(sk,ptr) OPENSSL_sk_find_ex(ossl_check_CMS_RevocationInfoChoice_sk_type(sk), ossl_check_CMS_RevocationInfoChoice_type(ptr))} {Macro Return Type unknown at line no 144}
-  {# define  sk_CMS_RevocationInfoChoice_find_all(sk,ptr,pnum) OPENSSL_sk_find_all(ossl_check_CMS_RevocationInfoChoice_sk_type(sk), ossl_check_CMS_RevocationInfoChoice_type(ptr), pnum)} {Function argument out of range at line no 145}
+  {# define  sk_CMS_RevocationInfoChoice_find_all(sk,ptr,pnum) OPENSSL_sk_find_all(ossl_check_CMS_RevocationInfoChoice_sk_type(sk),
+ ossl_check_CMS_RevocationInfoChoice_type(ptr), pnum)} {Function argument out of range at line no 145}
   {# define  sk_CMS_RevocationInfoChoice_sort(sk) OPENSSL_sk_sort(ossl_check_CMS_RevocationInfoChoice_sk_type(sk))} {Macro Return Type unknown at line no 146}
   {# define  sk_CMS_RevocationInfoChoice_is_sorted(sk) OPENSSL_sk_is_sorted(ossl_check_const_CMS_RevocationInfoChoice_sk_type(sk))} {Macro Return Type unknown at line no 147}
   {# define  sk_CMS_RevocationInfoChoice_dup(sk) ((STACK_OF(CMS_RevocationInfoChoice) *)OPENSSL_sk_dup(ossl_check_const_CMS_RevocationInfoChoice_sk_type(sk)))}
-  {# define  sk_CMS_RevocationInfoChoice_deep_copy(sk,copyfunc,freefunc) ((STACK_OF(CMS_RevocationInfoChoice) *)OPENSSL_sk_deep_copy(ossl_check_const_CMS_RevocationInfoChoice_sk_type(sk), ossl_check_CMS_RevocationInfoChoice_copyfunc_type(copyfunc), ossl_check_CMS_RevocationInfoChoice_freefunc_type(freefunc)))}
+  {# define  sk_CMS_RevocationInfoChoice_deep_copy(sk,copyfunc,freefunc) ((STACK_OF(CMS_RevocationInfoChoice) *)OPENSSL_sk_deep_copy(ossl_check_const_CMS_RevocationInfoChoice_sk_type(sk),
+ ossl_check_CMS_RevocationInfoChoice_copyfunc_type(copyfunc), ossl_check_CMS_RevocationInfoChoice_freefunc_type(freefunc)))}
   function sk_CMS_RevocationInfoChoice_set_cmp_func(sk:Pstack_st_CMS_RevocationInfoChoice; cmp:Tsk_CMS_RevocationInfoChoice_compfunc): Tsk_CMS_RevocationInfoChoice_compfunc; inline;
     { clang-format on }
     {$ifdef OPENSSL_STATIC_LINK_MODEL}
@@ -997,7 +1023,8 @@ begin
 end;
 
 
-{# define  sk_CMS_SignerInfo_delete_ptr(sk,ptr) ((CMS_SignerInfo *)OPENSSL_sk_delete_ptr(ossl_check_CMS_SignerInfo_sk_type(sk), ossl_check_CMS_SignerInfo_type(ptr)))}
+{# define  sk_CMS_SignerInfo_delete_ptr(sk,ptr) ((CMS_SignerInfo *)OPENSSL_sk_delete_ptr(ossl_check_CMS_SignerInfo_sk_type(sk), 
+ossl_check_CMS_SignerInfo_type(ptr)))}
 
 function sk_CMS_SignerInfo_delete_ptr(sk:Pstack_st_CMS_SignerInfo; ptr:PCMS_SignerInfo): PCMS_SignerInfo;
 begin
@@ -1018,7 +1045,8 @@ begin
   Result := PCMS_SignerInfo(PCMS_SignerInfo(OPENSSL_sk_shift(ossl_check_CMS_SignerInfo_sk_type(sk))));
 end;
 
-{# define  sk_CMS_SignerInfo_set_cmp_func(sk,cmp) ((sk_CMS_SignerInfo_compfunc)OPENSSL_sk_set_cmp_func(ossl_check_CMS_SignerInfo_sk_type(sk), ossl_check_CMS_SignerInfo_compfunc_type(cmp)))}
+{# define  sk_CMS_SignerInfo_set_cmp_func(sk,cmp) ((sk_CMS_SignerInfo_compfunc)OPENSSL_sk_set_cmp_func(ossl_check_CMS_SignerInfo_sk_type(sk),
+ ossl_check_CMS_SignerInfo_compfunc_type(cmp)))}
 
 function sk_CMS_SignerInfo_set_cmp_func(sk:Pstack_st_CMS_SignerInfo; cmp:Tsk_CMS_SignerInfo_compfunc): Tsk_CMS_SignerInfo_compfunc;
 begin
@@ -1055,7 +1083,8 @@ begin
 end;
 
 
-{# define  sk_CMS_RecipientEncryptedKey_delete_ptr(sk,ptr) ((CMS_RecipientEncryptedKey *)OPENSSL_sk_delete_ptr(ossl_check_CMS_RecipientEncryptedKey_sk_type(sk), ossl_check_CMS_RecipientEncryptedKey_type(ptr)))}
+{# define  sk_CMS_RecipientEncryptedKey_delete_ptr(sk,ptr) ((CMS_RecipientEncryptedKey *)OPENSSL_sk_delete_ptr(ossl_check_CMS_RecipientEncryptedKey_sk_type(sk),
+ ossl_check_CMS_RecipientEncryptedKey_type(ptr)))}
 
 function sk_CMS_RecipientEncryptedKey_delete_ptr(sk:Pstack_st_CMS_RecipientEncryptedKey; ptr:PCMS_RecipientEncryptedKey): PCMS_RecipientEncryptedKey;
 begin
@@ -1076,7 +1105,8 @@ begin
   Result := PCMS_RecipientEncryptedKey(PCMS_RecipientEncryptedKey(OPENSSL_sk_shift(ossl_check_CMS_RecipientEncryptedKey_sk_type(sk))));
 end;
 
-{# define  sk_CMS_RecipientEncryptedKey_set_cmp_func(sk,cmp) ((sk_CMS_RecipientEncryptedKey_compfunc)OPENSSL_sk_set_cmp_func(ossl_check_CMS_RecipientEncryptedKey_sk_type(sk), ossl_check_CMS_RecipientEncryptedKey_compfunc_type(cmp)))}
+{# define  sk_CMS_RecipientEncryptedKey_set_cmp_func(sk,cmp) ((sk_CMS_RecipientEncryptedKey_compfunc)OPENSSL_sk_set_cmp_func(ossl_check_CMS_RecipientEncryptedKey_sk_type(sk),
+ ossl_check_CMS_RecipientEncryptedKey_compfunc_type(cmp)))}
 
 function sk_CMS_RecipientEncryptedKey_set_cmp_func(sk:Pstack_st_CMS_RecipientEncryptedKey; cmp:Tsk_CMS_RecipientEncryptedKey_compfunc): Tsk_CMS_RecipientEncryptedKey_compfunc;
 begin
@@ -1113,7 +1143,8 @@ begin
 end;
 
 
-{# define  sk_CMS_RecipientInfo_delete_ptr(sk,ptr) ((CMS_RecipientInfo *)OPENSSL_sk_delete_ptr(ossl_check_CMS_RecipientInfo_sk_type(sk), ossl_check_CMS_RecipientInfo_type(ptr)))}
+{# define  sk_CMS_RecipientInfo_delete_ptr(sk,ptr) ((CMS_RecipientInfo *)OPENSSL_sk_delete_ptr(ossl_check_CMS_RecipientInfo_sk_type(sk),
+ ossl_check_CMS_RecipientInfo_type(ptr)))}
 
 function sk_CMS_RecipientInfo_delete_ptr(sk:Pstack_st_CMS_RecipientInfo; ptr:PCMS_RecipientInfo): PCMS_RecipientInfo;
 begin
@@ -1134,7 +1165,8 @@ begin
   Result := PCMS_RecipientInfo(PCMS_RecipientInfo(OPENSSL_sk_shift(ossl_check_CMS_RecipientInfo_sk_type(sk))));
 end;
 
-{# define  sk_CMS_RecipientInfo_set_cmp_func(sk,cmp) ((sk_CMS_RecipientInfo_compfunc)OPENSSL_sk_set_cmp_func(ossl_check_CMS_RecipientInfo_sk_type(sk), ossl_check_CMS_RecipientInfo_compfunc_type(cmp)))}
+{# define  sk_CMS_RecipientInfo_set_cmp_func(sk,cmp) ((sk_CMS_RecipientInfo_compfunc)OPENSSL_sk_set_cmp_func(ossl_check_CMS_RecipientInfo_sk_type(sk),
+ ossl_check_CMS_RecipientInfo_compfunc_type(cmp)))}
 
 function sk_CMS_RecipientInfo_set_cmp_func(sk:Pstack_st_CMS_RecipientInfo; cmp:Tsk_CMS_RecipientInfo_compfunc): Tsk_CMS_RecipientInfo_compfunc;
 begin
@@ -1171,7 +1203,8 @@ begin
 end;
 
 
-{# define  sk_CMS_RevocationInfoChoice_delete_ptr(sk,ptr) ((CMS_RevocationInfoChoice *)OPENSSL_sk_delete_ptr(ossl_check_CMS_RevocationInfoChoice_sk_type(sk), ossl_check_CMS_RevocationInfoChoice_type(ptr)))}
+{# define  sk_CMS_RevocationInfoChoice_delete_ptr(sk,ptr) ((CMS_RevocationInfoChoice *)OPENSSL_sk_delete_ptr(ossl_check_CMS_RevocationInfoChoice_sk_type(sk),
+ ossl_check_CMS_RevocationInfoChoice_type(ptr)))}
 
 function sk_CMS_RevocationInfoChoice_delete_ptr(sk:Pstack_st_CMS_RevocationInfoChoice; ptr:PCMS_RevocationInfoChoice): PCMS_RevocationInfoChoice;
 begin
@@ -1192,7 +1225,8 @@ begin
   Result := PCMS_RevocationInfoChoice(PCMS_RevocationInfoChoice(OPENSSL_sk_shift(ossl_check_CMS_RevocationInfoChoice_sk_type(sk))));
 end;
 
-{# define  sk_CMS_RevocationInfoChoice_set_cmp_func(sk,cmp) ((sk_CMS_RevocationInfoChoice_compfunc)OPENSSL_sk_set_cmp_func(ossl_check_CMS_RevocationInfoChoice_sk_type(sk), ossl_check_CMS_RevocationInfoChoice_compfunc_type(cmp)))}
+{# define  sk_CMS_RevocationInfoChoice_set_cmp_func(sk,cmp) ((sk_CMS_RevocationInfoChoice_compfunc)OPENSSL_sk_set_cmp_func(ossl_check_CMS_RevocationInfoChoice_sk_type(sk),
+ ossl_check_CMS_RevocationInfoChoice_compfunc_type(cmp)))}
 
 function sk_CMS_RevocationInfoChoice_set_cmp_func(sk:Pstack_st_CMS_RevocationInfoChoice; cmp:Tsk_CMS_RevocationInfoChoice_compfunc): Tsk_CMS_RevocationInfoChoice_compfunc;
 begin
