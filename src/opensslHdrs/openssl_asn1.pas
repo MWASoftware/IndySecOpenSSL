@@ -18,7 +18,7 @@
 unit openssl_asn1;
 
 {
-  Generated from OpenSSL 3.0.20 Header File asn1.h - Thu  7 May 12:11:14 BST 2026
+  Generated from OpenSSL 3.0.20 Header File asn1.h - Thu  7 May 15:32:28 BST 2026
   With Legacy Support Option
 }
 
@@ -1913,7 +1913,7 @@ type
   function ASN1_OBJECT_create(nid: TOpenSSL_C_INT; data: Pbyte; len: TOpenSSL_C_INT; sn: PAnsiChar; ln: PAnsiChar): PASN1_OBJECT; cdecl; external CLibCrypto name 'ASN1_OBJECT_create';
   function ASN1_INTEGER_get_int64(pr: POpenSSL_C_LONG; a: PASN1_INTEGER): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ASN1_INTEGER_get_int64';
   function ASN1_INTEGER_set_int64(a: PASN1_INTEGER; r: TOpenSSL_C_LONG): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ASN1_INTEGER_set_int64';
-  function ASN1_INTEGER_get_uint64(pr: Pqword; a: PASN1_INTEGER): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ASN1_INTEGER_get_uint64';
+  function ASN1_INTEGER_get_uint64(pr: POpenSSL_C_UINT64; a: PASN1_INTEGER): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ASN1_INTEGER_get_uint64';
   function ASN1_INTEGER_set_uint64(a: PASN1_INTEGER; r: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ASN1_INTEGER_set_uint64';
   function ASN1_INTEGER_set(a: PASN1_INTEGER; v: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ASN1_INTEGER_set';
   function ASN1_INTEGER_get(a: PASN1_INTEGER): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ASN1_INTEGER_get';
@@ -2163,7 +2163,7 @@ type
   function Load_ASN1_OBJECT_create(nid: TOpenSSL_C_INT; data: Pbyte; len: TOpenSSL_C_INT; sn: PAnsiChar; ln: PAnsiChar): PASN1_OBJECT; cdecl;
   function Load_ASN1_INTEGER_get_int64(pr: POpenSSL_C_LONG; a: PASN1_INTEGER): TOpenSSL_C_INT; cdecl;
   function Load_ASN1_INTEGER_set_int64(a: PASN1_INTEGER; r: TOpenSSL_C_LONG): TOpenSSL_C_INT; cdecl;
-  function Load_ASN1_INTEGER_get_uint64(pr: Pqword; a: PASN1_INTEGER): TOpenSSL_C_INT; cdecl;
+  function Load_ASN1_INTEGER_get_uint64(pr: POpenSSL_C_UINT64; a: PASN1_INTEGER): TOpenSSL_C_INT; cdecl;
   function Load_ASN1_INTEGER_set_uint64(a: PASN1_INTEGER; r: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl;
   function Load_ASN1_INTEGER_set(a: PASN1_INTEGER; v: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
   function Load_ASN1_INTEGER_get(a: PASN1_INTEGER): TOpenSSL_C_INT; cdecl;
@@ -2288,7 +2288,7 @@ var
   ASN1_OBJECT_create: function(nid: TOpenSSL_C_INT; data: Pbyte; len: TOpenSSL_C_INT; sn: PAnsiChar; ln: PAnsiChar): PASN1_OBJECT; cdecl = Load_ASN1_OBJECT_create;
   ASN1_INTEGER_get_int64: function(pr: POpenSSL_C_LONG; a: PASN1_INTEGER): TOpenSSL_C_INT; cdecl = Load_ASN1_INTEGER_get_int64;
   ASN1_INTEGER_set_int64: function(a: PASN1_INTEGER; r: TOpenSSL_C_LONG): TOpenSSL_C_INT; cdecl = Load_ASN1_INTEGER_set_int64;
-  ASN1_INTEGER_get_uint64: function(pr: Pqword; a: PASN1_INTEGER): TOpenSSL_C_INT; cdecl = Load_ASN1_INTEGER_get_uint64;
+  ASN1_INTEGER_get_uint64: function(pr: POpenSSL_C_UINT64; a: PASN1_INTEGER): TOpenSSL_C_INT; cdecl = Load_ASN1_INTEGER_get_uint64;
   ASN1_INTEGER_set_uint64: function(a: PASN1_INTEGER; r: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl = Load_ASN1_INTEGER_set_uint64;
   ASN1_INTEGER_set: function(a: PASN1_INTEGER; v: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_ASN1_INTEGER_set;
   ASN1_INTEGER_get: function(a: PASN1_INTEGER): TOpenSSL_C_INT; cdecl = Load_ASN1_INTEGER_get;
@@ -7362,7 +7362,7 @@ begin
   Result := ASN1_INTEGER_set_int64(a, r);
 end;
 
-function Load_ASN1_INTEGER_get_uint64(pr: Pqword; a: PASN1_INTEGER): TOpenSSL_C_INT; cdecl;
+function Load_ASN1_INTEGER_get_uint64(pr: POpenSSL_C_UINT64; a: PASN1_INTEGER): TOpenSSL_C_INT; cdecl;
 begin
   ASN1_INTEGER_get_uint64 := LoadLibCryptoFunction('ASN1_INTEGER_get_uint64');
   if not assigned(ASN1_INTEGER_get_uint64) then

@@ -18,7 +18,7 @@
 unit openssl_stack;
 
 {
-  Generated from OpenSSL 3.0.20 Header File stack.h - Thu  7 May 12:12:26 BST 2026
+  Generated from OpenSSL 3.0.20 Header File stack.h - Thu  7 May 15:33:40 BST 2026
   With Legacy Support Option
 }
 
@@ -336,8 +336,8 @@ uses Sysutils
     OPENSSL_LINE  = 0;
   {$ifend}
 
-{$ifndef OPENSSL_STATIC_LINK_MODEL}
 {$include legacy_stack.inc}
+{$ifndef OPENSSL_STATIC_LINK_MODEL}
 function Load_OPENSSL_sk_num(_param1: POPENSSL_STACK): TOpenSSL_C_INT; cdecl;
 begin
   OPENSSL_sk_num := LoadLibCryptoFunction('OPENSSL_sk_num');

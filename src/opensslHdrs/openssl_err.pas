@@ -18,7 +18,7 @@
 unit openssl_err;
 
 {
-  Generated from OpenSSL 3.0.20 Header File err.h - Thu  7 May 12:11:49 BST 2026
+  Generated from OpenSSL 3.0.20 Header File err.h - Thu  7 May 15:33:03 BST 2026
   With Legacy Support Option
 }
 
@@ -771,6 +771,7 @@ var
   ERR_clear_last_mark: function: TOpenSSL_C_INT; cdecl = Load_ERR_clear_last_mark;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
 {$endif}
+{$include errfunctions_h.inc}
 
 implementation
 
@@ -919,6 +920,7 @@ function lh_ERR_STRING_DATA_retrieve(lh:Plhash_st_ERR_STRING_DATA; ptr:PERR_STRI
 begin
   Result := PERR_STRING_DATA(PERR_STRING_DATA(OPENSSL_LH_retrieve(ossl_check_ERR_STRING_DATA_lh_type(lh),ossl_check_const_ERR_STRING_DATA_lh_plain_type(ptr))));
 end;
+{$include errfunctions.inc}
 {$ifndef OPENSSL_STATIC_LINK_MODEL}
 procedure Load_ERR_new; cdecl;
 begin

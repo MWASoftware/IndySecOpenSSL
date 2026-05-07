@@ -18,7 +18,7 @@
 unit openssl_tls1;
 
 {
-  Generated from OpenSSL 3.0.20 Header File tls1.h - Thu  7 May 12:12:30 BST 2026
+  Generated from OpenSSL 3.0.20 Header File tls1.h - Thu  7 May 15:33:44 BST 2026
   With Legacy Support Option
 }
 
@@ -1078,7 +1078,7 @@ const
   }
   TLS_CT_NUMBER = 12;
   {$if  defined(SSL3_CT_NUMBER)}
-    {$if  TLS_CT_NUMBER not = SSL3_CT_NUMBER}
+    {$if  TLS_CT_NUMBER <> SSL3_CT_NUMBER}
       {$error  "SSL/TLS CT_NUMBER values do not match"}
     {$endif}
   {$endif}

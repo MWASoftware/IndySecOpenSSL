@@ -18,7 +18,7 @@
 unit openssl_x509;
 
 {
-  Generated from OpenSSL 3.0.20 Header File x509.h - Thu  7 May 12:12:40 BST 2026
+  Generated from OpenSSL 3.0.20 Header File x509.h - Thu  7 May 15:55:55 BST 2026
   With Legacy Support Option
 }
 
@@ -4311,8 +4311,8 @@ begin
   Result := TOpenSSL_C_UINT(X509_NAME_hash_ex(x,nil,nil,nil));
 end;
 {$endif} { OPENSSL_NO_DEPRECATED_3_0}
-{$ifndef OPENSSL_STATIC_LINK_MODEL}
 {$include legacy_x509.inc}
+{$ifndef OPENSSL_STATIC_LINK_MODEL}
 function Load_sk_X509_NAME_num(_para: Pstack_st_X509_NAME): TOpenSSL_C_INT; cdecl;
 begin
   sk_X509_NAME_num := LoadLibCryptoFunction('OPENSSL_sk_num');

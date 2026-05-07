@@ -18,7 +18,7 @@
 unit openssl_hmac;
 
 {
-  Generated from OpenSSL 3.0.20 Header File hmac.h - Thu  7 May 12:11:55 BST 2026
+  Generated from OpenSSL 3.0.20 Header File hmac.h - Thu  7 May 15:33:09 BST 2026
   With Legacy Support Option
 }
 
@@ -176,8 +176,8 @@ uses Sysutils
     OPENSSL_LINE  = 0;
   {$ifend}
 
-{$ifndef OPENSSL_STATIC_LINK_MODEL}
 {$include legacy_hmac.inc}
+{$ifndef OPENSSL_STATIC_LINK_MODEL}
 {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 function Load_HMAC_size(e: PHMAC_CTX): TOpenSSL_C_SIZET; cdecl;
 begin

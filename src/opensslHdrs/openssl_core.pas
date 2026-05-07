@@ -18,7 +18,7 @@
 unit openssl_core;
 
 {
-  Generated from OpenSSL 3.0.20 Header File core.h - Thu  7 May 12:11:32 BST 2026
+  Generated from OpenSSL 3.0.20 Header File core.h - Thu  7 May 15:32:46 BST 2026
   With Legacy Support Option
 }
 
@@ -241,9 +241,13 @@ type
   TOSSL_provider_init_fn = function(handle: POSSL_CORE_HANDLE; in_: POSSL_DISPATCH; out_: PPOSSL_DISPATCH; provctx: Ppointer): TOpenSSL_C_INT; cdecl;
   {$ifdef __VMS}
   {$endif}
+  {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  {$ifdef FPC}
 
 var
   OSSL_provider_init: TOSSL_provider_init_fn cvar; public;
+  {$endif}
+  {$endif} {OPENSSL_STATIC_LINK_MODEL}
   {$ifdef __VMS}
   {$endif}
 
