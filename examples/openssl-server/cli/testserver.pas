@@ -24,7 +24,7 @@ uses
   Classes, SysUtils, {$IFDEF FPC}CustApp,{$ENDIF}IdIOHandler, IdHTTP,
   IdSSL, IdSecOpenSSL,  IdHeaderList, IdContext,
   IdCustomHTTPServer, IdHTTPServer, IdServerIOHandler, IdGlobal,
-  IdSecOpenSSLX509, IdSecOpenSSLAPI;
+  IdSecOpenSSLX509, OpenSSLAPI;
 
 const
   SSLServerPort = 8080;

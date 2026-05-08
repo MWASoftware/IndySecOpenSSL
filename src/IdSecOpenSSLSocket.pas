@@ -44,10 +44,11 @@ uses
   IdGlobal,
   IdStackConsts,
   IdSecOpenSSLX509,
-  IdSecOpenSSLExceptionHandlers,
-  IdSecOpenSSLHeaders_ssl,
+  OpenSSLExceptionHandlers,
+  Openssl_ssl,
   IdSecOpenSSLOptions,
-  IdSecOpenSSLHeaders_ossl_typ
+  Openssl_types,
+  openssl_x509err
   ;
 
 {$I IdCompilerDefines.inc}
@@ -227,15 +228,16 @@ uses
   {$ENDIF}
   IdThreadSafe,
   IdSecOpenSSLUtils,
-  IdSecOpenSSLAPI,
+  OpenSSLAPI,
   IdSecOpenSSL,
   IdResourceStringsProtocols,
   IdSecResourceStringsOpenSSL,
-  IdSecOpenSSLHeaders_x509,
-  IdSecOpenSSLHeaders_ssl3,
-  IdSecOpenSSLHeaders_tls1,
-  IdSecOpenSSLHeaders_x509_vfy,
-  IdSecOpenSSLHeaders_err
+  Openssl_x509,
+  Openssl_ssl3,
+  Openssl_tls1,
+  Openssl_x509_vfy,
+  Openssl_err,
+  openssl_prov_ssl
 ;
 
 var
@@ -290,7 +292,7 @@ begin
 end;
 
 
-procedure InfoCallback(const sslSocket: PSSL; where, ret: TIdC_INT); cdecl;
+procedure InfoCallback(sslSocket: PSSL; where, ret: TIdC_INT); cdecl;
 var
   IdSecSocket: TIdSecSocket;
   StatusStr : String;
@@ -499,7 +501,7 @@ end;
 
 function TIdSecCipher.GetBits:TIdC_INT;
 begin
-  SSL_CIPHER_get_bits(SSL_get_current_cipher(FSSLSocket.fSSL), Result);
+  SSL_CIPHER_get_bits(SSL_get_current_cipher(FSSLSocket.fSSL), @Result);
 end;
 
 function TIdSecCipher.GetVersion:String;
@@ -637,9 +639,11 @@ begin
     EIdOSSLCreatingContextError.RaiseException(RSSSLCreatingContextError);
   end;
 
-  //set min and max SSL Versions we will aloow
+  //set min and max SSL Versions we will allow
+  {$if declared(HasTLS_method)}
   if HasTLS_method then
   begin
+  {$ifend}
     if SSLVersions <> [] then
     begin
       for v := sslvSSLv3 to MAX_SSLVERSION do
@@ -664,6 +668,7 @@ begin
      SSL_CTX_set_min_proto_version(fContext,SSL3_VERSION);
      SSL_CTX_set_max_proto_version(fContext,SSLProtoVersion[high(TIdSecVersion)]);
    end;
+   {$if declared(HasTLS_method)}
   end
   else
   begin
@@ -716,6 +721,7 @@ begin
         end;
       end;
   end;
+  {$ifend}
 
 //  SSL_CTX_set_mode(fContext, SSL_MODE_AUTO_RETRY);
   SSL_CTX_ctrl(fContext, SSL_CTRL_CLEAR_MODE, SSL_MODE_AUTO_RETRY, nil);
@@ -826,7 +832,7 @@ end;
 
 procedure TIdSecContext.SetVerifyMode(Mode: TIdSecVerifyModeSet; CheckRoutine: Boolean);
 var
-  Func: TSSL_CTX_set_verify_callback;
+  Func: TSSL_verify_cb;
 begin
   if fContext<>nil then begin
 //    SSL_CTX_set_default_verify_paths(fContext);
@@ -866,7 +872,9 @@ begin
     raise EIdOSSLModeNotSet.Create(RSOSSLModeNotSet);
   end;
 
+  {$if declared(OpenSSL_SetMethod)}
   OpenSSL_SetMethod(TOpenSSL_Version(fMethod));
+  {$ifend}
 
     {For OpenSSL 1.1.1 or later. OpenSSL will negotiate the best
      available SSL/TLS version and there is not much that we can do to influence this.

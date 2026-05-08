@@ -31,7 +31,7 @@ interface
 
 uses
   Classes,
-  IdSecOpenSSLExceptionHandlers;
+  OpenSSLExceptionHandlers;
 
 type
   EIdDigestError = class(EOpenSSLAPICryptoError);
@@ -47,12 +47,12 @@ uses
   IdGlobal,
   IdCTypes,
   IdFIPS,
-  IdSecOpenSSLAPI,
+  OpenSSLAPI,
   IdSecResourceStringsOpenSSL,
-  IdSecOpenSSLHeaders_evp,
-  IdSecOpenSSLHeaders_crypto,
-  IdSecOpenSSLHeaders_hmac,
-  IdSecOpenSSLHeaders_ossl_typ;
+  Openssl_evp,
+  Openssl_crypto,
+  Openssl_hmac,
+  Openssl_types;
 
 function FIPS_mode_set(onoff : TIdC_INT) : TIdC_INT;  {$IFDEF INLINE}inline;{$ENDIF}
 begin
@@ -357,7 +357,7 @@ var
   LRet : TIdC_Int;
 begin
   SetLength(Result,EVP_MAX_MD_SIZE);
-  LRet := EVP_DigestFinal_ex(ACtx, PByte(@Result[0]), LLen);
+  LRet := EVP_DigestFinal_ex(ACtx, PByte(@Result[0]), @LLen);
   if LRet <> 1 then begin
     EIdDigestFinalEx.RaiseException('EVP_DigestFinal_ex error');
   end;
