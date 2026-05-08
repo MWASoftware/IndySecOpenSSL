@@ -18,7 +18,7 @@
 unit openssl_crypto;
 
 {
-  Generated from OpenSSL 3.0.20 Header File crypto.h - Fri  8 May 11:37:23 BST 2026
+  Generated from OpenSSL 3.0.20 Header File crypto.h - Fri  8 May 12:06:18 BST 2026
   With Legacy Support Option
 }
 
@@ -174,9 +174,9 @@ var
   OPENSSL_strcasecmp: function(s1: PAnsiChar; s2: PAnsiChar): TOpenSSL_C_INT; cdecl = Load_OPENSSL_strcasecmp;
   OPENSSL_strncasecmp: function(s1: PAnsiChar; s2: PAnsiChar; n: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl = Load_OPENSSL_strncasecmp;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
+  {# define  OPENSSL_MALLOC_MAX_NELEMS(type) (((1U << (sizeof(int) * 8 - 1)) - 1) / sizeof(type))} { Blacklisted Macro}
 
 
-  function OPENSSL_MALLOC_MAX_NELEMS(type_:int64): int64; inline;
   
   {* These functions return the values of OPENSSL_VERSION_MAJOR,
   * OPENSSL_VERSION_MINOR, OPENSSL_VERSION_PATCH, OPENSSL_VERSION_PRE_RELEASE
@@ -1394,13 +1394,6 @@ end;
 function OPENSSL_secure_actual_size(ptr:pointer): TOpenSSL_C_SIZET;
 begin
   Result := TOpenSSL_C_SIZET(CRYPTO_secure_actual_size(ptr));
-end;
-
-{# define  OPENSSL_MALLOC_MAX_NELEMS(type) (((1U << (sizeof(int) * 8 - 1)) - 1) / sizeof(type))}
-
-function OPENSSL_MALLOC_MAX_NELEMS(type_:int64): int64;
-begin
-  Result := int64(((1 shl (((sizeof(TOpenSSL_C_INT))*8)-1))-1) div (sizeof(type_)));
 end;
 function ossl_check_void_type(ptr: pointer): pointer{Has C Attribute: unused}; inline;
 begin
