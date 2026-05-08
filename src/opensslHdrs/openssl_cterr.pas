@@ -18,7 +18,7 @@
 unit openssl_cterr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File cterr.h - Fri  8 May 11:30:56 BST 2026
+  Generated from OpenSSL 3.0.20 Header File cterr.h - Fri  8 May 11:37:23 BST 2026
   With Legacy Support Option
 }
 

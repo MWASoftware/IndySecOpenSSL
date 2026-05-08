@@ -18,7 +18,7 @@
 unit openssl_self_test;
 
 {
-  Generated from OpenSSL 3.0.20 Header File self_test.h - Fri  8 May 11:31:36 BST 2026
+  Generated from OpenSSL 3.0.20 Header File self_test.h - Fri  8 May 11:38:03 BST 2026
   With Legacy Support Option
 }
 

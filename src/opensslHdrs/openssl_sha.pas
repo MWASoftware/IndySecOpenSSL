@@ -18,7 +18,7 @@
 unit openssl_sha;
 
 {
-  Generated from OpenSSL 3.0.20 Header File sha.h - Fri  8 May 11:31:36 BST 2026
+  Generated from OpenSSL 3.0.20 Header File sha.h - Fri  8 May 11:38:04 BST 2026
   With Legacy Support Option
 }
 

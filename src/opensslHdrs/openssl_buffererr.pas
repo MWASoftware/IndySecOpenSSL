@@ -18,7 +18,7 @@
 unit openssl_buffererr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File buffererr.h - Fri  8 May 11:30:39 BST 2026
+  Generated from OpenSSL 3.0.20 Header File buffererr.h - Fri  8 May 11:37:06 BST 2026
   With Legacy Support Option
 }
 
