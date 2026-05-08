@@ -18,7 +18,7 @@
 unit openssl_bnerr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File bnerr.h - Thu  7 May 15:32:32 BST 2026
+  Generated from OpenSSL 3.0.20 Header File bnerr.h - Fri  8 May 11:30:38 BST 2026
   With Legacy Support Option
 }
 

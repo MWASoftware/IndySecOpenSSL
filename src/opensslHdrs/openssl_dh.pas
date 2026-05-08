@@ -18,7 +18,7 @@
 unit openssl_dh;
 
 {
-  Generated from OpenSSL 3.0.20 Header File dh.h - Thu  7 May 15:32:54 BST 2026
+  Generated from OpenSSL 3.0.20 Header File dh.h - Fri  8 May 11:31:00 BST 2026
   With Legacy Support Option
 }
 

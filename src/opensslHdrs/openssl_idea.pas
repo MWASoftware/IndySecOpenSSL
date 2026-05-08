@@ -18,7 +18,7 @@
 unit openssl_idea;
 
 {
-  Generated from OpenSSL 3.0.20 Header File idea.h - Thu  7 May 15:33:10 BST 2026
+  Generated from OpenSSL 3.0.20 Header File idea.h - Fri  8 May 11:31:16 BST 2026
   With Legacy Support Option
 }
 

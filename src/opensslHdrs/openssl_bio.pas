@@ -18,7 +18,7 @@
 unit openssl_bio;
 
 {
-  Generated from OpenSSL 3.0.20 Header File bio.h - Thu  7 May 15:32:31 BST 2026
+  Generated from OpenSSL 3.0.20 Header File bio.h - Fri  8 May 11:30:37 BST 2026
   With Legacy Support Option
 }
 
@@ -668,17 +668,17 @@ const
   function BIO_get_accept_port(b:PBIO): PAnsiChar; inline;
   function BIO_get_peer_name(b:PBIO): PAnsiChar; inline;
   function BIO_get_peer_port(b:PBIO): PAnsiChar; inline;
-  {# define  BIO_set_nbio_accept(b,n) BIO_ctrl(b, BIO_C_SET_ACCEPT, 2, (n) ? (void *)"a" : NULL)} {Param Type resolution error - calls function in another unit? at line no 472}
     { #define BIO_set_nbio(b,n)    BIO_ctrl(b,BIO_C_SET_NBIO,(n),NULL) }
+  function BIO_set_nbio_accept(b:PBIO; n:int64): TOpenSSL_C_INT; inline;
   function BIO_set_accept_bios(b:PBIO; bio:pointer): TOpenSSL_C_INT; inline;
   function BIO_set_accept_ip_family(b:PBIO; f:TOpenSSL_C_INT): TOpenSSL_C_INT; inline;
   function BIO_get_accept_ip_family(b:PBIO): TOpenSSL_C_INT; inline;
   {$endif}
-{# define  BIO_do_connect(b) BIO_do_handshake(b)} {Param Type resolution error - calls function in another unit? at line no 480}
-{# define  BIO_do_accept(b) BIO_do_handshake(b)} {Param Type resolution error - calls function in another unit? at line no 481}
 
 
   { OPENSSL_NO_SOCK }
+  function BIO_do_connect(b:PBIO): TOpenSSL_C_INT; inline;
+  function BIO_do_accept(b:PBIO): TOpenSSL_C_INT; inline;
   function BIO_do_handshake(b:PBIO): TOpenSSL_C_INT; inline;
   { BIO_s_datagram(), BIO_s_fd(), BIO_s_socket(), BIO_s_accept() and BIO_s_connect() }
   function BIO_set_fd(b:PBIO; fd:TOpenSSL_C_INT; c:TOpenSSL_C_INT): TOpenSSL_C_INT; inline;
@@ -2367,6 +2367,19 @@ begin
   Result := PAnsiChar(Pansichar(BIO_ptr_ctrl(b,BIO_C_GET_ACCEPT,3)));
 end;
 
+{# define  BIO_set_nbio_accept(b,n) BIO_ctrl(b, BIO_C_SET_ACCEPT, 2, (n) ? (void *)"a" : NULL)}
+
+function BIO_set_nbio_accept(b:PBIO; n:int64): TOpenSSL_C_INT;
+var
+    if_local1: pointer;
+begin
+  if (n <> 0) then
+    if_local1 := pointer('a')
+  else
+    if_local1 := nil;
+  Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_C_SET_ACCEPT,2,if_local1));
+end;
+
 {# define  BIO_set_accept_bios(b,bio) BIO_ctrl(b, BIO_C_SET_ACCEPT, 3, (char *)(bio))}
 
 function BIO_set_accept_bios(b:PBIO; bio:pointer): TOpenSSL_C_INT;
@@ -2388,6 +2401,20 @@ begin
   Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_C_GET_ACCEPT,4,nil));
 end;
 {$endif} { OPENSSL_NO_SOCK}
+
+{# define  BIO_do_connect(b) BIO_do_handshake(b)}
+
+function BIO_do_connect(b:PBIO): TOpenSSL_C_INT;
+begin
+  Result := TOpenSSL_C_INT(BIO_do_handshake(b));
+end;
+
+{# define  BIO_do_accept(b) BIO_do_handshake(b)}
+
+function BIO_do_accept(b:PBIO): TOpenSSL_C_INT;
+begin
+  Result := TOpenSSL_C_INT(BIO_do_handshake(b));
+end;
 
 {# define  BIO_do_handshake(b) BIO_ctrl(b, BIO_C_DO_STATE_MACHINE, 0, NULL)}
 

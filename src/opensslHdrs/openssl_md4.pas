@@ -18,7 +18,7 @@
 unit openssl_md4;
 
 {
-  Generated from OpenSSL 3.0.20 Header File md4.h - Thu  7 May 15:33:12 BST 2026
+  Generated from OpenSSL 3.0.20 Header File md4.h - Fri  8 May 11:31:17 BST 2026
   With Legacy Support Option
 }
 

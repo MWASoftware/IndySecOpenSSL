@@ -18,7 +18,7 @@
 unit openssl_tls1;
 
 {
-  Generated from OpenSSL 3.0.20 Header File tls1.h - Thu  7 May 15:33:44 BST 2026
+  Generated from OpenSSL 3.0.20 Header File tls1.h - Fri  8 May 11:31:48 BST 2026
   With Legacy Support Option
 }
 

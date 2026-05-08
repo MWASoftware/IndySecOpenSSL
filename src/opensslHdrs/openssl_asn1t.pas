@@ -18,7 +18,7 @@
 unit openssl_asn1t;
 
 {
-  Generated from OpenSSL 3.0.20 Header File asn1t.h - Thu  7 May 15:32:29 BST 2026
+  Generated from OpenSSL 3.0.20 Header File asn1t.h - Fri  8 May 11:30:35 BST 2026
   With Legacy Support Option
 }
 
@@ -196,16 +196,6 @@ type
   {Auto-generated forward references}
   PASN1_TEMPLATE_st = ^TASN1_TEMPLATE_st;
   PPASN1_TEMPLATE_st = ^PASN1_TEMPLATE_st;
-  PTFuncType000 = ^TFuncType000;
-  PPTFuncType000 = ^PTFuncType000;
-  PASN1_ADB_st = ^TASN1_ADB_st;
-  PPASN1_ADB_st = ^PASN1_ADB_st;
-  PASN1_ADB = ^TASN1_ADB;
-  PPASN1_ADB = ^PASN1_ADB;
-  PASN1_ADB_TABLE_st = ^TASN1_ADB_TABLE_st;
-  PPASN1_ADB_TABLE_st = ^PASN1_ADB_TABLE_st;
-  PASN1_ADB_TABLE = ^TASN1_ADB_TABLE;
-  PPASN1_ADB_TABLE = ^PASN1_ADB_TABLE;
   {end of auto-generated forward references}
 
   { Macro to obtain ASN1_ADB pointer from a type (only used internally) }
@@ -284,9 +274,26 @@ type
     field_name: PAnsiChar; { Field name }
     item: PASN1_ITEM_EXP; { Relevant ASN1_ITEM or ASN1_ADB }
   end;
-  {# define  ASN1_TEMPLATE_item(t) (t->item_ptr)} {Param Type resolution error - calls function in another unit? at line no 355}
-  {# define  ASN1_TEMPLATE_adb(t) (t->item_ptr)} {Param Type resolution error - calls function in another unit? at line no 356}
+
+
   { Macro to extract ASN1_ITEM and ASN1_ADB pointer from ASN1_TEMPLATE }
+  function ASN1_TEMPLATE_item(t: PASN1_TEMPLATE_st): PASN1_ITEM_EXP; inline;
+  function ASN1_TEMPLATE_adb(t: PASN1_TEMPLATE_st): PASN1_ITEM_EXP; inline;
+
+type
+  {Auto-generated forward references}
+  PTFuncType000 = ^TFuncType000;
+  PPTFuncType000 = ^PTFuncType000;
+  PASN1_ADB_st = ^TASN1_ADB_st;
+  PPASN1_ADB_st = ^PASN1_ADB_st;
+  PASN1_ADB = ^TASN1_ADB;
+  PPASN1_ADB = ^PASN1_ADB;
+  PASN1_ADB_TABLE_st = ^TASN1_ADB_TABLE_st;
+  PPASN1_ADB_TABLE_st = ^PASN1_ADB_TABLE_st;
+  PASN1_ADB_TABLE = ^TASN1_ADB_TABLE;
+  PPASN1_ADB_TABLE = ^PASN1_ADB_TABLE;
+  {end of auto-generated forward references}
+
   TFuncType000 = function(psel: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
   TASN1_ADB_st = record 
     flags: TOpenSSL_C_UINT; { Various flags }
@@ -869,6 +876,20 @@ uses Sysutils
     OPENSSL_LINE  = 0;
   {$ifend}
 
+
+{# define  ASN1_TEMPLATE_item(t) (t->item)}
+
+function ASN1_TEMPLATE_item(t: PASN1_TEMPLATE_st): PASN1_ITEM_EXP;
+begin
+  Result := PASN1_ITEM_EXP(t^.item);
+end;
+
+{# define  ASN1_TEMPLATE_adb(t) (t->item)}
+
+function ASN1_TEMPLATE_adb(t: PASN1_TEMPLATE_st): PASN1_ITEM_EXP;
+begin
+  Result := PASN1_ITEM_EXP(t^.item);
+end;
 function ossl_check_ASN1_VALUE_type(ptr: PASN1_VALUE): PASN1_VALUE{Has C Attribute: unused}; inline;
 begin
    Result := ptr;

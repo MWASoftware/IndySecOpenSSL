@@ -18,7 +18,7 @@
 unit openssl_core_dispatch;
 
 {
-  Generated from OpenSSL 3.0.20 Header File core_dispatch.h - Thu  7 May 15:32:45 BST 2026
+  Generated from OpenSSL 3.0.20 Header File core_dispatch.h - Fri  8 May 11:30:51 BST 2026
   With Legacy Support Option
 }
 

@@ -18,7 +18,7 @@
 unit openssl_evp;
 
 {
-  Generated from OpenSSL 3.0.20 Header File evp.h - Thu  7 May 15:33:07 BST 2026
+  Generated from OpenSSL 3.0.20 Header File evp.h - Fri  8 May 11:31:13 BST 2026
   With Legacy Support Option
 }
 
@@ -990,9 +990,9 @@ type
 
   { Add some extra combinations }
   function EVP_get_digestbynid(a: TOpenSSL_C_INT): PEVP_MD; inline;
-  {# define  EVP_get_digestbyobj(a) EVP_get_digestbynid(OBJ_obj2nid(a))} {Param Type resolution error - calls function in another unit? at line no 519}
+  function EVP_get_digestbyobj(a:PASN1_OBJECT): PEVP_MD; inline;
   function EVP_get_cipherbynid(a: TOpenSSL_C_INT): PEVP_CIPHER; inline;
-  {# define  EVP_get_cipherbyobj(a) EVP_get_cipherbynid(OBJ_obj2nid(a))} {Param Type resolution error - calls function in another unit? at line no 521}
+  function EVP_get_cipherbyobj(a:PASN1_OBJECT): PEVP_CIPHER; inline;
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
   function EVP_MD_get_type(md: PEVP_MD): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_MD_get_type';
   function EVP_MD_type(md: PEVP_MD): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_MD_get_type';
@@ -1476,7 +1476,7 @@ var
 
   function EVP_CIPHER_CTX_get_mode(c:PEVP_CIPHER_CTX): TOpenSSL_C_INT; inline;
   function EVP_CIPHER_CTX_mode(c:PEVP_CIPHER_CTX): TOpenSSL_C_INT; inline;
-  {# define  EVP_ENCODE_LENGTH(l) ((((l) + 2) / 3 * 4) + ((l) / 48 + 1) * 2 + 80)} {Param Type resolution error - calls function in another unit? at line no 643}
+  function EVP_ENCODE_LENGTH(l:int64): int64; inline;
   function EVP_DECODE_LENGTH(l:int64): int64; inline;
   function EVP_SignInit_ex(a:PEVP_MD_CTX; b:PEVP_MD; c:PENGINE): TOpenSSL_C_INT; inline;
   function EVP_SignInit(a:PEVP_MD_CTX; b:PEVP_MD): TOpenSSL_C_INT; inline;
@@ -6554,11 +6554,25 @@ begin
   Result := PEVP_MD(EVP_get_digestbyname(OBJ_nid2sn(a)));
 end;
 
+{# define  EVP_get_digestbyobj(a) EVP_get_digestbynid(OBJ_obj2nid(a))}
+
+function EVP_get_digestbyobj(a:PASN1_OBJECT): PEVP_MD;
+begin
+  Result := PEVP_MD(EVP_get_digestbynid(OBJ_obj2nid(a)));
+end;
+
 {# define  EVP_get_cipherbynid(a) EVP_get_cipherbyname(OBJ_nid2sn(a))}
 
 function EVP_get_cipherbynid(a: TOpenSSL_C_INT): PEVP_CIPHER;
 begin
   Result := PEVP_CIPHER(EVP_get_cipherbyname(OBJ_nid2sn(a)));
+end;
+
+{# define  EVP_get_cipherbyobj(a) EVP_get_cipherbynid(OBJ_obj2nid(a))}
+
+function EVP_get_cipherbyobj(a:PASN1_OBJECT): PEVP_CIPHER;
+begin
+  Result := PEVP_CIPHER(EVP_get_cipherbynid(OBJ_obj2nid(a)));
 end;
 
 {# define  EVP_MD_CTX_get0_name(e) EVP_MD_get0_name(EVP_MD_CTX_get0_md(e))}
@@ -6652,6 +6666,13 @@ end;
 function EVP_CIPHER_CTX_mode(c:PEVP_CIPHER_CTX): TOpenSSL_C_INT;
 begin
   Result := TOpenSSL_C_INT(EVP_CIPHER_get_mode(EVP_CIPHER_CTX_get0_cipher(c)));
+end;
+
+{# define  EVP_ENCODE_LENGTH(l) ((((l) + 2) / 3 * 4) + ((l) / 48 + 1) * 2 + 80)}
+
+function EVP_ENCODE_LENGTH(l:int64): int64;
+begin
+  Result := int64(((((l+(2)) div 3)*4)+(((l div 48)+1)*2))+80);
 end;
 
 {# define  EVP_DECODE_LENGTH(l) (((l) + 3) / 4 * 3 + 80)}

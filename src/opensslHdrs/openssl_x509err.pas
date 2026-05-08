@@ -18,7 +18,7 @@
 unit openssl_x509err;
 
 {
-  Generated from OpenSSL 3.0.20 Header File x509err.h - Thu  7 May 15:33:52 BST 2026
+  Generated from OpenSSL 3.0.20 Header File x509err.h - Fri  8 May 11:31:57 BST 2026
   With Legacy Support Option
 }
 

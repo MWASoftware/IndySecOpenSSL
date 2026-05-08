@@ -18,7 +18,7 @@
 unit openssl_ssl;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ssl.h - Thu  7 May 15:33:39 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ssl.h - Fri  8 May 11:31:44 BST 2026
   With Legacy Support Option
 }
 
@@ -2319,7 +2319,7 @@ const
   function SSL_CTX_add0_chain_cert(ctx:PSSL_CTX; x509:pointer): TOpenSSL_C_INT; inline;
   function SSL_CTX_add1_chain_cert(ctx:PSSL_CTX; x509:pointer): TOpenSSL_C_INT; inline;
   function SSL_CTX_get0_chain_certs(ctx:PSSL_CTX; px509:pointer): TOpenSSL_C_INT; inline;
-  {# define  SSL_CTX_clear_chain_certs(ctx) SSL_CTX_set0_chain(ctx, NULL)} {Param Type resolution error - calls function in another unit? at line no 1440}
+  function SSL_CTX_clear_chain_certs(ctx:PSSL_CTX): TOpenSSL_C_INT; inline;
   function SSL_CTX_build_cert_chain(ctx:PSSL_CTX; flags:TOpenSSL_C_INT): TOpenSSL_C_INT; inline;
   function SSL_CTX_select_current_cert(ctx:PSSL_CTX; x509:pointer): TOpenSSL_C_INT; inline;
   function SSL_CTX_set_current_cert(ctx:PSSL_CTX; op:TOpenSSL_C_INT): TOpenSSL_C_INT; inline;
@@ -2334,7 +2334,7 @@ const
   function SSL_add0_chain_cert(s:PSSL; x509:pointer): TOpenSSL_C_INT; inline;
   function SSL_add1_chain_cert(s:PSSL; x509:pointer): TOpenSSL_C_INT; inline;
   function SSL_get0_chain_certs(s:PSSL; px509:pointer): TOpenSSL_C_INT; inline;
-  {# define  SSL_clear_chain_certs(s) SSL_set0_chain(s, NULL)} {Param Type resolution error - calls function in another unit? at line no 1470}
+  function SSL_clear_chain_certs(s:PSSL): TOpenSSL_C_INT; inline;
   function SSL_build_cert_chain(s:PSSL; flags:TOpenSSL_C_INT): TOpenSSL_C_INT; inline;
   function SSL_select_current_cert(s:PSSL; x509:pointer): TOpenSSL_C_INT; inline;
   function SSL_set_current_cert(s:PSSL; op:TOpenSSL_C_INT): TOpenSSL_C_INT; inline;
@@ -2391,9 +2391,9 @@ var
 
 const
   SSL_CTRL_GET_SERVER_TMP_KEY = SSL_CTRL_GET_PEER_TMP_KEY;
-  {# define  SSL_get_server_tmp_key(s,pk) SSL_get_peer_tmp_key(s, pk)} {Param Type resolution error - calls function in another unit? at line no 1562}
 
 
+  function SSL_get_server_tmp_key(s:PSSL; pk:pointer): TOpenSSL_C_INT; inline;
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
   function SSL_set0_tmp_dh_pkey(s: PSSL; dhpkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl; external CLibSSL name 'SSL_set0_tmp_dh_pkey';
   function SSL_CTX_set0_tmp_dh_pkey(ctx: PSSL_CTX; dhpkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl; external CLibSSL name 'SSL_CTX_set0_tmp_dh_pkey';
@@ -4411,8 +4411,8 @@ var
   function SSL_CTX_sess_get_cache_size(ctx:PSSL_CTX): TOpenSSL_C_INT; inline;
   function SSL_CTX_set_session_cache_mode(ctx:PSSL_CTX; m:TOpenSSL_C_INT): TOpenSSL_C_INT; inline;
   function SSL_CTX_get_session_cache_mode(ctx:PSSL_CTX): TOpenSSL_C_INT; inline;
-  {# define  SSL_CTX_get_default_read_ahead(ctx) SSL_CTX_get_read_ahead(ctx)} {Param Type resolution error - calls function in another unit? at line no 2197}
-  {# define  SSL_CTX_set_default_read_ahead(ctx,m) SSL_CTX_set_read_ahead(ctx, m)} {Param Type resolution error - calls function in another unit? at line no 2198}
+  function SSL_CTX_get_default_read_ahead(ctx:PSSL_CTX): TOpenSSL_C_INT; inline;
+  function SSL_CTX_set_default_read_ahead(ctx:PSSL_CTX; m:TOpenSSL_C_INT): TOpenSSL_C_INT; inline;
   function SSL_CTX_get_read_ahead(ctx:PSSL_CTX): TOpenSSL_C_INT; inline;
   function SSL_CTX_set_read_ahead(ctx:PSSL_CTX; m:TOpenSSL_C_INT): TOpenSSL_C_INT; inline;
   function SSL_CTX_get_max_cert_list(ctx:PSSL_CTX): TOpenSSL_C_INT; inline;
@@ -4836,8 +4836,10 @@ var
   SSL_set_ct_validation_callback: function(s: PSSL; callback: Tssl_ct_validation_cb; arg: pointer): TOpenSSL_C_INT; cdecl = Load_SSL_set_ct_validation_callback;
   SSL_CTX_set_ct_validation_callback: function(ctx: PSSL_CTX; callback: Tssl_ct_validation_cb; arg: pointer): TOpenSSL_C_INT; cdecl = Load_SSL_CTX_set_ct_validation_callback;
     {$endif} {OPENSSL_STATIC_LINK_MODEL}
-  {# define  SSL_disable_ct(s) ((void)SSL_set_validation_callback((s), NULL, NULL))} {Param Type resolution error - calls function in another unit? at line no 2369}
-  {# define  SSL_CTX_disable_ct(ctx) ((void)SSL_CTX_set_validation_callback((ctx), NULL, NULL))} {Param Type resolution error - calls function in another unit? at line no 2371}
+
+
+  procedure SSL_disable_ct(s:PSSL); inline;
+  procedure SSL_CTX_disable_ct(ctx:PSSL_CTX); inline;
 
 type
     
@@ -6313,6 +6315,13 @@ begin
   Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_GET_CHAIN_CERTS,0,px509));
 end;
 
+{# define  SSL_CTX_clear_chain_certs(ctx) SSL_CTX_set0_chain(ctx, NULL)}
+
+function SSL_CTX_clear_chain_certs(ctx:PSSL_CTX): TOpenSSL_C_INT;
+begin
+  Result := TOpenSSL_C_INT(SSL_CTX_set0_chain(ctx,nil));
+end;
+
 {# define  SSL_CTX_build_cert_chain(ctx,flags) SSL_CTX_ctrl(ctx, SSL_CTRL_BUILD_CERT_CHAIN, flags, NULL)}
 
 function SSL_CTX_build_cert_chain(ctx:PSSL_CTX; flags:TOpenSSL_C_INT): TOpenSSL_C_INT;
@@ -6409,6 +6418,13 @@ end;
 function SSL_get0_chain_certs(s:PSSL; px509:pointer): TOpenSSL_C_INT;
 begin
   Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_GET_CHAIN_CERTS,0,px509));
+end;
+
+{# define  SSL_clear_chain_certs(s) SSL_set0_chain(s, NULL)}
+
+function SSL_clear_chain_certs(s:PSSL): TOpenSSL_C_INT;
+begin
+  Result := TOpenSSL_C_INT(SSL_set0_chain(s,nil));
 end;
 
 {# define  SSL_build_cert_chain(s,flags) SSL_ctrl(s, SSL_CTRL_BUILD_CERT_CHAIN, flags, NULL)}
@@ -6699,6 +6715,13 @@ begin
   Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_GET_MAX_PROTO_VERSION,0,nil));
 end;
 
+{# define  SSL_get_server_tmp_key(s,pk) SSL_get_peer_tmp_key(s, pk)}
+
+function SSL_get_server_tmp_key(s:PSSL; pk:pointer): TOpenSSL_C_INT;
+begin
+  Result := TOpenSSL_C_INT(SSL_get_peer_tmp_key(s,pk));
+end;
+
 {# define  SSL_get1_curves SSL_get1_groups}
 
 function SSL_get1_curves(s:PSSL; glist:pointer): TOpenSSL_C_INT;
@@ -6817,6 +6840,20 @@ begin
   Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_GET_SESS_CACHE_MODE,0,nil));
 end;
 
+{# define  SSL_CTX_get_default_read_ahead(ctx) SSL_CTX_get_read_ahead(ctx)}
+
+function SSL_CTX_get_default_read_ahead(ctx:PSSL_CTX): TOpenSSL_C_INT;
+begin
+  Result := TOpenSSL_C_INT(SSL_CTX_get_read_ahead(ctx));
+end;
+
+{# define  SSL_CTX_set_default_read_ahead(ctx,m) SSL_CTX_set_read_ahead(ctx, m)}
+
+function SSL_CTX_set_default_read_ahead(ctx:PSSL_CTX; m:TOpenSSL_C_INT): TOpenSSL_C_INT;
+begin
+  Result := TOpenSSL_C_INT(SSL_CTX_set_read_ahead(ctx,m));
+end;
+
 {# define  SSL_CTX_get_read_ahead(ctx) SSL_CTX_ctrl(ctx, SSL_CTRL_GET_READ_AHEAD, 0, NULL)}
 
 function SSL_CTX_get_read_ahead(ctx:PSSL_CTX): TOpenSSL_C_INT;
@@ -6916,6 +6953,22 @@ begin
   Result := TOpenSSL_C_INT(SSL_session_reused(s));
 end;
 {$endif} { OPENSSL_NO_DEPRECATED_1_1_0}
+{$ifndef  OPENSSL_NO_CT}
+
+{# define  SSL_disable_ct(s) ((void)SSL_set_ct_validation_callback((s), NULL, NULL))}
+
+procedure SSL_disable_ct(s:PSSL);
+begin
+  SSL_set_ct_validation_callback(s,nil,nil);
+end;
+
+{# define  SSL_CTX_disable_ct(ctx) ((void)SSL_CTX_set_ct_validation_callback((ctx), NULL, NULL))}
+
+procedure SSL_CTX_disable_ct(ctx:PSSL_CTX);
+begin
+  SSL_CTX_set_ct_validation_callback(ctx,nil,nil);
+end;
+{$endif} { OPENSSL_NO_CT}
 {$include legacy_ssl.inc}
 {$ifndef OPENSSL_STATIC_LINK_MODEL}
 function Load_sk_SRTP_PROTECTION_PROFILE_num(_para: Pstack_st_SRTP_PROTECTION_PROFILE): TOpenSSL_C_INT; cdecl;

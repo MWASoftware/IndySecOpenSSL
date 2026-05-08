@@ -18,7 +18,7 @@
 unit openssl_core;
 
 {
-  Generated from OpenSSL 3.0.20 Header File core.h - Thu  7 May 15:32:46 BST 2026
+  Generated from OpenSSL 3.0.20 Header File core.h - Fri  8 May 11:30:52 BST 2026
   With Legacy Support Option
 }
 
