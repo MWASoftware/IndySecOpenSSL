@@ -110,7 +110,7 @@ type
 implementation
 
 uses
-  IdSecOpenSSLHeaders_ssl
+  Openssl_ssl
   ;
 
 //////////////////////////////////////////////////////

@@ -15,7 +15,7 @@ uses
   {$ENDIF}
   IdIOHandler, IdIOHandlerSocket,
   IdIOHandlerStack, IdSSL, IdSecOpenSSL, IdBaseComponent, IdComponent,
-  IdTCPConnection, IdTCPClient, IdHTTP,  IdSecOpenSSLX509, IdSecOpenSSLAPI;
+  IdTCPConnection, IdTCPClient, IdHTTP,  IdSecOpenSSLX509, OpenSSLAPI;
 
 {$IFNDEF FPC}
 const

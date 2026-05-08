@@ -273,8 +273,8 @@ uses
   IdYarn,
   IdSecOpenSSLSocket,
   IdSecOpenSSLX509,
-  IdSecOpenSSLExceptionHandlers,
-  IdSecOpenSSLHeaders_ssl,
+  OpenSSLExceptionHandlers,
+  Openssl_ssl,
   IdSecOpenSSLOptions,
   IdSecOpenSSLFIPS {Ensure FIPS functions initialised};
 
@@ -462,7 +462,7 @@ uses
   IdCustomTransparentProxy,
   IdURI,
   SysUtils,
-  IdSecOpenSSLAPI;
+  OpenSSLAPI;
 
 
 
