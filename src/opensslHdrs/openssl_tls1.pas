@@ -18,7 +18,7 @@
 unit openssl_tls1;
 
 {
-  Generated from OpenSSL 3.0.20 Header File tls1.h - Wed  6 May 14:30:51 BST 2026
+  Generated from OpenSSL 3.0.20 Header File tls1.h - Fri  8 May 12:11:13 BST 2026
 }
 
 interface
@@ -1077,7 +1077,7 @@ const
   }
   TLS_CT_NUMBER = 12;
   {$if  defined(SSL3_CT_NUMBER)}
-    {$if  TLS_CT_NUMBER not = SSL3_CT_NUMBER}
+    {$if  TLS_CT_NUMBER <> SSL3_CT_NUMBER}
       {$error  "SSL/TLS CT_NUMBER values do not match"}
     {$endif}
   {$endif}
@@ -1197,14 +1197,26 @@ uses Sysutils
   {$endif}
   ,Classes, OpenSSLExceptionHandlers;
 
-const
-  {$ifdef FPC}
-  __FILE__ = {$include %FILE%};
-  {$else}
-  __FILE__ = '$(INPUTFILENAME)';
-  {$endif}
-  OPENSSL_FILE = __FILE__;
-  OPENSSL_LINE  = 0;
+  {$if not declared(__FILE__)}
+  const
+    {$ifdef FPC}
+    __FILE__ = {$include %FILE%};
+    {$else}
+    __FILE__ = '$(INPUTFILENAME)';
+    {$endif}
+  {$ifend}
+  {$if not declared(__LINE__)}
+  const
+    __LINE__ = 0;
+  {$ifend}
+  {$if not declared(OPENSSL_FILE)}
+  const
+    OPENSSL_FILE = __FILE__;
+  {$ifend}
+  {$if not declared(OPENSSL_LINE)}
+  const
+    OPENSSL_LINE  = 0;
+  {$ifend}
 
 {$ifndef OPENSSL_STATIC_LINK_MODEL}
 function Load_SSL_CTX_set_tlsext_max_fragment_length(ctx: PSSL_CTX; mode: byte): TOpenSSL_C_INT; cdecl;

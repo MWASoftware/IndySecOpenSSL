@@ -18,7 +18,7 @@
 unit openssl_engine;
 
 {
-  Generated from OpenSSL 3.0.20 Header File engine.h - Wed  6 May 14:30:08 BST 2026
+  Generated from OpenSSL 3.0.20 Header File engine.h - Fri  8 May 12:10:32 BST 2026
 }
 
 interface
@@ -1298,7 +1298,8 @@ type
     * IMPLEMENT_DYNAMIC_CHECK_FN().
     }
   Tdynamic_v_check_fn = function(ossl_version: TOpenSSL_C_UINT): TOpenSSL_C_UINT; cdecl;
-  (*# define  IMPLEMENT_DYNAMIC_CHECK_FN() OPENSSL_EXPORT unsigned long v_check(unsigned long v); OPENSSL_EXPORT unsigned long v_check(unsigned long v) { if (v >= OSSL_DYNAMIC_OLDEST) return OSSL_DYNAMIC_VERSION; return 0; }*)
+  (*# define  IMPLEMENT_DYNAMIC_CHECK_FN() OPENSSL_EXPORT unsigned long v_check(unsigned long v); OPENSSL_EXPORT unsigned long v_check(unsigned 
+long v) { if (v >= OSSL_DYNAMIC_OLDEST) return OSSL_DYNAMIC_VERSION; return 0; }*)
     
     {* This function is passed the ENGINE structure to initialise with its own
     * function and command settings. It should not adjust the structural or
@@ -1318,7 +1319,10 @@ type
     * [static] int fn(ENGINE *e, const char *id);
     }
   Tdynamic_bind_engine = function(e: PENGINE; id: PAnsiChar; fns: Pdynamic_fns): TOpenSSL_C_INT; cdecl;
-  (*# define  IMPLEMENT_DYNAMIC_BIND_FN(fn) OPENSSL_EXPORT int bind_engine(ENGINE *e, const char *id, const dynamic_fns *fns); OPENSSL_EXPORT int bind_engine(ENGINE *e, const char *id, const dynamic_fns *fns) { if (ENGINE_get_static_state() == fns->static_state) goto skip_cbs; CRYPTO_set_mem_functions(fns->mem_fns.malloc_fn, fns->mem_fns.realloc_fn, fns->mem_fns.free_fn); OPENSSL_init_crypto(OPENSSL_INIT_NO_ATEXIT, NULL); skip_cbs: if (!fn(e, id)) return 0; return 1; }*)
+  (*# define  IMPLEMENT_DYNAMIC_BIND_FN(fn) OPENSSL_EXPORT int bind_engine(ENGINE *e, const char *id, const dynamic_fns *fns); OPENSSL_EXPORT 
+int bind_engine(ENGINE *e, const char *id, const dynamic_fns *fns) { if (ENGINE_get_static_state() == fns->static_state) goto skip_cbs; 
+CRYPTO_set_mem_functions(fns->mem_fns.malloc_fn, fns->mem_fns.realloc_fn, fns->mem_fns.free_fn); OPENSSL_init_crypto(OPENSSL_INIT_NO_ATEXIT,
+ NULL); skip_cbs: if (!fn(e, id)) return 0; return 1; }*)
 
 
     
@@ -1380,14 +1384,26 @@ uses Sysutils
   {$endif}
   ,Classes, OpenSSLExceptionHandlers;
 
-const
-  {$ifdef FPC}
-  __FILE__ = {$include %FILE%};
-  {$else}
-  __FILE__ = '$(INPUTFILENAME)';
-  {$endif}
-  OPENSSL_FILE = __FILE__;
-  OPENSSL_LINE  = 0;
+  {$if not declared(__FILE__)}
+  const
+    {$ifdef FPC}
+    __FILE__ = {$include %FILE%};
+    {$else}
+    __FILE__ = '$(INPUTFILENAME)';
+    {$endif}
+  {$ifend}
+  {$if not declared(__LINE__)}
+  const
+    __LINE__ = 0;
+  {$ifend}
+  {$if not declared(OPENSSL_FILE)}
+  const
+    OPENSSL_FILE = __FILE__;
+  {$ifend}
+  {$if not declared(OPENSSL_LINE)}
+  const
+    OPENSSL_LINE  = 0;
+  {$ifend}
 
 {$ifndef  OPENSSL_NO_ENGINE}
 

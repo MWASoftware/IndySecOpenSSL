@@ -18,7 +18,7 @@
 unit openssl_x509v3;
 
 {
-  Generated from OpenSSL 3.0.20 Header File x509v3.h - Wed  6 May 14:31:03 BST 2026
+  Generated from OpenSSL 3.0.20 Header File x509v3.h - Fri  8 May 12:11:25 BST 2026
 }
 
 interface
@@ -1893,9 +1893,12 @@ const
 
   procedure X509V3_set_ctx_test(ctx:PX509V3_CTX); inline;
   {# define  X509V3_set_ctx_nodb(ctx) (ctx)->db = NULL;}
-  (*# define  EXT_BITSTRING(nid,table) { nid, 0, ASN1_ITEM_ref(ASN1_BIT_STRING), 0, 0, 0, 0, 0, 0, (X509V3_EXT_I2V)i2v_ASN1_BIT_STRING, (X509V3_EXT_V2I)v2i_ASN1_BIT_STRING, NULL, NULL, table }*)
-  (*# define  EXT_IA5STRING(nid) { nid, 0, ASN1_ITEM_ref(ASN1_IA5STRING), 0, 0, 0, 0, (X509V3_EXT_I2S)i2s_ASN1_IA5STRING, (X509V3_EXT_S2I)s2i_ASN1_IA5STRING, 0, 0, 0, 0, NULL }*)
-  (*# define  EXT_UTF8STRING(nid) { nid, 0, ASN1_ITEM_ref(ASN1_UTF8STRING), 0, 0, 0, 0, (X509V3_EXT_I2S)i2s_ASN1_UTF8STRING, (X509V3_EXT_S2I)s2i_ASN1_UTF8STRING, 0, 0, 0, 0, NULL }*)
+  (*# define  EXT_BITSTRING(nid,table) { nid, 0, ASN1_ITEM_ref(ASN1_BIT_STRING), 0, 0, 0, 0, 0, 0, (X509V3_EXT_I2V)i2v_ASN1_BIT_STRING,
+ (X509V3_EXT_V2I)v2i_ASN1_BIT_STRING, NULL, NULL, table }*)
+  (*# define  EXT_IA5STRING(nid) { nid, 0, ASN1_ITEM_ref(ASN1_IA5STRING), 0, 0, 0, 0, (X509V3_EXT_I2S)i2s_ASN1_IA5STRING, (X509V3_EXT_S2I)s2i_ASN1_IA5STRING,
+ 0, 0, 0, 0, NULL }*)
+  (*# define  EXT_UTF8STRING(nid) { nid, 0, ASN1_ITEM_ref(ASN1_UTF8STRING), 0, 0, 0, 0, (X509V3_EXT_I2S)i2s_ASN1_UTF8STRING, (X509V3_EXT_S2I)s2i_ASN1_UTF8STRING,
+ 0, 0, 0, 0, NULL }*)
   (*# define  EXT_END { -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}*)
 
 const
@@ -3425,7 +3428,8 @@ type
   {# define  sk_ASIdOrRange_value(sk,idx) ((ASIdOrRange *)OPENSSL_sk_value(ossl_check_const_ASIdOrRange_sk_type(sk), (idx)))} {Function argument out of range at line no 1117}
   {# define  sk_ASIdOrRange_new(cmp) ((STACK_OF(ASIdOrRange) *)OPENSSL_sk_new(ossl_check_ASIdOrRange_compfunc_type(cmp)))}
   {# define  sk_ASIdOrRange_new_null() ((STACK_OF(ASIdOrRange) *)OPENSSL_sk_new_null())}
-  {# define  sk_ASIdOrRange_new_reserve(cmp,n) ((STACK_OF(ASIdOrRange) *)OPENSSL_sk_new_reserve(ossl_check_ASIdOrRange_compfunc_type(cmp), (n)))}
+  {# define  sk_ASIdOrRange_new_reserve(cmp,n) ((STACK_OF(ASIdOrRange) *)OPENSSL_sk_new_reserve(ossl_check_ASIdOrRange_compfunc_type(cmp),
+ (n)))}
   {# define  sk_ASIdOrRange_reserve(sk,n) OPENSSL_sk_reserve(ossl_check_ASIdOrRange_sk_type(sk), (n))} {Function argument out of range at line no 1121}
   {# define  sk_ASIdOrRange_free(sk) OPENSSL_sk_free(ossl_check_ASIdOrRange_sk_type(sk))} {Macro Return Type unknown at line no 1122}
   {# define  sk_ASIdOrRange_zero(sk) OPENSSL_sk_zero(ossl_check_ASIdOrRange_sk_type(sk))} {Macro Return Type unknown at line no 1123}
@@ -3436,15 +3440,18 @@ type
   function sk_ASIdOrRange_pop(sk:Pstack_st_ASIdOrRange): PASIdOrRange; inline;
   function sk_ASIdOrRange_shift(sk:Pstack_st_ASIdOrRange): PASIdOrRange; inline;
   {# define  sk_ASIdOrRange_pop_free(sk,freefunc) OPENSSL_sk_pop_free(ossl_check_ASIdOrRange_sk_type(sk),ossl_check_ASIdOrRange_freefunc_type(freefunc))} {Macro Return Type unknown at line no 1130}
-  {# define  sk_ASIdOrRange_insert(sk,ptr,idx) OPENSSL_sk_insert(ossl_check_ASIdOrRange_sk_type(sk), ossl_check_ASIdOrRange_type(ptr), (idx))} {Function argument out of range at line no 1131}
+  {# define  sk_ASIdOrRange_insert(sk,ptr,idx) OPENSSL_sk_insert(ossl_check_ASIdOrRange_sk_type(sk), ossl_check_ASIdOrRange_type(ptr),
+ (idx))} {Function argument out of range at line no 1131}
   {# define  sk_ASIdOrRange_set(sk,idx,ptr) ((ASIdOrRange *)OPENSSL_sk_set(ossl_check_ASIdOrRange_sk_type(sk), (idx), ossl_check_ASIdOrRange_type(ptr)))} {Function argument out of range at line no 1132}
   {# define  sk_ASIdOrRange_find(sk,ptr) OPENSSL_sk_find(ossl_check_ASIdOrRange_sk_type(sk), ossl_check_ASIdOrRange_type(ptr))} {Macro Return Type unknown at line no 1133}
   {# define  sk_ASIdOrRange_find_ex(sk,ptr) OPENSSL_sk_find_ex(ossl_check_ASIdOrRange_sk_type(sk), ossl_check_ASIdOrRange_type(ptr))} {Macro Return Type unknown at line no 1134}
-  {# define  sk_ASIdOrRange_find_all(sk,ptr,pnum) OPENSSL_sk_find_all(ossl_check_ASIdOrRange_sk_type(sk), ossl_check_ASIdOrRange_type(ptr), pnum)} {Function argument out of range at line no 1135}
+  {# define  sk_ASIdOrRange_find_all(sk,ptr,pnum) OPENSSL_sk_find_all(ossl_check_ASIdOrRange_sk_type(sk), ossl_check_ASIdOrRange_type(ptr),
+ pnum)} {Function argument out of range at line no 1135}
   {# define  sk_ASIdOrRange_sort(sk) OPENSSL_sk_sort(ossl_check_ASIdOrRange_sk_type(sk))} {Macro Return Type unknown at line no 1136}
   {# define  sk_ASIdOrRange_is_sorted(sk) OPENSSL_sk_is_sorted(ossl_check_const_ASIdOrRange_sk_type(sk))} {Macro Return Type unknown at line no 1137}
   {# define  sk_ASIdOrRange_dup(sk) ((STACK_OF(ASIdOrRange) *)OPENSSL_sk_dup(ossl_check_const_ASIdOrRange_sk_type(sk)))}
-  {# define  sk_ASIdOrRange_deep_copy(sk,copyfunc,freefunc) ((STACK_OF(ASIdOrRange) *)OPENSSL_sk_deep_copy(ossl_check_const_ASIdOrRange_sk_type(sk), ossl_check_ASIdOrRange_copyfunc_type(copyfunc), ossl_check_ASIdOrRange_freefunc_type(freefunc)))}
+  {# define  sk_ASIdOrRange_deep_copy(sk,copyfunc,freefunc) ((STACK_OF(ASIdOrRange) *)OPENSSL_sk_deep_copy(ossl_check_const_ASIdOrRange_sk_type(sk),
+ ossl_check_ASIdOrRange_copyfunc_type(copyfunc), ossl_check_ASIdOrRange_freefunc_type(freefunc)))}
   function sk_ASIdOrRange_set_cmp_func(sk:Pstack_st_ASIdOrRange; cmp:Tsk_ASIdOrRange_compfunc): Tsk_ASIdOrRange_compfunc; inline;
 
 type
@@ -3633,10 +3640,12 @@ type
   function ossl_check_IPAddressOrRange_copyfunc_type(cpy: Tsk_IPAddressOrRange_copyfunc): TOPENSSL_sk_copyfunc{Has C Attribute: unused}; inline;
   function ossl_check_IPAddressOrRange_freefunc_type(fr: Tsk_IPAddressOrRange_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
   {# define  sk_IPAddressOrRange_num(sk) OPENSSL_sk_num(ossl_check_const_IPAddressOrRange_sk_type(sk))} {Macro Return Type unknown at line no 1183}
-  {# define  sk_IPAddressOrRange_value(sk,idx) ((IPAddressOrRange *)OPENSSL_sk_value(ossl_check_const_IPAddressOrRange_sk_type(sk), (idx)))} {Function argument out of range at line no 1184}
+  {# define  sk_IPAddressOrRange_value(sk,idx) ((IPAddressOrRange *)OPENSSL_sk_value(ossl_check_const_IPAddressOrRange_sk_type(sk),
+ (idx)))} {Function argument out of range at line no 1184}
   {# define  sk_IPAddressOrRange_new(cmp) ((STACK_OF(IPAddressOrRange) *)OPENSSL_sk_new(ossl_check_IPAddressOrRange_compfunc_type(cmp)))}
   {# define  sk_IPAddressOrRange_new_null() ((STACK_OF(IPAddressOrRange) *)OPENSSL_sk_new_null())}
-  {# define  sk_IPAddressOrRange_new_reserve(cmp,n) ((STACK_OF(IPAddressOrRange) *)OPENSSL_sk_new_reserve(ossl_check_IPAddressOrRange_compfunc_type(cmp), (n)))}
+  {# define  sk_IPAddressOrRange_new_reserve(cmp,n) ((STACK_OF(IPAddressOrRange) *)OPENSSL_sk_new_reserve(ossl_check_IPAddressOrRange_compfunc_type(cmp),
+ (n)))}
   {# define  sk_IPAddressOrRange_reserve(sk,n) OPENSSL_sk_reserve(ossl_check_IPAddressOrRange_sk_type(sk), (n))} {Function argument out of range at line no 1188}
   {# define  sk_IPAddressOrRange_free(sk) OPENSSL_sk_free(ossl_check_IPAddressOrRange_sk_type(sk))} {Macro Return Type unknown at line no 1189}
   {# define  sk_IPAddressOrRange_zero(sk) OPENSSL_sk_zero(ossl_check_IPAddressOrRange_sk_type(sk))} {Macro Return Type unknown at line no 1190}
@@ -3647,15 +3656,19 @@ type
   function sk_IPAddressOrRange_pop(sk:Pstack_st_IPAddressOrRange): PIPAddressOrRange; inline;
   function sk_IPAddressOrRange_shift(sk:Pstack_st_IPAddressOrRange): PIPAddressOrRange; inline;
   {# define  sk_IPAddressOrRange_pop_free(sk,freefunc) OPENSSL_sk_pop_free(ossl_check_IPAddressOrRange_sk_type(sk),ossl_check_IPAddressOrRange_freefunc_type(freefunc))} {Macro Return Type unknown at line no 1197}
-  {# define  sk_IPAddressOrRange_insert(sk,ptr,idx) OPENSSL_sk_insert(ossl_check_IPAddressOrRange_sk_type(sk), ossl_check_IPAddressOrRange_type(ptr), (idx))} {Function argument out of range at line no 1198}
-  {# define  sk_IPAddressOrRange_set(sk,idx,ptr) ((IPAddressOrRange *)OPENSSL_sk_set(ossl_check_IPAddressOrRange_sk_type(sk), (idx), ossl_check_IPAddressOrRange_type(ptr)))} {Function argument out of range at line no 1199}
+  {# define  sk_IPAddressOrRange_insert(sk,ptr,idx) OPENSSL_sk_insert(ossl_check_IPAddressOrRange_sk_type(sk), ossl_check_IPAddressOrRange_type(ptr),
+ (idx))} {Function argument out of range at line no 1198}
+  {# define  sk_IPAddressOrRange_set(sk,idx,ptr) ((IPAddressOrRange *)OPENSSL_sk_set(ossl_check_IPAddressOrRange_sk_type(sk), (idx),
+ ossl_check_IPAddressOrRange_type(ptr)))} {Function argument out of range at line no 1199}
   {# define  sk_IPAddressOrRange_find(sk,ptr) OPENSSL_sk_find(ossl_check_IPAddressOrRange_sk_type(sk), ossl_check_IPAddressOrRange_type(ptr))} {Macro Return Type unknown at line no 1200}
   {# define  sk_IPAddressOrRange_find_ex(sk,ptr) OPENSSL_sk_find_ex(ossl_check_IPAddressOrRange_sk_type(sk), ossl_check_IPAddressOrRange_type(ptr))} {Macro Return Type unknown at line no 1201}
-  {# define  sk_IPAddressOrRange_find_all(sk,ptr,pnum) OPENSSL_sk_find_all(ossl_check_IPAddressOrRange_sk_type(sk), ossl_check_IPAddressOrRange_type(ptr), pnum)} {Function argument out of range at line no 1202}
+  {# define  sk_IPAddressOrRange_find_all(sk,ptr,pnum) OPENSSL_sk_find_all(ossl_check_IPAddressOrRange_sk_type(sk), ossl_check_IPAddressOrRange_type(ptr),
+ pnum)} {Function argument out of range at line no 1202}
   {# define  sk_IPAddressOrRange_sort(sk) OPENSSL_sk_sort(ossl_check_IPAddressOrRange_sk_type(sk))} {Macro Return Type unknown at line no 1203}
   {# define  sk_IPAddressOrRange_is_sorted(sk) OPENSSL_sk_is_sorted(ossl_check_const_IPAddressOrRange_sk_type(sk))} {Macro Return Type unknown at line no 1204}
   {# define  sk_IPAddressOrRange_dup(sk) ((STACK_OF(IPAddressOrRange) *)OPENSSL_sk_dup(ossl_check_const_IPAddressOrRange_sk_type(sk)))}
-  {# define  sk_IPAddressOrRange_deep_copy(sk,copyfunc,freefunc) ((STACK_OF(IPAddressOrRange) *)OPENSSL_sk_deep_copy(ossl_check_const_IPAddressOrRange_sk_type(sk), ossl_check_IPAddressOrRange_copyfunc_type(copyfunc), ossl_check_IPAddressOrRange_freefunc_type(freefunc)))}
+  {# define  sk_IPAddressOrRange_deep_copy(sk,copyfunc,freefunc) ((STACK_OF(IPAddressOrRange) *)OPENSSL_sk_deep_copy(ossl_check_const_IPAddressOrRange_sk_type(sk),
+ ossl_check_IPAddressOrRange_copyfunc_type(copyfunc), ossl_check_IPAddressOrRange_freefunc_type(freefunc)))}
   function sk_IPAddressOrRange_set_cmp_func(sk:Pstack_st_IPAddressOrRange; cmp:Tsk_IPAddressOrRange_compfunc): Tsk_IPAddressOrRange_compfunc; inline;
 
 type
@@ -3723,7 +3736,8 @@ type
   {# define  sk_IPAddressFamily_value(sk,idx) ((IPAddressFamily *)OPENSSL_sk_value(ossl_check_const_IPAddressFamily_sk_type(sk), (idx)))} {Function argument out of range at line no 1232}
   {# define  sk_IPAddressFamily_new(cmp) ((STACK_OF(IPAddressFamily) *)OPENSSL_sk_new(ossl_check_IPAddressFamily_compfunc_type(cmp)))}
   {# define  sk_IPAddressFamily_new_null() ((STACK_OF(IPAddressFamily) *)OPENSSL_sk_new_null())}
-  {# define  sk_IPAddressFamily_new_reserve(cmp,n) ((STACK_OF(IPAddressFamily) *)OPENSSL_sk_new_reserve(ossl_check_IPAddressFamily_compfunc_type(cmp), (n)))}
+  {# define  sk_IPAddressFamily_new_reserve(cmp,n) ((STACK_OF(IPAddressFamily) *)OPENSSL_sk_new_reserve(ossl_check_IPAddressFamily_compfunc_type(cmp),
+ (n)))}
   {# define  sk_IPAddressFamily_reserve(sk,n) OPENSSL_sk_reserve(ossl_check_IPAddressFamily_sk_type(sk), (n))} {Function argument out of range at line no 1236}
   {# define  sk_IPAddressFamily_free(sk) OPENSSL_sk_free(ossl_check_IPAddressFamily_sk_type(sk))} {Macro Return Type unknown at line no 1237}
   {# define  sk_IPAddressFamily_zero(sk) OPENSSL_sk_zero(ossl_check_IPAddressFamily_sk_type(sk))} {Macro Return Type unknown at line no 1238}
@@ -3734,15 +3748,19 @@ type
   function sk_IPAddressFamily_pop(sk:Pstack_st_IPAddressFamily): PIPAddressFamily; inline;
   function sk_IPAddressFamily_shift(sk:Pstack_st_IPAddressFamily): PIPAddressFamily; inline;
   {# define  sk_IPAddressFamily_pop_free(sk,freefunc) OPENSSL_sk_pop_free(ossl_check_IPAddressFamily_sk_type(sk),ossl_check_IPAddressFamily_freefunc_type(freefunc))} {Macro Return Type unknown at line no 1245}
-  {# define  sk_IPAddressFamily_insert(sk,ptr,idx) OPENSSL_sk_insert(ossl_check_IPAddressFamily_sk_type(sk), ossl_check_IPAddressFamily_type(ptr), (idx))} {Function argument out of range at line no 1246}
-  {# define  sk_IPAddressFamily_set(sk,idx,ptr) ((IPAddressFamily *)OPENSSL_sk_set(ossl_check_IPAddressFamily_sk_type(sk), (idx), ossl_check_IPAddressFamily_type(ptr)))} {Function argument out of range at line no 1247}
+  {# define  sk_IPAddressFamily_insert(sk,ptr,idx) OPENSSL_sk_insert(ossl_check_IPAddressFamily_sk_type(sk), ossl_check_IPAddressFamily_type(ptr),
+ (idx))} {Function argument out of range at line no 1246}
+  {# define  sk_IPAddressFamily_set(sk,idx,ptr) ((IPAddressFamily *)OPENSSL_sk_set(ossl_check_IPAddressFamily_sk_type(sk), (idx), 
+ossl_check_IPAddressFamily_type(ptr)))} {Function argument out of range at line no 1247}
   {# define  sk_IPAddressFamily_find(sk,ptr) OPENSSL_sk_find(ossl_check_IPAddressFamily_sk_type(sk), ossl_check_IPAddressFamily_type(ptr))} {Macro Return Type unknown at line no 1248}
   {# define  sk_IPAddressFamily_find_ex(sk,ptr) OPENSSL_sk_find_ex(ossl_check_IPAddressFamily_sk_type(sk), ossl_check_IPAddressFamily_type(ptr))} {Macro Return Type unknown at line no 1249}
-  {# define  sk_IPAddressFamily_find_all(sk,ptr,pnum) OPENSSL_sk_find_all(ossl_check_IPAddressFamily_sk_type(sk), ossl_check_IPAddressFamily_type(ptr), pnum)} {Function argument out of range at line no 1250}
+  {# define  sk_IPAddressFamily_find_all(sk,ptr,pnum) OPENSSL_sk_find_all(ossl_check_IPAddressFamily_sk_type(sk), ossl_check_IPAddressFamily_type(ptr),
+ pnum)} {Function argument out of range at line no 1250}
   {# define  sk_IPAddressFamily_sort(sk) OPENSSL_sk_sort(ossl_check_IPAddressFamily_sk_type(sk))} {Macro Return Type unknown at line no 1251}
   {# define  sk_IPAddressFamily_is_sorted(sk) OPENSSL_sk_is_sorted(ossl_check_const_IPAddressFamily_sk_type(sk))} {Macro Return Type unknown at line no 1252}
   {# define  sk_IPAddressFamily_dup(sk) ((STACK_OF(IPAddressFamily) *)OPENSSL_sk_dup(ossl_check_const_IPAddressFamily_sk_type(sk)))}
-  {# define  sk_IPAddressFamily_deep_copy(sk,copyfunc,freefunc) ((STACK_OF(IPAddressFamily) *)OPENSSL_sk_deep_copy(ossl_check_const_IPAddressFamily_sk_type(sk), ossl_check_IPAddressFamily_copyfunc_type(copyfunc), ossl_check_IPAddressFamily_freefunc_type(freefunc)))}
+  {# define  sk_IPAddressFamily_deep_copy(sk,copyfunc,freefunc) ((STACK_OF(IPAddressFamily) *)OPENSSL_sk_deep_copy(ossl_check_const_IPAddressFamily_sk_type(sk),
+ ossl_check_IPAddressFamily_copyfunc_type(copyfunc), ossl_check_IPAddressFamily_freefunc_type(freefunc)))}
   function sk_IPAddressFamily_set_cmp_func(sk:Pstack_st_IPAddressFamily; cmp:Tsk_IPAddressFamily_compfunc): Tsk_IPAddressFamily_compfunc; inline;
 
 type
@@ -4633,14 +4651,26 @@ uses Sysutils
   {$endif}
   ,Classes, OpenSSLExceptionHandlers;
 
-const
-  {$ifdef FPC}
-  __FILE__ = {$include %FILE%};
-  {$else}
-  __FILE__ = '$(INPUTFILENAME)';
-  {$endif}
-  OPENSSL_FILE = __FILE__;
-  OPENSSL_LINE  = 0;
+  {$if not declared(__FILE__)}
+  const
+    {$ifdef FPC}
+    __FILE__ = {$include %FILE%};
+    {$else}
+    __FILE__ = '$(INPUTFILENAME)';
+    {$endif}
+  {$ifend}
+  {$if not declared(__LINE__)}
+  const
+    __LINE__ = 0;
+  {$ifend}
+  {$if not declared(OPENSSL_FILE)}
+  const
+    OPENSSL_FILE = __FILE__;
+  {$ifend}
+  {$if not declared(OPENSSL_LINE)}
+  const
+    OPENSSL_LINE  = 0;
+  {$ifend}
 
 function ossl_check_X509V3_EXT_METHOD_type(ptr: PX509V3_EXT_METHOD): PX509V3_EXT_METHOD{Has C Attribute: unused}; inline;
 begin
@@ -5062,7 +5092,8 @@ begin
   Result := PASIdOrRange(PASIdOrRange(OPENSSL_sk_shift(ossl_check_ASIdOrRange_sk_type(sk))));
 end;
 
-{# define  sk_ASIdOrRange_set_cmp_func(sk,cmp) ((sk_ASIdOrRange_compfunc)OPENSSL_sk_set_cmp_func(ossl_check_ASIdOrRange_sk_type(sk), ossl_check_ASIdOrRange_compfunc_type(cmp)))}
+{# define  sk_ASIdOrRange_set_cmp_func(sk,cmp) ((sk_ASIdOrRange_compfunc)OPENSSL_sk_set_cmp_func(ossl_check_ASIdOrRange_sk_type(sk),
+ ossl_check_ASIdOrRange_compfunc_type(cmp)))}
 
 function sk_ASIdOrRange_set_cmp_func(sk:Pstack_st_ASIdOrRange; cmp:Tsk_ASIdOrRange_compfunc): Tsk_ASIdOrRange_compfunc;
 begin
@@ -5099,7 +5130,8 @@ begin
 end;
 
 
-{# define  sk_IPAddressOrRange_delete_ptr(sk,ptr) ((IPAddressOrRange *)OPENSSL_sk_delete_ptr(ossl_check_IPAddressOrRange_sk_type(sk), ossl_check_IPAddressOrRange_type(ptr)))}
+{# define  sk_IPAddressOrRange_delete_ptr(sk,ptr) ((IPAddressOrRange *)OPENSSL_sk_delete_ptr(ossl_check_IPAddressOrRange_sk_type(sk),
+ ossl_check_IPAddressOrRange_type(ptr)))}
 
 function sk_IPAddressOrRange_delete_ptr(sk:Pstack_st_IPAddressOrRange; ptr:PIPAddressOrRange): PIPAddressOrRange;
 begin
@@ -5120,7 +5152,8 @@ begin
   Result := PIPAddressOrRange(PIPAddressOrRange(OPENSSL_sk_shift(ossl_check_IPAddressOrRange_sk_type(sk))));
 end;
 
-{# define  sk_IPAddressOrRange_set_cmp_func(sk,cmp) ((sk_IPAddressOrRange_compfunc)OPENSSL_sk_set_cmp_func(ossl_check_IPAddressOrRange_sk_type(sk), ossl_check_IPAddressOrRange_compfunc_type(cmp)))}
+{# define  sk_IPAddressOrRange_set_cmp_func(sk,cmp) ((sk_IPAddressOrRange_compfunc)OPENSSL_sk_set_cmp_func(ossl_check_IPAddressOrRange_sk_type(sk),
+ ossl_check_IPAddressOrRange_compfunc_type(cmp)))}
 
 function sk_IPAddressOrRange_set_cmp_func(sk:Pstack_st_IPAddressOrRange; cmp:Tsk_IPAddressOrRange_compfunc): Tsk_IPAddressOrRange_compfunc;
 begin
@@ -5157,7 +5190,8 @@ begin
 end;
 
 
-{# define  sk_IPAddressFamily_delete_ptr(sk,ptr) ((IPAddressFamily *)OPENSSL_sk_delete_ptr(ossl_check_IPAddressFamily_sk_type(sk), ossl_check_IPAddressFamily_type(ptr)))}
+{# define  sk_IPAddressFamily_delete_ptr(sk,ptr) ((IPAddressFamily *)OPENSSL_sk_delete_ptr(ossl_check_IPAddressFamily_sk_type(sk),
+ ossl_check_IPAddressFamily_type(ptr)))}
 
 function sk_IPAddressFamily_delete_ptr(sk:Pstack_st_IPAddressFamily; ptr:PIPAddressFamily): PIPAddressFamily;
 begin
@@ -5178,7 +5212,8 @@ begin
   Result := PIPAddressFamily(PIPAddressFamily(OPENSSL_sk_shift(ossl_check_IPAddressFamily_sk_type(sk))));
 end;
 
-{# define  sk_IPAddressFamily_set_cmp_func(sk,cmp) ((sk_IPAddressFamily_compfunc)OPENSSL_sk_set_cmp_func(ossl_check_IPAddressFamily_sk_type(sk), ossl_check_IPAddressFamily_compfunc_type(cmp)))}
+{# define  sk_IPAddressFamily_set_cmp_func(sk,cmp) ((sk_IPAddressFamily_compfunc)OPENSSL_sk_set_cmp_func(ossl_check_IPAddressFamily_sk_type(sk),
+ ossl_check_IPAddressFamily_compfunc_type(cmp)))}
 
 function sk_IPAddressFamily_set_cmp_func(sk:Pstack_st_IPAddressFamily; cmp:Tsk_IPAddressFamily_compfunc): Tsk_IPAddressFamily_compfunc;
 begin

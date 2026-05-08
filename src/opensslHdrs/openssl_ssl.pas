@@ -18,7 +18,7 @@
 unit openssl_ssl;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ssl.h - Wed  6 May 14:30:45 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ssl.h - Fri  8 May 12:11:08 BST 2026
 }
 
 interface
@@ -549,7 +549,7 @@ type
   TSSL_async_callback_fn = function(s: PSSL; arg: pointer): TOpenSSL_C_INT; cdecl;
 
 
-  function SSL_OP_BIT(n: qword): int64; inline;
+  function SSL_OP_BIT(n: TOpenSSL_C_UINT64): int64; inline;
   
   {* SSL/TLS connection options.
   }
@@ -795,12 +795,12 @@ const
   * cannot be used to clear bits.
   *)
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function SSL_CTX_get_options(ctx: PSSL_CTX): qword; cdecl; external CLibSSL name 'SSL_CTX_get_options';
-  function SSL_get_options(s: PSSL): qword; cdecl; external CLibSSL name 'SSL_get_options';
-  function SSL_CTX_clear_options(ctx: PSSL_CTX; op: qword): qword; cdecl; external CLibSSL name 'SSL_CTX_clear_options';
-  function SSL_clear_options(s: PSSL; op: qword): qword; cdecl; external CLibSSL name 'SSL_clear_options';
-  function SSL_CTX_set_options(ctx: PSSL_CTX; op: qword): qword; cdecl; external CLibSSL name 'SSL_CTX_set_options';
-  function SSL_set_options(s: PSSL; op: qword): qword; cdecl; external CLibSSL name 'SSL_set_options';
+  function SSL_CTX_get_options(ctx: PSSL_CTX): TOpenSSL_C_UINT64; cdecl; external CLibSSL name 'SSL_CTX_get_options';
+  function SSL_get_options(s: PSSL): TOpenSSL_C_UINT64; cdecl; external CLibSSL name 'SSL_get_options';
+  function SSL_CTX_clear_options(ctx: PSSL_CTX; op: TOpenSSL_C_UINT64): TOpenSSL_C_UINT64; cdecl; external CLibSSL name 'SSL_CTX_clear_options';
+  function SSL_clear_options(s: PSSL; op: TOpenSSL_C_UINT64): TOpenSSL_C_UINT64; cdecl; external CLibSSL name 'SSL_clear_options';
+  function SSL_CTX_set_options(ctx: PSSL_CTX; op: TOpenSSL_C_UINT64): TOpenSSL_C_UINT64; cdecl; external CLibSSL name 'SSL_CTX_set_options';
+  function SSL_set_options(s: PSSL; op: TOpenSSL_C_UINT64): TOpenSSL_C_UINT64; cdecl; external CLibSSL name 'SSL_set_options';
   {$else}
   {$EXTERNALSYM SSL_CTX_get_options}
   {$EXTERNALSYM SSL_get_options}
@@ -809,20 +809,20 @@ const
   {$EXTERNALSYM SSL_CTX_set_options}
   {$EXTERNALSYM SSL_set_options}
   {Do not call Function LoadDeclarations. Internal use only}
-  function Load_SSL_CTX_get_options(ctx: PSSL_CTX): qword; cdecl;
-  function Load_SSL_get_options(s: PSSL): qword; cdecl;
-  function Load_SSL_CTX_clear_options(ctx: PSSL_CTX; op: qword): qword; cdecl;
-  function Load_SSL_clear_options(s: PSSL; op: qword): qword; cdecl;
-  function Load_SSL_CTX_set_options(ctx: PSSL_CTX; op: qword): qword; cdecl;
-  function Load_SSL_set_options(s: PSSL; op: qword): qword; cdecl;
+  function Load_SSL_CTX_get_options(ctx: PSSL_CTX): TOpenSSL_C_UINT64; cdecl;
+  function Load_SSL_get_options(s: PSSL): TOpenSSL_C_UINT64; cdecl;
+  function Load_SSL_CTX_clear_options(ctx: PSSL_CTX; op: TOpenSSL_C_UINT64): TOpenSSL_C_UINT64; cdecl;
+  function Load_SSL_clear_options(s: PSSL; op: TOpenSSL_C_UINT64): TOpenSSL_C_UINT64; cdecl;
+  function Load_SSL_CTX_set_options(ctx: PSSL_CTX; op: TOpenSSL_C_UINT64): TOpenSSL_C_UINT64; cdecl;
+  function Load_SSL_set_options(s: PSSL; op: TOpenSSL_C_UINT64): TOpenSSL_C_UINT64; cdecl;
 
 var
-  SSL_CTX_get_options: function(ctx: PSSL_CTX): qword; cdecl = Load_SSL_CTX_get_options;
-  SSL_get_options: function(s: PSSL): qword; cdecl = Load_SSL_get_options;
-  SSL_CTX_clear_options: function(ctx: PSSL_CTX; op: qword): qword; cdecl = Load_SSL_CTX_clear_options;
-  SSL_clear_options: function(s: PSSL; op: qword): qword; cdecl = Load_SSL_clear_options;
-  SSL_CTX_set_options: function(ctx: PSSL_CTX; op: qword): qword; cdecl = Load_SSL_CTX_set_options;
-  SSL_set_options: function(s: PSSL; op: qword): qword; cdecl = Load_SSL_set_options;
+  SSL_CTX_get_options: function(ctx: PSSL_CTX): TOpenSSL_C_UINT64; cdecl = Load_SSL_CTX_get_options;
+  SSL_get_options: function(s: PSSL): TOpenSSL_C_UINT64; cdecl = Load_SSL_get_options;
+  SSL_CTX_clear_options: function(ctx: PSSL_CTX; op: TOpenSSL_C_UINT64): TOpenSSL_C_UINT64; cdecl = Load_SSL_CTX_clear_options;
+  SSL_clear_options: function(s: PSSL; op: TOpenSSL_C_UINT64): TOpenSSL_C_UINT64; cdecl = Load_SSL_clear_options;
+  SSL_CTX_set_options: function(ctx: PSSL_CTX; op: TOpenSSL_C_UINT64): TOpenSSL_C_UINT64; cdecl = Load_SSL_CTX_set_options;
+  SSL_set_options: function(s: PSSL; op: TOpenSSL_C_UINT64): TOpenSSL_C_UINT64; cdecl = Load_SSL_set_options;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
 
@@ -2318,7 +2318,7 @@ const
   function SSL_CTX_add0_chain_cert(ctx:PSSL_CTX; x509:pointer): TOpenSSL_C_INT; inline;
   function SSL_CTX_add1_chain_cert(ctx:PSSL_CTX; x509:pointer): TOpenSSL_C_INT; inline;
   function SSL_CTX_get0_chain_certs(ctx:PSSL_CTX; px509:pointer): TOpenSSL_C_INT; inline;
-  {# define  SSL_CTX_clear_chain_certs(ctx) SSL_CTX_set0_chain(ctx, NULL)} {Param Type resolution error - calls function in another unit? at line no 1440}
+  function SSL_CTX_clear_chain_certs(ctx:PSSL_CTX): TOpenSSL_C_INT; inline;
   function SSL_CTX_build_cert_chain(ctx:PSSL_CTX; flags:TOpenSSL_C_INT): TOpenSSL_C_INT; inline;
   function SSL_CTX_select_current_cert(ctx:PSSL_CTX; x509:pointer): TOpenSSL_C_INT; inline;
   function SSL_CTX_set_current_cert(ctx:PSSL_CTX; op:TOpenSSL_C_INT): TOpenSSL_C_INT; inline;
@@ -2333,7 +2333,7 @@ const
   function SSL_add0_chain_cert(s:PSSL; x509:pointer): TOpenSSL_C_INT; inline;
   function SSL_add1_chain_cert(s:PSSL; x509:pointer): TOpenSSL_C_INT; inline;
   function SSL_get0_chain_certs(s:PSSL; px509:pointer): TOpenSSL_C_INT; inline;
-  {# define  SSL_clear_chain_certs(s) SSL_set0_chain(s, NULL)} {Param Type resolution error - calls function in another unit? at line no 1470}
+  function SSL_clear_chain_certs(s:PSSL): TOpenSSL_C_INT; inline;
   function SSL_build_cert_chain(s:PSSL; flags:TOpenSSL_C_INT): TOpenSSL_C_INT; inline;
   function SSL_select_current_cert(s:PSSL; x509:pointer): TOpenSSL_C_INT; inline;
   function SSL_set_current_cert(s:PSSL; op:TOpenSSL_C_INT): TOpenSSL_C_INT; inline;
@@ -2390,9 +2390,9 @@ var
 
 const
   SSL_CTRL_GET_SERVER_TMP_KEY = SSL_CTRL_GET_PEER_TMP_KEY;
-  {# define  SSL_get_server_tmp_key(s,pk) SSL_get_peer_tmp_key(s, pk)} {Param Type resolution error - calls function in another unit? at line no 1562}
 
 
+  function SSL_get_server_tmp_key(s:PSSL; pk:pointer): TOpenSSL_C_INT; inline;
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
   function SSL_set0_tmp_dh_pkey(s: PSSL; dhpkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl; external CLibSSL name 'SSL_set0_tmp_dh_pkey';
   function SSL_CTX_set0_tmp_dh_pkey(ctx: PSSL_CTX; dhpkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl; external CLibSSL name 'SSL_CTX_set0_tmp_dh_pkey';
@@ -4349,7 +4349,8 @@ var
   SSL_set_ex_data: function(ssl: PSSL; idx: TOpenSSL_C_INT; data: pointer): TOpenSSL_C_INT; cdecl = Load_SSL_set_ex_data;
   SSL_get_ex_data: function(ssl: PSSL; idx: TOpenSSL_C_INT): pointer; cdecl = Load_SSL_get_ex_data;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
-  {# define  SSL_SESSION_get_ex_new_index(l,p,newf,dupf,freef) CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_SSL_SESSION, l, p, newf, dupf, freef)} {Macro Return Type unknown at line no 2177}
+  {# define  SSL_SESSION_get_ex_new_index(l,p,newf,dupf,freef) CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_SSL_SESSION, l, p, newf, dupf,
+ freef)} {Macro Return Type unknown at line no 2177}
 
 
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
@@ -4393,8 +4394,8 @@ var
   function SSL_CTX_sess_get_cache_size(ctx:PSSL_CTX): TOpenSSL_C_INT; inline;
   function SSL_CTX_set_session_cache_mode(ctx:PSSL_CTX; m:TOpenSSL_C_INT): TOpenSSL_C_INT; inline;
   function SSL_CTX_get_session_cache_mode(ctx:PSSL_CTX): TOpenSSL_C_INT; inline;
-  {# define  SSL_CTX_get_default_read_ahead(ctx) SSL_CTX_get_read_ahead(ctx)} {Param Type resolution error - calls function in another unit? at line no 2197}
-  {# define  SSL_CTX_set_default_read_ahead(ctx,m) SSL_CTX_set_read_ahead(ctx, m)} {Param Type resolution error - calls function in another unit? at line no 2198}
+  function SSL_CTX_get_default_read_ahead(ctx:PSSL_CTX): TOpenSSL_C_INT; inline;
+  function SSL_CTX_set_default_read_ahead(ctx:PSSL_CTX; m:TOpenSSL_C_INT): TOpenSSL_C_INT; inline;
   function SSL_CTX_get_read_ahead(ctx:PSSL_CTX): TOpenSSL_C_INT; inline;
   function SSL_CTX_set_read_ahead(ctx:PSSL_CTX; m:TOpenSSL_C_INT): TOpenSSL_C_INT; inline;
   function SSL_CTX_get_max_cert_list(ctx:PSSL_CTX): TOpenSSL_C_INT; inline;
@@ -4818,8 +4819,10 @@ var
   SSL_set_ct_validation_callback: function(s: PSSL; callback: Tssl_ct_validation_cb; arg: pointer): TOpenSSL_C_INT; cdecl = Load_SSL_set_ct_validation_callback;
   SSL_CTX_set_ct_validation_callback: function(ctx: PSSL_CTX; callback: Tssl_ct_validation_cb; arg: pointer): TOpenSSL_C_INT; cdecl = Load_SSL_CTX_set_ct_validation_callback;
     {$endif} {OPENSSL_STATIC_LINK_MODEL}
-  {# define  SSL_disable_ct(s) ((void)SSL_set_validation_callback((s), NULL, NULL))} {Param Type resolution error - calls function in another unit? at line no 2369}
-  {# define  SSL_CTX_disable_ct(ctx) ((void)SSL_CTX_set_validation_callback((ctx), NULL, NULL))} {Param Type resolution error - calls function in another unit? at line no 2371}
+
+
+  procedure SSL_disable_ct(s:PSSL); inline;
+  procedure SSL_CTX_disable_ct(ctx:PSSL_CTX); inline;
 
 type
     
@@ -5128,14 +5131,14 @@ const
 
 
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function OPENSSL_init_ssl(opts: qword; settings: POPENSSL_INIT_SETTINGS): TOpenSSL_C_INT; cdecl; external CLibSSL name 'OPENSSL_init_ssl';
+  function OPENSSL_init_ssl(opts: TOpenSSL_C_UINT64; settings: POPENSSL_INIT_SETTINGS): TOpenSSL_C_INT; cdecl; external CLibSSL name 'OPENSSL_init_ssl';
   {$else}
   {$EXTERNALSYM OPENSSL_init_ssl}
   {Do not call Function LoadDeclarations. Internal use only}
-  function Load_OPENSSL_init_ssl(opts: qword; settings: POPENSSL_INIT_SETTINGS): TOpenSSL_C_INT; cdecl;
+  function Load_OPENSSL_init_ssl(opts: TOpenSSL_C_UINT64; settings: POPENSSL_INIT_SETTINGS): TOpenSSL_C_INT; cdecl;
 
 var
-  OPENSSL_init_ssl: function(opts: qword; settings: POPENSSL_INIT_SETTINGS): TOpenSSL_C_INT; cdecl = Load_OPENSSL_init_ssl;
+  OPENSSL_init_ssl: function(opts: TOpenSSL_C_UINT64; settings: POPENSSL_INIT_SETTINGS): TOpenSSL_C_INT; cdecl = Load_OPENSSL_init_ssl;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
   {$ifndef  OPENSSL_NO_UNIT_TEST}
 
@@ -5321,14 +5324,26 @@ uses Sysutils
   {$endif}
   ,Classes, OpenSSLExceptionHandlers;
 
-const
-  {$ifdef FPC}
-  __FILE__ = {$include %FILE%};
-  {$else}
-  __FILE__ = '$(INPUTFILENAME)';
-  {$endif}
-  OPENSSL_FILE = __FILE__;
-  OPENSSL_LINE  = 0;
+  {$if not declared(__FILE__)}
+  const
+    {$ifdef FPC}
+    __FILE__ = {$include %FILE%};
+    {$else}
+    __FILE__ = '$(INPUTFILENAME)';
+    {$endif}
+  {$ifend}
+  {$if not declared(__LINE__)}
+  const
+    __LINE__ = 0;
+  {$ifend}
+  {$if not declared(OPENSSL_FILE)}
+  const
+    OPENSSL_FILE = __FILE__;
+  {$ifend}
+  {$if not declared(OPENSSL_LINE)}
+  const
+    OPENSSL_LINE  = 0;
+  {$ifend}
 
 function ossl_check_SRTP_PROTECTION_PROFILE_type(ptr: PSRTP_PROTECTION_PROFILE): PSRTP_PROTECTION_PROFILE{Has C Attribute: unused}; inline;
 begin
@@ -5364,7 +5379,8 @@ function lh_SSL_SESSION_new(hfn: TFuncType000; cfn: TFuncType001): Plhash_st_SSL
 begin
   raise Exception.Create('Unable to translate C Function "lh_SSL_SESSION_new"');
 
-{Error: Line 248: Syntax Error parsing " return (struct lhash_st_SSL_SESSION *) OPENSSL_LH_new((OPENSSL_LH_HASHFUNC)hfn, (OPENSSL_LH_COMPFUNC)cfn); "
+{Error: Line 248: Syntax Error parsing " return (struct lhash_st_SSL_SESSION *) OPENSSL_LH_new((OPENSSL_LH_HASHFUNC)hfn, (OPENSSL_LH_COMPFUNC)cfn); 
+"
 
  return (struct lhash_st_SSL_SESSION *) OPENSSL_LH_new((OPENSSL_LH_HASHFUNC)hfn, (OPENSSL_LH_COMPFUNC)cfn); }
 end;
@@ -5480,9 +5496,9 @@ end;
 
 {# define  SSL_OP_BIT(n) ((uint64_t)1 << (uint64_t)n)}
 
-function SSL_OP_BIT(n: qword): int64;
+function SSL_OP_BIT(n: TOpenSSL_C_UINT64): int64;
 begin
-  Result := int64((qword(1)) shl (qword(n)));
+  Result := int64((TOpenSSL_C_UINT64(1)) shl (TOpenSSL_C_UINT64(n)));
 end;
 
 {# define  SSL_OP_NO_EXTENDED_MASTER_SECRET SSL_OP_BIT(0)}
@@ -6281,6 +6297,13 @@ begin
   Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_GET_CHAIN_CERTS,0,px509));
 end;
 
+{# define  SSL_CTX_clear_chain_certs(ctx) SSL_CTX_set0_chain(ctx, NULL)}
+
+function SSL_CTX_clear_chain_certs(ctx:PSSL_CTX): TOpenSSL_C_INT;
+begin
+  Result := TOpenSSL_C_INT(SSL_CTX_set0_chain(ctx,nil));
+end;
+
 {# define  SSL_CTX_build_cert_chain(ctx,flags) SSL_CTX_ctrl(ctx, SSL_CTRL_BUILD_CERT_CHAIN, flags, NULL)}
 
 function SSL_CTX_build_cert_chain(ctx:PSSL_CTX; flags:TOpenSSL_C_INT): TOpenSSL_C_INT;
@@ -6377,6 +6400,13 @@ end;
 function SSL_get0_chain_certs(s:PSSL; px509:pointer): TOpenSSL_C_INT;
 begin
   Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_GET_CHAIN_CERTS,0,px509));
+end;
+
+{# define  SSL_clear_chain_certs(s) SSL_set0_chain(s, NULL)}
+
+function SSL_clear_chain_certs(s:PSSL): TOpenSSL_C_INT;
+begin
+  Result := TOpenSSL_C_INT(SSL_set0_chain(s,nil));
 end;
 
 {# define  SSL_build_cert_chain(s,flags) SSL_ctrl(s, SSL_CTRL_BUILD_CERT_CHAIN, flags, NULL)}
@@ -6554,7 +6584,8 @@ begin
   Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_GET_CLIENT_CERT_TYPES,0,Pansichar(clist)));
 end;
 
-{# define  SSL_CTX_set1_client_certificate_types(ctx,clist,clistlen) SSL_CTX_ctrl(ctx, SSL_CTRL_SET_CLIENT_CERT_TYPES, clistlen, (char *)(clist))}
+{# define  SSL_CTX_set1_client_certificate_types(ctx,clist,clistlen) SSL_CTX_ctrl(ctx, SSL_CTRL_SET_CLIENT_CERT_TYPES, clistlen,
+ (char *)(clist))}
 
 function SSL_CTX_set1_client_certificate_types(ctx:PSSL_CTX; clist:pointer; clistlen:TOpenSSL_C_INT): TOpenSSL_C_INT;
 begin
@@ -6664,6 +6695,13 @@ end;
 function SSL_get_max_proto_version(s:PSSL): TOpenSSL_C_INT;
 begin
   Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_GET_MAX_PROTO_VERSION,0,nil));
+end;
+
+{# define  SSL_get_server_tmp_key(s,pk) SSL_get_peer_tmp_key(s, pk)}
+
+function SSL_get_server_tmp_key(s:PSSL; pk:pointer): TOpenSSL_C_INT;
+begin
+  Result := TOpenSSL_C_INT(SSL_get_peer_tmp_key(s,pk));
 end;
 
 {# define  SSL_get1_curves SSL_get1_groups}
@@ -6784,6 +6822,20 @@ begin
   Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_GET_SESS_CACHE_MODE,0,nil));
 end;
 
+{# define  SSL_CTX_get_default_read_ahead(ctx) SSL_CTX_get_read_ahead(ctx)}
+
+function SSL_CTX_get_default_read_ahead(ctx:PSSL_CTX): TOpenSSL_C_INT;
+begin
+  Result := TOpenSSL_C_INT(SSL_CTX_get_read_ahead(ctx));
+end;
+
+{# define  SSL_CTX_set_default_read_ahead(ctx,m) SSL_CTX_set_read_ahead(ctx, m)}
+
+function SSL_CTX_set_default_read_ahead(ctx:PSSL_CTX; m:TOpenSSL_C_INT): TOpenSSL_C_INT;
+begin
+  Result := TOpenSSL_C_INT(SSL_CTX_set_read_ahead(ctx,m));
+end;
+
 {# define  SSL_CTX_get_read_ahead(ctx) SSL_CTX_ctrl(ctx, SSL_CTRL_GET_READ_AHEAD, 0, NULL)}
 
 function SSL_CTX_get_read_ahead(ctx:PSSL_CTX): TOpenSSL_C_INT;
@@ -6883,6 +6935,22 @@ begin
   Result := TOpenSSL_C_INT(SSL_session_reused(s));
 end;
 {$endif} { OPENSSL_NO_DEPRECATED_1_1_0}
+{$ifndef  OPENSSL_NO_CT}
+
+{# define  SSL_disable_ct(s) ((void)SSL_set_ct_validation_callback((s), NULL, NULL))}
+
+procedure SSL_disable_ct(s:PSSL);
+begin
+  SSL_set_ct_validation_callback(s,nil,nil);
+end;
+
+{# define  SSL_CTX_disable_ct(ctx) ((void)SSL_CTX_set_ct_validation_callback((ctx), NULL, NULL))}
+
+procedure SSL_CTX_disable_ct(ctx:PSSL_CTX);
+begin
+  SSL_CTX_set_ct_validation_callback(ctx,nil,nil);
+end;
+{$endif} { OPENSSL_NO_CT}
 {$ifndef OPENSSL_STATIC_LINK_MODEL}
 function Load_sk_SRTP_PROTECTION_PROFILE_num(_para: Pstack_st_SRTP_PROTECTION_PROFILE): TOpenSSL_C_INT; cdecl;
 begin
@@ -7084,7 +7152,7 @@ begin
   Result := sk_SRTP_PROTECTION_PROFILE_set_cmp_func(st, cmp);
 end;
 
-function Load_SSL_CTX_get_options(ctx: PSSL_CTX): qword; cdecl;
+function Load_SSL_CTX_get_options(ctx: PSSL_CTX): TOpenSSL_C_UINT64; cdecl;
 begin
   SSL_CTX_get_options := LoadLibSSLFunction('SSL_CTX_get_options');
   if not assigned(SSL_CTX_get_options) then
@@ -7092,7 +7160,7 @@ begin
   Result := SSL_CTX_get_options(ctx);
 end;
 
-function Load_SSL_get_options(s: PSSL): qword; cdecl;
+function Load_SSL_get_options(s: PSSL): TOpenSSL_C_UINT64; cdecl;
 begin
   SSL_get_options := LoadLibSSLFunction('SSL_get_options');
   if not assigned(SSL_get_options) then
@@ -7100,7 +7168,7 @@ begin
   Result := SSL_get_options(s);
 end;
 
-function Load_SSL_CTX_clear_options(ctx: PSSL_CTX; op: qword): qword; cdecl;
+function Load_SSL_CTX_clear_options(ctx: PSSL_CTX; op: TOpenSSL_C_UINT64): TOpenSSL_C_UINT64; cdecl;
 begin
   SSL_CTX_clear_options := LoadLibSSLFunction('SSL_CTX_clear_options');
   if not assigned(SSL_CTX_clear_options) then
@@ -7108,7 +7176,7 @@ begin
   Result := SSL_CTX_clear_options(ctx, op);
 end;
 
-function Load_SSL_clear_options(s: PSSL; op: qword): qword; cdecl;
+function Load_SSL_clear_options(s: PSSL; op: TOpenSSL_C_UINT64): TOpenSSL_C_UINT64; cdecl;
 begin
   SSL_clear_options := LoadLibSSLFunction('SSL_clear_options');
   if not assigned(SSL_clear_options) then
@@ -7116,7 +7184,7 @@ begin
   Result := SSL_clear_options(s, op);
 end;
 
-function Load_SSL_CTX_set_options(ctx: PSSL_CTX; op: qword): qword; cdecl;
+function Load_SSL_CTX_set_options(ctx: PSSL_CTX; op: TOpenSSL_C_UINT64): TOpenSSL_C_UINT64; cdecl;
 begin
   SSL_CTX_set_options := LoadLibSSLFunction('SSL_CTX_set_options');
   if not assigned(SSL_CTX_set_options) then
@@ -7124,7 +7192,7 @@ begin
   Result := SSL_CTX_set_options(ctx, op);
 end;
 
-function Load_SSL_set_options(s: PSSL; op: qword): qword; cdecl;
+function Load_SSL_set_options(s: PSSL; op: TOpenSSL_C_UINT64): TOpenSSL_C_UINT64; cdecl;
 begin
   SSL_set_options := LoadLibSSLFunction('SSL_set_options');
   if not assigned(SSL_set_options) then
@@ -11456,7 +11524,7 @@ begin
   Result := SSL_CTX_get0_security_ex_data(ctx);
 end;
 
-function Load_OPENSSL_init_ssl(opts: qword; settings: POPENSSL_INIT_SETTINGS): TOpenSSL_C_INT; cdecl;
+function Load_OPENSSL_init_ssl(opts: TOpenSSL_C_UINT64; settings: POPENSSL_INIT_SETTINGS): TOpenSSL_C_INT; cdecl;
 begin
   OPENSSL_init_ssl := LoadLibSSLFunction('OPENSSL_init_ssl');
   if not assigned(OPENSSL_init_ssl) then

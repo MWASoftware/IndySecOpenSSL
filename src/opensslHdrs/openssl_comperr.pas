@@ -18,7 +18,7 @@
 unit openssl_comperr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File comperr.h - Wed  6 May 14:29:48 BST 2026
+  Generated from OpenSSL 3.0.20 Header File comperr.h - Fri  8 May 12:10:12 BST 2026
 }
 
 interface
@@ -66,14 +66,26 @@ uses Sysutils
   {$endif}
   ,Classes, OpenSSLExceptionHandlers;
 
-const
-  {$ifdef FPC}
-  __FILE__ = {$include %FILE%};
-  {$else}
-  __FILE__ = '$(INPUTFILENAME)';
-  {$endif}
-  OPENSSL_FILE = __FILE__;
-  OPENSSL_LINE  = 0;
+  {$if not declared(__FILE__)}
+  const
+    {$ifdef FPC}
+    __FILE__ = {$include %FILE%};
+    {$else}
+    __FILE__ = '$(INPUTFILENAME)';
+    {$endif}
+  {$ifend}
+  {$if not declared(__LINE__)}
+  const
+    __LINE__ = 0;
+  {$ifend}
+  {$if not declared(OPENSSL_FILE)}
+  const
+    OPENSSL_FILE = __FILE__;
+  {$ifend}
+  {$if not declared(OPENSSL_LINE)}
+  const
+    OPENSSL_LINE  = 0;
+  {$ifend}
 
 {$ifndef OPENSSL_STATIC_LINK_MODEL}
 procedure Load;

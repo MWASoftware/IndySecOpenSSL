@@ -18,7 +18,7 @@
 unit openssl_sha;
 
 {
-  Generated from OpenSSL 3.0.20 Header File sha.h - Wed  6 May 14:30:37 BST 2026
+  Generated from OpenSSL 3.0.20 Header File sha.h - Fri  8 May 12:11:00 BST 2026
 }
 
 interface
@@ -226,7 +226,7 @@ type
   PPSHA_LONG64 = ^PSHA_LONG64;
   {end of auto-generated forward references}
 
-  TSHA_LONG64 = qword;
+  TSHA_LONG64 = TOpenSSL_C_UINT64;
     {$elseif  defined(__arch64__)}
 
 type
@@ -244,7 +244,7 @@ type
   PPSHA_LONG64 = ^PSHA_LONG64;
   {end of auto-generated forward references}
 
-  TSHA_LONG64 = qword;
+  TSHA_LONG64 = TOpenSSL_C_UINT64;
     {$endif}
 
 type
@@ -256,12 +256,12 @@ type
   {end of auto-generated forward references}
 
   SHA512state_st = record 
-    h: array[0..7] of qword;
-    Nl: qword;
-    Nh: qword;
+    h: array[0..7] of TOpenSSL_C_UINT64;
+    Nl: TOpenSSL_C_UINT64;
+    Nh: TOpenSSL_C_UINT64;
     u: record 
       case integer of 
-        0: (d: array[0..15] of qword);
+        0: (d: array[0..15] of TOpenSSL_C_UINT64);
         1: (p: array[0..(16*8)-1] of byte);
     end;
     num: TOpenSSL_C_UINT;
@@ -340,14 +340,26 @@ uses Sysutils
   {$endif}
   ,Classes, OpenSSLExceptionHandlers;
 
-const
-  {$ifdef FPC}
-  __FILE__ = {$include %FILE%};
-  {$else}
-  __FILE__ = '$(INPUTFILENAME)';
-  {$endif}
-  OPENSSL_FILE = __FILE__;
-  OPENSSL_LINE  = 0;
+  {$if not declared(__FILE__)}
+  const
+    {$ifdef FPC}
+    __FILE__ = {$include %FILE%};
+    {$else}
+    __FILE__ = '$(INPUTFILENAME)';
+    {$endif}
+  {$ifend}
+  {$if not declared(__LINE__)}
+  const
+    __LINE__ = 0;
+  {$ifend}
+  {$if not declared(OPENSSL_FILE)}
+  const
+    OPENSSL_FILE = __FILE__;
+  {$ifend}
+  {$if not declared(OPENSSL_LINE)}
+  const
+    OPENSSL_LINE  = 0;
+  {$ifend}
 
 {$ifndef OPENSSL_STATIC_LINK_MODEL}
 {$ifndef  OPENSSL_NO_DEPRECATED_3_0}

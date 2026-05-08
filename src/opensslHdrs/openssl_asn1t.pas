@@ -18,7 +18,7 @@
 unit openssl_asn1t;
 
 {
-  Generated from OpenSSL 3.0.20 Header File asn1t.h - Wed  6 May 14:29:36 BST 2026
+  Generated from OpenSSL 3.0.20 Header File asn1t.h - Fri  8 May 12:10:00 BST 2026
 }
 
 interface
@@ -105,37 +105,53 @@ const
   {# define  static_ASN1_ITEM_start(itname) static ASN1_ITEM_start(itname)}
   (*# define  ASN1_ITEM_end(itname) } ; return &local_it; }*)
   {# define  ASN1_ITEM_TEMPLATE(tname) static const ASN1_TEMPLATE tname ##_item_tt}
-  {# define  ASN1_ITEM_TEMPLATE_END(tname) ; ASN1_ITEM_start(tname) ASN1_ITYPE_PRIMITIVE, -1, &tname ##_item_tt, 0, NULL, 0, #tname ASN1_ITEM_end(tname)}
-  {# define  static_ASN1_ITEM_TEMPLATE_END(tname) ; static_ASN1_ITEM_start(tname) ASN1_ITYPE_PRIMITIVE, -1, &tname ##_item_tt, 0, NULL, 0, #tname ASN1_ITEM_end(tname)}
+  {# define  ASN1_ITEM_TEMPLATE_END(tname) ; ASN1_ITEM_start(tname) ASN1_ITYPE_PRIMITIVE, -1, &tname ##_item_tt, 0, NULL, 0, #tname 
+ASN1_ITEM_end(tname)}
+  {# define  static_ASN1_ITEM_TEMPLATE_END(tname) ; static_ASN1_ITEM_start(tname) ASN1_ITYPE_PRIMITIVE, -1, &tname ##_item_tt, 0, 
+NULL, 0, #tname ASN1_ITEM_end(tname)}
   {# define  ASN1_SEQUENCE(tname) static const ASN1_TEMPLATE tname ##_seq_tt[]}
   {# define  ASN1_SEQUENCE_END(stname) ASN1_SEQUENCE_END_name(stname, stname)} { Blacklisted Macro}
   {# define  static_ASN1_SEQUENCE_END(stname) static_ASN1_SEQUENCE_END_name(stname, stname)} { Blacklisted Macro}
-  {# define  ASN1_SEQUENCE_END_name(stname,tname) ; ASN1_ITEM_start(tname) ASN1_ITYPE_SEQUENCE, V_ASN1_SEQUENCE, tname ##_seq_tt, sizeof(tname ##_seq_tt) / sizeof(ASN1_TEMPLATE), NULL, sizeof(stname), #tname ASN1_ITEM_end(tname)}
-  {# define  static_ASN1_SEQUENCE_END_name(stname,tname) ; static_ASN1_ITEM_start(tname) ASN1_ITYPE_SEQUENCE, V_ASN1_SEQUENCE, tname ##_seq_tt, sizeof(tname ##_seq_tt) / sizeof(ASN1_TEMPLATE), NULL, sizeof(stname), #stname ASN1_ITEM_end(tname)}
+  {# define  ASN1_SEQUENCE_END_name(stname,tname) ; ASN1_ITEM_start(tname) ASN1_ITYPE_SEQUENCE, V_ASN1_SEQUENCE, tname ##_seq_tt, 
+sizeof(tname ##_seq_tt) / sizeof(ASN1_TEMPLATE), NULL, sizeof(stname), #tname ASN1_ITEM_end(tname)}
+  {# define  static_ASN1_SEQUENCE_END_name(stname,tname) ; static_ASN1_ITEM_start(tname) ASN1_ITYPE_SEQUENCE, V_ASN1_SEQUENCE, tname 
+##_seq_tt, sizeof(tname ##_seq_tt) / sizeof(ASN1_TEMPLATE), NULL, sizeof(stname), #stname ASN1_ITEM_end(tname)}
   {# define  ASN1_NDEF_SEQUENCE(tname) ASN1_SEQUENCE(tname)} { Blacklisted Macro}
   {# define  ASN1_NDEF_SEQUENCE_cb(tname,cb) ASN1_SEQUENCE_cb(tname, cb)} { Blacklisted Macro}
   (*# define  ASN1_SEQUENCE_cb(tname,cb) static const ASN1_AUX tname ##_aux = { NULL, 0, 0, 0, cb, 0, NULL }; ASN1_SEQUENCE(tname)*)
-  (*# define  ASN1_SEQUENCE_const_cb(tname,const_cb) static const ASN1_AUX tname ##_aux = { NULL, ASN1_AFLG_CONST_CB, 0, 0, NULL, 0, const_cb }; ASN1_SEQUENCE(tname)*)
-  (*# define  ASN1_SEQUENCE_cb_const_cb(tname,cb,const_cb) static const ASN1_AUX tname ##_aux = { NULL, ASN1_AFLG_CONST_CB, 0, 0, cb, 0, const_cb }; ASN1_SEQUENCE(tname)*)
-  (*# define  ASN1_SEQUENCE_ref(tname,cb) static const ASN1_AUX tname ##_aux = { NULL, ASN1_AFLG_REFCOUNT, offsetof(tname, references), offsetof(tname, lock), cb, 0, NULL }; ASN1_SEQUENCE(tname)*)
-  (*# define  ASN1_SEQUENCE_enc(tname,enc,cb) static const ASN1_AUX tname ##_aux = { NULL, ASN1_AFLG_ENCODING, 0, 0, cb, offsetof(tname, enc), NULL }; ASN1_SEQUENCE(tname)*)
-  {# define  ASN1_NDEF_SEQUENCE_END(tname) ; ASN1_ITEM_start(tname) ASN1_ITYPE_NDEF_SEQUENCE, V_ASN1_SEQUENCE, tname ##_seq_tt, sizeof(tname ##_seq_tt) / sizeof(ASN1_TEMPLATE), NULL, sizeof(tname), #tname ASN1_ITEM_end(tname)}
-  {# define  static_ASN1_NDEF_SEQUENCE_END(tname) ; static_ASN1_ITEM_start(tname) ASN1_ITYPE_NDEF_SEQUENCE, V_ASN1_SEQUENCE, tname ##_seq_tt, sizeof(tname ##_seq_tt) / sizeof(ASN1_TEMPLATE), NULL, sizeof(tname), #tname ASN1_ITEM_end(tname)}
+  (*# define  ASN1_SEQUENCE_const_cb(tname,const_cb) static const ASN1_AUX tname ##_aux = { NULL, ASN1_AFLG_CONST_CB, 0, 0, NULL, 
+0, const_cb }; ASN1_SEQUENCE(tname)*)
+  (*# define  ASN1_SEQUENCE_cb_const_cb(tname,cb,const_cb) static const ASN1_AUX tname ##_aux = { NULL, ASN1_AFLG_CONST_CB, 0, 0, 
+cb, 0, const_cb }; ASN1_SEQUENCE(tname)*)
+  (*# define  ASN1_SEQUENCE_ref(tname,cb) static const ASN1_AUX tname ##_aux = { NULL, ASN1_AFLG_REFCOUNT, offsetof(tname, references),
+ offsetof(tname, lock), cb, 0, NULL }; ASN1_SEQUENCE(tname)*)
+  (*# define  ASN1_SEQUENCE_enc(tname,enc,cb) static const ASN1_AUX tname ##_aux = { NULL, ASN1_AFLG_ENCODING, 0, 0, cb, offsetof(tname,
+ enc), NULL }; ASN1_SEQUENCE(tname)*)
+  {# define  ASN1_NDEF_SEQUENCE_END(tname) ; ASN1_ITEM_start(tname) ASN1_ITYPE_NDEF_SEQUENCE, V_ASN1_SEQUENCE, tname ##_seq_tt, sizeof(tname 
+##_seq_tt) / sizeof(ASN1_TEMPLATE), NULL, sizeof(tname), #tname ASN1_ITEM_end(tname)}
+  {# define  static_ASN1_NDEF_SEQUENCE_END(tname) ; static_ASN1_ITEM_start(tname) ASN1_ITYPE_NDEF_SEQUENCE, V_ASN1_SEQUENCE, tname 
+##_seq_tt, sizeof(tname ##_seq_tt) / sizeof(ASN1_TEMPLATE), NULL, sizeof(tname), #tname ASN1_ITEM_end(tname)}
   {# define  ASN1_SEQUENCE_END_enc(stname,tname) ASN1_SEQUENCE_END_ref(stname, tname)} { Blacklisted Macro}
   {# define  ASN1_SEQUENCE_END_cb(stname,tname) ASN1_SEQUENCE_END_ref(stname, tname)} { Blacklisted Macro}
   {# define  static_ASN1_SEQUENCE_END_cb(stname,tname) static_ASN1_SEQUENCE_END_ref(stname, tname)} { Blacklisted Macro}
-  {# define  ASN1_SEQUENCE_END_ref(stname,tname) ; ASN1_ITEM_start(tname) ASN1_ITYPE_SEQUENCE, V_ASN1_SEQUENCE, tname ##_seq_tt, sizeof(tname ##_seq_tt) / sizeof(ASN1_TEMPLATE), &tname ##_aux, sizeof(stname), #tname ASN1_ITEM_end(tname)}
-  {# define  static_ASN1_SEQUENCE_END_ref(stname,tname) ; static_ASN1_ITEM_start(tname) ASN1_ITYPE_SEQUENCE, V_ASN1_SEQUENCE, tname ##_seq_tt, sizeof(tname ##_seq_tt) / sizeof(ASN1_TEMPLATE), &tname ##_aux, sizeof(stname), #stname ASN1_ITEM_end(tname)}
-  {# define  ASN1_NDEF_SEQUENCE_END_cb(stname,tname) ; ASN1_ITEM_start(tname) ASN1_ITYPE_NDEF_SEQUENCE, V_ASN1_SEQUENCE, tname ##_seq_tt, sizeof(tname ##_seq_tt) / sizeof(ASN1_TEMPLATE), &tname ##_aux, sizeof(stname), #stname ASN1_ITEM_end(tname)}
+  {# define  ASN1_SEQUENCE_END_ref(stname,tname) ; ASN1_ITEM_start(tname) ASN1_ITYPE_SEQUENCE, V_ASN1_SEQUENCE, tname ##_seq_tt, sizeof(tname 
+##_seq_tt) / sizeof(ASN1_TEMPLATE), &tname ##_aux, sizeof(stname), #tname ASN1_ITEM_end(tname)}
+  {# define  static_ASN1_SEQUENCE_END_ref(stname,tname) ; static_ASN1_ITEM_start(tname) ASN1_ITYPE_SEQUENCE, V_ASN1_SEQUENCE, tname 
+##_seq_tt, sizeof(tname ##_seq_tt) / sizeof(ASN1_TEMPLATE), &tname ##_aux, sizeof(stname), #stname ASN1_ITEM_end(tname)}
+  {# define  ASN1_NDEF_SEQUENCE_END_cb(stname,tname) ; ASN1_ITEM_start(tname) ASN1_ITYPE_NDEF_SEQUENCE, V_ASN1_SEQUENCE, tname ##_seq_tt,
+ sizeof(tname ##_seq_tt) / sizeof(ASN1_TEMPLATE), &tname ##_aux, sizeof(stname), #stname ASN1_ITEM_end(tname)}
   {# define  ASN1_CHOICE(tname) static const ASN1_TEMPLATE tname ##_ch_tt[]}
   (*# define  ASN1_CHOICE_cb(tname,cb) static const ASN1_AUX tname ##_aux = { NULL, 0, 0, 0, cb, 0, NULL }; ASN1_CHOICE(tname)*)
   {# define  ASN1_CHOICE_END(stname) ASN1_CHOICE_END_name(stname, stname)} { Blacklisted Macro}
   {# define  static_ASN1_CHOICE_END(stname) static_ASN1_CHOICE_END_name(stname, stname)} { Blacklisted Macro}
   {# define  ASN1_CHOICE_END_name(stname,tname) ASN1_CHOICE_END_selector(stname, tname, type)} { Blacklisted Macro}
   {# define  static_ASN1_CHOICE_END_name(stname,tname) static_ASN1_CHOICE_END_selector(stname, tname, type)} { Blacklisted Macro}
-  {# define  ASN1_CHOICE_END_selector(stname,tname,selname) ; ASN1_ITEM_start(tname) ASN1_ITYPE_CHOICE, offsetof(stname, selname), tname ##_ch_tt, sizeof(tname ##_ch_tt) / sizeof(ASN1_TEMPLATE), NULL, sizeof(stname), #stname ASN1_ITEM_end(tname)}
-  {# define  static_ASN1_CHOICE_END_selector(stname,tname,selname) ; static_ASN1_ITEM_start(tname) ASN1_ITYPE_CHOICE, offsetof(stname, selname), tname ##_ch_tt, sizeof(tname ##_ch_tt) / sizeof(ASN1_TEMPLATE), NULL, sizeof(stname), #stname ASN1_ITEM_end(tname)}
-  {# define  ASN1_CHOICE_END_cb(stname,tname,selname) ; ASN1_ITEM_start(tname) ASN1_ITYPE_CHOICE, offsetof(stname, selname), tname ##_ch_tt, sizeof(tname ##_ch_tt) / sizeof(ASN1_TEMPLATE), &tname ##_aux, sizeof(stname), #stname ASN1_ITEM_end(tname)}
+  {# define  ASN1_CHOICE_END_selector(stname,tname,selname) ; ASN1_ITEM_start(tname) ASN1_ITYPE_CHOICE, offsetof(stname, selname),
+ tname ##_ch_tt, sizeof(tname ##_ch_tt) / sizeof(ASN1_TEMPLATE), NULL, sizeof(stname), #stname ASN1_ITEM_end(tname)}
+  {# define  static_ASN1_CHOICE_END_selector(stname,tname,selname) ; static_ASN1_ITEM_start(tname) ASN1_ITYPE_CHOICE, offsetof(stname,
+ selname), tname ##_ch_tt, sizeof(tname ##_ch_tt) / sizeof(ASN1_TEMPLATE), NULL, sizeof(stname), #stname ASN1_ITEM_end(tname)}
+  {# define  ASN1_CHOICE_END_cb(stname,tname,selname) ; ASN1_ITEM_start(tname) ASN1_ITYPE_CHOICE, offsetof(stname, selname), tname 
+##_ch_tt, sizeof(tname ##_ch_tt) / sizeof(ASN1_TEMPLATE), &tname ##_aux, sizeof(stname), #stname ASN1_ITEM_end(tname)}
   (*# define  ASN1_EX_TEMPLATE_TYPE(flags,tag,name,type) { (flags), (tag), 0, #name, ASN1_ITEM_ref(type) }*)
   (*# define  ASN1_EX_TYPE(flags,tag,stname,field,type) { (flags), (tag), offsetof(stname, field), #field, ASN1_ITEM_ref(type) }*)
   {# define  ASN1_IMP_EX(stname,field,type,tag,ex) ASN1_EX_TYPE(ASN1_TFLG_IMPLICIT | (ex), tag, stname, field, type)} {Macro Return Type unknown at line no 243}
@@ -169,7 +185,9 @@ const
   {# define  ASN1_NDEF_EXP(stname,field,type,tag) ASN1_EXP_EX(stname, field, type, tag, ASN1_TFLG_NDEF)} {Macro Return Type unknown at line no 321}
   {# define  ASN1_NDEF_EXP_OPT(stname,field,type,tag) ASN1_EXP_EX(stname, field, type, tag, ASN1_TFLG_OPTIONAL | ASN1_TFLG_NDEF)} {Macro Return Type unknown at line no 325}
   {# define  ASN1_ADB(name) static const ASN1_ADB_TABLE name ##_adbtbl[]}
-  (*# define  ASN1_ADB_END(name,flags,field,adb_cb,def,none) ; static const ASN1_ITEM *name ##_adb(void) { static const ASN1_ADB internal_adb = { flags, offsetof(name, field), adb_cb, name ##_adbtbl, sizeof(name ##_adbtbl) / sizeof(ASN1_ADB_TABLE), def, none }; return (const ASN1_ITEM * )&internal_adb; } void dummy_function(void)*)
+  (*# define  ASN1_ADB_END(name,flags,field,adb_cb,def,none) ; static const ASN1_ITEM *name ##_adb(void) { static const ASN1_ADB internal_adb 
+= { flags, offsetof(name, field), adb_cb, name ##_adbtbl, sizeof(name ##_adbtbl) / sizeof(ASN1_ADB_TABLE), def, none }; return (const 
+ASN1_ITEM * )&internal_adb; } void dummy_function(void)*)
   (*# define  ADB_ENTRY(val,template) { val, template }*)
   {# define  ASN1_ADB_TEMPLATE(name) static const ASN1_TEMPLATE name ##_tt}
 
@@ -177,16 +195,6 @@ type
   {Auto-generated forward references}
   PASN1_TEMPLATE_st = ^TASN1_TEMPLATE_st;
   PPASN1_TEMPLATE_st = ^PASN1_TEMPLATE_st;
-  PTFuncType000 = ^TFuncType000;
-  PPTFuncType000 = ^PTFuncType000;
-  PASN1_ADB_st = ^TASN1_ADB_st;
-  PPASN1_ADB_st = ^PASN1_ADB_st;
-  PASN1_ADB = ^TASN1_ADB;
-  PPASN1_ADB = ^PASN1_ADB;
-  PASN1_ADB_TABLE_st = ^TASN1_ADB_TABLE_st;
-  PPASN1_ADB_TABLE_st = ^PASN1_ADB_TABLE_st;
-  PASN1_ADB_TABLE = ^TASN1_ADB_TABLE;
-  PPASN1_ADB_TABLE = ^PASN1_ADB_TABLE;
   {end of auto-generated forward references}
 
   { Macro to obtain ASN1_ADB pointer from a type (only used internally) }
@@ -265,9 +273,26 @@ type
     field_name: PAnsiChar; { Field name }
     item: PASN1_ITEM_EXP; { Relevant ASN1_ITEM or ASN1_ADB }
   end;
-  {# define  ASN1_TEMPLATE_item(t) (t->item_ptr)} {Param Type resolution error - calls function in another unit? at line no 355}
-  {# define  ASN1_TEMPLATE_adb(t) (t->item_ptr)} {Param Type resolution error - calls function in another unit? at line no 356}
+
+
   { Macro to extract ASN1_ITEM and ASN1_ADB pointer from ASN1_TEMPLATE }
+  function ASN1_TEMPLATE_item(t: PASN1_TEMPLATE_st): PASN1_ITEM_EXP; inline;
+  function ASN1_TEMPLATE_adb(t: PASN1_TEMPLATE_st): PASN1_ITEM_EXP; inline;
+
+type
+  {Auto-generated forward references}
+  PTFuncType000 = ^TFuncType000;
+  PPTFuncType000 = ^PTFuncType000;
+  PASN1_ADB_st = ^TASN1_ADB_st;
+  PPASN1_ADB_st = ^PASN1_ADB_st;
+  PASN1_ADB = ^TASN1_ADB;
+  PPASN1_ADB = ^PASN1_ADB;
+  PASN1_ADB_TABLE_st = ^TASN1_ADB_TABLE_st;
+  PPASN1_ADB_TABLE_st = ^PASN1_ADB_TABLE_st;
+  PASN1_ADB_TABLE = ^TASN1_ADB_TABLE;
+  PPASN1_ADB_TABLE = ^PASN1_ADB_TABLE;
+  {end of auto-generated forward references}
+
   TFuncType000 = function(psel: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
   TASN1_ADB_st = record 
     flags: TOpenSSL_C_UINT; { Various flags }
@@ -528,23 +553,35 @@ const
   ASN1_OP_GET0_LIBCTX = 16;
   ASN1_OP_GET0_PROPQ = 17;
   {# define  IMPLEMENT_ASN1_TYPE(stname) IMPLEMENT_ASN1_TYPE_ex(stname, stname, 0)} { Blacklisted Macro}
-  {# define  IMPLEMENT_ASN1_TYPE_ex(itname,vname,ex) ASN1_ITEM_start(itname) ASN1_ITYPE_PRIMITIVE, V_ ##vname, NULL, 0, NULL, ex, #itname ASN1_ITEM_end(itname)}
-  {# define  IMPLEMENT_ASN1_MSTRING(itname,mask) ASN1_ITEM_start(itname) ASN1_ITYPE_MSTRING, mask, NULL, 0, NULL, sizeof(ASN1_STRING), #itname ASN1_ITEM_end(itname)}
+  {# define  IMPLEMENT_ASN1_TYPE_ex(itname,vname,ex) ASN1_ITEM_start(itname) ASN1_ITYPE_PRIMITIVE, V_ ##vname, NULL, 0, NULL, ex, 
+#itname ASN1_ITEM_end(itname)}
+  {# define  IMPLEMENT_ASN1_MSTRING(itname,mask) ASN1_ITEM_start(itname) ASN1_ITYPE_MSTRING, mask, NULL, 0, NULL, sizeof(ASN1_STRING),
+ #itname ASN1_ITEM_end(itname)}
   {# define  IMPLEMENT_EXTERN_ASN1(sname,tag,fptrs) ASN1_ITEM_start(sname) ASN1_ITYPE_EXTERN, tag, NULL, 0, &fptrs, 0, #sname ASN1_ITEM_end(sname)}
   {# define  IMPLEMENT_ASN1_FUNCTIONS(stname) IMPLEMENT_ASN1_FUNCTIONS_fname(stname, stname, stname)} { Blacklisted Macro}
   {# define  IMPLEMENT_ASN1_FUNCTIONS_name(stname,itname) IMPLEMENT_ASN1_FUNCTIONS_fname(stname, itname, itname)} { Blacklisted Macro}
   {# define  IMPLEMENT_ASN1_FUNCTIONS_ENCODE_name(stname,itname) IMPLEMENT_ASN1_FUNCTIONS_ENCODE_fname(stname, itname, itname)} {Macro Return Type unknown at line no 641}
   {# define  IMPLEMENT_STATIC_ASN1_ALLOC_FUNCTIONS(stname) IMPLEMENT_ASN1_ALLOC_FUNCTIONS_pfname(static, stname, stname, stname)} { Blacklisted Macro}
   {# define  IMPLEMENT_ASN1_ALLOC_FUNCTIONS(stname) IMPLEMENT_ASN1_ALLOC_FUNCTIONS_fname(stname, stname, stname)} { Blacklisted Macro}
-  (*# define  IMPLEMENT_ASN1_ALLOC_FUNCTIONS_pfname(pre,stname,itname,fname) pre stname *fname ##_new(void) { return (stname * )ASN1_item_new(ASN1_ITEM_rptr(itname)); } pre void fname ##_free(stname *a) { ASN1_item_free((ASN1_VALUE * )a, ASN1_ITEM_rptr(itname)); }*)
-  (*# define  IMPLEMENT_ASN1_ALLOC_FUNCTIONS_fname(stname,itname,fname) stname *fname ##_new(void) { return (stname * )ASN1_item_new(ASN1_ITEM_rptr(itname)); } void fname ##_free(stname *a) { ASN1_item_free((ASN1_VALUE * )a, ASN1_ITEM_rptr(itname)); }*)
-  {# define  IMPLEMENT_ASN1_FUNCTIONS_fname(stname,itname,fname) IMPLEMENT_ASN1_ENCODE_FUNCTIONS_fname(stname, itname, fname) IMPLEMENT_ASN1_ALLOC_FUNCTIONS_fname(stname, itname, fname)}
-  (*# define  IMPLEMENT_ASN1_ENCODE_FUNCTIONS_fname(stname,itname,fname) stname *d2i_ ##fname(stname **a, const unsigned char **in, long len) { return (stname * )ASN1_item_d2i((ASN1_VALUE ** )a, in, len, ASN1_ITEM_rptr(itname)); } int i2d_ ##fname(const stname *a, unsigned char **out) { return ASN1_item_i2d((const ASN1_VALUE * )a, out, ASN1_ITEM_rptr(itname)); }*)
-  (*# define  IMPLEMENT_ASN1_NDEF_FUNCTION(stname) int i2d_ ##stname ##_NDEF(const stname *a, unsigned char **out) { return ASN1_item_ndef_i2d((const ASN1_VALUE * )a, out, ASN1_ITEM_rptr(stname)); }*)
-  (*# define  IMPLEMENT_STATIC_ASN1_ENCODE_FUNCTIONS(stname) static stname *d2i_ ##stname(stname **a, const unsigned char **in, long len) { return (stname * )ASN1_item_d2i((ASN1_VALUE ** )a, in, len, ASN1_ITEM_rptr(stname)); } static int i2d_ ##stname(const stname *a, unsigned char **out) { return ASN1_item_i2d((const ASN1_VALUE * )a, out, ASN1_ITEM_rptr(stname)); }*)
-  (*# define  IMPLEMENT_ASN1_DUP_FUNCTION(stname) stname *stname ##_dup(const stname *x) { return ASN1_item_dup(ASN1_ITEM_rptr(stname), x); }*)
+  (*# define  IMPLEMENT_ASN1_ALLOC_FUNCTIONS_pfname(pre,stname,itname,fname) pre stname *fname ##_new(void) { return (stname * )ASN1_item_new(ASN1_ITEM_rptr(itname)); 
+} pre void fname ##_free(stname *a) { ASN1_item_free((ASN1_VALUE * )a, ASN1_ITEM_rptr(itname)); }*)
+  (*# define  IMPLEMENT_ASN1_ALLOC_FUNCTIONS_fname(stname,itname,fname) stname *fname ##_new(void) { return (stname * )ASN1_item_new(ASN1_ITEM_rptr(itname)); 
+} void fname ##_free(stname *a) { ASN1_item_free((ASN1_VALUE * )a, ASN1_ITEM_rptr(itname)); }*)
+  {# define  IMPLEMENT_ASN1_FUNCTIONS_fname(stname,itname,fname) IMPLEMENT_ASN1_ENCODE_FUNCTIONS_fname(stname, itname, fname) IMPLEMENT_ASN1_ALLOC_FUNCTIONS_fname(stname,
+ itname, fname)}
+  (*# define  IMPLEMENT_ASN1_ENCODE_FUNCTIONS_fname(stname,itname,fname) stname *d2i_ ##fname(stname **a, const unsigned char **in,
+ long len) { return (stname * )ASN1_item_d2i((ASN1_VALUE ** )a, in, len, ASN1_ITEM_rptr(itname)); } int i2d_ ##fname(const stname 
+*a, unsigned char **out) { return ASN1_item_i2d((const ASN1_VALUE * )a, out, ASN1_ITEM_rptr(itname)); }*)
+  (*# define  IMPLEMENT_ASN1_NDEF_FUNCTION(stname) int i2d_ ##stname ##_NDEF(const stname *a, unsigned char **out) { return ASN1_item_ndef_i2d((const 
+ASN1_VALUE * )a, out, ASN1_ITEM_rptr(stname)); }*)
+  (*# define  IMPLEMENT_STATIC_ASN1_ENCODE_FUNCTIONS(stname) static stname *d2i_ ##stname(stname **a, const unsigned char **in, long 
+len) { return (stname * )ASN1_item_d2i((ASN1_VALUE ** )a, in, len, ASN1_ITEM_rptr(stname)); } static int i2d_ ##stname(const stname 
+*a, unsigned char **out) { return ASN1_item_i2d((const ASN1_VALUE * )a, out, ASN1_ITEM_rptr(stname)); }*)
+  (*# define  IMPLEMENT_ASN1_DUP_FUNCTION(stname) stname *stname ##_dup(const stname *x) { return ASN1_item_dup(ASN1_ITEM_rptr(stname),
+ x); }*)
   {# define  IMPLEMENT_ASN1_PRINT_FUNCTION(stname) IMPLEMENT_ASN1_PRINT_FUNCTION_fname(stname, stname, stname)} { Blacklisted Macro}
-  (*# define  IMPLEMENT_ASN1_PRINT_FUNCTION_fname(stname,itname,fname) int fname ##_print_ctx(BIO *out, const stname *x, int indent, const ASN1_PCTX *pctx) { return ASN1_item_print(out, (const ASN1_VALUE * )x, indent, ASN1_ITEM_rptr(itname), pctx); }*)
+  (*# define  IMPLEMENT_ASN1_PRINT_FUNCTION_fname(stname,itname,fname) int fname ##_print_ctx(BIO *out, const stname *x, int indent,
+ const ASN1_PCTX *pctx) { return ASN1_item_print(out, (const ASN1_VALUE * )x, indent, ASN1_ITEM_rptr(itname), pctx); }*)
 
 
   { Macro to implement a primitive type }
@@ -796,7 +833,8 @@ var
   { Legacy compatibility }
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
   {# define  IMPLEMENT_ASN1_FUNCTIONS_const(name) IMPLEMENT_ASN1_FUNCTIONS(name)} { Blacklisted Macro}
-  {# define  IMPLEMENT_ASN1_ENCODE_FUNCTIONS_const_fname(stname,itname,fname) IMPLEMENT_ASN1_ENCODE_FUNCTIONS_fname(stname, itname, fname)} { Blacklisted Macro}
+  {# define  IMPLEMENT_ASN1_ENCODE_FUNCTIONS_const_fname(stname,itname,fname) IMPLEMENT_ASN1_ENCODE_FUNCTIONS_fname(stname, itname,
+ fname)} { Blacklisted Macro}
 {$endif}
 
 implementation
@@ -816,15 +854,41 @@ uses Sysutils
   {$endif}
   ,Classes, OpenSSLExceptionHandlers;
 
-const
-  {$ifdef FPC}
-  __FILE__ = {$include %FILE%};
-  {$else}
-  __FILE__ = '$(INPUTFILENAME)';
-  {$endif}
-  OPENSSL_FILE = __FILE__;
-  OPENSSL_LINE  = 0;
+  {$if not declared(__FILE__)}
+  const
+    {$ifdef FPC}
+    __FILE__ = {$include %FILE%};
+    {$else}
+    __FILE__ = '$(INPUTFILENAME)';
+    {$endif}
+  {$ifend}
+  {$if not declared(__LINE__)}
+  const
+    __LINE__ = 0;
+  {$ifend}
+  {$if not declared(OPENSSL_FILE)}
+  const
+    OPENSSL_FILE = __FILE__;
+  {$ifend}
+  {$if not declared(OPENSSL_LINE)}
+  const
+    OPENSSL_LINE  = 0;
+  {$ifend}
 
+
+{# define  ASN1_TEMPLATE_item(t) (t->item)}
+
+function ASN1_TEMPLATE_item(t: PASN1_TEMPLATE_st): PASN1_ITEM_EXP;
+begin
+  Result := PASN1_ITEM_EXP(t^.item);
+end;
+
+{# define  ASN1_TEMPLATE_adb(t) (t->item)}
+
+function ASN1_TEMPLATE_adb(t: PASN1_TEMPLATE_st): PASN1_ITEM_EXP;
+begin
+  Result := PASN1_ITEM_EXP(t^.item);
+end;
 function ossl_check_ASN1_VALUE_type(ptr: PASN1_VALUE): PASN1_VALUE{Has C Attribute: unused}; inline;
 begin
    Result := ptr;

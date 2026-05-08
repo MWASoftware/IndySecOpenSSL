@@ -18,7 +18,7 @@
 unit openssl_ebcdic;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ebcdic.h - Wed  6 May 14:30:02 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ebcdic.h - Fri  8 May 12:10:26 BST 2026
 }
 
 interface
@@ -39,17 +39,21 @@ uses OpenSSLAPI;
   {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
     {$define HEADER_EBCDIC_H}
   {$endif}
+  {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  {$ifdef FPC}
 
 var
+  os_toascii: array[0..255] of byte cvar; public;
+  os_toebcdic: array[0..255] of byte cvar; public;
+  {$endif}
+  {$endif} {OPENSSL_STATIC_LINK_MODEL}
+
+
   { Avoid name clashes with other applications }
   {#define os_toascii _openssl_os_toascii}
   {#define os_toebcdic _openssl_os_toebcdic}
   {#define ebcdic2ascii _openssl_ebcdic2ascii}
   {#define ascii2ebcdic _openssl_ascii2ebcdic}
-  os_toascii: array[0..255] of byte cvar; public;
-  os_toebcdic: array[0..255] of byte cvar; public;
-
-
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
   function ebcdic2ascii(dest: pointer; srce: pointer; count: TOpenSSL_C_SIZET): pointer; cdecl; external CLibCrypto name 'ebcdic2ascii';
   function ascii2ebcdic(dest: pointer; srce: pointer; count: TOpenSSL_C_SIZET): pointer; cdecl; external CLibCrypto name 'ascii2ebcdic';
@@ -87,14 +91,26 @@ uses Sysutils
   {$endif}
   ,Classes, OpenSSLExceptionHandlers;
 
-const
-  {$ifdef FPC}
-  __FILE__ = {$include %FILE%};
-  {$else}
-  __FILE__ = '$(INPUTFILENAME)';
-  {$endif}
-  OPENSSL_FILE = __FILE__;
-  OPENSSL_LINE  = 0;
+  {$if not declared(__FILE__)}
+  const
+    {$ifdef FPC}
+    __FILE__ = {$include %FILE%};
+    {$else}
+    __FILE__ = '$(INPUTFILENAME)';
+    {$endif}
+  {$ifend}
+  {$if not declared(__LINE__)}
+  const
+    __LINE__ = 0;
+  {$ifend}
+  {$if not declared(OPENSSL_FILE)}
+  const
+    OPENSSL_FILE = __FILE__;
+  {$ifend}
+  {$if not declared(OPENSSL_LINE)}
+  const
+    OPENSSL_LINE  = 0;
+  {$ifend}
 
 {$ifndef OPENSSL_STATIC_LINK_MODEL}
 function Load_ebcdic2ascii(dest: pointer; srce: pointer; count: TOpenSSL_C_SIZET): pointer; cdecl;

@@ -18,7 +18,7 @@
 unit openssl_e_os2;
 
 {
-  Generated from OpenSSL 3.0.20 Header File e_os2.h - Wed  6 May 14:30:09 BST 2026
+  Generated from OpenSSL 3.0.20 Header File e_os2.h - Fri  8 May 12:10:32 BST 2026
 }
 
 interface
@@ -259,45 +259,29 @@ const
     {typedef UINT32 uint32_t; - Redefinition of Builtin Type}
     {typedef INT64 int64_t; - Redefinition of Builtin Type}
     {typedef UINT64 uint64_t; - Redefinition of Builtin Type}
-  {$elseif   __STDC_VERSION__ >= 199901  or defined(__osf__)  or defined(__sgi)  or defined(__hpux)  or defined(OPENSSL_SYS_VMS)  or defined(__OpenBSD__)}
-    {$undef  OPENSSL_NO_INTTYPES_H}
-    { Because the specs say that inttypes.h includes stdint.h if present }
-    {$undef  OPENSSL_NO_STDINT_H}
-  {$elseif  defined(_MSC_VER)  and  _MSC_VER < 1600}
+    { #elif  __STDC_VERSION__ >= 199901L || defined(__osf__) || defined(__sgi) || defined(__hpux) || defined(OPENSSL_SYS_VMS) || defined(__OpenBSD__)
+    #include <inttypes.h>
+    #include <inttypes.h>
+    #undef OPENSSL_NO_INTTYPES_H
+     Because the specs say that inttypes.h includes stdint.h if present 
+    #undef OPENSSL_NO_STDINT_H
+    #elif defined(_MSC_VER) && _MSC_VER < 1600
     
-    {* minimally required typdefs for systems not supporting inttypes.h or
+    * minimally required typdefs for systems not supporting inttypes.h or
     * stdint.h: currently just older VC++
+    
+    typedef signed char int8_t;
+    typedef unsigned char uint8_t;
+    typedef short int16_t;
+    typedef unsigned short uint16_t;
+    typedef int int32_t;
+    typedef unsigned int uint32_t;
+    typedef __int64 int64_t;
+    typedef unsigned __int64 uint64_t;
     }
-    {typedef signed char int8_t; - Redefinition of Builtin Type}
-    {typedef unsigned char uint8_t; - Redefinition of Builtin Type}
-    {typedef short int16_t; - Redefinition of Builtin Type}
-    {typedef unsigned short uint16_t; - Redefinition of Builtin Type}
-    {typedef int int32_t; - Redefinition of Builtin Type}
-    {typedef unsigned int uint32_t; - Redefinition of Builtin Type}
-    {typedef __int64 int64_t; - Redefinition of Builtin Type}
-    {typedef unsigned __int64 uint64_t; - Redefinition of Builtin Type}
   {$else}
     {$undef  OPENSSL_NO_STDINT_H}
   {$endif}
-  {$if  defined(__STDC_VERSION__)  and  __STDC_VERSION__ >= 199901  and defined(INTMAX_MAX)  and defined(UINTMAX_MAX)}
-
-type
-  {Auto-generated forward references}
-  Pintmax_t = ^Tossl_intmax_t;
-  PPintmax_t = ^Pintmax_t;
-  Possl_intmax_t = ^Tossl_intmax_t;
-  PPossl_intmax_t = ^Possl_intmax_t;
-  Puintmax_t = ^Tossl_uintmax_t;
-  PPuintmax_t = ^Puintmax_t;
-  Possl_uintmax_t = ^Tossl_uintmax_t;
-  PPossl_uintmax_t = ^Possl_uintmax_t;
-  {end of auto-generated forward references}
-
-  Tintmax_t = record end;
-  Tossl_intmax_t = Tintmax_t;
-  Tuintmax_t = record end;
-  Tossl_uintmax_t = Tuintmax_t;
-  {$else}
 
 type
   {Auto-generated forward references}
@@ -307,52 +291,54 @@ type
   PPossl_uintmax_t = ^Possl_uintmax_t;
   {end of auto-generated forward references}
 
-    { Fall back to the largest we know we require and can handle }
+  { Commented out to avoid Delphi errors
+  #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L && defined(INTMAX_MAX) && defined(UINTMAX_MAX)
+  typedef intmax_t ossl_intmax_t;
+  typedef uintmax_t ossl_uintmax_t;
+  #else }
+  { Fall back to the largest we know we require and can handle }
   Tossl_intmax_t = TOpenSSL_C_LONG;
-  Tossl_uintmax_t = qword;
-  {$endif}
+  Tossl_uintmax_t = TOpenSSL_C_UINT64;
+  {# define  ossl_inline inline} { Blacklisted Macro}
+  {# define  ossl_noreturn __attribute__((noreturn))} {Macro Return Type unknown}
+  {# define  ossl_unused __attribute__((unused))} {Macro Return Type unknown}
+  {#endif}
   { ossl_inline: portable inline definition usable in public headers }
-  {$if  not defined(inline)  and  not defined(__cplusplus)}
-    {$if  defined(__STDC_VERSION__)  and  __STDC_VERSION__ >= 199901}
-
-const
-      { just use inline }
-  ossl_inline = inline_;
-    {$elseif  defined(__GNUC__)  and  __GNUC__ >= 2}
-
-const
-  ossl_inline = __inline__;
-    {$elseif  defined(_MSC_VER)}
-
-const
-      
-      {* Visual Studio: inline is available in C++ only, however
-      * __inline is available for C, see
-      * http://msdn.microsoft.com/en-us/library/z8y1yy88.aspx
-      }
-  ossl_inline = __inline;
-    {$else}
-      {$define ossl_inline}
-    {$endif}
-  {$else}
-
-const
-  ossl_inline = inline_;
-  {$endif}
-  {$if  defined(__STDC_VERSION__)  and  __STDC_VERSION__ >= 201112  and  not defined(__cplusplus)}
-    {#define ossl_noreturn _Noreturn}
-    {$define ossl_noreturn}
-  {$elseif  defined(__GNUC__)  and  __GNUC__ >= 2}
-{# define  ossl_noreturn __attribute__((noreturn))} {Macro Return Type unknown}
-  {$else}
-    {$define ossl_noreturn}
-  {$endif}
+  { Causes runtime problems for Pascal - inline is reserved word
+  #if !defined(inline) && !defined(__cplusplus)
+  #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L
+   just use inline 
+  #define ossl_inline inline
+  #elif defined(__GNUC__) && __GNUC__ >= 2
+  #define ossl_inline __inline__
+  #elif defined(_MSC_VER)
+  / *
+  * Visual Studio: inline is available in C++ only, however
+  * __inline is available for C, see
+  * http://msdn.microsoft.com/en-us/library/z8y1yy88.aspx
+  * /
+  #define ossl_inline __inline
+  #else
+  #define ossl_inline
+  #endif
+  #else
+  }
+  {#endif}
+  { #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L && !defined(__cplusplus)
+  //#define ossl_noreturn _Noreturn
+  #define ossl_noreturn
+  #elif defined(__GNUC__) && __GNUC__ >= 2
+  }
+  { #else
+  #define ossl_noreturn
+  #endif
+  }
   { ossl_unused: portable unused attribute for use in public headers }
-  {$if  defined(__GNUC__)}
-{# define  ossl_unused __attribute__((unused))} {Macro Return Type unknown}
-  {$else}
-    {$define ossl_unused}
-  {$endif}
+  { #if defined(__GNUC__)}
+  { #else
+  #define ossl_unused
+  #endif
+  }
 {$endif}
 
 implementation
@@ -372,14 +358,26 @@ uses Sysutils
   {$endif}
   ,Classes, OpenSSLExceptionHandlers;
 
-const
-  {$ifdef FPC}
-  __FILE__ = {$include %FILE%};
-  {$else}
-  __FILE__ = '$(INPUTFILENAME)';
-  {$endif}
-  OPENSSL_FILE = __FILE__;
-  OPENSSL_LINE  = 0;
+  {$if not declared(__FILE__)}
+  const
+    {$ifdef FPC}
+    __FILE__ = {$include %FILE%};
+    {$else}
+    __FILE__ = '$(INPUTFILENAME)';
+    {$endif}
+  {$ifend}
+  {$if not declared(__LINE__)}
+  const
+    __LINE__ = 0;
+  {$ifend}
+  {$if not declared(OPENSSL_FILE)}
+  const
+    OPENSSL_FILE = __FILE__;
+  {$ifend}
+  {$if not declared(OPENSSL_LINE)}
+  const
+    OPENSSL_LINE  = 0;
+  {$ifend}
 
 {$ifndef OPENSSL_STATIC_LINK_MODEL}
 procedure Load;

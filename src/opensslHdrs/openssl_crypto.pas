@@ -18,7 +18,7 @@
 unit openssl_crypto;
 
 {
-  Generated from OpenSSL 3.0.20 Header File crypto.h - Wed  6 May 14:29:57 BST 2026
+  Generated from OpenSSL 3.0.20 Header File crypto.h - Fri  8 May 12:10:20 BST 2026
 }
 
 interface
@@ -42,13 +42,12 @@ uses OpenSSLAPI,openssl_stack,openssl_e_os2,openssl_safestack,openssl_types,
 { clang-format on }
 {$ifndef  OPENSSL_CRYPTO_H}
   {$define OPENSSL_CRYPTO_H}
-  {$include openssl_macros.inc}
   {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
     {$define HEADER_CRYPTO_H}
   {$endif}
   {$ifndef  OPENSSL_NO_STDIO}
   {$endif}
-  {$include openssl_opensslconf.inc}
+  {$include openssl_configuration.inc}
   {$ifdef CHARSET_EBCDIC}
   {$endif}
   
@@ -74,8 +73,8 @@ type
   function CRYPTO_THREAD_unlock(lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'CRYPTO_THREAD_unlock';
   procedure CRYPTO_THREAD_lock_free(lock: PCRYPTO_RWLOCK); cdecl; external CLibCrypto name 'CRYPTO_THREAD_lock_free';
   function CRYPTO_atomic_add(val: POpenSSL_C_INT; amount: TOpenSSL_C_INT; ret: POpenSSL_C_INT; lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'CRYPTO_atomic_add';
-  function CRYPTO_atomic_or(val: Pqword; op: qword; ret: Pqword; lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'CRYPTO_atomic_or';
-  function CRYPTO_atomic_load(val: Pqword; ret: Pqword; lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'CRYPTO_atomic_load';
+  function CRYPTO_atomic_or(val: POpenSSL_C_UINT64; op: TOpenSSL_C_UINT64; ret: POpenSSL_C_UINT64; lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'CRYPTO_atomic_or';
+  function CRYPTO_atomic_load(val: POpenSSL_C_UINT64; ret: POpenSSL_C_UINT64; lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'CRYPTO_atomic_load';
   { No longer needed, so this is a no-op }
   {$else}
   { The EXTERNALSYM directive is ignored by FPC, however, it is used by Delphi as follows:
@@ -97,8 +96,8 @@ type
   function Load_CRYPTO_THREAD_unlock(lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl;
   procedure Load_CRYPTO_THREAD_lock_free(lock: PCRYPTO_RWLOCK); cdecl;
   function Load_CRYPTO_atomic_add(val: POpenSSL_C_INT; amount: TOpenSSL_C_INT; ret: POpenSSL_C_INT; lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl;
-  function Load_CRYPTO_atomic_or(val: Pqword; op: qword; ret: Pqword; lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl;
-  function Load_CRYPTO_atomic_load(val: Pqword; ret: Pqword; lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl;
+  function Load_CRYPTO_atomic_or(val: POpenSSL_C_UINT64; op: TOpenSSL_C_UINT64; ret: POpenSSL_C_UINT64; lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl;
+  function Load_CRYPTO_atomic_load(val: POpenSSL_C_UINT64; ret: POpenSSL_C_UINT64; lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl;
 
 var
   CRYPTO_THREAD_lock_new: function: PCRYPTO_RWLOCK; cdecl = Load_CRYPTO_THREAD_lock_new;
@@ -107,8 +106,8 @@ var
   CRYPTO_THREAD_unlock: function(lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl = Load_CRYPTO_THREAD_unlock;
   CRYPTO_THREAD_lock_free: procedure(lock: PCRYPTO_RWLOCK); cdecl = Load_CRYPTO_THREAD_lock_free;
   CRYPTO_atomic_add: function(val: POpenSSL_C_INT; amount: TOpenSSL_C_INT; ret: POpenSSL_C_INT; lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl = Load_CRYPTO_atomic_add;
-  CRYPTO_atomic_or: function(val: Pqword; op: qword; ret: Pqword; lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl = Load_CRYPTO_atomic_or;
-  CRYPTO_atomic_load: function(val: Pqword; ret: Pqword; lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl = Load_CRYPTO_atomic_load;
+  CRYPTO_atomic_or: function(val: POpenSSL_C_UINT64; op: TOpenSSL_C_UINT64; ret: POpenSSL_C_UINT64; lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl = Load_CRYPTO_atomic_or;
+  CRYPTO_atomic_load: function(val: POpenSSL_C_UINT64; ret: POpenSSL_C_UINT64; lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl = Load_CRYPTO_atomic_load;
   { No longer needed, so this is a no-op }
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
   {# define  OPENSSL_malloc_init() while (0) continue}
@@ -174,7 +173,7 @@ var
   OPENSSL_strcasecmp: function(s1: PAnsiChar; s2: PAnsiChar): TOpenSSL_C_INT; cdecl = Load_OPENSSL_strcasecmp;
   OPENSSL_strncasecmp: function(s1: PAnsiChar; s2: PAnsiChar; n: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl = Load_OPENSSL_strncasecmp;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
-  {# define  OPENSSL_MALLOC_MAX_NELEMS(type) (((1U << (sizeof(int) * 8 - 1)) - 1) / sizeof(type))} {Param Type resolution error - calls function in another unit? at line no 129}
+  {# define  OPENSSL_MALLOC_MAX_NELEMS(type) (((1U << (sizeof(int) * 8 - 1)) - 1) / sizeof(type))} { Blacklisted Macro}
 
 
   
@@ -953,17 +952,17 @@ const
   { Library initialisation functions }
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
   procedure OPENSSL_cleanup; cdecl; external CLibCrypto name 'OPENSSL_cleanup';
-  function OPENSSL_init_crypto(opts: qword; settings: POPENSSL_INIT_SETTINGS): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OPENSSL_init_crypto';
+  function OPENSSL_init_crypto(opts: TOpenSSL_C_UINT64; settings: POPENSSL_INIT_SETTINGS): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OPENSSL_init_crypto';
   {$else}
   {$EXTERNALSYM OPENSSL_cleanup}
   {$EXTERNALSYM OPENSSL_init_crypto}
   {Do not call Function LoadDeclarations. Internal use only}
   procedure Load_OPENSSL_cleanup; cdecl;
-  function Load_OPENSSL_init_crypto(opts: qword; settings: POPENSSL_INIT_SETTINGS): TOpenSSL_C_INT; cdecl;
+  function Load_OPENSSL_init_crypto(opts: TOpenSSL_C_UINT64; settings: POPENSSL_INIT_SETTINGS): TOpenSSL_C_INT; cdecl;
 
 var
   OPENSSL_cleanup: procedure; cdecl = Load_OPENSSL_cleanup;
-  OPENSSL_init_crypto: function(opts: qword; settings: POPENSSL_INIT_SETTINGS): TOpenSSL_C_INT; cdecl = Load_OPENSSL_init_crypto;
+  OPENSSL_init_crypto: function(opts: TOpenSSL_C_UINT64; settings: POPENSSL_INIT_SETTINGS): TOpenSSL_C_INT; cdecl = Load_OPENSSL_init_crypto;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
 type
@@ -1275,14 +1274,26 @@ uses Sysutils
   {$endif}
   ,Classes, OpenSSLExceptionHandlers;
 
-const
-  {$ifdef FPC}
-  __FILE__ = {$include %FILE%};
-  {$else}
-  __FILE__ = '$(INPUTFILENAME)';
-  {$endif}
-  OPENSSL_FILE = __FILE__;
-  OPENSSL_LINE  = 0;
+  {$if not declared(__FILE__)}
+  const
+    {$ifdef FPC}
+    __FILE__ = {$include %FILE%};
+    {$else}
+    __FILE__ = '$(INPUTFILENAME)';
+    {$endif}
+  {$ifend}
+  {$if not declared(__LINE__)}
+  const
+    __LINE__ = 0;
+  {$ifend}
+  {$if not declared(OPENSSL_FILE)}
+  const
+    OPENSSL_FILE = __FILE__;
+  {$ifend}
+  {$if not declared(OPENSSL_LINE)}
+  const
+    OPENSSL_LINE  = 0;
+  {$ifend}
 
 
 {# define  OPENSSL_malloc(num) CRYPTO_malloc(num, OPENSSL_FILE, OPENSSL_LINE)}
@@ -1527,7 +1538,7 @@ begin
   Result := CRYPTO_atomic_add(val, amount, ret, lock);
 end;
 
-function Load_CRYPTO_atomic_or(val: Pqword; op: qword; ret: Pqword; lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl;
+function Load_CRYPTO_atomic_or(val: POpenSSL_C_UINT64; op: TOpenSSL_C_UINT64; ret: POpenSSL_C_UINT64; lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl;
 begin
   CRYPTO_atomic_or := LoadLibCryptoFunction('CRYPTO_atomic_or');
   if not assigned(CRYPTO_atomic_or) then
@@ -1535,7 +1546,7 @@ begin
   Result := CRYPTO_atomic_or(val, op, ret, lock);
 end;
 
-function Load_CRYPTO_atomic_load(val: Pqword; ret: Pqword; lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl;
+function Load_CRYPTO_atomic_load(val: POpenSSL_C_UINT64; ret: POpenSSL_C_UINT64; lock: PCRYPTO_RWLOCK): TOpenSSL_C_INT; cdecl;
 begin
   CRYPTO_atomic_load := LoadLibCryptoFunction('CRYPTO_atomic_load');
   if not assigned(CRYPTO_atomic_load) then
@@ -2325,7 +2336,7 @@ begin
   OPENSSL_cleanup;
 end;
 
-function Load_OPENSSL_init_crypto(opts: qword; settings: POPENSSL_INIT_SETTINGS): TOpenSSL_C_INT; cdecl;
+function Load_OPENSSL_init_crypto(opts: TOpenSSL_C_UINT64; settings: POPENSSL_INIT_SETTINGS): TOpenSSL_C_INT; cdecl;
 begin
   OPENSSL_init_crypto := LoadLibCryptoFunction('OPENSSL_init_crypto');
   if not assigned(OPENSSL_init_crypto) then

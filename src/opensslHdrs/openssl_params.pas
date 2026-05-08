@@ -18,7 +18,7 @@
 unit openssl_params;
 
 {
-  Generated from OpenSSL 3.0.20 Header File params.h - Wed  6 May 14:30:26 BST 2026
+  Generated from OpenSSL 3.0.20 Header File params.h - Fri  8 May 12:10:49 BST 2026
 }
 
 interface
@@ -70,7 +70,7 @@ uses OpenSSLAPI,openssl_types,openssl_core,openssl_bn;
   function OSSL_PARAM_construct_int32(key: PAnsiChar; buf: POpenSSL_C_INT): TOSSL_PARAM; cdecl; external CLibCrypto name 'OSSL_PARAM_construct_int32';
   function OSSL_PARAM_construct_uint32(key: PAnsiChar; buf: POpenSSL_C_UINT): TOSSL_PARAM; cdecl; external CLibCrypto name 'OSSL_PARAM_construct_uint32';
   function OSSL_PARAM_construct_int64(key: PAnsiChar; buf: POpenSSL_C_LONG): TOSSL_PARAM; cdecl; external CLibCrypto name 'OSSL_PARAM_construct_int64';
-  function OSSL_PARAM_construct_uint64(key: PAnsiChar; buf: Pqword): TOSSL_PARAM; cdecl; external CLibCrypto name 'OSSL_PARAM_construct_uint64';
+  function OSSL_PARAM_construct_uint64(key: PAnsiChar; buf: POpenSSL_C_UINT64): TOSSL_PARAM; cdecl; external CLibCrypto name 'OSSL_PARAM_construct_uint64';
   function OSSL_PARAM_construct_size_t(key: PAnsiChar; buf: POpenSSL_C_SIZET): TOSSL_PARAM; cdecl; external CLibCrypto name 'OSSL_PARAM_construct_size_t';
   function OSSL_PARAM_construct_time_t(key: PAnsiChar; buf: POpenSSL_C_TIMET): TOSSL_PARAM; cdecl; external CLibCrypto name 'OSSL_PARAM_construct_time_t';
   function OSSL_PARAM_construct_BN(key: PAnsiChar; buf: Pbyte; bsize: TOpenSSL_C_SIZET): TOSSL_PARAM; cdecl; external CLibCrypto name 'OSSL_PARAM_construct_BN';
@@ -88,7 +88,7 @@ uses OpenSSLAPI,openssl_types,openssl_core,openssl_bn;
   function OSSL_PARAM_get_int32(p: POSSL_PARAM; val: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PARAM_get_int32';
   function OSSL_PARAM_get_uint32(p: POSSL_PARAM; val: POpenSSL_C_UINT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PARAM_get_uint32';
   function OSSL_PARAM_get_int64(p: POSSL_PARAM; val: POpenSSL_C_LONG): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PARAM_get_int64';
-  function OSSL_PARAM_get_uint64(p: POSSL_PARAM; val: Pqword): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PARAM_get_uint64';
+  function OSSL_PARAM_get_uint64(p: POSSL_PARAM; val: POpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PARAM_get_uint64';
   function OSSL_PARAM_get_size_t(p: POSSL_PARAM; val: POpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PARAM_get_size_t';
   function OSSL_PARAM_get_time_t(p: POSSL_PARAM; val: POpenSSL_C_TIMET): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PARAM_get_time_t';
   function OSSL_PARAM_set_int(p: POSSL_PARAM; val: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PARAM_set_int';
@@ -98,7 +98,7 @@ uses OpenSSLAPI,openssl_types,openssl_core,openssl_bn;
   function OSSL_PARAM_set_int32(p: POSSL_PARAM; val: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PARAM_set_int32';
   function OSSL_PARAM_set_uint32(p: POSSL_PARAM; val: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PARAM_set_uint32';
   function OSSL_PARAM_set_int64(p: POSSL_PARAM; val: TOpenSSL_C_LONG): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PARAM_set_int64';
-  function OSSL_PARAM_set_uint64(p: POSSL_PARAM; val: qword): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PARAM_set_uint64';
+  function OSSL_PARAM_set_uint64(p: POSSL_PARAM; val: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PARAM_set_uint64';
   function OSSL_PARAM_set_size_t(p: POSSL_PARAM; val: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PARAM_set_size_t';
   function OSSL_PARAM_set_time_t(p: POSSL_PARAM; val: TOpenSSL_C_TIMET): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PARAM_set_time_t';
   function OSSL_PARAM_get_double(p: POSSL_PARAM; val: POpenSSL_C_DOUBLE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PARAM_get_double';
@@ -194,7 +194,7 @@ uses OpenSSLAPI,openssl_types,openssl_core,openssl_bn;
   function Load_OSSL_PARAM_construct_int32(key: PAnsiChar; buf: POpenSSL_C_INT): TOSSL_PARAM; cdecl;
   function Load_OSSL_PARAM_construct_uint32(key: PAnsiChar; buf: POpenSSL_C_UINT): TOSSL_PARAM; cdecl;
   function Load_OSSL_PARAM_construct_int64(key: PAnsiChar; buf: POpenSSL_C_LONG): TOSSL_PARAM; cdecl;
-  function Load_OSSL_PARAM_construct_uint64(key: PAnsiChar; buf: Pqword): TOSSL_PARAM; cdecl;
+  function Load_OSSL_PARAM_construct_uint64(key: PAnsiChar; buf: POpenSSL_C_UINT64): TOSSL_PARAM; cdecl;
   function Load_OSSL_PARAM_construct_size_t(key: PAnsiChar; buf: POpenSSL_C_SIZET): TOSSL_PARAM; cdecl;
   function Load_OSSL_PARAM_construct_time_t(key: PAnsiChar; buf: POpenSSL_C_TIMET): TOSSL_PARAM; cdecl;
   function Load_OSSL_PARAM_construct_BN(key: PAnsiChar; buf: Pbyte; bsize: TOpenSSL_C_SIZET): TOSSL_PARAM; cdecl;
@@ -212,7 +212,7 @@ uses OpenSSLAPI,openssl_types,openssl_core,openssl_bn;
   function Load_OSSL_PARAM_get_int32(p: POSSL_PARAM; val: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
   function Load_OSSL_PARAM_get_uint32(p: POSSL_PARAM; val: POpenSSL_C_UINT): TOpenSSL_C_INT; cdecl;
   function Load_OSSL_PARAM_get_int64(p: POSSL_PARAM; val: POpenSSL_C_LONG): TOpenSSL_C_INT; cdecl;
-  function Load_OSSL_PARAM_get_uint64(p: POSSL_PARAM; val: Pqword): TOpenSSL_C_INT; cdecl;
+  function Load_OSSL_PARAM_get_uint64(p: POSSL_PARAM; val: POpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl;
   function Load_OSSL_PARAM_get_size_t(p: POSSL_PARAM; val: POpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
   function Load_OSSL_PARAM_get_time_t(p: POSSL_PARAM; val: POpenSSL_C_TIMET): TOpenSSL_C_INT; cdecl;
   function Load_OSSL_PARAM_set_int(p: POSSL_PARAM; val: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
@@ -222,7 +222,7 @@ uses OpenSSLAPI,openssl_types,openssl_core,openssl_bn;
   function Load_OSSL_PARAM_set_int32(p: POSSL_PARAM; val: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
   function Load_OSSL_PARAM_set_uint32(p: POSSL_PARAM; val: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl;
   function Load_OSSL_PARAM_set_int64(p: POSSL_PARAM; val: TOpenSSL_C_LONG): TOpenSSL_C_INT; cdecl;
-  function Load_OSSL_PARAM_set_uint64(p: POSSL_PARAM; val: qword): TOpenSSL_C_INT; cdecl;
+  function Load_OSSL_PARAM_set_uint64(p: POSSL_PARAM; val: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl;
   function Load_OSSL_PARAM_set_size_t(p: POSSL_PARAM; val: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
   function Load_OSSL_PARAM_set_time_t(p: POSSL_PARAM; val: TOpenSSL_C_TIMET): TOpenSSL_C_INT; cdecl;
   function Load_OSSL_PARAM_get_double(p: POSSL_PARAM; val: POpenSSL_C_DOUBLE): TOpenSSL_C_INT; cdecl;
@@ -256,7 +256,7 @@ var
   OSSL_PARAM_construct_int32: function(key: PAnsiChar; buf: POpenSSL_C_INT): TOSSL_PARAM; cdecl = Load_OSSL_PARAM_construct_int32;
   OSSL_PARAM_construct_uint32: function(key: PAnsiChar; buf: POpenSSL_C_UINT): TOSSL_PARAM; cdecl = Load_OSSL_PARAM_construct_uint32;
   OSSL_PARAM_construct_int64: function(key: PAnsiChar; buf: POpenSSL_C_LONG): TOSSL_PARAM; cdecl = Load_OSSL_PARAM_construct_int64;
-  OSSL_PARAM_construct_uint64: function(key: PAnsiChar; buf: Pqword): TOSSL_PARAM; cdecl = Load_OSSL_PARAM_construct_uint64;
+  OSSL_PARAM_construct_uint64: function(key: PAnsiChar; buf: POpenSSL_C_UINT64): TOSSL_PARAM; cdecl = Load_OSSL_PARAM_construct_uint64;
   OSSL_PARAM_construct_size_t: function(key: PAnsiChar; buf: POpenSSL_C_SIZET): TOSSL_PARAM; cdecl = Load_OSSL_PARAM_construct_size_t;
   OSSL_PARAM_construct_time_t: function(key: PAnsiChar; buf: POpenSSL_C_TIMET): TOSSL_PARAM; cdecl = Load_OSSL_PARAM_construct_time_t;
   OSSL_PARAM_construct_BN: function(key: PAnsiChar; buf: Pbyte; bsize: TOpenSSL_C_SIZET): TOSSL_PARAM; cdecl = Load_OSSL_PARAM_construct_BN;
@@ -274,7 +274,7 @@ var
   OSSL_PARAM_get_int32: function(p: POSSL_PARAM; val: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_OSSL_PARAM_get_int32;
   OSSL_PARAM_get_uint32: function(p: POSSL_PARAM; val: POpenSSL_C_UINT): TOpenSSL_C_INT; cdecl = Load_OSSL_PARAM_get_uint32;
   OSSL_PARAM_get_int64: function(p: POSSL_PARAM; val: POpenSSL_C_LONG): TOpenSSL_C_INT; cdecl = Load_OSSL_PARAM_get_int64;
-  OSSL_PARAM_get_uint64: function(p: POSSL_PARAM; val: Pqword): TOpenSSL_C_INT; cdecl = Load_OSSL_PARAM_get_uint64;
+  OSSL_PARAM_get_uint64: function(p: POSSL_PARAM; val: POpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl = Load_OSSL_PARAM_get_uint64;
   OSSL_PARAM_get_size_t: function(p: POSSL_PARAM; val: POpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl = Load_OSSL_PARAM_get_size_t;
   OSSL_PARAM_get_time_t: function(p: POSSL_PARAM; val: POpenSSL_C_TIMET): TOpenSSL_C_INT; cdecl = Load_OSSL_PARAM_get_time_t;
   OSSL_PARAM_set_int: function(p: POSSL_PARAM; val: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_OSSL_PARAM_set_int;
@@ -284,7 +284,7 @@ var
   OSSL_PARAM_set_int32: function(p: POSSL_PARAM; val: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_OSSL_PARAM_set_int32;
   OSSL_PARAM_set_uint32: function(p: POSSL_PARAM; val: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl = Load_OSSL_PARAM_set_uint32;
   OSSL_PARAM_set_int64: function(p: POSSL_PARAM; val: TOpenSSL_C_LONG): TOpenSSL_C_INT; cdecl = Load_OSSL_PARAM_set_int64;
-  OSSL_PARAM_set_uint64: function(p: POSSL_PARAM; val: qword): TOpenSSL_C_INT; cdecl = Load_OSSL_PARAM_set_uint64;
+  OSSL_PARAM_set_uint64: function(p: POSSL_PARAM; val: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl = Load_OSSL_PARAM_set_uint64;
   OSSL_PARAM_set_size_t: function(p: POSSL_PARAM; val: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl = Load_OSSL_PARAM_set_size_t;
   OSSL_PARAM_set_time_t: function(p: POSSL_PARAM; val: TOpenSSL_C_TIMET): TOpenSSL_C_INT; cdecl = Load_OSSL_PARAM_set_time_t;
   OSSL_PARAM_get_double: function(p: POSSL_PARAM; val: POpenSSL_C_DOUBLE): TOpenSSL_C_INT; cdecl = Load_OSSL_PARAM_get_double;
@@ -326,14 +326,26 @@ uses Sysutils
   {$endif}
   ,Classes, OpenSSLExceptionHandlers;
 
-const
-  {$ifdef FPC}
-  __FILE__ = {$include %FILE%};
-  {$else}
-  __FILE__ = '$(INPUTFILENAME)';
-  {$endif}
-  OPENSSL_FILE = __FILE__;
-  OPENSSL_LINE  = 0;
+  {$if not declared(__FILE__)}
+  const
+    {$ifdef FPC}
+    __FILE__ = {$include %FILE%};
+    {$else}
+    __FILE__ = '$(INPUTFILENAME)';
+    {$endif}
+  {$ifend}
+  {$if not declared(__LINE__)}
+  const
+    __LINE__ = 0;
+  {$ifend}
+  {$if not declared(OPENSSL_FILE)}
+  const
+    OPENSSL_FILE = __FILE__;
+  {$ifend}
+  {$if not declared(OPENSSL_LINE)}
+  const
+    OPENSSL_LINE  = 0;
+  {$ifend}
 
 
 {# define  OSSL_PARAM_UNMODIFIED ((size_t)-1)}
@@ -415,7 +427,7 @@ begin
   Result := OSSL_PARAM_construct_int64(key, buf);
 end;
 
-function Load_OSSL_PARAM_construct_uint64(key: PAnsiChar; buf: Pqword): TOSSL_PARAM; cdecl;
+function Load_OSSL_PARAM_construct_uint64(key: PAnsiChar; buf: POpenSSL_C_UINT64): TOSSL_PARAM; cdecl;
 begin
   OSSL_PARAM_construct_uint64 := LoadLibCryptoFunction('OSSL_PARAM_construct_uint64');
   if not assigned(OSSL_PARAM_construct_uint64) then
@@ -559,7 +571,7 @@ begin
   Result := OSSL_PARAM_get_int64(p, val);
 end;
 
-function Load_OSSL_PARAM_get_uint64(p: POSSL_PARAM; val: Pqword): TOpenSSL_C_INT; cdecl;
+function Load_OSSL_PARAM_get_uint64(p: POSSL_PARAM; val: POpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl;
 begin
   OSSL_PARAM_get_uint64 := LoadLibCryptoFunction('OSSL_PARAM_get_uint64');
   if not assigned(OSSL_PARAM_get_uint64) then
@@ -639,7 +651,7 @@ begin
   Result := OSSL_PARAM_set_int64(p, val);
 end;
 
-function Load_OSSL_PARAM_set_uint64(p: POSSL_PARAM; val: qword): TOpenSSL_C_INT; cdecl;
+function Load_OSSL_PARAM_set_uint64(p: POSSL_PARAM; val: TOpenSSL_C_UINT64): TOpenSSL_C_INT; cdecl;
 begin
   OSSL_PARAM_set_uint64 := LoadLibCryptoFunction('OSSL_PARAM_set_uint64');
   if not assigned(OSSL_PARAM_set_uint64) then

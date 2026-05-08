@@ -18,7 +18,7 @@
 unit openssl_bio;
 
 {
-  Generated from OpenSSL 3.0.20 Header File bio.h - Wed  6 May 14:29:38 BST 2026
+  Generated from OpenSSL 3.0.20 Header File bio.h - Fri  8 May 12:10:02 BST 2026
 }
 
 interface
@@ -288,14 +288,14 @@ const
   BIO_CB_PUTS = $04;
   BIO_CB_GETS = $05;
   BIO_CB_CTRL = $06;
+  {# define  BIO_CB_RETURN 0x80} { Blacklisted Macro}
+  {# define  BIO_CB_return(a) ((a) | BIO_CB_RETURN)} { Blacklisted Macro}
+  {# define  BIO_cb_pre(a) (!((a) & BIO_CB_RETURN))} { Blacklisted Macro}
+  {# define  BIO_cb_post(a) ((a) & BIO_CB_RETURN)} { Blacklisted Macro}
   
   {* The callback is called before and after the underling operation, The
   * BIO_CB_RETURN flag indicates if it is after the call
   }
-  BIO_CB_RETURN = $80;
-  {# define  BIO_CB_return(a) ((a) | BIO_CB_RETURN)} { Blacklisted Macro}
-  {# define  BIO_cb_pre(a) (!((a) & BIO_CB_RETURN))} { Blacklisted Macro}
-  {# define  BIO_cb_post(a) ((a) & BIO_CB_RETURN)} { Blacklisted Macro}
   {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
 type
@@ -667,17 +667,17 @@ const
   function BIO_get_accept_port(b:PBIO): PAnsiChar; inline;
   function BIO_get_peer_name(b:PBIO): PAnsiChar; inline;
   function BIO_get_peer_port(b:PBIO): PAnsiChar; inline;
-  {# define  BIO_set_nbio_accept(b,n) BIO_ctrl(b, BIO_C_SET_ACCEPT, 2, (n) ? (void *)"a" : NULL)} {Param Type resolution error - calls function in another unit? at line no 472}
     { #define BIO_set_nbio(b,n)    BIO_ctrl(b,BIO_C_SET_NBIO,(n),NULL) }
+  function BIO_set_nbio_accept(b:PBIO; n:int64): TOpenSSL_C_INT; inline;
   function BIO_set_accept_bios(b:PBIO; bio:pointer): TOpenSSL_C_INT; inline;
   function BIO_set_accept_ip_family(b:PBIO; f:TOpenSSL_C_INT): TOpenSSL_C_INT; inline;
   function BIO_get_accept_ip_family(b:PBIO): TOpenSSL_C_INT; inline;
   {$endif}
-{# define  BIO_do_connect(b) BIO_do_handshake(b)} {Param Type resolution error - calls function in another unit? at line no 480}
-{# define  BIO_do_accept(b) BIO_do_handshake(b)} {Param Type resolution error - calls function in another unit? at line no 481}
 
 
   { OPENSSL_NO_SOCK }
+  function BIO_do_connect(b:PBIO): TOpenSSL_C_INT; inline;
+  function BIO_do_accept(b:PBIO): TOpenSSL_C_INT; inline;
   function BIO_do_handshake(b:PBIO): TOpenSSL_C_INT; inline;
   { BIO_s_datagram(), BIO_s_fd(), BIO_s_socket(), BIO_s_accept() and BIO_s_connect() }
   function BIO_set_fd(b:PBIO; fd:TOpenSSL_C_INT; c:TOpenSSL_C_INT): TOpenSSL_C_INT; inline;
@@ -820,8 +820,8 @@ var
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
   function BIO_set_ex_data(bio: PBIO; idx: TOpenSSL_C_INT; data: pointer): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BIO_set_ex_data';
   function BIO_get_ex_data(bio: PBIO; idx: TOpenSSL_C_INT): pointer; cdecl; external CLibCrypto name 'BIO_get_ex_data';
-  function BIO_number_read(bio: PBIO): qword; cdecl; external CLibCrypto name 'BIO_number_read';
-  function BIO_number_written(bio: PBIO): qword; cdecl; external CLibCrypto name 'BIO_number_written';
+  function BIO_number_read(bio: PBIO): TOpenSSL_C_UINT64; cdecl; external CLibCrypto name 'BIO_number_read';
+  function BIO_number_written(bio: PBIO): TOpenSSL_C_UINT64; cdecl; external CLibCrypto name 'BIO_number_written';
   { For BIO_f_asn1() }
   function BIO_asn1_set_prefix(b: PBIO; prefix: Pasn1_ps_func; prefix_free: Pasn1_ps_func): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BIO_asn1_set_prefix';
   function BIO_asn1_get_prefix(b: PBIO; pprefix: PPasn1_ps_func; pprefix_free: PPasn1_ps_func): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BIO_asn1_get_prefix';
@@ -845,8 +845,8 @@ var
   {Do not call Function LoadDeclarations. Internal use only}
   function Load_BIO_set_ex_data(bio: PBIO; idx: TOpenSSL_C_INT; data: pointer): TOpenSSL_C_INT; cdecl;
   function Load_BIO_get_ex_data(bio: PBIO; idx: TOpenSSL_C_INT): pointer; cdecl;
-  function Load_BIO_number_read(bio: PBIO): qword; cdecl;
-  function Load_BIO_number_written(bio: PBIO): qword; cdecl;
+  function Load_BIO_number_read(bio: PBIO): TOpenSSL_C_UINT64; cdecl;
+  function Load_BIO_number_written(bio: PBIO): TOpenSSL_C_UINT64; cdecl;
   function Load_BIO_asn1_set_prefix(b: PBIO; prefix: Pasn1_ps_func; prefix_free: Pasn1_ps_func): TOpenSSL_C_INT; cdecl;
   function Load_BIO_asn1_get_prefix(b: PBIO; pprefix: PPasn1_ps_func; pprefix_free: PPasn1_ps_func): TOpenSSL_C_INT; cdecl;
   function Load_BIO_asn1_set_suffix(b: PBIO; suffix: Pasn1_ps_func; suffix_free: Pasn1_ps_func): TOpenSSL_C_INT; cdecl;
@@ -858,8 +858,8 @@ var
 var
   BIO_set_ex_data: function(bio: PBIO; idx: TOpenSSL_C_INT; data: pointer): TOpenSSL_C_INT; cdecl = Load_BIO_set_ex_data;
   BIO_get_ex_data: function(bio: PBIO; idx: TOpenSSL_C_INT): pointer; cdecl = Load_BIO_get_ex_data;
-  BIO_number_read: function(bio: PBIO): qword; cdecl = Load_BIO_number_read;
-  BIO_number_written: function(bio: PBIO): qword; cdecl = Load_BIO_number_written;
+  BIO_number_read: function(bio: PBIO): TOpenSSL_C_UINT64; cdecl = Load_BIO_number_read;
+  BIO_number_written: function(bio: PBIO): TOpenSSL_C_UINT64; cdecl = Load_BIO_number_written;
   { For BIO_f_asn1() }
   BIO_asn1_set_prefix: function(b: PBIO; prefix: Pasn1_ps_func; prefix_free: Pasn1_ps_func): TOpenSSL_C_INT; cdecl = Load_BIO_asn1_set_prefix;
   BIO_asn1_get_prefix: function(b: PBIO; pprefix: PPasn1_ps_func; pprefix_free: PPasn1_ps_func): TOpenSSL_C_INT; cdecl = Load_BIO_asn1_get_prefix;
@@ -1599,9 +1599,7 @@ var
     }
     {$if  __STDC_VERSION__ >= 199901}
       {$undef  ossl_bio__attr__}
-
-const
-  ossl_bio__attr__ = __attribute__;
+{# define  ossl_bio__attr__ __attribute__} { Blacklisted Macro}
       {$if  __GNUC__ * 10 + __GNUC_MINOR__ >= 44}
 
 const
@@ -2081,14 +2079,26 @@ uses Sysutils
   {$endif}
   ,Classes, OpenSSLExceptionHandlers;
 
-const
-  {$ifdef FPC}
-  __FILE__ = {$include %FILE%};
-  {$else}
-  __FILE__ = '$(INPUTFILENAME)';
-  {$endif}
-  OPENSSL_FILE = __FILE__;
-  OPENSSL_LINE  = 0;
+  {$if not declared(__FILE__)}
+  const
+    {$ifdef FPC}
+    __FILE__ = {$include %FILE%};
+    {$else}
+    __FILE__ = '$(INPUTFILENAME)';
+    {$endif}
+  {$ifend}
+  {$if not declared(__LINE__)}
+  const
+    __LINE__ = 0;
+  {$ifend}
+  {$if not declared(OPENSSL_FILE)}
+  const
+    OPENSSL_FILE = __FILE__;
+  {$ifend}
+  {$if not declared(OPENSSL_LINE)}
+  const
+    OPENSSL_LINE  = 0;
+  {$ifend}
 
 {$ifndef  OPENSSL_NO_KTLS}
 
@@ -2356,6 +2366,19 @@ begin
   Result := PAnsiChar(Pansichar(BIO_ptr_ctrl(b,BIO_C_GET_ACCEPT,3)));
 end;
 
+{# define  BIO_set_nbio_accept(b,n) BIO_ctrl(b, BIO_C_SET_ACCEPT, 2, (n) ? (void *)"a" : NULL)}
+
+function BIO_set_nbio_accept(b:PBIO; n:int64): TOpenSSL_C_INT;
+var
+    if_local1: pointer;
+begin
+  if (n <> 0) then
+    if_local1 := pointer('a')
+  else
+    if_local1 := nil;
+  Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_C_SET_ACCEPT,2,if_local1));
+end;
+
 {# define  BIO_set_accept_bios(b,bio) BIO_ctrl(b, BIO_C_SET_ACCEPT, 3, (char *)(bio))}
 
 function BIO_set_accept_bios(b:PBIO; bio:pointer): TOpenSSL_C_INT;
@@ -2377,6 +2400,20 @@ begin
   Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_C_GET_ACCEPT,4,nil));
 end;
 {$endif} { OPENSSL_NO_SOCK}
+
+{# define  BIO_do_connect(b) BIO_do_handshake(b)}
+
+function BIO_do_connect(b:PBIO): TOpenSSL_C_INT;
+begin
+  Result := TOpenSSL_C_INT(BIO_do_handshake(b));
+end;
+
+{# define  BIO_do_accept(b) BIO_do_handshake(b)}
+
+function BIO_do_accept(b:PBIO): TOpenSSL_C_INT;
+begin
+  Result := TOpenSSL_C_INT(BIO_do_handshake(b));
+end;
 
 {# define  BIO_do_handshake(b) BIO_ctrl(b, BIO_C_DO_STATE_MACHINE, 0, NULL)}
 
@@ -3162,7 +3199,7 @@ begin
   Result := BIO_get_ex_data(bio, idx);
 end;
 
-function Load_BIO_number_read(bio: PBIO): qword; cdecl;
+function Load_BIO_number_read(bio: PBIO): TOpenSSL_C_UINT64; cdecl;
 begin
   BIO_number_read := LoadLibCryptoFunction('BIO_number_read');
   if not assigned(BIO_number_read) then
@@ -3170,7 +3207,7 @@ begin
   Result := BIO_number_read(bio);
 end;
 
-function Load_BIO_number_written(bio: PBIO): qword; cdecl;
+function Load_BIO_number_written(bio: PBIO): TOpenSSL_C_UINT64; cdecl;
 begin
   BIO_number_written := LoadLibCryptoFunction('BIO_number_written');
   if not assigned(BIO_number_written) then

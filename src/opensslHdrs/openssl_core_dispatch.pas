@@ -18,7 +18,7 @@
 unit openssl_core_dispatch;
 
 {
-  Generated from OpenSSL 3.0.20 Header File core_dispatch.h - Wed  6 May 14:29:52 BST 2026
+  Generated from OpenSSL 3.0.20 Header File core_dispatch.h - Fri  8 May 12:10:16 BST 2026
 }
 
 interface
@@ -35,7 +35,8 @@ uses OpenSSLAPI,openssl_types,openssl_core;
 }
 {$ifndef  OPENSSL_CORE_NUMBERS_H}
   {$define OPENSSL_CORE_NUMBERS_H}
-(*# define  OSSL_CORE_MAKE_FUNC(type,name,args) typedef type(OSSL_FUNC_ ##name ##_fn) args; static ossl_unused ossl_inline OSSL_FUNC_ ##name ##_fn * OSSL_FUNC_ ##name(const OSSL_DISPATCH *opf) { return (OSSL_FUNC_ ##name ##_fn * )opf->function; }*)
+(*# define  OSSL_CORE_MAKE_FUNC(type,name,args) typedef type(OSSL_FUNC_ ##name ##_fn) args; static ossl_unused ossl_inline OSSL_FUNC_ 
+##name ##_fn * OSSL_FUNC_ ##name(const OSSL_DISPATCH *opf) { return (OSSL_FUNC_ ##name ##_fn * )opf->function; }*)
 
 const
   {-
@@ -3086,14 +3087,26 @@ uses Sysutils
   {$endif}
   ,Classes, OpenSSLExceptionHandlers;
 
-const
-  {$ifdef FPC}
-  __FILE__ = {$include %FILE%};
-  {$else}
-  __FILE__ = '$(INPUTFILENAME)';
-  {$endif}
-  OPENSSL_FILE = __FILE__;
-  OPENSSL_LINE  = 0;
+  {$if not declared(__FILE__)}
+  const
+    {$ifdef FPC}
+    __FILE__ = {$include %FILE%};
+    {$else}
+    __FILE__ = '$(INPUTFILENAME)';
+    {$endif}
+  {$ifend}
+  {$if not declared(__LINE__)}
+  const
+    __LINE__ = 0;
+  {$ifend}
+  {$if not declared(OPENSSL_FILE)}
+  const
+    OPENSSL_FILE = __FILE__;
+  {$ifend}
+  {$if not declared(OPENSSL_LINE)}
+  const
+    OPENSSL_LINE  = 0;
+  {$ifend}
 
 function OSSL_FUNC_core_gettable_params(opf: POSSL_DISPATCH): POSSL_FUNC_core_gettable_params_fn{Has C Attribute: unused}; inline;
 begin

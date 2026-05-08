@@ -203,6 +203,7 @@ type
 {$ELSE}
   PPByte           = ^PByte;
   PPAnsiChar      = ^PAnsiChar;
+  PPPAnsiChar      = ^PPAnsiChar;
   TOpenSSL_C_LONG  = LongInt;
   TOpenSSL_C_ULONG = LongWord;
   TOpenSSL_C_INT   = Integer;

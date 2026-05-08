@@ -18,7 +18,7 @@
 unit openssl_trace;
 
 {
-  Generated from OpenSSL 3.0.20 Header File trace.h - Wed  6 May 14:30:53 BST 2026
+  Generated from OpenSSL 3.0.20 Header File trace.h - Fri  8 May 12:11:15 BST 2026
 }
 
 interface
@@ -404,11 +404,16 @@ var
 {# define  OSSL_TRACE2(category,format,arg1,arg2) OSSL_TRACEV(category, (trc_out, format, arg1, arg2))}
 {# define  OSSL_TRACE3(category,format,arg1,arg2,arg3) OSSL_TRACEV(category, (trc_out, format, arg1, arg2, arg3))}
 {# define  OSSL_TRACE4(category,format,arg1,arg2,arg3,arg4) OSSL_TRACEV(category, (trc_out, format, arg1, arg2, arg3, arg4))}
-{# define  OSSL_TRACE5(category,format,arg1,arg2,arg3,arg4,arg5) OSSL_TRACEV(category, (trc_out, format, arg1, arg2, arg3, arg4, arg5))}
-{# define  OSSL_TRACE6(category,format,arg1,arg2,arg3,arg4,arg5,arg6) OSSL_TRACEV(category, (trc_out, format, arg1, arg2, arg3, arg4, arg5, arg6))}
-{# define  OSSL_TRACE7(category,format,arg1,arg2,arg3,arg4,arg5,arg6,arg7) OSSL_TRACEV(category, (trc_out, format, arg1, arg2, arg3, arg4, arg5, arg6, arg7))}
-{# define  OSSL_TRACE8(category,format,arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8) OSSL_TRACEV(category, (trc_out, format, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8))}
-{# define  OSSL_TRACE9(category,format,arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9) OSSL_TRACEV(category, (trc_out, format, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9))}
+{# define  OSSL_TRACE5(category,format,arg1,arg2,arg3,arg4,arg5) OSSL_TRACEV(category, (trc_out, format, arg1, arg2, arg3, arg4,
+ arg5))}
+{# define  OSSL_TRACE6(category,format,arg1,arg2,arg3,arg4,arg5,arg6) OSSL_TRACEV(category, (trc_out, format, arg1, arg2, arg3, 
+arg4, arg5, arg6))}
+{# define  OSSL_TRACE7(category,format,arg1,arg2,arg3,arg4,arg5,arg6,arg7) OSSL_TRACEV(category, (trc_out, format, arg1, arg2, arg3,
+ arg4, arg5, arg6, arg7))}
+{# define  OSSL_TRACE8(category,format,arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8) OSSL_TRACEV(category, (trc_out, format, arg1, arg2,
+ arg3, arg4, arg5, arg6, arg7, arg8))}
+{# define  OSSL_TRACE9(category,format,arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9) OSSL_TRACEV(category, (trc_out, format, arg1,
+ arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9))}
 {$endif}
 
 implementation
@@ -428,14 +433,26 @@ uses Sysutils
   {$endif}
   ,Classes, OpenSSLExceptionHandlers;
 
-const
-  {$ifdef FPC}
-  __FILE__ = {$include %FILE%};
-  {$else}
-  __FILE__ = '$(INPUTFILENAME)';
-  {$endif}
-  OPENSSL_FILE = __FILE__;
-  OPENSSL_LINE  = 0;
+  {$if not declared(__FILE__)}
+  const
+    {$ifdef FPC}
+    __FILE__ = {$include %FILE%};
+    {$else}
+    __FILE__ = '$(INPUTFILENAME)';
+    {$endif}
+  {$ifend}
+  {$if not declared(__LINE__)}
+  const
+    __LINE__ = 0;
+  {$ifend}
+  {$if not declared(OPENSSL_FILE)}
+  const
+    OPENSSL_FILE = __FILE__;
+  {$ifend}
+  {$if not declared(OPENSSL_LINE)}
+  const
+    OPENSSL_LINE  = 0;
+  {$ifend}
 
 {$ifndef OPENSSL_STATIC_LINK_MODEL}
 function Load_OSSL_trace_get_category_num(name: PAnsiChar): TOpenSSL_C_INT; cdecl;

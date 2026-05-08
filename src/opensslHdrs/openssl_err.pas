@@ -18,7 +18,7 @@
 unit openssl_err;
 
 {
-  Generated from OpenSSL 3.0.20 Header File err.h - Wed  6 May 14:30:10 BST 2026
+  Generated from OpenSSL 3.0.20 Header File err.h - Fri  8 May 12:10:33 BST 2026
 }
 
 interface
@@ -398,7 +398,8 @@ type
   function ossl_check_ERR_STRING_DATA_lh_compfunc_type(cmp: Tlh_ERR_STRING_DATA_compfunc): TOPENSSL_LH_COMPFUNC{Has C Attribute: unused}; inline;
   function ossl_check_ERR_STRING_DATA_lh_hashfunc_type(hfn: Tlh_ERR_STRING_DATA_hashfunc): TOPENSSL_LH_HASHFUNC{Has C Attribute: unused}; inline;
   function ossl_check_ERR_STRING_DATA_lh_doallfunc_type(dfn: Tlh_ERR_STRING_DATA_doallfunc): TOPENSSL_LH_DOALL_FUNC{Has C Attribute: unused}; inline;
-  {# define  lh_ERR_STRING_DATA_new(hfn,cmp) ((LHASH_OF(ERR_STRING_DATA) *)OPENSSL_LH_new(ossl_check_ERR_STRING_DATA_lh_hashfunc_type(hfn), ossl_check_ERR_STRING_DATA_lh_compfunc_type(cmp)))}
+  {# define  lh_ERR_STRING_DATA_new(hfn,cmp) ((LHASH_OF(ERR_STRING_DATA) *)OPENSSL_LH_new(ossl_check_ERR_STRING_DATA_lh_hashfunc_type(hfn),
+ ossl_check_ERR_STRING_DATA_lh_compfunc_type(cmp)))}
   {# define  lh_ERR_STRING_DATA_free(lh) OPENSSL_LH_free(ossl_check_ERR_STRING_DATA_lh_type(lh))} {Macro Return Type unknown at line no 386}
   {# define  lh_ERR_STRING_DATA_flush(lh) OPENSSL_LH_flush(ossl_check_ERR_STRING_DATA_lh_type(lh))} {Macro Return Type unknown at line no 387}
   function lh_ERR_STRING_DATA_insert(lh:Plhash_st_ERR_STRING_DATA; ptr:PERR_STRING_DATA): PERR_STRING_DATA; inline;
@@ -407,7 +408,8 @@ type
   {# define  lh_ERR_STRING_DATA_error(lh) OPENSSL_LH_error(ossl_check_ERR_STRING_DATA_lh_type(lh))} {Macro Return Type unknown at line no 391}
   {# define  lh_ERR_STRING_DATA_num_items(lh) OPENSSL_LH_num_items(ossl_check_ERR_STRING_DATA_lh_type(lh))} {Macro Return Type unknown at line no 392}
   {# define  lh_ERR_STRING_DATA_node_stats_bio(lh,out) OPENSSL_LH_node_stats_bio(ossl_check_const_ERR_STRING_DATA_lh_type(lh), out)} {Function argument out of range at line no 393}
-  {# define  lh_ERR_STRING_DATA_node_usage_stats_bio(lh,out) OPENSSL_LH_node_usage_stats_bio(ossl_check_const_ERR_STRING_DATA_lh_type(lh), out)} {Function argument out of range at line no 394}
+  {# define  lh_ERR_STRING_DATA_node_usage_stats_bio(lh,out) OPENSSL_LH_node_usage_stats_bio(ossl_check_const_ERR_STRING_DATA_lh_type(lh),
+ out)} {Function argument out of range at line no 394}
   {# define  lh_ERR_STRING_DATA_stats_bio(lh,out) OPENSSL_LH_stats_bio(ossl_check_const_ERR_STRING_DATA_lh_type(lh), out)} {Function argument out of range at line no 395}
   {# define  lh_ERR_STRING_DATA_get_down_load(lh) OPENSSL_LH_get_down_load(ossl_check_ERR_STRING_DATA_lh_type(lh))} {Macro Return Type unknown at line no 396}
   {# define  lh_ERR_STRING_DATA_set_down_load(lh,dl) OPENSSL_LH_set_down_load(ossl_check_ERR_STRING_DATA_lh_type(lh), dl)} {Function argument out of range at line no 397}
@@ -449,7 +451,8 @@ var
   {# define  ERR_raise(lib,reason) ERR_raise_data((lib), (reason), NULL)} {Macro Return Type unknown at line no 412}
   {# define  ERR_raise_data (ERR_new(), ERR_set_debug(OPENSSL_FILE, OPENSSL_LINE, OPENSSL_FUNC), ERR_set_error)}
   {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
-{# define  ERR_put_error(lib,func,reason,file,line) (ERR_new(), ERR_set_debug((file), (line), OPENSSL_FUNC), ERR_set_error((lib), (reason), NULL))}
+{# define  ERR_put_error(lib,func,reason,file,line) (ERR_new(), ERR_set_debug((file), (line), OPENSSL_FUNC), ERR_set_error((lib),
+ (reason), NULL))}
     { Backward compatibility }
   {$endif}
 
@@ -767,6 +770,7 @@ var
   ERR_clear_last_mark: function: TOpenSSL_C_INT; cdecl = Load_ERR_clear_last_mark;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
 {$endif}
+{$include errfunctions_h.inc}
 
 implementation
 
@@ -785,14 +789,26 @@ uses Sysutils
   {$endif}
   ,Classes, OpenSSLExceptionHandlers;
 
-const
-  {$ifdef FPC}
-  __FILE__ = {$include %FILE%};
-  {$else}
-  __FILE__ = '$(INPUTFILENAME)';
-  {$endif}
-  OPENSSL_FILE = __FILE__;
-  OPENSSL_LINE  = 0;
+  {$if not declared(__FILE__)}
+  const
+    {$ifdef FPC}
+    __FILE__ = {$include %FILE%};
+    {$else}
+    __FILE__ = '$(INPUTFILENAME)';
+    {$endif}
+  {$ifend}
+  {$if not declared(__LINE__)}
+  const
+    __LINE__ = 0;
+  {$ifend}
+  {$if not declared(OPENSSL_FILE)}
+  const
+    OPENSSL_FILE = __FILE__;
+  {$ifend}
+  {$if not declared(OPENSSL_LINE)}
+  const
+    OPENSSL_LINE  = 0;
+  {$ifend}
 
 
 {# define  ERR_SYSTEM_MASK ((unsigned int)INT_MAX)}
@@ -903,6 +919,7 @@ function lh_ERR_STRING_DATA_retrieve(lh:Plhash_st_ERR_STRING_DATA; ptr:PERR_STRI
 begin
   Result := PERR_STRING_DATA(PERR_STRING_DATA(OPENSSL_LH_retrieve(ossl_check_ERR_STRING_DATA_lh_type(lh),ossl_check_const_ERR_STRING_DATA_lh_plain_type(ptr))));
 end;
+{$include errfunctions.inc}
 {$ifndef OPENSSL_STATIC_LINK_MODEL}
 procedure Load_ERR_new; cdecl;
 begin

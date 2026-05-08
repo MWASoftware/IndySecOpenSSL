@@ -15,8 +15,30 @@
 
 
 {
-  Generated from OpenSSL 3.0.20 Header File configuration.h - Wed  6 May 14:29:51 BST 2026
+  Generated from OpenSSL 3.0.20 Header File configuration.h - Fri  8 May 12:10:15 BST 2026
 }
+
+  {$if not declared(__FILE__)}
+  const
+    {$ifdef FPC}
+    __FILE__ = {$include %FILE%};
+    {$else}
+    __FILE__ = '$(INPUTFILENAME)';
+    {$endif}
+  {$ifend}
+  {$if not declared(__LINE__)}
+  const
+    __LINE__ = 0;
+  {$ifend}
+  {$if not declared(OPENSSL_FILE)}
+  const
+    OPENSSL_FILE = __FILE__;
+  {$ifend}
+  {$if not declared(OPENSSL_LINE)}
+  const
+    OPENSSL_LINE  = 0;
+  {$ifend}
+
 
 
 {* WARNING: do not edit!

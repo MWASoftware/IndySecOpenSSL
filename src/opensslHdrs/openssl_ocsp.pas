@@ -18,7 +18,7 @@
 unit openssl_ocsp;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ocsp.h - Wed  6 May 14:30:24 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ocsp.h - Fri  8 May 12:10:47 BST 2026
 }
 
 interface
@@ -753,14 +753,19 @@ const
   PEM_STRING_OCSP_RESPONSE = 'OCSP RESPONSE';
   {# define  d2i_OCSP_REQUEST_bio(bp,p) ASN1_d2i_bio_of(OCSP_REQUEST, OCSP_REQUEST_new, d2i_OCSP_REQUEST, bp, p)} {Function argument out of range at line no 245}
   {# define  d2i_OCSP_RESPONSE_bio(bp,p) ASN1_d2i_bio_of(OCSP_RESPONSE, OCSP_RESPONSE_new, d2i_OCSP_RESPONSE, bp, p)} {Function argument out of range at line no 247}
-  {# define  PEM_read_bio_OCSP_REQUEST(bp,x,cb) (OCSP_REQUEST *)PEM_ASN1_read_bio( (d2i_of_void *)d2i_OCSP_REQUEST, PEM_STRING_OCSP_REQUEST, bp, (char **)(x), cb, NULL)}
-  {# define  PEM_read_bio_OCSP_RESPONSE(bp,x,cb) (OCSP_RESPONSE *)PEM_ASN1_read_bio( (d2i_of_void *)d2i_OCSP_RESPONSE, PEM_STRING_OCSP_RESPONSE, bp, (char **)(x), cb, NULL)}
-  {# define  PEM_write_bio_OCSP_REQUEST(bp,o) PEM_ASN1_write_bio((i2d_of_void *)i2d_OCSP_REQUEST, PEM_STRING_OCSP_REQUEST, bp, (char *)(o), NULL, NULL, 0, NULL, NULL)}
-  {# define  PEM_write_bio_OCSP_RESPONSE(bp,o) PEM_ASN1_write_bio((i2d_of_void *)i2d_OCSP_RESPONSE, PEM_STRING_OCSP_RESPONSE, bp, (char *)(o), NULL, NULL, 0, NULL, NULL)}
+  {# define  PEM_read_bio_OCSP_REQUEST(bp,x,cb) (OCSP_REQUEST *)PEM_ASN1_read_bio( (d2i_of_void *)d2i_OCSP_REQUEST, PEM_STRING_OCSP_REQUEST,
+ bp, (char **)(x), cb, NULL)}
+  {# define  PEM_read_bio_OCSP_RESPONSE(bp,x,cb) (OCSP_RESPONSE *)PEM_ASN1_read_bio( (d2i_of_void *)d2i_OCSP_RESPONSE, PEM_STRING_OCSP_RESPONSE,
+ bp, (char **)(x), cb, NULL)}
+  {# define  PEM_write_bio_OCSP_REQUEST(bp,o) PEM_ASN1_write_bio((i2d_of_void *)i2d_OCSP_REQUEST, PEM_STRING_OCSP_REQUEST, bp, (char 
+*)(o), NULL, NULL, 0, NULL, NULL)}
+  {# define  PEM_write_bio_OCSP_RESPONSE(bp,o) PEM_ASN1_write_bio((i2d_of_void *)i2d_OCSP_RESPONSE, PEM_STRING_OCSP_RESPONSE, bp, 
+(char *)(o), NULL, NULL, 0, NULL, NULL)}
   {# define  i2d_OCSP_RESPONSE_bio(bp,o) ASN1_i2d_bio_of(OCSP_RESPONSE, i2d_OCSP_RESPONSE, bp, o)} {Function argument out of range at line no 265}
   {# define  i2d_OCSP_REQUEST_bio(bp,o) ASN1_i2d_bio_of(OCSP_REQUEST, i2d_OCSP_REQUEST, bp, o)} {Function argument out of range at line no 267}
   {# define  ASN1_BIT_STRING_digest(data,type,md,len) ASN1_item_digest(ASN1_ITEM_rptr(ASN1_BIT_STRING), type, data, md, len)} {Macro Return Type unknown at line no 269}
-  {# define  OCSP_CERTSTATUS_dup(cs) (OCSP_CERTSTATUS *)ASN1_dup((i2d_of_void *)i2d_OCSP_CERTSTATUS, (d2i_of_void *)d2i_OCSP_CERTSTATUS, (char *)(cs))}
+  {# define  OCSP_CERTSTATUS_dup(cs) (OCSP_CERTSTATUS *)ASN1_dup((i2d_of_void *)i2d_OCSP_CERTSTATUS, (d2i_of_void *)d2i_OCSP_CERTSTATUS,
+ (char *)(cs))}
 
 
     {$ifdef OPENSSL_STATIC_LINK_MODEL}
@@ -803,7 +808,8 @@ type
 var
   OCSP_REQ_CTX_free: procedure(rctx: POSSL_HTTP_REQ_CTX); cdecl = Load_OCSP_REQ_CTX_free;
       {$endif} {OPENSSL_STATIC_LINK_MODEL}
-  {# define  OCSP_REQ_CTX_http(rctx,op,path) (OSSL_HTTP_REQ_CTX_set_expected(rctx, NULL, 1 , 0, 0) && OSSL_HTTP_REQ_CTX_set_request_line(rctx, strcmp(op, "POST") == 0, NULL, NULL, path))}
+  {# define  OCSP_REQ_CTX_http(rctx,op,path) (OSSL_HTTP_REQ_CTX_set_expected(rctx, NULL, 1 , 0, 0) && OSSL_HTTP_REQ_CTX_set_request_line(rctx,
+ strcmp(op, "POST") == 0, NULL, NULL, path))}
 
 
       {$ifdef OPENSSL_STATIC_LINK_MODEL}
@@ -1554,14 +1560,26 @@ uses Sysutils
   {$endif}
   ,Classes, OpenSSLExceptionHandlers;
 
-const
-  {$ifdef FPC}
-  __FILE__ = {$include %FILE%};
-  {$else}
-  __FILE__ = '$(INPUTFILENAME)';
-  {$endif}
-  OPENSSL_FILE = __FILE__;
-  OPENSSL_LINE  = 0;
+  {$if not declared(__FILE__)}
+  const
+    {$ifdef FPC}
+    __FILE__ = {$include %FILE%};
+    {$else}
+    __FILE__ = '$(INPUTFILENAME)';
+    {$endif}
+  {$ifend}
+  {$if not declared(__LINE__)}
+  const
+    __LINE__ = 0;
+  {$ifend}
+  {$if not declared(OPENSSL_FILE)}
+  const
+    OPENSSL_FILE = __FILE__;
+  {$ifend}
+  {$if not declared(OPENSSL_LINE)}
+  const
+    OPENSSL_LINE  = 0;
+  {$ifend}
 
 {$ifndef  OPENSSL_NO_OCSP}
 function ossl_check_OCSP_CERTID_type(ptr: POCSP_CERTID): POCSP_CERTID{Has C Attribute: unused}; inline;

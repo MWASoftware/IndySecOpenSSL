@@ -18,7 +18,7 @@
 unit openssl_pem;
 
 {
-  Generated from OpenSSL 3.0.20 Header File pem.h - Wed  6 May 14:30:28 BST 2026
+  Generated from OpenSSL 3.0.20 Header File pem.h - Fri  8 May 12:10:51 BST 2026
 }
 
 interface
@@ -75,12 +75,17 @@ const
   PEM_TYPE_MIC_ONLY = 20;
   PEM_TYPE_MIC_CLEAR = 30;
   PEM_TYPE_CLEAR = 40;
-  {# define  PEM_read_cb_fnsig(name,type,INTYPE,readname) type *PEM_ ##readname ##_ ##name(INTYPE *out, type **x, pem_password_cb *cb, void *u)}
-  {# define  PEM_read_cb_ex_fnsig(name,type,INTYPE,readname) type *PEM_ ##readname ##_ ##name ##_ex(INTYPE *out, type **x, pem_password_cb *cb, void *u, OSSL_LIB_CTX *libctx, const char *propq)}
+  {# define  PEM_read_cb_fnsig(name,type,INTYPE,readname) type *PEM_ ##readname ##_ ##name(INTYPE *out, type **x, pem_password_cb 
+*cb, void *u)}
+  {# define  PEM_read_cb_ex_fnsig(name,type,INTYPE,readname) type *PEM_ ##readname ##_ ##name ##_ex(INTYPE *out, type **x, pem_password_cb 
+*cb, void *u, OSSL_LIB_CTX *libctx, const char *propq)}
   {# define  PEM_write_fnsig(name,type,OUTTYPE,writename) int PEM_ ##writename ##_ ##name(OUTTYPE *out, const type *x)}
-  {# define  PEM_write_cb_fnsig(name,type,OUTTYPE,writename) int PEM_ ##writename ##_ ##name(OUTTYPE *out, const type *x, const EVP_CIPHER *enc, const unsigned char *kstr, int klen, pem_password_cb *cb, void *u)}
-  {# define  PEM_write_ex_fnsig(name,type,OUTTYPE,writename) int PEM_ ##writename ##_ ##name ##_ex(OUTTYPE *out, const type *x, OSSL_LIB_CTX *libctx, const char *propq)}
-  {# define  PEM_write_cb_ex_fnsig(name,type,OUTTYPE,writename) int PEM_ ##writename ##_ ##name ##_ex(OUTTYPE *out, const type *x, const EVP_CIPHER *enc, const unsigned char *kstr, int klen, pem_password_cb *cb, void *u, OSSL_LIB_CTX *libctx, const char *propq)}
+  {# define  PEM_write_cb_fnsig(name,type,OUTTYPE,writename) int PEM_ ##writename ##_ ##name(OUTTYPE *out, const type *x, const EVP_CIPHER 
+*enc, const unsigned char *kstr, int klen, pem_password_cb *cb, void *u)}
+  {# define  PEM_write_ex_fnsig(name,type,OUTTYPE,writename) int PEM_ ##writename ##_ ##name ##_ex(OUTTYPE *out, const type *x, OSSL_LIB_CTX 
+*libctx, const char *propq)}
+  {# define  PEM_write_cb_ex_fnsig(name,type,OUTTYPE,writename) int PEM_ ##writename ##_ ##name ##_ex(OUTTYPE *out, const type *x,
+ const EVP_CIPHER *enc, const unsigned char *kstr, int klen, pem_password_cb *cb, void *u, OSSL_LIB_CTX *libctx, const char *propq)}
   
   {* These macros make the PEM_read/PEM_write functions easier to maintain and
   * write. Now they are all implemented with either: IMPLEMENT_PEM_rw(...) or
@@ -97,39 +102,52 @@ const
 {# define  IMPLEMENT_PEM_write_cb_fp_const(name,type,str,asn1)}
     {$endif}
   {$else}
-(*# define  IMPLEMENT_PEM_read_fp(name,type,str,asn1) type *PEM_read_ ##name(FILE *fp, type **x, pem_password_cb *cb, void *u) { return PEM_ASN1_read((d2i_of_void * )d2i_ ##asn1, str, fp, (void ** )x, cb, u); }*)
-(*# define  IMPLEMENT_PEM_write_fp(name,type,str,asn1) PEM_write_fnsig(name, type, FILE, write) { return PEM_ASN1_write((i2d_of_void * )i2d_ ##asn1, str, out, x, NULL, NULL, 0, NULL, NULL); }*)
+(*# define  IMPLEMENT_PEM_read_fp(name,type,str,asn1) type *PEM_read_ ##name(FILE *fp, type **x, pem_password_cb *cb, void *u) { 
+return PEM_ASN1_read((d2i_of_void * )d2i_ ##asn1, str, fp, (void ** )x, cb, u); }*)
+(*# define  IMPLEMENT_PEM_write_fp(name,type,str,asn1) PEM_write_fnsig(name, type, FILE, write) { return PEM_ASN1_write((i2d_of_void 
+* )i2d_ ##asn1, str, out, x, NULL, NULL, 0, NULL, NULL); }*)
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 {# define  IMPLEMENT_PEM_write_fp_const(name,type,str,asn1) IMPLEMENT_PEM_write_fp(name, type, str, asn1)} { Blacklisted Macro}
     {$endif}
-(*# define  IMPLEMENT_PEM_write_cb_fp(name,type,str,asn1) PEM_write_cb_fnsig(name, type, FILE, write) { return PEM_ASN1_write((i2d_of_void * )i2d_ ##asn1, str, out, x, enc, kstr, klen, cb, u); }*)
+(*# define  IMPLEMENT_PEM_write_cb_fp(name,type,str,asn1) PEM_write_cb_fnsig(name, type, FILE, write) { return PEM_ASN1_write((i2d_of_void 
+* )i2d_ ##asn1, str, out, x, enc, kstr, klen, cb, u); }*)
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 {# define  IMPLEMENT_PEM_write_cb_fp_const(name,type,str,asn1) IMPLEMENT_PEM_write_cb_fp(name, type, str, asn1)} { Blacklisted Macro}
     {$endif}
   {$endif}
-(*# define  IMPLEMENT_PEM_read_bio(name,type,str,asn1) type *PEM_read_bio_ ##name(BIO *bp, type **x, pem_password_cb *cb, void *u) { return PEM_ASN1_read_bio((d2i_of_void * )d2i_ ##asn1, str, bp, (void ** )x, cb, u); }*)
-(*# define  IMPLEMENT_PEM_write_bio(name,type,str,asn1) PEM_write_fnsig(name, type, BIO, write_bio) { return PEM_ASN1_write_bio((i2d_of_void * )i2d_ ##asn1, str, out, x, NULL, NULL, 0, NULL, NULL); }*)
+(*# define  IMPLEMENT_PEM_read_bio(name,type,str,asn1) type *PEM_read_bio_ ##name(BIO *bp, type **x, pem_password_cb *cb, void *u) 
+{ return PEM_ASN1_read_bio((d2i_of_void * )d2i_ ##asn1, str, bp, (void ** )x, cb, u); }*)
+(*# define  IMPLEMENT_PEM_write_bio(name,type,str,asn1) PEM_write_fnsig(name, type, BIO, write_bio) { return PEM_ASN1_write_bio((i2d_of_void 
+* )i2d_ ##asn1, str, out, x, NULL, NULL, 0, NULL, NULL); }*)
   {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 {# define  IMPLEMENT_PEM_write_bio_const(name,type,str,asn1) IMPLEMENT_PEM_write_bio(name, type, str, asn1)} { Blacklisted Macro}
   {$endif}
-(*# define  IMPLEMENT_PEM_write_cb_bio(name,type,str,asn1) PEM_write_cb_fnsig(name, type, BIO, write_bio) { return PEM_ASN1_write_bio((i2d_of_void * )i2d_ ##asn1, str, out, x, enc, kstr, klen, cb, u); }*)
+(*# define  IMPLEMENT_PEM_write_cb_bio(name,type,str,asn1) PEM_write_cb_fnsig(name, type, BIO, write_bio) { return PEM_ASN1_write_bio((i2d_of_void 
+* )i2d_ ##asn1, str, out, x, enc, kstr, klen, cb, u); }*)
   {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 {# define  IMPLEMENT_PEM_write_cb_bio_const(name,type,str,asn1) IMPLEMENT_PEM_write_cb_bio(name, type, str, asn1)} { Blacklisted Macro}
   {$endif}
-{# define  IMPLEMENT_PEM_write(name,type,str,asn1) IMPLEMENT_PEM_write_bio(name, type, str, asn1) IMPLEMENT_PEM_write_fp(name, type, str, asn1)}
+{# define  IMPLEMENT_PEM_write(name,type,str,asn1) IMPLEMENT_PEM_write_bio(name, type, str, asn1) IMPLEMENT_PEM_write_fp(name, type,
+ str, asn1)}
   {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
-{# define  IMPLEMENT_PEM_write_const(name,type,str,asn1) IMPLEMENT_PEM_write_bio_const(name, type, str, asn1) IMPLEMENT_PEM_write_fp_const(name, type, str, asn1)}
+{# define  IMPLEMENT_PEM_write_const(name,type,str,asn1) IMPLEMENT_PEM_write_bio_const(name, type, str, asn1) IMPLEMENT_PEM_write_fp_const(name,
+ type, str, asn1)}
   {$endif}
-{# define  IMPLEMENT_PEM_write_cb(name,type,str,asn1) IMPLEMENT_PEM_write_cb_bio(name, type, str, asn1) IMPLEMENT_PEM_write_cb_fp(name, type, str, asn1)}
+{# define  IMPLEMENT_PEM_write_cb(name,type,str,asn1) IMPLEMENT_PEM_write_cb_bio(name, type, str, asn1) IMPLEMENT_PEM_write_cb_fp(name,
+ type, str, asn1)}
   {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
-{# define  IMPLEMENT_PEM_write_cb_const(name,type,str,asn1) IMPLEMENT_PEM_write_cb_bio_const(name, type, str, asn1) IMPLEMENT_PEM_write_cb_fp_const(name, type, str, asn1)}
+{# define  IMPLEMENT_PEM_write_cb_const(name,type,str,asn1) IMPLEMENT_PEM_write_cb_bio_const(name, type, str, asn1) IMPLEMENT_PEM_write_cb_fp_const(name,
+ type, str, asn1)}
   {$endif}
-{# define  IMPLEMENT_PEM_read(name,type,str,asn1) IMPLEMENT_PEM_read_bio(name, type, str, asn1) IMPLEMENT_PEM_read_fp(name, type, str, asn1)}
+{# define  IMPLEMENT_PEM_read(name,type,str,asn1) IMPLEMENT_PEM_read_bio(name, type, str, asn1) IMPLEMENT_PEM_read_fp(name, type,
+ str, asn1)}
 {# define  IMPLEMENT_PEM_rw(name,type,str,asn1) IMPLEMENT_PEM_read(name, type, str, asn1) IMPLEMENT_PEM_write(name, type, str, asn1)}
   {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
-{# define  IMPLEMENT_PEM_rw_const(name,type,str,asn1) IMPLEMENT_PEM_read(name, type, str, asn1) IMPLEMENT_PEM_write_const(name, type, str, asn1)}
+{# define  IMPLEMENT_PEM_rw_const(name,type,str,asn1) IMPLEMENT_PEM_read(name, type, str, asn1) IMPLEMENT_PEM_write_const(name, 
+type, str, asn1)}
   {$endif}
-{# define  IMPLEMENT_PEM_rw_cb(name,type,str,asn1) IMPLEMENT_PEM_read(name, type, str, asn1) IMPLEMENT_PEM_write_cb(name, type, str, asn1)}
+{# define  IMPLEMENT_PEM_rw_cb(name,type,str,asn1) IMPLEMENT_PEM_read(name, type, str, asn1) IMPLEMENT_PEM_write_cb(name, type, 
+str, asn1)}
   { These are the same except they are for the declarations }
   
   {* The mysterious 'extern' that's passed to some macros is innocuous,
@@ -148,14 +166,17 @@ const
 {# define  DECLARE_PEM_write_cb_fp_ex_attr(attr,name,type)}
   {$else}
 {# define  DECLARE_PEM_read_fp_attr(attr,name,type) attr PEM_read_cb_fnsig(name, type, FILE, read);}
-{# define  DECLARE_PEM_read_fp_ex_attr(attr,name,type) attr PEM_read_cb_fnsig(name, type, FILE, read); attr PEM_read_cb_ex_fnsig(name, type, FILE, read);}
+{# define  DECLARE_PEM_read_fp_ex_attr(attr,name,type) attr PEM_read_cb_fnsig(name, type, FILE, read); attr PEM_read_cb_ex_fnsig(name,
+ type, FILE, read);}
 {# define  DECLARE_PEM_write_fp_attr(attr,name,type) attr PEM_write_fnsig(name, type, FILE, write);}
-{# define  DECLARE_PEM_write_fp_ex_attr(attr,name,type) attr PEM_write_fnsig(name, type, FILE, write); attr PEM_write_ex_fnsig(name, type, FILE, write);}
+{# define  DECLARE_PEM_write_fp_ex_attr(attr,name,type) attr PEM_write_fnsig(name, type, FILE, write); attr PEM_write_ex_fnsig(name,
+ type, FILE, write);}
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 {# define  DECLARE_PEM_write_fp_const_attr(attr,name,type) attr PEM_write_fnsig(name, type, FILE, write);}
     {$endif}
 {# define  DECLARE_PEM_write_cb_fp_attr(attr,name,type) attr PEM_write_cb_fnsig(name, type, FILE, write);}
-{# define  DECLARE_PEM_write_cb_fp_ex_attr(attr,name,type) attr PEM_write_cb_fnsig(name, type, FILE, write); attr PEM_write_cb_ex_fnsig(name, type, FILE, write);}
+{# define  DECLARE_PEM_write_cb_fp_ex_attr(attr,name,type) attr PEM_write_cb_fnsig(name, type, FILE, write); attr PEM_write_cb_ex_fnsig(name,
+ type, FILE, write);}
   {$endif}
 {# define  DECLARE_PEM_read_fp(name,type) DECLARE_PEM_read_fp_attr(extern, name, type)}
 {# define  DECLARE_PEM_write_fp(name,type) DECLARE_PEM_write_fp_attr(extern, name, type)}
@@ -164,11 +185,13 @@ const
   {$endif}
 {# define  DECLARE_PEM_write_cb_fp(name,type) DECLARE_PEM_write_cb_fp_attr(extern, name, type)}
 {# define  DECLARE_PEM_read_bio_attr(attr,name,type) attr PEM_read_cb_fnsig(name, type, BIO, read_bio);}
-{# define  DECLARE_PEM_read_bio_ex_attr(attr,name,type) attr PEM_read_cb_fnsig(name, type, BIO, read_bio); attr PEM_read_cb_ex_fnsig(name, type, BIO, read_bio);}
+{# define  DECLARE_PEM_read_bio_ex_attr(attr,name,type) attr PEM_read_cb_fnsig(name, type, BIO, read_bio); attr PEM_read_cb_ex_fnsig(name,
+ type, BIO, read_bio);}
 {# define  DECLARE_PEM_read_bio(name,type) DECLARE_PEM_read_bio_attr(extern, name, type)}
 {# define  DECLARE_PEM_read_bio_ex(name,type) DECLARE_PEM_read_bio_ex_attr(extern, name, type)}
 {# define  DECLARE_PEM_write_bio_attr(attr,name,type) attr PEM_write_fnsig(name, type, BIO, write_bio);}
-{# define  DECLARE_PEM_write_bio_ex_attr(attr,name,type) attr PEM_write_fnsig(name, type, BIO, write_bio); attr PEM_write_ex_fnsig(name, type, BIO, write_bio);}
+{# define  DECLARE_PEM_write_bio_ex_attr(attr,name,type) attr PEM_write_fnsig(name, type, BIO, write_bio); attr PEM_write_ex_fnsig(name,
+ type, BIO, write_bio);}
 {# define  DECLARE_PEM_write_bio(name,type) DECLARE_PEM_write_bio_attr(extern, name, type)}
 {# define  DECLARE_PEM_write_bio_ex(name,type) DECLARE_PEM_write_bio_ex_attr(extern, name, type)}
   {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
@@ -176,35 +199,47 @@ const
 {# define  DECLARE_PEM_write_bio_const(name,type) DECLARE_PEM_write_bio_const_attr(extern, name, type)}
   {$endif}
 {# define  DECLARE_PEM_write_cb_bio_attr(attr,name,type) attr PEM_write_cb_fnsig(name, type, BIO, write_bio);}
-{# define  DECLARE_PEM_write_cb_bio_ex_attr(attr,name,type) attr PEM_write_cb_fnsig(name, type, BIO, write_bio); attr PEM_write_cb_ex_fnsig(name, type, BIO, write_bio);}
+{# define  DECLARE_PEM_write_cb_bio_ex_attr(attr,name,type) attr PEM_write_cb_fnsig(name, type, BIO, write_bio); attr PEM_write_cb_ex_fnsig(name,
+ type, BIO, write_bio);}
 {# define  DECLARE_PEM_write_cb_bio(name,type) DECLARE_PEM_write_cb_bio_attr(extern, name, type)}
 {# define  DECLARE_PEM_write_cb_ex_bio(name,type) DECLARE_PEM_write_cb_bio_ex_attr(extern, name, type)}
-{# define  DECLARE_PEM_write_attr(attr,name,type) DECLARE_PEM_write_bio_attr(attr, name, type) DECLARE_PEM_write_fp_attr(attr, name, type)}
-{# define  DECLARE_PEM_write_ex_attr(attr,name,type) DECLARE_PEM_write_bio_ex_attr(attr, name, type) DECLARE_PEM_write_fp_ex_attr(attr, name, type)}
+{# define  DECLARE_PEM_write_attr(attr,name,type) DECLARE_PEM_write_bio_attr(attr, name, type) DECLARE_PEM_write_fp_attr(attr, name,
+ type)}
+{# define  DECLARE_PEM_write_ex_attr(attr,name,type) DECLARE_PEM_write_bio_ex_attr(attr, name, type) DECLARE_PEM_write_fp_ex_attr(attr,
+ name, type)}
 {# define  DECLARE_PEM_write(name,type) DECLARE_PEM_write_attr(extern, name, type)}
 {# define  DECLARE_PEM_write_ex(name,type) DECLARE_PEM_write_ex_attr(extern, name, type)}
   {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
-{# define  DECLARE_PEM_write_const_attr(attr,name,type) DECLARE_PEM_write_bio_const_attr(attr, name, type) DECLARE_PEM_write_fp_const_attr(attr, name, type)}
+{# define  DECLARE_PEM_write_const_attr(attr,name,type) DECLARE_PEM_write_bio_const_attr(attr, name, type) DECLARE_PEM_write_fp_const_attr(attr,
+ name, type)}
 {# define  DECLARE_PEM_write_const(name,type) DECLARE_PEM_write_const_attr(extern, name, type)}
   {$endif}
-{# define  DECLARE_PEM_write_cb_attr(attr,name,type) DECLARE_PEM_write_cb_bio_attr(attr, name, type) DECLARE_PEM_write_cb_fp_attr(attr, name, type)}
-{# define  DECLARE_PEM_write_cb_ex_attr(attr,name,type) DECLARE_PEM_write_cb_bio_ex_attr(attr, name, type) DECLARE_PEM_write_cb_fp_ex_attr(attr, name, type)}
+{# define  DECLARE_PEM_write_cb_attr(attr,name,type) DECLARE_PEM_write_cb_bio_attr(attr, name, type) DECLARE_PEM_write_cb_fp_attr(attr,
+ name, type)}
+{# define  DECLARE_PEM_write_cb_ex_attr(attr,name,type) DECLARE_PEM_write_cb_bio_ex_attr(attr, name, type) DECLARE_PEM_write_cb_fp_ex_attr(attr,
+ name, type)}
 {# define  DECLARE_PEM_write_cb(name,type) DECLARE_PEM_write_cb_attr(extern, name, type)}
 {# define  DECLARE_PEM_write_cb_ex(name,type) DECLARE_PEM_write_cb_ex_attr(extern, name, type)}
-{# define  DECLARE_PEM_read_attr(attr,name,type) DECLARE_PEM_read_bio_attr(attr, name, type) DECLARE_PEM_read_fp_attr(attr, name, type)}
-{# define  DECLARE_PEM_read_ex_attr(attr,name,type) DECLARE_PEM_read_bio_ex_attr(attr, name, type) DECLARE_PEM_read_fp_ex_attr(attr, name, type)}
+{# define  DECLARE_PEM_read_attr(attr,name,type) DECLARE_PEM_read_bio_attr(attr, name, type) DECLARE_PEM_read_fp_attr(attr, name,
+ type)}
+{# define  DECLARE_PEM_read_ex_attr(attr,name,type) DECLARE_PEM_read_bio_ex_attr(attr, name, type) DECLARE_PEM_read_fp_ex_attr(attr,
+ name, type)}
 {# define  DECLARE_PEM_read(name,type) DECLARE_PEM_read_attr(extern, name, type)}
 {# define  DECLARE_PEM_read_ex(name,type) DECLARE_PEM_read_ex_attr(extern, name, type)}
 {# define  DECLARE_PEM_rw_attr(attr,name,type) DECLARE_PEM_read_attr(attr, name, type) DECLARE_PEM_write_attr(attr, name, type)}
-{# define  DECLARE_PEM_rw_ex_attr(attr,name,type) DECLARE_PEM_read_ex_attr(attr, name, type) DECLARE_PEM_write_ex_attr(attr, name, type)}
+{# define  DECLARE_PEM_rw_ex_attr(attr,name,type) DECLARE_PEM_read_ex_attr(attr, name, type) DECLARE_PEM_write_ex_attr(attr, name,
+ type)}
 {# define  DECLARE_PEM_rw(name,type) DECLARE_PEM_rw_attr(extern, name, type)}
 {# define  DECLARE_PEM_rw_ex(name,type) DECLARE_PEM_rw_ex_attr(extern, name, type)}
   {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
-{# define  DECLARE_PEM_rw_const_attr(attr,name,type) DECLARE_PEM_read_attr(attr, name, type) DECLARE_PEM_write_const_attr(attr, name, type)}
+{# define  DECLARE_PEM_rw_const_attr(attr,name,type) DECLARE_PEM_read_attr(attr, name, type) DECLARE_PEM_write_const_attr(attr, 
+name, type)}
 {# define  DECLARE_PEM_rw_const(name,type) DECLARE_PEM_rw_const_attr(extern, name, type)}
   {$endif}
-{# define  DECLARE_PEM_rw_cb_attr(attr,name,type) DECLARE_PEM_read_attr(attr, name, type) DECLARE_PEM_write_cb_attr(attr, name, type)}
-{# define  DECLARE_PEM_rw_cb_ex_attr(attr,name,type) DECLARE_PEM_read_ex_attr(attr, name, type) DECLARE_PEM_write_cb_ex_attr(attr, name, type)}
+{# define  DECLARE_PEM_rw_cb_attr(attr,name,type) DECLARE_PEM_read_attr(attr, name, type) DECLARE_PEM_write_cb_attr(attr, name, 
+type)}
+{# define  DECLARE_PEM_rw_cb_ex_attr(attr,name,type) DECLARE_PEM_read_ex_attr(attr, name, type) DECLARE_PEM_write_cb_ex_attr(attr,
+ name, type)}
 {# define  DECLARE_PEM_rw_cb(name,type) DECLARE_PEM_rw_cb_attr(extern, name, type)}
 {# define  DECLARE_PEM_rw_cb_ex(name,type) DECLARE_PEM_rw_cb_ex_attr(extern, name, type)}
 
@@ -921,14 +956,26 @@ uses Sysutils
   {$endif}
   ,Classes, OpenSSLExceptionHandlers;
 
-const
-  {$ifdef FPC}
-  __FILE__ = {$include %FILE%};
-  {$else}
-  __FILE__ = '$(INPUTFILENAME)';
-  {$endif}
-  OPENSSL_FILE = __FILE__;
-  OPENSSL_LINE  = 0;
+  {$if not declared(__FILE__)}
+  const
+    {$ifdef FPC}
+    __FILE__ = {$include %FILE%};
+    {$else}
+    __FILE__ = '$(INPUTFILENAME)';
+    {$endif}
+  {$ifend}
+  {$if not declared(__LINE__)}
+  const
+    __LINE__ = 0;
+  {$ifend}
+  {$if not declared(OPENSSL_FILE)}
+  const
+    OPENSSL_FILE = __FILE__;
+  {$ifend}
+  {$if not declared(OPENSSL_LINE)}
+  const
+    OPENSSL_LINE  = 0;
+  {$ifend}
 
 {$ifndef OPENSSL_STATIC_LINK_MODEL}
 function Load_PEM_get_EVP_CIPHER_INFO(header: PAnsiChar; cipher: PEVP_CIPHER_INFO): TOpenSSL_C_INT; cdecl;

@@ -18,7 +18,7 @@
 unit openssl_bn;
 
 {
-  Generated from OpenSSL 3.0.20 Header File bn.h - Wed  6 May 14:29:39 BST 2026
+  Generated from OpenSSL 3.0.20 Header File bn.h - Fri  8 May 12:10:03 BST 2026
 }
 
 interface
@@ -70,7 +70,7 @@ type
   PPBN_ULONG = ^PBN_ULONG;
   {end of auto-generated forward references}
 
-  TBN_ULONG = qword;
+  TBN_ULONG = TOpenSSL_C_UINT64;
 
 const
   BN_BYTES = 8;
@@ -94,7 +94,7 @@ const
   BN_BITS = BN_BITS2*2;
 
 
-  function BN_TBIT: qword; inline;
+  function BN_TBIT: TOpenSSL_C_UINT64; inline;
 
 const
   BN_FLG_MALLOCED = $01;
@@ -228,7 +228,8 @@ var
 
 const
   BN_prime_checks = 0;
-  {# define  BN_prime_checks_for_size(b) ((b) >= 3747 ? 3 : (b) >= 1345 ? 4 : (b) >= 476 ? 5 : (b) >= 400 ? 6 : (b) >= 347 ? 7 : (b) >= 308 ? 8 : (b) >= 55 ? 27 : 34)} {Param Type resolution error - calls function in another unit? at line no 180}
+
+
     
     {* BN_prime_checks_for_size() returns the number of Miller-Rabin iterations
     * that will be done for checking that a random number is probably prime. The
@@ -291,6 +292,7 @@ const
     *  (b) >=   55 |     >=   110 |         27 |         64 bit
     *  (b) >=    6 |     >=    12 |         34 |         64 bit
     }
+  function BN_prime_checks_for_size(b:int64): ansichar; inline;
   {$endif}
 
 
@@ -1448,22 +1450,80 @@ uses Sysutils
   {$endif}
   ,Classes, OpenSSLExceptionHandlers;
 
-const
-  {$ifdef FPC}
-  __FILE__ = {$include %FILE%};
-  {$else}
-  __FILE__ = '$(INPUTFILENAME)';
-  {$endif}
-  OPENSSL_FILE = __FILE__;
-  OPENSSL_LINE  = 0;
+  {$if not declared(__FILE__)}
+  const
+    {$ifdef FPC}
+    __FILE__ = {$include %FILE%};
+    {$else}
+    __FILE__ = '$(INPUTFILENAME)';
+    {$endif}
+  {$ifend}
+  {$if not declared(__LINE__)}
+  const
+    __LINE__ = 0;
+  {$ifend}
+  {$if not declared(OPENSSL_FILE)}
+  const
+    OPENSSL_FILE = __FILE__;
+  {$ifend}
+  {$if not declared(OPENSSL_LINE)}
+  const
+    OPENSSL_LINE  = 0;
+  {$ifend}
 
 
 {# define  BN_TBIT ((BN_ULONG)1 << (BN_BITS2 - 1))}
 
-function BN_TBIT: qword;
+function BN_TBIT: TOpenSSL_C_UINT64;
 begin
-  Result := qword((TBN_ULONG(1)) shl (BN_BITS2-1));
+  Result := TOpenSSL_C_UINT64((TBN_ULONG(1)) shl (BN_BITS2-1));
 end;
+{$ifndef  OPENSSL_NO_DEPRECATED_3_0}
+
+{# define  BN_prime_checks_for_size(b) ((b) >= 3747 ? 3 : (b) >= 1345 ? 4 : (b) >= 476 ? 5 : (b) >= 400 ? 6 : (b) >= 347 ? 7 : (b) 
+>= 308 ? 8 : (b) >= 55 ? 27 : 34)}
+
+function BN_prime_checks_for_size(b:int64): ansichar;
+var
+    if_local1: variant;
+if_local2: variant;
+if_local3: variant;
+if_local4: variant;
+if_local5: variant;
+if_local6: variant;
+if_local7: variant;
+begin
+  if (3747 <> 0) then
+    if_local1 := 3
+  else
+    if_local1 := b;
+  if (1345 <> 0) then
+    if_local2 := 4
+  else
+    if_local2 := b;
+  if (476 <> 0) then
+    if_local3 := 5
+  else
+    if_local3 := b;
+  if (400 <> 0) then
+    if_local4 := 6
+  else
+    if_local4 := b;
+  if (347 <> 0) then
+    if_local5 := 7
+  else
+    if_local5 := b;
+  if (308 <> 0) then
+    if_local6 := 8
+  else
+    if_local6 := b;
+  if (55 <> 0) then
+    if_local7 := 27
+  else
+    if_local7 := 34;
+  Result := ansichar(((((((b>=(if_local1))>=(if_local2))>=(if_local3))>=(if_local4))>=(if_local5))>=(if_local6))>=(if_local7));
+end;
+{$endif} { OPENSSL_NO_DEPRECATED_3_0}
 
 {# define  BN_num_bytes(a) ((BN_num_bits(a) + 7) / 8)}
 

@@ -18,7 +18,7 @@
 unit openssl_crmf;
 
 {
-  Generated from OpenSSL 3.0.20 Header File crmf.h - Wed  6 May 14:29:55 BST 2026
+  Generated from OpenSSL 3.0.20 Header File crmf.h - Fri  8 May 12:10:19 BST 2026
 }
 
 interface
@@ -899,14 +899,26 @@ uses Sysutils
   {$endif}
   ,Classes, OpenSSLExceptionHandlers;
 
-const
-  {$ifdef FPC}
-  __FILE__ = {$include %FILE%};
-  {$else}
-  __FILE__ = '$(INPUTFILENAME)';
-  {$endif}
-  OPENSSL_FILE = __FILE__;
-  OPENSSL_LINE  = 0;
+  {$if not declared(__FILE__)}
+  const
+    {$ifdef FPC}
+    __FILE__ = {$include %FILE%};
+    {$else}
+    __FILE__ = '$(INPUTFILENAME)';
+    {$endif}
+  {$ifend}
+  {$if not declared(__LINE__)}
+  const
+    __LINE__ = 0;
+  {$ifend}
+  {$if not declared(OPENSSL_FILE)}
+  const
+    OPENSSL_FILE = __FILE__;
+  {$ifend}
+  {$if not declared(OPENSSL_LINE)}
+  const
+    OPENSSL_LINE  = 0;
+  {$ifend}
 
 {$ifndef  OPENSSL_NO_CRMF}
 function ossl_check_OSSL_CRMF_MSG_type(ptr: POSSL_CRMF_MSG): POSSL_CRMF_MSG{Has C Attribute: unused}; inline;

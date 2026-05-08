@@ -18,7 +18,7 @@
 unit openssl_encoder;
 
 {
-  Generated from OpenSSL 3.0.20 Header File encoder.h - Wed  6 May 14:30:06 BST 2026
+  Generated from OpenSSL 3.0.20 Header File encoder.h - Fri  8 May 12:10:30 BST 2026
 }
 
 interface
@@ -325,14 +325,26 @@ uses Sysutils
   {$endif}
   ,Classes, OpenSSLExceptionHandlers;
 
-const
-  {$ifdef FPC}
-  __FILE__ = {$include %FILE%};
-  {$else}
-  __FILE__ = '$(INPUTFILENAME)';
-  {$endif}
-  OPENSSL_FILE = __FILE__;
-  OPENSSL_LINE  = 0;
+  {$if not declared(__FILE__)}
+  const
+    {$ifdef FPC}
+    __FILE__ = {$include %FILE%};
+    {$else}
+    __FILE__ = '$(INPUTFILENAME)';
+    {$endif}
+  {$ifend}
+  {$if not declared(__LINE__)}
+  const
+    __LINE__ = 0;
+  {$ifend}
+  {$if not declared(OPENSSL_FILE)}
+  const
+    OPENSSL_FILE = __FILE__;
+  {$ifend}
+  {$if not declared(OPENSSL_LINE)}
+  const
+    OPENSSL_LINE  = 0;
+  {$ifend}
 
 {$ifndef OPENSSL_STATIC_LINK_MODEL}
 function Load_OSSL_ENCODER_fetch(libctx: POSSL_LIB_CTX; name: PAnsiChar; properties: PAnsiChar): POSSL_ENCODER; cdecl;
