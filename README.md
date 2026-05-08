@@ -1,5 +1,14 @@
 # Indy TLS for OpenSSL
 
+This branch updates the IndySec package to use the 3.0.20 headers from the
+Version2.0 branch of the MWASoftware/PascalAPI4OpenSSL repository. These
+headers are a much more complete and up-to-date translation than those included
+with the main release. It provides both a confidence test of the 3.0.20 headers
+and a candidate new release.
+
+This branch does not include legacysupport (i.e. support for the OpenSSL 1.0.2 and
+1.1.1 libraries). It is application for OpenSSL 3.0 and later only.
+
 This repo provides the IndySecOpenSSL package for both Delphi and Lazarus/fpc.
 
 This package provides a new (optional) OpenSSL package separate from Indy's 
