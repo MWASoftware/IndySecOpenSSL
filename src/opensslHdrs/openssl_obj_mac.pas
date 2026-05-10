@@ -18,7 +18,7 @@
 unit openssl_obj_mac;
 
 {
-  Generated from OpenSSL 3.0.20 Header File obj_mac.h - Fri  8 May 12:10:44 BST 2026
+  Generated from OpenSSL 3.0.20 Header File obj_mac.h - Sun 10 May 22:58:16 BST 2026
 }
 
 interface
@@ -4231,7 +4231,7 @@ const
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

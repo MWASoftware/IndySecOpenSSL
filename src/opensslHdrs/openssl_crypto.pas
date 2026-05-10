@@ -18,7 +18,7 @@
 unit openssl_crypto;
 
 {
-  Generated from OpenSSL 3.0.20 Header File crypto.h - Fri  8 May 12:10:20 BST 2026
+  Generated from OpenSSL 3.0.20 Header File crypto.h - Sun 10 May 22:57:51 BST 2026
 }
 
 interface
@@ -272,10 +272,10 @@ var
 
 type
   {Auto-generated forward references}
-  Pcrypto_ex_data_st = ^Tcrypto_ex_data_st;
-  PPcrypto_ex_data_st = ^Pcrypto_ex_data_st;
   Pstack_st_void = ^Tstack_st_void;
   PPstack_st_void = ^Pstack_st_void;
+  Pcrypto_ex_data_st = ^Tcrypto_ex_data_st;
+  PPcrypto_ex_data_st = ^Pcrypto_ex_data_st;
   Psk_void_compfunc = ^Tsk_void_compfunc;
   PPsk_void_compfunc = ^Psk_void_compfunc;
   Psk_void_freefunc = ^Tsk_void_freefunc;
@@ -284,13 +284,13 @@ type
   PPsk_void_copyfunc = ^Psk_void_copyfunc;
   {end of auto-generated forward references}
 
+  Tstack_st_void = record 
+  end;
   Tcrypto_ex_data_st = record 
     ctx: POSSL_LIB_CTX;
     sk: Pstack_st_void;
   end;
   { clang-format off }
-  Tstack_st_void = record 
-  end;
   Tsk_void_compfunc = function(a: Ppointer; b: Ppointer): TOpenSSL_C_INT; cdecl;
   Tsk_void_freefunc = procedure(a: pointer); cdecl;
   Tsk_void_copyfunc = function(a: pointer): pointer; cdecl;
@@ -549,17 +549,17 @@ const
 
 type
   {Auto-generated forward references}
-  Pcrypto_threadid_st = ^crypto_threadid_st;
+  Pcrypto_threadid_st = ^Tcrypto_threadid_st;
   PPcrypto_threadid_st = ^Pcrypto_threadid_st;
   PCRYPTO_THREADID = ^TCRYPTO_THREADID;
   PPCRYPTO_THREADID = ^PCRYPTO_THREADID;
   {end of auto-generated forward references}
 
     { This structure is no longer used }
-  crypto_threadid_st = record 
+  Tcrypto_threadid_st = record 
     dummy: TOpenSSL_C_INT;
   end;
-  TCRYPTO_THREADID = crypto_threadid_st;
+  TCRYPTO_THREADID = Tcrypto_threadid_st;
   {# define  CRYPTO_THREADID_set_numeric(id,val)}
   {# define  CRYPTO_THREADID_set_pointer(id,ptr)}
 
@@ -766,8 +766,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType000 = ^TFuncType000;
-  PPTFuncType000 = ^PTFuncType000;
+  PFuncType000 = ^TFuncType000;
+  PPFuncType000 = ^PFuncType000;
   {end of auto-generated forward references}
 
   TFuncType000 = function(str: PAnsiChar; len: TOpenSSL_C_SIZET; u: pointer): TOpenSSL_C_INT; cdecl;
@@ -967,8 +967,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType001 = ^TFuncType001;
-  PPTFuncType001 = ^PTFuncType001;
+  PFuncType001 = ^TFuncType001;
+  PPFuncType001 = ^PFuncType001;
   {end of auto-generated forward references}
 
   TFuncType001 = procedure; cdecl;
@@ -1116,8 +1116,8 @@ const
 
 type
   {Auto-generated forward references}
-  PTFuncType002 = ^TFuncType002;
-  PPTFuncType002 = ^PTFuncType002;
+  PFuncType002 = ^TFuncType002;
+  PPFuncType002 = ^PFuncType002;
   {end of auto-generated forward references}
 
   TFuncType002 = procedure; cdecl;
@@ -1136,8 +1136,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType003 = ^TFuncType003;
-  PPTFuncType003 = ^PTFuncType003;
+  PFuncType003 = ^TFuncType003;
+  PPFuncType003 = ^PFuncType003;
   {end of auto-generated forward references}
 
   TFuncType003 = procedure(_param1: pointer); cdecl;
@@ -1259,7 +1259,7 @@ type
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

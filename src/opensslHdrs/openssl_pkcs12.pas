@@ -18,7 +18,7 @@
 unit openssl_pkcs12;
 
 {
-  Generated from OpenSSL 3.0.20 Header File pkcs12.h - Fri  8 May 12:10:53 BST 2026
+  Generated from OpenSSL 3.0.20 Header File pkcs12.h - Sun 10 May 22:58:25 BST 2026
 }
 
 interface
@@ -819,7 +819,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

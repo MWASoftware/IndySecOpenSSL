@@ -18,7 +18,7 @@
 unit openssl_modes;
 
 {
-  Generated from OpenSSL 3.0.20 Header File modes.h - Fri  8 May 12:10:42 BST 2026
+  Generated from OpenSSL 3.0.20 Header File modes.h - Sun 10 May 22:58:14 BST 2026
 }
 
 interface
@@ -352,7 +352,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

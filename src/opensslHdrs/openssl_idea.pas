@@ -18,7 +18,7 @@
 unit openssl_idea;
 
 {
-  Generated from OpenSSL 3.0.20 Header File idea.h - Fri  8 May 12:10:40 BST 2026
+  Generated from OpenSSL 3.0.20 Header File idea.h - Sun 10 May 22:58:11 BST 2026
 }
 
 interface
@@ -61,16 +61,16 @@ const
 
 type
   {Auto-generated forward references}
-  Pidea_key_st = ^idea_key_st;
+  Pidea_key_st = ^Tidea_key_st;
   PPidea_key_st = ^Pidea_key_st;
   PIDEA_KEY_SCHEDULE = ^TIDEA_KEY_SCHEDULE;
   PPIDEA_KEY_SCHEDULE = ^PIDEA_KEY_SCHEDULE;
   {end of auto-generated forward references}
 
-  idea_key_st = record 
+  Tidea_key_st = record 
     data: array[0..8] of TIDEA_INT;
   end;
-  TIDEA_KEY_SCHEDULE = idea_key_st;
+  TIDEA_KEY_SCHEDULE = Tidea_key_st;
     {$endif}
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
@@ -165,7 +165,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

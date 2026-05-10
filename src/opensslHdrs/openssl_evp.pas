@@ -18,7 +18,7 @@
 unit openssl_evp;
 
 {
-  Generated from OpenSSL 3.0.20 Header File evp.h - Fri  8 May 12:10:37 BST 2026
+  Generated from OpenSSL 3.0.20 Header File evp.h - Sun 10 May 22:58:08 BST 2026
 }
 
 interface
@@ -171,8 +171,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType000 = ^TFuncType000;
-  PPTFuncType000 = ^PTFuncType000;
+  PFuncType000 = ^TFuncType000;
+  PPFuncType000 = ^PFuncType000;
   {end of auto-generated forward references}
 
   TFuncType000 = function(ctx: PEVP_MD_CTX): TOpenSSL_C_INT; cdecl;
@@ -191,8 +191,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType001 = ^TFuncType001;
-  PPTFuncType001 = ^PTFuncType001;
+  PFuncType001 = ^TFuncType001;
+  PPFuncType001 = ^PFuncType001;
   {end of auto-generated forward references}
 
   TFuncType001 = function(ctx: PEVP_MD_CTX; data: pointer; count: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
@@ -211,8 +211,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType002 = ^TFuncType002;
-  PPTFuncType002 = ^PTFuncType002;
+  PFuncType002 = ^TFuncType002;
+  PPFuncType002 = ^PFuncType002;
   {end of auto-generated forward references}
 
   TFuncType002 = function(ctx: PEVP_MD_CTX; md: Pbyte): TOpenSSL_C_INT; cdecl;
@@ -231,8 +231,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType003 = ^TFuncType003;
-  PPTFuncType003 = ^PTFuncType003;
+  PFuncType003 = ^TFuncType003;
+  PPFuncType003 = ^PFuncType003;
   {end of auto-generated forward references}
 
   TFuncType003 = function(to_: PEVP_MD_CTX; from_: PEVP_MD_CTX): TOpenSSL_C_INT; cdecl;
@@ -251,8 +251,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType004 = ^TFuncType004;
-  PPTFuncType004 = ^PTFuncType004;
+  PFuncType004 = ^TFuncType004;
+  PPFuncType004 = ^PFuncType004;
   {end of auto-generated forward references}
 
   TFuncType004 = function(ctx: PEVP_MD_CTX): TOpenSSL_C_INT; cdecl;
@@ -271,8 +271,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType005 = ^TFuncType005;
-  PPTFuncType005 = ^PTFuncType005;
+  PFuncType005 = ^TFuncType005;
+  PPFuncType005 = ^PFuncType005;
   {end of auto-generated forward references}
 
   TFuncType005 = function(ctx: PEVP_MD_CTX; cmd: TOpenSSL_C_INT; p1: TOpenSSL_C_INT; p2: pointer): TOpenSSL_C_INT; cdecl;
@@ -307,8 +307,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType006 = ^TFuncType006;
-  PPTFuncType006 = ^PTFuncType006;
+  PFuncType006 = ^TFuncType006;
+  PPFuncType006 = ^PFuncType006;
   {end of auto-generated forward references}
 
   TFuncType006 = function(ctx: PEVP_MD_CTX): TOpenSSL_C_INT; cdecl;
@@ -327,8 +327,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType007 = ^TFuncType007;
-  PPTFuncType007 = ^PTFuncType007;
+  PFuncType007 = ^TFuncType007;
+  PPFuncType007 = ^PFuncType007;
   {end of auto-generated forward references}
 
   TFuncType007 = function(ctx: PEVP_MD_CTX; data: pointer; count: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
@@ -347,8 +347,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType008 = ^TFuncType008;
-  PPTFuncType008 = ^PTFuncType008;
+  PFuncType008 = ^TFuncType008;
+  PPFuncType008 = ^PFuncType008;
   {end of auto-generated forward references}
 
   TFuncType008 = function(ctx: PEVP_MD_CTX; md: Pbyte): TOpenSSL_C_INT; cdecl;
@@ -367,8 +367,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType009 = ^TFuncType009;
-  PPTFuncType009 = ^PTFuncType009;
+  PFuncType009 = ^TFuncType009;
+  PPFuncType009 = ^PFuncType009;
   {end of auto-generated forward references}
 
   TFuncType009 = function(to_: PEVP_MD_CTX; from_: PEVP_MD_CTX): TOpenSSL_C_INT; cdecl;
@@ -387,8 +387,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType010 = ^TFuncType010;
-  PPTFuncType010 = ^PTFuncType010;
+  PFuncType010 = ^TFuncType010;
+  PPFuncType010 = ^PFuncType010;
   {end of auto-generated forward references}
 
   TFuncType010 = function(ctx: PEVP_MD_CTX): TOpenSSL_C_INT; cdecl;
@@ -407,8 +407,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType011 = ^TFuncType011;
-  PPTFuncType011 = ^PTFuncType011;
+  PFuncType011 = ^TFuncType011;
+  PPFuncType011 = ^PFuncType011;
   {end of auto-generated forward references}
 
   TFuncType011 = function(ctx: PEVP_MD_CTX; cmd: TOpenSSL_C_INT; p1: TOpenSSL_C_INT; p2: pointer): TOpenSSL_C_INT; cdecl;
@@ -516,8 +516,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType012 = ^TFuncType012;
-  PPTFuncType012 = ^PTFuncType012;
+  PFuncType012 = ^TFuncType012;
+  PPFuncType012 = ^PFuncType012;
   {end of auto-generated forward references}
 
   TFuncType012 = function(ctx: PEVP_CIPHER_CTX; key: Pbyte; iv: Pbyte; enc: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
@@ -536,8 +536,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType013 = ^TFuncType013;
-  PPTFuncType013 = ^PTFuncType013;
+  PFuncType013 = ^TFuncType013;
+  PPFuncType013 = ^PFuncType013;
   {end of auto-generated forward references}
 
   TFuncType013 = function(ctx: PEVP_CIPHER_CTX; out_: Pbyte; in_: Pbyte; inl: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
@@ -556,8 +556,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType014 = ^TFuncType014;
-  PPTFuncType014 = ^PTFuncType014;
+  PFuncType014 = ^TFuncType014;
+  PPFuncType014 = ^PFuncType014;
   {end of auto-generated forward references}
 
   TFuncType014 = function(_param1: PEVP_CIPHER_CTX): TOpenSSL_C_INT; cdecl;
@@ -576,8 +576,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType015 = ^TFuncType015;
-  PPTFuncType015 = ^PTFuncType015;
+  PFuncType015 = ^TFuncType015;
+  PPFuncType015 = ^PFuncType015;
   {end of auto-generated forward references}
 
   TFuncType015 = function(_param1: PEVP_CIPHER_CTX; _param2: PASN1_TYPE): TOpenSSL_C_INT; cdecl;
@@ -596,8 +596,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType016 = ^TFuncType016;
-  PPTFuncType016 = ^PTFuncType016;
+  PFuncType016 = ^TFuncType016;
+  PPFuncType016 = ^PFuncType016;
   {end of auto-generated forward references}
 
   TFuncType016 = function(_param1: PEVP_CIPHER_CTX; _param2: PASN1_TYPE): TOpenSSL_C_INT; cdecl;
@@ -616,8 +616,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType017 = ^TFuncType017;
-  PPTFuncType017 = ^PTFuncType017;
+  PFuncType017 = ^TFuncType017;
+  PPFuncType017 = ^PFuncType017;
   {end of auto-generated forward references}
 
   TFuncType017 = function(_param1: PEVP_CIPHER_CTX; type_: TOpenSSL_C_INT; arg: TOpenSSL_C_INT; ptr: pointer): TOpenSSL_C_INT; cdecl;
@@ -636,8 +636,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType018 = ^TFuncType018;
-  PPTFuncType018 = ^PTFuncType018;
+  PFuncType018 = ^TFuncType018;
+  PPFuncType018 = ^PFuncType018;
   {end of auto-generated forward references}
 
   TFuncType018 = function(ctx: PEVP_CIPHER_CTX; key: Pbyte; iv: Pbyte; enc: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
@@ -656,8 +656,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType019 = ^TFuncType019;
-  PPTFuncType019 = ^PTFuncType019;
+  PFuncType019 = ^TFuncType019;
+  PPFuncType019 = ^PFuncType019;
   {end of auto-generated forward references}
 
   TFuncType019 = function(ctx: PEVP_CIPHER_CTX; out_: Pbyte; in_: Pbyte; inl: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
@@ -676,8 +676,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType020 = ^TFuncType020;
-  PPTFuncType020 = ^PTFuncType020;
+  PFuncType020 = ^TFuncType020;
+  PPFuncType020 = ^PFuncType020;
   {end of auto-generated forward references}
 
   TFuncType020 = function(_param1: PEVP_CIPHER_CTX): TOpenSSL_C_INT; cdecl;
@@ -696,8 +696,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType021 = ^TFuncType021;
-  PPTFuncType021 = ^PTFuncType021;
+  PFuncType021 = ^TFuncType021;
+  PPFuncType021 = ^PFuncType021;
   {end of auto-generated forward references}
 
   TFuncType021 = function(_param1: PEVP_CIPHER_CTX; _param2: PASN1_TYPE): TOpenSSL_C_INT; cdecl;
@@ -716,8 +716,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType022 = ^TFuncType022;
-  PPTFuncType022 = ^PTFuncType022;
+  PFuncType022 = ^TFuncType022;
+  PPFuncType022 = ^PFuncType022;
   {end of auto-generated forward references}
 
   TFuncType022 = function(_param1: PEVP_CIPHER_CTX; _param2: PASN1_TYPE): TOpenSSL_C_INT; cdecl;
@@ -736,8 +736,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType023 = ^TFuncType023;
-  PPTFuncType023 = ^PTFuncType023;
+  PFuncType023 = ^TFuncType023;
+  PPFuncType023 = ^PFuncType023;
   {end of auto-generated forward references}
 
   TFuncType023 = function(_param1: PEVP_CIPHER_CTX; type_: TOpenSSL_C_INT; arg: TOpenSSL_C_INT; ptr: pointer): TOpenSSL_C_INT; cdecl;
@@ -933,9 +933,21 @@ const
   { Length of tag for TLS }
   EVP_CHACHAPOLY_TLS_TAG_LEN = 16;
 
+
+  {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  function EVP_Cipher(c: PEVP_CIPHER_CTX; out_: Pbyte; in_: Pbyte; inl: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_Cipher';
+  {$else}
+  {$EXTERNALSYM EVP_Cipher}
+  {Do not call Function LoadDeclarations. Internal use only}
+  function Load_EVP_Cipher(c: PEVP_CIPHER_CTX; out_: Pbyte; in_: Pbyte; inl: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl;
+
+var
+  EVP_Cipher: function(c: PEVP_CIPHER_CTX; out_: Pbyte; in_: Pbyte; inl: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl = Load_EVP_Cipher;
+  {$endif} {OPENSSL_STATIC_LINK_MODEL}
+
 type
   {Auto-generated forward references}
-  Pevp_cipher_info_st = ^evp_cipher_info_st;
+  Pevp_cipher_info_st = ^Tevp_cipher_info_st;
   PPevp_cipher_info_st = ^Pevp_cipher_info_st;
   PEVP_CIPHER_INFO = ^TEVP_CIPHER_INFO;
   PPEVP_CIPHER_INFO = ^PEVP_CIPHER_INFO;
@@ -945,11 +957,11 @@ type
   PPEVP_PBE_KEYGEN_EX = ^PEVP_PBE_KEYGEN_EX;
   {end of auto-generated forward references}
 
-  evp_cipher_info_st = record 
+  Tevp_cipher_info_st = record 
     cipher: PEVP_CIPHER;
     iv: array[0..15] of byte;
   end;
-  TEVP_CIPHER_INFO = evp_cipher_info_st;
+  TEVP_CIPHER_INFO = Tevp_cipher_info_st;
   { Password based encryption function }
   TEVP_PBE_KEYGEN = function(ctx: PEVP_CIPHER_CTX; pass: PAnsiChar; passlen: TOpenSSL_C_INT; param: PASN1_TYPE; cipher: PEVP_CIPHER; md: PEVP_MD; en_de: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
   TEVP_PBE_KEYGEN_EX = function(ctx: PEVP_CIPHER_CTX; pass: PAnsiChar; passlen: TOpenSSL_C_INT; param: PASN1_TYPE; cipher: PEVP_CIPHER; md: PEVP_MD; en_de: TOpenSSL_C_INT; libctx: POSSL_LIB_CTX; propq: PAnsiChar): TOpenSSL_C_INT; cdecl;
@@ -1029,8 +1041,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType024 = ^TFuncType024;
-  PPTFuncType024 = ^PTFuncType024;
+  PFuncType024 = ^TFuncType024;
+  PPFuncType024 = ^PFuncType024;
   {end of auto-generated forward references}
 
   TFuncType024 = procedure(name: PAnsiChar; data: pointer); cdecl;
@@ -1106,8 +1118,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType025 = ^TFuncType025;
-  PPTFuncType025 = ^PTFuncType025;
+  PFuncType025 = ^TFuncType025;
+  PPFuncType025 = ^PFuncType025;
   {end of auto-generated forward references}
 
   TFuncType025 = function(ctx: PEVP_MD_CTX; data: pointer; count: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
@@ -1126,8 +1138,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType026 = ^TFuncType026;
-  PPTFuncType026 = ^PTFuncType026;
+  PFuncType026 = ^TFuncType026;
+  PPFuncType026 = ^PFuncType026;
   {end of auto-generated forward references}
 
   TFuncType026 = function(ctx: PEVP_MD_CTX; data: pointer; count: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
@@ -1206,8 +1218,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType027 = ^TFuncType027;
-  PPTFuncType027 = ^PTFuncType027;
+  PFuncType027 = ^TFuncType027;
+  PPFuncType027 = ^PFuncType027;
   {end of auto-generated forward references}
 
   TFuncType027 = procedure(name: PAnsiChar; data: pointer); cdecl;
@@ -1506,25 +1518,13 @@ var
 {# define  BIO_set_md_ctx(b,mdcp) BIO_ctrl(b, BIO_C_SET_MD_CTX, 0, (mdcp))} {Macro Return Type unknown at line no 662}
 {# define  BIO_get_cipher_status(b) BIO_ctrl(b, BIO_C_GET_CIPHER_STATUS, 0, NULL)} {Macro Return Type unknown at line no 663}
 {# define  BIO_get_cipher_ctx(b,c_pp) BIO_ctrl(b, BIO_C_GET_CIPHER_CTX, 0, (c_pp))} {Macro Return Type unknown at line no 664}
+{# define  EVP_add_cipher_alias(n,alias) OBJ_NAME_add((alias), OBJ_NAME_TYPE_CIPHER_METH | OBJ_NAME_ALIAS, (n))} {Macro Return Type unknown at line no 670}
+{# define  EVP_add_digest_alias(n,alias) OBJ_NAME_add((alias), OBJ_NAME_TYPE_MD_METH | OBJ_NAME_ALIAS, (n))} {Macro Return Type unknown at line no 672}
+{# define  EVP_delete_cipher_alias(alias) OBJ_NAME_remove(alias, OBJ_NAME_TYPE_CIPHER_METH | OBJ_NAME_ALIAS);}
+{# define  EVP_delete_digest_alias(alias) OBJ_NAME_remove(alias, OBJ_NAME_TYPE_MD_METH | OBJ_NAME_ALIAS);}
 
 
   {__owur}
-  {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function EVP_Cipher(c: PEVP_CIPHER_CTX; out_: Pbyte; in_: Pbyte; inl: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_Cipher';
-  {$else}
-  {$EXTERNALSYM EVP_Cipher}
-  {Do not call Function LoadDeclarations. Internal use only}
-  function Load_EVP_Cipher(c: PEVP_CIPHER_CTX; out_: Pbyte; in_: Pbyte; inl: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl;
-
-var
-  EVP_Cipher: function(c: PEVP_CIPHER_CTX; out_: Pbyte; in_: Pbyte; inl: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl = Load_EVP_Cipher;
-  {$endif} {OPENSSL_STATIC_LINK_MODEL}
-  {# define  EVP_add_cipher_alias(n,alias) OBJ_NAME_add((alias), OBJ_NAME_TYPE_CIPHER_METH | OBJ_NAME_ALIAS, (n))} {Macro Return Type unknown at line no 670}
-  {# define  EVP_add_digest_alias(n,alias) OBJ_NAME_add((alias), OBJ_NAME_TYPE_MD_METH | OBJ_NAME_ALIAS, (n))} {Macro Return Type unknown at line no 672}
-  {# define  EVP_delete_cipher_alias(alias) OBJ_NAME_remove(alias, OBJ_NAME_TYPE_CIPHER_METH | OBJ_NAME_ALIAS);}
-  {# define  EVP_delete_digest_alias(alias) OBJ_NAME_remove(alias, OBJ_NAME_TYPE_MD_METH | OBJ_NAME_ALIAS);}
-
-
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
   function EVP_MD_get_params(digest: PEVP_MD; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_MD_get_params';
   function EVP_MD_CTX_set_params(ctx: PEVP_MD_CTX; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_MD_CTX_set_params';
@@ -3111,8 +3111,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType028 = ^TFuncType028;
-  PPTFuncType028 = ^PTFuncType028;
+  PFuncType028 = ^TFuncType028;
+  PPFuncType028 = ^PFuncType028;
   {end of auto-generated forward references}
 
   TFuncType028 = procedure(ciph: PEVP_CIPHER; from_: PAnsiChar; to_: PAnsiChar; x: pointer); cdecl;
@@ -3131,8 +3131,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType029 = ^TFuncType029;
-  PPTFuncType029 = ^PTFuncType029;
+  PFuncType029 = ^TFuncType029;
+  PPFuncType029 = ^PFuncType029;
   {end of auto-generated forward references}
 
   TFuncType029 = procedure(ciph: PEVP_CIPHER; from_: PAnsiChar; to_: PAnsiChar; x: pointer); cdecl;
@@ -3151,8 +3151,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType030 = ^TFuncType030;
-  PPTFuncType030 = ^PTFuncType030;
+  PFuncType030 = ^TFuncType030;
+  PPFuncType030 = ^PFuncType030;
   {end of auto-generated forward references}
 
   TFuncType030 = procedure(cipher: PEVP_CIPHER; arg: pointer); cdecl;
@@ -3171,8 +3171,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType031 = ^TFuncType031;
-  PPTFuncType031 = ^PTFuncType031;
+  PFuncType031 = ^TFuncType031;
+  PPFuncType031 = ^PFuncType031;
   {end of auto-generated forward references}
 
   TFuncType031 = procedure(ciph: PEVP_MD; from_: PAnsiChar; to_: PAnsiChar; x: pointer); cdecl;
@@ -3191,8 +3191,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType032 = ^TFuncType032;
-  PPTFuncType032 = ^PTFuncType032;
+  PFuncType032 = ^TFuncType032;
+  PPFuncType032 = ^PFuncType032;
   {end of auto-generated forward references}
 
   TFuncType032 = procedure(ciph: PEVP_MD; from_: PAnsiChar; to_: PAnsiChar; x: pointer); cdecl;
@@ -3211,8 +3211,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType033 = ^TFuncType033;
-  PPTFuncType033 = ^PTFuncType033;
+  PFuncType033 = ^TFuncType033;
+  PPFuncType033 = ^PFuncType033;
   {end of auto-generated forward references}
 
   TFuncType033 = procedure(md: PEVP_MD; arg: pointer); cdecl;
@@ -3337,8 +3337,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType034 = ^TFuncType034;
-  PPTFuncType034 = ^PTFuncType034;
+  PFuncType034 = ^TFuncType034;
+  PPFuncType034 = ^PFuncType034;
   {end of auto-generated forward references}
 
   TFuncType034 = procedure(mac: PEVP_MAC; arg: pointer); cdecl;
@@ -3357,8 +3357,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType035 = ^TFuncType035;
-  PPTFuncType035 = ^PTFuncType035;
+  PFuncType035 = ^TFuncType035;
+  PPFuncType035 = ^PFuncType035;
   {end of auto-generated forward references}
 
   TFuncType035 = procedure(name: PAnsiChar; data: pointer); cdecl;
@@ -3451,8 +3451,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType036 = ^TFuncType036;
-  PPTFuncType036 = ^PTFuncType036;
+  PFuncType036 = ^TFuncType036;
+  PPFuncType036 = ^PFuncType036;
   {end of auto-generated forward references}
 
   TFuncType036 = procedure(rand: PEVP_RAND; arg: pointer); cdecl;
@@ -3471,8 +3471,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType037 = ^TFuncType037;
-  PPTFuncType037 = ^PTFuncType037;
+  PFuncType037 = ^TFuncType037;
+  PPFuncType037 = ^PFuncType037;
   {end of auto-generated forward references}
 
   TFuncType037 = procedure(name: PAnsiChar; data: pointer); cdecl;
@@ -3563,8 +3563,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType038 = ^TFuncType038;
-  PPTFuncType038 = ^PTFuncType038;
+  PFuncType038 = ^TFuncType038;
+  PPFuncType038 = ^PFuncType038;
   {end of auto-generated forward references}
 
   TFuncType038 = procedure(name: PAnsiChar; data: pointer); cdecl;
@@ -4253,18 +4253,18 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType039 = ^TFuncType039;
-  PPTFuncType039 = ^PTFuncType039;
-  PTFuncType040 = ^TFuncType040;
-  PPTFuncType040 = ^PTFuncType040;
-  PTFuncType041 = ^TFuncType041;
-  PPTFuncType041 = ^PTFuncType041;
-  PTFuncType042 = ^TFuncType042;
-  PPTFuncType042 = ^PTFuncType042;
-  PTFuncType043 = ^TFuncType043;
-  PPTFuncType043 = ^PTFuncType043;
-  PTFuncType044 = ^TFuncType044;
-  PPTFuncType044 = ^PTFuncType044;
+  PFuncType039 = ^TFuncType039;
+  PPFuncType039 = ^PFuncType039;
+  PFuncType040 = ^TFuncType040;
+  PPFuncType040 = ^PFuncType040;
+  PFuncType041 = ^TFuncType041;
+  PPFuncType041 = ^PFuncType041;
+  PFuncType042 = ^TFuncType042;
+  PPFuncType042 = ^PFuncType042;
+  PFuncType043 = ^TFuncType043;
+  PPFuncType043 = ^PFuncType043;
+  PFuncType044 = ^TFuncType044;
+  PPFuncType044 = ^PFuncType044;
   {end of auto-generated forward references}
 
   TFuncType039 = function(pk: PEVP_PKEY; pub: PX509_PUBKEY): TOpenSSL_C_INT; cdecl;
@@ -4288,12 +4288,12 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType045 = ^TFuncType045;
-  PPTFuncType045 = ^PTFuncType045;
-  PTFuncType046 = ^TFuncType046;
-  PPTFuncType046 = ^PTFuncType046;
-  PTFuncType047 = ^TFuncType047;
-  PPTFuncType047 = ^PTFuncType047;
+  PFuncType045 = ^TFuncType045;
+  PPFuncType045 = ^PFuncType045;
+  PFuncType046 = ^TFuncType046;
+  PPFuncType046 = ^PFuncType046;
+  PFuncType047 = ^TFuncType047;
+  PPFuncType047 = ^PFuncType047;
   {end of auto-generated forward references}
 
   TFuncType045 = function(pk: PEVP_PKEY; p8inf: PPKCS8_PRIV_KEY_INFO): TOpenSSL_C_INT; cdecl;
@@ -4314,18 +4314,18 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType048 = ^TFuncType048;
-  PPTFuncType048 = ^PTFuncType048;
-  PTFuncType049 = ^TFuncType049;
-  PPTFuncType049 = ^PTFuncType049;
-  PTFuncType050 = ^TFuncType050;
-  PPTFuncType050 = ^PTFuncType050;
-  PTFuncType051 = ^TFuncType051;
-  PPTFuncType051 = ^PTFuncType051;
-  PTFuncType052 = ^TFuncType052;
-  PPTFuncType052 = ^PTFuncType052;
-  PTFuncType053 = ^TFuncType053;
-  PPTFuncType053 = ^PTFuncType053;
+  PFuncType048 = ^TFuncType048;
+  PPFuncType048 = ^PFuncType048;
+  PFuncType049 = ^TFuncType049;
+  PPFuncType049 = ^PFuncType049;
+  PFuncType050 = ^TFuncType050;
+  PPFuncType050 = ^PFuncType050;
+  PFuncType051 = ^TFuncType051;
+  PPFuncType051 = ^PFuncType051;
+  PFuncType052 = ^TFuncType052;
+  PPFuncType052 = ^PFuncType052;
+  PFuncType053 = ^TFuncType053;
+  PPFuncType053 = ^PFuncType053;
   {end of auto-generated forward references}
 
   TFuncType048 = function(pkey: PEVP_PKEY; pder: PPbyte; derlen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
@@ -4349,8 +4349,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType054 = ^TFuncType054;
-  PPTFuncType054 = ^PTFuncType054;
+  PFuncType054 = ^TFuncType054;
+  PPFuncType054 = ^PFuncType054;
   {end of auto-generated forward references}
 
   TFuncType054 = procedure(pkey: PEVP_PKEY); cdecl;
@@ -4369,8 +4369,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType055 = ^TFuncType055;
-  PPTFuncType055 = ^PTFuncType055;
+  PFuncType055 = ^TFuncType055;
+  PPFuncType055 = ^PFuncType055;
   {end of auto-generated forward references}
 
   TFuncType055 = function(pkey: PEVP_PKEY; op: TOpenSSL_C_INT; arg1: TOpenSSL_C_INT; arg2: pointer): TOpenSSL_C_INT; cdecl;
@@ -4389,10 +4389,10 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType056 = ^TFuncType056;
-  PPTFuncType056 = ^PTFuncType056;
-  PTFuncType057 = ^TFuncType057;
-  PPTFuncType057 = ^PTFuncType057;
+  PFuncType056 = ^TFuncType056;
+  PPFuncType056 = ^PFuncType056;
+  PFuncType057 = ^TFuncType057;
+  PPFuncType057 = ^PFuncType057;
   {end of auto-generated forward references}
 
   TFuncType056 = function(ctx: PEVP_MD_CTX; it: PASN1_ITEM; data: pointer; a: PX509_ALGOR; sig: PASN1_BIT_STRING; pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
@@ -4412,8 +4412,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType058 = ^TFuncType058;
-  PPTFuncType058 = ^PTFuncType058;
+  PFuncType058 = ^TFuncType058;
+  PPFuncType058 = ^PFuncType058;
   {end of auto-generated forward references}
 
   TFuncType058 = function(siginf: PX509_SIG_INFO; alg: PX509_ALGOR; sig: PASN1_STRING): TOpenSSL_C_INT; cdecl;
@@ -4432,8 +4432,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType059 = ^TFuncType059;
-  PPTFuncType059 = ^PTFuncType059;
+  PFuncType059 = ^TFuncType059;
+  PPFuncType059 = ^PFuncType059;
   {end of auto-generated forward references}
 
   TFuncType059 = function(pk: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
@@ -4452,8 +4452,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType060 = ^TFuncType060;
-  PPTFuncType060 = ^PTFuncType060;
+  PFuncType060 = ^TFuncType060;
+  PPFuncType060 = ^PFuncType060;
   {end of auto-generated forward references}
 
   TFuncType060 = function(pk: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
@@ -4472,8 +4472,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType061 = ^TFuncType061;
-  PPTFuncType061 = ^PTFuncType061;
+  PFuncType061 = ^TFuncType061;
+  PPFuncType061 = ^PFuncType061;
   {end of auto-generated forward references}
 
   TFuncType061 = function(pk: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
@@ -4492,8 +4492,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType062 = ^TFuncType062;
-  PPTFuncType062 = ^PTFuncType062;
+  PFuncType062 = ^TFuncType062;
+  PPFuncType062 = ^PFuncType062;
   {end of auto-generated forward references}
 
   TFuncType062 = function(pk: PEVP_PKEY; priv: Pbyte; len: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
@@ -4512,8 +4512,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType063 = ^TFuncType063;
-  PPTFuncType063 = ^PTFuncType063;
+  PFuncType063 = ^TFuncType063;
+  PPFuncType063 = ^PFuncType063;
   {end of auto-generated forward references}
 
   TFuncType063 = function(pk: PEVP_PKEY; pub: Pbyte; len: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
@@ -4532,8 +4532,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType064 = ^TFuncType064;
-  PPTFuncType064 = ^PTFuncType064;
+  PFuncType064 = ^TFuncType064;
+  PPFuncType064 = ^PFuncType064;
   {end of auto-generated forward references}
 
   TFuncType064 = function(pk: PEVP_PKEY; priv: Pbyte; len: POpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
@@ -4552,8 +4552,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType065 = ^TFuncType065;
-  PPTFuncType065 = ^PTFuncType065;
+  PFuncType065 = ^TFuncType065;
+  PPFuncType065 = ^PFuncType065;
   {end of auto-generated forward references}
 
   TFuncType065 = function(pk: PEVP_PKEY; pub: Pbyte; len: POpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
@@ -4572,8 +4572,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType066 = ^TFuncType066;
-  PPTFuncType066 = ^PTFuncType066;
+  PFuncType066 = ^TFuncType066;
+  PPFuncType066 = ^PFuncType066;
   {end of auto-generated forward references}
 
   TFuncType066 = function(pk: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
@@ -4766,8 +4766,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType067 = ^TFuncType067;
-  PPTFuncType067 = ^PTFuncType067;
+  PFuncType067 = ^TFuncType067;
+  PPFuncType067 = ^PFuncType067;
   {end of auto-generated forward references}
 
   TFuncType067 = procedure(keymgmt: PEVP_KEYMGMT; arg: pointer); cdecl;
@@ -4786,8 +4786,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType068 = ^TFuncType068;
-  PPTFuncType068 = ^PTFuncType068;
+  PFuncType068 = ^TFuncType068;
+  PPFuncType068 = ^PFuncType068;
   {end of auto-generated forward references}
 
   TFuncType068 = procedure(name: PAnsiChar; data: pointer); cdecl;
@@ -4996,8 +4996,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType069 = ^TFuncType069;
-  PPTFuncType069 = ^PTFuncType069;
+  PFuncType069 = ^TFuncType069;
+  PPFuncType069 = ^PFuncType069;
   {end of auto-generated forward references}
 
   TFuncType069 = procedure(signature: PEVP_SIGNATURE; data: pointer); cdecl;
@@ -5016,8 +5016,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType070 = ^TFuncType070;
-  PPTFuncType070 = ^PTFuncType070;
+  PFuncType070 = ^TFuncType070;
+  PPFuncType070 = ^PFuncType070;
   {end of auto-generated forward references}
 
   TFuncType070 = procedure(name: PAnsiChar; data: pointer); cdecl;
@@ -5072,8 +5072,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType071 = ^TFuncType071;
-  PPTFuncType071 = ^PTFuncType071;
+  PFuncType071 = ^TFuncType071;
+  PPFuncType071 = ^PFuncType071;
   {end of auto-generated forward references}
 
   TFuncType071 = procedure(cipher: PEVP_ASYM_CIPHER; arg: pointer); cdecl;
@@ -5092,8 +5092,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType072 = ^TFuncType072;
-  PPTFuncType072 = ^PTFuncType072;
+  PFuncType072 = ^TFuncType072;
+  PPFuncType072 = ^PFuncType072;
   {end of auto-generated forward references}
 
   TFuncType072 = procedure(name: PAnsiChar; data: pointer); cdecl;
@@ -5148,8 +5148,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType073 = ^TFuncType073;
-  PPTFuncType073 = ^PTFuncType073;
+  PFuncType073 = ^TFuncType073;
+  PPFuncType073 = ^PFuncType073;
   {end of auto-generated forward references}
 
   TFuncType073 = procedure(wrap: PEVP_KEM; arg: pointer); cdecl;
@@ -5168,8 +5168,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType074 = ^TFuncType074;
-  PPTFuncType074 = ^PTFuncType074;
+  PFuncType074 = ^TFuncType074;
+  PPFuncType074 = ^PFuncType074;
   {end of auto-generated forward references}
 
   TFuncType074 = procedure(name: PAnsiChar; data: pointer); cdecl;
@@ -5473,8 +5473,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType075 = ^TFuncType075;
-  PPTFuncType075 = ^PTFuncType075;
+  PFuncType075 = ^TFuncType075;
+  PPFuncType075 = ^PFuncType075;
   {end of auto-generated forward references}
 
   TFuncType075 = function(ctx: PEVP_PKEY_CTX): TOpenSSL_C_INT; cdecl;
@@ -5493,8 +5493,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType076 = ^TFuncType076;
-  PPTFuncType076 = ^PTFuncType076;
+  PFuncType076 = ^TFuncType076;
+  PPFuncType076 = ^PFuncType076;
   {end of auto-generated forward references}
 
   TFuncType076 = function(dst: PEVP_PKEY_CTX; src: PEVP_PKEY_CTX): TOpenSSL_C_INT; cdecl;
@@ -5513,8 +5513,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType077 = ^TFuncType077;
-  PPTFuncType077 = ^PTFuncType077;
+  PFuncType077 = ^TFuncType077;
+  PPFuncType077 = ^PFuncType077;
   {end of auto-generated forward references}
 
   TFuncType077 = procedure(ctx: PEVP_PKEY_CTX); cdecl;
@@ -5533,10 +5533,10 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType078 = ^TFuncType078;
-  PPTFuncType078 = ^PTFuncType078;
-  PTFuncType079 = ^TFuncType079;
-  PPTFuncType079 = ^PTFuncType079;
+  PFuncType078 = ^TFuncType078;
+  PPFuncType078 = ^PFuncType078;
+  PFuncType079 = ^TFuncType079;
+  PPFuncType079 = ^PFuncType079;
   {end of auto-generated forward references}
 
   TFuncType078 = function(ctx: PEVP_PKEY_CTX): TOpenSSL_C_INT; cdecl;
@@ -5556,10 +5556,10 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType080 = ^TFuncType080;
-  PPTFuncType080 = ^PTFuncType080;
-  PTFuncType081 = ^TFuncType081;
-  PPTFuncType081 = ^PTFuncType081;
+  PFuncType080 = ^TFuncType080;
+  PPFuncType080 = ^PFuncType080;
+  PFuncType081 = ^TFuncType081;
+  PPFuncType081 = ^PFuncType081;
   {end of auto-generated forward references}
 
   TFuncType080 = function(ctx: PEVP_PKEY_CTX): TOpenSSL_C_INT; cdecl;
@@ -5579,10 +5579,10 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType082 = ^TFuncType082;
-  PPTFuncType082 = ^PTFuncType082;
-  PTFuncType083 = ^TFuncType083;
-  PPTFuncType083 = ^PTFuncType083;
+  PFuncType082 = ^TFuncType082;
+  PPFuncType082 = ^PFuncType082;
+  PFuncType083 = ^TFuncType083;
+  PPFuncType083 = ^PFuncType083;
   {end of auto-generated forward references}
 
   TFuncType082 = function(ctx: PEVP_PKEY_CTX): TOpenSSL_C_INT; cdecl;
@@ -5602,10 +5602,10 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType084 = ^TFuncType084;
-  PPTFuncType084 = ^PTFuncType084;
-  PTFuncType085 = ^TFuncType085;
-  PPTFuncType085 = ^PTFuncType085;
+  PFuncType084 = ^TFuncType084;
+  PPFuncType084 = ^PFuncType084;
+  PFuncType085 = ^TFuncType085;
+  PPFuncType085 = ^PFuncType085;
   {end of auto-generated forward references}
 
   TFuncType084 = function(ctx: PEVP_PKEY_CTX): TOpenSSL_C_INT; cdecl;
@@ -5625,10 +5625,10 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType086 = ^TFuncType086;
-  PPTFuncType086 = ^PTFuncType086;
-  PTFuncType087 = ^TFuncType087;
-  PPTFuncType087 = ^PTFuncType087;
+  PFuncType086 = ^TFuncType086;
+  PPFuncType086 = ^PFuncType086;
+  PFuncType087 = ^TFuncType087;
+  PPFuncType087 = ^PFuncType087;
   {end of auto-generated forward references}
 
   TFuncType086 = function(ctx: PEVP_PKEY_CTX): TOpenSSL_C_INT; cdecl;
@@ -5648,10 +5648,10 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType088 = ^TFuncType088;
-  PPTFuncType088 = ^PTFuncType088;
-  PTFuncType089 = ^TFuncType089;
-  PPTFuncType089 = ^PTFuncType089;
+  PFuncType088 = ^TFuncType088;
+  PPFuncType088 = ^PFuncType088;
+  PFuncType089 = ^TFuncType089;
+  PPFuncType089 = ^PFuncType089;
   {end of auto-generated forward references}
 
   TFuncType088 = function(ctx: PEVP_PKEY_CTX; mctx: PEVP_MD_CTX): TOpenSSL_C_INT; cdecl;
@@ -5671,10 +5671,10 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType090 = ^TFuncType090;
-  PPTFuncType090 = ^PTFuncType090;
-  PTFuncType091 = ^TFuncType091;
-  PPTFuncType091 = ^PTFuncType091;
+  PFuncType090 = ^TFuncType090;
+  PPFuncType090 = ^PFuncType090;
+  PFuncType091 = ^TFuncType091;
+  PPFuncType091 = ^PFuncType091;
   {end of auto-generated forward references}
 
   TFuncType090 = function(ctx: PEVP_PKEY_CTX; mctx: PEVP_MD_CTX): TOpenSSL_C_INT; cdecl;
@@ -5694,10 +5694,10 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType092 = ^TFuncType092;
-  PPTFuncType092 = ^PTFuncType092;
-  PTFuncType093 = ^TFuncType093;
-  PPTFuncType093 = ^PTFuncType093;
+  PFuncType092 = ^TFuncType092;
+  PPFuncType092 = ^PFuncType092;
+  PFuncType093 = ^TFuncType093;
+  PPFuncType093 = ^PFuncType093;
   {end of auto-generated forward references}
 
   TFuncType092 = function(ctx: PEVP_PKEY_CTX): TOpenSSL_C_INT; cdecl;
@@ -5717,10 +5717,10 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType094 = ^TFuncType094;
-  PPTFuncType094 = ^PTFuncType094;
-  PTFuncType095 = ^TFuncType095;
-  PPTFuncType095 = ^PTFuncType095;
+  PFuncType094 = ^TFuncType094;
+  PPFuncType094 = ^PFuncType094;
+  PFuncType095 = ^TFuncType095;
+  PPFuncType095 = ^PFuncType095;
   {end of auto-generated forward references}
 
   TFuncType094 = function(ctx: PEVP_PKEY_CTX): TOpenSSL_C_INT; cdecl;
@@ -5740,10 +5740,10 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType096 = ^TFuncType096;
-  PPTFuncType096 = ^PTFuncType096;
-  PTFuncType097 = ^TFuncType097;
-  PPTFuncType097 = ^PTFuncType097;
+  PFuncType096 = ^TFuncType096;
+  PPFuncType096 = ^PFuncType096;
+  PFuncType097 = ^TFuncType097;
+  PPFuncType097 = ^PFuncType097;
   {end of auto-generated forward references}
 
   TFuncType096 = function(ctx: PEVP_PKEY_CTX): TOpenSSL_C_INT; cdecl;
@@ -5763,10 +5763,10 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType098 = ^TFuncType098;
-  PPTFuncType098 = ^PTFuncType098;
-  PTFuncType099 = ^TFuncType099;
-  PPTFuncType099 = ^PTFuncType099;
+  PFuncType098 = ^TFuncType098;
+  PPFuncType098 = ^PFuncType098;
+  PFuncType099 = ^TFuncType099;
+  PPFuncType099 = ^PFuncType099;
   {end of auto-generated forward references}
 
   TFuncType098 = function(ctx: PEVP_PKEY_CTX; type_: TOpenSSL_C_INT; p1: TOpenSSL_C_INT; p2: pointer): TOpenSSL_C_INT; cdecl;
@@ -5786,8 +5786,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType100 = ^TFuncType100;
-  PPTFuncType100 = ^PTFuncType100;
+  PFuncType100 = ^TFuncType100;
+  PPFuncType100 = ^PFuncType100;
   {end of auto-generated forward references}
 
   TFuncType100 = function(ctx: PEVP_MD_CTX; sig: Pbyte; siglen: POpenSSL_C_SIZET; tbs: Pbyte; tbslen: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
@@ -5806,8 +5806,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType101 = ^TFuncType101;
-  PPTFuncType101 = ^PTFuncType101;
+  PFuncType101 = ^TFuncType101;
+  PPFuncType101 = ^PFuncType101;
   {end of auto-generated forward references}
 
   TFuncType101 = function(ctx: PEVP_MD_CTX; sig: Pbyte; siglen: TOpenSSL_C_SIZET; tbs: Pbyte; tbslen: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
@@ -5826,8 +5826,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType102 = ^TFuncType102;
-  PPTFuncType102 = ^PTFuncType102;
+  PFuncType102 = ^TFuncType102;
+  PPFuncType102 = ^PFuncType102;
   {end of auto-generated forward references}
 
   TFuncType102 = function(pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
@@ -5846,8 +5846,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType103 = ^TFuncType103;
-  PPTFuncType103 = ^PTFuncType103;
+  PFuncType103 = ^TFuncType103;
+  PPFuncType103 = ^PFuncType103;
   {end of auto-generated forward references}
 
   TFuncType103 = function(pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
@@ -5866,8 +5866,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType104 = ^TFuncType104;
-  PPTFuncType104 = ^PTFuncType104;
+  PFuncType104 = ^TFuncType104;
+  PPFuncType104 = ^PFuncType104;
   {end of auto-generated forward references}
 
   TFuncType104 = function(pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
@@ -5886,8 +5886,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType105 = ^TFuncType105;
-  PPTFuncType105 = ^PTFuncType105;
+  PFuncType105 = ^TFuncType105;
+  PPFuncType105 = ^PFuncType105;
   {end of auto-generated forward references}
 
   TFuncType105 = function(ctx: PEVP_PKEY_CTX; mctx: PEVP_MD_CTX): TOpenSSL_C_INT; cdecl;
@@ -5906,8 +5906,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType106 = ^TFuncType106;
-  PPTFuncType106 = ^PTFuncType106;
+  PFuncType106 = ^TFuncType106;
+  PPFuncType106 = ^PFuncType106;
   {end of auto-generated forward references}
 
   TFuncType106 = function(ctx: PEVP_PKEY_CTX): TOpenSSL_C_INT; cdecl;
@@ -5926,8 +5926,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType107 = ^TFuncType107;
-  PPTFuncType107 = ^PTFuncType107;
+  PFuncType107 = ^TFuncType107;
+  PPFuncType107 = ^PFuncType107;
   {end of auto-generated forward references}
 
   TFuncType107 = function(dst: PEVP_PKEY_CTX; src: PEVP_PKEY_CTX): TOpenSSL_C_INT; cdecl;
@@ -5946,8 +5946,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType108 = ^TFuncType108;
-  PPTFuncType108 = ^PTFuncType108;
+  PFuncType108 = ^TFuncType108;
+  PPFuncType108 = ^PFuncType108;
   {end of auto-generated forward references}
 
   TFuncType108 = procedure(ctx: PEVP_PKEY_CTX); cdecl;
@@ -5966,10 +5966,10 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType109 = ^TFuncType109;
-  PPTFuncType109 = ^PTFuncType109;
-  PTFuncType110 = ^TFuncType110;
-  PPTFuncType110 = ^PTFuncType110;
+  PFuncType109 = ^TFuncType109;
+  PPFuncType109 = ^PFuncType109;
+  PFuncType110 = ^TFuncType110;
+  PPFuncType110 = ^PFuncType110;
   {end of auto-generated forward references}
 
   TFuncType109 = function(ctx: PEVP_PKEY_CTX): TOpenSSL_C_INT; cdecl;
@@ -5989,10 +5989,10 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType111 = ^TFuncType111;
-  PPTFuncType111 = ^PTFuncType111;
-  PTFuncType112 = ^TFuncType112;
-  PPTFuncType112 = ^PTFuncType112;
+  PFuncType111 = ^TFuncType111;
+  PPFuncType111 = ^PFuncType111;
+  PFuncType112 = ^TFuncType112;
+  PPFuncType112 = ^PFuncType112;
   {end of auto-generated forward references}
 
   TFuncType111 = function(ctx: PEVP_PKEY_CTX): TOpenSSL_C_INT; cdecl;
@@ -6012,10 +6012,10 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType113 = ^TFuncType113;
-  PPTFuncType113 = ^PTFuncType113;
-  PTFuncType114 = ^TFuncType114;
-  PPTFuncType114 = ^PTFuncType114;
+  PFuncType113 = ^TFuncType113;
+  PPFuncType113 = ^PFuncType113;
+  PFuncType114 = ^TFuncType114;
+  PPFuncType114 = ^PFuncType114;
   {end of auto-generated forward references}
 
   TFuncType113 = function(ctx: PEVP_PKEY_CTX): TOpenSSL_C_INT; cdecl;
@@ -6035,10 +6035,10 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType115 = ^TFuncType115;
-  PPTFuncType115 = ^PTFuncType115;
-  PTFuncType116 = ^TFuncType116;
-  PPTFuncType116 = ^PTFuncType116;
+  PFuncType115 = ^TFuncType115;
+  PPFuncType115 = ^PFuncType115;
+  PFuncType116 = ^TFuncType116;
+  PPFuncType116 = ^PFuncType116;
   {end of auto-generated forward references}
 
   TFuncType115 = function(ctx: PEVP_PKEY_CTX): TOpenSSL_C_INT; cdecl;
@@ -6058,10 +6058,10 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType117 = ^TFuncType117;
-  PPTFuncType117 = ^PTFuncType117;
-  PTFuncType118 = ^TFuncType118;
-  PPTFuncType118 = ^PTFuncType118;
+  PFuncType117 = ^TFuncType117;
+  PPFuncType117 = ^PFuncType117;
+  PFuncType118 = ^TFuncType118;
+  PPFuncType118 = ^PFuncType118;
   {end of auto-generated forward references}
 
   TFuncType117 = function(ctx: PEVP_PKEY_CTX): TOpenSSL_C_INT; cdecl;
@@ -6081,10 +6081,10 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType119 = ^TFuncType119;
-  PPTFuncType119 = ^PTFuncType119;
-  PTFuncType120 = ^TFuncType120;
-  PPTFuncType120 = ^PTFuncType120;
+  PFuncType119 = ^TFuncType119;
+  PPFuncType119 = ^PFuncType119;
+  PFuncType120 = ^TFuncType120;
+  PPFuncType120 = ^PFuncType120;
   {end of auto-generated forward references}
 
   TFuncType119 = function(ctx: PEVP_PKEY_CTX; mctx: PEVP_MD_CTX): TOpenSSL_C_INT; cdecl;
@@ -6104,10 +6104,10 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType121 = ^TFuncType121;
-  PPTFuncType121 = ^PTFuncType121;
-  PTFuncType122 = ^TFuncType122;
-  PPTFuncType122 = ^PTFuncType122;
+  PFuncType121 = ^TFuncType121;
+  PPFuncType121 = ^PFuncType121;
+  PFuncType122 = ^TFuncType122;
+  PPFuncType122 = ^PFuncType122;
   {end of auto-generated forward references}
 
   TFuncType121 = function(ctx: PEVP_PKEY_CTX; mctx: PEVP_MD_CTX): TOpenSSL_C_INT; cdecl;
@@ -6127,10 +6127,10 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType123 = ^TFuncType123;
-  PPTFuncType123 = ^PTFuncType123;
-  PTFuncType124 = ^TFuncType124;
-  PPTFuncType124 = ^PTFuncType124;
+  PFuncType123 = ^TFuncType123;
+  PPFuncType123 = ^PFuncType123;
+  PFuncType124 = ^TFuncType124;
+  PPFuncType124 = ^PFuncType124;
   {end of auto-generated forward references}
 
   TFuncType123 = function(ctx: PEVP_PKEY_CTX): TOpenSSL_C_INT; cdecl;
@@ -6150,10 +6150,10 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType125 = ^TFuncType125;
-  PPTFuncType125 = ^PTFuncType125;
-  PTFuncType126 = ^TFuncType126;
-  PPTFuncType126 = ^PTFuncType126;
+  PFuncType125 = ^TFuncType125;
+  PPFuncType125 = ^PFuncType125;
+  PFuncType126 = ^TFuncType126;
+  PPFuncType126 = ^PFuncType126;
   {end of auto-generated forward references}
 
   TFuncType125 = function(ctx: PEVP_PKEY_CTX): TOpenSSL_C_INT; cdecl;
@@ -6173,10 +6173,10 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType127 = ^TFuncType127;
-  PPTFuncType127 = ^PTFuncType127;
-  PTFuncType128 = ^TFuncType128;
-  PPTFuncType128 = ^PTFuncType128;
+  PFuncType127 = ^TFuncType127;
+  PPFuncType127 = ^PFuncType127;
+  PFuncType128 = ^TFuncType128;
+  PPFuncType128 = ^PFuncType128;
   {end of auto-generated forward references}
 
   TFuncType127 = function(ctx: PEVP_PKEY_CTX): TOpenSSL_C_INT; cdecl;
@@ -6196,10 +6196,10 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType129 = ^TFuncType129;
-  PPTFuncType129 = ^PTFuncType129;
-  PTFuncType130 = ^TFuncType130;
-  PPTFuncType130 = ^PTFuncType130;
+  PFuncType129 = ^TFuncType129;
+  PPFuncType129 = ^PFuncType129;
+  PFuncType130 = ^TFuncType130;
+  PPFuncType130 = ^PFuncType130;
   {end of auto-generated forward references}
 
   TFuncType129 = function(ctx: PEVP_PKEY_CTX; type_: TOpenSSL_C_INT; p1: TOpenSSL_C_INT; p2: pointer): TOpenSSL_C_INT; cdecl;
@@ -6219,8 +6219,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType131 = ^TFuncType131;
-  PPTFuncType131 = ^PTFuncType131;
+  PFuncType131 = ^TFuncType131;
+  PPFuncType131 = ^PFuncType131;
   {end of auto-generated forward references}
 
   TFuncType131 = function(ctx: PEVP_MD_CTX; sig: Pbyte; siglen: POpenSSL_C_SIZET; tbs: Pbyte; tbslen: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
@@ -6239,8 +6239,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType132 = ^TFuncType132;
-  PPTFuncType132 = ^PTFuncType132;
+  PFuncType132 = ^TFuncType132;
+  PPFuncType132 = ^PFuncType132;
   {end of auto-generated forward references}
 
   TFuncType132 = function(ctx: PEVP_MD_CTX; sig: Pbyte; siglen: TOpenSSL_C_SIZET; tbs: Pbyte; tbslen: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
@@ -6259,8 +6259,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType133 = ^TFuncType133;
-  PPTFuncType133 = ^PTFuncType133;
+  PFuncType133 = ^TFuncType133;
+  PPFuncType133 = ^PFuncType133;
   {end of auto-generated forward references}
 
   TFuncType133 = function(pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
@@ -6279,8 +6279,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType134 = ^TFuncType134;
-  PPTFuncType134 = ^PTFuncType134;
+  PFuncType134 = ^TFuncType134;
+  PPFuncType134 = ^PFuncType134;
   {end of auto-generated forward references}
 
   TFuncType134 = function(pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
@@ -6299,8 +6299,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType135 = ^TFuncType135;
-  PPTFuncType135 = ^PTFuncType135;
+  PFuncType135 = ^TFuncType135;
+  PPFuncType135 = ^PFuncType135;
   {end of auto-generated forward references}
 
   TFuncType135 = function(pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
@@ -6319,8 +6319,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType136 = ^TFuncType136;
-  PPTFuncType136 = ^PTFuncType136;
+  PFuncType136 = ^TFuncType136;
+  PPFuncType136 = ^PFuncType136;
   {end of auto-generated forward references}
 
   TFuncType136 = function(ctx: PEVP_PKEY_CTX; mctx: PEVP_MD_CTX): TOpenSSL_C_INT; cdecl;
@@ -6376,8 +6376,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType137 = ^TFuncType137;
-  PPTFuncType137 = ^PTFuncType137;
+  PFuncType137 = ^TFuncType137;
+  PPFuncType137 = ^PFuncType137;
   {end of auto-generated forward references}
 
   TFuncType137 = procedure(keyexch: PEVP_KEYEXCH; data: pointer); cdecl;
@@ -6396,8 +6396,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType138 = ^TFuncType138;
-  PPTFuncType138 = ^PTFuncType138;
+  PFuncType138 = ^TFuncType138;
+  PPFuncType138 = ^PFuncType138;
   {end of auto-generated forward references}
 
   TFuncType138 = procedure(name: PAnsiChar; data: pointer); cdecl;
@@ -6453,7 +6453,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs
@@ -7199,6 +7199,14 @@ begin
 end;
 
 {$endif} { OPENSSL_NO_DEPRECATED_3_0}
+function Load_EVP_Cipher(c: PEVP_CIPHER_CTX; out_: Pbyte; in_: Pbyte; inl: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl;
+begin
+  EVP_Cipher := LoadLibCryptoFunction('EVP_Cipher');
+  if not assigned(EVP_Cipher) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_Cipher');
+  Result := EVP_Cipher(c, out_, in_, inl);
+end;
+
 function Load_EVP_MD_get_type(md: PEVP_MD): TOpenSSL_C_INT; cdecl;
 begin
   EVP_MD_get_type := LoadLibCryptoFunction('EVP_MD_get_type');
@@ -7857,14 +7865,6 @@ begin
 end;
 
 {$endif} {CONST_STRICT}
-function Load_EVP_Cipher(c: PEVP_CIPHER_CTX; out_: Pbyte; in_: Pbyte; inl: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl;
-begin
-  EVP_Cipher := LoadLibCryptoFunction('EVP_Cipher');
-  if not assigned(EVP_Cipher) then
-    EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_Cipher');
-  Result := EVP_Cipher(c, out_, in_, inl);
-end;
-
 function Load_EVP_MD_get_params(digest: PEVP_MD; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl;
 begin
   EVP_MD_get_params := LoadLibCryptoFunction('EVP_MD_get_params');
@@ -13686,6 +13686,7 @@ begin
   EVP_CIPHER_meth_get_get_asn1_params := Load_EVP_CIPHER_meth_get_get_asn1_params;
   EVP_CIPHER_meth_get_ctrl := Load_EVP_CIPHER_meth_get_ctrl;
 {$endif} { OPENSSL_NO_DEPRECATED_3_0}
+  EVP_Cipher := Load_EVP_Cipher;
   EVP_MD_get_type := Load_EVP_MD_get_type;
   EVP_MD_type := Load_EVP_MD_type;
   EVP_MD_nid := Load_EVP_MD_nid;
@@ -13777,7 +13778,6 @@ begin
 {$ifdef CONST_STRICT}
   BIO_set_md := Load_BIO_set_md;
 {$endif} {CONST_STRICT}
-  EVP_Cipher := Load_EVP_Cipher;
   EVP_MD_get_params := Load_EVP_MD_get_params;
   EVP_MD_CTX_set_params := Load_EVP_MD_CTX_set_params;
   EVP_MD_CTX_get_params := Load_EVP_MD_CTX_get_params;

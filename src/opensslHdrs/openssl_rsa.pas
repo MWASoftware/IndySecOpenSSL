@@ -18,7 +18,7 @@
 unit openssl_rsa;
 
 {
-  Generated from OpenSSL 3.0.20 Header File rsa.h - Fri  8 May 12:10:59 BST 2026
+  Generated from OpenSSL 3.0.20 Header File rsa.h - Sun 10 May 22:58:31 BST 2026
 }
 
 interface
@@ -428,8 +428,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType000 = ^TFuncType000;
-  PPTFuncType000 = ^PTFuncType000;
+  PFuncType000 = ^TFuncType000;
+  PPFuncType000 = ^PFuncType000;
   {end of auto-generated forward references}
 
   TFuncType000 = procedure(_param1: TOpenSSL_C_INT; _param2: TOpenSSL_C_INT; _param3: pointer); cdecl;
@@ -906,8 +906,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType001 = ^TFuncType001;
-  PPTFuncType001 = ^PTFuncType001;
+  PFuncType001 = ^TFuncType001;
+  PPFuncType001 = ^PFuncType001;
   {end of auto-generated forward references}
 
   TFuncType001 = function(flen: TOpenSSL_C_INT; from_: Pbyte; to_: Pbyte; rsa: PRSA; padding: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
@@ -926,8 +926,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType002 = ^TFuncType002;
-  PPTFuncType002 = ^PTFuncType002;
+  PFuncType002 = ^TFuncType002;
+  PPFuncType002 = ^PFuncType002;
   {end of auto-generated forward references}
 
   TFuncType002 = function(flen: TOpenSSL_C_INT; from_: Pbyte; to_: Pbyte; rsa: PRSA; padding: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
@@ -946,8 +946,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType003 = ^TFuncType003;
-  PPTFuncType003 = ^PTFuncType003;
+  PFuncType003 = ^TFuncType003;
+  PPFuncType003 = ^PFuncType003;
   {end of auto-generated forward references}
 
   TFuncType003 = function(flen: TOpenSSL_C_INT; from_: Pbyte; to_: Pbyte; rsa: PRSA; padding: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
@@ -966,8 +966,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType004 = ^TFuncType004;
-  PPTFuncType004 = ^PTFuncType004;
+  PFuncType004 = ^TFuncType004;
+  PPFuncType004 = ^PFuncType004;
   {end of auto-generated forward references}
 
   TFuncType004 = function(flen: TOpenSSL_C_INT; from_: Pbyte; to_: Pbyte; rsa: PRSA; padding: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
@@ -986,8 +986,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType005 = ^TFuncType005;
-  PPTFuncType005 = ^PTFuncType005;
+  PFuncType005 = ^TFuncType005;
+  PPFuncType005 = ^PFuncType005;
   {end of auto-generated forward references}
 
   TFuncType005 = function(flen: TOpenSSL_C_INT; from_: Pbyte; to_: Pbyte; rsa: PRSA; padding: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
@@ -1006,8 +1006,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType006 = ^TFuncType006;
-  PPTFuncType006 = ^PTFuncType006;
+  PFuncType006 = ^TFuncType006;
+  PPFuncType006 = ^PFuncType006;
   {end of auto-generated forward references}
 
   TFuncType006 = function(flen: TOpenSSL_C_INT; from_: Pbyte; to_: Pbyte; rsa: PRSA; padding: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
@@ -1026,8 +1026,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType007 = ^TFuncType007;
-  PPTFuncType007 = ^PTFuncType007;
+  PFuncType007 = ^TFuncType007;
+  PPFuncType007 = ^PFuncType007;
   {end of auto-generated forward references}
 
   TFuncType007 = function(flen: TOpenSSL_C_INT; from_: Pbyte; to_: Pbyte; rsa: PRSA; padding: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
@@ -1046,8 +1046,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType008 = ^TFuncType008;
-  PPTFuncType008 = ^PTFuncType008;
+  PFuncType008 = ^TFuncType008;
+  PPFuncType008 = ^PFuncType008;
   {end of auto-generated forward references}
 
   TFuncType008 = function(flen: TOpenSSL_C_INT; from_: Pbyte; to_: Pbyte; rsa: PRSA; padding: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
@@ -1066,8 +1066,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType009 = ^TFuncType009;
-  PPTFuncType009 = ^PTFuncType009;
+  PFuncType009 = ^TFuncType009;
+  PPFuncType009 = ^PFuncType009;
   {end of auto-generated forward references}
 
   TFuncType009 = function(r0: PBIGNUM; i: PBIGNUM; rsa: PRSA; ctx: PBN_CTX): TOpenSSL_C_INT; cdecl;
@@ -1086,8 +1086,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType010 = ^TFuncType010;
-  PPTFuncType010 = ^PTFuncType010;
+  PFuncType010 = ^TFuncType010;
+  PPFuncType010 = ^PFuncType010;
   {end of auto-generated forward references}
 
   TFuncType010 = function(r0: PBIGNUM; i: PBIGNUM; rsa: PRSA; ctx: PBN_CTX): TOpenSSL_C_INT; cdecl;
@@ -1106,8 +1106,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType011 = ^TFuncType011;
-  PPTFuncType011 = ^PTFuncType011;
+  PFuncType011 = ^TFuncType011;
+  PPFuncType011 = ^PFuncType011;
   {end of auto-generated forward references}
 
   TFuncType011 = function(r: PBIGNUM; a: PBIGNUM; p: PBIGNUM; m: PBIGNUM; ctx: PBN_CTX; m_ctx: PBN_MONT_CTX): TOpenSSL_C_INT; cdecl;
@@ -1126,8 +1126,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType012 = ^TFuncType012;
-  PPTFuncType012 = ^PTFuncType012;
+  PFuncType012 = ^TFuncType012;
+  PPFuncType012 = ^PFuncType012;
   {end of auto-generated forward references}
 
   TFuncType012 = function(r: PBIGNUM; a: PBIGNUM; p: PBIGNUM; m: PBIGNUM; ctx: PBN_CTX; m_ctx: PBN_MONT_CTX): TOpenSSL_C_INT; cdecl;
@@ -1146,8 +1146,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType013 = ^TFuncType013;
-  PPTFuncType013 = ^PTFuncType013;
+  PFuncType013 = ^TFuncType013;
+  PPFuncType013 = ^PFuncType013;
   {end of auto-generated forward references}
 
   TFuncType013 = function(rsa: PRSA): TOpenSSL_C_INT; cdecl;
@@ -1166,8 +1166,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType014 = ^TFuncType014;
-  PPTFuncType014 = ^PTFuncType014;
+  PFuncType014 = ^TFuncType014;
+  PPFuncType014 = ^PFuncType014;
   {end of auto-generated forward references}
 
   TFuncType014 = function(rsa: PRSA): TOpenSSL_C_INT; cdecl;
@@ -1186,8 +1186,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType015 = ^TFuncType015;
-  PPTFuncType015 = ^PTFuncType015;
+  PFuncType015 = ^TFuncType015;
+  PPFuncType015 = ^PFuncType015;
   {end of auto-generated forward references}
 
   TFuncType015 = function(rsa: PRSA): TOpenSSL_C_INT; cdecl;
@@ -1206,8 +1206,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType016 = ^TFuncType016;
-  PPTFuncType016 = ^PTFuncType016;
+  PFuncType016 = ^TFuncType016;
+  PPFuncType016 = ^PFuncType016;
   {end of auto-generated forward references}
 
   TFuncType016 = function(rsa: PRSA): TOpenSSL_C_INT; cdecl;
@@ -1226,8 +1226,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType017 = ^TFuncType017;
-  PPTFuncType017 = ^PTFuncType017;
+  PFuncType017 = ^TFuncType017;
+  PPFuncType017 = ^PFuncType017;
   {end of auto-generated forward references}
 
   TFuncType017 = function(type_: TOpenSSL_C_INT; m: Pbyte; m_length: TOpenSSL_C_UINT; sigret: Pbyte; siglen: POpenSSL_C_UINT; rsa: PRSA): TOpenSSL_C_INT; cdecl;
@@ -1246,8 +1246,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType018 = ^TFuncType018;
-  PPTFuncType018 = ^PTFuncType018;
+  PFuncType018 = ^TFuncType018;
+  PPFuncType018 = ^PFuncType018;
   {end of auto-generated forward references}
 
   TFuncType018 = function(type_: TOpenSSL_C_INT; m: Pbyte; m_length: TOpenSSL_C_UINT; sigret: Pbyte; siglen: POpenSSL_C_UINT; rsa: PRSA): TOpenSSL_C_INT; cdecl;
@@ -1266,8 +1266,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType019 = ^TFuncType019;
-  PPTFuncType019 = ^PTFuncType019;
+  PFuncType019 = ^TFuncType019;
+  PPFuncType019 = ^PFuncType019;
   {end of auto-generated forward references}
 
   TFuncType019 = function(dtype: TOpenSSL_C_INT; m: Pbyte; m_length: TOpenSSL_C_UINT; sigbuf: Pbyte; siglen: TOpenSSL_C_UINT; rsa: PRSA): TOpenSSL_C_INT; cdecl;
@@ -1286,8 +1286,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType020 = ^TFuncType020;
-  PPTFuncType020 = ^PTFuncType020;
+  PFuncType020 = ^TFuncType020;
+  PPFuncType020 = ^PFuncType020;
   {end of auto-generated forward references}
 
   TFuncType020 = function(dtype: TOpenSSL_C_INT; m: Pbyte; m_length: TOpenSSL_C_UINT; sigbuf: Pbyte; siglen: TOpenSSL_C_UINT; rsa: PRSA): TOpenSSL_C_INT; cdecl;
@@ -1306,8 +1306,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType021 = ^TFuncType021;
-  PPTFuncType021 = ^PTFuncType021;
+  PFuncType021 = ^TFuncType021;
+  PPFuncType021 = ^PFuncType021;
   {end of auto-generated forward references}
 
   TFuncType021 = function(rsa: PRSA; bits: TOpenSSL_C_INT; e: PBIGNUM; cb: PBN_GENCB): TOpenSSL_C_INT; cdecl;
@@ -1326,8 +1326,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType022 = ^TFuncType022;
-  PPTFuncType022 = ^PTFuncType022;
+  PFuncType022 = ^TFuncType022;
+  PPFuncType022 = ^PFuncType022;
   {end of auto-generated forward references}
 
   TFuncType022 = function(rsa: PRSA; bits: TOpenSSL_C_INT; e: PBIGNUM; cb: PBN_GENCB): TOpenSSL_C_INT; cdecl;
@@ -1346,8 +1346,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType023 = ^TFuncType023;
-  PPTFuncType023 = ^PTFuncType023;
+  PFuncType023 = ^TFuncType023;
+  PPFuncType023 = ^PFuncType023;
   {end of auto-generated forward references}
 
   TFuncType023 = function(rsa: PRSA; bits: TOpenSSL_C_INT; primes: TOpenSSL_C_INT; e: PBIGNUM; cb: PBN_GENCB): TOpenSSL_C_INT; cdecl;
@@ -1366,8 +1366,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType024 = ^TFuncType024;
-  PPTFuncType024 = ^PTFuncType024;
+  PFuncType024 = ^TFuncType024;
+  PPFuncType024 = ^PFuncType024;
   {end of auto-generated forward references}
 
   TFuncType024 = function(rsa: PRSA; bits: TOpenSSL_C_INT; primes: TOpenSSL_C_INT; e: PBIGNUM; cb: PBN_GENCB): TOpenSSL_C_INT; cdecl;
@@ -1389,7 +1389,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

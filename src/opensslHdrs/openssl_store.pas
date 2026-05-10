@@ -18,7 +18,7 @@
 unit openssl_store;
 
 {
-  Generated from OpenSSL 3.0.20 Header File store.h - Fri  8 May 12:11:11 BST 2026
+  Generated from OpenSSL 3.0.20 Header File store.h - Sun 10 May 22:58:44 BST 2026
 }
 
 interface
@@ -537,8 +537,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType000 = ^TFuncType000;
-  PPTFuncType000 = ^PTFuncType000;
+  PFuncType000 = ^TFuncType000;
+  PPFuncType000 = ^PFuncType000;
   {end of auto-generated forward references}
 
   TFuncType000 = procedure(loader: POSSL_STORE_LOADER; arg: pointer); cdecl;
@@ -557,8 +557,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType001 = ^TFuncType001;
-  PPTFuncType001 = ^PTFuncType001;
+  PFuncType001 = ^TFuncType001;
+  PPFuncType001 = ^PFuncType001;
   {end of auto-generated forward references}
 
   TFuncType001 = procedure(name: PAnsiChar; data: pointer); cdecl;
@@ -710,8 +710,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType002 = ^TFuncType002;
-  PPTFuncType002 = ^PTFuncType002;
+  PFuncType002 = ^TFuncType002;
+  PPFuncType002 = ^PFuncType002;
   {end of auto-generated forward references}
 
   TFuncType002 = procedure(loader: POSSL_STORE_LOADER; do_arg: pointer); cdecl;
@@ -732,7 +732,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

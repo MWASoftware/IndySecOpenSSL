@@ -18,7 +18,7 @@
 unit openssl_cast;
 
 {
-  Generated from OpenSSL 3.0.20 Header File cast.h - Fri  8 May 12:10:04 BST 2026
+  Generated from OpenSSL 3.0.20 Header File cast.h - Sun 10 May 22:57:34 BST 2026
 }
 
 interface
@@ -55,18 +55,18 @@ type
   {Auto-generated forward references}
   PCAST_LONG = ^TCAST_LONG;
   PPCAST_LONG = ^PCAST_LONG;
-  Pcast_key_st = ^cast_key_st;
+  Pcast_key_st = ^Tcast_key_st;
   PPcast_key_st = ^Pcast_key_st;
   PCAST_KEY = ^TCAST_KEY;
   PPCAST_KEY = ^PCAST_KEY;
   {end of auto-generated forward references}
 
   TCAST_LONG = TOpenSSL_C_UINT;
-  cast_key_st = record 
+  Tcast_key_st = record 
     data: array[0..31] of TOpenSSL_C_UINT;
     short_key: TOpenSSL_C_INT; { Use reduced rounds for short key }
   end;
-  TCAST_KEY = cast_key_st;
+  TCAST_KEY = Tcast_key_st;
     {$endif}
     { OPENSSL_NO_DEPRECATED_3_0 }
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
@@ -116,7 +116,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

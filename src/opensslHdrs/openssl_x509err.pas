@@ -18,7 +18,7 @@
 unit openssl_x509err;
 
 {
-  Generated from OpenSSL 3.0.20 Header File x509err.h - Fri  8 May 12:11:21 BST 2026
+  Generated from OpenSSL 3.0.20 Header File x509err.h - Sun 10 May 22:58:56 BST 2026
 }
 
 interface
@@ -90,7 +90,7 @@ const
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

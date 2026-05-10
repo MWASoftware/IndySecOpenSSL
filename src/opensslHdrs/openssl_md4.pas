@@ -18,7 +18,7 @@
 unit openssl_md4;
 
 {
-  Generated from OpenSSL 3.0.20 Header File md4.h - Fri  8 May 12:10:42 BST 2026
+  Generated from OpenSSL 3.0.20 Header File md4.h - Sun 10 May 22:58:13 BST 2026
 }
 
 interface
@@ -65,13 +65,13 @@ const
 
 type
   {Auto-generated forward references}
-  PMD4state_st = ^MD4state_st;
+  PMD4state_st = ^TMD4state_st;
   PPMD4state_st = ^PMD4state_st;
   PMD4_CTX = ^TMD4_CTX;
   PPMD4_CTX = ^PMD4_CTX;
   {end of auto-generated forward references}
 
-  MD4state_st = record 
+  TMD4state_st = record 
     A: TOpenSSL_C_UINT;
     B: TOpenSSL_C_UINT;
     C: TOpenSSL_C_UINT;
@@ -81,7 +81,7 @@ type
     data: array[0..(64 div 4)-1] of TOpenSSL_C_UINT;
     num: TOpenSSL_C_UINT;
   end;
-  TMD4_CTX = MD4state_st;
+  TMD4_CTX = TMD4state_st;
     {$endif}
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
@@ -122,7 +122,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

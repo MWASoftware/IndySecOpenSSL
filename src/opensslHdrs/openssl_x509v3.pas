@@ -18,7 +18,7 @@
 unit openssl_x509v3;
 
 {
-  Generated from OpenSSL 3.0.20 Header File x509v3.h - Fri  8 May 12:11:25 BST 2026
+  Generated from OpenSSL 3.0.20 Header File x509v3.h - Sun 10 May 22:59:00 BST 2026
 }
 
 interface
@@ -70,15 +70,15 @@ type
   PPX509V3_EXT_R2I = ^PX509V3_EXT_R2I;
   Pv3_ext_method = ^Tv3_ext_method;
   PPv3_ext_method = ^Pv3_ext_method;
-  PTFuncType000 = ^TFuncType000;
-  PPTFuncType000 = ^PTFuncType000;
-  PTFuncType001 = ^TFuncType001;
-  PPTFuncType001 = ^PTFuncType001;
-  PTFuncType002 = ^TFuncType002;
-  PPTFuncType002 = ^PTFuncType002;
-  PTFuncType003 = ^TFuncType003;
-  PPTFuncType003 = ^PTFuncType003;
-  PX509V3_CONF_METHOD_st = ^X509V3_CONF_METHOD_st;
+  PFuncType000 = ^TFuncType000;
+  PPFuncType000 = ^PFuncType000;
+  PFuncType001 = ^TFuncType001;
+  PPFuncType001 = ^PFuncType001;
+  PFuncType002 = ^TFuncType002;
+  PPFuncType002 = ^PFuncType002;
+  PFuncType003 = ^TFuncType003;
+  PPFuncType003 = ^PFuncType003;
+  PX509V3_CONF_METHOD_st = ^TX509V3_CONF_METHOD_st;
   PPX509V3_CONF_METHOD_st = ^PX509V3_CONF_METHOD_st;
   PX509V3_CONF_METHOD = ^TX509V3_CONF_METHOD;
   PPX509V3_CONF_METHOD = ^PX509V3_CONF_METHOD;
@@ -117,13 +117,13 @@ type
   TFuncType001 = function(db: pointer; section: PAnsiChar): Pstack_st_CONF_VALUE; cdecl;
   TFuncType002 = procedure(db: pointer; string_: PAnsiChar); cdecl;
   TFuncType003 = procedure(db: pointer; section: Pstack_st_CONF_VALUE); cdecl;
-  X509V3_CONF_METHOD_st = record 
+  TX509V3_CONF_METHOD_st = record 
     get_string: TFuncType000;
     get_section: TFuncType001;
     free_string: TFuncType002;
     free_section: TFuncType003;
   end;
-  TX509V3_CONF_METHOD = X509V3_CONF_METHOD_st;
+  TX509V3_CONF_METHOD = TX509V3_CONF_METHOD_st;
 
 const
   { Context specific info for producing X509 v3 extensions}
@@ -304,19 +304,19 @@ type
   PPBIT_STRING_BITNAME = ^PBIT_STRING_BITNAME;
   PENUMERATED_NAMES = ^TENUMERATED_NAMES;
   PPENUMERATED_NAMES = ^PENUMERATED_NAMES;
-  PBASIC_CONSTRAINTS_st = ^BASIC_CONSTRAINTS_st;
+  PBASIC_CONSTRAINTS_st = ^TBASIC_CONSTRAINTS_st;
   PPBASIC_CONSTRAINTS_st = ^PBASIC_CONSTRAINTS_st;
   PBASIC_CONSTRAINTS = ^TBASIC_CONSTRAINTS;
   PPBASIC_CONSTRAINTS = ^PBASIC_CONSTRAINTS;
-  PPKEY_USAGE_PERIOD_st = ^PKEY_USAGE_PERIOD_st;
+  PPKEY_USAGE_PERIOD_st = ^TPKEY_USAGE_PERIOD_st;
   PPPKEY_USAGE_PERIOD_st = ^PPKEY_USAGE_PERIOD_st;
   PPKEY_USAGE_PERIOD = ^TPKEY_USAGE_PERIOD;
   PPPKEY_USAGE_PERIOD = ^PPKEY_USAGE_PERIOD;
-  PotherName_st = ^otherName_st;
+  PotherName_st = ^TotherName_st;
   PPotherName_st = ^PotherName_st;
   POTHERNAME = ^TOTHERNAME;
   PPOTHERNAME = ^POTHERNAME;
-  PEDIPartyName_st = ^EDIPartyName_st;
+  PEDIPartyName_st = ^TEDIPartyName_st;
   PPEDIPartyName_st = ^PEDIPartyName_st;
   PEDIPARTYNAME = ^TEDIPARTYNAME;
   PPEDIPARTYNAME = ^PEDIPARTYNAME;
@@ -324,26 +324,26 @@ type
 
   TBIT_STRING_BITNAME = record end;
   TENUMERATED_NAMES = TBIT_STRING_BITNAME;
-  BASIC_CONSTRAINTS_st = record 
+  TBASIC_CONSTRAINTS_st = record 
     ca: TOpenSSL_C_INT;
     pathlen: PASN1_INTEGER;
   end;
-  TBASIC_CONSTRAINTS = BASIC_CONSTRAINTS_st;
-  PKEY_USAGE_PERIOD_st = record 
+  TBASIC_CONSTRAINTS = TBASIC_CONSTRAINTS_st;
+  TPKEY_USAGE_PERIOD_st = record 
     notBefore: PASN1_GENERALIZEDTIME;
     notAfter: PASN1_GENERALIZEDTIME;
   end;
-  TPKEY_USAGE_PERIOD = PKEY_USAGE_PERIOD_st;
-  otherName_st = record 
+  TPKEY_USAGE_PERIOD = TPKEY_USAGE_PERIOD_st;
+  TotherName_st = record 
     type_id: PASN1_OBJECT;
     value: PASN1_TYPE;
   end;
-  TOTHERNAME = otherName_st;
-  EDIPartyName_st = record 
+  TOTHERNAME = TotherName_st;
+  TEDIPartyName_st = record 
     nameAssigner: PASN1_STRING;
     partyName: PASN1_STRING;
   end;
-  TEDIPARTYNAME = EDIPartyName_st;
+  TEDIPARTYNAME = TEDIPartyName_st;
 
 const
   GEN_OTHERNAME = 0;
@@ -358,11 +358,11 @@ const
 
 type
   {Auto-generated forward references}
-  PGENERAL_NAME_st = ^GENERAL_NAME_st;
+  PGENERAL_NAME_st = ^TGENERAL_NAME_st;
   PPGENERAL_NAME_st = ^PGENERAL_NAME_st;
   PGENERAL_NAME = ^TGENERAL_NAME;
   PPGENERAL_NAME = ^PGENERAL_NAME;
-  PACCESS_DESCRIPTION_st = ^ACCESS_DESCRIPTION_st;
+  PACCESS_DESCRIPTION_st = ^TACCESS_DESCRIPTION_st;
   PPACCESS_DESCRIPTION_st = ^PACCESS_DESCRIPTION_st;
   PACCESS_DESCRIPTION = ^TACCESS_DESCRIPTION;
   PPACCESS_DESCRIPTION = ^PACCESS_DESCRIPTION;
@@ -376,7 +376,7 @@ type
   PPsk_ACCESS_DESCRIPTION_copyfunc = ^Psk_ACCESS_DESCRIPTION_copyfunc;
   {end of auto-generated forward references}
 
-  GENERAL_NAME_st = record 
+  TGENERAL_NAME_st = record 
     type_: TOpenSSL_C_INT;
     d: record 
       case integer of 
@@ -398,12 +398,12 @@ type
         14: (other: PASN1_TYPE); { x400Address }
     end;
   end;
-  TGENERAL_NAME = GENERAL_NAME_st;
-  ACCESS_DESCRIPTION_st = record 
+  TGENERAL_NAME = TGENERAL_NAME_st;
+  TACCESS_DESCRIPTION_st = record 
     method: PASN1_OBJECT;
     location: PGENERAL_NAME;
   end;
-  TACCESS_DESCRIPTION = ACCESS_DESCRIPTION_st;
+  TACCESS_DESCRIPTION = TACCESS_DESCRIPTION_st;
   { clang-format off }
   Tstack_st_ACCESS_DESCRIPTION = record 
   end;
@@ -814,13 +814,13 @@ var
 
 type
   {Auto-generated forward references}
-  PDIST_POINT_NAME_st = ^DIST_POINT_NAME_st;
+  PDIST_POINT_NAME_st = ^TDIST_POINT_NAME_st;
   PPDIST_POINT_NAME_st = ^PDIST_POINT_NAME_st;
   PDIST_POINT_NAME = ^TDIST_POINT_NAME;
   PPDIST_POINT_NAME = ^PDIST_POINT_NAME;
   {end of auto-generated forward references}
 
-  DIST_POINT_NAME_st = record 
+  TDIST_POINT_NAME_st = record 
     type_: TOpenSSL_C_INT;
     name: record 
       case integer of 
@@ -829,7 +829,7 @@ type
     end; { If relativename then this contains the full distribution point name }
     dpname: PX509_NAME;
   end;
-  TDIST_POINT_NAME = DIST_POINT_NAME_st;
+  TDIST_POINT_NAME = TDIST_POINT_NAME_st;
 
 const
   { All existing reasons }
@@ -995,7 +995,7 @@ type
   PPCRL_DIST_POINTS = ^PCRL_DIST_POINTS;
   PAUTHORITY_KEYID_st = ^TAUTHORITY_KEYID_st;
   PPAUTHORITY_KEYID_st = ^PAUTHORITY_KEYID_st;
-  PSXNET_ID_st = ^SXNET_ID_st;
+  PSXNET_ID_st = ^TSXNET_ID_st;
   PPSXNET_ID_st = ^PSXNET_ID_st;
   PSXNETID = ^TSXNETID;
   PPSXNETID = ^PSXNETID;
@@ -1016,11 +1016,11 @@ type
     serial: PASN1_INTEGER;
   end;
   { Strong extranet structures }
-  SXNET_ID_st = record 
+  TSXNET_ID_st = record 
     zone: PASN1_INTEGER;
     user: PASN1_OCTET_STRING;
   end;
-  TSXNETID = SXNET_ID_st;
+  TSXNETID = TSXNET_ID_st;
   { clang-format off }
   Tstack_st_SXNETID = record 
   end;
@@ -1146,23 +1146,23 @@ var
 
 type
   {Auto-generated forward references}
-  PSXNET_st = ^SXNET_st;
+  PSXNET_st = ^TSXNET_st;
   PPSXNET_st = ^PSXNET_st;
   PSXNET = ^TSXNET;
   PPSXNET = ^PSXNET;
-  PISSUER_SIGN_TOOL_st = ^ISSUER_SIGN_TOOL_st;
+  PISSUER_SIGN_TOOL_st = ^TISSUER_SIGN_TOOL_st;
   PPISSUER_SIGN_TOOL_st = ^PISSUER_SIGN_TOOL_st;
   PISSUER_SIGN_TOOL = ^TISSUER_SIGN_TOOL;
   PPISSUER_SIGN_TOOL = ^PISSUER_SIGN_TOOL;
-  PNOTICEREF_st = ^NOTICEREF_st;
+  PNOTICEREF_st = ^TNOTICEREF_st;
   PPNOTICEREF_st = ^PNOTICEREF_st;
   PNOTICEREF = ^TNOTICEREF;
   PPNOTICEREF = ^PNOTICEREF;
-  PUSERNOTICE_st = ^USERNOTICE_st;
+  PUSERNOTICE_st = ^TUSERNOTICE_st;
   PPUSERNOTICE_st = ^PUSERNOTICE_st;
   PUSERNOTICE = ^TUSERNOTICE;
   PPUSERNOTICE = ^PUSERNOTICE;
-  PPOLICYQUALINFO_st = ^POLICYQUALINFO_st;
+  PPOLICYQUALINFO_st = ^TPOLICYQUALINFO_st;
   PPPOLICYQUALINFO_st = ^PPOLICYQUALINFO_st;
   PPOLICYQUALINFO = ^TPOLICYQUALINFO;
   PPPOLICYQUALINFO = ^PPOLICYQUALINFO;
@@ -1176,29 +1176,29 @@ type
   PPsk_POLICYQUALINFO_copyfunc = ^Psk_POLICYQUALINFO_copyfunc;
   {end of auto-generated forward references}
 
-  SXNET_st = record 
+  TSXNET_st = record 
     version: PASN1_INTEGER;
     ids: Pstack_st_SXNETID;
   end;
-  TSXNET = SXNET_st;
-  ISSUER_SIGN_TOOL_st = record 
+  TSXNET = TSXNET_st;
+  TISSUER_SIGN_TOOL_st = record 
     signTool: PASN1_UTF8STRING;
     cATool: PASN1_UTF8STRING;
     signToolCert: PASN1_UTF8STRING;
     cAToolCert: PASN1_UTF8STRING;
   end;
-  TISSUER_SIGN_TOOL = ISSUER_SIGN_TOOL_st;
-  NOTICEREF_st = record 
+  TISSUER_SIGN_TOOL = TISSUER_SIGN_TOOL_st;
+  TNOTICEREF_st = record 
     organization: PASN1_STRING;
     noticenos: Pstack_st_ASN1_INTEGER;
   end;
-  TNOTICEREF = NOTICEREF_st;
-  USERNOTICE_st = record 
+  TNOTICEREF = TNOTICEREF_st;
+  TUSERNOTICE_st = record 
     noticeref: PNOTICEREF;
     exptext: PASN1_STRING;
   end;
-  TUSERNOTICE = USERNOTICE_st;
-  POLICYQUALINFO_st = record 
+  TUSERNOTICE = TUSERNOTICE_st;
+  TPOLICYQUALINFO_st = record 
     pqualid: PASN1_OBJECT;
     d: record 
       case integer of 
@@ -1207,7 +1207,7 @@ type
         2: (other: PASN1_TYPE);
     end;
   end;
-  TPOLICYQUALINFO = POLICYQUALINFO_st;
+  TPOLICYQUALINFO = TPOLICYQUALINFO_st;
   { clang-format off }
   Tstack_st_POLICYQUALINFO = record 
   end;
@@ -1333,7 +1333,7 @@ var
 
 type
   {Auto-generated forward references}
-  PPOLICYINFO_st = ^POLICYINFO_st;
+  PPOLICYINFO_st = ^TPOLICYINFO_st;
   PPPOLICYINFO_st = ^PPOLICYINFO_st;
   PPOLICYINFO = ^TPOLICYINFO;
   PPPOLICYINFO = ^PPOLICYINFO;
@@ -1347,11 +1347,11 @@ type
   PPsk_POLICYINFO_copyfunc = ^Psk_POLICYINFO_copyfunc;
   {end of auto-generated forward references}
 
-  POLICYINFO_st = record 
+  TPOLICYINFO_st = record 
     policyid: PASN1_OBJECT;
     qualifiers: Pstack_st_POLICYQUALINFO;
   end;
-  TPOLICYINFO = POLICYINFO_st;
+  TPOLICYINFO = TPOLICYINFO_st;
   { clang-format off }
   Tstack_st_POLICYINFO = record 
   end;
@@ -1479,7 +1479,7 @@ type
   {Auto-generated forward references}
   PCERTIFICATEPOLICIES = ^TCERTIFICATEPOLICIES;
   PPCERTIFICATEPOLICIES = ^PCERTIFICATEPOLICIES;
-  PPOLICY_MAPPING_st = ^POLICY_MAPPING_st;
+  PPOLICY_MAPPING_st = ^TPOLICY_MAPPING_st;
   PPPOLICY_MAPPING_st = ^PPOLICY_MAPPING_st;
   PPOLICY_MAPPING = ^TPOLICY_MAPPING;
   PPPOLICY_MAPPING = ^PPOLICY_MAPPING;
@@ -1494,11 +1494,11 @@ type
   {end of auto-generated forward references}
 
   TCERTIFICATEPOLICIES = Tstack_st_POLICYINFO;
-  POLICY_MAPPING_st = record 
+  TPOLICY_MAPPING_st = record 
     issuerDomainPolicy: PASN1_OBJECT;
     subjectDomainPolicy: PASN1_OBJECT;
   end;
-  TPOLICY_MAPPING = POLICY_MAPPING_st;
+  TPOLICY_MAPPING = TPOLICY_MAPPING_st;
   { clang-format off }
   Tstack_st_POLICY_MAPPING = record 
   end;
@@ -1626,7 +1626,7 @@ type
   {Auto-generated forward references}
   PPOLICY_MAPPINGS = ^TPOLICY_MAPPINGS;
   PPPOLICY_MAPPINGS = ^PPOLICY_MAPPINGS;
-  PGENERAL_SUBTREE_st = ^GENERAL_SUBTREE_st;
+  PGENERAL_SUBTREE_st = ^TGENERAL_SUBTREE_st;
   PPGENERAL_SUBTREE_st = ^PGENERAL_SUBTREE_st;
   PGENERAL_SUBTREE = ^TGENERAL_SUBTREE;
   PPGENERAL_SUBTREE = ^PGENERAL_SUBTREE;
@@ -1641,12 +1641,12 @@ type
   {end of auto-generated forward references}
 
   TPOLICY_MAPPINGS = Tstack_st_POLICY_MAPPING;
-  GENERAL_SUBTREE_st = record 
+  TGENERAL_SUBTREE_st = record 
     base: PGENERAL_NAME;
     minimum: PASN1_INTEGER;
     maximum: PASN1_INTEGER;
   end;
-  TGENERAL_SUBTREE = GENERAL_SUBTREE_st;
+  TGENERAL_SUBTREE = TGENERAL_SUBTREE_st;
   { clang-format off }
   Tstack_st_GENERAL_SUBTREE = record 
   end;
@@ -1774,15 +1774,15 @@ type
   {Auto-generated forward references}
   PNAME_CONSTRAINTS_st = ^TNAME_CONSTRAINTS_st;
   PPNAME_CONSTRAINTS_st = ^PNAME_CONSTRAINTS_st;
-  PPOLICY_CONSTRAINTS_st = ^POLICY_CONSTRAINTS_st;
+  PPOLICY_CONSTRAINTS_st = ^TPOLICY_CONSTRAINTS_st;
   PPPOLICY_CONSTRAINTS_st = ^PPOLICY_CONSTRAINTS_st;
   PPOLICY_CONSTRAINTS = ^TPOLICY_CONSTRAINTS;
   PPPOLICY_CONSTRAINTS = ^PPOLICY_CONSTRAINTS;
-  PPROXY_POLICY_st = ^PROXY_POLICY_st;
+  PPROXY_POLICY_st = ^TPROXY_POLICY_st;
   PPPROXY_POLICY_st = ^PPROXY_POLICY_st;
   PPROXY_POLICY = ^TPROXY_POLICY;
   PPPROXY_POLICY = ^PPROXY_POLICY;
-  PPROXY_CERT_INFO_EXTENSION_st = ^PROXY_CERT_INFO_EXTENSION_st;
+  PPROXY_CERT_INFO_EXTENSION_st = ^TPROXY_CERT_INFO_EXTENSION_st;
   PPPROXY_CERT_INFO_EXTENSION_st = ^PPROXY_CERT_INFO_EXTENSION_st;
   PPROXY_CERT_INFO_EXTENSION = ^TPROXY_CERT_INFO_EXTENSION;
   PPPROXY_CERT_INFO_EXTENSION = ^PPROXY_CERT_INFO_EXTENSION;
@@ -1792,22 +1792,22 @@ type
     permittedSubtrees: Pstack_st_GENERAL_SUBTREE;
     excludedSubtrees: Pstack_st_GENERAL_SUBTREE;
   end;
-  POLICY_CONSTRAINTS_st = record 
+  TPOLICY_CONSTRAINTS_st = record 
     requireExplicitPolicy: PASN1_INTEGER;
     inhibitPolicyMapping: PASN1_INTEGER;
   end;
-  TPOLICY_CONSTRAINTS = POLICY_CONSTRAINTS_st;
+  TPOLICY_CONSTRAINTS = TPOLICY_CONSTRAINTS_st;
   { Proxy certificate structures, see RFC 3820 }
-  PROXY_POLICY_st = record 
+  TPROXY_POLICY_st = record 
     policyLanguage: PASN1_OBJECT;
     policy: PASN1_OCTET_STRING;
   end;
-  TPROXY_POLICY = PROXY_POLICY_st;
-  PROXY_CERT_INFO_EXTENSION_st = record 
+  TPROXY_POLICY = TPROXY_POLICY_st;
+  TPROXY_CERT_INFO_EXTENSION_st = record 
     pcPathLengthConstraint: PASN1_INTEGER;
     proxyPolicy: PPROXY_POLICY;
   end;
-  TPROXY_CERT_INFO_EXTENSION = PROXY_CERT_INFO_EXTENSION_st;
+  TPROXY_CERT_INFO_EXTENSION = TPROXY_CERT_INFO_EXTENSION_st;
 
 
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
@@ -1956,9 +1956,9 @@ const
 
 type
   {Auto-generated forward references}
-  PTFuncType004 = ^TFuncType004;
-  PPTFuncType004 = ^PTFuncType004;
-  Px509_purpose_st = ^x509_purpose_st;
+  PFuncType004 = ^TFuncType004;
+  PPFuncType004 = ^PFuncType004;
+  Px509_purpose_st = ^Tx509_purpose_st;
   PPx509_purpose_st = ^Px509_purpose_st;
   PX509_PURPOSE = ^TX509_PURPOSE;
   PPX509_PURPOSE = ^PX509_PURPOSE;
@@ -1973,7 +1973,7 @@ type
   {end of auto-generated forward references}
 
   TFuncType004 = function(_param1: Px509_purpose_st; _param2: PX509; _param3: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
-  x509_purpose_st = record 
+  Tx509_purpose_st = record 
     purpose: TOpenSSL_C_INT;
     trust: TOpenSSL_C_INT; { Default trust ID }
     flags: TOpenSSL_C_INT;
@@ -1982,7 +1982,7 @@ type
     sname: PAnsiChar;
     usr_data: pointer;
   end;
-  TX509_PURPOSE = x509_purpose_st;
+  TX509_PURPOSE = Tx509_purpose_st;
   { clang-format off }
   Tstack_st_X509_PURPOSE = record 
   end;
@@ -3109,8 +3109,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType005 = ^TFuncType005;
-  PPTFuncType005 = ^PTFuncType005;
+  PFuncType005 = ^TFuncType005;
+  PPFuncType005 = ^PFuncType005;
   {end of auto-generated forward references}
 
   TFuncType005 = function(_param1: PX509_PURPOSE; _param2: PX509; _param3: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
@@ -3369,17 +3369,17 @@ var
 
 type
   {Auto-generated forward references}
-  PASRange_st = ^ASRange_st;
+  PASRange_st = ^TASRange_st;
   PPASRange_st = ^PASRange_st;
   PASRange = ^TASRange;
   PPASRange = ^PASRange;
   {end of auto-generated forward references}
 
-  ASRange_st = record 
+  TASRange_st = record 
     min: PASN1_INTEGER;
     max: PASN1_INTEGER;
   end;
-  TASRange = ASRange_st;
+  TASRange = TASRange_st;
 
 const
   ASIdOrRange_id = 0;
@@ -3387,7 +3387,7 @@ const
 
 type
   {Auto-generated forward references}
-  PASIdOrRange_st = ^ASIdOrRange_st;
+  PASIdOrRange_st = ^TASIdOrRange_st;
   PPASIdOrRange_st = ^PASIdOrRange_st;
   PASIdOrRange = ^TASIdOrRange;
   PPASIdOrRange = ^PASIdOrRange;
@@ -3401,7 +3401,7 @@ type
   PPsk_ASIdOrRange_copyfunc = ^Psk_ASIdOrRange_copyfunc;
   {end of auto-generated forward references}
 
-  ASIdOrRange_st = record 
+  TASIdOrRange_st = record 
     type_: TOpenSSL_C_INT;
     u: record 
       case integer of 
@@ -3409,7 +3409,7 @@ type
         1: (range: PASRange);
     end;
   end;
-  TASIdOrRange = ASIdOrRange_st;
+  TASIdOrRange = TASIdOrRange_st;
     { clang-format off }
   Tstack_st_ASIdOrRange = record 
   end;
@@ -3469,17 +3469,17 @@ const
 
 type
   {Auto-generated forward references}
-  PASIdentifierChoice_st = ^ASIdentifierChoice_st;
+  PASIdentifierChoice_st = ^TASIdentifierChoice_st;
   PPASIdentifierChoice_st = ^PASIdentifierChoice_st;
   PASIdentifierChoice = ^TASIdentifierChoice;
   PPASIdentifierChoice = ^PASIdentifierChoice;
-  PASIdentifiers_st = ^ASIdentifiers_st;
+  PASIdentifiers_st = ^TASIdentifiers_st;
   PPASIdentifiers_st = ^PASIdentifiers_st;
   PASIdentifiers = ^TASIdentifiers;
   PPASIdentifiers = ^PASIdentifiers;
   {end of auto-generated forward references}
 
-  ASIdentifierChoice_st = record 
+  TASIdentifierChoice_st = record 
     type_: TOpenSSL_C_INT;
     u: record 
       case integer of 
@@ -3487,12 +3487,12 @@ type
         1: (asIdsOrRanges: PASIdOrRanges);
     end;
   end;
-  TASIdentifierChoice = ASIdentifierChoice_st;
-  ASIdentifiers_st = record 
+  TASIdentifierChoice = TASIdentifierChoice_st;
+  TASIdentifiers_st = record 
     asnum: PASIdentifierChoice;
     rdi: PASIdentifierChoice;
   end;
-  TASIdentifiers = ASIdentifiers_st;
+  TASIdentifiers = TASIdentifiers_st;
 
 
     {$ifdef OPENSSL_STATIC_LINK_MODEL}
@@ -3584,17 +3584,17 @@ var
 
 type
   {Auto-generated forward references}
-  PIPAddressRange_st = ^IPAddressRange_st;
+  PIPAddressRange_st = ^TIPAddressRange_st;
   PPIPAddressRange_st = ^PIPAddressRange_st;
   PIPAddressRange = ^TIPAddressRange;
   PPIPAddressRange = ^PIPAddressRange;
   {end of auto-generated forward references}
 
-  IPAddressRange_st = record 
+  TIPAddressRange_st = record 
     min: PASN1_BIT_STRING;
     max: PASN1_BIT_STRING;
   end;
-  TIPAddressRange = IPAddressRange_st;
+  TIPAddressRange = TIPAddressRange_st;
 
 const
   IPAddressOrRange_addressPrefix = 0;
@@ -3602,7 +3602,7 @@ const
 
 type
   {Auto-generated forward references}
-  PIPAddressOrRange_st = ^IPAddressOrRange_st;
+  PIPAddressOrRange_st = ^TIPAddressOrRange_st;
   PPIPAddressOrRange_st = ^PIPAddressOrRange_st;
   PIPAddressOrRange = ^TIPAddressOrRange;
   PPIPAddressOrRange = ^PIPAddressOrRange;
@@ -3616,7 +3616,7 @@ type
   PPsk_IPAddressOrRange_copyfunc = ^Psk_IPAddressOrRange_copyfunc;
   {end of auto-generated forward references}
 
-  IPAddressOrRange_st = record 
+  TIPAddressOrRange_st = record 
     type_: TOpenSSL_C_INT;
     u: record 
       case integer of 
@@ -3624,7 +3624,7 @@ type
         1: (addressRange: PIPAddressRange);
     end;
   end;
-  TIPAddressOrRange = IPAddressOrRange_st;
+  TIPAddressOrRange = TIPAddressOrRange_st;
     { clang-format off }
   Tstack_st_IPAddressOrRange = record 
   end;
@@ -3686,11 +3686,11 @@ const
 
 type
   {Auto-generated forward references}
-  PIPAddressChoice_st = ^IPAddressChoice_st;
+  PIPAddressChoice_st = ^TIPAddressChoice_st;
   PPIPAddressChoice_st = ^PIPAddressChoice_st;
   PIPAddressChoice = ^TIPAddressChoice;
   PPIPAddressChoice = ^PIPAddressChoice;
-  PIPAddressFamily_st = ^IPAddressFamily_st;
+  PIPAddressFamily_st = ^TIPAddressFamily_st;
   PPIPAddressFamily_st = ^PIPAddressFamily_st;
   PIPAddressFamily = ^TIPAddressFamily;
   PPIPAddressFamily = ^PIPAddressFamily;
@@ -3704,7 +3704,7 @@ type
   PPsk_IPAddressFamily_copyfunc = ^Psk_IPAddressFamily_copyfunc;
   {end of auto-generated forward references}
 
-  IPAddressChoice_st = record 
+  TIPAddressChoice_st = record 
     type_: TOpenSSL_C_INT;
     u: record 
       case integer of 
@@ -3712,12 +3712,12 @@ type
         1: (addressesOrRanges: PIPAddressOrRanges);
     end;
   end;
-  TIPAddressChoice = IPAddressChoice_st;
-  IPAddressFamily_st = record 
+  TIPAddressChoice = TIPAddressChoice_st;
+  TIPAddressFamily_st = record 
     addressFamily: PASN1_OCTET_STRING;
     ipAddressChoice: PIPAddressChoice;
   end;
-  TIPAddressFamily = IPAddressFamily_st;
+  TIPAddressFamily = TIPAddressFamily_st;
     { clang-format off }
   Tstack_st_IPAddressFamily = record 
   end;
@@ -4636,7 +4636,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

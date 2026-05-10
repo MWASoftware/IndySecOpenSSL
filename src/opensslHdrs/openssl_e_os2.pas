@@ -18,7 +18,7 @@
 unit openssl_e_os2;
 
 {
-  Generated from OpenSSL 3.0.20 Header File e_os2.h - Fri  8 May 12:10:32 BST 2026
+  Generated from OpenSSL 3.0.20 Header File e_os2.h - Sun 10 May 22:58:03 BST 2026
 }
 
 interface
@@ -343,7 +343,7 @@ type
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

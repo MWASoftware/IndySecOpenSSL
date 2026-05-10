@@ -18,7 +18,7 @@
 unit openssl_fipskey;
 
 {
-  Generated from OpenSSL 3.0.20 Header File fipskey.h - Fri  8 May 12:10:37 BST 2026
+  Generated from OpenSSL 3.0.20 Header File fipskey.h - Sun 10 May 22:58:09 BST 2026
 }
 
 interface
@@ -56,7 +56,7 @@ const
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

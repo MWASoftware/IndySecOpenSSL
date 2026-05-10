@@ -18,7 +18,7 @@
 unit openssl_srp;
 
 {
-  Generated from OpenSSL 3.0.20 Header File srp.h - Fri  8 May 12:11:01 BST 2026
+  Generated from OpenSSL 3.0.20 Header File srp.h - Sun 10 May 22:58:33 BST 2026
 }
 
 interface
@@ -93,7 +93,7 @@ fr) { return (OPENSSL_sk_freefunc)fr; };*)
 
 type
   {Auto-generated forward references}
-  PSRP_gN_cache_st = ^SRP_gN_cache_st;
+  PSRP_gN_cache_st = ^TSRP_gN_cache_st;
   PPSRP_gN_cache_st = ^PSRP_gN_cache_st;
   PSRP_gN_cache = ^TSRP_gN_cache;
   PPSRP_gN_cache = ^PSRP_gN_cache;
@@ -107,11 +107,11 @@ type
   PPsk_SRP_gN_cache_copyfunc = ^Psk_SRP_gN_cache_copyfunc;
   {end of auto-generated forward references}
 
-  SRP_gN_cache_st = record 
+  TSRP_gN_cache_st = record 
     b64_bn: PAnsiChar;
     bn: PBIGNUM;
   end;
-  TSRP_gN_cache = SRP_gN_cache_st;
+  TSRP_gN_cache = TSRP_gN_cache_st;
       { clang-format off }
   Tstack_st_SRP_gN_cache = record 
   end;
@@ -158,7 +158,7 @@ type
 
 type
   {Auto-generated forward references}
-  PSRP_user_pwd_st = ^SRP_user_pwd_st;
+  PSRP_user_pwd_st = ^TSRP_user_pwd_st;
   PPSRP_user_pwd_st = ^PSRP_user_pwd_st;
   PSRP_user_pwd = ^TSRP_user_pwd;
   PPSRP_user_pwd = ^PSRP_user_pwd;
@@ -173,7 +173,7 @@ type
   {end of auto-generated forward references}
 
       { clang-format on }
-  SRP_user_pwd_st = record 
+  TSRP_user_pwd_st = record 
  { Owned by us. }
     id: PAnsiChar;
     s: PBIGNUM;
@@ -182,7 +182,7 @@ type
     N: PBIGNUM; { Owned by us. }
     info: PAnsiChar;
   end;
-  TSRP_user_pwd = SRP_user_pwd_st;
+  TSRP_user_pwd = TSRP_user_pwd_st;
       { clang-format off }
   Tstack_st_SRP_user_pwd = record 
   end;
@@ -332,11 +332,11 @@ var
 
 type
   {Auto-generated forward references}
-  PSRP_VBASE_st = ^SRP_VBASE_st;
+  PSRP_VBASE_st = ^TSRP_VBASE_st;
   PPSRP_VBASE_st = ^PSRP_VBASE_st;
   PSRP_VBASE = ^TSRP_VBASE;
   PPSRP_VBASE = ^PSRP_VBASE;
-  PSRP_gN_st = ^SRP_gN_st;
+  PSRP_gN_st = ^TSRP_gN_st;
   PPSRP_gN_st = ^PSRP_gN_st;
   PSRP_gN = ^TSRP_gN;
   PPSRP_gN = ^PSRP_gN;
@@ -350,23 +350,23 @@ type
   PPsk_SRP_gN_copyfunc = ^Psk_SRP_gN_copyfunc;
   {end of auto-generated forward references}
 
-  SRP_VBASE_st = record 
+  TSRP_VBASE_st = record 
     users_pwd: Pstack_st_SRP_user_pwd;
     gN_cache: Pstack_st_SRP_gN_cache; { to simulate a user }
     seed_key: PAnsiChar;
     default_g: PBIGNUM;
     default_N: PBIGNUM;
   end;
-  TSRP_VBASE = SRP_VBASE_st;
+  TSRP_VBASE = TSRP_VBASE_st;
       
       {* Internal structure storing N and g pair
       }
-  SRP_gN_st = record 
+  TSRP_gN_st = record 
     id: PAnsiChar;
     g: PBIGNUM;
     N: PBIGNUM;
   end;
-  TSRP_gN = SRP_gN_st;
+  TSRP_gN = TSRP_gN_st;
       { clang-format off }
   Tstack_st_SRP_gN = record 
   end;
@@ -567,7 +567,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

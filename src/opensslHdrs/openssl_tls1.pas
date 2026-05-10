@@ -18,7 +18,7 @@
 unit openssl_tls1;
 
 {
-  Generated from OpenSSL 3.0.20 Header File tls1.h - Fri  8 May 12:11:13 BST 2026
+  Generated from OpenSSL 3.0.20 Header File tls1.h - Sun 10 May 22:58:46 BST 2026
 }
 
 interface
@@ -329,8 +329,8 @@ const
 
 type
   {Auto-generated forward references}
-  PTFuncType000 = ^TFuncType000;
-  PPTFuncType000 = ^PTFuncType000;
+  PFuncType000 = ^TFuncType000;
+  PPFuncType000 = ^PFuncType000;
   {end of auto-generated forward references}
 
   TFuncType000 = function(_param1: PSSL; _param2: Pbyte; _param3: Pbyte; _param4: PEVP_CIPHER_CTX; _param5: PEVP_MAC_CTX; _param6: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
@@ -1182,7 +1182,7 @@ type
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

@@ -18,7 +18,7 @@
 unit openssl_asn1;
 
 {
-  Generated from OpenSSL 3.0.20 Header File asn1.h - Fri  8 May 12:09:59 BST 2026
+  Generated from OpenSSL 3.0.20 Header File asn1.h - Sun 10 May 22:57:28 BST 2026
 }
 
 interface
@@ -298,7 +298,7 @@ const
 
 type
   {Auto-generated forward references}
-  PASN1_ENCODING_st = ^ASN1_ENCODING_st;
+  PASN1_ENCODING_st = ^TASN1_ENCODING_st;
   PPASN1_ENCODING_st = ^PASN1_ENCODING_st;
   PASN1_ENCODING = ^TASN1_ENCODING;
   PPASN1_ENCODING = ^PASN1_ENCODING;
@@ -322,12 +322,12 @@ type
   * ASN1 type. This is useful to get round problems with invalid encodings
   * which can break signatures.
   }
-  ASN1_ENCODING_st = record 
+  TASN1_ENCODING_st = record 
     enc: Pbyte; { DER encoding }
     len: TOpenSSL_C_INT; { Length of encoding }
     modified: TOpenSSL_C_INT; { set to 1 if 'enc' is invalid }
   end;
-  TASN1_ENCODING = ASN1_ENCODING_st;
+  TASN1_ENCODING = TASN1_ENCODING_st;
 
 const
   { Used with ASN1 LONG type: if a long is set to this it is omitted }
@@ -903,18 +903,18 @@ var
 
 type
   {Auto-generated forward references}
-  PBIT_STRING_BITNAME_st = ^BIT_STRING_BITNAME_st;
+  PBIT_STRING_BITNAME_st = ^TBIT_STRING_BITNAME_st;
   PPBIT_STRING_BITNAME_st = ^PBIT_STRING_BITNAME_st;
   PBIT_STRING_BITNAME = ^TBIT_STRING_BITNAME;
   PPBIT_STRING_BITNAME = ^PBIT_STRING_BITNAME;
   {end of auto-generated forward references}
 
-  BIT_STRING_BITNAME_st = record 
+  TBIT_STRING_BITNAME_st = record 
     bitnum: TOpenSSL_C_INT;
     lname: PAnsiChar;
     sname: PAnsiChar;
   end;
-  TBIT_STRING_BITNAME = BIT_STRING_BITNAME_st;
+  TBIT_STRING_BITNAME = TBIT_STRING_BITNAME_st;
 
 const
   B_ASN1_TIME = B_ASN1_UTCTIME or (B_ASN1_GENERALIZEDTIME);
@@ -2343,8 +2343,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType000 = ^TFuncType000;
-  PPTFuncType000 = ^PTFuncType000;
+  PFuncType000 = ^TFuncType000;
+  PPFuncType000 = ^PFuncType000;
   {end of auto-generated forward references}
 
   TFuncType000 = function: pointer; cdecl;
@@ -2415,8 +2415,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType001 = ^TFuncType001;
-  PPTFuncType001 = ^PTFuncType001;
+  PFuncType001 = ^TFuncType001;
+  PPFuncType001 = ^PFuncType001;
   {end of auto-generated forward references}
 
   TFuncType001 = function: pointer; cdecl;
@@ -2719,8 +2719,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType002 = ^TFuncType002;
-  PPTFuncType002 = ^PTFuncType002;
+  PFuncType002 = ^TFuncType002;
+  PPFuncType002 = ^PFuncType002;
   {end of auto-generated forward references}
 
   TFuncType002 = function(ctx: PASN1_SCTX): TOpenSSL_C_INT; cdecl;
@@ -2826,7 +2826,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

@@ -18,7 +18,7 @@
 unit openssl_types;
 
 {
-  Generated from OpenSSL 3.0.20 Header File types.h - Fri  8 May 12:11:18 BST 2026
+  Generated from OpenSSL 3.0.20 Header File types.h - Sun 10 May 22:58:53 BST 2026
 }
 
 interface
@@ -868,7 +868,7 @@ type
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

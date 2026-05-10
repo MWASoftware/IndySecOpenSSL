@@ -18,7 +18,7 @@
 unit openssl_mdc2;
 
 {
-  Generated from OpenSSL 3.0.20 Header File mdc2.h - Fri  8 May 12:10:42 BST 2026
+  Generated from OpenSSL 3.0.20 Header File mdc2.h - Sun 10 May 22:58:14 BST 2026
 }
 
 interface
@@ -51,20 +51,20 @@ const
 
 type
   {Auto-generated forward references}
-  Pmdc2_ctx_st = ^mdc2_ctx_st;
+  Pmdc2_ctx_st = ^Tmdc2_ctx_st;
   PPmdc2_ctx_st = ^Pmdc2_ctx_st;
   PMDC2_CTX = ^TMDC2_CTX;
   PPMDC2_CTX = ^PMDC2_CTX;
   {end of auto-generated forward references}
 
-  mdc2_ctx_st = record 
+  Tmdc2_ctx_st = record 
     num: TOpenSSL_C_UINT;
     data: array[0..7] of byte;
     h: TDES_cblock;
     hh: TDES_cblock;
     pad_type: TOpenSSL_C_UINT; { either 1 or 2, default 1 }
   end;
-  TMDC2_CTX = mdc2_ctx_st;
+  TMDC2_CTX = Tmdc2_ctx_st;
     {$endif}
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
@@ -101,7 +101,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs
