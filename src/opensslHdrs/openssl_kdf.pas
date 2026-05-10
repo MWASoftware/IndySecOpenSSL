@@ -18,7 +18,7 @@
 unit openssl_kdf;
 
 {
-  Generated from OpenSSL 3.0.20 Header File kdf.h - Fri  8 May 11:37:43 BST 2026
+  Generated from OpenSSL 3.0.20 Header File kdf.h - Sun 10 May 23:00:11 BST 2026
   With Legacy Support Option
 }
 
@@ -143,8 +143,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType000 = ^TFuncType000;
-  PPTFuncType000 = ^PTFuncType000;
+  PFuncType000 = ^TFuncType000;
+  PPFuncType000 = ^PFuncType000;
   {end of auto-generated forward references}
 
   TFuncType000 = procedure(kdf: PEVP_KDF; arg: pointer); cdecl;
@@ -163,8 +163,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType001 = ^TFuncType001;
-  PPTFuncType001 = ^PTFuncType001;
+  PFuncType001 = ^TFuncType001;
+  PPFuncType001 = ^PFuncType001;
   {end of auto-generated forward references}
 
   TFuncType001 = procedure(name: PAnsiChar; data: pointer); cdecl;
@@ -281,7 +281,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

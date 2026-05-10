@@ -18,7 +18,7 @@
 unit openssl_rc5;
 
 {
-  Generated from OpenSSL 3.0.20 Header File rc5.h - Fri  8 May 11:38:01 BST 2026
+  Generated from OpenSSL 3.0.20 Header File rc5.h - Sun 10 May 23:00:29 BST 2026
   With Legacy Support Option
 }
 
@@ -71,18 +71,18 @@ const
 
 type
   {Auto-generated forward references}
-  Prc5_key_st = ^rc5_key_st;
+  Prc5_key_st = ^Trc5_key_st;
   PPrc5_key_st = ^Prc5_key_st;
   PRC5_32_KEY = ^TRC5_32_KEY;
   PPRC5_32_KEY = ^PRC5_32_KEY;
   {end of auto-generated forward references}
 
-  rc5_key_st = record 
+  Trc5_key_st = record 
  { Number of rounds }
     rounds: TOpenSSL_C_INT;
     data: array[0..(2*(16+1))-1] of TOpenSSL_C_UINT;
   end;
-  TRC5_32_KEY = rc5_key_st;
+  TRC5_32_KEY = Trc5_key_st;
     {$endif}
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
@@ -131,7 +131,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

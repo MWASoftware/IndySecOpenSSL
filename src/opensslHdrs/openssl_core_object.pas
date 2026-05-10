@@ -18,7 +18,7 @@
 unit openssl_core_object;
 
 {
-  Generated from OpenSSL 3.0.20 Header File core_object.h - Fri  8 May 11:37:20 BST 2026
+  Generated from OpenSSL 3.0.20 Header File core_object.h - Sun 10 May 22:59:47 BST 2026
   With Legacy Support Option
 }
 
@@ -59,7 +59,7 @@ const
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

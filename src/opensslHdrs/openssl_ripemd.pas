@@ -18,7 +18,7 @@
 unit openssl_ripemd;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ripemd.h - Fri  8 May 11:38:01 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ripemd.h - Sun 10 May 23:00:29 BST 2026
   With Legacy Support Option
 }
 
@@ -61,13 +61,13 @@ const
 
 type
   {Auto-generated forward references}
-  PRIPEMD160state_st = ^RIPEMD160state_st;
+  PRIPEMD160state_st = ^TRIPEMD160state_st;
   PPRIPEMD160state_st = ^PRIPEMD160state_st;
   PRIPEMD160_CTX = ^TRIPEMD160_CTX;
   PPRIPEMD160_CTX = ^PRIPEMD160_CTX;
   {end of auto-generated forward references}
 
-  RIPEMD160state_st = record 
+  TRIPEMD160state_st = record 
     A: TOpenSSL_C_UINT;
     B: TOpenSSL_C_UINT;
     C: TOpenSSL_C_UINT;
@@ -78,7 +78,7 @@ type
     data: array[0..(64 div 4)-1] of TOpenSSL_C_UINT;
     num: TOpenSSL_C_UINT;
   end;
-  TRIPEMD160_CTX = RIPEMD160state_st;
+  TRIPEMD160_CTX = TRIPEMD160state_st;
     {$endif}
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
@@ -119,7 +119,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

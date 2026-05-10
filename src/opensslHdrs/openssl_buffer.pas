@@ -18,7 +18,7 @@
 unit openssl_buffer;
 
 {
-  Generated from OpenSSL 3.0.20 Header File buffer.h - Fri  8 May 11:37:07 BST 2026
+  Generated from OpenSSL 3.0.20 Header File buffer.h - Sun 10 May 22:59:34 BST 2026
   With Legacy Support Option
 }
 
@@ -106,7 +106,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

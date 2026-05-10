@@ -18,7 +18,7 @@
 unit openssl_symhacks;
 
 {
-  Generated from OpenSSL 3.0.20 Header File symhacks.h - Fri  8 May 11:38:15 BST 2026
+  Generated from OpenSSL 3.0.20 Header File symhacks.h - Sun 10 May 23:00:43 BST 2026
   With Legacy Support Option
 }
 
@@ -72,7 +72,7 @@ const
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

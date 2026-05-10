@@ -18,7 +18,7 @@
 unit openssl_core_dispatch;
 
 {
-  Generated from OpenSSL 3.0.20 Header File core_dispatch.h - Fri  8 May 11:37:19 BST 2026
+  Generated from OpenSSL 3.0.20 Header File core_dispatch.h - Sun 10 May 22:59:46 BST 2026
   With Legacy Support Option
 }
 
@@ -620,12 +620,12 @@ const
 
 type
   {Auto-generated forward references}
-  PTFuncType000 = ^TFuncType000;
-  PPTFuncType000 = ^PTFuncType000;
-  PTFuncType001 = ^TFuncType001;
-  PPTFuncType001 = ^PTFuncType001;
-  PTFuncType002 = ^TFuncType002;
-  PPTFuncType002 = ^PTFuncType002;
+  PFuncType000 = ^TFuncType000;
+  PPFuncType000 = ^PFuncType000;
+  PFuncType001 = ^TFuncType001;
+  PPFuncType001 = ^PFuncType001;
+  PFuncType002 = ^TFuncType002;
+  PPFuncType002 = ^PFuncType002;
   POSSL_FUNC_provider_register_child_cb_fn = ^TOSSL_FUNC_provider_register_child_cb_fn;
   PPOSSL_FUNC_provider_register_child_cb_fn = ^POSSL_FUNC_provider_register_child_cb_fn;
   {end of auto-generated forward references}
@@ -3073,7 +3073,7 @@ type
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

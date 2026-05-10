@@ -18,7 +18,7 @@
 unit openssl_err;
 
 {
-  Generated from OpenSSL 3.0.20 Header File err.h - Fri  8 May 11:37:36 BST 2026
+  Generated from OpenSSL 3.0.20 Header File err.h - Sun 10 May 23:00:03 BST 2026
   With Legacy Support Option
 }
 
@@ -356,11 +356,11 @@ const
 
 type
   {Auto-generated forward references}
-  PERR_string_data_st = ^ERR_string_data_st;
+  PERR_string_data_st = ^TERR_string_data_st;
   PPERR_string_data_st = ^PERR_string_data_st;
   PERR_STRING_DATA = ^TERR_STRING_DATA;
   PPERR_STRING_DATA = ^PERR_STRING_DATA;
-  Plh_ERR_STRING_DATA_dummy = ^lh_ERR_STRING_DATA_dummy;
+  Plh_ERR_STRING_DATA_dummy = ^Tlh_ERR_STRING_DATA_dummy;
   PPlh_ERR_STRING_DATA_dummy = ^Plh_ERR_STRING_DATA_dummy;
   Plhash_st_ERR_STRING_DATA = ^Tlhash_st_ERR_STRING_DATA;
   PPlhash_st_ERR_STRING_DATA = ^Plhash_st_ERR_STRING_DATA;
@@ -372,20 +372,20 @@ type
   PPlh_ERR_STRING_DATA_doallfunc = ^Plh_ERR_STRING_DATA_doallfunc;
   {end of auto-generated forward references}
 
-  ERR_string_data_st = record 
+  TERR_string_data_st = record 
     error: TOpenSSL_C_UINT;
     string_: PAnsiChar;
   end;
-  TERR_STRING_DATA = ERR_string_data_st;
+  TERR_STRING_DATA = TERR_string_data_st;
   { clang-format off }
-  lh_ERR_STRING_DATA_dummy = record 
+  Tlh_ERR_STRING_DATA_dummy = record 
     case integer of 
       0: (d1: pointer);
       1: (d2: TOpenSSL_C_UINT);
       2: (d3: TOpenSSL_C_INT);
   end;
   Tlhash_st_ERR_STRING_DATA = record 
-    dummy: lh_ERR_STRING_DATA_dummy;
+    dummy: Tlh_ERR_STRING_DATA_dummy;
   end;
   Tlh_ERR_STRING_DATA_compfunc = function(a: PERR_STRING_DATA; b: PERR_STRING_DATA): TOpenSSL_C_INT; cdecl;
   Tlh_ERR_STRING_DATA_hashfunc = function(a: PERR_STRING_DATA): TOpenSSL_C_UINT; cdecl;
@@ -631,8 +631,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType000 = ^TFuncType000;
-  PPTFuncType000 = ^PTFuncType000;
+  PFuncType000 = ^TFuncType000;
+  PPFuncType000 = ^PFuncType000;
   {end of auto-generated forward references}
 
   TFuncType000 = function(str: PAnsiChar; len: TOpenSSL_C_SIZET; u: pointer): TOpenSSL_C_INT; cdecl;
@@ -775,7 +775,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

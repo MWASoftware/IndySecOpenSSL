@@ -18,7 +18,7 @@
 unit openssl_blowfish;
 
 {
-  Generated from OpenSSL 3.0.20 Header File blowfish.h - Fri  8 May 11:37:05 BST 2026
+  Generated from OpenSSL 3.0.20 Header File blowfish.h - Sun 10 May 22:59:32 BST 2026
   With Legacy Support Option
 }
 
@@ -69,17 +69,17 @@ const
 
 type
   {Auto-generated forward references}
-  Pbf_key_st = ^bf_key_st;
+  Pbf_key_st = ^Tbf_key_st;
   PPbf_key_st = ^Pbf_key_st;
   PBF_KEY = ^TBF_KEY;
   PPBF_KEY = ^PBF_KEY;
   {end of auto-generated forward references}
 
-  bf_key_st = record 
+  Tbf_key_st = record 
     P: array[0..(16+2)-1] of TOpenSSL_C_UINT;
     S: array[0..(4*256)-1] of TOpenSSL_C_UINT;
   end;
-  TBF_KEY = bf_key_st;
+  TBF_KEY = Tbf_key_st;
     {$endif}
     { OPENSSL_NO_DEPRECATED_3_0 }
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
@@ -133,7 +133,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

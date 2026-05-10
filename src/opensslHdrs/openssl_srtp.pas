@@ -18,7 +18,7 @@
 unit openssl_srtp;
 
 {
-  Generated from OpenSSL 3.0.20 Header File srtp.h - Fri  8 May 11:38:07 BST 2026
+  Generated from OpenSSL 3.0.20 Header File srtp.h - Sun 10 May 23:00:35 BST 2026
   With Legacy Support Option
 }
 
@@ -59,7 +59,7 @@ const
 
 type
   {Auto-generated forward references}
-  Psrtp_protection_profile_st = ^srtp_protection_profile_st;
+  Psrtp_protection_profile_st = ^Tsrtp_protection_profile_st;
   PPsrtp_protection_profile_st = ^Psrtp_protection_profile_st;
   PSRTP_PROTECTION_PROFILE = ^TSRTP_PROTECTION_PROFILE;
   PPSRTP_PROTECTION_PROFILE = ^PSRTP_PROTECTION_PROFILE;
@@ -75,11 +75,11 @@ type
 
   {Moved for ssl.h}
   { SRTP protection profiles for use with the use_srtp extension (RFC 5764)}
-  srtp_protection_profile_st = record 
+  Tsrtp_protection_profile_st = record 
     name: PAnsiChar;
     id: TOpenSSL_C_UINT;
   end;
-  TSRTP_PROTECTION_PROFILE = srtp_protection_profile_st;
+  TSRTP_PROTECTION_PROFILE = Tsrtp_protection_profile_st;
   Tstack_st_SRTP_PROTECTION_PROFILE = record 
   end;
   Tsk_SRTP_PROTECTION_PROFILE_compfunc = function(a: PPSRTP_PROTECTION_PROFILE; b: PPSRTP_PROTECTION_PROFILE): TOpenSSL_C_INT; cdecl;
@@ -127,7 +127,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

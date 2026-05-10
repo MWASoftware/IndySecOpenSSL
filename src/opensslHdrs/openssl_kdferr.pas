@@ -18,7 +18,7 @@
 unit openssl_kdferr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File kdferr.h - Fri  8 May 11:37:43 BST 2026
+  Generated from OpenSSL 3.0.20 Header File kdferr.h - Sun 10 May 23:00:11 BST 2026
   With Legacy Support Option
 }
 
@@ -41,7 +41,7 @@ uses OpenSSLAPI,openssl_cryptoerr_legacy;
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

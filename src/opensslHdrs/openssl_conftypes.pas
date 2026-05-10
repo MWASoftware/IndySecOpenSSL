@@ -18,7 +18,7 @@
 unit openssl_conftypes;
 
 {
-  Generated from OpenSSL 3.0.20 Header File conftypes.h - Fri  8 May 11:37:18 BST 2026
+  Generated from OpenSSL 3.0.20 Header File conftypes.h - Sun 10 May 22:59:45 BST 2026
   With Legacy Support Option
 }
 
@@ -41,24 +41,24 @@ uses OpenSSLAPI,openssl_types,openssl_conf;
 
 type
   {Auto-generated forward references}
-  PTFuncType000 = ^TFuncType000;
-  PPTFuncType000 = ^PTFuncType000;
-  PTFuncType001 = ^TFuncType001;
-  PPTFuncType001 = ^PTFuncType001;
-  PTFuncType002 = ^TFuncType002;
-  PPTFuncType002 = ^PTFuncType002;
-  PTFuncType003 = ^TFuncType003;
-  PPTFuncType003 = ^PTFuncType003;
-  PTFuncType004 = ^TFuncType004;
-  PPTFuncType004 = ^PTFuncType004;
-  PTFuncType005 = ^TFuncType005;
-  PPTFuncType005 = ^PTFuncType005;
-  PTFuncType006 = ^TFuncType006;
-  PPTFuncType006 = ^PTFuncType006;
-  PTFuncType007 = ^TFuncType007;
-  PPTFuncType007 = ^PTFuncType007;
-  PTFuncType008 = ^TFuncType008;
-  PPTFuncType008 = ^PTFuncType008;
+  PFuncType000 = ^TFuncType000;
+  PPFuncType000 = ^PFuncType000;
+  PFuncType001 = ^TFuncType001;
+  PPFuncType001 = ^PFuncType001;
+  PFuncType002 = ^TFuncType002;
+  PPFuncType002 = ^PFuncType002;
+  PFuncType003 = ^TFuncType003;
+  PPFuncType003 = ^PFuncType003;
+  PFuncType004 = ^TFuncType004;
+  PPFuncType004 = ^PFuncType004;
+  PFuncType005 = ^TFuncType005;
+  PPFuncType005 = ^PFuncType005;
+  PFuncType006 = ^TFuncType006;
+  PPFuncType006 = ^PFuncType006;
+  PFuncType007 = ^TFuncType007;
+  PPFuncType007 = ^PFuncType007;
+  PFuncType008 = ^TFuncType008;
+  PPFuncType008 = ^PFuncType008;
   Pconf_method_st = ^Tconf_method_st;
   PPconf_method_st = ^Pconf_method_st;
   Pconf_st = ^Tconf_st;
@@ -102,7 +102,7 @@ type
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

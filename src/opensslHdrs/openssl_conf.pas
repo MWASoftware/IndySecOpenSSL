@@ -18,7 +18,7 @@
 unit openssl_conf;
 
 {
-  Generated from OpenSSL 3.0.20 Header File conf.h - Fri  8 May 11:37:17 BST 2026
+  Generated from OpenSSL 3.0.20 Header File conf.h - Sun 10 May 22:59:44 BST 2026
   With Legacy Support Option
 }
 
@@ -193,7 +193,7 @@ var
 
 type
   {Auto-generated forward references}
-  Plh_CONF_VALUE_dummy = ^lh_CONF_VALUE_dummy;
+  Plh_CONF_VALUE_dummy = ^Tlh_CONF_VALUE_dummy;
   PPlh_CONF_VALUE_dummy = ^Plh_CONF_VALUE_dummy;
   Plhash_st_CONF_VALUE = ^Tlhash_st_CONF_VALUE;
   PPlhash_st_CONF_VALUE = ^Plhash_st_CONF_VALUE;
@@ -205,14 +205,14 @@ type
   PPlh_CONF_VALUE_doallfunc = ^Plh_CONF_VALUE_doallfunc;
   {end of auto-generated forward references}
 
-  lh_CONF_VALUE_dummy = record 
+  Tlh_CONF_VALUE_dummy = record 
     case integer of 
       0: (d1: pointer);
       1: (d2: TOpenSSL_C_UINT);
       2: (d3: TOpenSSL_C_INT);
   end;
   Tlhash_st_CONF_VALUE = record 
-    dummy: lh_CONF_VALUE_dummy;
+    dummy: Tlh_CONF_VALUE_dummy;
   end;
   Tlh_CONF_VALUE_compfunc = function(a: PCONF_VALUE; b: PCONF_VALUE): TOpenSSL_C_INT; cdecl;
   Tlh_CONF_VALUE_hashfunc = function(a: PCONF_VALUE): TOpenSSL_C_UINT; cdecl;
@@ -623,8 +623,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType000 = ^TFuncType000;
-  PPTFuncType000 = ^PTFuncType000;
+  PFuncType000 = ^TFuncType000;
+  PPFuncType000 = ^PFuncType000;
   {end of auto-generated forward references}
 
   TFuncType000 = function(elem: PAnsiChar; len: TOpenSSL_C_INT; usr: pointer): TOpenSSL_C_INT; cdecl;
@@ -648,7 +648,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs
