@@ -18,7 +18,7 @@
 unit openssl_txt_db;
 
 {
-  Generated from OpenSSL 3.0.20 Header File txt_db.h - Fri  8 May 11:38:21 BST 2026
+  Generated from OpenSSL 3.0.20 Header File txt_db.h - Sun 10 May 23:00:52 BST 2026
   With Legacy Support Option
 }
 
@@ -102,16 +102,16 @@ type
 
 type
   {Auto-generated forward references}
-  PTFuncType000 = ^TFuncType000;
-  PPTFuncType000 = ^PTFuncType000;
-  Ptxt_db_st = ^txt_db_st;
+  PFuncType000 = ^TFuncType000;
+  PPFuncType000 = ^PFuncType000;
+  Ptxt_db_st = ^Ttxt_db_st;
   PPtxt_db_st = ^Ptxt_db_st;
   PTXT_DB = ^TTXT_DB;
   PPTXT_DB = ^PTXT_DB;
   {end of auto-generated forward references}
 
   TFuncType000 = function(_param1: POPENSSL_STRING): TOpenSSL_C_INT; cdecl;
-  txt_db_st = record 
+  Ttxt_db_st = record 
     num_fields: TOpenSSL_C_INT;
     data: Pstack_st_OPENSSL_PSTRING;
     index: PPlhash_st_OPENSSL_STRING;
@@ -121,7 +121,7 @@ type
     arg2: TOpenSSL_C_INT;
     arg_row: POPENSSL_STRING;
   end;
-  TTXT_DB = txt_db_st;
+  TTXT_DB = Ttxt_db_st;
 
 
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
@@ -145,8 +145,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType001 = ^TFuncType001;
-  PPTFuncType001 = ^PTFuncType001;
+  PFuncType001 = ^TFuncType001;
+  PPFuncType001 = ^PFuncType001;
   {end of auto-generated forward references}
 
   TFuncType001 = function(_param1: POPENSSL_STRING): TOpenSSL_C_INT; cdecl;
@@ -178,7 +178,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

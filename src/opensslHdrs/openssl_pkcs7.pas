@@ -18,7 +18,7 @@
 unit openssl_pkcs7;
 
 {
-  Generated from OpenSSL 3.0.20 Header File pkcs7.h - Fri  8 May 11:37:58 BST 2026
+  Generated from OpenSSL 3.0.20 Header File pkcs7.h - Sun 10 May 23:00:26 BST 2026
   With Legacy Support Option
 }
 
@@ -49,15 +49,15 @@ uses OpenSSLAPI,openssl_stack,openssl_x509,openssl_asn1,openssl_bio,
 
 type
   {Auto-generated forward references}
-  PPKCS7_CTX_st = ^PKCS7_CTX_st;
+  PPKCS7_CTX_st = ^TPKCS7_CTX_st;
   PPPKCS7_CTX_st = ^PPKCS7_CTX_st;
   PPKCS7_CTX = ^TPKCS7_CTX;
   PPPKCS7_CTX = ^PPKCS7_CTX;
-  Ppkcs7_issuer_and_serial_st = ^pkcs7_issuer_and_serial_st;
+  Ppkcs7_issuer_and_serial_st = ^Tpkcs7_issuer_and_serial_st;
   PPpkcs7_issuer_and_serial_st = ^Ppkcs7_issuer_and_serial_st;
   PPKCS7_ISSUER_AND_SERIAL = ^TPKCS7_ISSUER_AND_SERIAL;
   PPPKCS7_ISSUER_AND_SERIAL = ^PPKCS7_ISSUER_AND_SERIAL;
-  Ppkcs7_signer_info_st = ^pkcs7_signer_info_st;
+  Ppkcs7_signer_info_st = ^Tpkcs7_signer_info_st;
   PPpkcs7_signer_info_st = ^Ppkcs7_signer_info_st;
   PPKCS7_SIGNER_INFO = ^TPKCS7_SIGNER_INFO;
   PPPKCS7_SIGNER_INFO = ^PPKCS7_SIGNER_INFO;
@@ -77,17 +77,17 @@ type
   Digest_Encryption_ID    rsaEncryption
   Key_Encryption_ID       rsaEncryption
   }
-  PKCS7_CTX_st = record 
+  TPKCS7_CTX_st = record 
     libctx: POSSL_LIB_CTX;
     propq: PAnsiChar;
   end;
-  TPKCS7_CTX = PKCS7_CTX_st;
-  pkcs7_issuer_and_serial_st = record 
+  TPKCS7_CTX = TPKCS7_CTX_st;
+  Tpkcs7_issuer_and_serial_st = record 
     issuer: PX509_NAME;
     serial: PASN1_INTEGER;
   end;
-  TPKCS7_ISSUER_AND_SERIAL = pkcs7_issuer_and_serial_st;
-  pkcs7_signer_info_st = record 
+  TPKCS7_ISSUER_AND_SERIAL = Tpkcs7_issuer_and_serial_st;
+  Tpkcs7_signer_info_st = record 
     version: PASN1_INTEGER; { version 1 }
     issuer_and_serial: PPKCS7_ISSUER_AND_SERIAL;
     digest_alg: PX509_ALGOR;
@@ -98,7 +98,7 @@ type
     pkey: PEVP_PKEY;
     ctx: PPKCS7_CTX;
   end;
-  TPKCS7_SIGNER_INFO = pkcs7_signer_info_st;
+  TPKCS7_SIGNER_INFO = Tpkcs7_signer_info_st;
   { clang-format off }
   Tstack_st_PKCS7_SIGNER_INFO = record 
   end;
@@ -228,7 +228,7 @@ var
 
 type
   {Auto-generated forward references}
-  Ppkcs7_recip_info_st = ^pkcs7_recip_info_st;
+  Ppkcs7_recip_info_st = ^Tpkcs7_recip_info_st;
   PPpkcs7_recip_info_st = ^Ppkcs7_recip_info_st;
   PPKCS7_RECIP_INFO = ^TPKCS7_RECIP_INFO;
   PPPKCS7_RECIP_INFO = ^PPKCS7_RECIP_INFO;
@@ -242,7 +242,7 @@ type
   PPsk_PKCS7_RECIP_INFO_copyfunc = ^Psk_PKCS7_RECIP_INFO_copyfunc;
   {end of auto-generated forward references}
 
-  pkcs7_recip_info_st = record 
+  Tpkcs7_recip_info_st = record 
     version: PASN1_INTEGER; { version 0 }
     issuer_and_serial: PPKCS7_ISSUER_AND_SERIAL;
     key_enc_algor: PX509_ALGOR;
@@ -250,7 +250,7 @@ type
     cert: PX509; { get the pub-key from this }
     ctx: PPKCS7_CTX;
   end;
-  TPKCS7_RECIP_INFO = pkcs7_recip_info_st;
+  TPKCS7_RECIP_INFO = Tpkcs7_recip_info_st;
   { clang-format off }
   Tstack_st_PKCS7_RECIP_INFO = record 
   end;
@@ -376,86 +376,37 @@ var
 
 type
   {Auto-generated forward references}
-  Ppkcs7_signed_st = ^pkcs7_signed_st;
+  Ppkcs7_st = ^Tpkcs7_st;
+  PPpkcs7_st = ^Ppkcs7_st;
+  Ppkcs7_signed_st = ^Tpkcs7_signed_st;
   PPpkcs7_signed_st = ^Ppkcs7_signed_st;
   PPKCS7_SIGNED = ^TPKCS7_SIGNED;
   PPPKCS7_SIGNED = ^PPKCS7_SIGNED;
-  Ppkcs7_enc_content_st = ^pkcs7_enc_content_st;
+  Ppkcs7_enc_content_st = ^Tpkcs7_enc_content_st;
   PPpkcs7_enc_content_st = ^Ppkcs7_enc_content_st;
   PPKCS7_ENC_CONTENT = ^TPKCS7_ENC_CONTENT;
   PPPKCS7_ENC_CONTENT = ^PPKCS7_ENC_CONTENT;
-  Ppkcs7_enveloped_st = ^pkcs7_enveloped_st;
+  Ppkcs7_enveloped_st = ^Tpkcs7_enveloped_st;
   PPpkcs7_enveloped_st = ^Ppkcs7_enveloped_st;
   PPKCS7_ENVELOPE = ^TPKCS7_ENVELOPE;
   PPPKCS7_ENVELOPE = ^PPKCS7_ENVELOPE;
-  Ppkcs7_signedandenveloped_st = ^pkcs7_signedandenveloped_st;
+  Ppkcs7_signedandenveloped_st = ^Tpkcs7_signedandenveloped_st;
   PPpkcs7_signedandenveloped_st = ^Ppkcs7_signedandenveloped_st;
   PPKCS7_SIGN_ENVELOPE = ^TPKCS7_SIGN_ENVELOPE;
   PPPKCS7_SIGN_ENVELOPE = ^PPKCS7_SIGN_ENVELOPE;
-  Ppkcs7_digest_st = ^pkcs7_digest_st;
+  Ppkcs7_digest_st = ^Tpkcs7_digest_st;
   PPpkcs7_digest_st = ^Ppkcs7_digest_st;
   PPKCS7_DIGEST = ^TPKCS7_DIGEST;
   PPPKCS7_DIGEST = ^PPKCS7_DIGEST;
-  Ppkcs7_encrypted_st = ^pkcs7_encrypted_st;
+  Ppkcs7_encrypted_st = ^Tpkcs7_encrypted_st;
   PPpkcs7_encrypted_st = ^Ppkcs7_encrypted_st;
   PPKCS7_ENCRYPT = ^TPKCS7_ENCRYPT;
   PPPKCS7_ENCRYPT = ^PPKCS7_ENCRYPT;
-  Ppkcs7_st = ^pkcs7_st;
-  PPpkcs7_st = ^Ppkcs7_st;
   PPKCS7 = ^TPKCS7;
   PPPKCS7 = ^PPKCS7;
   {end of auto-generated forward references}
 
-  pkcs7_signed_st = record 
-    version: PASN1_INTEGER; { version 1 }
-    md_algs: Pstack_st_X509_ALGOR; { md used }
-    cert: Pstack_st_X509; { [ 0 ] }
-    crl: Pstack_st_X509_CRL; { [ 1 ] }
-    signer_info: Pstack_st_PKCS7_SIGNER_INFO;
-    contents: Ppkcs7_st;
-  end;
-  TPKCS7_SIGNED = pkcs7_signed_st;
-  
-  {* The above structure is very very similar to PKCS7_SIGN_ENVELOPE. How about
-  * merging the two
-  }
-  pkcs7_enc_content_st = record 
-    content_type: PASN1_OBJECT;
-    algorithm: PX509_ALGOR;
-    enc_data: PASN1_OCTET_STRING; { [ 0 ] }
-    cipher: PEVP_CIPHER;
-    ctx: PPKCS7_CTX;
-  end;
-  TPKCS7_ENC_CONTENT = pkcs7_enc_content_st;
-  pkcs7_enveloped_st = record 
-    version: PASN1_INTEGER; { version 0 }
-    recipientinfo: Pstack_st_PKCS7_RECIP_INFO;
-    enc_data: PPKCS7_ENC_CONTENT;
-  end;
-  TPKCS7_ENVELOPE = pkcs7_enveloped_st;
-  pkcs7_signedandenveloped_st = record 
-    version: PASN1_INTEGER; { version 1 }
-    md_algs: Pstack_st_X509_ALGOR; { md used }
-    cert: Pstack_st_X509; { [ 0 ] }
-    crl: Pstack_st_X509_CRL; { [ 1 ] }
-    signer_info: Pstack_st_PKCS7_SIGNER_INFO;
-    enc_data: PPKCS7_ENC_CONTENT;
-    recipientinfo: Pstack_st_PKCS7_RECIP_INFO;
-  end;
-  TPKCS7_SIGN_ENVELOPE = pkcs7_signedandenveloped_st;
-  pkcs7_digest_st = record 
-    version: PASN1_INTEGER; { version 0 }
-    md: PX509_ALGOR; { md used }
-    contents: Ppkcs7_st;
-    digest: PASN1_OCTET_STRING;
-  end;
-  TPKCS7_DIGEST = pkcs7_digest_st;
-  pkcs7_encrypted_st = record 
-    version: PASN1_INTEGER; { version 0 }
-    enc_data: PPKCS7_ENC_CONTENT;
-  end;
-  TPKCS7_ENCRYPT = pkcs7_encrypted_st;
-  pkcs7_st = record 
+  Tpkcs7_st = record 
  
     {* The following is non NULL if it contains ASN1 encoding of this
     * structure
@@ -481,7 +432,56 @@ type
     end;
     ctx: TPKCS7_CTX;
   end;
-  TPKCS7 = pkcs7_st;
+  Tpkcs7_signed_st = record 
+    version: PASN1_INTEGER; { version 1 }
+    md_algs: Pstack_st_X509_ALGOR; { md used }
+    cert: Pstack_st_X509; { [ 0 ] }
+    crl: Pstack_st_X509_CRL; { [ 1 ] }
+    signer_info: Pstack_st_PKCS7_SIGNER_INFO;
+    contents: Ppkcs7_st;
+  end;
+  TPKCS7_SIGNED = Tpkcs7_signed_st;
+  
+  {* The above structure is very very similar to PKCS7_SIGN_ENVELOPE. How about
+  * merging the two
+  }
+  Tpkcs7_enc_content_st = record 
+    content_type: PASN1_OBJECT;
+    algorithm: PX509_ALGOR;
+    enc_data: PASN1_OCTET_STRING; { [ 0 ] }
+    cipher: PEVP_CIPHER;
+    ctx: PPKCS7_CTX;
+  end;
+  TPKCS7_ENC_CONTENT = Tpkcs7_enc_content_st;
+  Tpkcs7_enveloped_st = record 
+    version: PASN1_INTEGER; { version 0 }
+    recipientinfo: Pstack_st_PKCS7_RECIP_INFO;
+    enc_data: PPKCS7_ENC_CONTENT;
+  end;
+  TPKCS7_ENVELOPE = Tpkcs7_enveloped_st;
+  Tpkcs7_signedandenveloped_st = record 
+    version: PASN1_INTEGER; { version 1 }
+    md_algs: Pstack_st_X509_ALGOR; { md used }
+    cert: Pstack_st_X509; { [ 0 ] }
+    crl: Pstack_st_X509_CRL; { [ 1 ] }
+    signer_info: Pstack_st_PKCS7_SIGNER_INFO;
+    enc_data: PPKCS7_ENC_CONTENT;
+    recipientinfo: Pstack_st_PKCS7_RECIP_INFO;
+  end;
+  TPKCS7_SIGN_ENVELOPE = Tpkcs7_signedandenveloped_st;
+  Tpkcs7_digest_st = record 
+    version: PASN1_INTEGER; { version 0 }
+    md: PX509_ALGOR; { md used }
+    contents: Ppkcs7_st;
+    digest: PASN1_OCTET_STRING;
+  end;
+  TPKCS7_DIGEST = Tpkcs7_digest_st;
+  Tpkcs7_encrypted_st = record 
+    version: PASN1_INTEGER; { version 0 }
+    enc_data: PPKCS7_ENC_CONTENT;
+  end;
+  TPKCS7_ENCRYPT = Tpkcs7_encrypted_st;
+  TPKCS7 = Tpkcs7_st;
 
 const
   PKCS7_S_HEADER = 0;
@@ -1173,7 +1173,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

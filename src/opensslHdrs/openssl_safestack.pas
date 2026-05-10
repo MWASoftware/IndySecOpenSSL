@@ -18,7 +18,7 @@
 unit openssl_safestack;
 
 {
-  Generated from OpenSSL 3.0.20 Header File safestack.h - Fri  8 May 11:38:02 BST 2026
+  Generated from OpenSSL 3.0.20 Header File safestack.h - Sun 10 May 23:00:30 BST 2026
   With Legacy Support Option
 }
 
@@ -544,7 +544,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

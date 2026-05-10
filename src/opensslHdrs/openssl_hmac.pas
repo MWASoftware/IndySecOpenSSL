@@ -18,7 +18,7 @@
 unit openssl_hmac;
 
 {
-  Generated from OpenSSL 3.0.20 Header File hmac.h - Fri  8 May 11:37:42 BST 2026
+  Generated from OpenSSL 3.0.20 Header File hmac.h - Sun 10 May 23:00:09 BST 2026
   With Legacy Support Option
 }
 
@@ -140,7 +140,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

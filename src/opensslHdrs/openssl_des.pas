@@ -18,7 +18,7 @@
 unit openssl_des;
 
 {
-  Generated from OpenSSL 3.0.20 Header File des.h - Fri  8 May 11:37:26 BST 2026
+  Generated from OpenSSL 3.0.20 Header File des.h - Sun 10 May 22:59:53 BST 2026
   With Legacy Support Option
 }
 
@@ -64,7 +64,7 @@ type
   PPDES_cblock = ^PDES_cblock;
   Pconst_DES_cblock = ^Tconst_DES_cblock;
   PPconst_DES_cblock = ^Pconst_DES_cblock;
-  PDES_ks = ^DES_ks;
+  PDES_ks = ^TDES_ks;
   PPDES_ks = ^PDES_ks;
   PDES_key_schedule = ^TDES_key_schedule;
   PPDES_key_schedule = ^PDES_key_schedule;
@@ -77,10 +77,10 @@ type
       {* With "const", gcc 2.8.1 on Solaris thinks that DES_cblock * and
       * const_DES_cblock * are incompatible pointer types.
       }
-  DES_ks = record 
+  TDES_ks = record 
     ks: array[0..15] of record case integer of 0: (cblock: TDES_cblock); 1: (deslong: array[0..1] of TDES_LONG);  end;
   end;
-  TDES_key_schedule = DES_ks;
+  TDES_key_schedule = TDES_ks;
   {# define  DES_KEY_SZ (sizeof(DES_cblock))} {Macro Return Type unknown}
   {# define  DES_SCHEDULE_SZ (sizeof(DES_key_schedule))} {Macro Return Type unknown}
 
@@ -320,7 +320,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

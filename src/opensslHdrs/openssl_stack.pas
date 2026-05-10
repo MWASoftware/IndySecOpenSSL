@@ -18,7 +18,7 @@
 unit openssl_stack;
 
 {
-  Generated from OpenSSL 3.0.20 Header File stack.h - Fri  8 May 11:38:12 BST 2026
+  Generated from OpenSSL 3.0.20 Header File stack.h - Sun 10 May 23:00:41 BST 2026
   With Legacy Support Option
 }
 
@@ -108,8 +108,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType000 = ^TFuncType000;
-  PPTFuncType000 = ^PTFuncType000;
+  PFuncType000 = ^TFuncType000;
+  PPFuncType000 = ^PFuncType000;
   {end of auto-generated forward references}
 
   TFuncType000 = procedure(_param1: pointer); cdecl;
@@ -300,7 +300,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

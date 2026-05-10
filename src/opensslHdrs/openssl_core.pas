@@ -18,7 +18,7 @@
 unit openssl_core;
 
 {
-  Generated from OpenSSL 3.0.20 Header File core.h - Fri  8 May 11:37:19 BST 2026
+  Generated from OpenSSL 3.0.20 Header File core.h - Sun 10 May 22:59:47 BST 2026
   With Legacy Support Option
 }
 
@@ -51,8 +51,8 @@ type
   PPossl_core_bio_st = ^Possl_core_bio_st;
   POSSL_CORE_BIO = ^TOSSL_CORE_BIO;
   PPOSSL_CORE_BIO = ^POSSL_CORE_BIO;
-  PTFuncType000 = ^TFuncType000;
-  PPTFuncType000 = ^PTFuncType000;
+  PFuncType000 = ^TFuncType000;
+  PPFuncType000 = ^PFuncType000;
   Possl_dispatch_st = ^Tossl_dispatch_st;
   PPossl_dispatch_st = ^Possl_dispatch_st;
   Possl_item_st = ^Tossl_item_st;
@@ -287,7 +287,7 @@ type
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

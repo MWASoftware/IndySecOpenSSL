@@ -18,7 +18,7 @@
 unit openssl_seed;
 
 {
-  Generated from OpenSSL 3.0.20 Header File seed.h - Fri  8 May 11:38:03 BST 2026
+  Generated from OpenSSL 3.0.20 Header File seed.h - Sun 10 May 23:00:31 BST 2026
   With Legacy Support Option
 }
 
@@ -82,20 +82,20 @@ const
 
 type
   {Auto-generated forward references}
-  Pseed_key_st = ^seed_key_st;
+  Pseed_key_st = ^Tseed_key_st;
   PPseed_key_st = ^Pseed_key_st;
   PSEED_KEY_SCHEDULE = ^TSEED_KEY_SCHEDULE;
   PPSEED_KEY_SCHEDULE = ^PSEED_KEY_SCHEDULE;
   {end of auto-generated forward references}
 
-  seed_key_st = record 
+  Tseed_key_st = record 
     {$if declared(TSEED_LONG)}
       data: array[0..31] of TOpenSSL_C_UINT;
     {$else}
       data: array[0..31] of TOpenSSL_C_UINT;
     {$endif}
   end;
-  TSEED_KEY_SCHEDULE = seed_key_st;
+  TSEED_KEY_SCHEDULE = Tseed_key_st;
     {$endif}
     { OPENSSL_NO_DEPRECATED_3_0 }
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
@@ -145,7 +145,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

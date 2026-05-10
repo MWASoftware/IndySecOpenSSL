@@ -18,7 +18,7 @@
 unit openssl_buffererr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File buffererr.h - Fri  8 May 11:37:06 BST 2026
+  Generated from OpenSSL 3.0.20 Header File buffererr.h - Sun 10 May 22:59:33 BST 2026
   With Legacy Support Option
 }
 
@@ -45,7 +45,7 @@ uses OpenSSLAPI,openssl_symhacks,openssl_cryptoerr_legacy;
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

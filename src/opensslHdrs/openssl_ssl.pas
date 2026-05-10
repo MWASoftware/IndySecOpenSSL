@@ -18,7 +18,7 @@
 unit openssl_ssl;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ssl.h - Fri  8 May 11:38:11 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ssl.h - Sun 10 May 23:00:39 BST 2026
   With Legacy Support Option
 }
 
@@ -283,24 +283,24 @@ type
 
 type
   {Auto-generated forward references}
-  Plh_SSL_SESSION_dummy = ^lh_SSL_SESSION_dummy;
+  Plh_SSL_SESSION_dummy = ^Tlh_SSL_SESSION_dummy;
   PPlh_SSL_SESSION_dummy = ^Plh_SSL_SESSION_dummy;
   Plhash_st_SSL_SESSION = ^Tlhash_st_SSL_SESSION;
   PPlhash_st_SSL_SESSION = ^Plhash_st_SSL_SESSION;
-  PTFuncType000 = ^TFuncType000;
-  PPTFuncType000 = ^PTFuncType000;
-  PTFuncType001 = ^TFuncType001;
-  PPTFuncType001 = ^PTFuncType001;
+  PFuncType000 = ^TFuncType000;
+  PPFuncType000 = ^PFuncType000;
+  PFuncType001 = ^TFuncType001;
+  PPFuncType001 = ^PFuncType001;
   {end of auto-generated forward references}
 
-  lh_SSL_SESSION_dummy = record 
+  Tlh_SSL_SESSION_dummy = record 
     case integer of 
       0: (d1: pointer);
       1: (d2: TOpenSSL_C_UINT);
       2: (d3: TOpenSSL_C_INT);
   end;
   Tlhash_st_SSL_SESSION = record 
-    dummy: lh_SSL_SESSION_dummy;
+    dummy: Tlh_SSL_SESSION_dummy;
   end;
   TFuncType000 = function(_param1: PSSL_SESSION): TOpenSSL_C_UINT;
   TFuncType001 = function(_param1: PSSL_SESSION; _param2: PSSL_SESSION): TOpenSSL_C_INT;
@@ -322,8 +322,8 @@ type
 
 type
   {Auto-generated forward references}
-  PTFuncType002 = ^TFuncType002;
-  PPTFuncType002 = ^PTFuncType002;
+  PFuncType002 = ^TFuncType002;
+  PPFuncType002 = ^PFuncType002;
   {end of auto-generated forward references}
 
   TFuncType002 = procedure(_param1: PSSL_SESSION);
@@ -333,8 +333,8 @@ type
 
 type
   {Auto-generated forward references}
-  PTFuncType003 = ^TFuncType003;
-  PPTFuncType003 = ^PTFuncType003;
+  PFuncType003 = ^TFuncType003;
+  PPFuncType003 = ^PFuncType003;
   {end of auto-generated forward references}
 
   TFuncType003 = procedure(_param1: PSSL_SESSION; _param2: pointer);
@@ -844,8 +844,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType004 = ^TFuncType004;
-  PPTFuncType004 = ^PTFuncType004;
+  PFuncType004 = ^TFuncType004;
+  PPFuncType004 = ^PFuncType004;
   {end of auto-generated forward references}
 
   TFuncType004 = procedure(write_p: TOpenSSL_C_INT; version: TOpenSSL_C_INT; content_type: TOpenSSL_C_INT; buf: pointer; len: TOpenSSL_C_SIZET; ssl: PSSL; arg: pointer); cdecl;
@@ -864,8 +864,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType005 = ^TFuncType005;
-  PPTFuncType005 = ^PTFuncType005;
+  PFuncType005 = ^TFuncType005;
+  PPFuncType005 = ^PFuncType005;
   {end of auto-generated forward references}
 
   TFuncType005 = procedure(write_p: TOpenSSL_C_INT; version: TOpenSSL_C_INT; content_type: TOpenSSL_C_INT; buf: pointer; len: TOpenSSL_C_SIZET; ssl: PSSL; arg: pointer); cdecl;
@@ -989,8 +989,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType006 = ^TFuncType006;
-  PPTFuncType006 = ^PTFuncType006;
+  PFuncType006 = ^TFuncType006;
+  PPFuncType006 = ^PFuncType006;
   {end of auto-generated forward references}
 
   TFuncType006 = function(ssl: Pssl_st; sess: PSSL_SESSION): TOpenSSL_C_INT; cdecl;
@@ -1009,8 +1009,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType007 = ^TFuncType007;
-  PPTFuncType007 = ^PTFuncType007;
+  PFuncType007 = ^TFuncType007;
+  PPFuncType007 = ^PFuncType007;
   {end of auto-generated forward references}
 
   TFuncType007 = function(ssl: Pssl_st; sess: PSSL_SESSION): TOpenSSL_C_INT; cdecl;
@@ -1029,8 +1029,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType008 = ^TFuncType008;
-  PPTFuncType008 = ^PTFuncType008;
+  PFuncType008 = ^TFuncType008;
+  PPFuncType008 = ^PFuncType008;
   {end of auto-generated forward references}
 
   TFuncType008 = procedure(ctx: Pssl_ctx_st; sess: PSSL_SESSION); cdecl;
@@ -1053,8 +1053,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType009 = ^TFuncType009;
-  PPTFuncType009 = ^PTFuncType009;
+  PFuncType009 = ^TFuncType009;
+  PPFuncType009 = ^PFuncType009;
   {end of auto-generated forward references}
 
   TFuncType009 = function(ssl: Pssl_st; data: Pbyte; len: TOpenSSL_C_INT; copy: POpenSSL_C_INT): PSSL_SESSION; cdecl;
@@ -1073,8 +1073,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType010 = ^TFuncType010;
-  PPTFuncType010 = ^PTFuncType010;
+  PFuncType010 = ^TFuncType010;
+  PPFuncType010 = ^PFuncType010;
   {end of auto-generated forward references}
 
   TFuncType010 = function(ssl: Pssl_st; data: Pbyte; len: TOpenSSL_C_INT; copy: POpenSSL_C_INT): PSSL_SESSION; cdecl;
@@ -1093,8 +1093,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType011 = ^TFuncType011;
-  PPTFuncType011 = ^PTFuncType011;
+  PFuncType011 = ^TFuncType011;
+  PPFuncType011 = ^PFuncType011;
   {end of auto-generated forward references}
 
   TFuncType011 = procedure(ssl: PSSL; type_: TOpenSSL_C_INT; val: TOpenSSL_C_INT); cdecl;
@@ -1117,8 +1117,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType012 = ^TFuncType012;
-  PPTFuncType012 = ^PTFuncType012;
+  PFuncType012 = ^TFuncType012;
+  PPFuncType012 = ^PFuncType012;
   {end of auto-generated forward references}
 
   TFuncType012 = function(ssl: PSSL; x509: PPX509; pkey: PPEVP_PKEY): TOpenSSL_C_INT; cdecl;
@@ -1137,8 +1137,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType013 = ^TFuncType013;
-  PPTFuncType013 = ^PTFuncType013;
+  PFuncType013 = ^TFuncType013;
+  PPFuncType013 = ^PFuncType013;
   {end of auto-generated forward references}
 
   TFuncType013 = function(ssl: PSSL; x509: PPX509; pkey: PPEVP_PKEY): TOpenSSL_C_INT; cdecl;
@@ -1171,8 +1171,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType014 = ^TFuncType014;
-  PPTFuncType014 = ^PTFuncType014;
+  PFuncType014 = ^TFuncType014;
+  PPFuncType014 = ^PFuncType014;
   {end of auto-generated forward references}
 
   TFuncType014 = function(ssl: PSSL; cookie: Pbyte; cookie_len: POpenSSL_C_UINT): TOpenSSL_C_INT; cdecl;
@@ -1191,8 +1191,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType015 = ^TFuncType015;
-  PPTFuncType015 = ^PTFuncType015;
+  PFuncType015 = ^TFuncType015;
+  PPFuncType015 = ^PFuncType015;
   {end of auto-generated forward references}
 
   TFuncType015 = function(ssl: PSSL; cookie: Pbyte; cookie_len: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl;
@@ -1211,8 +1211,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType016 = ^TFuncType016;
-  PPTFuncType016 = ^PTFuncType016;
+  PFuncType016 = ^TFuncType016;
+  PPFuncType016 = ^PFuncType016;
   {end of auto-generated forward references}
 
   TFuncType016 = function(ssl: PSSL; cookie: Pbyte; cookie_len: POpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
@@ -1231,8 +1231,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType017 = ^TFuncType017;
-  PPTFuncType017 = ^PTFuncType017;
+  PFuncType017 = ^TFuncType017;
+  PPFuncType017 = ^PFuncType017;
   {end of auto-generated forward references}
 
   TFuncType017 = function(ssl: PSSL; cookie: Pbyte; cookie_len: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
@@ -2704,8 +2704,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType018 = ^TFuncType018;
-  PPTFuncType018 = ^PTFuncType018;
+  PFuncType018 = ^TFuncType018;
+  PPFuncType018 = ^PFuncType018;
   {end of auto-generated forward references}
 
   TFuncType018 = function(ssl: PSSL; arg: pointer): TOpenSSL_C_INT; cdecl;
@@ -3153,8 +3153,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType019 = ^TFuncType019;
-  PPTFuncType019 = ^PTFuncType019;
+  PFuncType019 = ^TFuncType019;
+  PPFuncType019 = ^PFuncType019;
   {end of auto-generated forward references}
 
   TFuncType019 = function(_param1: PX509_STORE_CTX; _param2: pointer): TOpenSSL_C_INT; cdecl;
@@ -3173,8 +3173,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType020 = ^TFuncType020;
-  PPTFuncType020 = ^PTFuncType020;
+  PFuncType020 = ^TFuncType020;
+  PPFuncType020 = ^PFuncType020;
   {end of auto-generated forward references}
 
   TFuncType020 = function(ssl: PSSL; arg: pointer): TOpenSSL_C_INT; cdecl;
@@ -3427,8 +3427,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType021 = ^TFuncType021;
-  PPTFuncType021 = ^PTFuncType021;
+  PFuncType021 = ^TFuncType021;
+  PPFuncType021 = ^PFuncType021;
   {end of auto-generated forward references}
 
   TFuncType021 = function(_param1: PSSL; _param2: pointer): PAnsiChar; cdecl;
@@ -3447,8 +3447,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType022 = ^TFuncType022;
-  PPTFuncType022 = ^PTFuncType022;
+  PFuncType022 = ^TFuncType022;
+  PPFuncType022 = ^PFuncType022;
   {end of auto-generated forward references}
 
   TFuncType022 = function(_param1: PSSL; _param2: pointer): TOpenSSL_C_INT; cdecl;
@@ -3467,8 +3467,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType023 = ^TFuncType023;
-  PPTFuncType023 = ^PTFuncType023;
+  PFuncType023 = ^TFuncType023;
+  PPFuncType023 = ^PFuncType023;
   {end of auto-generated forward references}
 
   TFuncType023 = function(_param1: PSSL; _param2: POpenSSL_C_INT; _param3: pointer): TOpenSSL_C_INT; cdecl;
@@ -3703,8 +3703,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType024 = ^TFuncType024;
-  PPTFuncType024 = ^PTFuncType024;
+  PFuncType024 = ^TFuncType024;
+  PPFuncType024 = ^PFuncType024;
   {end of auto-generated forward references}
 
   TFuncType024 = procedure; cdecl;
@@ -3727,8 +3727,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType025 = ^TFuncType025;
-  PPTFuncType025 = ^PTFuncType025;
+  PFuncType025 = ^TFuncType025;
+  PPFuncType025 = ^PFuncType025;
   {end of auto-generated forward references}
 
   TFuncType025 = procedure; cdecl;
@@ -4292,8 +4292,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType026 = ^TFuncType026;
-  PPTFuncType026 = ^PTFuncType026;
+  PFuncType026 = ^TFuncType026;
+  PPFuncType026 = ^PFuncType026;
   {end of auto-generated forward references}
 
   TFuncType026 = procedure(ssl: PSSL; type_: TOpenSSL_C_INT; val: TOpenSSL_C_INT); cdecl;
@@ -4445,8 +4445,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType027 = ^TFuncType027;
-  PPTFuncType027 = ^PTFuncType027;
+  PFuncType027 = ^TFuncType027;
+  PPFuncType027 = ^PFuncType027;
   {end of auto-generated forward references}
 
       { NB: the |keylength| is only applicable when is_export is true }
@@ -4466,8 +4466,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType028 = ^TFuncType028;
-  PPTFuncType028 = ^PTFuncType028;
+  PFuncType028 = ^TFuncType028;
+  PPFuncType028 = ^PFuncType028;
   {end of auto-generated forward references}
 
   TFuncType028 = function(ssl: PSSL; is_export: TOpenSSL_C_INT; keylength: TOpenSSL_C_INT): PDH; cdecl;
@@ -4571,8 +4571,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType029 = ^TFuncType029;
-  PPTFuncType029 = ^PTFuncType029;
+  PFuncType029 = ^TFuncType029;
+  PPFuncType029 = ^PFuncType029;
   {end of auto-generated forward references}
 
   TFuncType029 = function(ssl: PSSL; is_forward_secure: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
@@ -4591,8 +4591,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType030 = ^TFuncType030;
-  PPTFuncType030 = ^PTFuncType030;
+  PFuncType030 = ^TFuncType030;
+  PPFuncType030 = ^PFuncType030;
   {end of auto-generated forward references}
 
   TFuncType030 = function(ssl: PSSL; is_forward_secure: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
@@ -4611,8 +4611,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType031 = ^TFuncType031;
-  PPTFuncType031 = ^PTFuncType031;
+  PFuncType031 = ^TFuncType031;
+  PPFuncType031 = ^PFuncType031;
   {end of auto-generated forward references}
 
   TFuncType031 = function(ssl: PSSL; type_: TOpenSSL_C_INT; len: TOpenSSL_C_SIZET; arg: pointer): TOpenSSL_C_SIZET; cdecl;
@@ -4643,8 +4643,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType032 = ^TFuncType032;
-  PPTFuncType032 = ^PTFuncType032;
+  PFuncType032 = ^TFuncType032;
+  PPFuncType032 = ^PFuncType032;
   {end of auto-generated forward references}
 
   TFuncType032 = function(ssl: PSSL; type_: TOpenSSL_C_INT; len: TOpenSSL_C_SIZET; arg: pointer): TOpenSSL_C_SIZET; cdecl;
@@ -5037,8 +5037,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType033 = ^TFuncType033;
-  PPTFuncType033 = ^PTFuncType033;
+  PFuncType033 = ^TFuncType033;
+  PPFuncType033 = ^PFuncType033;
   {end of auto-generated forward references}
 
   TFuncType033 = function(s: PSSL; ctx: PSSL_CTX; op: TOpenSSL_C_INT; bits: TOpenSSL_C_INT; nid: TOpenSSL_C_INT; other: pointer; ex: pointer): TOpenSSL_C_INT; cdecl;
@@ -5057,8 +5057,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType034 = ^TFuncType034;
-  PPTFuncType034 = ^PTFuncType034;
+  PFuncType034 = ^TFuncType034;
+  PPFuncType034 = ^PFuncType034;
   {end of auto-generated forward references}
 
   TFuncType034 = function(s: PSSL; ctx: PSSL_CTX; op: TOpenSSL_C_INT; bits: TOpenSSL_C_INT; nid: TOpenSSL_C_INT; other: pointer; ex: pointer): TOpenSSL_C_INT; cdecl;
@@ -5093,8 +5093,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType035 = ^TFuncType035;
-  PPTFuncType035 = ^PTFuncType035;
+  PFuncType035 = ^TFuncType035;
+  PPFuncType035 = ^PFuncType035;
   {end of auto-generated forward references}
 
   TFuncType035 = function(s: PSSL; ctx: PSSL_CTX; op: TOpenSSL_C_INT; bits: TOpenSSL_C_INT; nid: TOpenSSL_C_INT; other: pointer; ex: pointer): TOpenSSL_C_INT; cdecl;
@@ -5113,8 +5113,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType036 = ^TFuncType036;
-  PPTFuncType036 = ^PTFuncType036;
+  PFuncType036 = ^TFuncType036;
+  PPFuncType036 = ^PFuncType036;
   {end of auto-generated forward references}
 
   TFuncType036 = function(s: PSSL; ctx: PSSL_CTX; op: TOpenSSL_C_INT; bits: TOpenSSL_C_INT; nid: TOpenSSL_C_INT; other: pointer; ex: pointer): TOpenSSL_C_INT; cdecl;
@@ -5327,7 +5327,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs
@@ -6066,7 +6066,7 @@ end;
 
 function SSL_set_app_data(s:PSSL; arg:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_set_ex_data(s,0,Pansichar(arg)));
+  Result := TOpenSSL_C_INT(SSL_set_ex_data(s,0,PAnsiChar(arg)));
 end;
 
 {# define  SSL_get_app_data(s) (SSL_get_ex_data(s, 0))}
@@ -6080,7 +6080,7 @@ end;
 
 function SSL_SESSION_set_app_data(s:PSSL_SESSION; a:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_SESSION_set_ex_data(s,0,Pansichar(a)));
+  Result := TOpenSSL_C_INT(SSL_SESSION_set_ex_data(s,0,PAnsiChar(a)));
 end;
 
 {# define  SSL_SESSION_get_app_data(s) (SSL_SESSION_get_ex_data(s, 0))}
@@ -6101,7 +6101,7 @@ end;
 
 function SSL_CTX_set_app_data(ctx:PSSL_CTX; arg:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_CTX_set_ex_data(ctx,0,Pansichar(arg)));
+  Result := TOpenSSL_C_INT(SSL_CTX_set_ex_data(ctx,0,PAnsiChar(arg)));
 end;
 {$ifndef  OPENSSL_NO_DEPRECATED_1_1_0}
 
@@ -6209,7 +6209,7 @@ end;
 
 function SSL_CTX_set_tmp_dh(ctx:PSSL_CTX; dh:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_SET_TMP_DH,0,Pansichar(dh)));
+  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_SET_TMP_DH,0,PAnsiChar(dh)));
 end;
 {$endif} { OPENSSL_NO_DEPRECATED_3_0}
 
@@ -6232,7 +6232,7 @@ end;
 
 function SSL_set_tmp_dh(ssl:PSSL; dh:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_ctrl(ssl,SSL_CTRL_SET_TMP_DH,0,Pansichar(dh)));
+  Result := TOpenSSL_C_INT(SSL_ctrl(ssl,SSL_CTRL_SET_TMP_DH,0,PAnsiChar(dh)));
 end;
 {$endif} { OPENSSL_NO_DEPRECATED_3_0}
 {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
@@ -6241,14 +6241,14 @@ end;
 
 function SSL_CTX_set_tmp_ecdh(ctx:PSSL_CTX; ecdh:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_SET_TMP_ECDH,0,Pansichar(ecdh)));
+  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_SET_TMP_ECDH,0,PAnsiChar(ecdh)));
 end;
 
 {# define  SSL_set_tmp_ecdh(ssl,ecdh) SSL_ctrl(ssl, SSL_CTRL_SET_TMP_ECDH, 0, (char *)(ecdh))}
 
 function SSL_set_tmp_ecdh(ssl:PSSL; ecdh:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_ctrl(ssl,SSL_CTRL_SET_TMP_ECDH,0,Pansichar(ecdh)));
+  Result := TOpenSSL_C_INT(SSL_ctrl(ssl,SSL_CTRL_SET_TMP_ECDH,0,PAnsiChar(ecdh)));
 end;
 {$endif} { OPENSSL_NO_DEPRECATED_3_0}
 
@@ -6256,7 +6256,7 @@ end;
 
 function SSL_CTX_add_extra_chain_cert(ctx:PSSL_CTX; x509:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_EXTRA_CHAIN_CERT,0,Pansichar(x509)));
+  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_EXTRA_CHAIN_CERT,0,PAnsiChar(x509)));
 end;
 
 {# define  SSL_CTX_get_extra_chain_certs(ctx,px509) SSL_CTX_ctrl(ctx, SSL_CTRL_GET_EXTRA_CHAIN_CERTS, 0, px509)}
@@ -6284,28 +6284,28 @@ end;
 
 function SSL_CTX_set0_chain(ctx:PSSL_CTX; sk:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_CHAIN,0,Pansichar(sk)));
+  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_CHAIN,0,PAnsiChar(sk)));
 end;
 
 {# define  SSL_CTX_set1_chain(ctx,sk) SSL_CTX_ctrl(ctx, SSL_CTRL_CHAIN, 1, (char *)(sk))}
 
 function SSL_CTX_set1_chain(ctx:PSSL_CTX; sk:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_CHAIN,1,Pansichar(sk)));
+  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_CHAIN,1,PAnsiChar(sk)));
 end;
 
 {# define  SSL_CTX_add0_chain_cert(ctx,x509) SSL_CTX_ctrl(ctx, SSL_CTRL_CHAIN_CERT, 0, (char *)(x509))}
 
 function SSL_CTX_add0_chain_cert(ctx:PSSL_CTX; x509:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_CHAIN_CERT,0,Pansichar(x509)));
+  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_CHAIN_CERT,0,PAnsiChar(x509)));
 end;
 
 {# define  SSL_CTX_add1_chain_cert(ctx,x509) SSL_CTX_ctrl(ctx, SSL_CTRL_CHAIN_CERT, 1, (char *)(x509))}
 
 function SSL_CTX_add1_chain_cert(ctx:PSSL_CTX; x509:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_CHAIN_CERT,1,Pansichar(x509)));
+  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_CHAIN_CERT,1,PAnsiChar(x509)));
 end;
 
 {# define  SSL_CTX_get0_chain_certs(ctx,px509) SSL_CTX_ctrl(ctx, SSL_CTRL_GET_CHAIN_CERTS, 0, px509)}
@@ -6333,7 +6333,7 @@ end;
 
 function SSL_CTX_select_current_cert(ctx:PSSL_CTX; x509:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_SELECT_CURRENT_CERT,0,Pansichar(x509)));
+  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_SELECT_CURRENT_CERT,0,PAnsiChar(x509)));
 end;
 
 {# define  SSL_CTX_set_current_cert(ctx,op) SSL_CTX_ctrl(ctx, SSL_CTRL_SET_CURRENT_CERT, op, NULL)}
@@ -6347,70 +6347,70 @@ end;
 
 function SSL_CTX_set0_verify_cert_store(ctx:PSSL_CTX; st:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_SET_VERIFY_CERT_STORE,0,Pansichar(st)));
+  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_SET_VERIFY_CERT_STORE,0,PAnsiChar(st)));
 end;
 
 {# define  SSL_CTX_set1_verify_cert_store(ctx,st) SSL_CTX_ctrl(ctx, SSL_CTRL_SET_VERIFY_CERT_STORE, 1, (char *)(st))}
 
 function SSL_CTX_set1_verify_cert_store(ctx:PSSL_CTX; st:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_SET_VERIFY_CERT_STORE,1,Pansichar(st)));
+  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_SET_VERIFY_CERT_STORE,1,PAnsiChar(st)));
 end;
 
 {# define  SSL_CTX_get0_verify_cert_store(ctx,st) SSL_CTX_ctrl(ctx, SSL_CTRL_GET_VERIFY_CERT_STORE, 0, (char *)(st))}
 
 function SSL_CTX_get0_verify_cert_store(ctx:PSSL_CTX; st:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_GET_VERIFY_CERT_STORE,0,Pansichar(st)));
+  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_GET_VERIFY_CERT_STORE,0,PAnsiChar(st)));
 end;
 
 {# define  SSL_CTX_set0_chain_cert_store(ctx,st) SSL_CTX_ctrl(ctx, SSL_CTRL_SET_CHAIN_CERT_STORE, 0, (char *)(st))}
 
 function SSL_CTX_set0_chain_cert_store(ctx:PSSL_CTX; st:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_SET_CHAIN_CERT_STORE,0,Pansichar(st)));
+  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_SET_CHAIN_CERT_STORE,0,PAnsiChar(st)));
 end;
 
 {# define  SSL_CTX_set1_chain_cert_store(ctx,st) SSL_CTX_ctrl(ctx, SSL_CTRL_SET_CHAIN_CERT_STORE, 1, (char *)(st))}
 
 function SSL_CTX_set1_chain_cert_store(ctx:PSSL_CTX; st:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_SET_CHAIN_CERT_STORE,1,Pansichar(st)));
+  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_SET_CHAIN_CERT_STORE,1,PAnsiChar(st)));
 end;
 
 {# define  SSL_CTX_get0_chain_cert_store(ctx,st) SSL_CTX_ctrl(ctx, SSL_CTRL_GET_CHAIN_CERT_STORE, 0, (char *)(st))}
 
 function SSL_CTX_get0_chain_cert_store(ctx:PSSL_CTX; st:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_GET_CHAIN_CERT_STORE,0,Pansichar(st)));
+  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_GET_CHAIN_CERT_STORE,0,PAnsiChar(st)));
 end;
 
 {# define  SSL_set0_chain(s,sk) SSL_ctrl(s, SSL_CTRL_CHAIN, 0, (char *)(sk))}
 
 function SSL_set0_chain(s:PSSL; sk:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_CHAIN,0,Pansichar(sk)));
+  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_CHAIN,0,PAnsiChar(sk)));
 end;
 
 {# define  SSL_set1_chain(s,sk) SSL_ctrl(s, SSL_CTRL_CHAIN, 1, (char *)(sk))}
 
 function SSL_set1_chain(s:PSSL; sk:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_CHAIN,1,Pansichar(sk)));
+  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_CHAIN,1,PAnsiChar(sk)));
 end;
 
 {# define  SSL_add0_chain_cert(s,x509) SSL_ctrl(s, SSL_CTRL_CHAIN_CERT, 0, (char *)(x509))}
 
 function SSL_add0_chain_cert(s:PSSL; x509:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_CHAIN_CERT,0,Pansichar(x509)));
+  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_CHAIN_CERT,0,PAnsiChar(x509)));
 end;
 
 {# define  SSL_add1_chain_cert(s,x509) SSL_ctrl(s, SSL_CTRL_CHAIN_CERT, 1, (char *)(x509))}
 
 function SSL_add1_chain_cert(s:PSSL; x509:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_CHAIN_CERT,1,Pansichar(x509)));
+  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_CHAIN_CERT,1,PAnsiChar(x509)));
 end;
 
 {# define  SSL_get0_chain_certs(s,px509) SSL_ctrl(s, SSL_CTRL_GET_CHAIN_CERTS, 0, px509)}
@@ -6438,7 +6438,7 @@ end;
 
 function SSL_select_current_cert(s:PSSL; x509:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_SELECT_CURRENT_CERT,0,Pansichar(x509)));
+  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_SELECT_CURRENT_CERT,0,PAnsiChar(x509)));
 end;
 
 {# define  SSL_set_current_cert(s,op) SSL_ctrl(s, SSL_CTRL_SET_CURRENT_CERT, op, NULL)}
@@ -6452,77 +6452,77 @@ end;
 
 function SSL_set0_verify_cert_store(s:PSSL; st:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_SET_VERIFY_CERT_STORE,0,Pansichar(st)));
+  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_SET_VERIFY_CERT_STORE,0,PAnsiChar(st)));
 end;
 
 {# define  SSL_set1_verify_cert_store(s,st) SSL_ctrl(s, SSL_CTRL_SET_VERIFY_CERT_STORE, 1, (char *)(st))}
 
 function SSL_set1_verify_cert_store(s:PSSL; st:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_SET_VERIFY_CERT_STORE,1,Pansichar(st)));
+  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_SET_VERIFY_CERT_STORE,1,PAnsiChar(st)));
 end;
 
 {# define  SSL_get0_verify_cert_store(s,st) SSL_ctrl(s, SSL_CTRL_GET_VERIFY_CERT_STORE, 0, (char *)(st))}
 
 function SSL_get0_verify_cert_store(s:PSSL; st:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_GET_VERIFY_CERT_STORE,0,Pansichar(st)));
+  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_GET_VERIFY_CERT_STORE,0,PAnsiChar(st)));
 end;
 
 {# define  SSL_set0_chain_cert_store(s,st) SSL_ctrl(s, SSL_CTRL_SET_CHAIN_CERT_STORE, 0, (char *)(st))}
 
 function SSL_set0_chain_cert_store(s:PSSL; st:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_SET_CHAIN_CERT_STORE,0,Pansichar(st)));
+  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_SET_CHAIN_CERT_STORE,0,PAnsiChar(st)));
 end;
 
 {# define  SSL_set1_chain_cert_store(s,st) SSL_ctrl(s, SSL_CTRL_SET_CHAIN_CERT_STORE, 1, (char *)(st))}
 
 function SSL_set1_chain_cert_store(s:PSSL; st:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_SET_CHAIN_CERT_STORE,1,Pansichar(st)));
+  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_SET_CHAIN_CERT_STORE,1,PAnsiChar(st)));
 end;
 
 {# define  SSL_get0_chain_cert_store(s,st) SSL_ctrl(s, SSL_CTRL_GET_CHAIN_CERT_STORE, 0, (char *)(st))}
 
 function SSL_get0_chain_cert_store(s:PSSL; st:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_GET_CHAIN_CERT_STORE,0,Pansichar(st)));
+  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_GET_CHAIN_CERT_STORE,0,PAnsiChar(st)));
 end;
 
 {# define  SSL_get1_groups(s,glist) SSL_ctrl(s, SSL_CTRL_GET_GROUPS, 0, (int *)(glist))}
 
 function SSL_get1_groups(s:PSSL; glist:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_GET_GROUPS,0,Pinteger(glist)));
+  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_GET_GROUPS,0,POpenSSL_C_INT(glist)));
 end;
 
 {# define  SSL_CTX_set1_groups(ctx,glist,glistlen) SSL_CTX_ctrl(ctx, SSL_CTRL_SET_GROUPS, glistlen, (int *)(glist))}
 
 function SSL_CTX_set1_groups(ctx:PSSL_CTX; glist:pointer; glistlen:TOpenSSL_C_INT): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_SET_GROUPS,glistlen,Pinteger(glist)));
+  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_SET_GROUPS,glistlen,POpenSSL_C_INT(glist)));
 end;
 
 {# define  SSL_CTX_set1_groups_list(ctx,s) SSL_CTX_ctrl(ctx, SSL_CTRL_SET_GROUPS_LIST, 0, (char *)(s))}
 
 function SSL_CTX_set1_groups_list(ctx:PSSL_CTX; s:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_SET_GROUPS_LIST,0,Pansichar(s)));
+  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_SET_GROUPS_LIST,0,PAnsiChar(s)));
 end;
 
 {# define  SSL_set1_groups(s,glist,glistlen) SSL_ctrl(s, SSL_CTRL_SET_GROUPS, glistlen, (char *)(glist))}
 
 function SSL_set1_groups(s:PSSL; glist:pointer; glistlen:TOpenSSL_C_INT): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_SET_GROUPS,glistlen,Pansichar(glist)));
+  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_SET_GROUPS,glistlen,PAnsiChar(glist)));
 end;
 
 {# define  SSL_set1_groups_list(s,str) SSL_ctrl(s, SSL_CTRL_SET_GROUPS_LIST, 0, (char *)(str))}
 
 function SSL_set1_groups_list(s:PSSL; str:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_SET_GROUPS_LIST,0,Pansichar(str)));
+  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_SET_GROUPS_LIST,0,PAnsiChar(str)));
 end;
 
 {# define  SSL_get_shared_group(s,n) SSL_ctrl(s, SSL_CTRL_GET_SHARED_GROUP, n, NULL)}
@@ -6543,63 +6543,63 @@ end;
 
 function SSL_CTX_set1_sigalgs(ctx:PSSL_CTX; slist:pointer; slistlen:TOpenSSL_C_INT): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_SET_SIGALGS,slistlen,Pinteger(slist)));
+  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_SET_SIGALGS,slistlen,POpenSSL_C_INT(slist)));
 end;
 
 {# define  SSL_CTX_set1_sigalgs_list(ctx,s) SSL_CTX_ctrl(ctx, SSL_CTRL_SET_SIGALGS_LIST, 0, (char *)(s))}
 
 function SSL_CTX_set1_sigalgs_list(ctx:PSSL_CTX; s:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_SET_SIGALGS_LIST,0,Pansichar(s)));
+  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_SET_SIGALGS_LIST,0,PAnsiChar(s)));
 end;
 
 {# define  SSL_set1_sigalgs(s,slist,slistlen) SSL_ctrl(s, SSL_CTRL_SET_SIGALGS, slistlen, (int *)(slist))}
 
 function SSL_set1_sigalgs(s:PSSL; slist:pointer; slistlen:TOpenSSL_C_INT): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_SET_SIGALGS,slistlen,Pinteger(slist)));
+  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_SET_SIGALGS,slistlen,POpenSSL_C_INT(slist)));
 end;
 
 {# define  SSL_set1_sigalgs_list(s,str) SSL_ctrl(s, SSL_CTRL_SET_SIGALGS_LIST, 0, (char *)(str))}
 
 function SSL_set1_sigalgs_list(s:PSSL; str:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_SET_SIGALGS_LIST,0,Pansichar(str)));
+  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_SET_SIGALGS_LIST,0,PAnsiChar(str)));
 end;
 
 {# define  SSL_CTX_set1_client_sigalgs(ctx,slist,slistlen) SSL_CTX_ctrl(ctx, SSL_CTRL_SET_CLIENT_SIGALGS, slistlen, (int *)(slist))}
 
 function SSL_CTX_set1_client_sigalgs(ctx:PSSL_CTX; slist:pointer; slistlen:TOpenSSL_C_INT): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_SET_CLIENT_SIGALGS,slistlen,Pinteger(slist)));
+  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_SET_CLIENT_SIGALGS,slistlen,POpenSSL_C_INT(slist)));
 end;
 
 {# define  SSL_CTX_set1_client_sigalgs_list(ctx,s) SSL_CTX_ctrl(ctx, SSL_CTRL_SET_CLIENT_SIGALGS_LIST, 0, (char *)(s))}
 
 function SSL_CTX_set1_client_sigalgs_list(ctx:PSSL_CTX; s:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_SET_CLIENT_SIGALGS_LIST,0,Pansichar(s)));
+  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_SET_CLIENT_SIGALGS_LIST,0,PAnsiChar(s)));
 end;
 
 {# define  SSL_set1_client_sigalgs(s,slist,slistlen) SSL_ctrl(s, SSL_CTRL_SET_CLIENT_SIGALGS, slistlen, (int *)(slist))}
 
 function SSL_set1_client_sigalgs(s:PSSL; slist:pointer; slistlen:TOpenSSL_C_INT): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_SET_CLIENT_SIGALGS,slistlen,Pinteger(slist)));
+  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_SET_CLIENT_SIGALGS,slistlen,POpenSSL_C_INT(slist)));
 end;
 
 {# define  SSL_set1_client_sigalgs_list(s,str) SSL_ctrl(s, SSL_CTRL_SET_CLIENT_SIGALGS_LIST, 0, (char *)(str))}
 
 function SSL_set1_client_sigalgs_list(s:PSSL; str:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_SET_CLIENT_SIGALGS_LIST,0,Pansichar(str)));
+  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_SET_CLIENT_SIGALGS_LIST,0,PAnsiChar(str)));
 end;
 
 {# define  SSL_get0_certificate_types(s,clist) SSL_ctrl(s, SSL_CTRL_GET_CLIENT_CERT_TYPES, 0, (char *)(clist))}
 
 function SSL_get0_certificate_types(s:PSSL; clist:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_GET_CLIENT_CERT_TYPES,0,Pansichar(clist)));
+  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_GET_CLIENT_CERT_TYPES,0,PAnsiChar(clist)));
 end;
 
 {# define  SSL_CTX_set1_client_certificate_types(ctx,clist,clistlen) SSL_CTX_ctrl(ctx, SSL_CTRL_SET_CLIENT_CERT_TYPES, clistlen,
@@ -6607,14 +6607,14 @@ end;
 
 function SSL_CTX_set1_client_certificate_types(ctx:PSSL_CTX; clist:pointer; clistlen:TOpenSSL_C_INT): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_SET_CLIENT_CERT_TYPES,clistlen,Pansichar(clist)));
+  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_SET_CLIENT_CERT_TYPES,clistlen,PAnsiChar(clist)));
 end;
 
 {# define  SSL_set1_client_certificate_types(s,clist,clistlen) SSL_ctrl(s, SSL_CTRL_SET_CLIENT_CERT_TYPES, clistlen, (char *)(clist))}
 
 function SSL_set1_client_certificate_types(s:PSSL; clist:pointer; clistlen:TOpenSSL_C_INT): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_SET_CLIENT_CERT_TYPES,clistlen,Pansichar(clist)));
+  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_SET_CLIENT_CERT_TYPES,clistlen,PAnsiChar(clist)));
 end;
 
 {# define  SSL_get_signature_nid(s,pn) SSL_ctrl(s, SSL_CTRL_GET_SIGNATURE_NID, 0, pn)}
@@ -6726,35 +6726,35 @@ end;
 
 function SSL_get1_curves(s:PSSL; glist:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_GET_GROUPS,0,Pinteger(glist)));
+  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_GET_GROUPS,0,POpenSSL_C_INT(glist)));
 end;
 
 {# define  SSL_CTX_set1_curves SSL_CTX_set1_groups}
 
 function SSL_CTX_set1_curves(ctx:PSSL_CTX; glist:pointer; glistlen:TOpenSSL_C_INT): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_SET_GROUPS,glistlen,Pinteger(glist)));
+  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_SET_GROUPS,glistlen,POpenSSL_C_INT(glist)));
 end;
 
 {# define  SSL_CTX_set1_curves_list SSL_CTX_set1_groups_list}
 
 function SSL_CTX_set1_curves_list(ctx:PSSL_CTX; s:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_SET_GROUPS_LIST,0,Pansichar(s)));
+  Result := TOpenSSL_C_INT(SSL_CTX_ctrl(ctx,SSL_CTRL_SET_GROUPS_LIST,0,PAnsiChar(s)));
 end;
 
 {# define  SSL_set1_curves SSL_set1_groups}
 
 function SSL_set1_curves(s:PSSL; glist:pointer; glistlen:TOpenSSL_C_INT): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_SET_GROUPS,glistlen,Pansichar(glist)));
+  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_SET_GROUPS,glistlen,PAnsiChar(glist)));
 end;
 
 {# define  SSL_set1_curves_list SSL_set1_groups_list}
 
 function SSL_set1_curves_list(s:PSSL; str:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_SET_GROUPS_LIST,0,Pansichar(str)));
+  Result := TOpenSSL_C_INT(SSL_ctrl(s,SSL_CTRL_SET_GROUPS_LIST,0,PAnsiChar(str)));
 end;
 
 {# define  SSL_get_shared_curve SSL_get_shared_group}

@@ -18,7 +18,7 @@
 unit openssl_x509_vfy;
 
 {
-  Generated from OpenSSL 3.0.20 Header File x509_vfy.h - Fri  8 May 11:38:33 BST 2026
+  Generated from OpenSSL 3.0.20 Header File x509_vfy.h - Sun 10 May 23:01:05 BST 2026
   With Legacy Support Option
 }
 
@@ -494,9 +494,9 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType000 = ^TFuncType000;
-  PPTFuncType000 = ^PTFuncType000;
-  Px509_trust_st = ^x509_trust_st;
+  PFuncType000 = ^TFuncType000;
+  PPFuncType000 = ^PFuncType000;
+  Px509_trust_st = ^Tx509_trust_st;
   PPx509_trust_st = ^Px509_trust_st;
   PX509_TRUST = ^TX509_TRUST;
   PPX509_TRUST = ^PX509_TRUST;
@@ -511,7 +511,7 @@ type
   {end of auto-generated forward references}
 
   TFuncType000 = function(_param1: Px509_trust_st; _param2: PX509; _param3: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
-  x509_trust_st = record 
+  Tx509_trust_st = record 
     trust: TOpenSSL_C_INT;
     flags: TOpenSSL_C_INT;
     check_trust: TFuncType000;
@@ -519,7 +519,7 @@ type
     arg1: TOpenSSL_C_INT;
     arg2: pointer;
   end;
-  TX509_TRUST = x509_trust_st;
+  TX509_TRUST = Tx509_trust_st;
   { clang-format off }
   Tstack_st_X509_TRUST = record 
   end;
@@ -698,8 +698,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType001 = ^TFuncType001;
-  PPTFuncType001 = ^PTFuncType001;
+  PFuncType001 = ^TFuncType001;
+  PPFuncType001 = ^PFuncType001;
   {end of auto-generated forward references}
 
   TFuncType001 = function(_param1: PX509_TRUST; _param2: PX509; _param3: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
@@ -762,10 +762,10 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType002 = ^TFuncType002;
-  PPTFuncType002 = ^PTFuncType002;
-  PTFuncType003 = ^TFuncType003;
-  PPTFuncType003 = ^PTFuncType003;
+  PFuncType002 = ^TFuncType002;
+  PPFuncType002 = ^PFuncType002;
+  PFuncType003 = ^TFuncType003;
+  PPFuncType003 = ^PFuncType003;
   {end of auto-generated forward references}
 
   TFuncType002 = function(_param1: TOpenSSL_C_INT; _param2: PX509; _param3: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
@@ -1525,8 +1525,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType004 = ^TFuncType004;
-  PPTFuncType004 = ^PTFuncType004;
+  PFuncType004 = ^TFuncType004;
+  PPFuncType004 = ^PFuncType004;
   {end of auto-generated forward references}
 
   TFuncType004 = function(ctx: PX509_LOOKUP): TOpenSSL_C_INT; cdecl;
@@ -1545,8 +1545,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType005 = ^TFuncType005;
-  PPTFuncType005 = ^PTFuncType005;
+  PFuncType005 = ^TFuncType005;
+  PPFuncType005 = ^PFuncType005;
   {end of auto-generated forward references}
 
   TFuncType005 = function(ctx: PX509_LOOKUP): TOpenSSL_C_INT; cdecl;
@@ -1565,8 +1565,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType006 = ^TFuncType006;
-  PPTFuncType006 = ^PTFuncType006;
+  PFuncType006 = ^TFuncType006;
+  PPFuncType006 = ^PFuncType006;
   {end of auto-generated forward references}
 
   TFuncType006 = procedure(ctx: PX509_LOOKUP); cdecl;
@@ -1589,8 +1589,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType007 = ^TFuncType007;
-  PPTFuncType007 = ^PTFuncType007;
+  PFuncType007 = ^TFuncType007;
+  PPFuncType007 = ^PFuncType007;
   {end of auto-generated forward references}
 
   TFuncType007 = function(ctx: PX509_LOOKUP): TOpenSSL_C_INT; cdecl;
@@ -1609,8 +1609,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType008 = ^TFuncType008;
-  PPTFuncType008 = ^PTFuncType008;
+  PFuncType008 = ^TFuncType008;
+  PPFuncType008 = ^PFuncType008;
   {end of auto-generated forward references}
 
   TFuncType008 = function(ctx: PX509_LOOKUP): TOpenSSL_C_INT; cdecl;
@@ -1629,8 +1629,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType009 = ^TFuncType009;
-  PPTFuncType009 = ^PTFuncType009;
+  PFuncType009 = ^TFuncType009;
+  PPFuncType009 = ^PFuncType009;
   {end of auto-generated forward references}
 
   TFuncType009 = function(ctx: PX509_LOOKUP): TOpenSSL_C_INT; cdecl;
@@ -1649,8 +1649,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType010 = ^TFuncType010;
-  PPTFuncType010 = ^PTFuncType010;
+  PFuncType010 = ^TFuncType010;
+  PPFuncType010 = ^PFuncType010;
   {end of auto-generated forward references}
 
   TFuncType010 = function(ctx: PX509_LOOKUP): TOpenSSL_C_INT; cdecl;
@@ -2198,7 +2198,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

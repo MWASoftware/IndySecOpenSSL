@@ -18,7 +18,7 @@
 unit openssl_x509v3err;
 
 {
-  Generated from OpenSSL 3.0.20 Header File x509v3err.h - Fri  8 May 11:38:27 BST 2026
+  Generated from OpenSSL 3.0.20 Header File x509v3err.h - Sun 10 May 23:00:58 BST 2026
   With Legacy Support Option
 }
 
@@ -115,7 +115,7 @@ const
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

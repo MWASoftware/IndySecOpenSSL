@@ -18,7 +18,7 @@
 unit openssl_x509;
 
 {
-  Generated from OpenSSL 3.0.20 Header File x509.h - Fri  8 May 11:38:26 BST 2026
+  Generated from OpenSSL 3.0.20 Header File x509.h - Sun 10 May 23:00:57 BST 2026
   With Legacy Support Option
 }
 
@@ -618,7 +618,7 @@ type
   PPstack_st_X509_ALGOR = ^Pstack_st_X509_ALGOR;
   PX509_ALGORS = ^TX509_ALGORS;
   PPX509_ALGORS = ^PX509_ALGORS;
-  PX509_val_st = ^X509_val_st;
+  PX509_val_st = ^TX509_val_st;
   PPX509_val_st = ^PX509_val_st;
   PX509_VAL = ^TX509_VAL;
   PPX509_VAL = ^PX509_VAL;
@@ -646,11 +646,11 @@ type
   end;
   Tstack_st_X509_ALGOR = record end;
   TX509_ALGORS = Tstack_st_X509_ALGOR;
-  X509_val_st = record 
+  TX509_val_st = record 
     notBefore: PASN1_TIME;
     notAfter: PASN1_TIME;
   end;
-  TX509_VAL = X509_val_st;
+  TX509_VAL = TX509_val_st;
   TX509_sig_st = record end;
   TX509_SIG = TX509_sig_st;
   TX509_name_entry_st = record end;
@@ -1148,11 +1148,11 @@ type
   PPX509_crl_info_st = ^PX509_crl_info_st;
   PX509_CRL_INFO = ^TX509_CRL_INFO;
   PPX509_CRL_INFO = ^PX509_CRL_INFO;
-  Pprivate_key_st = ^private_key_st;
+  Pprivate_key_st = ^Tprivate_key_st;
   PPprivate_key_st = ^Pprivate_key_st;
   PX509_PKEY = ^TX509_PKEY;
   PPX509_PKEY = ^PX509_PKEY;
-  PX509_info_st = ^X509_info_st;
+  PX509_info_st = ^TX509_info_st;
   PPX509_info_st = ^PX509_info_st;
   PX509_INFO = ^TX509_INFO;
   PPX509_INFO = ^PX509_INFO;
@@ -1168,7 +1168,7 @@ type
 
   TX509_crl_info_st = record end;
   TX509_CRL_INFO = TX509_crl_info_st;
-  private_key_st = record 
+  Tprivate_key_st = record 
     version: TOpenSSL_C_INT; { The PKCS#8 data types }
     enc_algor: PX509_ALGOR;
     enc_pkey: PASN1_OCTET_STRING; { encrypted pub key }{ When decrypted, the following will not be NULL }
@@ -1178,8 +1178,8 @@ type
     key_free: TOpenSSL_C_INT; { true if we should auto free key_data }{ expanded version of 'enc_algor' }
     cipher: TEVP_CIPHER_INFO;
   end;
-  TX509_PKEY = private_key_st;
-  X509_info_st = record 
+  TX509_PKEY = Tprivate_key_st;
+  TX509_info_st = record 
     x509: PX509;
     crl: PX509_CRL;
     x_pkey: PX509_PKEY;
@@ -1187,7 +1187,7 @@ type
     enc_len: TOpenSSL_C_INT;
     enc_data: PAnsiChar;
   end;
-  TX509_INFO = X509_info_st;
+  TX509_INFO = TX509_info_st;
   { clang-format off }
   Tstack_st_X509_INFO = record 
   end;
@@ -1321,49 +1321,49 @@ var
 
 type
   {Auto-generated forward references}
-  PNetscape_spkac_st = ^Netscape_spkac_st;
+  PNetscape_spkac_st = ^TNetscape_spkac_st;
   PPNetscape_spkac_st = ^PNetscape_spkac_st;
   PNETSCAPE_SPKAC = ^TNETSCAPE_SPKAC;
   PPNETSCAPE_SPKAC = ^PNETSCAPE_SPKAC;
-  PNetscape_spki_st = ^Netscape_spki_st;
+  PNetscape_spki_st = ^TNetscape_spki_st;
   PPNetscape_spki_st = ^PNetscape_spki_st;
   PNETSCAPE_SPKI = ^TNETSCAPE_SPKI;
   PPNETSCAPE_SPKI = ^PNETSCAPE_SPKI;
-  PNetscape_certificate_sequence = ^Netscape_certificate_sequence;
+  PNetscape_certificate_sequence = ^TNetscape_certificate_sequence;
   PPNetscape_certificate_sequence = ^PNetscape_certificate_sequence;
   PNETSCAPE_CERT_SEQUENCE = ^TNETSCAPE_CERT_SEQUENCE;
   PPNETSCAPE_CERT_SEQUENCE = ^PNETSCAPE_CERT_SEQUENCE;
-  PPBEPARAM_st = ^PBEPARAM_st;
+  PPBEPARAM_st = ^TPBEPARAM_st;
   PPPBEPARAM_st = ^PPBEPARAM_st;
   PPBEPARAM = ^TPBEPARAM;
   PPPBEPARAM = ^PPBEPARAM;
-  PPBE2PARAM_st = ^PBE2PARAM_st;
+  PPBE2PARAM_st = ^TPBE2PARAM_st;
   PPPBE2PARAM_st = ^PPBE2PARAM_st;
   PPBE2PARAM = ^TPBE2PARAM;
   PPPBE2PARAM = ^PPBE2PARAM;
-  PPBKDF2PARAM_st = ^PBKDF2PARAM_st;
+  PPBKDF2PARAM_st = ^TPBKDF2PARAM_st;
   PPPBKDF2PARAM_st = ^PPBKDF2PARAM_st;
   PPBKDF2PARAM = ^TPBKDF2PARAM;
   PPPBKDF2PARAM = ^PPBKDF2PARAM;
   {end of auto-generated forward references}
 
-  Netscape_spkac_st = record 
+  TNetscape_spkac_st = record 
     pubkey: PX509_PUBKEY;
     challenge: PASN1_IA5STRING; { challenge sent in atlas >= PR2 }
   end;
-  TNETSCAPE_SPKAC = Netscape_spkac_st;
-  Netscape_spki_st = record 
+  TNETSCAPE_SPKAC = TNetscape_spkac_st;
+  TNetscape_spki_st = record 
     spkac: PNETSCAPE_SPKAC; { signed public key and challenge }
     sig_algor: TX509_ALGOR;
     signature: PASN1_BIT_STRING;
   end;
-  TNETSCAPE_SPKI = Netscape_spki_st;
+  TNETSCAPE_SPKI = TNetscape_spki_st;
   { Netscape certificate sequence structure }
-  Netscape_certificate_sequence = record 
+  TNetscape_certificate_sequence = record 
     type_: PASN1_OBJECT;
     certs: Pstack_st_X509;
   end;
-  TNETSCAPE_CERT_SEQUENCE = Netscape_certificate_sequence;
+  TNETSCAPE_CERT_SEQUENCE = TNetscape_certificate_sequence;
   (*- Unused (and iv length is wrong)
   typedef struct CBCParameter_st
   {
@@ -1371,43 +1371,43 @@ type
   } CBC_PARAM;
   *)
   { Password based encryption structure }
-  PBEPARAM_st = record 
+  TPBEPARAM_st = record 
     salt: PASN1_OCTET_STRING;
     iter: PASN1_INTEGER;
   end;
-  TPBEPARAM = PBEPARAM_st;
+  TPBEPARAM = TPBEPARAM_st;
   { Password based encryption V2 structures }
-  PBE2PARAM_st = record 
+  TPBE2PARAM_st = record 
     keyfunc: PX509_ALGOR;
     encryption: PX509_ALGOR;
   end;
-  TPBE2PARAM = PBE2PARAM_st;
-  PBKDF2PARAM_st = record 
+  TPBE2PARAM = TPBE2PARAM_st;
+  TPBKDF2PARAM_st = record 
  { Usually OCTET STRING but could be anything }
     salt: PASN1_TYPE;
     iter: PASN1_INTEGER;
     keylength: PASN1_INTEGER;
     prf: PX509_ALGOR;
   end;
-  TPBKDF2PARAM = PBKDF2PARAM_st;
+  TPBKDF2PARAM = TPBKDF2PARAM_st;
   {$ifndef  OPENSSL_NO_SCRYPT}
 
 type
   {Auto-generated forward references}
-  PSCRYPT_PARAMS_st = ^SCRYPT_PARAMS_st;
+  PSCRYPT_PARAMS_st = ^TSCRYPT_PARAMS_st;
   PPSCRYPT_PARAMS_st = ^PSCRYPT_PARAMS_st;
   PSCRYPT_PARAMS = ^TSCRYPT_PARAMS;
   PPSCRYPT_PARAMS = ^PSCRYPT_PARAMS;
   {end of auto-generated forward references}
 
-  SCRYPT_PARAMS_st = record 
+  TSCRYPT_PARAMS_st = record 
     salt: PASN1_OCTET_STRING;
     costParameter: PASN1_INTEGER;
     blockSize: PASN1_INTEGER;
     parallelizationParameter: PASN1_INTEGER;
     keyLength: PASN1_INTEGER;
   end;
-  TSCRYPT_PARAMS = SCRYPT_PARAMS_st;
+  TSCRYPT_PARAMS = TSCRYPT_PARAMS_st;
   {$endif}
 
 const
@@ -1431,14 +1431,14 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType000 = ^TFuncType000;
-  PPTFuncType000 = ^PTFuncType000;
-  PTFuncType001 = ^TFuncType001;
-  PPTFuncType001 = ^PTFuncType001;
-  PTFuncType002 = ^TFuncType002;
-  PPTFuncType002 = ^PTFuncType002;
-  PTFuncType003 = ^TFuncType003;
-  PPTFuncType003 = ^PTFuncType003;
+  PFuncType000 = ^TFuncType000;
+  PPFuncType000 = ^PFuncType000;
+  PFuncType001 = ^TFuncType001;
+  PPFuncType001 = ^PFuncType001;
+  PFuncType002 = ^TFuncType002;
+  PPFuncType002 = ^PFuncType002;
+  PFuncType003 = ^TFuncType003;
+  PPFuncType003 = ^PFuncType003;
   {end of auto-generated forward references}
 
   TFuncType000 = function(crl: PX509_CRL): TOpenSSL_C_INT; cdecl;
@@ -4005,7 +4005,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

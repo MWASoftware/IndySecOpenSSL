@@ -18,7 +18,7 @@
 unit openssl_trace;
 
 {
-  Generated from OpenSSL 3.0.20 Header File trace.h - Fri  8 May 11:38:18 BST 2026
+  Generated from OpenSSL 3.0.20 Header File trace.h - Sun 10 May 23:00:49 BST 2026
   With Legacy Support Option
 }
 
@@ -419,7 +419,7 @@ arg4, arg5, arg6))}
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

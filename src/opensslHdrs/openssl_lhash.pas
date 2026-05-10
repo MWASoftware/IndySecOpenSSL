@@ -18,7 +18,7 @@
 unit openssl_lhash;
 
 {
-  Generated from OpenSSL 3.0.20 Header File lhash.h - Fri  8 May 11:37:44 BST 2026
+  Generated from OpenSSL 3.0.20 Header File lhash.h - Sun 10 May 23:00:12 BST 2026
   With Legacy Support Option
 }
 
@@ -347,7 +347,7 @@ ossl_inline void lh_ ##type ##_set_down_load(LHASH_OF(type) *lh, unsigned long d
 
 type
   {Auto-generated forward references}
-  Plh_OPENSSL_STRING_dummy = ^lh_OPENSSL_STRING_dummy;
+  Plh_OPENSSL_STRING_dummy = ^Tlh_OPENSSL_STRING_dummy;
   PPlh_OPENSSL_STRING_dummy = ^Plh_OPENSSL_STRING_dummy;
   Plhash_st_OPENSSL_STRING = ^Tlhash_st_OPENSSL_STRING;
   PPlhash_st_OPENSSL_STRING = ^Plhash_st_OPENSSL_STRING;
@@ -362,14 +362,14 @@ type
   { Type checking... }
   { Helper macro for internal use }
   { clang-format off }
-  lh_OPENSSL_STRING_dummy = record 
+  Tlh_OPENSSL_STRING_dummy = record 
     case integer of 
       0: (d1: pointer);
       1: (d2: TOpenSSL_C_UINT);
       2: (d3: TOpenSSL_C_INT);
   end;
   Tlhash_st_OPENSSL_STRING = record 
-    dummy: lh_OPENSSL_STRING_dummy;
+    dummy: Tlh_OPENSSL_STRING_dummy;
   end;
   Tlh_OPENSSL_STRING_compfunc = function(a: POPENSSL_STRING; b: POPENSSL_STRING): TOpenSSL_C_INT; cdecl;
   Tlh_OPENSSL_STRING_hashfunc = function(a: POPENSSL_STRING): TOpenSSL_C_UINT; cdecl;
@@ -402,7 +402,7 @@ type
 
 type
   {Auto-generated forward references}
-  Plh_OPENSSL_CSTRING_dummy = ^lh_OPENSSL_CSTRING_dummy;
+  Plh_OPENSSL_CSTRING_dummy = ^Tlh_OPENSSL_CSTRING_dummy;
   PPlh_OPENSSL_CSTRING_dummy = ^Plh_OPENSSL_CSTRING_dummy;
   Plhash_st_OPENSSL_CSTRING = ^Tlhash_st_OPENSSL_CSTRING;
   PPlhash_st_OPENSSL_CSTRING = ^Plhash_st_OPENSSL_CSTRING;
@@ -414,14 +414,14 @@ type
   PPlh_OPENSSL_CSTRING_doallfunc = ^Plh_OPENSSL_CSTRING_doallfunc;
   {end of auto-generated forward references}
 
-  lh_OPENSSL_CSTRING_dummy = record 
+  Tlh_OPENSSL_CSTRING_dummy = record 
     case integer of 
       0: (d1: pointer);
       1: (d2: TOpenSSL_C_UINT);
       2: (d3: TOpenSSL_C_INT);
   end;
   Tlhash_st_OPENSSL_CSTRING = record 
-    dummy: lh_OPENSSL_CSTRING_dummy;
+    dummy: Tlh_OPENSSL_CSTRING_dummy;
   end;
   Tlh_OPENSSL_CSTRING_compfunc = function(a: POPENSSL_CSTRING; b: POPENSSL_CSTRING): TOpenSSL_C_INT; cdecl;
   Tlh_OPENSSL_CSTRING_hashfunc = function(a: POPENSSL_CSTRING): TOpenSSL_C_UINT; cdecl;
@@ -456,7 +456,7 @@ type
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

@@ -18,7 +18,7 @@
 unit openssl_rc2;
 
 {
-  Generated from OpenSSL 3.0.20 Header File rc2.h - Fri  8 May 11:38:00 BST 2026
+  Generated from OpenSSL 3.0.20 Header File rc2.h - Sun 10 May 23:00:28 BST 2026
   With Legacy Support Option
 }
 
@@ -62,16 +62,16 @@ const
 
 type
   {Auto-generated forward references}
-  Prc2_key_st = ^rc2_key_st;
+  Prc2_key_st = ^Trc2_key_st;
   PPrc2_key_st = ^Prc2_key_st;
   PRC2_KEY = ^TRC2_KEY;
   PPRC2_KEY = ^PRC2_KEY;
   {end of auto-generated forward references}
 
-  rc2_key_st = record 
+  Trc2_key_st = record 
     data: array[0..63] of TRC2_INT;
   end;
-  TRC2_KEY = rc2_key_st;
+  TRC2_KEY = Trc2_key_st;
     {$endif}
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
@@ -120,7 +120,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

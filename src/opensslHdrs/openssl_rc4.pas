@@ -18,7 +18,7 @@
 unit openssl_rc4;
 
 {
-  Generated from OpenSSL 3.0.20 Header File rc4.h - Fri  8 May 11:38:01 BST 2026
+  Generated from OpenSSL 3.0.20 Header File rc4.h - Sun 10 May 23:00:29 BST 2026
   With Legacy Support Option
 }
 
@@ -46,18 +46,18 @@ uses OpenSSLAPI;
 
 type
   {Auto-generated forward references}
-  Prc4_key_st = ^rc4_key_st;
+  Prc4_key_st = ^Trc4_key_st;
   PPrc4_key_st = ^Prc4_key_st;
   PRC4_KEY = ^TRC4_KEY;
   PPRC4_KEY = ^PRC4_KEY;
   {end of auto-generated forward references}
 
-  rc4_key_st = record 
+  Trc4_key_st = record 
     x: TOpenSSL_C_UINT;
     y: TOpenSSL_C_UINT;
     data: array[0..255] of TOpenSSL_C_UINT;
   end;
-  TRC4_KEY = rc4_key_st;
+  TRC4_KEY = Trc4_key_st;
     {$endif}
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
@@ -90,7 +90,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

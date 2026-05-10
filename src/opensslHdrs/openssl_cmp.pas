@@ -18,7 +18,7 @@
 unit openssl_cmp;
 
 {
-  Generated from OpenSSL 3.0.20 Header File cmp.h - Fri  8 May 11:37:10 BST 2026
+  Generated from OpenSSL 3.0.20 Header File cmp.h - Sun 10 May 22:59:37 BST 2026
   With Legacy Support Option
 }
 
@@ -1717,7 +1717,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

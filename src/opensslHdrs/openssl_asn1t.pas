@@ -18,7 +18,7 @@
 unit openssl_asn1t;
 
 {
-  Generated from OpenSSL 3.0.20 Header File asn1t.h - Fri  8 May 11:37:02 BST 2026
+  Generated from OpenSSL 3.0.20 Header File asn1t.h - Sun 10 May 22:59:29 BST 2026
   With Legacy Support Option
 }
 
@@ -282,19 +282,23 @@ type
 
 type
   {Auto-generated forward references}
-  PTFuncType000 = ^TFuncType000;
-  PPTFuncType000 = ^PTFuncType000;
-  PASN1_ADB_st = ^TASN1_ADB_st;
-  PPASN1_ADB_st = ^PASN1_ADB_st;
-  PASN1_ADB = ^TASN1_ADB;
-  PPASN1_ADB = ^PASN1_ADB;
   PASN1_ADB_TABLE_st = ^TASN1_ADB_TABLE_st;
   PPASN1_ADB_TABLE_st = ^PASN1_ADB_TABLE_st;
   PASN1_ADB_TABLE = ^TASN1_ADB_TABLE;
   PPASN1_ADB_TABLE = ^PASN1_ADB_TABLE;
+  PASN1_ADB_st = ^TASN1_ADB_st;
+  PPASN1_ADB_st = ^PASN1_ADB_st;
+  PASN1_ADB = ^TASN1_ADB;
+  PPASN1_ADB = ^PASN1_ADB;
+  PFuncType000 = ^TFuncType000;
+  PPFuncType000 = ^PFuncType000;
   {end of auto-generated forward references}
 
-  TFuncType000 = function(psel: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
+  TASN1_ADB_TABLE_st = record 
+    value: TOpenSSL_C_INT; { NID for an object or value for an int }
+    tt: TASN1_TEMPLATE; { item for this value }
+  end;
+  TASN1_ADB_TABLE = TASN1_ADB_TABLE_st;
   TASN1_ADB_st = record 
     flags: TOpenSSL_C_UINT; { Various flags }
     offset: TOpenSSL_C_UINT; { Offset of selector field }
@@ -305,11 +309,7 @@ type
     null_tt: PASN1_TEMPLATE; { Type to use if selector is NULL }
   end;
   TASN1_ADB = TASN1_ADB_st;
-  TASN1_ADB_TABLE_st = record 
-    value: TOpenSSL_C_INT; { NID for an object or value for an int }
-    tt: TASN1_TEMPLATE; { item for this value }
-  end;
-  TASN1_ADB_TABLE = TASN1_ADB_TABLE_st;
+  TFuncType000 = function(psel: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
 
 const
   { template flags }
@@ -396,11 +396,11 @@ type
   PPASN1_primitive_c2i = ^PASN1_primitive_c2i;
   PASN1_primitive_print = ^TASN1_primitive_print;
   PPASN1_primitive_print = ^PASN1_primitive_print;
-  PASN1_EXTERN_FUNCS_st = ^ASN1_EXTERN_FUNCS_st;
+  PASN1_EXTERN_FUNCS_st = ^TASN1_EXTERN_FUNCS_st;
   PPASN1_EXTERN_FUNCS_st = ^PASN1_EXTERN_FUNCS_st;
   PASN1_EXTERN_FUNCS = ^TASN1_EXTERN_FUNCS;
   PPASN1_EXTERN_FUNCS = ^PASN1_EXTERN_FUNCS;
-  PASN1_PRIMITIVE_FUNCS_st = ^ASN1_PRIMITIVE_FUNCS_st;
+  PASN1_PRIMITIVE_FUNCS_st = ^TASN1_PRIMITIVE_FUNCS_st;
   PPASN1_PRIMITIVE_FUNCS_st = ^PASN1_PRIMITIVE_FUNCS_st;
   PASN1_PRIMITIVE_FUNCS = ^TASN1_PRIMITIVE_FUNCS;
   PPASN1_PRIMITIVE_FUNCS = ^PASN1_PRIMITIVE_FUNCS;
@@ -408,15 +408,15 @@ type
   PPASN1_aux_cb = ^PASN1_aux_cb;
   PASN1_aux_const_cb = ^TASN1_aux_const_cb;
   PPASN1_aux_const_cb = ^PASN1_aux_const_cb;
-  PASN1_AUX_st = ^ASN1_AUX_st;
+  PASN1_AUX_st = ^TASN1_AUX_st;
   PPASN1_AUX_st = ^PASN1_AUX_st;
   PASN1_AUX = ^TASN1_AUX;
   PPASN1_AUX = ^PASN1_AUX;
-  PASN1_PRINT_ARG_st = ^ASN1_PRINT_ARG_st;
+  PASN1_PRINT_ARG_st = ^TASN1_PRINT_ARG_st;
   PPASN1_PRINT_ARG_st = ^PASN1_PRINT_ARG_st;
   PASN1_PRINT_ARG = ^TASN1_PRINT_ARG;
   PPASN1_PRINT_ARG = ^PASN1_PRINT_ARG;
-  PASN1_STREAM_ARG_st = ^ASN1_STREAM_ARG_st;
+  PASN1_STREAM_ARG_st = ^TASN1_STREAM_ARG_st;
   PPASN1_STREAM_ARG_st = ^PASN1_STREAM_ARG_st;
   PASN1_STREAM_ARG = ^TASN1_STREAM_ARG;
   PPASN1_STREAM_ARG = ^PASN1_STREAM_ARG;
@@ -457,7 +457,7 @@ type
   TASN1_primitive_i2c = function(pval: PPASN1_VALUE; cont: Pbyte; putype: POpenSSL_C_INT; it: PASN1_ITEM): TOpenSSL_C_INT; cdecl;
   TASN1_primitive_c2i = function(pval: PPASN1_VALUE; cont: Pbyte; len: TOpenSSL_C_INT; utype: TOpenSSL_C_INT; free_cont: PAnsiChar; it: PASN1_ITEM): TOpenSSL_C_INT; cdecl;
   TASN1_primitive_print = function(out_: PBIO; pval: PPASN1_VALUE; it: PASN1_ITEM; indent: TOpenSSL_C_INT; pctx: PASN1_PCTX): TOpenSSL_C_INT; cdecl;
-  ASN1_EXTERN_FUNCS_st = record 
+  TASN1_EXTERN_FUNCS_st = record 
     app_data: pointer;
     asn1_ex_new: PASN1_ex_new_func;
     asn1_ex_free: PASN1_ex_free_func;
@@ -468,8 +468,8 @@ type
     asn1_ex_new_ex: PASN1_ex_new_ex_func;
     asn1_ex_d2i_ex: PASN1_ex_d2i_ex;
   end;
-  TASN1_EXTERN_FUNCS = ASN1_EXTERN_FUNCS_st;
-  ASN1_PRIMITIVE_FUNCS_st = record 
+  TASN1_EXTERN_FUNCS = TASN1_EXTERN_FUNCS_st;
+  TASN1_PRIMITIVE_FUNCS_st = record 
     app_data: pointer;
     flags: TOpenSSL_C_UINT;
     prim_new: PASN1_ex_new_func;
@@ -479,7 +479,7 @@ type
     prim_i2c: PASN1_primitive_i2c;
     prim_print: PASN1_primitive_print;
   end;
-  TASN1_PRIMITIVE_FUNCS = ASN1_PRIMITIVE_FUNCS_st;
+  TASN1_PRIMITIVE_FUNCS = TASN1_PRIMITIVE_FUNCS_st;
   
   {* This is the ASN1_AUX structure: it handles various miscellaneous
   * requirements. For example the use of reference counts and an informational
@@ -498,7 +498,7 @@ type
   }
   TASN1_aux_cb = function(operation: TOpenSSL_C_INT; in_: PPASN1_VALUE; it: PASN1_ITEM; exarg: pointer): TOpenSSL_C_INT; cdecl;
   TASN1_aux_const_cb = function(operation: TOpenSSL_C_INT; in_: PPASN1_VALUE; it: PASN1_ITEM; exarg: pointer): TOpenSSL_C_INT; cdecl;
-  ASN1_AUX_st = record 
+  TASN1_AUX_st = record 
     app_data: pointer;
     flags: TOpenSSL_C_INT;
     ref_offset: TOpenSSL_C_INT; { Offset of reference value }
@@ -507,22 +507,22 @@ type
     enc_offset: TOpenSSL_C_INT; { Offset of ASN1_ENCODING structure }
     asn1_const_cb: PASN1_aux_const_cb; { for ASN1_OP_I2D_ and ASN1_OP_PRINT_ }
   end;
-  TASN1_AUX = ASN1_AUX_st;
+  TASN1_AUX = TASN1_AUX_st;
   { For print related callbacks exarg points to this structure }
-  ASN1_PRINT_ARG_st = record 
+  TASN1_PRINT_ARG_st = record 
     out_: PBIO;
     indent: TOpenSSL_C_INT;
     pctx: PASN1_PCTX;
   end;
-  TASN1_PRINT_ARG = ASN1_PRINT_ARG_st;
+  TASN1_PRINT_ARG = TASN1_PRINT_ARG_st;
   { For streaming related callbacks exarg points to this structure }
-  ASN1_STREAM_ARG_st = record 
+  TASN1_STREAM_ARG_st = record 
  { BIO to stream through }
     out_: PBIO; { BIO with filters appended }
     ndef_bio: PBIO; { Streaming I/O boundary }
     boundary: PPbyte;
   end;
-  TASN1_STREAM_ARG = ASN1_STREAM_ARG_st;
+  TASN1_STREAM_ARG = TASN1_STREAM_ARG_st;
 
 const
   { Flags in ASN1_AUX }
@@ -840,7 +840,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

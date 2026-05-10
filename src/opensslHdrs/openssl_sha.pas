@@ -18,7 +18,7 @@
 unit openssl_sha;
 
 {
-  Generated from OpenSSL 3.0.20 Header File sha.h - Fri  8 May 11:38:04 BST 2026
+  Generated from OpenSSL 3.0.20 Header File sha.h - Sun 10 May 23:00:32 BST 2026
   With Legacy Support Option
 }
 
@@ -65,13 +65,13 @@ const
 
 type
   {Auto-generated forward references}
-  PSHAstate_st = ^SHAstate_st;
+  PSHAstate_st = ^TSHAstate_st;
   PPSHAstate_st = ^PSHAstate_st;
   PSHA_CTX = ^TSHA_CTX;
   PPSHA_CTX = ^PSHA_CTX;
   {end of auto-generated forward references}
 
-  SHAstate_st = record 
+  TSHAstate_st = record 
     h0: TOpenSSL_C_UINT;
     h1: TOpenSSL_C_UINT;
     h2: TOpenSSL_C_UINT;
@@ -82,7 +82,7 @@ type
     data: array[0..15] of TOpenSSL_C_UINT;
     num: TOpenSSL_C_UINT;
   end;
-  TSHA_CTX = SHAstate_st;
+  TSHA_CTX = TSHAstate_st;
 
 
     {$ifdef OPENSSL_STATIC_LINK_MODEL}
@@ -131,13 +131,13 @@ const
 
 type
   {Auto-generated forward references}
-  PSHA256state_st = ^SHA256state_st;
+  PSHA256state_st = ^TSHA256state_st;
   PPSHA256state_st = ^PSHA256state_st;
   PSHA256_CTX = ^TSHA256_CTX;
   PPSHA256_CTX = ^PSHA256_CTX;
   {end of auto-generated forward references}
 
-  SHA256state_st = record 
+  TSHA256state_st = record 
     h: array[0..7] of TOpenSSL_C_UINT;
     Nl: TOpenSSL_C_UINT;
     Nh: TOpenSSL_C_UINT;
@@ -145,7 +145,7 @@ type
     num: TOpenSSL_C_UINT;
     md_len: TOpenSSL_C_UINT;
   end;
-  TSHA256_CTX = SHA256state_st;
+  TSHA256_CTX = TSHA256state_st;
 
 
     {$ifdef OPENSSL_STATIC_LINK_MODEL}
@@ -250,13 +250,13 @@ type
 
 type
   {Auto-generated forward references}
-  PSHA512state_st = ^SHA512state_st;
+  PSHA512state_st = ^TSHA512state_st;
   PPSHA512state_st = ^PSHA512state_st;
   PSHA512_CTX = ^TSHA512_CTX;
   PPSHA512_CTX = ^PSHA512_CTX;
   {end of auto-generated forward references}
 
-  SHA512state_st = record 
+  TSHA512state_st = record 
     h: array[0..7] of TOpenSSL_C_UINT64;
     Nl: TOpenSSL_C_UINT64;
     Nh: TOpenSSL_C_UINT64;
@@ -268,7 +268,7 @@ type
     num: TOpenSSL_C_UINT;
     md_len: TOpenSSL_C_UINT;
   end;
-  TSHA512_CTX = SHA512state_st;
+  TSHA512_CTX = TSHA512state_st;
 
 
     {$ifdef OPENSSL_STATIC_LINK_MODEL}
@@ -326,7 +326,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs
