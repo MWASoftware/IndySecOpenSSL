@@ -199,6 +199,7 @@ type
       {$ENDIF}
     {$ifend}
   {$ifend}
+  TOpenSSL_timeval = timeval;
 
 {$ELSE}
   PPByte           = ^PByte;
@@ -256,6 +257,15 @@ TOpenSSL_C_SSIZET = TOpenSSL_C_INT64;
         {$ENDIF}
       {$ifend}
     {$ifend}
+    
+    {$if declared(timeval)}
+    TOpenSSL_timeval = timeval;
+    {$ELSE}
+    TOpenSSL_timeval = record
+      tv_sec: TOpenSSL_C_TIMET;
+      tv_usec: TOpenSSL_C_INT;
+    end;
+    {$ENDIF}
 {$ENDIF}
   POpenSSL_C_LONG   = ^TOpenSSL_C_LONG;
   POpenSSL_C_ULONG  = ^TOpenSSL_C_ULONG;
@@ -271,6 +281,7 @@ TOpenSSL_C_SSIZET = TOpenSSL_C_INT64;
   POpenSSL_C_SHORT  = ^TOpenSSL_C_SHORT;
   POpenSSL_C_USHORT = ^TOpenSSL_C_USHORT;
   POpenSSL_C_TIMET  = ^TOpenSSL_C_TIMET ;
+  PPOpenSSL_C_UINT16 = ^POpenSSL_C_UINT16;
   PPPByte           = ^PPByte;
   PPOpenSSL_C_INT   = ^POpenSSL_C_INT;
   POpenSSL_C_DOUBLE = ^TOpenSSL_C_DOUBLE;
@@ -299,8 +310,9 @@ TOpenSSL_C_SSIZET = TOpenSSL_C_INT64;
   end;
   POpenSSL_C_TM = ^TOpenSSL_C_TM;
   PPOpenSSL_C_TM = ^POpenSSL_C_TM;
+  POpenSSL_timeval = ^TOpenSSL_timeval;
   
-    Toff_t = integer;
+  Toff_t = integer;
   Toff_64t = int64;
   
   {$IFNDEF OPENSSL_API_TYPES_ONLY}

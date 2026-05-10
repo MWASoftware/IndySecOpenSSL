@@ -18,7 +18,7 @@
 unit openssl_ocsperr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ocsperr.h - Fri  8 May 12:10:45 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ocsperr.h - Sun 10 May 22:58:17 BST 2026
 }
 
 interface
@@ -73,7 +73,7 @@ const
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

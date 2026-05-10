@@ -18,7 +18,7 @@
 unit openssl_md2;
 
 {
-  Generated from OpenSSL 3.0.20 Header File md2.h - Fri  8 May 12:10:41 BST 2026
+  Generated from OpenSSL 3.0.20 Header File md2.h - Sun 10 May 22:58:13 BST 2026
 }
 
 interface
@@ -59,19 +59,19 @@ const
 
 type
   {Auto-generated forward references}
-  PMD2state_st = ^MD2state_st;
+  PMD2state_st = ^TMD2state_st;
   PPMD2state_st = ^PMD2state_st;
   PMD2_CTX = ^TMD2_CTX;
   PPMD2_CTX = ^PMD2_CTX;
   {end of auto-generated forward references}
 
-  MD2state_st = record 
+  TMD2state_st = record 
     num: TOpenSSL_C_UINT;
     data: array[0..15] of byte;
     cksm: array[0..15] of TMD2_INT;
     state: array[0..15] of TMD2_INT;
   end;
-  TMD2_CTX = MD2state_st;
+  TMD2_CTX = TMD2state_st;
     {$endif}
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
@@ -112,7 +112,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

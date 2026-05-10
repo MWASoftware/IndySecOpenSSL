@@ -18,7 +18,7 @@
 unit openssl_objects;
 
 {
-  Generated from OpenSSL 3.0.20 Header File objects.h - Fri  8 May 12:10:44 BST 2026
+  Generated from OpenSSL 3.0.20 Header File objects.h - Sun 10 May 22:58:15 BST 2026
 }
 
 interface
@@ -56,19 +56,19 @@ const
 
 type
   {Auto-generated forward references}
-  Pobj_name_st = ^obj_name_st;
+  Pobj_name_st = ^Tobj_name_st;
   PPobj_name_st = ^Pobj_name_st;
   POBJ_NAME = ^TOBJ_NAME;
   PPOBJ_NAME = ^POBJ_NAME;
   {end of auto-generated forward references}
 
-  obj_name_st = record 
+  Tobj_name_st = record 
     type_: TOpenSSL_C_INT;
     alias: TOpenSSL_C_INT;
     name: PAnsiChar;
     data: PAnsiChar;
   end;
-  TOBJ_NAME = obj_name_st;
+  TOBJ_NAME = Tobj_name_st;
 
 
   function OBJ_create_and_add_object(a:PAnsiChar; b:PAnsiChar; c:PAnsiChar): TOpenSSL_C_INT; inline;
@@ -89,12 +89,12 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType000 = ^TFuncType000;
-  PPTFuncType000 = ^PTFuncType000;
-  PTFuncType001 = ^TFuncType001;
-  PPTFuncType001 = ^PTFuncType001;
-  PTFuncType002 = ^TFuncType002;
-  PPTFuncType002 = ^PTFuncType002;
+  PFuncType000 = ^TFuncType000;
+  PPFuncType000 = ^PFuncType000;
+  PFuncType001 = ^TFuncType001;
+  PPFuncType001 = ^PFuncType001;
+  PFuncType002 = ^TFuncType002;
+  PPFuncType002 = ^PFuncType002;
   {end of auto-generated forward references}
 
   TFuncType000 = function(_param1: PAnsiChar): TOpenSSL_C_UINT; cdecl;
@@ -133,8 +133,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType003 = ^TFuncType003;
-  PPTFuncType003 = ^PTFuncType003;
+  PFuncType003 = ^TFuncType003;
+  PPFuncType003 = ^PFuncType003;
   {end of auto-generated forward references}
 
   TFuncType003 = procedure(_param1: POBJ_NAME; arg: pointer); cdecl;
@@ -153,8 +153,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType004 = ^TFuncType004;
-  PPTFuncType004 = ^PTFuncType004;
+  PFuncType004 = ^TFuncType004;
+  PPFuncType004 = ^PFuncType004;
   {end of auto-generated forward references}
 
   TFuncType004 = procedure(_param1: POBJ_NAME; arg: pointer); cdecl;
@@ -217,8 +217,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType005 = ^TFuncType005;
-  PPTFuncType005 = ^PTFuncType005;
+  PFuncType005 = ^TFuncType005;
+  PPFuncType005 = ^PFuncType005;
   {end of auto-generated forward references}
 
   TFuncType005 = function(_param1: pointer; _param2: pointer): TOpenSSL_C_INT; cdecl;
@@ -237,8 +237,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType006 = ^TFuncType006;
-  PPTFuncType006 = ^PTFuncType006;
+  PFuncType006 = ^TFuncType006;
+  PPFuncType006 = ^PFuncType006;
   {end of auto-generated forward references}
 
   TFuncType006 = function(_param1: pointer; _param2: pointer): TOpenSSL_C_INT; cdecl;
@@ -358,7 +358,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

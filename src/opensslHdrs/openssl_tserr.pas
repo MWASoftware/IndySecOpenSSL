@@ -18,7 +18,7 @@
 unit openssl_tserr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File tserr.h - Fri  8 May 12:11:15 BST 2026
+  Generated from OpenSSL 3.0.20 Header File tserr.h - Sun 10 May 22:58:50 BST 2026
 }
 
 interface
@@ -87,7 +87,7 @@ const
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

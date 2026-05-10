@@ -18,7 +18,7 @@
 unit openssl_rsaerr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File rsaerr.h - Fri  8 May 12:10:58 BST 2026
+  Generated from OpenSSL 3.0.20 Header File rsaerr.h - Sun 10 May 22:58:30 BST 2026
 }
 
 interface
@@ -128,7 +128,7 @@ const
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

@@ -18,7 +18,7 @@
 unit openssl_ess;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ess.h - Fri  8 May 12:10:35 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ess.h - Sun 10 May 22:58:06 BST 2026
 }
 
 interface
@@ -464,7 +464,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

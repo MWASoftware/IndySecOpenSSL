@@ -18,7 +18,7 @@
 unit openssl_engine;
 
 {
-  Generated from OpenSSL 3.0.20 Header File engine.h - Fri  8 May 12:10:32 BST 2026
+  Generated from OpenSSL 3.0.20 Header File engine.h - Sun 10 May 22:58:02 BST 2026
 }
 
 interface
@@ -229,7 +229,7 @@ const
 
 type
   {Auto-generated forward references}
-  PENGINE_CMD_DEFN_st = ^ENGINE_CMD_DEFN_st;
+  PENGINE_CMD_DEFN_st = ^TENGINE_CMD_DEFN_st;
   PPENGINE_CMD_DEFN_st = ^PENGINE_CMD_DEFN_st;
   PENGINE_CMD_DEFN = ^TENGINE_CMD_DEFN;
   PPENGINE_CMD_DEFN = ^PENGINE_CMD_DEFN;
@@ -237,8 +237,8 @@ type
   PPENGINE_GEN_FUNC_PTR = ^PENGINE_GEN_FUNC_PTR;
   PENGINE_GEN_INT_FUNC_PTR = ^TENGINE_GEN_INT_FUNC_PTR;
   PPENGINE_GEN_INT_FUNC_PTR = ^PENGINE_GEN_INT_FUNC_PTR;
-  PTFuncType000 = ^TFuncType000;
-  PPTFuncType000 = ^PTFuncType000;
+  PFuncType000 = ^TFuncType000;
+  PPFuncType000 = ^PFuncType000;
   PENGINE_CTRL_FUNC_PTR = ^TENGINE_CTRL_FUNC_PTR;
   PPENGINE_CTRL_FUNC_PTR = ^PENGINE_CTRL_FUNC_PTR;
   PENGINE_LOAD_KEY_PTR = ^TENGINE_LOAD_KEY_PTR;
@@ -269,13 +269,13 @@ type
     * of cmd_num. "null-terminated" means that the last ENGINE_CMD_DEFN element
     * has cmd_num set to zero and/or cmd_name set to NULL.
     }
-  ENGINE_CMD_DEFN_st = record 
+  TENGINE_CMD_DEFN_st = record 
     cmd_num: TOpenSSL_C_UINT; { The command number }
     cmd_name: PAnsiChar; { The command name itself }
     cmd_desc: PAnsiChar; { A short description of the command }
     cmd_flags: TOpenSSL_C_UINT; { The input the command expects }
   end;
-  TENGINE_CMD_DEFN = ENGINE_CMD_DEFN_st;
+  TENGINE_CMD_DEFN = TENGINE_CMD_DEFN_st;
     { Generic function pointer }
   TENGINE_GEN_FUNC_PTR = function: TOpenSSL_C_INT; cdecl;
     { Generic function pointer taking no arguments }
@@ -613,8 +613,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType001 = ^TFuncType001;
-  PPTFuncType001 = ^PTFuncType001;
+  PFuncType001 = ^TFuncType001;
+  PPFuncType001 = ^PFuncType001;
   {end of auto-generated forward references}
 
   TFuncType001 = procedure; cdecl;
@@ -661,8 +661,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType002 = ^TFuncType002;
-  PPTFuncType002 = ^PTFuncType002;
+  PFuncType002 = ^TFuncType002;
+  PPFuncType002 = ^PFuncType002;
   {end of auto-generated forward references}
 
   TFuncType002 = procedure; cdecl;
@@ -1241,11 +1241,11 @@ type
   PPdyn_MEM_realloc_fn = ^Pdyn_MEM_realloc_fn;
   Pdyn_MEM_free_fn = ^Tdyn_MEM_free_fn;
   PPdyn_MEM_free_fn = ^Pdyn_MEM_free_fn;
-  Pst_dynamic_MEM_fns = ^st_dynamic_MEM_fns;
+  Pst_dynamic_MEM_fns = ^Tst_dynamic_MEM_fns;
   PPst_dynamic_MEM_fns = ^Pst_dynamic_MEM_fns;
   Pdynamic_MEM_fns = ^Tdynamic_MEM_fns;
   PPdynamic_MEM_fns = ^Pdynamic_MEM_fns;
-  Pst_dynamic_fns = ^st_dynamic_fns;
+  Pst_dynamic_fns = ^Tst_dynamic_fns;
   PPst_dynamic_fns = ^Pst_dynamic_fns;
   Pdynamic_fns = ^Tdynamic_fns;
   PPdynamic_fns = ^Pdynamic_fns;
@@ -1269,22 +1269,22 @@ type
   Tdyn_MEM_malloc_fn = function(_param1: TOpenSSL_C_SIZET; _param2: PAnsiChar; _param3: TOpenSSL_C_INT): pointer; cdecl;
   Tdyn_MEM_realloc_fn = function(_param1: pointer; _param2: TOpenSSL_C_SIZET; _param3: PAnsiChar; _param4: TOpenSSL_C_INT): pointer; cdecl;
   Tdyn_MEM_free_fn = procedure(_param1: pointer; _param2: PAnsiChar; _param3: TOpenSSL_C_INT); cdecl;
-  st_dynamic_MEM_fns = record 
+  Tst_dynamic_MEM_fns = record 
     malloc_fn: Tdyn_MEM_malloc_fn;
     realloc_fn: Tdyn_MEM_realloc_fn;
     free_fn: Tdyn_MEM_free_fn;
   end;
-  Tdynamic_MEM_fns = st_dynamic_MEM_fns;
+  Tdynamic_MEM_fns = Tst_dynamic_MEM_fns;
     
     {* FIXME: Perhaps the memory and locking code (crypto.h) should declare and
     * use these types so we (and any other dependent code) can simplify a bit??
     }
     { The top-level structure }
-  st_dynamic_fns = record 
+  Tst_dynamic_fns = record 
     static_state: pointer;
     mem_fns: Tdynamic_MEM_fns;
   end;
-  Tdynamic_fns = st_dynamic_fns;
+  Tdynamic_fns = Tst_dynamic_fns;
     
     {* The version checking function should be of this prototype. NB: The
     * ossl_version value passed in is the OSSL_DYNAMIC_VERSION of the loading
@@ -1369,7 +1369,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

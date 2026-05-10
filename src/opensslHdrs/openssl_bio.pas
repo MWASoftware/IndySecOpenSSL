@@ -18,7 +18,7 @@
 unit openssl_bio;
 
 {
-  Generated from OpenSSL 3.0.20 Header File bio.h - Fri  8 May 12:10:02 BST 2026
+  Generated from OpenSSL 3.0.20 Header File bio.h - Sun 10 May 22:57:31 BST 2026
 }
 
 interface
@@ -288,14 +288,14 @@ const
   BIO_CB_PUTS = $04;
   BIO_CB_GETS = $05;
   BIO_CB_CTRL = $06;
-  {# define  BIO_CB_RETURN 0x80} { Blacklisted Macro}
-  {# define  BIO_CB_return(a) ((a) | BIO_CB_RETURN)} { Blacklisted Macro}
-  {# define  BIO_cb_pre(a) (!((a) & BIO_CB_RETURN))} { Blacklisted Macro}
-  {# define  BIO_cb_post(a) ((a) & BIO_CB_RETURN)} { Blacklisted Macro}
   
   {* The callback is called before and after the underling operation, The
   * BIO_CB_RETURN flag indicates if it is after the call
   }
+  BIO_CB_RETURN = $80;
+  {# define  BIO_CB_return(a) ((a) | BIO_CB_RETURN)} { Blacklisted Macro}
+  {# define  BIO_cb_pre(a) (!((a) & BIO_CB_RETURN))} { Blacklisted Macro}
+  {# define  BIO_cb_post(a) ((a) & BIO_CB_RETURN)} { Blacklisted Macro}
   {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
 type
@@ -1230,8 +1230,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType000 = ^TFuncType000;
-  PPTFuncType000 = ^PTFuncType000;
+  PFuncType000 = ^TFuncType000;
+  PPFuncType000 = ^PFuncType000;
   {end of auto-generated forward references}
 
   TFuncType000 = function(data: pointer; len: TOpenSSL_C_SIZET; u: pointer): TOpenSSL_C_INT; cdecl;
@@ -1250,8 +1250,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType001 = ^TFuncType001;
-  PPTFuncType001 = ^PTFuncType001;
+  PFuncType001 = ^TFuncType001;
+  PPFuncType001 = ^PFuncType001;
   {end of auto-generated forward references}
 
   TFuncType001 = function(data: pointer; len: TOpenSSL_C_SIZET; u: pointer): TOpenSSL_C_INT; cdecl;
@@ -1651,8 +1651,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType002 = ^TFuncType002;
-  PPTFuncType002 = ^PTFuncType002;
+  PFuncType002 = ^TFuncType002;
+  PPFuncType002 = ^PFuncType002;
   {end of auto-generated forward references}
 
   TFuncType002 = function(_param1: PBIO; _param2: PAnsiChar; _param3: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
@@ -1671,8 +1671,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType003 = ^TFuncType003;
-  PPTFuncType003 = ^PTFuncType003;
+  PFuncType003 = ^TFuncType003;
+  PPFuncType003 = ^PFuncType003;
   {end of auto-generated forward references}
 
   TFuncType003 = function(_param1: PBIO; _param2: PAnsiChar; _param3: TOpenSSL_C_SIZET; _param4: POpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
@@ -1691,8 +1691,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType004 = ^TFuncType004;
-  PPTFuncType004 = ^PTFuncType004;
+  PFuncType004 = ^TFuncType004;
+  PPFuncType004 = ^PFuncType004;
   {end of auto-generated forward references}
 
   TFuncType004 = function(_param1: PBIO; _param2: PAnsiChar; _param3: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
@@ -1711,8 +1711,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType005 = ^TFuncType005;
-  PPTFuncType005 = ^PTFuncType005;
+  PFuncType005 = ^TFuncType005;
+  PPFuncType005 = ^PFuncType005;
   {end of auto-generated forward references}
 
   TFuncType005 = function(_param1: PBIO; _param2: PAnsiChar; _param3: TOpenSSL_C_SIZET; _param4: POpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
@@ -1731,8 +1731,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType006 = ^TFuncType006;
-  PPTFuncType006 = ^PTFuncType006;
+  PFuncType006 = ^TFuncType006;
+  PPFuncType006 = ^PFuncType006;
   {end of auto-generated forward references}
 
   TFuncType006 = function(_param1: PBIO; _param2: PAnsiChar; _param3: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
@@ -1751,8 +1751,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType007 = ^TFuncType007;
-  PPTFuncType007 = ^PTFuncType007;
+  PFuncType007 = ^TFuncType007;
+  PPFuncType007 = ^PFuncType007;
   {end of auto-generated forward references}
 
   TFuncType007 = function(_param1: PBIO; _param2: PAnsiChar; _param3: TOpenSSL_C_SIZET; _param4: POpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
@@ -1771,8 +1771,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType008 = ^TFuncType008;
-  PPTFuncType008 = ^PTFuncType008;
+  PFuncType008 = ^TFuncType008;
+  PPFuncType008 = ^PFuncType008;
   {end of auto-generated forward references}
 
   TFuncType008 = function(_param1: PBIO; _param2: PAnsiChar; _param3: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
@@ -1791,8 +1791,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType009 = ^TFuncType009;
-  PPTFuncType009 = ^PTFuncType009;
+  PFuncType009 = ^TFuncType009;
+  PPFuncType009 = ^PFuncType009;
   {end of auto-generated forward references}
 
   TFuncType009 = function(_param1: PBIO; _param2: PAnsiChar; _param3: TOpenSSL_C_SIZET; _param4: POpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
@@ -1811,8 +1811,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType010 = ^TFuncType010;
-  PPTFuncType010 = ^PTFuncType010;
+  PFuncType010 = ^TFuncType010;
+  PPFuncType010 = ^PFuncType010;
   {end of auto-generated forward references}
 
   TFuncType010 = function(_param1: PBIO; _param2: PAnsiChar): TOpenSSL_C_INT; cdecl;
@@ -1831,8 +1831,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType011 = ^TFuncType011;
-  PPTFuncType011 = ^PTFuncType011;
+  PFuncType011 = ^TFuncType011;
+  PPFuncType011 = ^PFuncType011;
   {end of auto-generated forward references}
 
   TFuncType011 = function(_param1: PBIO; _param2: PAnsiChar): TOpenSSL_C_INT; cdecl;
@@ -1851,8 +1851,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType012 = ^TFuncType012;
-  PPTFuncType012 = ^PTFuncType012;
+  PFuncType012 = ^TFuncType012;
+  PPFuncType012 = ^PFuncType012;
   {end of auto-generated forward references}
 
   TFuncType012 = function(_param1: PBIO; _param2: PAnsiChar; _param3: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
@@ -1871,8 +1871,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType013 = ^TFuncType013;
-  PPTFuncType013 = ^PTFuncType013;
+  PFuncType013 = ^TFuncType013;
+  PPFuncType013 = ^PFuncType013;
   {end of auto-generated forward references}
 
   TFuncType013 = function(_param1: PBIO; _param2: PAnsiChar; _param3: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
@@ -1891,8 +1891,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType014 = ^TFuncType014;
-  PPTFuncType014 = ^PTFuncType014;
+  PFuncType014 = ^TFuncType014;
+  PPFuncType014 = ^PFuncType014;
   {end of auto-generated forward references}
 
   TFuncType014 = function(_param1: PBIO; _param2: TOpenSSL_C_INT; _param3: TOpenSSL_C_INT; _param4: pointer): TOpenSSL_C_INT; cdecl;
@@ -1911,8 +1911,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType015 = ^TFuncType015;
-  PPTFuncType015 = ^PTFuncType015;
+  PFuncType015 = ^TFuncType015;
+  PPFuncType015 = ^PFuncType015;
   {end of auto-generated forward references}
 
   TFuncType015 = function(_param1: PBIO; _param2: TOpenSSL_C_INT; _param3: TOpenSSL_C_INT; _param4: pointer): TOpenSSL_C_INT; cdecl;
@@ -1931,8 +1931,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType016 = ^TFuncType016;
-  PPTFuncType016 = ^PTFuncType016;
+  PFuncType016 = ^TFuncType016;
+  PPFuncType016 = ^PFuncType016;
   {end of auto-generated forward references}
 
   TFuncType016 = function(_param1: PBIO): TOpenSSL_C_INT; cdecl;
@@ -1951,8 +1951,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType017 = ^TFuncType017;
-  PPTFuncType017 = ^PTFuncType017;
+  PFuncType017 = ^TFuncType017;
+  PPFuncType017 = ^PFuncType017;
   {end of auto-generated forward references}
 
   TFuncType017 = function(_param1: PBIO): TOpenSSL_C_INT; cdecl;
@@ -1971,8 +1971,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType018 = ^TFuncType018;
-  PPTFuncType018 = ^PTFuncType018;
+  PFuncType018 = ^TFuncType018;
+  PPFuncType018 = ^PFuncType018;
   {end of auto-generated forward references}
 
   TFuncType018 = function(_param1: PBIO): TOpenSSL_C_INT; cdecl;
@@ -1991,8 +1991,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType019 = ^TFuncType019;
-  PPTFuncType019 = ^PTFuncType019;
+  PFuncType019 = ^TFuncType019;
+  PPFuncType019 = ^PFuncType019;
   {end of auto-generated forward references}
 
   TFuncType019 = function(_param1: PBIO): TOpenSSL_C_INT; cdecl;
@@ -2011,8 +2011,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType020 = ^TFuncType020;
-  PPTFuncType020 = ^PTFuncType020;
+  PFuncType020 = ^TFuncType020;
+  PPFuncType020 = ^PFuncType020;
   {end of auto-generated forward references}
 
   TFuncType020 = function(_param1: PBIO; _param2: TOpenSSL_C_INT; _param3: PBIO_info_cb): TOpenSSL_C_INT; cdecl;
@@ -2031,8 +2031,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType021 = ^TFuncType021;
-  PPTFuncType021 = ^PTFuncType021;
+  PFuncType021 = ^TFuncType021;
+  PPFuncType021 = ^PFuncType021;
   {end of auto-generated forward references}
 
   TFuncType021 = function(_param1: PBIO; _param2: TOpenSSL_C_INT; _param3: PBIO_info_cb): TOpenSSL_C_INT; cdecl;
@@ -2064,7 +2064,7 @@ const
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs
@@ -2265,21 +2265,21 @@ end;
 
 function BIO_set_conn_hostname(b:PBIO; name:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_C_SET_CONNECT,0,Pansichar(name)));
+  Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_C_SET_CONNECT,0,PAnsiChar(name)));
 end;
 
 {# define  BIO_set_conn_port(b,port) BIO_ctrl(b, BIO_C_SET_CONNECT, 1, (char *)(port))}
 
 function BIO_set_conn_port(b:PBIO; port:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_C_SET_CONNECT,1,Pansichar(port)));
+  Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_C_SET_CONNECT,1,PAnsiChar(port)));
 end;
 
 {# define  BIO_set_conn_address(b,addr) BIO_ctrl(b, BIO_C_SET_CONNECT, 2, (char *)(addr))}
 
 function BIO_set_conn_address(b:PBIO; addr:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_C_SET_CONNECT,2,Pansichar(addr)));
+  Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_C_SET_CONNECT,2,PAnsiChar(addr)));
 end;
 
 {# define  BIO_set_conn_ip_family(b,f) BIO_int_ctrl(b, BIO_C_SET_CONNECT, 3, f)}
@@ -2293,14 +2293,14 @@ end;
 
 function BIO_get_conn_hostname(b:PBIO): PAnsiChar;
 begin
-  Result := PAnsiChar(Pansichar(BIO_ptr_ctrl(b,BIO_C_GET_CONNECT,0)));
+  Result := PAnsiChar(PAnsiChar(BIO_ptr_ctrl(b,BIO_C_GET_CONNECT,0)));
 end;
 
 {# define  BIO_get_conn_port(b) ((const char *)BIO_ptr_ctrl(b, BIO_C_GET_CONNECT, 1))}
 
 function BIO_get_conn_port(b:PBIO): PAnsiChar;
 begin
-  Result := PAnsiChar(Pansichar(BIO_ptr_ctrl(b,BIO_C_GET_CONNECT,1)));
+  Result := PAnsiChar(PAnsiChar(BIO_ptr_ctrl(b,BIO_C_GET_CONNECT,1)));
 end;
 
 {# define  BIO_get_conn_address(b) ((const BIO_ADDR *)BIO_ptr_ctrl(b, BIO_C_GET_CONNECT, 2))}
@@ -2328,42 +2328,42 @@ end;
 
 function BIO_set_accept_name(b:PBIO; name:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_C_SET_ACCEPT,0,Pansichar(name)));
+  Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_C_SET_ACCEPT,0,PAnsiChar(name)));
 end;
 
 {# define  BIO_set_accept_port(b,port) BIO_ctrl(b, BIO_C_SET_ACCEPT, 1, (char *)(port))}
 
 function BIO_set_accept_port(b:PBIO; port:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_C_SET_ACCEPT,1,Pansichar(port)));
+  Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_C_SET_ACCEPT,1,PAnsiChar(port)));
 end;
 
 {# define  BIO_get_accept_name(b) ((const char *)BIO_ptr_ctrl(b, BIO_C_GET_ACCEPT, 0))}
 
 function BIO_get_accept_name(b:PBIO): PAnsiChar;
 begin
-  Result := PAnsiChar(Pansichar(BIO_ptr_ctrl(b,BIO_C_GET_ACCEPT,0)));
+  Result := PAnsiChar(PAnsiChar(BIO_ptr_ctrl(b,BIO_C_GET_ACCEPT,0)));
 end;
 
 {# define  BIO_get_accept_port(b) ((const char *)BIO_ptr_ctrl(b, BIO_C_GET_ACCEPT, 1))}
 
 function BIO_get_accept_port(b:PBIO): PAnsiChar;
 begin
-  Result := PAnsiChar(Pansichar(BIO_ptr_ctrl(b,BIO_C_GET_ACCEPT,1)));
+  Result := PAnsiChar(PAnsiChar(BIO_ptr_ctrl(b,BIO_C_GET_ACCEPT,1)));
 end;
 
 {# define  BIO_get_peer_name(b) ((const char *)BIO_ptr_ctrl(b, BIO_C_GET_ACCEPT, 2))}
 
 function BIO_get_peer_name(b:PBIO): PAnsiChar;
 begin
-  Result := PAnsiChar(Pansichar(BIO_ptr_ctrl(b,BIO_C_GET_ACCEPT,2)));
+  Result := PAnsiChar(PAnsiChar(BIO_ptr_ctrl(b,BIO_C_GET_ACCEPT,2)));
 end;
 
 {# define  BIO_get_peer_port(b) ((const char *)BIO_ptr_ctrl(b, BIO_C_GET_ACCEPT, 3))}
 
 function BIO_get_peer_port(b:PBIO): PAnsiChar;
 begin
-  Result := PAnsiChar(Pansichar(BIO_ptr_ctrl(b,BIO_C_GET_ACCEPT,3)));
+  Result := PAnsiChar(PAnsiChar(BIO_ptr_ctrl(b,BIO_C_GET_ACCEPT,3)));
 end;
 
 {# define  BIO_set_nbio_accept(b,n) BIO_ctrl(b, BIO_C_SET_ACCEPT, 2, (n) ? (void *)"a" : NULL)}
@@ -2383,7 +2383,7 @@ end;
 
 function BIO_set_accept_bios(b:PBIO; bio:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_C_SET_ACCEPT,3,Pansichar(bio)));
+  Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_C_SET_ACCEPT,3,PAnsiChar(bio)));
 end;
 
 {# define  BIO_set_accept_ip_family(b,f) BIO_int_ctrl(b, BIO_C_SET_ACCEPT, 4, f)}
@@ -2433,21 +2433,21 @@ end;
 
 function BIO_get_fd(b:PBIO; c:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_C_GET_FD,0,Pansichar(c)));
+  Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_C_GET_FD,0,PAnsiChar(c)));
 end;
 
 {# define  BIO_set_fp(b,fp,c) BIO_ctrl(b, BIO_C_SET_FILE_PTR, c, (char *)(fp))}
 
 function BIO_set_fp(b:PBIO; fp:pointer; c:TOpenSSL_C_INT): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_C_SET_FILE_PTR,c,Pansichar(fp)));
+  Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_C_SET_FILE_PTR,c,PAnsiChar(fp)));
 end;
 
 {# define  BIO_get_fp(b,fpp) BIO_ctrl(b, BIO_C_GET_FILE_PTR, 0, (char *)(fpp))}
 
 function BIO_get_fp(b:PBIO; fpp:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_C_GET_FILE_PTR,0,Pansichar(fpp)));
+  Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_C_GET_FILE_PTR,0,PAnsiChar(fpp)));
 end;
 
 {# define  BIO_seek(b,ofs) (int)BIO_ctrl(b, BIO_C_FILE_SEEK, ofs, NULL)}
@@ -2470,7 +2470,7 @@ end;
 
 function BIO_read_filename(b:PBIO; name:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(TOpenSSL_C_INT(BIO_ctrl(b,BIO_C_SET_FILENAME,BIO_CLOSE or BIO_FP_READ,Pansichar(name))));
+  Result := TOpenSSL_C_INT(TOpenSSL_C_INT(BIO_ctrl(b,BIO_C_SET_FILENAME,BIO_CLOSE or BIO_FP_READ,PAnsiChar(name))));
 end;
 {$endif} {CONST_STRICT}
 
@@ -2499,14 +2499,14 @@ end;
 
 function BIO_set_ssl(b:PBIO; ssl:pointer; c:TOpenSSL_C_INT): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_C_SET_SSL,c,Pansichar(ssl)));
+  Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_C_SET_SSL,c,PAnsiChar(ssl)));
 end;
 
 {# define  BIO_get_ssl(b,sslp) BIO_ctrl(b, BIO_C_GET_SSL, 0, (char *)(sslp))}
 
 function BIO_get_ssl(b:PBIO; sslp:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_C_GET_SSL,0,Pansichar(sslp)));
+  Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_C_GET_SSL,0,PAnsiChar(sslp)));
 end;
 
 {# define  BIO_set_ssl_mode(b,client) BIO_ctrl(b, BIO_C_SSL_MODE, client, NULL)}
@@ -2541,21 +2541,21 @@ end;
 
 function BIO_get_mem_data(b:PBIO; pp:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_CTRL_INFO,0,Pansichar(pp)));
+  Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_CTRL_INFO,0,PAnsiChar(pp)));
 end;
 
 {# define  BIO_set_mem_buf(b,bm,c) BIO_ctrl(b, BIO_C_SET_BUF_MEM, c, (char *)(bm))}
 
 function BIO_set_mem_buf(b:PBIO; bm:pointer; c:TOpenSSL_C_INT): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_C_SET_BUF_MEM,c,Pansichar(bm)));
+  Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_C_SET_BUF_MEM,c,PAnsiChar(bm)));
 end;
 
 {# define  BIO_get_mem_ptr(b,pp) BIO_ctrl(b, BIO_C_GET_BUF_MEM_PTR, 0, (char *)(pp))}
 
 function BIO_get_mem_ptr(b:PBIO; pp:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_C_GET_BUF_MEM_PTR,0,Pansichar(pp)));
+  Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_C_GET_BUF_MEM_PTR,0,PAnsiChar(pp)));
 end;
 
 {# define  BIO_set_mem_eof_return(b,v) BIO_ctrl(b, BIO_C_SET_BUF_MEM_EOF_RETURN, v, NULL)}
@@ -2604,7 +2604,7 @@ end;
 
 function BIO_dup_state(b:PBIO; ret:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_CTRL_DUP,0,Pansichar(ret)));
+  Result := TOpenSSL_C_INT(BIO_ctrl(b,BIO_CTRL_DUP,0,PAnsiChar(ret)));
 end;
 
 {# define  BIO_reset(b) (int)BIO_ctrl(b, BIO_CTRL_RESET, 0, NULL)}
@@ -2737,14 +2737,14 @@ end;
 
 function BIO_ctrl_dgram_connect_(b:PBIO; peer:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(TOpenSSL_C_INT(BIO_ctrl(b,BIO_CTRL_DGRAM_CONNECT,0,Pansichar(peer))));
+  Result := TOpenSSL_C_INT(TOpenSSL_C_INT(BIO_ctrl(b,BIO_CTRL_DGRAM_CONNECT,0,PAnsiChar(peer))));
 end;
 
 {# define  BIO_ctrl_set_connected(b,peer) (int)BIO_ctrl(b, BIO_CTRL_DGRAM_SET_CONNECTED, 0, (char *)(peer))}
 
 function BIO_ctrl_set_connected(b:PBIO; peer:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(TOpenSSL_C_INT(BIO_ctrl(b,BIO_CTRL_DGRAM_SET_CONNECTED,0,Pansichar(peer))));
+  Result := TOpenSSL_C_INT(TOpenSSL_C_INT(BIO_ctrl(b,BIO_CTRL_DGRAM_SET_CONNECTED,0,PAnsiChar(peer))));
 end;
 
 {# define  BIO_dgram_recv_timedout(b) (int)BIO_ctrl(b, BIO_CTRL_DGRAM_GET_RECV_TIMER_EXP, 0, NULL)}
@@ -2765,14 +2765,14 @@ end;
 
 function BIO_dgram_get_peer(b:PBIO; peer:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(TOpenSSL_C_INT(BIO_ctrl(b,BIO_CTRL_DGRAM_GET_PEER,0,Pansichar(peer))));
+  Result := TOpenSSL_C_INT(TOpenSSL_C_INT(BIO_ctrl(b,BIO_CTRL_DGRAM_GET_PEER,0,PAnsiChar(peer))));
 end;
 
 {# define  BIO_dgram_set_peer(b,peer) (int)BIO_ctrl(b, BIO_CTRL_DGRAM_SET_PEER, 0, (char *)(peer))}
 
 function BIO_dgram_set_peer(b:PBIO; peer:pointer): TOpenSSL_C_INT;
 begin
-  Result := TOpenSSL_C_INT(TOpenSSL_C_INT(BIO_ctrl(b,BIO_CTRL_DGRAM_SET_PEER,0,Pansichar(peer))));
+  Result := TOpenSSL_C_INT(TOpenSSL_C_INT(BIO_ctrl(b,BIO_CTRL_DGRAM_SET_PEER,0,PAnsiChar(peer))));
 end;
 
 {# define  BIO_dgram_get_mtu_overhead(b) (unsigned int)BIO_ctrl((b), BIO_CTRL_DGRAM_GET_MTU_OVERHEAD, 0, NULL)}

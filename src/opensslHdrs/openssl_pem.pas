@@ -18,7 +18,7 @@
 unit openssl_pem;
 
 {
-  Generated from OpenSSL 3.0.20 Header File pem.h - Fri  8 May 12:10:51 BST 2026
+  Generated from OpenSSL 3.0.20 Header File pem.h - Sun 10 May 22:58:23 BST 2026
 }
 
 interface
@@ -941,7 +941,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

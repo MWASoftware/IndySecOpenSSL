@@ -18,7 +18,7 @@
 unit openssl_ecdh;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ecdh.h - Fri  8 May 12:10:27 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ecdh.h - Sun 10 May 22:57:58 BST 2026
 }
 
 interface
@@ -36,7 +36,7 @@ uses OpenSSLAPI,openssl_ec;
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

@@ -18,7 +18,7 @@
 unit openssl_ossl_typ;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ossl_typ.h - Fri  8 May 12:10:48 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ossl_typ.h - Sun 10 May 22:58:20 BST 2026
 }
 
 interface
@@ -42,7 +42,7 @@ uses OpenSSLAPI,openssl_types;
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

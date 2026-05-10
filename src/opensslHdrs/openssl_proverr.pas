@@ -18,7 +18,7 @@
 unit openssl_proverr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File proverr.h - Fri  8 May 12:10:55 BST 2026
+  Generated from OpenSSL 3.0.20 Header File proverr.h - Sun 10 May 22:58:27 BST 2026
 }
 
 interface
@@ -169,7 +169,7 @@ const
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

@@ -18,7 +18,7 @@
 unit openssl_http;
 
 {
-  Generated from OpenSSL 3.0.20 Header File http.h - Fri  8 May 12:10:40 BST 2026
+  Generated from OpenSSL 3.0.20 Header File http.h - Sun 10 May 22:58:11 BST 2026
 }
 
 interface
@@ -181,7 +181,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

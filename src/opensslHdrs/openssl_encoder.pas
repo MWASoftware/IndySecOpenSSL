@@ -18,7 +18,7 @@
 unit openssl_encoder;
 
 {
-  Generated from OpenSSL 3.0.20 Header File encoder.h - Fri  8 May 12:10:30 BST 2026
+  Generated from OpenSSL 3.0.20 Header File encoder.h - Sun 10 May 22:58:00 BST 2026
 }
 
 interface
@@ -85,8 +85,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType000 = ^TFuncType000;
-  PPTFuncType000 = ^PTFuncType000;
+  PFuncType000 = ^TFuncType000;
+  PPFuncType000 = ^PFuncType000;
   {end of auto-generated forward references}
 
   TFuncType000 = procedure(encoder: POSSL_ENCODER; arg: pointer); cdecl;
@@ -105,8 +105,8 @@ var
 
 type
   {Auto-generated forward references}
-  PTFuncType001 = ^TFuncType001;
-  PPTFuncType001 = ^PTFuncType001;
+  PFuncType001 = ^TFuncType001;
+  PPFuncType001 = ^PFuncType001;
   {end of auto-generated forward references}
 
   TFuncType001 = procedure(name: PAnsiChar; data: pointer); cdecl;
@@ -310,7 +310,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs

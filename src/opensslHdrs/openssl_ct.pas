@@ -18,7 +18,7 @@
 unit openssl_ct;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ct.h - Fri  8 May 12:10:22 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ct.h - Sun 10 May 22:57:53 BST 2026
 }
 
 interface
@@ -1204,7 +1204,7 @@ var
 
 implementation
 
-uses Sysutils
+uses Sysutils, variants
   {$ifdef OPENSSL_INTERNAL_NEED_THREADS}
    {$IFNDEF FPC}
      ,System.SyncObjs
