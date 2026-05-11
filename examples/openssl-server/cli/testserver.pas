@@ -341,6 +341,7 @@ procedure TOpenSSLServerTest.DoRun;
       writeln('LibCrypto: ',GetIOpenSSLDDL.GetLibCryptoFilePath);
       writeln('LibSSL: ',GetIOpenSSLDDL.GetLibSSLFilePath);
     end;
+    writeln('Header Version: ',OPENSSL_VERSION_STR);
     writeln('Working Directory = ' + GetCurrentDir);
     writeln;
 
