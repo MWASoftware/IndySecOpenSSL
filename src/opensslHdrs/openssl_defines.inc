@@ -71,7 +71,7 @@
 {$ENDIF}
 
 {$IFNDEF FPC}
-{$if defined(CPU64BITS) or defined(CPUX86_64) or defined(CPUAMD64)}
+{$if defined(CPU64BITS) or defined(CPUX86_64) or defined(CPUAMD64) or defined(CPUX64)}
   {$DEFINE CPU64}
 {$else}
   {$DEFINE CPU32}

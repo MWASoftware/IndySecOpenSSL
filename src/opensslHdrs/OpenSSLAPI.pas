@@ -172,6 +172,7 @@ type
   TOpenSSL_C_UINT64 = cuint64;
   TOpenSSL_C_USHORT = cushort;
   TOpenSSL_C_DOUBLE = cdouble;
+
   {$if declared(size_t)}
   TOpenSSL_C_SIZET = size_t;
   {$else}
@@ -186,6 +187,7 @@ type
     {$ENDIF}
   {$ifend}
   {$ifend}
+
   {$if declared(ssize_t)}
   TOpenSSL_C_SSIZET = ssize_t;
   {$ELSE}
@@ -200,6 +202,7 @@ type
       {$ENDIF}
     {$ifend}
   {$ifend}
+
   {$if declared(time_t))}
   TOpenSSL_C_TIMET = time_t;
   {$ELSE}
@@ -214,9 +217,8 @@ type
       {$ENDIF}
     {$ifend}
   {$ifend}
-  TOpenSSL_timeval = timeval;
 
-{$ELSE}
+{$ELSE} {not FPC}
   PPByte           = ^PByte;
   PPAnsiChar      = ^PAnsiChar;
   PPPAnsiChar      = ^PPAnsiChar;
@@ -232,56 +234,50 @@ type
   TOpenSSL_C_SHORT = Smallint;
   TOpenSSL_C_USHORT = Word;
   TOpenSSL_C_DOUBLE = Double;
+
   {$if declared(size_t)}
   TOpenSSL_C_SIZET = size_t;
   {$else}
     {$if declared(NativeUInt)}
-  TOpenSSL_C_SIZET = NativeUInt;
-  {$else}
+    TOpenSSL_C_SIZET = NativeUInt;
+    {$else}
       {$IFDEF CPU32}
-  TOpenSSL_C_SIZET = TOp/OpenSSLPackageSplitTake3enSSL_C_UINT32;
+      TOpenSSL_C_SIZET = TOpenSSL_C_UINT32;
       {$ENDIF}
       {$IFDEF CPU64}
-  TOpenSSL_C_SIZET = TOpenSSL_C_UINT64;
+      TOpenSSL_C_SIZET = TOpenSSL_C_UINT64;
       {$ENDIF}
     {$ifend}
   {$ifend}
 
   {$if declared(NativeInt)}
-TOpenSSL_C_SSIZET = NativeInt;
+  TOpenSSL_C_SSIZET = NativeInt;
   {$ELSE}
     {$IFDEF CPU32}
-TOpenSSL_C_SSIZET = TOpenSSL_C_INT32;
+     TOpenSSL_C_SSIZET = TOpenSSL_C_INT32;
     {$ENDIF}
     {$IFDEF CPU64}
-TOpenSSL_C_SSIZET = TOpenSSL_C_INT64;
+    TOpenSSL_C_SSIZET = TOpenSSL_C_INT64;
     {$ENDIF}
   {$ifend}
 
   {$if declared(time_t))}
     TOpenSSL_C_TIMET = time_t;
-    {$ELSE}
-      {$if declared(NativeInt)}
+  {$ELSE}
+    {$if declared(NativeInt)}
     TOpenSSL_C_TIMET = NativeInt;
-      {$ELSE}
-        {$IFDEF CPU32}
-    TOpenSSL_C_TIMET = TOpenSSL_C_INT32;
-        {$ENDIF}
-        {$IFDEF CPU64}
-    TOpenSSL_C_TIMET = TOpenSSL_C_INT64;
-        {$ENDIF}
-      {$ifend}
-    {$ifend}
-    
-    {$if declared(timeval)}
-    TOpenSSL_timeval = timeval;
     {$ELSE}
-    TOpenSSL_timeval = record
-      tv_sec: TOpenSSL_C_TIMET;
-      tv_usec: TOpenSSL_C_INT;
-    end;
-    {$ENDIF}
-{$ENDIF}
+      {$IFDEF CPU32}
+      TOpenSSL_C_TIMET = TOpenSSL_C_INT32;
+      {$ENDIF}
+      {$IFDEF CPU64}
+      TOpenSSL_C_TIMET = TOpenSSL_C_INT64;
+      {$ENDIF}
+    {$ifend}
+  {$ifend}
+
+{$ENDIF}  //FPC
+
   POpenSSL_C_LONG   = ^TOpenSSL_C_LONG;
   POpenSSL_C_ULONG  = ^TOpenSSL_C_ULONG;
   POpenSSL_C_INT    = ^TOpenSSL_C_INT;
@@ -325,6 +321,15 @@ TOpenSSL_C_SSIZET = TOpenSSL_C_INT64;
   end;
   POpenSSL_C_TM = ^TOpenSSL_C_TM;
   PPOpenSSL_C_TM = ^POpenSSL_C_TM;
+
+  {$if declared(timeval)}
+  TOpenSSL_timeval = timeval;
+  {$ELSE}
+  TOpenSSL_timeval = record
+    tv_sec: TOpenSSL_C_TIMET;
+    tv_usec: TOpenSSL_C_INT;
+  end;
+  {$ifend}
   POpenSSL_timeval = ^TOpenSSL_timeval;
   
   Toff_t = integer;
