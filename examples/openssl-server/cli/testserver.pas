@@ -327,6 +327,7 @@ procedure TOpenSSLServerTest.DoRun;
     FServer.Active := true;
     Sleep(1000); {let server get going}
     writeln('Using ',OpenSSLVersion);
+    writeln('Header Version: ',OPENSSL_VERSION_STR,' ',openssl_lib_info);
     case GetIOpenSSL.GetLinkModel of
     lmDynamic:
       writeln('Link Model: Dynamic linking at run time');
@@ -341,7 +342,6 @@ procedure TOpenSSLServerTest.DoRun;
       writeln('LibCrypto: ',GetIOpenSSLDDL.GetLibCryptoFilePath);
       writeln('LibSSL: ',GetIOpenSSLDDL.GetLibSSLFilePath);
     end;
-    writeln('Header Version: ',OPENSSL_VERSION_STR);
     writeln('Working Directory = ' + GetCurrentDir);
     writeln;
 

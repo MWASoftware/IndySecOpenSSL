@@ -18,7 +18,7 @@
 unit openssl_ssl3;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ssl3.h - Sun 10 May 22:58:38 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ssl3.h - Tue 12 May 09:23:09 BST 2026
 }
 
 interface

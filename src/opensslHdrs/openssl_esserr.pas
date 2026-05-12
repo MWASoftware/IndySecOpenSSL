@@ -18,7 +18,7 @@
 unit openssl_esserr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File esserr.h - Sun 10 May 22:58:05 BST 2026
+  Generated from OpenSSL 3.0.20 Header File esserr.h - Tue 12 May 09:22:36 BST 2026
 }
 
 interface
