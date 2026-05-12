@@ -18,7 +18,7 @@
 unit openssl_encoder;
 
 {
-  Generated from OpenSSL 3.0.20 Header File encoder.h - Sun 10 May 23:00:00 BST 2026
+  Generated from OpenSSL 3.0.20 Header File encoder.h - Tue 12 May 09:29:57 BST 2026
   With Legacy Support Option
 }
 

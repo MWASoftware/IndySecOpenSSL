@@ -302,6 +302,7 @@ var i: integer;
     {$ENDIF}
 
     writeln('Using ',OpenSSLVersion, ', OpenSSLDir: ', OpenSSLDir);
+    writeln('Header Version: ',OPENSSL_VERSION_STR,' ',openssl_lib_info);
     case GetIOpenSSL.GetLinkModel of
     lmDynamic:
       writeln('Link Model: Dynamic linking at run time');

@@ -18,7 +18,7 @@
 unit openssl_err;
 
 {
-  Generated from OpenSSL 3.0.20 Header File err.h - Sun 10 May 23:00:03 BST 2026
+  Generated from OpenSSL 3.0.20 Header File err.h - Tue 12 May 09:30:00 BST 2026
   With Legacy Support Option
 }
 

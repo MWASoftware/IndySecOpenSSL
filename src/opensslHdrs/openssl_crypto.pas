@@ -18,7 +18,7 @@
 unit openssl_crypto;
 
 {
-  Generated from OpenSSL 3.0.20 Header File crypto.h - Sun 10 May 22:59:50 BST 2026
+  Generated from OpenSSL 3.0.20 Header File crypto.h - Tue 12 May 09:29:48 BST 2026
   With Legacy Support Option
 }
 
@@ -821,7 +821,7 @@ var
   { OPENSSL_NO_CRYPTO_MDEBUG }
   { die if we have to }
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  procedure OPENSSL_die(assertion: PAnsiChar; file_: PAnsiChar; line: TOpenSSL_C_INT); cdecl; external CLibCrypto name 'OPENSSL_die'; noreturn ;
+  procedure OPENSSL_die(assertion: PAnsiChar; file_: PAnsiChar; line: TOpenSSL_C_INT); cdecl; external CLibCrypto name 'OPENSSL_die'{$IFDEF HAS_NORETURN}; noreturn {$ENDIF};
   {$else}
   {$EXTERNALSYM OPENSSL_die}
   {Do not call Function LoadDeclarations. Internal use only}

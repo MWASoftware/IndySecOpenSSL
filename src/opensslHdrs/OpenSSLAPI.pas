@@ -38,11 +38,20 @@ uses
   , SysUtils;
   
  
-{$IFDEF OPENSSL_STATIC_LINK_MODEL}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
   {$IFDEF OPENSSL_USE_SHARED_LIBRARY}
     {$MESSAGE Error. Static and Shared Link Models cannot be requested at the same time!}
   {$ENDIF}
 {$ENDIF}
+
+{$include openssl_opensslv.inc}
+{$include openssl_info.inc}
+
+{$IFNDEF USE_OPENSSL_VERSION_4}
+  {$IF OPENSSL_VERSION_MAJOR = 4}
+    {$define USE_OPENSSL_VERSION_4}
+  {$IFEND}
+{$ENDIF}   
 
 const
   {$IFNDEF OPENSSL_STATIC_LINK_MODEL}
@@ -59,11 +68,6 @@ const
    of your openssl library.}
 
   OpenSSLLibraryPath = 'OPENSSL_LIBRARY_PATH'; {environment variable name}
-  {$IFNDEF OPENSSL_NO_MIN_VERSION}
-  min_supported_ssl_version =  ((((((byte(1) shl 8) + byte(0)) shl 8) + byte (0)) shl 8) + byte(0)) shl 4; {1.0.0}
-  {$ELSE}
-  min_supported_ssl_version = 0;
-  {$ENDIF}
   CLibCryptoBase = 'libcrypto';
   CLibSSLBase = 'libssl';
 
@@ -84,21 +88,32 @@ const
     CLibSSL = 'ssl';
     {$ENDIF}
     {$IFDEF WINDOWS}
-      {$IFDEF CPU64}
-        CLibCrypto = 'libcrypto-3-x64.dll';
-        CLibSSL = 'libssl-3-x64.dll';
-      {$ENDIF}
-      {$IFDEF CPU32}
-        CLibCrypto = 'libcrypto-3.dll';
-        CLibSSL = 'libssl-3.dll';
+      {$IFDEF USE_OPENSSL_VERSION_4}
+        {$IFDEF CPU64}
+          CLibCrypto = 'libcrypto-4-x64.dll';
+          CLibSSL = 'libssl-4-x64.dll';
+        {$ENDIF}
+        {$IFDEF CPU32}
+          CLibCrypto = 'libcrypto-4.dll';
+          CLibSSL = 'libssl-4.dll';
+        {$ENDIF}
+      {$ELSE}
+        {$IFDEF CPU64}
+          CLibCrypto = 'libcrypto-3-x64.dll';
+          CLibSSL = 'libssl-3-x64.dll';
+        {$ENDIF}
+        {$IFDEF CPU32}
+          CLibCrypto = 'libcrypto-3.dll';
+         CLibSSL = 'libssl-3.dll';
+        {$ENDIF}
       {$ENDIF}
     {$ENDIF}
-  {$ENDIF}
-
-    {$IFDEF UNIX}
+   {$ENDIF}
+  
+  {$IFDEF UNIX}
   DirListDelimiter = ':';
   LibSuffix = '.so';
-  DefaultLibVersions = ':.3:.1.1:.1.0.2:.1.0.0:.0.9.9:.0.9.8:.0.9.7:.0.9.6';
+  DefaultLibVersions = '.4::.3:.1.1:.1.0.2:.1.0.0:.0.9.9:.0.9.8:.0.9.7:.0.9.6';
   {$ENDIF}
   {$IFDEF WINDOWS}
   DirListDelimiter = ';';
@@ -107,10 +122,10 @@ const
   LegacyLibssl = 'ssleay32';
 
     {$IFDEF CPU64}
-    DefaultLibVersions = '-3-x64;-1-x64';
+    DefaultLibVersions = '4-x64;-3-x64;-1-x64';
     {$ENDIF}
     {$IFDEF CPU32}
-    DefaultLibVersions = '-3;-1';
+    DefaultLibVersions = '-4;-3;-1';
     {$ENDIF}
   {$ENDIF}
 
@@ -378,8 +393,6 @@ uses SyncObjs,
      OpenSSLExceptionHandlers,
      OpenSSLResourceStrings;
      
-{$include openssl_opensslv.inc}
-
 type
 
   { TOpenSSLProvider }
