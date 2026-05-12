@@ -7,7 +7,7 @@ with the main release. It provides both a confidence test of the 3.0.20 headers
 and a candidate new release.
 
 This branch does not include legacysupport (i.e. support for the OpenSSL 1.0.2 and
-1.1.1 libraries). It is application for OpenSSL 3.0 and later only.
+1.1.1 libraries). It is applicable for OpenSSL 3.0 and later only.
 
 This repo provides the IndySecOpenSSL package for both Delphi and Lazarus/fpc.
 
