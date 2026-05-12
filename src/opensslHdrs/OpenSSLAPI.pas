@@ -217,7 +217,7 @@ type
       {$ENDIF}
     {$ifend}
   {$ifend}
-
+  
 {$ELSE} {not FPC}
   PPByte           = ^PByte;
   PPAnsiChar      = ^PAnsiChar;
@@ -396,7 +396,8 @@ uses SyncObjs,
      openssl_ssl,
      openssl_crypto,
      OpenSSLExceptionHandlers,
-     OpenSSLResourceStrings;
+     OpenSSLResourceStrings,
+     openssl_winx509;
      
 type
 
@@ -645,7 +646,7 @@ begin
   FSSLLibVersions := DefaultLibVersions;
   FSSLBaseLibName := CLibSSLBase;
   FCryptoBaseLibName := CLibCryptoBase;
-  FAllowLegacyLibsFallback := false;
+  FAllowLegacyLibsFallback := openssl_lib_info <> '';
 end;
 
 destructor TOpenSSLDynamicLibProvider.Destroy;
@@ -824,7 +825,7 @@ begin
 
       for i := 0 to FLibLoadList.Count - 1 do
         TOpenSSLLoadProc(FLibLoadList[i])(SSLVersionNo,FFailed);
-
+        
     end;
 
   finally

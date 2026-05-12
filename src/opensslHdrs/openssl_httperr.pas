@@ -18,7 +18,7 @@
 unit openssl_httperr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File httperr.h - Tue 12 May 11:04:03 BST 2026
+  Generated from OpenSSL 3.0.20 Header File httperr.h - Tue 12 May 16:30:49 BST 2026
   With Legacy Support Option
 }
 

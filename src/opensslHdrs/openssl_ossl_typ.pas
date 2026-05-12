@@ -18,7 +18,7 @@
 unit openssl_ossl_typ;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ossl_typ.h - Tue 12 May 11:04:13 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ossl_typ.h - Tue 12 May 16:30:59 BST 2026
   With Legacy Support Option
 }
 

@@ -1248,7 +1248,7 @@ begin
   except
     // Surpress exception here since it's going to be called by the OpenSSL .DLL
     // Follow the OpenSSL .DLL Error conventions.
-    SSLError(SSL_F_SSL_CTX_USE_CERTIFICATE_CHAIN_FILE, ERR_R_SYS_LIB);
+    SSLError(SSL_F_USE_CERTIFICATE_CHAIN_FILE, ERR_R_SYS_LIB);
     LM.Free;
     Exit;
   end;
@@ -1262,7 +1262,7 @@ begin
       LX := PEM_read_bio_X509_AUX(B, nil, SSL_CTX_get_default_passwd_cb(ctx),
                               SSL_CTX_get_default_passwd_cb_userdata(ctx));
       if (Lx = nil) then begin
-        SSLError(SSL_F_SSL_CTX_USE_CERTIFICATE_CHAIN_FILE, ERR_R_PEM_LIB);
+        SSLError(SSL_F_USE_CERTIFICATE_CHAIN_FILE, ERR_R_PEM_LIB);
       end else begin
         Result := SSL_CTX_use_certificate(ctx, Lx);
         if (ERR_peek_error() <> 0) then begin

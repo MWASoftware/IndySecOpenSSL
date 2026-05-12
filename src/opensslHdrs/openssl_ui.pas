@@ -18,7 +18,7 @@
 unit openssl_ui;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ui.h - Tue 12 May 11:04:48 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ui.h - Tue 12 May 16:31:35 BST 2026
   With Legacy Support Option
 }
 
