@@ -18,7 +18,7 @@
 unit openssl_types;
 
 {
-  Generated from OpenSSL 3.0.20 Header File types.h - Tue 12 May 09:30:50 BST 2026
+  Generated from OpenSSL 3.0.20 Header File types.h - Tue 12 May 11:04:46 BST 2026
   With Legacy Support Option
 }
 

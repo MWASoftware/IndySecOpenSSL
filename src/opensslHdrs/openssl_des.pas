@@ -18,7 +18,7 @@
 unit openssl_des;
 
 {
-  Generated from OpenSSL 3.0.20 Header File des.h - Tue 12 May 09:29:51 BST 2026
+  Generated from OpenSSL 3.0.20 Header File des.h - Tue 12 May 11:03:47 BST 2026
   With Legacy Support Option
 }
 

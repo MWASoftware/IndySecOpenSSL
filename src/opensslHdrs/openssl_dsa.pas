@@ -18,7 +18,7 @@
 unit openssl_dsa;
 
 {
-  Generated from OpenSSL 3.0.20 Header File dsa.h - Tue 12 May 09:29:53 BST 2026
+  Generated from OpenSSL 3.0.20 Header File dsa.h - Tue 12 May 11:03:49 BST 2026
   With Legacy Support Option
 }
 

@@ -18,7 +18,7 @@
 unit openssl_comp;
 
 {
-  Generated from OpenSSL 3.0.20 Header File comp.h - Tue 12 May 09:29:40 BST 2026
+  Generated from OpenSSL 3.0.20 Header File comp.h - Tue 12 May 11:03:36 BST 2026
   With Legacy Support Option
 }
 

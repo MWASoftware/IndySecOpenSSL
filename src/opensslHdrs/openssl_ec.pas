@@ -18,7 +18,7 @@
 unit openssl_ec;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ec.h - Tue 12 May 09:29:56 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ec.h - Tue 12 May 11:03:53 BST 2026
   With Legacy Support Option
 }
 
