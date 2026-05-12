@@ -69,10 +69,6 @@ THIS SOFTWARE IS PROVIDED BY Chad Z. Hower (Kudzu) and the Indy Pit Crew &amp;am
         <Filename Value="../src/IdSecOpenSSLX509.pas"/>
         <UnitName Value="IdSecOpenSSLX509"/>
       </Item>
-      <Item>
-        <Filename Value="../src/IdSecwincrypt.pas"/>
-        <UnitName Value="IdSecwincrypt"/>
-      </Item>
     </Files>
     <RequiredPkgs>
       <Item>
