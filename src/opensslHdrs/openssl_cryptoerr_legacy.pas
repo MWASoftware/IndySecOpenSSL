@@ -18,7 +18,7 @@
 unit openssl_cryptoerr_legacy;
 
 {
-  Generated from OpenSSL 3.0.20 Header File cryptoerr_legacy.h - Sun 10 May 22:57:50 BST 2026
+  Generated from OpenSSL 3.0.20 Header File cryptoerr_legacy.h - Tue 12 May 09:22:22 BST 2026
 }
 
 interface

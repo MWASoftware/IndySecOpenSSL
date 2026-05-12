@@ -38,13 +38,14 @@ uses
   , SysUtils;
   
  
-{$IFDEF OPENSSL_STATIC_LINK_MODEL}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
   {$IFDEF OPENSSL_USE_SHARED_LIBRARY}
     {$MESSAGE Error. Static and Shared Link Models cannot be requested at the same time!}
   {$ENDIF}
 {$ENDIF}
 
 {$include openssl_opensslv.inc}
+{$include openssl_info.inc}
 
 {$IFNDEF USE_OPENSSL_VERSION_4}
   {$IF OPENSSL_VERSION_MAJOR = 4}
@@ -67,11 +68,6 @@ const
    of your openssl library.}
 
   OpenSSLLibraryPath = 'OPENSSL_LIBRARY_PATH'; {environment variable name}
-  {$IFNDEF OPENSSL_NO_MIN_VERSION}
-  min_supported_ssl_version =  ((((((byte(1) shl 8) + byte(0)) shl 8) + byte (2)) shl 8) + byte(0)) shl 4; {1.0.2}
-  {$ELSE}
-  min_supported_ssl_version = 0;
-  {$ENDIF}
   CLibCryptoBase = 'libcrypto';
   CLibSSLBase = 'libssl';
 
@@ -101,7 +97,7 @@ const
           CLibCrypto = 'libcrypto-4.dll';
           CLibSSL = 'libssl-4.dll';
         {$ENDIF}
-      {$ELSE
+      {$ELSE}
         {$IFDEF CPU64}
           CLibCrypto = 'libcrypto-3-x64.dll';
           CLibSSL = 'libssl-3-x64.dll';
@@ -112,6 +108,7 @@ const
         {$ENDIF}
       {$ENDIF}
     {$ENDIF}
+   {$ENDIF}
   
   {$IFDEF UNIX}
   DirListDelimiter = ':';

@@ -18,7 +18,7 @@
 unit openssl_sslerr_legacy;
 
 {
-  Generated from OpenSSL 3.0.20 Header File sslerr_legacy.h - Sun 10 May 22:58:38 BST 2026
+  Generated from OpenSSL 3.0.20 Header File sslerr_legacy.h - Tue 12 May 09:23:10 BST 2026
 }
 
 interface

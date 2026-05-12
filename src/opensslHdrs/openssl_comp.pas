@@ -18,7 +18,7 @@
 unit openssl_comp;
 
 {
-  Generated from OpenSSL 3.0.20 Header File comp.h - Sun 10 May 22:57:43 BST 2026
+  Generated from OpenSSL 3.0.20 Header File comp.h - Tue 12 May 09:22:15 BST 2026
 }
 
 interface

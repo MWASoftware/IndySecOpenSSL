@@ -166,6 +166,8 @@ begin
     Memo1.Lines.Add('Link Model: Statically linked to a static library at link time');
   end;
 
+  Memo1.Lines.Add('Header Version: ' + OPENSSL_VERSION_STR +' ' + openssl_lib_info);
+
   if GetIOpenSSLDDL <> nil then
     begin
       Memo1.Lines.Add('LibCrypto: '+GetIOpenSSLDDL.GetLibCryptoFilePath);
