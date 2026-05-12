@@ -18,7 +18,7 @@
 unit openssl_ossl_typ;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ossl_typ.h - Tue 12 May 09:22:51 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ossl_typ.h - Tue 12 May 11:06:10 BST 2026
 }
 
 interface

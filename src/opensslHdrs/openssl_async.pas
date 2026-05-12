@@ -18,7 +18,7 @@
 unit openssl_async;
 
 {
-  Generated from OpenSSL 3.0.20 Header File async.h - Tue 12 May 09:22:03 BST 2026
+  Generated from OpenSSL 3.0.20 Header File async.h - Tue 12 May 11:05:20 BST 2026
 }
 
 interface

@@ -18,7 +18,7 @@
 unit openssl_cterr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File cterr.h - Tue 12 May 09:22:23 BST 2026
+  Generated from OpenSSL 3.0.20 Header File cterr.h - Tue 12 May 11:05:41 BST 2026
 }
 
 interface

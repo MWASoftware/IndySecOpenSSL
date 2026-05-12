@@ -18,7 +18,7 @@
 unit openssl_rc4;
 
 {
-  Generated from OpenSSL 3.0.20 Header File rc4.h - Tue 12 May 09:23:01 BST 2026
+  Generated from OpenSSL 3.0.20 Header File rc4.h - Tue 12 May 11:06:19 BST 2026
 }
 
 interface

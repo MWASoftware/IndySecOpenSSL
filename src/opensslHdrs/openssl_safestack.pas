@@ -18,7 +18,7 @@
 unit openssl_safestack;
 
 {
-  Generated from OpenSSL 3.0.20 Header File safestack.h - Tue 12 May 09:23:03 BST 2026
+  Generated from OpenSSL 3.0.20 Header File safestack.h - Tue 12 May 11:06:21 BST 2026
 }
 
 interface

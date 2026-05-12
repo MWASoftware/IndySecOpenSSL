@@ -18,7 +18,7 @@
 unit openssl_bio;
 
 {
-  Generated from OpenSSL 3.0.20 Header File bio.h - Tue 12 May 09:22:04 BST 2026
+  Generated from OpenSSL 3.0.20 Header File bio.h - Tue 12 May 11:05:21 BST 2026
 }
 
 interface

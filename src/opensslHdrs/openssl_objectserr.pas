@@ -18,7 +18,7 @@
 unit openssl_objectserr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File objectserr.h - Tue 12 May 09:22:46 BST 2026
+  Generated from OpenSSL 3.0.20 Header File objectserr.h - Tue 12 May 11:06:04 BST 2026
 }
 
 interface

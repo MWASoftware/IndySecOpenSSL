@@ -18,7 +18,7 @@
 unit openssl_whrlpool;
 
 {
-  Generated from OpenSSL 3.0.20 Header File whrlpool.h - Tue 12 May 09:23:27 BST 2026
+  Generated from OpenSSL 3.0.20 Header File whrlpool.h - Tue 12 May 11:06:46 BST 2026
 }
 
 interface
