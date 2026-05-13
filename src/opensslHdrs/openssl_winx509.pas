@@ -24,7 +24,8 @@ interface
 
 uses classes, sysutils, OpenSSLAPI, Windows, openssl_types;
 
-procedure LoadWindowsCertStore(ctx:PSSL_CTX);
+function HasWindowsCertStore: boolean;
+function LoadWindowsCertStore(ctx:PSSL_CTX): integer;
 
 {$ENDIF} //OPENSSL_USE_WINDOWS_CERT_STORE
 
@@ -52,7 +53,12 @@ type
   end;
   
  const 
-   HasWindowsCertStore : boolean = true;
+   FHasWindowsCertStore : boolean = true;
+   
+   function HasWindowsCertStore: boolean;
+   begin
+     Result := FHasWindowsCertStore;
+    end;
   
  {$IFDEF OPENSSL_STATIC_LINK_MODEL}
   function CertOpenSystemStoreA(hProv: HCRYPTPROV_LEGACY; szSubsystemProtocol: PAnsiChar):HCERTSTORE; stdcall; external wincryptdll;
@@ -75,7 +81,7 @@ var
       CertCloseStore := GetProcAddress(LibWinCrypt,'CertCloseStore');
       CertEnumCertificatesInStore := GetProcAddress(LibWinCrypt,'CertEnumCertificatesInStore');
     end;
-    HasWindowsCertStore := (LibWinCrypt <> NilHandle) and assigned(CertOpenSystemStoreA) and
+    FHasWindowsCertStore := (LibWinCrypt <> NilHandle) and assigned(CertOpenSystemStoreA) and
       assigned(CertCloseStore) and assigned(CertEnumCertificatesInStore);
   end;
   
@@ -88,7 +94,7 @@ var
   
 {$ENDIF} //OPENSSL_STATIC_LINK_MODEL
 
-procedure LoadWindowsCertStore(ctx:PSSL_CTX);
+function LoadWindowsCertStore(ctx:PSSL_CTX) :integer;
 var WinCertStore: HCERTSTORE;
     X509Cert: PX509;
     cert_context: PCCERT_CONTEXT;
@@ -96,6 +102,7 @@ var WinCertStore: HCERTSTORE;
     SSLCertStore: PX509_STORE;
     CertEncoded: PByte;
 begin
+  Result := 0;
   if not HasWindowsCertStore then Exit;
   
   cert_context := nil;
@@ -114,9 +121,13 @@ begin
       begin
         error := X509_STORE_add_cert(SSLCertStore, X509Cert);
 //Ignore if cert already in store
-        if (error = 0) and
-           (ERR_GET_REASON(ERR_get_error()) <> X509_R_CERT_ALREADY_IN_HASH_TABLE) then
-          EOpenSSLAPICryptoError.RaiseException(ROSCertificateNotAddedToStore);
+        if error = 0 then
+        begin
+          if  (ERR_GET_REASON(ERR_get_error()) <> X509_R_CERT_ALREADY_IN_HASH_TABLE) then
+            EOpenSSLAPICryptoError.RaiseException(ROSCertificateNotAddedToStore);
+        end
+        else
+          inc(Result);
         X509_free(X509Cert);
       end;
       cert_context := CertEnumCertificatesInStore(WinCertStore,cert_context);

@@ -677,8 +677,9 @@ begin
     SSL_CTX_set_default_passwd_cb_userdata(fContext, Self);
 //  end;
 
-{$IF declared(LoadWindowsCertStore)}
-  LoadWindowsCertStore(fcontext);
+{$IF declared(HasWindowsCertStore)}
+  if HasWindowsCertStore then
+    LoadWindowsCertStore(fcontext);
 {$ELSE}
   SSL_CTX_set_default_verify_paths(fContext);
 {$IFEND}
