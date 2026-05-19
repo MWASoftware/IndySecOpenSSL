@@ -18,9 +18,15 @@
 unit openssl_comp;
 
 {
-  Generated from OpenSSL 3.0.20 Header File comp.h - Tue 12 May 16:30:22 BST 2026
+  Generated from OpenSSL 3.0.20 Header File comp.h - Tue 19 May 14:24:44 BST 2026
   With Legacy Support Option
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_comp.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

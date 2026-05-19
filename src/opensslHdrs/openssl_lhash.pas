@@ -18,9 +18,15 @@
 unit openssl_lhash;
 
 {
-  Generated from OpenSSL 3.0.20 Header File lhash.h - Tue 12 May 16:30:52 BST 2026
+  Generated from OpenSSL 3.0.20 Header File lhash.h - Tue 19 May 14:25:14 BST 2026
   With Legacy Support Option
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_lhash.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

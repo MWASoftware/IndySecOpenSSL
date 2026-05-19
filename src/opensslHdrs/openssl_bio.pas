@@ -18,9 +18,15 @@
 unit openssl_bio;
 
 {
-  Generated from OpenSSL 3.0.20 Header File bio.h - Tue 12 May 16:30:11 BST 2026
+  Generated from OpenSSL 3.0.20 Header File bio.h - Tue 19 May 14:24:33 BST 2026
   With Legacy Support Option
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_bio.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 
@@ -1380,6 +1386,7 @@ var
   BIO_ADDRINFO_free: procedure(bai: PBIO_ADDRINFO); cdecl = Load_BIO_ADDRINFO_free;
     {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
+
 type
   TBIO_hostserv_priorities = (
     BIO_PARSE_PRIO_HOST, 
@@ -1396,6 +1403,7 @@ type
 var
   BIO_parse_hostserv: function(hostserv: PAnsiChar; host: PPAnsiChar; service: PPAnsiChar; hostserv_prio: TBIO_hostserv_priorities): TOpenSSL_C_INT; cdecl = Load_BIO_parse_hostserv;
     {$endif} {OPENSSL_STATIC_LINK_MODEL}
+
 
 type
   TBIO_lookup_type = (

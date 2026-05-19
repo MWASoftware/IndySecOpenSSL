@@ -18,9 +18,15 @@
 unit openssl_ts;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ts.h - Tue 12 May 16:31:31 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ts.h - Tue 19 May 14:25:54 BST 2026
   With Legacy Support Option
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_ts.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

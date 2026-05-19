@@ -18,9 +18,15 @@
 unit openssl_ocsperr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ocsperr.h - Tue 12 May 16:30:56 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ocsperr.h - Tue 19 May 14:25:19 BST 2026
   With Legacy Support Option
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_ocsperr.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

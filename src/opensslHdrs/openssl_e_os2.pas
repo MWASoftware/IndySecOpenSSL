@@ -18,9 +18,15 @@
 unit openssl_e_os2;
 
 {
-  Generated from OpenSSL 3.0.20 Header File e_os2.h - Tue 12 May 16:30:42 BST 2026
+  Generated from OpenSSL 3.0.20 Header File e_os2.h - Tue 19 May 14:25:04 BST 2026
   With Legacy Support Option
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_e_os2.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

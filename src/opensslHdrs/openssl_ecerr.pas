@@ -18,9 +18,15 @@
 unit openssl_ecerr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ecerr.h - Tue 12 May 16:30:37 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ecerr.h - Tue 19 May 14:25:00 BST 2026
   With Legacy Support Option
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_ecerr.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

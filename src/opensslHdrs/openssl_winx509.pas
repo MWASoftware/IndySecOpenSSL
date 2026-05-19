@@ -52,15 +52,12 @@ type
     certstore: HCERTSTORE
   end;
   
- const 
-   FHasWindowsCertStore : boolean = true;
-   
-   function HasWindowsCertStore: boolean;
-   begin
-     Result := FHasWindowsCertStore;
-    end;
-  
  {$IFDEF OPENSSL_STATIC_LINK_MODEL}
+  function HasWindowsCertStore: boolean;
+  begin
+    Result := true;
+  end;
+  
   function CertOpenSystemStoreA(hProv: HCRYPTPROV_LEGACY; szSubsystemProtocol: PAnsiChar):HCERTSTORE; stdcall; external wincryptdll;
   function CertCloseStore(certstore: HCERTSTORE; dwFlags: DWORD): boolean; stdcall; external wincryptdll;
   function CertEnumCertificatesInStore(certstore: HCERTSTORE; pPrevCertContext: PCCERT_CONTEXT): PCCERT_CONTEXT;  stdcall; external wincryptdll;
@@ -70,8 +67,11 @@ var
   CertCloseStore: function (certstore: HCERTSTORE; dwFlags: DWORD): boolean; stdcall = nil;
   CertEnumCertificatesInStore: function (certstore: HCERTSTORE; pPrevCertContext: PCCERT_CONTEXT): PCCERT_CONTEXT;  stdcall = nil;
   
-  LibWinCrypt: THandle;
   
+ const 
+   FWindowsCertStoreLoadFailed : boolean = false;
+   LibWinCrypt: THandle = NilHandle;
+   
   procedure Load;
   begin
     LibWinCrypt := SafeLoadLibrary(wincryptdll,SEM_FAILCRITICALERRORS);
@@ -81,8 +81,8 @@ var
       CertCloseStore := GetProcAddress(LibWinCrypt,'CertCloseStore');
       CertEnumCertificatesInStore := GetProcAddress(LibWinCrypt,'CertEnumCertificatesInStore');
     end;
-    FHasWindowsCertStore := (LibWinCrypt <> NilHandle) and assigned(CertOpenSystemStoreA) and
-      assigned(CertCloseStore) and assigned(CertEnumCertificatesInStore);
+    FWindowsCertStoreLoadFailed := (LibWinCrypt = NilHandle) or not assigned(CertOpenSystemStoreA) or
+      not assigned(CertCloseStore) or not assigned(CertEnumCertificatesInStore);
   end;
   
   procedure Unload;
@@ -90,7 +90,19 @@ var
     CertOpenSystemStoreA := nil;
     CertCloseStore := nil;
     CertEnumCertificatesInStore := nil;
+    FWindowsCertStoreLoadFailed := false;
+    if LibWinCrypt <> NilHandle then
+      FreeLibrary(LibWinCrypt);
+    LibWinCrypt := NilHandle;
   end;
+  
+  function HasWindowsCertStore: boolean;
+  begin
+    if not FWindowsCertStoreLoadFailed and (LibWinCrypt = NilHandle) then
+      Load;
+    Result := not FWindowsCertStoreLoadFailed;
+  end;
+    
   
 {$ENDIF} //OPENSSL_STATIC_LINK_MODEL
 

@@ -18,9 +18,15 @@
 unit openssl_md5;
 
 {
-  Generated from OpenSSL 3.0.20 Header File md5.h - Tue 12 May 16:30:53 BST 2026
+  Generated from OpenSSL 3.0.20 Header File md5.h - Tue 19 May 14:25:15 BST 2026
   With Legacy Support Option
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_md5.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

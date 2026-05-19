@@ -18,9 +18,15 @@
 unit openssl_engineerr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File engineerr.h - Tue 12 May 16:30:40 BST 2026
+  Generated from OpenSSL 3.0.20 Header File engineerr.h - Tue 19 May 14:25:02 BST 2026
   With Legacy Support Option
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_engineerr.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

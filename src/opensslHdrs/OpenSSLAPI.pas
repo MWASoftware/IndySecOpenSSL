@@ -365,7 +365,6 @@ type
     function GetLibSSLHandle: TLibHandle;
     function GetLibCryptoFilePath: string;
     function GetLibSSLFilePath: string;
-    function GetFailedToLoadList: TStrings;
     function Load: Boolean;
     procedure Unload;
     function IsLoaded: boolean;
@@ -381,7 +380,7 @@ function LoadLibCryptoFunction(const AProcName: string): Pointer;
 function LoadLibSSLFunction(const AProcName:  string): Pointer;
 
 type
-  TOpenSSLLoadProc = procedure(LibVersion: TOpenSSL_C_UINT; const AFailed: TStringList);
+  TOpenSSLLoadProc = procedure;
   TOpenSSLUnloadProc = procedure;
 
 procedure Register_SSLLoader(LoadProc: TOpenSSLLoadProc);
@@ -396,8 +395,7 @@ uses SyncObjs,
      openssl_ssl,
      openssl_crypto,
      OpenSSLExceptionHandlers,
-     OpenSSLResourceStrings,
-     openssl_winx509;
+     OpenSSLResourceStrings;
      
 type
 
@@ -437,7 +435,6 @@ type
     FLibSSL: TLibHandle;
     FLibCryptoFilePath: string;
     FLibSSLFilePath: string;
-    FFailed: TStringList;
     FSSLLibVersions: string;
     FFailedToLoad: boolean;
     FSSLBaseLibName: string;
@@ -468,7 +465,6 @@ type
     function GetLibSSLHandle: TLibHandle;
     function GetLibCryptoFilePath: string;
     function GetLibSSLFilePath: string;
-    function GetFailedToLoadList: TStrings;
     function Load: Boolean;
     procedure Unload;
     function IsLoaded: boolean;
@@ -642,7 +638,6 @@ end;
 constructor TOpenSSLDynamicLibProvider.Create;
 begin
   inherited Create;
-  FFailed := TStringList.Create();
   FSSLLibVersions := DefaultLibVersions;
   FSSLBaseLibName := CLibSSLBase;
   FCryptoBaseLibName := CLibCryptoBase;
@@ -652,7 +647,6 @@ end;
 destructor TOpenSSLDynamicLibProvider.Destroy;
 begin
   Unload;
-  if FFailed <> nil then  FFailed.Free;
   inherited Destroy;
 end;
 
@@ -776,11 +770,6 @@ begin
   Result := FLibSSLFilePath;
 end;
 
-function TOpenSSLDynamicLibProvider.GetFailedToLoadList : TStrings;
-begin
-  Result := FFailed;
-end;
-
 function TOpenSSLDynamicLibProvider.Load : Boolean;
 type
   TOpenSSL_version_num = function: TOpenSSL_C_ULONG; cdecl;
@@ -824,7 +813,7 @@ begin
         raise EOpenSSLError.CreateFmt(RSOSSUnsupportedVersion,[SSLVersionNo]);
 
       for i := 0 to FLibLoadList.Count - 1 do
-        TOpenSSLLoadProc(FLibLoadList[i])(SSLVersionNo,FFailed);
+        TOpenSSLLoadProc(FLibLoadList[i])();
         
     end;
 
@@ -846,8 +835,6 @@ begin
       {$ifend}
       for i := 0 to FUnLoadList.Count - 1 do
          TOpenSSLUnloadProc(FUnLoadList[i]);
-
-      FFailed.Clear();
 
       if FLibSSL <> NilHandle then
         FreeLibrary(FLibSSL);

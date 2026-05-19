@@ -18,9 +18,15 @@
 unit openssl_x509_vfy;
 
 {
-  Generated from OpenSSL 3.0.20 Header File x509_vfy.h - Tue 12 May 16:31:46 BST 2026
+  Generated from OpenSSL 3.0.20 Header File x509_vfy.h - Tue 19 May 14:26:08 BST 2026
   With Legacy Support Option
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_x509_vfy.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

@@ -18,9 +18,15 @@
 unit openssl_pkcs7err;
 
 {
-  Generated from OpenSSL 3.0.20 Header File pkcs7err.h - Tue 12 May 16:31:05 BST 2026
+  Generated from OpenSSL 3.0.20 Header File pkcs7err.h - Tue 19 May 14:25:28 BST 2026
   With Legacy Support Option
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_pkcs7err.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

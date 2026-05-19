@@ -18,9 +18,15 @@
 unit openssl_esserr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File esserr.h - Tue 12 May 16:30:43 BST 2026
+  Generated from OpenSSL 3.0.20 Header File esserr.h - Tue 19 May 14:25:06 BST 2026
   With Legacy Support Option
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_esserr.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

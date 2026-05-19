@@ -18,9 +18,15 @@
 unit openssl_dh;
 
 {
-  Generated from OpenSSL 3.0.20 Header File dh.h - Tue 12 May 16:30:34 BST 2026
+  Generated from OpenSSL 3.0.20 Header File dh.h - Tue 19 May 14:24:56 BST 2026
   With Legacy Support Option
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_dh.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

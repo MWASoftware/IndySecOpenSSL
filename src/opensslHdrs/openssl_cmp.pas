@@ -18,9 +18,15 @@
 unit openssl_cmp;
 
 {
-  Generated from OpenSSL 3.0.20 Header File cmp.h - Tue 12 May 16:30:16 BST 2026
+  Generated from OpenSSL 3.0.20 Header File cmp.h - Tue 19 May 14:24:39 BST 2026
   With Legacy Support Option
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_cmp.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

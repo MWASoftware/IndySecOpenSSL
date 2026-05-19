@@ -345,15 +345,6 @@ procedure TOpenSSLServerTest.DoRun;
     writeln('Working Directory = ' + GetCurrentDir);
     writeln;
 
-    if GetIOpenSSLDDL <> nil then
-    with GetIOpenSSLDDL.GetFailedToLoadList do
-    if Count > 0 then
-    begin
-      writeln('Note: The following functions failed to load and an exception will be raised if they are called:');
-      for i := 0 to Count - 1 do
-        writeln(Strings[i]);
-    end;
-
     writeln('Getting ',remoteSource,' with verification');
     writeln;
 

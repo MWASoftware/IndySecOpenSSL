@@ -18,9 +18,15 @@
 unit openssl_ossl_typ;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ossl_typ.h - Tue 12 May 16:30:59 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ossl_typ.h - Tue 19 May 14:25:21 BST 2026
   With Legacy Support Option
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_ossl_typ.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

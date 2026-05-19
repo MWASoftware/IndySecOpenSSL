@@ -18,9 +18,15 @@
 unit openssl_rsaerr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File rsaerr.h - Tue 12 May 16:31:09 BST 2026
+  Generated from OpenSSL 3.0.20 Header File rsaerr.h - Tue 19 May 14:25:32 BST 2026
   With Legacy Support Option
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_rsaerr.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

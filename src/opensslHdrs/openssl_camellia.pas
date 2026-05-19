@@ -18,9 +18,15 @@
 unit openssl_camellia;
 
 {
-  Generated from OpenSSL 3.0.20 Header File camellia.h - Tue 12 May 16:30:13 BST 2026
+  Generated from OpenSSL 3.0.20 Header File camellia.h - Tue 19 May 14:24:35 BST 2026
   With Legacy Support Option
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_camellia.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

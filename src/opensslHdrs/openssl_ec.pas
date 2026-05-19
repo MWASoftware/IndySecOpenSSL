@@ -18,9 +18,15 @@
 unit openssl_ec;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ec.h - Tue 12 May 16:30:38 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ec.h - Tue 19 May 14:25:01 BST 2026
   With Legacy Support Option
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_ec.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

@@ -18,9 +18,15 @@
 unit openssl_http;
 
 {
-  Generated from OpenSSL 3.0.20 Header File http.h - Tue 12 May 16:30:50 BST 2026
+  Generated from OpenSSL 3.0.20 Header File http.h - Tue 19 May 14:25:13 BST 2026
   With Legacy Support Option
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_http.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

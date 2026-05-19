@@ -18,9 +18,15 @@
 unit openssl_x509v3err;
 
 {
-  Generated from OpenSSL 3.0.20 Header File x509v3err.h - Tue 12 May 16:31:38 BST 2026
+  Generated from OpenSSL 3.0.20 Header File x509v3err.h - Tue 19 May 14:26:01 BST 2026
   With Legacy Support Option
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_x509v3err.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

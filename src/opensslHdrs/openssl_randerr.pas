@@ -18,9 +18,15 @@
 unit openssl_randerr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File randerr.h - Tue 12 May 16:31:07 BST 2026
+  Generated from OpenSSL 3.0.20 Header File randerr.h - Tue 19 May 14:25:30 BST 2026
   With Legacy Support Option
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_randerr.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

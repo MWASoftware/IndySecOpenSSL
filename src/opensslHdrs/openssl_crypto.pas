@@ -18,9 +18,15 @@
 unit openssl_crypto;
 
 {
-  Generated from OpenSSL 3.0.20 Header File crypto.h - Tue 12 May 16:30:30 BST 2026
+  Generated from OpenSSL 3.0.20 Header File crypto.h - Tue 19 May 14:24:52 BST 2026
   With Legacy Support Option
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_crypto.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

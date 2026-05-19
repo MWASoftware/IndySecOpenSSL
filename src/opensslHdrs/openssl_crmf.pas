@@ -18,9 +18,15 @@
 unit openssl_crmf;
 
 {
-  Generated from OpenSSL 3.0.20 Header File crmf.h - Tue 12 May 16:30:28 BST 2026
+  Generated from OpenSSL 3.0.20 Header File crmf.h - Tue 19 May 14:24:50 BST 2026
   With Legacy Support Option
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_crmf.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 
