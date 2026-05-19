@@ -18,8 +18,14 @@
 unit openssl_kdferr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File kdferr.h - Tue 12 May 11:06:02 BST 2026
+  Generated from OpenSSL 3.0.20 Header File kdferr.h - Tue 19 May 14:16:08 BST 2026
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_kdferr.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

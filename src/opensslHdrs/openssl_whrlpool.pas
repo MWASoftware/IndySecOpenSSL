@@ -18,8 +18,14 @@
 unit openssl_whrlpool;
 
 {
-  Generated from OpenSSL 3.0.20 Header File whrlpool.h - Tue 12 May 11:06:46 BST 2026
+  Generated from OpenSSL 3.0.20 Header File whrlpool.h - Tue 19 May 14:16:53 BST 2026
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_whrlpool.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

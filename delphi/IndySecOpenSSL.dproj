@@ -168,7 +168,6 @@
         <DCCReference Include="..\src\IdSecOpenSSLSocket.pas"/>
         <DCCReference Include="..\src\IdSecOpenSSLUtils.pas"/>
         <DCCReference Include="..\src\IdSecOpenSSLX509.pas"/>
-        <DCCReference Include="..\src\IdSecwincrypt.pas"/>
         <DCCReference Include="..\src\opensslHdrs\openssl_aes.pas"/>
         <DCCReference Include="..\src\opensslHdrs\openssl_asn1.pas"/>
         <DCCReference Include="..\src\opensslHdrs\openssl_asn1err.pas"/>
@@ -302,6 +301,7 @@
         <DCCReference Include="..\src\opensslHdrs\OpenSSLAPI.pas"/>
         <DCCReference Include="..\src\opensslHdrs\OpenSSLExceptionHandlers.pas"/>
         <DCCReference Include="..\src\opensslHdrs\OpenSSLResourceStrings.pas"/>
+        <DCCReference Include="..\src\opensslHdrs\openssl_winx509.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

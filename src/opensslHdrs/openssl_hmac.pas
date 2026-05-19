@@ -18,8 +18,14 @@
 unit openssl_hmac;
 
 {
-  Generated from OpenSSL 3.0.20 Header File hmac.h - Tue 12 May 11:06:00 BST 2026
+  Generated from OpenSSL 3.0.20 Header File hmac.h - Tue 19 May 14:16:06 BST 2026
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_hmac.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

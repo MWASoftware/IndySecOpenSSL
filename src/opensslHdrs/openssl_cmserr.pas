@@ -18,8 +18,14 @@
 unit openssl_cmserr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File cmserr.h - Tue 12 May 11:05:29 BST 2026
+  Generated from OpenSSL 3.0.20 Header File cmserr.h - Tue 19 May 14:15:35 BST 2026
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_cmserr.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

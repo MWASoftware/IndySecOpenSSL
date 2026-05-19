@@ -18,8 +18,14 @@
 unit openssl_asyncerr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File asyncerr.h - Tue 12 May 11:05:20 BST 2026
+  Generated from OpenSSL 3.0.20 Header File asyncerr.h - Tue 19 May 14:15:26 BST 2026
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_asyncerr.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

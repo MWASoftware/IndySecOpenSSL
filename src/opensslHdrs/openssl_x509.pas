@@ -18,8 +18,14 @@
 unit openssl_x509;
 
 {
-  Generated from OpenSSL 3.0.20 Header File x509.h - Tue 12 May 11:06:48 BST 2026
+  Generated from OpenSSL 3.0.20 Header File x509.h - Tue 19 May 14:16:55 BST 2026
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_x509.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

@@ -40,27 +40,12 @@ object Form1: TForm1
   object IdHTTPServer1: TIdHTTPServer
     Bindings = <>
     DefaultPort = 8080
-    IOHandler = SSLServerHandler
     OnQuerySSLPort = IdHTTPServer1QuerySSLPort
     OnCommandGet = IdHTTPServer1CommandGet
     Left = 96
     Top = 72
   end
-  object SSLServerHandler: TIdSecServerIOHandlerSSLOpenSSL
-    SSLOptions.KeyFile = '../certs/myserverkey.pem'
-    SSLOptions.Method = sslvTLSv1_3
-    SSLOptions.Mode = sslmServer
-    SSLOptions.VerifyMode = []
-    SSLOptions.VerifyDepth = 0
-    SSLOptions.UseSystemRootCertificateStore = False
-    OnStatusInfo = SSLServerHandlerStatusInfo
-    OnGetPassword = SSLClientHandlerGetPassword
-    OnVerifyPeer = SSLServerHandlerVerifyPeer
-    Left = 96
-    Top = 160
-  end
   object IdHTTP1: TIdHTTP
-    IOHandler = SSLCLientHandler
     ProxyParams.BasicAuthentication = False
     ProxyParams.ProxyPort = 0
     Request.CharSet = 'utf-8'
@@ -77,22 +62,5 @@ object Form1: TForm1
     HTTPOptions = [hoKeepOrigProtocol, hoNoProtocolErrorException, hoWantProtocolErrorContent]
     Left = 344
     Top = 80
-  end
-  object SSLCLientHandler: TIdSecIOHandlerSocketOpenSSL
-    MaxLineAction = maException
-    Port = 0
-    DefaultPort = 0
-    SSLOptions.RootCertFile = '..\cacerts\ca.pem'
-    SSLOptions.Method = sslvTLSv1_3
-    SSLOptions.Mode = sslmClient
-    SSLOptions.VerifyMode = [sslvrfPeer, sslvrfFailIfNoPeerCert]
-    SSLOptions.VerifyDepth = 100
-    SSLOptions.VerifyDirs = '..\cacerts'
-    SSLOptions.UseSystemRootCertificateStore = False
-    OnStatusInfo = SSLClientHandlerStatusInfo
-    OnGetPassword = SSLClientHandlerGetPassword
-    OnVerifyPeer = SSLClientHandlerVerifyPeer
-    Left = 344
-    Top = 168
   end
 end

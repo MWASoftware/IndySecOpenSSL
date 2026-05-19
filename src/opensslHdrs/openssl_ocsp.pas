@@ -18,8 +18,14 @@
 unit openssl_ocsp;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ocsp.h - Tue 12 May 11:06:09 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ocsp.h - Tue 19 May 14:16:15 BST 2026
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_ocsp.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

@@ -18,8 +18,14 @@
 unit openssl_tserr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File tserr.h - Tue 12 May 11:06:41 BST 2026
+  Generated from OpenSSL 3.0.20 Header File tserr.h - Tue 19 May 14:16:47 BST 2026
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_tserr.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

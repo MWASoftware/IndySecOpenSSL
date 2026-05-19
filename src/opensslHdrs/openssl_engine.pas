@@ -18,8 +18,14 @@
 unit openssl_engine;
 
 {
-  Generated from OpenSSL 3.0.20 Header File engine.h - Tue 12 May 11:05:52 BST 2026
+  Generated from OpenSSL 3.0.20 Header File engine.h - Tue 19 May 14:15:59 BST 2026
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_engine.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

@@ -27,6 +27,7 @@ resourcestring
   ROSSLEOFViolation = 'EOF was observed that violates the protocol';
   RSOUnknown        = 'Unknown SSL Error - probably socket error';
   RSONoVersionInfo  = 'Both OpenSSL_version and SSLeay_version missing from OpenSSL Library';
+  ROSCertificateNotAddedToStore = 'Unable to add X.509 Certificate to cert store';
 
 
 implementation

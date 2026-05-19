@@ -53,12 +53,6 @@ uses
 
 {$I IdCompilerDefines.inc}
 
-{$IFDEF WINDOWS}
-{$IFNDEF OPENSSL_DONT_USE_WINDOWS_CERT_STORE}
-{$DEFINE USE_WINDOWS_CERT_STORE}
-{$ENDIF}
-{$ENDIF}
-
 {$IFNDEF USE_OPENSSL}
   {$message error Should not compile if USE_OPENSSL is not defined!!!}
 {$ENDIF}
@@ -108,9 +102,6 @@ type
   private
     {$IFDEF USE_OBJECT_ARC}[Weak]{$ENDIF} fParent: TObject;
     fUseSystemRootCertificateStore : boolean;
-    {$IFDEF USE_WINDOWS_CERT_STORE}
-    procedure LoadWindowsCertStore;
-    {$ENDIF}
   protected
     fMethod: TIdSecVersion;
     fSSLVersions : TIdSecVersions;
@@ -218,9 +209,6 @@ implementation
 
 uses
   IdStack,
-  {$IFDEF USE_WINDOWS_CERT_STORE}
-  IdSecwincrypt,
-  {$ENDIF}
   {$IFNDEF FPC}
   {$IF CompilerVersion >= 37}
   System.SyncObjs,
@@ -237,7 +225,8 @@ uses
   Openssl_tls1,
   Openssl_x509_vfy,
   Openssl_err,
-  openssl_prov_ssl
+  openssl_prov_ssl,
+  openssl_winx509
 ;
 
 var
@@ -556,49 +545,6 @@ begin
   inherited Destroy;
 end;
 
-{$IFDEF USE_WINDOWS_CERT_STORE}
-{Copy Windows CA Certs to out cert store}
-procedure TIdSecContext.LoadWindowsCertStore;
-var WinCertStore: HCERTSTORE;
-    X509Cert: PX509;
-    cert_context: PCCERT_CONTEXT;
-    error: integer;
-    SSLCertStore: PX509_STORE;
-    CertEncoded: PByte;
-begin
-  cert_context := nil;
-  {$IFDEF STRING_IS_ANSI}
-  WinCertStore := CertOpenSystemStoreA(nil,RootStore);
-  {$ELSE}
-  WinCertStore := CertOpenSystemStoreW(nil,RootStore);
-  {$ENDIF}
-  if WinCertStore = 0 then
-    Exit;
-
-  SSLCertStore := SSL_CTX_get_cert_store(fContext);
-  try
-    cert_context := CertEnumCertificatesInStore(WinCertStore,cert_context);
-    while cert_context <> nil do
-    begin
-      CertEncoded := cert_context^.pbCertEncoded;
-      X509Cert := d2i_X509(nil,@CertEncoded, cert_context^.cbCertEncoded);
-      if X509Cert <> nil then
-      begin
-        error := X509_STORE_add_cert(SSLCertStore, X509Cert);
-//Ignore if cert already in store
-        if (error = 0) and
-           (ERR_GET_REASON(ERR_get_error()) <> X509_R_CERT_ALREADY_IN_HASH_TABLE) then
-          EOpenSSLAPICryptoError.RaiseException(ROSCertificateNotAddedToStore);
-        X509_free(X509Cert);
-      end;
-      cert_context := CertEnumCertificatesInStore(WinCertStore,cert_context);
-    end;
-  finally
-     CertCloseStore(WinCertStore, 0);
-  end;
-end;
-{$ENDIF}
-
 procedure TIdSecContext.DestroyContext;
 begin
   if fContext <> nil then begin
@@ -731,12 +677,12 @@ begin
     SSL_CTX_set_default_passwd_cb_userdata(fContext, Self);
 //  end;
 
-  if fUseSystemRootCertificateStore then
-  {$IFDEF USE_WINDOWS_CERT_STORE}
-    LoadWindowsCertStore;
-  {$ELSE}
-    SSL_CTX_set_default_verify_paths(fContext);
-  {$ENDIF}
+{$IF declared(HasWindowsCertStore)}
+  if HasWindowsCertStore then
+    LoadWindowsCertStore(fcontext);
+{$ELSE}
+  SSL_CTX_set_default_verify_paths(fContext);
+{$IFEND}
   // load key and certificate files
   if (RootCertFile <> '') or (VerifyDirs <> '') then begin    {Do not Localize}
     if not LoadRootCert then begin

@@ -18,8 +18,14 @@
 unit openssl_comperr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File comperr.h - Tue 12 May 11:05:32 BST 2026
+  Generated from OpenSSL 3.0.20 Header File comperr.h - Tue 19 May 14:15:38 BST 2026
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_comperr.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

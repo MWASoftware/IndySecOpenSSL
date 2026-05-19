@@ -18,8 +18,14 @@
 unit openssl_safestack;
 
 {
-  Generated from OpenSSL 3.0.20 Header File safestack.h - Tue 12 May 11:06:21 BST 2026
+  Generated from OpenSSL 3.0.20 Header File safestack.h - Tue 19 May 14:16:28 BST 2026
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_safestack.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

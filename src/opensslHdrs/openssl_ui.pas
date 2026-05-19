@@ -18,8 +18,14 @@
 unit openssl_ui;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ui.h - Tue 12 May 11:06:46 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ui.h - Tue 19 May 14:16:52 BST 2026
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_ui.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 
@@ -691,6 +697,7 @@ var
   * needed by method authors.
   }
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
+
 
 type
   TUI_string_types = (

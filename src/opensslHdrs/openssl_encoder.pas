@@ -18,8 +18,14 @@
 unit openssl_encoder;
 
 {
-  Generated from OpenSSL 3.0.20 Header File encoder.h - Tue 12 May 11:05:50 BST 2026
+  Generated from OpenSSL 3.0.20 Header File encoder.h - Tue 19 May 14:15:57 BST 2026
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_encoder.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

@@ -18,8 +18,14 @@
 unit openssl_seed;
 
 {
-  Generated from OpenSSL 3.0.20 Header File seed.h - Tue 12 May 11:06:22 BST 2026
+  Generated from OpenSSL 3.0.20 Header File seed.h - Tue 19 May 14:16:28 BST 2026
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_seed.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

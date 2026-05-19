@@ -18,8 +18,14 @@
 unit openssl_self_test;
 
 {
-  Generated from OpenSSL 3.0.20 Header File self_test.h - Tue 12 May 11:06:22 BST 2026
+  Generated from OpenSSL 3.0.20 Header File self_test.h - Tue 19 May 14:16:29 BST 2026
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_self_test.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

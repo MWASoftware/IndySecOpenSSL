@@ -18,8 +18,14 @@
 unit openssl_ecdsa;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ecdsa.h - Tue 12 May 11:05:48 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ecdsa.h - Tue 19 May 14:15:55 BST 2026
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_ecdsa.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

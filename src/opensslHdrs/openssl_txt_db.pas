@@ -18,8 +18,14 @@
 unit openssl_txt_db;
 
 {
-  Generated from OpenSSL 3.0.20 Header File txt_db.h - Tue 12 May 11:06:43 BST 2026
+  Generated from OpenSSL 3.0.20 Header File txt_db.h - Tue 19 May 14:16:50 BST 2026
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_txt_db.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

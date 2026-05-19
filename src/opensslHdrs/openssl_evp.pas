@@ -18,8 +18,14 @@
 unit openssl_evp;
 
 {
-  Generated from OpenSSL 3.0.20 Header File evp.h - Tue 12 May 11:05:58 BST 2026
+  Generated from OpenSSL 3.0.20 Header File evp.h - Tue 19 May 14:16:04 BST 2026
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_evp.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

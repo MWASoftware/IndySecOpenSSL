@@ -18,8 +18,14 @@
 unit openssl_trace;
 
 {
-  Generated from OpenSSL 3.0.20 Header File trace.h - Tue 12 May 11:06:40 BST 2026
+  Generated from OpenSSL 3.0.20 Header File trace.h - Tue 19 May 14:16:47 BST 2026
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_trace.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

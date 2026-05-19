@@ -18,8 +18,14 @@
 unit openssl_storeerr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File storeerr.h - Tue 12 May 11:06:32 BST 2026
+  Generated from OpenSSL 3.0.20 Header File storeerr.h - Tue 19 May 14:16:39 BST 2026
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_storeerr.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

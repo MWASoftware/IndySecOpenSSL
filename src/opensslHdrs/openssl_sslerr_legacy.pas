@@ -18,8 +18,14 @@
 unit openssl_sslerr_legacy;
 
 {
-  Generated from OpenSSL 3.0.20 Header File sslerr_legacy.h - Tue 12 May 11:06:28 BST 2026
+  Generated from OpenSSL 3.0.20 Header File sslerr_legacy.h - Tue 19 May 14:16:35 BST 2026
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_sslerr_legacy.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

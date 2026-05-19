@@ -18,8 +18,14 @@
 unit openssl_asn1;
 
 {
-  Generated from OpenSSL 3.0.20 Header File asn1.h - Tue 12 May 11:05:18 BST 2026
+  Generated from OpenSSL 3.0.20 Header File asn1.h - Tue 19 May 14:15:23 BST 2026
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_asn1.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

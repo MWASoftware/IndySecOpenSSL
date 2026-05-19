@@ -18,8 +18,14 @@
 unit openssl_cryptoerr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File cryptoerr.h - Tue 12 May 11:05:39 BST 2026
+  Generated from OpenSSL 3.0.20 Header File cryptoerr.h - Tue 19 May 14:15:46 BST 2026
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_cryptoerr.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

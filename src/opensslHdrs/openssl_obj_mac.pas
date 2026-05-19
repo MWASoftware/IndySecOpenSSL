@@ -18,8 +18,14 @@
 unit openssl_obj_mac;
 
 {
-  Generated from OpenSSL 3.0.20 Header File obj_mac.h - Tue 12 May 11:06:06 BST 2026
+  Generated from OpenSSL 3.0.20 Header File obj_mac.h - Tue 19 May 14:16:12 BST 2026
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_obj_mac.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

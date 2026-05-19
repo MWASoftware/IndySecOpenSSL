@@ -18,8 +18,14 @@
 unit openssl_ssl;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ssl.h - Tue 12 May 11:06:31 BST 2026
+  Generated from OpenSSL 3.0.20 Header File ssl.h - Tue 19 May 14:16:37 BST 2026
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_ssl.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 
@@ -4823,6 +4829,7 @@ var
 
   procedure SSL_disable_ct(s:PSSL); inline;
   procedure SSL_CTX_disable_ct(ctx:PSSL_CTX); inline;
+
 
 type
     

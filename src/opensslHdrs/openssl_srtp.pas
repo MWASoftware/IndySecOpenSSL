@@ -18,8 +18,14 @@
 unit openssl_srtp;
 
 {
-  Generated from OpenSSL 3.0.20 Header File srtp.h - Tue 12 May 11:06:26 BST 2026
+  Generated from OpenSSL 3.0.20 Header File srtp.h - Tue 19 May 14:16:32 BST 2026
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_srtp.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

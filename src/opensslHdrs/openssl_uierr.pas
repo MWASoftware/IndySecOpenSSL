@@ -18,8 +18,14 @@
 unit openssl_uierr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File uierr.h - Tue 12 May 11:06:44 BST 2026
+  Generated from OpenSSL 3.0.20 Header File uierr.h - Tue 19 May 14:16:51 BST 2026
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_uierr.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 

@@ -18,8 +18,14 @@
 unit openssl_tls1;
 
 {
-  Generated from OpenSSL 3.0.20 Header File tls1.h - Tue 12 May 11:06:36 BST 2026
+  Generated from OpenSSL 3.0.20 Header File tls1.h - Tue 19 May 14:16:43 BST 2026
 }
+
+{$IFNDEF FPC}
+{$IFDEF OPENSSL_USE_STATIC_LIBRARY}
+{$LINK openssl_tls1.obj}
+{$ENDIF}
+{$ENDIF}
 
 interface
 
