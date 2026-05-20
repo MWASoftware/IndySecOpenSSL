@@ -18,7 +18,7 @@
 unit openssl_comperr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File comperr.h - Tue 19 May 14:15:38 BST 2026
+  Generated from OpenSSL 3.5.6 Header File comperr.h - Tue 19 May 14:27:17 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -49,9 +49,16 @@ const
     
     {* COMP reason codes.
     }
+  COMP_R_BROTLI_DECODE_ERROR = 102;
+  COMP_R_BROTLI_ENCODE_ERROR = 103;
+  COMP_R_BROTLI_NOT_SUPPORTED = 104;
   COMP_R_ZLIB_DEFLATE_ERROR = 99;
   COMP_R_ZLIB_INFLATE_ERROR = 100;
   COMP_R_ZLIB_NOT_SUPPORTED = 101;
+  COMP_R_ZSTD_COMPRESS_ERROR = 105;
+  COMP_R_ZSTD_DECODE_ERROR = 106;
+  COMP_R_ZSTD_DECOMPRESS_ERROR = 107;
+  COMP_R_ZSTD_NOT_SUPPORTED = 108;
   {$endif}
 {$endif}
 

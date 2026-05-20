@@ -18,7 +18,7 @@
 unit openssl_trace;
 
 {
-  Generated from OpenSSL 3.0.20 Header File trace.h - Tue 19 May 14:16:47 BST 2026
+  Generated from OpenSSL 3.5.6 Header File trace.h - Tue 19 May 14:28:37 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -78,10 +78,13 @@ const
   OSSL_TRACE_CATEGORY_DECODER = 15;
   OSSL_TRACE_CATEGORY_ENCODER = 16;
   OSSL_TRACE_CATEGORY_REF_COUNT = 17;
-  { Count of available categories. }
-  OSSL_TRACE_CATEGORY_NUM = 18;
+  OSSL_TRACE_CATEGORY_HTTP = 18;
+  OSSL_TRACE_CATEGORY_PROVIDER = 19;
+  OSSL_TRACE_CATEGORY_QUERY = 20;
+  OSSL_TRACE_CATEGORY_NUM = 21;
 
 
+  { KEEP THIS LIST IN SYNC with trace_categories[] in crypto/trace.c }
   { Returns the trace category number for the given |name| }
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
   function OSSL_trace_get_category_num(name: PAnsiChar): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_trace_get_category_num';
@@ -420,6 +423,23 @@ arg4, arg5, arg6))}
  arg3, arg4, arg5, arg6, arg7, arg8))}
 {# define  OSSL_TRACE9(category,format,arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9) OSSL_TRACEV(category, (trc_out, format, arg1,
  arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9))}
+
+const
+  OSSL_TRACE_STRING_MAX = 80;
+
+
+  {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  function OSSL_trace_string(out_: PBIO; text: TOpenSSL_C_INT; full: TOpenSSL_C_INT; data: Pbyte; size: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_trace_string';
+  {$else}
+  {$EXTERNALSYM OSSL_trace_string}
+  {Do not call Function LoadDeclarations. Internal use only}
+  function Load_OSSL_trace_string(out_: PBIO; text: TOpenSSL_C_INT; full: TOpenSSL_C_INT; data: Pbyte; size: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
+
+var
+  OSSL_trace_string: function(out_: PBIO; text: TOpenSSL_C_INT; full: TOpenSSL_C_INT; data: Pbyte; size: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl = Load_OSSL_trace_string;
+  {$endif} {OPENSSL_STATIC_LINK_MODEL}
+  (*# define  OSSL_TRACE_STRING(category,text,full,data,len) OSSL_TRACE_BEGIN(category) { OSSL_trace_string(trc_out, text, full, data,
+ len); } OSSL_TRACE_END(category)*)
 {$endif}
 
 implementation
@@ -533,6 +553,14 @@ begin
   OSSL_trace_end(category, channel);
 end;
 
+function Load_OSSL_trace_string(out_: PBIO; text: TOpenSSL_C_INT; full: TOpenSSL_C_INT; data: Pbyte; size: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
+begin
+  OSSL_trace_string := LoadLibCryptoFunction('OSSL_trace_string');
+  if not assigned(OSSL_trace_string) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_trace_string');
+  Result := OSSL_trace_string(out_, text, full, data, size);
+end;
+
 procedure Load;
 begin
   {$define EMPTY_LOAD_FUNCTION}
@@ -549,6 +577,7 @@ begin
   OSSL_trace_enabled := Load_OSSL_trace_enabled;
   OSSL_trace_begin := Load_OSSL_trace_begin;
   OSSL_trace_end := Load_OSSL_trace_end;
+  OSSL_trace_string := Load_OSSL_trace_string;
 end;
 
 {$endif} {OPENSSL_STATIC_LINK_MODEL}

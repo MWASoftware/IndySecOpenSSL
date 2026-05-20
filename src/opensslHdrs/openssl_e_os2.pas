@@ -18,7 +18,7 @@
 unit openssl_e_os2;
 
 {
-  Generated from OpenSSL 3.0.20 Header File e_os2.h - Tue 19 May 14:15:59 BST 2026
+  Generated from OpenSSL 3.5.6 Header File e_os2.h - Tue 19 May 14:27:40 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -32,7 +32,7 @@ interface
 uses OpenSSLAPI;
 
 
-{* Copyright 1995-2021 The OpenSSL Project Authors. All Rights Reserved.
+{* Copyright 1995-2024 The OpenSSL Project Authors. All Rights Reserved.
 *
 * Licensed under the Apache License 2.0 (the "License").  You may not use
 * this file except in compliance with the License.  You can obtain a copy
@@ -107,7 +107,7 @@ uses OpenSSLAPI;
   {$endif}
   
   {* DLL settings.  This part is a bit tough, because it's up to the
-  * application implementor how he or she will link the application, so it
+  * application implementer how he or she will link the application, so it
   * requires some macro to be used.
   }
   {$ifdef OPENSSL_SYS_WINDOWS}
@@ -257,6 +257,15 @@ const
   {$define OPENSSL_NO_INTTYPES_H}
   {$define OPENSSL_NO_STDINT_H}
   {$if  defined(OPENSSL_SYS_UEFI)}
+
+type
+  {Auto-generated forward references}
+  PUINTN = ^PByte;
+  PPUINTN = ^PUINTN;
+  Puintptr_t = ^PByte;
+  PPuintptr_t = ^Puintptr_t;
+  {end of auto-generated forward references}
+
     {typedef INT8 int8_t; - Redefinition of Builtin Type}
     {typedef UINT8 uint8_t; - Redefinition of Builtin Type}
     {typedef INT16 int16_t; - Redefinition of Builtin Type}
@@ -265,6 +274,8 @@ const
     {typedef UINT32 uint32_t; - Redefinition of Builtin Type}
     {typedef INT64 int64_t; - Redefinition of Builtin Type}
     {typedef UINT64 uint64_t; - Redefinition of Builtin Type}
+  TUINTN = record end;
+  PByte = TUINTN;
     { #elif  __STDC_VERSION__ >= 199901L || defined(__osf__) || defined(__sgi) || defined(__hpux) || defined(OPENSSL_SYS_VMS) || defined(__OpenBSD__)
     #include <inttypes.h>
     #include <inttypes.h>
@@ -285,6 +296,7 @@ const
     typedef __int64 int64_t;
     typedef unsigned __int64 uint64_t;
     }
+  {$elseif  defined(OPENSSL_SYS_TANDEM)}
   {$else}
     {$undef  OPENSSL_NO_STDINT_H}
   {$endif}

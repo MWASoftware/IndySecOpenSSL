@@ -18,7 +18,7 @@
 unit openssl_sha;
 
 {
-  Generated from OpenSSL 3.0.20 Header File sha.h - Tue 19 May 14:16:29 BST 2026
+  Generated from OpenSSL 3.5.6 Header File sha.h - Tue 19 May 14:28:17 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -32,7 +32,7 @@ interface
 uses OpenSSLAPI,openssl_e_os2;
 
 
-{* Copyright 1995-2021 The OpenSSL Project Authors. All Rights Reserved.
+{* Copyright 1995-2023 The OpenSSL Project Authors. All Rights Reserved.
 *
 * Licensed under the Apache License 2.0 (the "License").  You may not use
 * this file except in compliance with the License.  You can obtain a copy
@@ -206,6 +206,7 @@ var
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
 const
+  SHA256_192_DIGEST_LENGTH = 24;
   SHA224_DIGEST_LENGTH = 28;
   SHA256_DIGEST_LENGTH = 32;
   SHA384_DIGEST_LENGTH = 48;

@@ -18,7 +18,7 @@
 unit openssl_dherr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File dherr.h - Tue 19 May 14:15:50 BST 2026
+  Generated from OpenSSL 3.5.6 Header File dherr.h - Tue 19 May 14:27:31 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -66,6 +66,7 @@ const
   DH_R_INVALID_PARAMETER_NID = 114;
   DH_R_INVALID_PUBKEY = 102;
   DH_R_INVALID_SECRET = 128;
+  DH_R_INVALID_SIZE = 129;
   DH_R_KDF_PARAMETER_ERROR = 112;
   DH_R_KEYS_NOT_SET = 108;
   DH_R_MISSING_PUBKEY = 125;

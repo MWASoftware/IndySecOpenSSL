@@ -18,7 +18,7 @@
 unit openssl_srtp;
 
 {
-  Generated from OpenSSL 3.0.20 Header File srtp.h - Tue 19 May 14:16:32 BST 2026
+  Generated from OpenSSL 3.5.6 Header File srtp.h - Tue 19 May 14:28:21 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -98,6 +98,18 @@ type
   function ossl_check_SRTP_PROTECTION_PROFILE_compfunc_type(cmp: Tsk_SRTP_PROTECTION_PROFILE_compfunc): TOPENSSL_sk_compfunc{Has C Attribute: unused}; inline;
   function ossl_check_SRTP_PROTECTION_PROFILE_copyfunc_type(cpy: Tsk_SRTP_PROTECTION_PROFILE_copyfunc): TOPENSSL_sk_copyfunc{Has C Attribute: unused}; inline;
   function ossl_check_SRTP_PROTECTION_PROFILE_freefunc_type(fr: Tsk_SRTP_PROTECTION_PROFILE_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
+
+const
+  { DOUBLE AEAD SRTP protection profiles from RFC 8723 }
+  SRTP_DOUBLE_AEAD_AES_128_GCM_AEAD_AES_128_GCM = $0009;
+  SRTP_DOUBLE_AEAD_AES_256_GCM_AEAD_AES_256_GCM = $000A;
+  { ARIA SRTP protection profiles from RFC 8269 }
+  SRTP_ARIA_128_CTR_HMAC_SHA1_80 = $000B;
+  SRTP_ARIA_128_CTR_HMAC_SHA1_32 = $000C;
+  SRTP_ARIA_256_CTR_HMAC_SHA1_80 = $000D;
+  SRTP_ARIA_256_CTR_HMAC_SHA1_32 = $000E;
+  SRTP_AEAD_ARIA_128_GCM = $000F;
+  SRTP_AEAD_ARIA_256_GCM = $0010;
   {$ifndef  OPENSSL_NO_SRTP}
 
 

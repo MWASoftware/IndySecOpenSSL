@@ -18,7 +18,7 @@
 unit openssl_ts;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ts.h - Tue 19 May 14:16:49 BST 2026
+  Generated from OpenSSL 3.5.6 Header File ts.h - Tue 19 May 14:28:39 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -34,7 +34,7 @@ uses OpenSSLAPI,openssl_types,openssl_pkcs7,openssl_symhacks,openssl_buffer,
      openssl_dh,openssl_tserr,openssl_ess,openssl_x509,openssl_x509v3;
 
 
-{* Copyright 2006-2021 The OpenSSL Project Authors. All Rights Reserved.
+{* Copyright 2006-2024 The OpenSSL Project Authors. All Rights Reserved.
 *
 * Licensed under the Apache License 2.0 (the "License").  You may not use
 * this file except in compliance with the License.  You can obtain a copy
@@ -49,6 +49,8 @@ uses OpenSSLAPI,openssl_types,openssl_pkcs7,openssl_symhacks,openssl_buffer,
   {$endif}
   {$include openssl_opensslconf.inc}
   {$ifndef  OPENSSL_NO_TS}
+    {$ifndef  OPENSSL_NO_STDIO}
+    {$endif}
 
 type
   {Auto-generated forward references}
@@ -961,9 +963,6 @@ type
   procedure TS_VERIFY_CTX_cleanup(ctx: PTS_VERIFY_CTX); cdecl; external CLibCrypto name 'TS_VERIFY_CTX_cleanup';
   function TS_VERIFY_CTX_set_flags(ctx: PTS_VERIFY_CTX; f: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_VERIFY_CTX_set_flags';
   function TS_VERIFY_CTX_add_flags(ctx: PTS_VERIFY_CTX; f: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_VERIFY_CTX_add_flags';
-  function TS_VERIFY_CTX_set_data(ctx: PTS_VERIFY_CTX; b: PBIO): PBIO; cdecl; external CLibCrypto name 'TS_VERIFY_CTX_set_data';
-  function TS_VERIFY_CTX_set_imprint(ctx: PTS_VERIFY_CTX; hexstr: Pbyte; len: TOpenSSL_C_INT): Pbyte; cdecl; external CLibCrypto name 'TS_VERIFY_CTX_set_imprint';
-  function TS_VERIFY_CTX_set_store(ctx: PTS_VERIFY_CTX; s: PX509_STORE): PX509_STORE; cdecl; external CLibCrypto name 'TS_VERIFY_CTX_set_store';
     {$else}
   {$EXTERNALSYM TS_RESP_verify_response}
   {$EXTERNALSYM TS_RESP_verify_token}
@@ -973,9 +972,6 @@ type
   {$EXTERNALSYM TS_VERIFY_CTX_cleanup}
   {$EXTERNALSYM TS_VERIFY_CTX_set_flags}
   {$EXTERNALSYM TS_VERIFY_CTX_add_flags}
-  {$EXTERNALSYM TS_VERIFY_CTX_set_data}
-  {$EXTERNALSYM TS_VERIFY_CTX_set_imprint}
-  {$EXTERNALSYM TS_VERIFY_CTX_set_store}
   {Do not call Function LoadDeclarations. Internal use only}
   function Load_TS_RESP_verify_response(ctx: PTS_VERIFY_CTX; response: PTS_RESP): TOpenSSL_C_INT; cdecl;
   function Load_TS_RESP_verify_token(ctx: PTS_VERIFY_CTX; token: PPKCS7): TOpenSSL_C_INT; cdecl;
@@ -985,9 +981,6 @@ type
   procedure Load_TS_VERIFY_CTX_cleanup(ctx: PTS_VERIFY_CTX); cdecl;
   function Load_TS_VERIFY_CTX_set_flags(ctx: PTS_VERIFY_CTX; f: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
   function Load_TS_VERIFY_CTX_add_flags(ctx: PTS_VERIFY_CTX; f: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
-  function Load_TS_VERIFY_CTX_set_data(ctx: PTS_VERIFY_CTX; b: PBIO): PBIO; cdecl;
-  function Load_TS_VERIFY_CTX_set_imprint(ctx: PTS_VERIFY_CTX; hexstr: Pbyte; len: TOpenSSL_C_INT): Pbyte; cdecl;
-  function Load_TS_VERIFY_CTX_set_store(ctx: PTS_VERIFY_CTX; s: PX509_STORE): PX509_STORE; cdecl;
 
 var
   TS_RESP_verify_response: function(ctx: PTS_VERIFY_CTX; response: PTS_RESP): TOpenSSL_C_INT; cdecl = Load_TS_RESP_verify_response;
@@ -1001,19 +994,108 @@ var
   TS_VERIFY_CTX_cleanup: procedure(ctx: PTS_VERIFY_CTX); cdecl = Load_TS_VERIFY_CTX_cleanup;
   TS_VERIFY_CTX_set_flags: function(ctx: PTS_VERIFY_CTX; f: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_TS_VERIFY_CTX_set_flags;
   TS_VERIFY_CTX_add_flags: function(ctx: PTS_VERIFY_CTX; f: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_TS_VERIFY_CTX_add_flags;
+    {$endif} {OPENSSL_STATIC_LINK_MODEL}
+    {$ifndef  OPENSSL_NO_DEPRECATED_3_4}
+
+
+      {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  function TS_VERIFY_CTX_set_data(ctx: PTS_VERIFY_CTX; b: PBIO): PBIO; cdecl; external CLibCrypto name 'TS_VERIFY_CTX_set_data'; deprecated 'Since OpenSSL 3.4;Unclear semantics, replace with TS_VERIFY_CTX_set0_data().';
+      {$else}
+  {$EXTERNALSYM TS_VERIFY_CTX_set_data}
+  {Do not call Function LoadDeclarations. Internal use only}
+  function Load_TS_VERIFY_CTX_set_data(ctx: PTS_VERIFY_CTX; b: PBIO): PBIO; cdecl;
+
+var
   TS_VERIFY_CTX_set_data: function(ctx: PTS_VERIFY_CTX; b: PBIO): PBIO; cdecl = Load_TS_VERIFY_CTX_set_data;
+      {$endif} {OPENSSL_STATIC_LINK_MODEL}
+    {$endif}
+
+
+    {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  function TS_VERIFY_CTX_set0_data(ctx: PTS_VERIFY_CTX; b: PBIO): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_VERIFY_CTX_set0_data';
+    {$else}
+  {$EXTERNALSYM TS_VERIFY_CTX_set0_data}
+  {Do not call Function LoadDeclarations. Internal use only}
+  function Load_TS_VERIFY_CTX_set0_data(ctx: PTS_VERIFY_CTX; b: PBIO): TOpenSSL_C_INT; cdecl;
+
+var
+  TS_VERIFY_CTX_set0_data: function(ctx: PTS_VERIFY_CTX; b: PBIO): TOpenSSL_C_INT; cdecl = Load_TS_VERIFY_CTX_set0_data;
+    {$endif} {OPENSSL_STATIC_LINK_MODEL}
+    {$ifndef  OPENSSL_NO_DEPRECATED_3_4}
+
+
+      {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  function TS_VERIFY_CTX_set_imprint(ctx: PTS_VERIFY_CTX; hexstr: Pbyte; len: TOpenSSL_C_INT): Pbyte; cdecl; external CLibCrypto name 'TS_VERIFY_CTX_set_imprint'; deprecated 'Since OpenSSL 3.4;Unclear semantics, replace with TS_VERIFY_CTX_set0_imprint().';
+      {$else}
+  {$EXTERNALSYM TS_VERIFY_CTX_set_imprint}
+  {Do not call Function LoadDeclarations. Internal use only}
+  function Load_TS_VERIFY_CTX_set_imprint(ctx: PTS_VERIFY_CTX; hexstr: Pbyte; len: TOpenSSL_C_INT): Pbyte; cdecl;
+
+var
   TS_VERIFY_CTX_set_imprint: function(ctx: PTS_VERIFY_CTX; hexstr: Pbyte; len: TOpenSSL_C_INT): Pbyte; cdecl = Load_TS_VERIFY_CTX_set_imprint;
+      {$endif} {OPENSSL_STATIC_LINK_MODEL}
+    {$endif}
+
+
+    {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  function TS_VERIFY_CTX_set0_imprint(ctx: PTS_VERIFY_CTX; hexstr: Pbyte; len: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_VERIFY_CTX_set0_imprint';
+    {$else}
+  {$EXTERNALSYM TS_VERIFY_CTX_set0_imprint}
+  {Do not call Function LoadDeclarations. Internal use only}
+  function Load_TS_VERIFY_CTX_set0_imprint(ctx: PTS_VERIFY_CTX; hexstr: Pbyte; len: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
+
+var
+  TS_VERIFY_CTX_set0_imprint: function(ctx: PTS_VERIFY_CTX; hexstr: Pbyte; len: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_TS_VERIFY_CTX_set0_imprint;
+    {$endif} {OPENSSL_STATIC_LINK_MODEL}
+    {$ifndef  OPENSSL_NO_DEPRECATED_3_4}
+
+
+      {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  function TS_VERIFY_CTX_set_store(ctx: PTS_VERIFY_CTX; s: PX509_STORE): PX509_STORE; cdecl; external CLibCrypto name 'TS_VERIFY_CTX_set_store'; deprecated 'Since OpenSSL 3.4;Unclear semantics, replace with TS_VERIFY_CTX_set0_store().';
+      {$else}
+  {$EXTERNALSYM TS_VERIFY_CTX_set_store}
+  {Do not call Function LoadDeclarations. Internal use only}
+  function Load_TS_VERIFY_CTX_set_store(ctx: PTS_VERIFY_CTX; s: PX509_STORE): PX509_STORE; cdecl;
+
+var
   TS_VERIFY_CTX_set_store: function(ctx: PTS_VERIFY_CTX; s: PX509_STORE): PX509_STORE; cdecl = Load_TS_VERIFY_CTX_set_store;
+      {$endif} {OPENSSL_STATIC_LINK_MODEL}
+    {$endif}
+
+
+    {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  function TS_VERIFY_CTX_set0_store(ctx: PTS_VERIFY_CTX; s: PX509_STORE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_VERIFY_CTX_set0_store';
+    {$else}
+  {$EXTERNALSYM TS_VERIFY_CTX_set0_store}
+  {Do not call Function LoadDeclarations. Internal use only}
+  function Load_TS_VERIFY_CTX_set0_store(ctx: PTS_VERIFY_CTX; s: PX509_STORE): TOpenSSL_C_INT; cdecl;
+
+var
+  TS_VERIFY_CTX_set0_store: function(ctx: PTS_VERIFY_CTX; s: PX509_STORE): TOpenSSL_C_INT; cdecl = Load_TS_VERIFY_CTX_set0_store;
     {$endif} {OPENSSL_STATIC_LINK_MODEL}
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
 
   function TS_VERIFY_CTS_set_certs(ctx:PTS_VERIFY_CTX; cert:Pstack_st_X509): Pstack_st_X509; inline;
     {$endif}
+    {$ifndef  OPENSSL_NO_DEPRECATED_3_4}
+
+
+      {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  function TS_VERIFY_CTX_set_certs(ctx: PTS_VERIFY_CTX; certs: Pstack_st_X509): Pstack_st_X509; cdecl; external CLibCrypto name 'TS_VERIFY_CTX_set_certs'; deprecated 'Since OpenSSL 3.4;Unclear semantics, replace with TS_VERIFY_CTX_set0_certs().';
+      {$else}
+  {$EXTERNALSYM TS_VERIFY_CTX_set_certs}
+  {Do not call Function LoadDeclarations. Internal use only}
+  function Load_TS_VERIFY_CTX_set_certs(ctx: PTS_VERIFY_CTX; certs: Pstack_st_X509): Pstack_st_X509; cdecl;
+
+var
+  TS_VERIFY_CTX_set_certs: function(ctx: PTS_VERIFY_CTX; certs: Pstack_st_X509): Pstack_st_X509; cdecl = Load_TS_VERIFY_CTX_set_certs;
+      {$endif} {OPENSSL_STATIC_LINK_MODEL}
+    {$endif}
 
 
     {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function TS_VERIFY_CTX_set_certs(ctx: PTS_VERIFY_CTX; certs: Pstack_st_X509): Pstack_st_X509; cdecl; external CLibCrypto name 'TS_VERIFY_CTX_set_certs';
+  function TS_VERIFY_CTX_set0_certs(ctx: PTS_VERIFY_CTX; certs: Pstack_st_X509): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_VERIFY_CTX_set0_certs';
   {-
   * If ctx is NULL, it allocates and returns a new object, otherwise
   * it returns ctx. It initialises all the members as follows:
@@ -1051,7 +1133,7 @@ var
   function TS_CONF_get_tsa_section(conf: PCONF; section: PAnsiChar): PAnsiChar; cdecl; external CLibCrypto name 'TS_CONF_get_tsa_section';
   function TS_CONF_set_serial(conf: PCONF; section: PAnsiChar; cb: TTS_serial_cb; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_CONF_set_serial';
     {$else}
-  {$EXTERNALSYM TS_VERIFY_CTX_set_certs}
+  {$EXTERNALSYM TS_VERIFY_CTX_set0_certs}
   {$EXTERNALSYM TS_REQ_to_TS_VERIFY_CTX}
   {$EXTERNALSYM TS_RESP_print_bio}
   {$EXTERNALSYM TS_STATUS_INFO_print_bio}
@@ -1067,7 +1149,7 @@ var
   {$EXTERNALSYM TS_CONF_get_tsa_section}
   {$EXTERNALSYM TS_CONF_set_serial}
   {Do not call Function LoadDeclarations. Internal use only}
-  function Load_TS_VERIFY_CTX_set_certs(ctx: PTS_VERIFY_CTX; certs: Pstack_st_X509): Pstack_st_X509; cdecl;
+  function Load_TS_VERIFY_CTX_set0_certs(ctx: PTS_VERIFY_CTX; certs: Pstack_st_X509): TOpenSSL_C_INT; cdecl;
   function Load_TS_REQ_to_TS_VERIFY_CTX(req: PTS_REQ; ctx: PTS_VERIFY_CTX): PTS_VERIFY_CTX; cdecl;
   function Load_TS_RESP_print_bio(bio: PBIO; a: PTS_RESP): TOpenSSL_C_INT; cdecl;
   function Load_TS_STATUS_INFO_print_bio(bio: PBIO; a: PTS_STATUS_INFO): TOpenSSL_C_INT; cdecl;
@@ -1084,7 +1166,7 @@ var
   function Load_TS_CONF_set_serial(conf: PCONF; section: PAnsiChar; cb: TTS_serial_cb; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl;
 
 var
-  TS_VERIFY_CTX_set_certs: function(ctx: PTS_VERIFY_CTX; certs: Pstack_st_X509): Pstack_st_X509; cdecl = Load_TS_VERIFY_CTX_set_certs;
+  TS_VERIFY_CTX_set0_certs: function(ctx: PTS_VERIFY_CTX; certs: Pstack_st_X509): TOpenSSL_C_INT; cdecl = Load_TS_VERIFY_CTX_set0_certs;
   {-
   * If ctx is NULL, it allocates and returns a new object, otherwise
   * it returns ctx. It initialises all the members as follows:
@@ -2438,6 +2520,7 @@ begin
   Result := TS_VERIFY_CTX_add_flags(ctx, f);
 end;
 
+    {$ifndef  OPENSSL_NO_DEPRECATED_3_4}
 function Load_TS_VERIFY_CTX_set_data(ctx: PTS_VERIFY_CTX; b: PBIO): PBIO; cdecl;
 begin
   TS_VERIFY_CTX_set_data := LoadLibCryptoFunction('TS_VERIFY_CTX_set_data');
@@ -2446,6 +2529,16 @@ begin
   Result := TS_VERIFY_CTX_set_data(ctx, b);
 end;
 
+    {$endif} { OPENSSL_NO_DEPRECATED_3_4}
+function Load_TS_VERIFY_CTX_set0_data(ctx: PTS_VERIFY_CTX; b: PBIO): TOpenSSL_C_INT; cdecl;
+begin
+  TS_VERIFY_CTX_set0_data := LoadLibCryptoFunction('TS_VERIFY_CTX_set0_data');
+  if not assigned(TS_VERIFY_CTX_set0_data) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('TS_VERIFY_CTX_set0_data');
+  Result := TS_VERIFY_CTX_set0_data(ctx, b);
+end;
+
+    {$ifndef  OPENSSL_NO_DEPRECATED_3_4}
 function Load_TS_VERIFY_CTX_set_imprint(ctx: PTS_VERIFY_CTX; hexstr: Pbyte; len: TOpenSSL_C_INT): Pbyte; cdecl;
 begin
   TS_VERIFY_CTX_set_imprint := LoadLibCryptoFunction('TS_VERIFY_CTX_set_imprint');
@@ -2454,6 +2547,16 @@ begin
   Result := TS_VERIFY_CTX_set_imprint(ctx, hexstr, len);
 end;
 
+    {$endif} { OPENSSL_NO_DEPRECATED_3_4}
+function Load_TS_VERIFY_CTX_set0_imprint(ctx: PTS_VERIFY_CTX; hexstr: Pbyte; len: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
+begin
+  TS_VERIFY_CTX_set0_imprint := LoadLibCryptoFunction('TS_VERIFY_CTX_set0_imprint');
+  if not assigned(TS_VERIFY_CTX_set0_imprint) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('TS_VERIFY_CTX_set0_imprint');
+  Result := TS_VERIFY_CTX_set0_imprint(ctx, hexstr, len);
+end;
+
+    {$ifndef  OPENSSL_NO_DEPRECATED_3_4}
 function Load_TS_VERIFY_CTX_set_store(ctx: PTS_VERIFY_CTX; s: PX509_STORE): PX509_STORE; cdecl;
 begin
   TS_VERIFY_CTX_set_store := LoadLibCryptoFunction('TS_VERIFY_CTX_set_store');
@@ -2462,12 +2565,31 @@ begin
   Result := TS_VERIFY_CTX_set_store(ctx, s);
 end;
 
+    {$endif} { OPENSSL_NO_DEPRECATED_3_4}
+function Load_TS_VERIFY_CTX_set0_store(ctx: PTS_VERIFY_CTX; s: PX509_STORE): TOpenSSL_C_INT; cdecl;
+begin
+  TS_VERIFY_CTX_set0_store := LoadLibCryptoFunction('TS_VERIFY_CTX_set0_store');
+  if not assigned(TS_VERIFY_CTX_set0_store) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('TS_VERIFY_CTX_set0_store');
+  Result := TS_VERIFY_CTX_set0_store(ctx, s);
+end;
+
+    {$ifndef  OPENSSL_NO_DEPRECATED_3_4}
 function Load_TS_VERIFY_CTX_set_certs(ctx: PTS_VERIFY_CTX; certs: Pstack_st_X509): Pstack_st_X509; cdecl;
 begin
   TS_VERIFY_CTX_set_certs := LoadLibCryptoFunction('TS_VERIFY_CTX_set_certs');
   if not assigned(TS_VERIFY_CTX_set_certs) then
     EOpenSSLAPIFunctionNotPresent.RaiseException('TS_VERIFY_CTX_set_certs');
   Result := TS_VERIFY_CTX_set_certs(ctx, certs);
+end;
+
+    {$endif} { OPENSSL_NO_DEPRECATED_3_4}
+function Load_TS_VERIFY_CTX_set0_certs(ctx: PTS_VERIFY_CTX; certs: Pstack_st_X509): TOpenSSL_C_INT; cdecl;
+begin
+  TS_VERIFY_CTX_set0_certs := LoadLibCryptoFunction('TS_VERIFY_CTX_set0_certs');
+  if not assigned(TS_VERIFY_CTX_set0_certs) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('TS_VERIFY_CTX_set0_certs');
+  Result := TS_VERIFY_CTX_set0_certs(ctx, certs);
 end;
 
 function Load_TS_REQ_to_TS_VERIFY_CTX(req: PTS_REQ; ctx: PTS_VERIFY_CTX): PTS_VERIFY_CTX; cdecl;
@@ -2868,10 +2990,22 @@ begin
   TS_VERIFY_CTX_cleanup := Load_TS_VERIFY_CTX_cleanup;
   TS_VERIFY_CTX_set_flags := Load_TS_VERIFY_CTX_set_flags;
   TS_VERIFY_CTX_add_flags := Load_TS_VERIFY_CTX_add_flags;
+    {$ifndef  OPENSSL_NO_DEPRECATED_3_4}
   TS_VERIFY_CTX_set_data := Load_TS_VERIFY_CTX_set_data;
+    {$endif} { OPENSSL_NO_DEPRECATED_3_4}
+  TS_VERIFY_CTX_set0_data := Load_TS_VERIFY_CTX_set0_data;
+    {$ifndef  OPENSSL_NO_DEPRECATED_3_4}
   TS_VERIFY_CTX_set_imprint := Load_TS_VERIFY_CTX_set_imprint;
+    {$endif} { OPENSSL_NO_DEPRECATED_3_4}
+  TS_VERIFY_CTX_set0_imprint := Load_TS_VERIFY_CTX_set0_imprint;
+    {$ifndef  OPENSSL_NO_DEPRECATED_3_4}
   TS_VERIFY_CTX_set_store := Load_TS_VERIFY_CTX_set_store;
+    {$endif} { OPENSSL_NO_DEPRECATED_3_4}
+  TS_VERIFY_CTX_set0_store := Load_TS_VERIFY_CTX_set0_store;
+    {$ifndef  OPENSSL_NO_DEPRECATED_3_4}
   TS_VERIFY_CTX_set_certs := Load_TS_VERIFY_CTX_set_certs;
+    {$endif} { OPENSSL_NO_DEPRECATED_3_4}
+  TS_VERIFY_CTX_set0_certs := Load_TS_VERIFY_CTX_set0_certs;
   TS_REQ_to_TS_VERIFY_CTX := Load_TS_REQ_to_TS_VERIFY_CTX;
   TS_RESP_print_bio := Load_TS_RESP_print_bio;
   TS_STATUS_INFO_print_bio := Load_TS_STATUS_INFO_print_bio;

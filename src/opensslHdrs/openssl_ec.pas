@@ -18,7 +18,7 @@
 unit openssl_ec;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ec.h - Tue 19 May 14:15:56 BST 2026
+  Generated from OpenSSL 3.5.6 Header File ec.h - Tue 19 May 14:27:37 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -33,7 +33,7 @@ uses OpenSSLAPI,openssl_evp,openssl_types,openssl_asn1,openssl_symhacks,
      openssl_bn,openssl_ecerr,openssl_params;
 
 
-{* Copyright 2002-2026 The OpenSSL Project Authors. All Rights Reserved.
+{* Copyright 2002-2023 The OpenSSL Project Authors. All Rights Reserved.
 * Copyright (c) 2002, Oracle and/or its affiliates. All rights reserved
 *
 * Licensed under the Apache License 2.0 (the "License").  You may not use
@@ -173,6 +173,8 @@ type
 var
   OSSL_EC_curve_nid2name: function(nid: TOpenSSL_C_INT): PAnsiChar; cdecl = Load_OSSL_EC_curve_nid2name;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
+  {$ifndef  OPENSSL_NO_STDIO}
+  {$endif}
   {$ifndef  OPENSSL_NO_EC}
     {$ifndef  OPENSSL_NO_DEPRECATED_1_1_0}
     {$endif}
@@ -873,6 +875,20 @@ var
     {$ifdef OPENSSL_STATIC_LINK_MODEL}
   function EC_GROUP_new_from_params(params: POSSL_PARAM; libctx: POSSL_LIB_CTX; propq: PAnsiChar): PEC_GROUP; cdecl; external CLibCrypto name 'EC_GROUP_new_from_params';
   {*
+  * Creates an OSSL_PARAM array with the parameters describing the given
+  * EC_GROUP.
+  * The resulting parameters may contain an explicit or a named curve depending
+  * on the EC_GROUP.
+  *  param  group  pointer to the EC_GROUP object
+  *  param  libctx The associated library context or NULL for the default
+  *                 context
+  *  param  propq  A property query string
+  *  param  bnctx  BN_CTX object (optional)
+  *  return newly created OSSL_PARAM array with the parameters
+  *          describing the given EC_GROUP or NULL if an error occurred
+  }
+  function EC_GROUP_to_params(group: PEC_GROUP; libctx: POSSL_LIB_CTX; propq: PAnsiChar; bnctx: PBN_CTX): POSSL_PARAM; cdecl; external CLibCrypto name 'EC_GROUP_to_params';
+  {*
   * Creates a EC_GROUP object with a curve specified by a NID
   *  param  libctx The associated library context or NULL for the default
   *                 context
@@ -922,6 +938,7 @@ var
   {******************************************************************}
     {$else}
   {$EXTERNALSYM EC_GROUP_new_from_params}
+  {$EXTERNALSYM EC_GROUP_to_params}
   {$EXTERNALSYM EC_GROUP_new_by_curve_name_ex}
   {$EXTERNALSYM EC_GROUP_new_by_curve_name}
   {$EXTERNALSYM EC_GROUP_new_from_ecparameters}
@@ -930,6 +947,7 @@ var
   {$EXTERNALSYM EC_GROUP_get_ecpkparameters}
   {Do not call Function LoadDeclarations. Internal use only}
   function Load_EC_GROUP_new_from_params(params: POSSL_PARAM; libctx: POSSL_LIB_CTX; propq: PAnsiChar): PEC_GROUP; cdecl;
+  function Load_EC_GROUP_to_params(group: PEC_GROUP; libctx: POSSL_LIB_CTX; propq: PAnsiChar; bnctx: PBN_CTX): POSSL_PARAM; cdecl;
   function Load_EC_GROUP_new_by_curve_name_ex(libctx: POSSL_LIB_CTX; propq: PAnsiChar; nid: TOpenSSL_C_INT): PEC_GROUP; cdecl;
   function Load_EC_GROUP_new_by_curve_name(nid: TOpenSSL_C_INT): PEC_GROUP; cdecl;
   function Load_EC_GROUP_new_from_ecparameters(params: PECPARAMETERS): PEC_GROUP; cdecl;
@@ -939,6 +957,20 @@ var
 
 var
   EC_GROUP_new_from_params: function(params: POSSL_PARAM; libctx: POSSL_LIB_CTX; propq: PAnsiChar): PEC_GROUP; cdecl = Load_EC_GROUP_new_from_params;
+  {*
+  * Creates an OSSL_PARAM array with the parameters describing the given
+  * EC_GROUP.
+  * The resulting parameters may contain an explicit or a named curve depending
+  * on the EC_GROUP.
+  *  param  group  pointer to the EC_GROUP object
+  *  param  libctx The associated library context or NULL for the default
+  *                 context
+  *  param  propq  A property query string
+  *  param  bnctx  BN_CTX object (optional)
+  *  return newly created OSSL_PARAM array with the parameters
+  *          describing the given EC_GROUP or NULL if an error occurred
+  }
+  EC_GROUP_to_params: function(group: PEC_GROUP; libctx: POSSL_LIB_CTX; propq: PAnsiChar; bnctx: PBN_CTX): POSSL_PARAM; cdecl = Load_EC_GROUP_to_params;
   {*
   * Creates a EC_GROUP object with a curve specified by a NID
   *  param  libctx The associated library context or NULL for the default
@@ -1755,8 +1787,8 @@ var
   d2i_ECPKParameters: function(_param1: PPEC_GROUP; in_: PPbyte; len: TOpenSSL_C_INT): PEC_GROUP; cdecl = Load_d2i_ECPKParameters;
   i2d_ECPKParameters: function(_param1: PEC_GROUP; out_: PPbyte): TOpenSSL_C_INT; cdecl = Load_i2d_ECPKParameters;
     {$endif} {OPENSSL_STATIC_LINK_MODEL}
-  {# define  d2i_ECPKParameters_bio(bp,x) ASN1_d2i_bio_of(EC_GROUP, NULL, d2i_ECPKParameters, bp, x)} {Function argument out of range at line no 910}
-  {# define  i2d_ECPKParameters_bio(bp,x) ASN1_i2d_bio_of(EC_GROUP, i2d_ECPKParameters, bp, x)} {Function argument out of range at line no 912}
+  {# define  d2i_ECPKParameters_bio(bp,x) ASN1_d2i_bio_of(EC_GROUP, NULL, d2i_ECPKParameters, bp, x)} {Function argument out of range at line no 930}
+  {# define  i2d_ECPKParameters_bio(bp,x) ASN1_i2d_bio_of(EC_GROUP, i2d_ECPKParameters, bp, x)} {Function argument out of range at line no 932}
   {# define  d2i_ECPKParameters_fp(fp,x) (EC_GROUP *)ASN1_d2i_fp(NULL, (d2i_of_void *)d2i_ECPKParameters, (fp), (void **)(x))}
   {# define  i2d_ECPKParameters_fp(fp,x) ASN1_i2d_fp((i2d_of_void *)i2d_ECPKParameters, (fp), (void *)(x))}
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
@@ -2055,7 +2087,7 @@ var
   EC_KEY_set_conv_form: procedure(eckey: PEC_KEY; cform: Tpoint_conversion_form_t); cdecl = Load_EC_KEY_set_conv_form;
       {$endif} {OPENSSL_STATIC_LINK_MODEL}
     {$endif}
-{# define  EC_KEY_get_ex_new_index(l,p,newf,dupf,freef) CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_EC_KEY, l, p, newf, dupf, freef)} {Macro Return Type unknown at line no 1074}
+{# define  EC_KEY_get_ex_new_index(l,p,newf,dupf,freef) CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_EC_KEY, l, p, newf, dupf, freef)} {Macro Return Type unknown at line no 1094}
     {OPENSSL_NO_DEPRECATED_3_0 }
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
@@ -2084,7 +2116,7 @@ var
   function EC_KEY_check_key(key: PEC_KEY): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EC_KEY_check_key'; deprecated 'Since OpenSSL 3.0';
   {* Indicates if an EC_KEY can be used for signing.
   *  param  eckey  the EC_KEY object
-  *  return 1 if can can sign and 0 otherwise.
+  *  return 1 if can sign and 0 otherwise.
   }
   function EC_KEY_can_sign(eckey: PEC_KEY): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EC_KEY_can_sign'; deprecated 'Since OpenSSL 3.0';
   {* Sets a public key from affine coordinates performing
@@ -2268,7 +2300,7 @@ var
   EC_KEY_check_key: function(key: PEC_KEY): TOpenSSL_C_INT; cdecl = Load_EC_KEY_check_key;
   {* Indicates if an EC_KEY can be used for signing.
   *  param  eckey  the EC_KEY object
-  *  return 1 if can can sign and 0 otherwise.
+  *  return 1 if can sign and 0 otherwise.
   }
   EC_KEY_can_sign: function(eckey: PEC_KEY): TOpenSSL_C_INT; cdecl = Load_EC_KEY_can_sign;
   {* Sets a public key from affine coordinates performing
@@ -3047,8 +3079,8 @@ var
   EC_KEY_METHOD_get_verify: procedure(meth: PEC_KEY_METHOD; pverify: TFuncType025; pverify_sig: TFuncType026); cdecl = Load_EC_KEY_METHOD_get_verify;
       {$endif} {OPENSSL_STATIC_LINK_MODEL}
     {$endif}
-{# define  EVP_EC_gen(curve) EVP_PKEY_Q_keygen(NULL, NULL, "EC", (char *)(strstr(curve, "")))} {Macro Return Type unknown at line no 1535}
-{# define  ECParameters_dup(x) ASN1_dup_of(EC_KEY, i2d_ECParameters, d2i_ECParameters, x)} {Function argument out of range at line no 1538}
+{# define  EVP_EC_gen(curve) EVP_PKEY_Q_keygen(NULL, NULL, "EC", (char *)(strstr(curve, "")))} {Macro Return Type unknown at line no 1555}
+{# define  ECParameters_dup(x) ASN1_dup_of(EC_KEY, i2d_ECParameters, d2i_ECParameters, x)} {Function argument out of range at line no 1558}
     { OPENSSL_NO_DEPRECATED_3_0 }
     { strstr is used to enable type checking for the variadic string arg }
     {$ifndef  __cplusplus}
@@ -3584,6 +3616,14 @@ begin
   if not assigned(EC_GROUP_new_from_params) then
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_new_from_params');
   Result := EC_GROUP_new_from_params(params, libctx, propq);
+end;
+
+function Load_EC_GROUP_to_params(group: PEC_GROUP; libctx: POSSL_LIB_CTX; propq: PAnsiChar; bnctx: PBN_CTX): POSSL_PARAM; cdecl;
+begin
+  EC_GROUP_to_params := LoadLibCryptoFunction('EC_GROUP_to_params');
+  if not assigned(EC_GROUP_to_params) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_to_params');
+  Result := EC_GROUP_to_params(group, libctx, propq, bnctx);
 end;
 
 function Load_EC_GROUP_new_by_curve_name_ex(libctx: POSSL_LIB_CTX; propq: PAnsiChar; nid: TOpenSSL_C_INT): PEC_GROUP; cdecl;
@@ -4832,6 +4872,7 @@ begin
   EC_GROUP_new_curve_GF2m := Load_EC_GROUP_new_curve_GF2m;
     {$endif} { OPENSSL_NO_EC2M}
   EC_GROUP_new_from_params := Load_EC_GROUP_new_from_params;
+  EC_GROUP_to_params := Load_EC_GROUP_to_params;
   EC_GROUP_new_by_curve_name_ex := Load_EC_GROUP_new_by_curve_name_ex;
   EC_GROUP_new_by_curve_name := Load_EC_GROUP_new_by_curve_name;
   EC_GROUP_new_from_ecparameters := Load_EC_GROUP_new_from_ecparameters;

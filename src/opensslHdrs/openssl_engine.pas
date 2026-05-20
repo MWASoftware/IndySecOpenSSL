@@ -18,7 +18,7 @@
 unit openssl_engine;
 
 {
-  Generated from OpenSSL 3.0.20 Header File engine.h - Tue 19 May 14:15:59 BST 2026
+  Generated from OpenSSL 3.5.6 Header File engine.h - Tue 19 May 14:27:40 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -99,7 +99,7 @@ uses OpenSSLAPI,openssl_bn,openssl_rsa,openssl_dsa,openssl_dh,openssl_ec,
     }
   function ENGINE_FLAGS_BY_ID_COPY: TOpenSSL_C_INT; inline;
     
-    {* This flag if for an ENGINE that does not want its methods registered as
+    {* This flag is for an ENGINE that does not want its methods registered as
     * part of ENGINE_register_all_complete() for example if the methods are not
     * usable as default methods.
     }
@@ -410,15 +410,15 @@ var
       {$endif} {OPENSSL_STATIC_LINK_MODEL}
     {$endif}
     {$ifndef  OPENSSL_NO_DEPRECATED_1_1_0}
-{# define  ENGINE_load_openssl() OPENSSL_init_crypto(OPENSSL_INIT_ENGINE_OPENSSL, NULL)} {Macro Return Type unknown at line no 344}
-{# define  ENGINE_load_dynamic() OPENSSL_init_crypto(OPENSSL_INIT_ENGINE_DYNAMIC, NULL)} {Macro Return Type unknown at line no 346}
+{# define  ENGINE_load_openssl() OPENSSL_init_crypto(OPENSSL_INIT_ENGINE_OPENSSL, NULL)} {Macro Return Type unknown at line no 343}
+{# define  ENGINE_load_dynamic() OPENSSL_init_crypto(OPENSSL_INIT_ENGINE_DYNAMIC, NULL)} {Macro Return Type unknown at line no 345}
       {$ifndef  OPENSSL_NO_STATIC_ENGINE}
-{# define  ENGINE_load_padlock() OPENSSL_init_crypto(OPENSSL_INIT_ENGINE_PADLOCK, NULL)} {Macro Return Type unknown at line no 349}
-{# define  ENGINE_load_capi() OPENSSL_init_crypto(OPENSSL_INIT_ENGINE_CAPI, NULL)} {Macro Return Type unknown at line no 351}
-{# define  ENGINE_load_afalg() OPENSSL_init_crypto(OPENSSL_INIT_ENGINE_AFALG, NULL)} {Macro Return Type unknown at line no 353}
+{# define  ENGINE_load_padlock() OPENSSL_init_crypto(OPENSSL_INIT_ENGINE_PADLOCK, NULL)} {Macro Return Type unknown at line no 348}
+{# define  ENGINE_load_capi() OPENSSL_init_crypto(OPENSSL_INIT_ENGINE_CAPI, NULL)} {Macro Return Type unknown at line no 350}
+{# define  ENGINE_load_afalg() OPENSSL_init_crypto(OPENSSL_INIT_ENGINE_AFALG, NULL)} {Macro Return Type unknown at line no 352}
       {$endif}
-{# define  ENGINE_load_cryptodev() OPENSSL_init_crypto(OPENSSL_INIT_ENGINE_CRYPTODEV, NULL)} {Macro Return Type unknown at line no 356}
-{# define  ENGINE_load_rdrand() OPENSSL_init_crypto(OPENSSL_INIT_ENGINE_RDRAND, NULL)} {Macro Return Type unknown at line no 358}
+{# define  ENGINE_load_cryptodev() OPENSSL_init_crypto(OPENSSL_INIT_ENGINE_CRYPTODEV, NULL)} {Macro Return Type unknown at line no 355}
+{# define  ENGINE_load_rdrand() OPENSSL_init_crypto(OPENSSL_INIT_ENGINE_RDRAND, NULL)} {Macro Return Type unknown at line no 357}
     {$endif}
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
@@ -831,7 +831,7 @@ var
   ENGINE_set_cmd_defns: function(e: PENGINE; defns: PENGINE_CMD_DEFN): TOpenSSL_C_INT; cdecl = Load_ENGINE_set_cmd_defns;
       {$endif} {OPENSSL_STATIC_LINK_MODEL}
     {$endif}
-{# define  ENGINE_get_ex_new_index(l,p,newf,dupf,freef) CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_ENGINE, l, p, newf, dupf, freef)} {Macro Return Type unknown at line no 534}
+{# define  ENGINE_get_ex_new_index(l,p,newf,dupf,freef) CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_ENGINE, l, p, newf, dupf, freef)} {Macro Return Type unknown at line no 533}
     { These functions allow control over any per-structure ENGINE data. }
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
@@ -991,7 +991,7 @@ var
     * reference is automatically obtained or released too.
     }
     
-    {* Initialise a engine type for use (or up its reference count if it's
+    {* Initialise an engine type for use (or up its reference count if it's
     * already in use). This will fail if the engine is not currently operational
     * and cannot initialise.
     }
@@ -1010,7 +1010,7 @@ var
       {$endif} {OPENSSL_STATIC_LINK_MODEL}
     {$endif}
     
-    {* Free a functional reference to a engine type. This does not require a
+    {* Free a functional reference to an engine type. This does not require a
     * corresponding call to ENGINE_free as it also releases a structural
     * reference.
     }

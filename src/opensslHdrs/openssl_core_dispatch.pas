@@ -18,7 +18,7 @@
 unit openssl_core_dispatch;
 
 {
-  Generated from OpenSSL 3.0.20 Header File core_dispatch.h - Tue 19 May 14:15:42 BST 2026
+  Generated from OpenSSL 3.5.6 Header File core_dispatch.h - Tue 19 May 14:27:22 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -29,7 +29,7 @@ unit openssl_core_dispatch;
 
 interface
 
-uses OpenSSLAPI,openssl_types,openssl_core;
+uses OpenSSLAPI,openssl_types,openssl_core,openssl_indicator;
 
 
 {* Copyright 2019-2026 The OpenSSL Project Authors. All Rights Reserved.
@@ -41,7 +41,20 @@ uses OpenSSLAPI,openssl_types,openssl_core;
 }
 {$ifndef  OPENSSL_CORE_NUMBERS_H}
   {$define OPENSSL_CORE_NUMBERS_H}
-(*# define  OSSL_CORE_MAKE_FUNC(type,name,args) typedef type(OSSL_FUNC_ ##name ##_fn) args; static ossl_unused ossl_inline OSSL_FUNC_ 
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC = ^TOSSL_FUNC;
+  PPOSSL_FUNC = ^POSSL_FUNC;
+  {end of auto-generated forward references}
+
+  
+  {* Generic function pointer for provider method arrays, or other contexts where
+  * functions of various signatures must occupy a common slot in an array of
+  * structures.
+  }
+  TOSSL_FUNC = procedure; cdecl;
+  (*# define  OSSL_CORE_MAKE_FUNC(type,name,args) typedef type(OSSL_FUNC_ ##name ##_fn) args; static ossl_unused ossl_inline OSSL_FUNC_ 
 ##name ##_fn * OSSL_FUNC_ ##name(const OSSL_DISPATCH *opf) { return (OSSL_FUNC_ ##name ##_fn * )opf->function; }*)
 
 const
@@ -549,6 +562,25 @@ type
   function OSSL_FUNC_BIO_ctrl(opf: POSSL_DISPATCH): POSSL_FUNC_BIO_ctrl_fn{Has C Attribute: unused}; inline;
 
 const
+  { New seeding functions prototypes with the 101-104 series }
+  OSSL_FUNC_CLEANUP_USER_ENTROPY_ = 96;
+  OSSL_FUNC_CLEANUP_USER_NONCE_ = 97;
+  OSSL_FUNC_GET_USER_ENTROPY_ = 98;
+  OSSL_FUNC_GET_USER_NONCE_ = 99;
+  OSSL_FUNC_INDICATOR_CB_ = 95;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_indicator_cb_fn = ^TOSSL_FUNC_indicator_cb_fn;
+  PPOSSL_FUNC_indicator_cb_fn = ^POSSL_FUNC_indicator_cb_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_indicator_cb_fn = procedure(ctx: POPENSSL_CORE_CTX; cb: PPOSSL_INDICATOR_CALLBACK); cdecl;
+
+
+  function OSSL_FUNC_indicator_cb(opf: POSSL_DISPATCH): POSSL_FUNC_indicator_cb_fn{Has C Attribute: unused}; inline;
+
+const
   OSSL_FUNC_SELF_TEST_CB_ = 100;
 
 type
@@ -582,6 +614,17 @@ type
 
 type
   {Auto-generated forward references}
+  POSSL_FUNC_get_user_entropy_fn = ^TOSSL_FUNC_get_user_entropy_fn;
+  PPOSSL_FUNC_get_user_entropy_fn = ^POSSL_FUNC_get_user_entropy_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_get_user_entropy_fn = function(handle: POSSL_CORE_HANDLE; pout: PPbyte; entropy: TOpenSSL_C_INT; min_len: TOpenSSL_C_SIZET; max_len: TOpenSSL_C_SIZET): TOpenSSL_C_SIZET; cdecl;
+
+
+  function OSSL_FUNC_get_user_entropy(opf: POSSL_DISPATCH): POSSL_FUNC_get_user_entropy_fn{Has C Attribute: unused}; inline;
+
+type
+  {Auto-generated forward references}
   POSSL_FUNC_cleanup_entropy_fn = ^TOSSL_FUNC_cleanup_entropy_fn;
   PPOSSL_FUNC_cleanup_entropy_fn = ^POSSL_FUNC_cleanup_entropy_fn;
   {end of auto-generated forward references}
@@ -590,6 +633,17 @@ type
 
 
   function OSSL_FUNC_cleanup_entropy(opf: POSSL_DISPATCH): POSSL_FUNC_cleanup_entropy_fn{Has C Attribute: unused}; inline;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_cleanup_user_entropy_fn = ^TOSSL_FUNC_cleanup_user_entropy_fn;
+  PPOSSL_FUNC_cleanup_user_entropy_fn = ^POSSL_FUNC_cleanup_user_entropy_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_cleanup_user_entropy_fn = procedure(handle: POSSL_CORE_HANDLE; buf: Pbyte; len: TOpenSSL_C_SIZET); cdecl;
+
+
+  function OSSL_FUNC_cleanup_user_entropy(opf: POSSL_DISPATCH): POSSL_FUNC_cleanup_user_entropy_fn{Has C Attribute: unused}; inline;
 
 type
   {Auto-generated forward references}
@@ -604,6 +658,17 @@ type
 
 type
   {Auto-generated forward references}
+  POSSL_FUNC_get_user_nonce_fn = ^TOSSL_FUNC_get_user_nonce_fn;
+  PPOSSL_FUNC_get_user_nonce_fn = ^POSSL_FUNC_get_user_nonce_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_get_user_nonce_fn = function(handle: POSSL_CORE_HANDLE; pout: PPbyte; min_len: TOpenSSL_C_SIZET; max_len: TOpenSSL_C_SIZET; salt: pointer; salt_len: TOpenSSL_C_SIZET): TOpenSSL_C_SIZET; cdecl;
+
+
+  function OSSL_FUNC_get_user_nonce(opf: POSSL_DISPATCH): POSSL_FUNC_get_user_nonce_fn{Has C Attribute: unused}; inline;
+
+type
+  {Auto-generated forward references}
   POSSL_FUNC_cleanup_nonce_fn = ^TOSSL_FUNC_cleanup_nonce_fn;
   PPOSSL_FUNC_cleanup_nonce_fn = ^POSSL_FUNC_cleanup_nonce_fn;
   {end of auto-generated forward references}
@@ -612,6 +677,17 @@ type
 
 
   function OSSL_FUNC_cleanup_nonce(opf: POSSL_DISPATCH): POSSL_FUNC_cleanup_nonce_fn{Has C Attribute: unused}; inline;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_cleanup_user_nonce_fn = ^TOSSL_FUNC_cleanup_user_nonce_fn;
+  PPOSSL_FUNC_cleanup_user_nonce_fn = ^POSSL_FUNC_cleanup_user_nonce_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_cleanup_user_nonce_fn = procedure(handle: POSSL_CORE_HANDLE; buf: Pbyte; len: TOpenSSL_C_SIZET); cdecl;
+
+
+  function OSSL_FUNC_cleanup_user_nonce(opf: POSSL_DISPATCH): POSSL_FUNC_cleanup_user_nonce_fn{Has C Attribute: unused}; inline;
 
 const
   { Functions to access the core's providers }
@@ -708,6 +784,21 @@ type
 
 
   function OSSL_FUNC_provider_free(opf: POSSL_DISPATCH): POSSL_FUNC_provider_free_fn{Has C Attribute: unused}; inline;
+
+const
+  { Additional error functions provided by the core }
+  OSSL_FUNC_CORE_COUNT_TO_MARK_ = 120;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_core_count_to_mark_fn = ^TOSSL_FUNC_core_count_to_mark_fn;
+  PPOSSL_FUNC_core_count_to_mark_fn = ^POSSL_FUNC_core_count_to_mark_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_core_count_to_mark_fn = function(prov: POSSL_CORE_HANDLE): TOpenSSL_C_INT; cdecl;
+
+
+  function OSSL_FUNC_core_count_to_mark(opf: POSSL_DISPATCH): POSSL_FUNC_core_count_to_mark_fn{Has C Attribute: unused}; inline;
 
 const
   { Functions provided by the provider to the Core, reserved numbers 1024-1535 }
@@ -823,6 +914,105 @@ type
   function OSSL_FUNC_provider_self_test(opf: POSSL_DISPATCH): POSSL_FUNC_provider_self_test_fn{Has C Attribute: unused}; inline;
 
 const
+  OSSL_FUNC_PROVIDER_RANDOM_BYTES_ = 1032;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_provider_random_bytes_fn = ^TOSSL_FUNC_provider_random_bytes_fn;
+  PPOSSL_FUNC_provider_random_bytes_fn = ^POSSL_FUNC_provider_random_bytes_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_provider_random_bytes_fn = function(provctx: pointer; which: TOpenSSL_C_INT; buf: pointer; n: TOpenSSL_C_SIZET; strength: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl;
+
+
+  function OSSL_FUNC_provider_random_bytes(opf: POSSL_DISPATCH): POSSL_FUNC_provider_random_bytes_fn{Has C Attribute: unused}; inline;
+
+const
+  { Libssl related functions }
+  OSSL_FUNC_SSL_QUIC_TLS_CRYPTO_SEND_ = 2001;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_SSL_QUIC_TLS_crypto_send_fn = ^TOSSL_FUNC_SSL_QUIC_TLS_crypto_send_fn;
+  PPOSSL_FUNC_SSL_QUIC_TLS_crypto_send_fn = ^POSSL_FUNC_SSL_QUIC_TLS_crypto_send_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_SSL_QUIC_TLS_crypto_send_fn = function(s: PSSL; buf: Pbyte; buf_len: TOpenSSL_C_SIZET; consumed: POpenSSL_C_SIZET; arg: pointer): TOpenSSL_C_INT; cdecl;
+
+
+  function OSSL_FUNC_SSL_QUIC_TLS_crypto_send(opf: POSSL_DISPATCH): POSSL_FUNC_SSL_QUIC_TLS_crypto_send_fn{Has C Attribute: unused}; inline;
+
+const
+  OSSL_FUNC_SSL_QUIC_TLS_CRYPTO_RECV_RCD_ = 2002;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_SSL_QUIC_TLS_crypto_recv_rcd_fn = ^TOSSL_FUNC_SSL_QUIC_TLS_crypto_recv_rcd_fn;
+  PPOSSL_FUNC_SSL_QUIC_TLS_crypto_recv_rcd_fn = ^POSSL_FUNC_SSL_QUIC_TLS_crypto_recv_rcd_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_SSL_QUIC_TLS_crypto_recv_rcd_fn = function(s: PSSL; buf: PPbyte; bytes_read: POpenSSL_C_SIZET; arg: pointer): TOpenSSL_C_INT; cdecl;
+
+
+  function OSSL_FUNC_SSL_QUIC_TLS_crypto_recv_rcd(opf: POSSL_DISPATCH): POSSL_FUNC_SSL_QUIC_TLS_crypto_recv_rcd_fn{Has C Attribute: unused}; inline;
+
+const
+  OSSL_FUNC_SSL_QUIC_TLS_CRYPTO_RELEASE_RCD_ = 2003;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_SSL_QUIC_TLS_crypto_release_rcd_fn = ^TOSSL_FUNC_SSL_QUIC_TLS_crypto_release_rcd_fn;
+  PPOSSL_FUNC_SSL_QUIC_TLS_crypto_release_rcd_fn = ^POSSL_FUNC_SSL_QUIC_TLS_crypto_release_rcd_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_SSL_QUIC_TLS_crypto_release_rcd_fn = function(s: PSSL; bytes_read: TOpenSSL_C_SIZET; arg: pointer): TOpenSSL_C_INT; cdecl;
+
+
+  function OSSL_FUNC_SSL_QUIC_TLS_crypto_release_rcd(opf: POSSL_DISPATCH): POSSL_FUNC_SSL_QUIC_TLS_crypto_release_rcd_fn{Has C Attribute: unused}; inline;
+
+const
+  OSSL_FUNC_SSL_QUIC_TLS_YIELD_SECRET_ = 2004;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_SSL_QUIC_TLS_yield_secret_fn = ^TOSSL_FUNC_SSL_QUIC_TLS_yield_secret_fn;
+  PPOSSL_FUNC_SSL_QUIC_TLS_yield_secret_fn = ^POSSL_FUNC_SSL_QUIC_TLS_yield_secret_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_SSL_QUIC_TLS_yield_secret_fn = function(s: PSSL; prot_level: TOpenSSL_C_UINT; direction: TOpenSSL_C_INT; secret: Pbyte; secret_len: TOpenSSL_C_SIZET; arg: pointer): TOpenSSL_C_INT; cdecl;
+
+
+  function OSSL_FUNC_SSL_QUIC_TLS_yield_secret(opf: POSSL_DISPATCH): POSSL_FUNC_SSL_QUIC_TLS_yield_secret_fn{Has C Attribute: unused}; inline;
+
+const
+  OSSL_FUNC_SSL_QUIC_TLS_GOT_TRANSPORT_PARAMS_ = 2005;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_SSL_QUIC_TLS_got_transport_params_fn = ^TOSSL_FUNC_SSL_QUIC_TLS_got_transport_params_fn;
+  PPOSSL_FUNC_SSL_QUIC_TLS_got_transport_params_fn = ^POSSL_FUNC_SSL_QUIC_TLS_got_transport_params_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_SSL_QUIC_TLS_got_transport_params_fn = function(s: PSSL; params: Pbyte; params_len: TOpenSSL_C_SIZET; arg: pointer): TOpenSSL_C_INT; cdecl;
+
+
+  function OSSL_FUNC_SSL_QUIC_TLS_got_transport_params(opf: POSSL_DISPATCH): POSSL_FUNC_SSL_QUIC_TLS_got_transport_params_fn{Has C Attribute: unused}; inline;
+
+const
+  OSSL_FUNC_SSL_QUIC_TLS_ALERT_ = 2006;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_SSL_QUIC_TLS_alert_fn = ^TOSSL_FUNC_SSL_QUIC_TLS_alert_fn;
+  PPOSSL_FUNC_SSL_QUIC_TLS_alert_fn = ^POSSL_FUNC_SSL_QUIC_TLS_alert_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_SSL_QUIC_TLS_alert_fn = function(s: PSSL; alert_code: byte; arg: pointer): TOpenSSL_C_INT; cdecl;
+
+
+  function OSSL_FUNC_SSL_QUIC_TLS_alert(opf: POSSL_DISPATCH): POSSL_FUNC_SSL_QUIC_TLS_alert_fn{Has C Attribute: unused}; inline;
+
+const
   { Operations }
   OSSL_OP_DIGEST = 1;
   OSSL_OP_CIPHER = 2;
@@ -834,6 +1024,7 @@ const
   OSSL_OP_SIGNATURE = 12;
   OSSL_OP_ASYM_CIPHER = 13;
   OSSL_OP_KEM = 14;
+  OSSL_OP_SKEYMGMT = 15;
   { New section for non-EVP operations }
   OSSL_OP_ENCODER = 20;
   OSSL_OP_DECODER = 21;
@@ -854,6 +1045,8 @@ const
   OSSL_FUNC_DIGEST_GETTABLE_PARAMS_ = 11;
   OSSL_FUNC_DIGEST_SETTABLE_CTX_PARAMS_ = 12;
   OSSL_FUNC_DIGEST_GETTABLE_CTX_PARAMS_ = 13;
+  OSSL_FUNC_DIGEST_SQUEEZE_ = 14;
+  OSSL_FUNC_DIGEST_COPYCTX_ = 15;
 
 type
   {Auto-generated forward references}
@@ -901,6 +1094,17 @@ type
 
 type
   {Auto-generated forward references}
+  POSSL_FUNC_digest_squeeze_fn = ^TOSSL_FUNC_digest_squeeze_fn;
+  PPOSSL_FUNC_digest_squeeze_fn = ^POSSL_FUNC_digest_squeeze_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_digest_squeeze_fn = function(dctx: pointer; out_: Pbyte; outl: POpenSSL_C_SIZET; outsz: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
+
+
+  function OSSL_FUNC_digest_squeeze(opf: POSSL_DISPATCH): POSSL_FUNC_digest_squeeze_fn{Has C Attribute: unused}; inline;
+
+type
+  {Auto-generated forward references}
   POSSL_FUNC_digest_digest_fn = ^TOSSL_FUNC_digest_digest_fn;
   PPOSSL_FUNC_digest_digest_fn = ^POSSL_FUNC_digest_digest_fn;
   {end of auto-generated forward references}
@@ -931,6 +1135,17 @@ type
 
 
   function OSSL_FUNC_digest_dupctx(opf: POSSL_DISPATCH): POSSL_FUNC_digest_dupctx_fn{Has C Attribute: unused}; inline;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_digest_copyctx_fn = ^TOSSL_FUNC_digest_copyctx_fn;
+  PPOSSL_FUNC_digest_copyctx_fn = ^POSSL_FUNC_digest_copyctx_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_digest_copyctx_fn = procedure(outctx: pointer; inctx: pointer); cdecl;
+
+
+  function OSSL_FUNC_digest_copyctx(opf: POSSL_DISPATCH): POSSL_FUNC_digest_copyctx_fn{Has C Attribute: unused}; inline;
 
 type
   {Auto-generated forward references}
@@ -1014,6 +1229,12 @@ const
   OSSL_FUNC_CIPHER_GETTABLE_PARAMS_ = 12;
   OSSL_FUNC_CIPHER_GETTABLE_CTX_PARAMS_ = 13;
   OSSL_FUNC_CIPHER_SETTABLE_CTX_PARAMS_ = 14;
+  OSSL_FUNC_CIPHER_PIPELINE_ENCRYPT_INIT_ = 15;
+  OSSL_FUNC_CIPHER_PIPELINE_DECRYPT_INIT_ = 16;
+  OSSL_FUNC_CIPHER_PIPELINE_UPDATE_ = 17;
+  OSSL_FUNC_CIPHER_PIPELINE_FINAL_ = 18;
+  OSSL_FUNC_CIPHER_ENCRYPT_SKEY_INIT_ = 19;
+  OSSL_FUNC_CIPHER_DECRYPT_SKEY_INIT_ = 20;
 
 type
   {Auto-generated forward references}
@@ -1080,6 +1301,50 @@ type
 
 
   function OSSL_FUNC_cipher_cipher(opf: POSSL_DISPATCH): POSSL_FUNC_cipher_cipher_fn{Has C Attribute: unused}; inline;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_cipher_pipeline_encrypt_init_fn = ^TOSSL_FUNC_cipher_pipeline_encrypt_init_fn;
+  PPOSSL_FUNC_cipher_pipeline_encrypt_init_fn = ^POSSL_FUNC_cipher_pipeline_encrypt_init_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_cipher_pipeline_encrypt_init_fn = function(cctx: pointer; key: Pbyte; keylen: TOpenSSL_C_SIZET; numpipes: TOpenSSL_C_SIZET; iv: PPbyte; ivlen: TOpenSSL_C_SIZET; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl;
+
+
+  function OSSL_FUNC_cipher_pipeline_encrypt_init(opf: POSSL_DISPATCH): POSSL_FUNC_cipher_pipeline_encrypt_init_fn{Has C Attribute: unused}; inline;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_cipher_pipeline_decrypt_init_fn = ^TOSSL_FUNC_cipher_pipeline_decrypt_init_fn;
+  PPOSSL_FUNC_cipher_pipeline_decrypt_init_fn = ^POSSL_FUNC_cipher_pipeline_decrypt_init_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_cipher_pipeline_decrypt_init_fn = function(cctx: pointer; key: Pbyte; keylen: TOpenSSL_C_SIZET; numpipes: TOpenSSL_C_SIZET; iv: PPbyte; ivlen: TOpenSSL_C_SIZET; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl;
+
+
+  function OSSL_FUNC_cipher_pipeline_decrypt_init(opf: POSSL_DISPATCH): POSSL_FUNC_cipher_pipeline_decrypt_init_fn{Has C Attribute: unused}; inline;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_cipher_pipeline_update_fn = ^TOSSL_FUNC_cipher_pipeline_update_fn;
+  PPOSSL_FUNC_cipher_pipeline_update_fn = ^POSSL_FUNC_cipher_pipeline_update_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_cipher_pipeline_update_fn = function(cctx: pointer; numpipes: TOpenSSL_C_SIZET; out_: PPbyte; outl: POpenSSL_C_SIZET; outsize: POpenSSL_C_SIZET; in_: PPbyte; inl: POpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
+
+
+  function OSSL_FUNC_cipher_pipeline_update(opf: POSSL_DISPATCH): POSSL_FUNC_cipher_pipeline_update_fn{Has C Attribute: unused}; inline;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_cipher_pipeline_final_fn = ^TOSSL_FUNC_cipher_pipeline_final_fn;
+  PPOSSL_FUNC_cipher_pipeline_final_fn = ^POSSL_FUNC_cipher_pipeline_final_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_cipher_pipeline_final_fn = function(cctx: pointer; numpipes: TOpenSSL_C_SIZET; out_: PPbyte; outl: POpenSSL_C_SIZET; outsize: POpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
+
+
+  function OSSL_FUNC_cipher_pipeline_final(opf: POSSL_DISPATCH): POSSL_FUNC_cipher_pipeline_final_fn{Has C Attribute: unused}; inline;
 
 type
   {Auto-generated forward references}
@@ -1169,6 +1434,28 @@ type
 
   function OSSL_FUNC_cipher_gettable_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_cipher_gettable_ctx_params_fn{Has C Attribute: unused}; inline;
 
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_cipher_encrypt_skey_init_fn = ^TOSSL_FUNC_cipher_encrypt_skey_init_fn;
+  PPOSSL_FUNC_cipher_encrypt_skey_init_fn = ^POSSL_FUNC_cipher_encrypt_skey_init_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_cipher_encrypt_skey_init_fn = function(cctx: pointer; skeydata: pointer; iv: Pbyte; ivlen: TOpenSSL_C_SIZET; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl;
+
+
+  function OSSL_FUNC_cipher_encrypt_skey_init(opf: POSSL_DISPATCH): POSSL_FUNC_cipher_encrypt_skey_init_fn{Has C Attribute: unused}; inline;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_cipher_decrypt_skey_init_fn = ^TOSSL_FUNC_cipher_decrypt_skey_init_fn;
+  PPOSSL_FUNC_cipher_decrypt_skey_init_fn = ^POSSL_FUNC_cipher_decrypt_skey_init_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_cipher_decrypt_skey_init_fn = function(cctx: pointer; skeydata: pointer; iv: Pbyte; ivlen: TOpenSSL_C_SIZET; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl;
+
+
+  function OSSL_FUNC_cipher_decrypt_skey_init(opf: POSSL_DISPATCH): POSSL_FUNC_cipher_decrypt_skey_init_fn{Has C Attribute: unused}; inline;
+
 const
   { MACs }
   OSSL_FUNC_MAC_NEWCTX_ = 1;
@@ -1183,6 +1470,7 @@ const
   OSSL_FUNC_MAC_GETTABLE_PARAMS_ = 10;
   OSSL_FUNC_MAC_GETTABLE_CTX_PARAMS_ = 11;
   OSSL_FUNC_MAC_SETTABLE_CTX_PARAMS_ = 12;
+  OSSL_FUNC_MAC_INIT_SKEY_ = 13;
 
 type
   {Auto-generated forward references}
@@ -1315,6 +1603,17 @@ type
 
 
   function OSSL_FUNC_mac_set_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_mac_set_ctx_params_fn{Has C Attribute: unused}; inline;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_mac_init_skey_fn = ^TOSSL_FUNC_mac_init_skey_fn;
+  PPOSSL_FUNC_mac_init_skey_fn = ^POSSL_FUNC_mac_init_skey_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_mac_init_skey_fn = function(mctx: pointer; key: pointer; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl;
+
+
+  function OSSL_FUNC_mac_init_skey(opf: POSSL_DISPATCH): POSSL_FUNC_mac_init_skey_fn{Has C Attribute: unused}; inline;
 
 const
   { KDFs and PRFs }
@@ -1761,6 +2060,8 @@ const
   OSSL_FUNC_KEYMGMT_GEN_SETTABLE_PARAMS_ = 5;
   OSSL_FUNC_KEYMGMT_GEN_ = 6;
   OSSL_FUNC_KEYMGMT_GEN_CLEANUP_ = 7;
+  OSSL_FUNC_KEYMGMT_GEN_GET_PARAMS_ = 15;
+  OSSL_FUNC_KEYMGMT_GEN_GETTABLE_PARAMS_ = 16;
 
 type
   {Auto-generated forward references}
@@ -1805,6 +2106,28 @@ type
 
 
   function OSSL_FUNC_keymgmt_gen_settable_params(opf: POSSL_DISPATCH): POSSL_FUNC_keymgmt_gen_settable_params_fn{Has C Attribute: unused}; inline;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_keymgmt_gen_get_params_fn = ^TOSSL_FUNC_keymgmt_gen_get_params_fn;
+  PPOSSL_FUNC_keymgmt_gen_get_params_fn = ^POSSL_FUNC_keymgmt_gen_get_params_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_keymgmt_gen_get_params_fn = function(genctx: pointer; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl;
+
+
+  function OSSL_FUNC_keymgmt_gen_get_params(opf: POSSL_DISPATCH): POSSL_FUNC_keymgmt_gen_get_params_fn{Has C Attribute: unused}; inline;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_keymgmt_gen_gettable_params_fn = ^TOSSL_FUNC_keymgmt_gen_gettable_params_fn;
+  PPOSSL_FUNC_keymgmt_gen_gettable_params_fn = ^POSSL_FUNC_keymgmt_gen_gettable_params_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_keymgmt_gen_gettable_params_fn = function(genctx: pointer; provctx: pointer): POSSL_PARAM; cdecl;
+
+
+  function OSSL_FUNC_keymgmt_gen_gettable_params(opf: POSSL_DISPATCH): POSSL_FUNC_keymgmt_gen_gettable_params_fn{Has C Attribute: unused}; inline;
 
 type
   {Auto-generated forward references}
@@ -2038,6 +2361,33 @@ type
   function OSSL_FUNC_keymgmt_dup(opf: POSSL_DISPATCH): POSSL_FUNC_keymgmt_dup_fn{Has C Attribute: unused}; inline;
 
 const
+  { Extended import and export functions }
+  OSSL_FUNC_KEYMGMT_IMPORT_TYPES_EX_ = 45;
+  OSSL_FUNC_KEYMGMT_EXPORT_TYPES_EX_ = 46;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_keymgmt_import_types_ex_fn = ^TOSSL_FUNC_keymgmt_import_types_ex_fn;
+  PPOSSL_FUNC_keymgmt_import_types_ex_fn = ^POSSL_FUNC_keymgmt_import_types_ex_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_keymgmt_import_types_ex_fn = function(provctx: pointer; selection: TOpenSSL_C_INT): POSSL_PARAM; cdecl;
+
+
+  function OSSL_FUNC_keymgmt_import_types_ex(opf: POSSL_DISPATCH): POSSL_FUNC_keymgmt_import_types_ex_fn{Has C Attribute: unused}; inline;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_keymgmt_export_types_ex_fn = ^TOSSL_FUNC_keymgmt_export_types_ex_fn;
+  PPOSSL_FUNC_keymgmt_export_types_ex_fn = ^POSSL_FUNC_keymgmt_export_types_ex_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_keymgmt_export_types_ex_fn = function(provctx: pointer; selection: TOpenSSL_C_INT): POSSL_PARAM; cdecl;
+
+
+  function OSSL_FUNC_keymgmt_export_types_ex(opf: POSSL_DISPATCH): POSSL_FUNC_keymgmt_export_types_ex_fn{Has C Attribute: unused}; inline;
+
+const
   { Key Exchange }
   OSSL_FUNC_KEYEXCH_NEWCTX_ = 1;
   OSSL_FUNC_KEYEXCH_INIT_ = 2;
@@ -2187,6 +2537,13 @@ const
   OSSL_FUNC_SIGNATURE_GETTABLE_CTX_MD_PARAMS_ = 23;
   OSSL_FUNC_SIGNATURE_SET_CTX_MD_PARAMS_ = 24;
   OSSL_FUNC_SIGNATURE_SETTABLE_CTX_MD_PARAMS_ = 25;
+  OSSL_FUNC_SIGNATURE_QUERY_KEY_TYPES_ = 26;
+  OSSL_FUNC_SIGNATURE_SIGN_MESSAGE_INIT_ = 27;
+  OSSL_FUNC_SIGNATURE_SIGN_MESSAGE_UPDATE_ = 28;
+  OSSL_FUNC_SIGNATURE_SIGN_MESSAGE_FINAL_ = 29;
+  OSSL_FUNC_SIGNATURE_VERIFY_MESSAGE_INIT_ = 30;
+  OSSL_FUNC_SIGNATURE_VERIFY_MESSAGE_UPDATE_ = 31;
+  OSSL_FUNC_SIGNATURE_VERIFY_MESSAGE_FINAL_ = 32;
 
 type
   {Auto-generated forward references}
@@ -2223,6 +2580,39 @@ type
 
 type
   {Auto-generated forward references}
+  POSSL_FUNC_signature_sign_message_init_fn = ^TOSSL_FUNC_signature_sign_message_init_fn;
+  PPOSSL_FUNC_signature_sign_message_init_fn = ^POSSL_FUNC_signature_sign_message_init_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_signature_sign_message_init_fn = function(ctx: pointer; provkey: pointer; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl;
+
+
+  function OSSL_FUNC_signature_sign_message_init(opf: POSSL_DISPATCH): POSSL_FUNC_signature_sign_message_init_fn{Has C Attribute: unused}; inline;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_signature_sign_message_update_fn = ^TOSSL_FUNC_signature_sign_message_update_fn;
+  PPOSSL_FUNC_signature_sign_message_update_fn = ^POSSL_FUNC_signature_sign_message_update_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_signature_sign_message_update_fn = function(ctx: pointer; in_: Pbyte; inlen: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
+
+
+  function OSSL_FUNC_signature_sign_message_update(opf: POSSL_DISPATCH): POSSL_FUNC_signature_sign_message_update_fn{Has C Attribute: unused}; inline;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_signature_sign_message_final_fn = ^TOSSL_FUNC_signature_sign_message_final_fn;
+  PPOSSL_FUNC_signature_sign_message_final_fn = ^POSSL_FUNC_signature_sign_message_final_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_signature_sign_message_final_fn = function(ctx: pointer; sig: Pbyte; siglen: POpenSSL_C_SIZET; sigsize: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
+
+
+  function OSSL_FUNC_signature_sign_message_final(opf: POSSL_DISPATCH): POSSL_FUNC_signature_sign_message_final_fn{Has C Attribute: unused}; inline;
+
+type
+  {Auto-generated forward references}
   POSSL_FUNC_signature_verify_init_fn = ^TOSSL_FUNC_signature_verify_init_fn;
   PPOSSL_FUNC_signature_verify_init_fn = ^POSSL_FUNC_signature_verify_init_fn;
   {end of auto-generated forward references}
@@ -2242,6 +2632,43 @@ type
 
 
   function OSSL_FUNC_signature_verify(opf: POSSL_DISPATCH): POSSL_FUNC_signature_verify_fn{Has C Attribute: unused}; inline;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_signature_verify_message_init_fn = ^TOSSL_FUNC_signature_verify_message_init_fn;
+  PPOSSL_FUNC_signature_verify_message_init_fn = ^POSSL_FUNC_signature_verify_message_init_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_signature_verify_message_init_fn = function(ctx: pointer; provkey: pointer; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl;
+
+
+  function OSSL_FUNC_signature_verify_message_init(opf: POSSL_DISPATCH): POSSL_FUNC_signature_verify_message_init_fn{Has C Attribute: unused}; inline;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_signature_verify_message_update_fn = ^TOSSL_FUNC_signature_verify_message_update_fn;
+  PPOSSL_FUNC_signature_verify_message_update_fn = ^POSSL_FUNC_signature_verify_message_update_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_signature_verify_message_update_fn = function(ctx: pointer; in_: Pbyte; inlen: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
+
+
+  function OSSL_FUNC_signature_verify_message_update(opf: POSSL_DISPATCH): POSSL_FUNC_signature_verify_message_update_fn{Has C Attribute: unused}; inline;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_signature_verify_message_final_fn = ^TOSSL_FUNC_signature_verify_message_final_fn;
+  PPOSSL_FUNC_signature_verify_message_final_fn = ^POSSL_FUNC_signature_verify_message_final_fn;
+  {end of auto-generated forward references}
+
+  
+  {* signature_verify_final requires that the signature to be verified against
+  * is specified via an OSSL_PARAM.
+  }
+  TOSSL_FUNC_signature_verify_message_final_fn = function(ctx: pointer): TOpenSSL_C_INT; cdecl;
+
+
+  function OSSL_FUNC_signature_verify_message_final(opf: POSSL_DISPATCH): POSSL_FUNC_signature_verify_message_final_fn{Has C Attribute: unused}; inline;
 
 type
   {Auto-generated forward references}
@@ -2463,6 +2890,123 @@ type
 
   function OSSL_FUNC_signature_settable_ctx_md_params(opf: POSSL_DISPATCH): POSSL_FUNC_signature_settable_ctx_md_params_fn{Has C Attribute: unused}; inline;
 
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_signature_query_key_types_fn = ^TOSSL_FUNC_signature_query_key_types_fn;
+  PPOSSL_FUNC_signature_query_key_types_fn = ^POSSL_FUNC_signature_query_key_types_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_signature_query_key_types_fn = function: PPAnsiChar; cdecl;
+
+
+  function OSSL_FUNC_signature_query_key_types(opf: POSSL_DISPATCH): POSSL_FUNC_signature_query_key_types_fn{Has C Attribute: unused}; inline;
+
+const
+  {-
+  * Symmetric key management
+  *
+  * The Key Management takes care of provider side of symmetric key objects, and
+  * includes essentially everything that manipulates the keys  themselves and
+  * their parameters.
+  *
+  * The key objects are commonly referred to as |keydata|, and it MUST be able
+  * to contain parameters if the key has any, and the secret key.
+  *
+  * Key objects are created with OSSL_FUNC_skeymgmt_import() (there is no
+  * dedicated memory allocation function), exported with
+  * OSSL_FUNC_skeymgmt_export() and destroyed with OSSL_FUNC_keymgmt_free().
+  *
+  }
+  { Key data subset selection - individual bits }
+  OSSL_SKEYMGMT_SELECT_PARAMETERS = $01;
+  OSSL_SKEYMGMT_SELECT_SECRET_KEY = $02;
+  { Key data subset selection - combinations }
+  OSSL_SKEYMGMT_SELECT_ALL = OSSL_SKEYMGMT_SELECT_PARAMETERS or OSSL_SKEYMGMT_SELECT_SECRET_KEY;
+  OSSL_FUNC_SKEYMGMT_FREE_ = 1;
+  OSSL_FUNC_SKEYMGMT_IMPORT_ = 2;
+  OSSL_FUNC_SKEYMGMT_EXPORT_ = 3;
+  OSSL_FUNC_SKEYMGMT_GENERATE_ = 4;
+  OSSL_FUNC_SKEYMGMT_GET_KEY_ID_ = 5;
+  OSSL_FUNC_SKEYMGMT_IMP_SETTABLE_PARAMS_ = 6;
+  OSSL_FUNC_SKEYMGMT_GEN_SETTABLE_PARAMS_ = 7;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_skeymgmt_free_fn = ^TOSSL_FUNC_skeymgmt_free_fn;
+  PPOSSL_FUNC_skeymgmt_free_fn = ^POSSL_FUNC_skeymgmt_free_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_skeymgmt_free_fn = procedure(keydata: pointer); cdecl;
+
+
+  function OSSL_FUNC_skeymgmt_free(opf: POSSL_DISPATCH): POSSL_FUNC_skeymgmt_free_fn{Has C Attribute: unused}; inline;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_skeymgmt_imp_settable_params_fn = ^TOSSL_FUNC_skeymgmt_imp_settable_params_fn;
+  PPOSSL_FUNC_skeymgmt_imp_settable_params_fn = ^POSSL_FUNC_skeymgmt_imp_settable_params_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_skeymgmt_imp_settable_params_fn = function(provctx: pointer): POSSL_PARAM; cdecl;
+
+
+  function OSSL_FUNC_skeymgmt_imp_settable_params(opf: POSSL_DISPATCH): POSSL_FUNC_skeymgmt_imp_settable_params_fn{Has C Attribute: unused}; inline;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_skeymgmt_import_fn = ^TOSSL_FUNC_skeymgmt_import_fn;
+  PPOSSL_FUNC_skeymgmt_import_fn = ^POSSL_FUNC_skeymgmt_import_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_skeymgmt_import_fn = function(provctx: pointer; selection: TOpenSSL_C_INT; params: POSSL_PARAM): pointer; cdecl;
+
+
+  function OSSL_FUNC_skeymgmt_import(opf: POSSL_DISPATCH): POSSL_FUNC_skeymgmt_import_fn{Has C Attribute: unused}; inline;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_skeymgmt_export_fn = ^TOSSL_FUNC_skeymgmt_export_fn;
+  PPOSSL_FUNC_skeymgmt_export_fn = ^POSSL_FUNC_skeymgmt_export_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_skeymgmt_export_fn = function(keydata: pointer; selection: TOpenSSL_C_INT; param_cb: POSSL_CALLBACK; cbarg: pointer): TOpenSSL_C_INT; cdecl;
+
+
+  function OSSL_FUNC_skeymgmt_export(opf: POSSL_DISPATCH): POSSL_FUNC_skeymgmt_export_fn{Has C Attribute: unused}; inline;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_skeymgmt_gen_settable_params_fn = ^TOSSL_FUNC_skeymgmt_gen_settable_params_fn;
+  PPOSSL_FUNC_skeymgmt_gen_settable_params_fn = ^POSSL_FUNC_skeymgmt_gen_settable_params_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_skeymgmt_gen_settable_params_fn = function(provctx: pointer): POSSL_PARAM; cdecl;
+
+
+  function OSSL_FUNC_skeymgmt_gen_settable_params(opf: POSSL_DISPATCH): POSSL_FUNC_skeymgmt_gen_settable_params_fn{Has C Attribute: unused}; inline;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_skeymgmt_generate_fn = ^TOSSL_FUNC_skeymgmt_generate_fn;
+  PPOSSL_FUNC_skeymgmt_generate_fn = ^POSSL_FUNC_skeymgmt_generate_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_skeymgmt_generate_fn = function(provctx: pointer; params: POSSL_PARAM): pointer; cdecl;
+
+
+  function OSSL_FUNC_skeymgmt_generate(opf: POSSL_DISPATCH): POSSL_FUNC_skeymgmt_generate_fn{Has C Attribute: unused}; inline;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_skeymgmt_get_key_id_fn = ^TOSSL_FUNC_skeymgmt_get_key_id_fn;
+  PPOSSL_FUNC_skeymgmt_get_key_id_fn = ^POSSL_FUNC_skeymgmt_get_key_id_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_skeymgmt_get_key_id_fn = function(keydata: pointer): PAnsiChar; cdecl;
+
+
+  function OSSL_FUNC_skeymgmt_get_key_id(opf: POSSL_DISPATCH): POSSL_FUNC_skeymgmt_get_key_id_fn{Has C Attribute: unused}; inline;
+
 const
   { Asymmetric Ciphers }
   OSSL_FUNC_ASYM_CIPHER_NEWCTX_ = 1;
@@ -2611,6 +3155,8 @@ const
   OSSL_FUNC_KEM_GETTABLE_CTX_PARAMS_ = 9;
   OSSL_FUNC_KEM_SET_CTX_PARAMS_ = 10;
   OSSL_FUNC_KEM_SETTABLE_CTX_PARAMS_ = 11;
+  OSSL_FUNC_KEM_AUTH_ENCAPSULATE_INIT_ = 12;
+  OSSL_FUNC_KEM_AUTH_DECAPSULATE_INIT_ = 13;
 
 type
   {Auto-generated forward references}
@@ -2636,6 +3182,17 @@ type
 
 type
   {Auto-generated forward references}
+  POSSL_FUNC_kem_auth_encapsulate_init_fn = ^TOSSL_FUNC_kem_auth_encapsulate_init_fn;
+  PPOSSL_FUNC_kem_auth_encapsulate_init_fn = ^POSSL_FUNC_kem_auth_encapsulate_init_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_kem_auth_encapsulate_init_fn = function(ctx: pointer; provkey: pointer; authprivkey: pointer; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl;
+
+
+  function OSSL_FUNC_kem_auth_encapsulate_init(opf: POSSL_DISPATCH): POSSL_FUNC_kem_auth_encapsulate_init_fn{Has C Attribute: unused}; inline;
+
+type
+  {Auto-generated forward references}
   POSSL_FUNC_kem_encapsulate_fn = ^TOSSL_FUNC_kem_encapsulate_fn;
   PPOSSL_FUNC_kem_encapsulate_fn = ^POSSL_FUNC_kem_encapsulate_fn;
   {end of auto-generated forward references}
@@ -2655,6 +3212,17 @@ type
 
 
   function OSSL_FUNC_kem_decapsulate_init(opf: POSSL_DISPATCH): POSSL_FUNC_kem_decapsulate_init_fn{Has C Attribute: unused}; inline;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_kem_auth_decapsulate_init_fn = ^TOSSL_FUNC_kem_auth_decapsulate_init_fn;
+  PPOSSL_FUNC_kem_auth_decapsulate_init_fn = ^POSSL_FUNC_kem_auth_decapsulate_init_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_kem_auth_decapsulate_init_fn = function(ctx: pointer; provkey: pointer; authpubkey: pointer; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl;
+
+
+  function OSSL_FUNC_kem_auth_decapsulate_init(opf: POSSL_DISPATCH): POSSL_FUNC_kem_auth_decapsulate_init_fn{Has C Attribute: unused}; inline;
 
 type
   {Auto-generated forward references}
@@ -2986,6 +3554,8 @@ const
   OSSL_FUNC_STORE_EOF_ = 6;
   OSSL_FUNC_STORE_CLOSE_ = 7;
   OSSL_FUNC_STORE_EXPORT_OBJECT_ = 8;
+  OSSL_FUNC_STORE_DELETE_ = 9;
+  OSSL_FUNC_STORE_OPEN_EX_ = 10;
 
 type
   {Auto-generated forward references}
@@ -3074,6 +3644,28 @@ type
 
 
   function OSSL_FUNC_store_export_object(opf: POSSL_DISPATCH): POSSL_FUNC_store_export_object_fn{Has C Attribute: unused}; inline;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_store_delete_fn = ^TOSSL_FUNC_store_delete_fn;
+  PPOSSL_FUNC_store_delete_fn = ^POSSL_FUNC_store_delete_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_store_delete_fn = function(provctx: pointer; uri: PAnsiChar; params: POSSL_PARAM; pw_cb: POSSL_PASSPHRASE_CALLBACK; pw_cbarg: pointer): TOpenSSL_C_INT; cdecl;
+
+
+  function OSSL_FUNC_store_delete(opf: POSSL_DISPATCH): POSSL_FUNC_store_delete_fn{Has C Attribute: unused}; inline;
+
+type
+  {Auto-generated forward references}
+  POSSL_FUNC_store_open_ex_fn = ^TOSSL_FUNC_store_open_ex_fn;
+  PPOSSL_FUNC_store_open_ex_fn = ^POSSL_FUNC_store_open_ex_fn;
+  {end of auto-generated forward references}
+
+  TOSSL_FUNC_store_open_ex_fn = function(provctx: pointer; uri: PAnsiChar; params: POSSL_PARAM; pw_cb: POSSL_PASSPHRASE_CALLBACK; pw_cbarg: pointer): pointer; cdecl;
+
+
+  function OSSL_FUNC_store_open_ex(opf: POSSL_DISPATCH): POSSL_FUNC_store_open_ex_fn{Has C Attribute: unused}; inline;
 {$endif}
 
 implementation
@@ -3118,7 +3710,7 @@ function OSSL_FUNC_core_gettable_params(opf: POSSL_DISPATCH): POSSL_FUNC_core_ge
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_core_gettable_params"');
 
-{Error: Line 57: Syntax Error parsing " return (OSSL_FUNC_core_gettable_params_fn *)opf->function; "
+{Error: Line 65: Syntax Error parsing " return (OSSL_FUNC_core_gettable_params_fn *)opf->function; "
 
  return (OSSL_FUNC_core_gettable_params_fn *)opf->function; }
 end;
@@ -3127,7 +3719,7 @@ function OSSL_FUNC_core_get_params(opf: POSSL_DISPATCH): POSSL_FUNC_core_get_par
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_core_get_params"');
 
-{Error: Line 60: Syntax Error parsing " return (OSSL_FUNC_core_get_params_fn *)opf->function; "
+{Error: Line 68: Syntax Error parsing " return (OSSL_FUNC_core_get_params_fn *)opf->function; "
 
  return (OSSL_FUNC_core_get_params_fn *)opf->function; }
 end;
@@ -3136,7 +3728,7 @@ function OSSL_FUNC_core_thread_start(opf: POSSL_DISPATCH): POSSL_FUNC_core_threa
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_core_thread_start"');
 
-{Error: Line 62: Syntax Error parsing " return (OSSL_FUNC_core_thread_start_fn *)opf->function; "
+{Error: Line 70: Syntax Error parsing " return (OSSL_FUNC_core_thread_start_fn *)opf->function; "
 
  return (OSSL_FUNC_core_thread_start_fn *)opf->function; }
 end;
@@ -3145,7 +3737,7 @@ function OSSL_FUNC_core_get_libctx(opf: POSSL_DISPATCH): POSSL_FUNC_core_get_lib
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_core_get_libctx"');
 
-{Error: Line 64: Syntax Error parsing " return (OSSL_FUNC_core_get_libctx_fn *)opf->function; "
+{Error: Line 72: Syntax Error parsing " return (OSSL_FUNC_core_get_libctx_fn *)opf->function; "
 
  return (OSSL_FUNC_core_get_libctx_fn *)opf->function; }
 end;
@@ -3154,7 +3746,7 @@ function OSSL_FUNC_core_new_error(opf: POSSL_DISPATCH): POSSL_FUNC_core_new_erro
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_core_new_error"');
 
-{Error: Line 67: Syntax Error parsing " return (OSSL_FUNC_core_new_error_fn *)opf->function; "
+{Error: Line 75: Syntax Error parsing " return (OSSL_FUNC_core_new_error_fn *)opf->function; "
 
  return (OSSL_FUNC_core_new_error_fn *)opf->function; }
 end;
@@ -3163,7 +3755,7 @@ function OSSL_FUNC_core_set_error_debug(opf: POSSL_DISPATCH): POSSL_FUNC_core_se
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_core_set_error_debug"');
 
-{Error: Line 69: Syntax Error parsing " return (OSSL_FUNC_core_set_error_debug_fn *)opf->function; "
+{Error: Line 77: Syntax Error parsing " return (OSSL_FUNC_core_set_error_debug_fn *)opf->function; "
 
  return (OSSL_FUNC_core_set_error_debug_fn *)opf->function; }
 end;
@@ -3172,7 +3764,7 @@ function OSSL_FUNC_core_vset_error(opf: POSSL_DISPATCH): POSSL_FUNC_core_vset_er
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_core_vset_error"');
 
-{Error: Line 73: Syntax Error parsing " return (OSSL_FUNC_core_vset_error_fn *)opf->function; "
+{Error: Line 81: Syntax Error parsing " return (OSSL_FUNC_core_vset_error_fn *)opf->function; "
 
  return (OSSL_FUNC_core_vset_error_fn *)opf->function; }
 end;
@@ -3181,7 +3773,7 @@ function OSSL_FUNC_core_set_error_mark(opf: POSSL_DISPATCH): POSSL_FUNC_core_set
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_core_set_error_mark"');
 
-{Error: Line 77: Syntax Error parsing " return (OSSL_FUNC_core_set_error_mark_fn *)opf->function; "
+{Error: Line 85: Syntax Error parsing " return (OSSL_FUNC_core_set_error_mark_fn *)opf->function; "
 
  return (OSSL_FUNC_core_set_error_mark_fn *)opf->function; }
 end;
@@ -3190,7 +3782,7 @@ function OSSL_FUNC_core_clear_last_error_mark(opf: POSSL_DISPATCH): POSSL_FUNC_c
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_core_clear_last_error_mark"');
 
-{Error: Line 79: Syntax Error parsing " return (OSSL_FUNC_core_clear_last_error_mark_fn *)opf->function; "
+{Error: Line 87: Syntax Error parsing " return (OSSL_FUNC_core_clear_last_error_mark_fn *)opf->function; "
 
  return (OSSL_FUNC_core_clear_last_error_mark_fn *)opf->function; }
 end;
@@ -3199,7 +3791,7 @@ function OSSL_FUNC_core_pop_error_to_mark(opf: POSSL_DISPATCH): POSSL_FUNC_core_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_core_pop_error_to_mark"');
 
-{Error: Line 82: Syntax Error parsing " return (OSSL_FUNC_core_pop_error_to_mark_fn *)opf->function; "
+{Error: Line 90: Syntax Error parsing " return (OSSL_FUNC_core_pop_error_to_mark_fn *)opf->function; "
 
  return (OSSL_FUNC_core_pop_error_to_mark_fn *)opf->function; }
 end;
@@ -3208,7 +3800,7 @@ function OSSL_FUNC_core_obj_add_sigid(opf: POSSL_DISPATCH): POSSL_FUNC_core_obj_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_core_obj_add_sigid"');
 
-{Error: Line 89: Syntax Error parsing " return (OSSL_FUNC_core_obj_add_sigid_fn *)opf->function; "
+{Error: Line 97: Syntax Error parsing " return (OSSL_FUNC_core_obj_add_sigid_fn *)opf->function; "
 
  return (OSSL_FUNC_core_obj_add_sigid_fn *)opf->function; }
 end;
@@ -3217,7 +3809,7 @@ function OSSL_FUNC_core_obj_create(opf: POSSL_DISPATCH): POSSL_FUNC_core_obj_cre
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_core_obj_create"');
 
-{Error: Line 92: Syntax Error parsing " return (OSSL_FUNC_core_obj_create_fn *)opf->function; "
+{Error: Line 100: Syntax Error parsing " return (OSSL_FUNC_core_obj_create_fn *)opf->function; "
 
  return (OSSL_FUNC_core_obj_create_fn *)opf->function; }
 end;
@@ -3226,7 +3818,7 @@ function OSSL_FUNC_CRYPTO_malloc(opf: POSSL_DISPATCH): POSSL_FUNC_CRYPTO_malloc_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_CRYPTO_malloc"');
 
-{Error: Line 98: Syntax Error parsing " return (OSSL_FUNC_CRYPTO_malloc_fn *)opf->function; "
+{Error: Line 106: Syntax Error parsing " return (OSSL_FUNC_CRYPTO_malloc_fn *)opf->function; "
 
  return (OSSL_FUNC_CRYPTO_malloc_fn *)opf->function; }
 end;
@@ -3235,7 +3827,7 @@ function OSSL_FUNC_CRYPTO_zalloc(opf: POSSL_DISPATCH): POSSL_FUNC_CRYPTO_zalloc_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_CRYPTO_zalloc"');
 
-{Error: Line 101: Syntax Error parsing " return (OSSL_FUNC_CRYPTO_zalloc_fn *)opf->function; "
+{Error: Line 109: Syntax Error parsing " return (OSSL_FUNC_CRYPTO_zalloc_fn *)opf->function; "
 
  return (OSSL_FUNC_CRYPTO_zalloc_fn *)opf->function; }
 end;
@@ -3244,7 +3836,7 @@ function OSSL_FUNC_CRYPTO_free(opf: POSSL_DISPATCH): POSSL_FUNC_CRYPTO_free_fn{H
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_CRYPTO_free"');
 
-{Error: Line 104: Syntax Error parsing " return (OSSL_FUNC_CRYPTO_free_fn *)opf->function; "
+{Error: Line 112: Syntax Error parsing " return (OSSL_FUNC_CRYPTO_free_fn *)opf->function; "
 
  return (OSSL_FUNC_CRYPTO_free_fn *)opf->function; }
 end;
@@ -3253,7 +3845,7 @@ function OSSL_FUNC_CRYPTO_clear_free(opf: POSSL_DISPATCH): POSSL_FUNC_CRYPTO_cle
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_CRYPTO_clear_free"');
 
-{Error: Line 107: Syntax Error parsing " return (OSSL_FUNC_CRYPTO_clear_free_fn *)opf->function; "
+{Error: Line 115: Syntax Error parsing " return (OSSL_FUNC_CRYPTO_clear_free_fn *)opf->function; "
 
  return (OSSL_FUNC_CRYPTO_clear_free_fn *)opf->function; }
 end;
@@ -3262,7 +3854,7 @@ function OSSL_FUNC_CRYPTO_realloc(opf: POSSL_DISPATCH): POSSL_FUNC_CRYPTO_reallo
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_CRYPTO_realloc"');
 
-{Error: Line 110: Syntax Error parsing " return (OSSL_FUNC_CRYPTO_realloc_fn *)opf->function; "
+{Error: Line 118: Syntax Error parsing " return (OSSL_FUNC_CRYPTO_realloc_fn *)opf->function; "
 
  return (OSSL_FUNC_CRYPTO_realloc_fn *)opf->function; }
 end;
@@ -3271,7 +3863,7 @@ function OSSL_FUNC_CRYPTO_clear_realloc(opf: POSSL_DISPATCH): POSSL_FUNC_CRYPTO_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_CRYPTO_clear_realloc"');
 
-{Error: Line 113: Syntax Error parsing " return (OSSL_FUNC_CRYPTO_clear_realloc_fn *)opf->function; "
+{Error: Line 121: Syntax Error parsing " return (OSSL_FUNC_CRYPTO_clear_realloc_fn *)opf->function; "
 
  return (OSSL_FUNC_CRYPTO_clear_realloc_fn *)opf->function; }
 end;
@@ -3280,7 +3872,7 @@ function OSSL_FUNC_CRYPTO_secure_malloc(opf: POSSL_DISPATCH): POSSL_FUNC_CRYPTO_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_CRYPTO_secure_malloc"');
 
-{Error: Line 116: Syntax Error parsing " return (OSSL_FUNC_CRYPTO_secure_malloc_fn *)opf->function; "
+{Error: Line 124: Syntax Error parsing " return (OSSL_FUNC_CRYPTO_secure_malloc_fn *)opf->function; "
 
  return (OSSL_FUNC_CRYPTO_secure_malloc_fn *)opf->function; }
 end;
@@ -3289,7 +3881,7 @@ function OSSL_FUNC_CRYPTO_secure_zalloc(opf: POSSL_DISPATCH): POSSL_FUNC_CRYPTO_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_CRYPTO_secure_zalloc"');
 
-{Error: Line 119: Syntax Error parsing " return (OSSL_FUNC_CRYPTO_secure_zalloc_fn *)opf->function; "
+{Error: Line 127: Syntax Error parsing " return (OSSL_FUNC_CRYPTO_secure_zalloc_fn *)opf->function; "
 
  return (OSSL_FUNC_CRYPTO_secure_zalloc_fn *)opf->function; }
 end;
@@ -3298,7 +3890,7 @@ function OSSL_FUNC_CRYPTO_secure_free(opf: POSSL_DISPATCH): POSSL_FUNC_CRYPTO_se
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_CRYPTO_secure_free"');
 
-{Error: Line 122: Syntax Error parsing " return (OSSL_FUNC_CRYPTO_secure_free_fn *)opf->function; "
+{Error: Line 130: Syntax Error parsing " return (OSSL_FUNC_CRYPTO_secure_free_fn *)opf->function; "
 
  return (OSSL_FUNC_CRYPTO_secure_free_fn *)opf->function; }
 end;
@@ -3307,7 +3899,7 @@ function OSSL_FUNC_CRYPTO_secure_clear_free(opf: POSSL_DISPATCH): POSSL_FUNC_CRY
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_CRYPTO_secure_clear_free"');
 
-{Error: Line 125: Syntax Error parsing " return (OSSL_FUNC_CRYPTO_secure_clear_free_fn *)opf->function; "
+{Error: Line 133: Syntax Error parsing " return (OSSL_FUNC_CRYPTO_secure_clear_free_fn *)opf->function; "
 
  return (OSSL_FUNC_CRYPTO_secure_clear_free_fn *)opf->function; }
 end;
@@ -3316,7 +3908,7 @@ function OSSL_FUNC_CRYPTO_secure_allocated(opf: POSSL_DISPATCH): POSSL_FUNC_CRYP
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_CRYPTO_secure_allocated"');
 
-{Error: Line 128: Syntax Error parsing " return (OSSL_FUNC_CRYPTO_secure_allocated_fn *)opf->function; "
+{Error: Line 136: Syntax Error parsing " return (OSSL_FUNC_CRYPTO_secure_allocated_fn *)opf->function; "
 
  return (OSSL_FUNC_CRYPTO_secure_allocated_fn *)opf->function; }
 end;
@@ -3325,7 +3917,7 @@ function OSSL_FUNC_OPENSSL_cleanse(opf: POSSL_DISPATCH): POSSL_FUNC_OPENSSL_clea
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_OPENSSL_cleanse"');
 
-{Error: Line 131: Syntax Error parsing " return (OSSL_FUNC_OPENSSL_cleanse_fn *)opf->function; "
+{Error: Line 139: Syntax Error parsing " return (OSSL_FUNC_OPENSSL_cleanse_fn *)opf->function; "
 
  return (OSSL_FUNC_OPENSSL_cleanse_fn *)opf->function; }
 end;
@@ -3334,7 +3926,7 @@ function OSSL_FUNC_BIO_new_file(opf: POSSL_DISPATCH): POSSL_FUNC_BIO_new_file_fn
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_BIO_new_file"');
 
-{Error: Line 147: Syntax Error parsing " return (OSSL_FUNC_BIO_new_file_fn *)opf->function; "
+{Error: Line 155: Syntax Error parsing " return (OSSL_FUNC_BIO_new_file_fn *)opf->function; "
 
  return (OSSL_FUNC_BIO_new_file_fn *)opf->function; }
 end;
@@ -3343,7 +3935,7 @@ function OSSL_FUNC_BIO_new_membuf(opf: POSSL_DISPATCH): POSSL_FUNC_BIO_new_membu
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_BIO_new_membuf"');
 
-{Error: Line 148: Syntax Error parsing " return (OSSL_FUNC_BIO_new_membuf_fn *)opf->function; "
+{Error: Line 156: Syntax Error parsing " return (OSSL_FUNC_BIO_new_membuf_fn *)opf->function; "
 
  return (OSSL_FUNC_BIO_new_membuf_fn *)opf->function; }
 end;
@@ -3352,7 +3944,7 @@ function OSSL_FUNC_BIO_read_ex(opf: POSSL_DISPATCH): POSSL_FUNC_BIO_read_ex_fn{H
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_BIO_read_ex"');
 
-{Error: Line 149: Syntax Error parsing " return (OSSL_FUNC_BIO_read_ex_fn *)opf->function; "
+{Error: Line 157: Syntax Error parsing " return (OSSL_FUNC_BIO_read_ex_fn *)opf->function; "
 
  return (OSSL_FUNC_BIO_read_ex_fn *)opf->function; }
 end;
@@ -3361,7 +3953,7 @@ function OSSL_FUNC_BIO_write_ex(opf: POSSL_DISPATCH): POSSL_FUNC_BIO_write_ex_fn
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_BIO_write_ex"');
 
-{Error: Line 150: Syntax Error parsing " return (OSSL_FUNC_BIO_write_ex_fn *)opf->function; "
+{Error: Line 158: Syntax Error parsing " return (OSSL_FUNC_BIO_write_ex_fn *)opf->function; "
 
  return (OSSL_FUNC_BIO_write_ex_fn *)opf->function; }
 end;
@@ -3370,7 +3962,7 @@ function OSSL_FUNC_BIO_gets(opf: POSSL_DISPATCH): POSSL_FUNC_BIO_gets_fn{Has C A
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_BIO_gets"');
 
-{Error: Line 151: Syntax Error parsing " return (OSSL_FUNC_BIO_gets_fn *)opf->function; "
+{Error: Line 159: Syntax Error parsing " return (OSSL_FUNC_BIO_gets_fn *)opf->function; "
 
  return (OSSL_FUNC_BIO_gets_fn *)opf->function; }
 end;
@@ -3379,7 +3971,7 @@ function OSSL_FUNC_BIO_puts(opf: POSSL_DISPATCH): POSSL_FUNC_BIO_puts_fn{Has C A
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_BIO_puts"');
 
-{Error: Line 152: Syntax Error parsing " return (OSSL_FUNC_BIO_puts_fn *)opf->function; "
+{Error: Line 160: Syntax Error parsing " return (OSSL_FUNC_BIO_puts_fn *)opf->function; "
 
  return (OSSL_FUNC_BIO_puts_fn *)opf->function; }
 end;
@@ -3388,7 +3980,7 @@ function OSSL_FUNC_BIO_up_ref(opf: POSSL_DISPATCH): POSSL_FUNC_BIO_up_ref_fn{Has
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_BIO_up_ref"');
 
-{Error: Line 153: Syntax Error parsing " return (OSSL_FUNC_BIO_up_ref_fn *)opf->function; "
+{Error: Line 161: Syntax Error parsing " return (OSSL_FUNC_BIO_up_ref_fn *)opf->function; "
 
  return (OSSL_FUNC_BIO_up_ref_fn *)opf->function; }
 end;
@@ -3397,7 +3989,7 @@ function OSSL_FUNC_BIO_free(opf: POSSL_DISPATCH): POSSL_FUNC_BIO_free_fn{Has C A
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_BIO_free"');
 
-{Error: Line 154: Syntax Error parsing " return (OSSL_FUNC_BIO_free_fn *)opf->function; "
+{Error: Line 162: Syntax Error parsing " return (OSSL_FUNC_BIO_free_fn *)opf->function; "
 
  return (OSSL_FUNC_BIO_free_fn *)opf->function; }
 end;
@@ -3406,7 +3998,7 @@ function OSSL_FUNC_BIO_vprintf(opf: POSSL_DISPATCH): POSSL_FUNC_BIO_vprintf_fn{H
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_BIO_vprintf"');
 
-{Error: Line 155: Syntax Error parsing " return (OSSL_FUNC_BIO_vprintf_fn *)opf->function; "
+{Error: Line 163: Syntax Error parsing " return (OSSL_FUNC_BIO_vprintf_fn *)opf->function; "
 
  return (OSSL_FUNC_BIO_vprintf_fn *)opf->function; }
 end;
@@ -3415,7 +4007,7 @@ function OSSL_FUNC_BIO_vsnprintf(opf: POSSL_DISPATCH): POSSL_FUNC_BIO_vsnprintf_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_BIO_vsnprintf"');
 
-{Error: Line 156: Syntax Error parsing " return (OSSL_FUNC_BIO_vsnprintf_fn *)opf->function; "
+{Error: Line 164: Syntax Error parsing " return (OSSL_FUNC_BIO_vsnprintf_fn *)opf->function; "
 
  return (OSSL_FUNC_BIO_vsnprintf_fn *)opf->function; }
 end;
@@ -3424,16 +4016,25 @@ function OSSL_FUNC_BIO_ctrl(opf: POSSL_DISPATCH): POSSL_FUNC_BIO_ctrl_fn{Has C A
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_BIO_ctrl"');
 
-{Error: Line 158: Syntax Error parsing " return (OSSL_FUNC_BIO_ctrl_fn *)opf->function; "
+{Error: Line 166: Syntax Error parsing " return (OSSL_FUNC_BIO_ctrl_fn *)opf->function; "
 
  return (OSSL_FUNC_BIO_ctrl_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_indicator_cb(opf: POSSL_DISPATCH): POSSL_FUNC_indicator_cb_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_indicator_cb"');
+
+{Error: Line 175: Syntax Error parsing " return (OSSL_FUNC_indicator_cb_fn *)opf->function; "
+
+ return (OSSL_FUNC_indicator_cb_fn *)opf->function; }
 end;
 
 function OSSL_FUNC_self_test_cb(opf: POSSL_DISPATCH): POSSL_FUNC_self_test_cb_fn{Has C Attribute: unused}; inline;
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_self_test_cb"');
 
-{Error: Line 161: Syntax Error parsing " return (OSSL_FUNC_self_test_cb_fn *)opf->function; "
+{Error: Line 177: Syntax Error parsing " return (OSSL_FUNC_self_test_cb_fn *)opf->function; "
 
  return (OSSL_FUNC_self_test_cb_fn *)opf->function; }
 end;
@@ -3442,43 +4043,79 @@ function OSSL_FUNC_get_entropy(opf: POSSL_DISPATCH): POSSL_FUNC_get_entropy_fn{H
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_get_entropy"');
 
-{Error: Line 168: Syntax Error parsing " return (OSSL_FUNC_get_entropy_fn *)opf->function; "
+{Error: Line 184: Syntax Error parsing " return (OSSL_FUNC_get_entropy_fn *)opf->function; "
 
  return (OSSL_FUNC_get_entropy_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_get_user_entropy(opf: POSSL_DISPATCH): POSSL_FUNC_get_user_entropy_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_get_user_entropy"');
+
+{Error: Line 185: Syntax Error parsing " return (OSSL_FUNC_get_user_entropy_fn *)opf->function; "
+
+ return (OSSL_FUNC_get_user_entropy_fn *)opf->function; }
 end;
 
 function OSSL_FUNC_cleanup_entropy(opf: POSSL_DISPATCH): POSSL_FUNC_cleanup_entropy_fn{Has C Attribute: unused}; inline;
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_cleanup_entropy"');
 
-{Error: Line 169: Syntax Error parsing " return (OSSL_FUNC_cleanup_entropy_fn *)opf->function; "
+{Error: Line 186: Syntax Error parsing " return (OSSL_FUNC_cleanup_entropy_fn *)opf->function; "
 
  return (OSSL_FUNC_cleanup_entropy_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_cleanup_user_entropy(opf: POSSL_DISPATCH): POSSL_FUNC_cleanup_user_entropy_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_cleanup_user_entropy"');
+
+{Error: Line 187: Syntax Error parsing " return (OSSL_FUNC_cleanup_user_entropy_fn *)opf->function; "
+
+ return (OSSL_FUNC_cleanup_user_entropy_fn *)opf->function; }
 end;
 
 function OSSL_FUNC_get_nonce(opf: POSSL_DISPATCH): POSSL_FUNC_get_nonce_fn{Has C Attribute: unused}; inline;
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_get_nonce"');
 
-{Error: Line 170: Syntax Error parsing " return (OSSL_FUNC_get_nonce_fn *)opf->function; "
+{Error: Line 188: Syntax Error parsing " return (OSSL_FUNC_get_nonce_fn *)opf->function; "
 
  return (OSSL_FUNC_get_nonce_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_get_user_nonce(opf: POSSL_DISPATCH): POSSL_FUNC_get_user_nonce_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_get_user_nonce"');
+
+{Error: Line 189: Syntax Error parsing " return (OSSL_FUNC_get_user_nonce_fn *)opf->function; "
+
+ return (OSSL_FUNC_get_user_nonce_fn *)opf->function; }
 end;
 
 function OSSL_FUNC_cleanup_nonce(opf: POSSL_DISPATCH): POSSL_FUNC_cleanup_nonce_fn{Has C Attribute: unused}; inline;
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_cleanup_nonce"');
 
-{Error: Line 171: Syntax Error parsing " return (OSSL_FUNC_cleanup_nonce_fn *)opf->function; "
+{Error: Line 190: Syntax Error parsing " return (OSSL_FUNC_cleanup_nonce_fn *)opf->function; "
 
  return (OSSL_FUNC_cleanup_nonce_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_cleanup_user_nonce(opf: POSSL_DISPATCH): POSSL_FUNC_cleanup_user_nonce_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_cleanup_user_nonce"');
+
+{Error: Line 191: Syntax Error parsing " return (OSSL_FUNC_cleanup_user_nonce_fn *)opf->function; "
+
+ return (OSSL_FUNC_cleanup_user_nonce_fn *)opf->function; }
 end;
 
 function OSSL_FUNC_provider_register_child_cb(opf: POSSL_DISPATCH): POSSL_FUNC_provider_register_child_cb_fn{Has C Attribute: unused}; inline;
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_provider_register_child_cb"');
 
-{Error: Line 182: Syntax Error parsing " return (OSSL_FUNC_provider_register_child_cb_fn *)opf->function; "
+{Error: Line 202: Syntax Error parsing " return (OSSL_FUNC_provider_register_child_cb_fn *)opf->function; "
 
  return (OSSL_FUNC_provider_register_child_cb_fn *)opf->function; }
 end;
@@ -3487,7 +4124,7 @@ function OSSL_FUNC_provider_deregister_child_cb(opf: POSSL_DISPATCH): POSSL_FUNC
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_provider_deregister_child_cb"');
 
-{Error: Line 188: Syntax Error parsing " return (OSSL_FUNC_provider_deregister_child_cb_fn *)opf->function; "
+{Error: Line 208: Syntax Error parsing " return (OSSL_FUNC_provider_deregister_child_cb_fn *)opf->function; "
 
  return (OSSL_FUNC_provider_deregister_child_cb_fn *)opf->function; }
 end;
@@ -3496,7 +4133,7 @@ function OSSL_FUNC_provider_name(opf: POSSL_DISPATCH): POSSL_FUNC_provider_name_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_provider_name"');
 
-{Error: Line 190: Syntax Error parsing " return (OSSL_FUNC_provider_name_fn *)opf->function; "
+{Error: Line 210: Syntax Error parsing " return (OSSL_FUNC_provider_name_fn *)opf->function; "
 
  return (OSSL_FUNC_provider_name_fn *)opf->function; }
 end;
@@ -3505,7 +4142,7 @@ function OSSL_FUNC_provider_get0_provider_ctx(opf: POSSL_DISPATCH): POSSL_FUNC_p
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_provider_get0_provider_ctx"');
 
-{Error: Line 192: Syntax Error parsing " return (OSSL_FUNC_provider_get0_provider_ctx_fn *)opf->function; "
+{Error: Line 212: Syntax Error parsing " return (OSSL_FUNC_provider_get0_provider_ctx_fn *)opf->function; "
 
  return (OSSL_FUNC_provider_get0_provider_ctx_fn *)opf->function; }
 end;
@@ -3514,7 +4151,7 @@ function OSSL_FUNC_provider_get0_dispatch(opf: POSSL_DISPATCH): POSSL_FUNC_provi
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_provider_get0_dispatch"');
 
-{Error: Line 194: Syntax Error parsing " return (OSSL_FUNC_provider_get0_dispatch_fn *)opf->function; "
+{Error: Line 214: Syntax Error parsing " return (OSSL_FUNC_provider_get0_dispatch_fn *)opf->function; "
 
  return (OSSL_FUNC_provider_get0_dispatch_fn *)opf->function; }
 end;
@@ -3523,7 +4160,7 @@ function OSSL_FUNC_provider_up_ref(opf: POSSL_DISPATCH): POSSL_FUNC_provider_up_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_provider_up_ref"');
 
-{Error: Line 196: Syntax Error parsing " return (OSSL_FUNC_provider_up_ref_fn *)opf->function; "
+{Error: Line 216: Syntax Error parsing " return (OSSL_FUNC_provider_up_ref_fn *)opf->function; "
 
  return (OSSL_FUNC_provider_up_ref_fn *)opf->function; }
 end;
@@ -3532,16 +4169,25 @@ function OSSL_FUNC_provider_free(opf: POSSL_DISPATCH): POSSL_FUNC_provider_free_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_provider_free"');
 
-{Error: Line 198: Syntax Error parsing " return (OSSL_FUNC_provider_free_fn *)opf->function; "
+{Error: Line 218: Syntax Error parsing " return (OSSL_FUNC_provider_free_fn *)opf->function; "
 
  return (OSSL_FUNC_provider_free_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_core_count_to_mark(opf: POSSL_DISPATCH): POSSL_FUNC_core_count_to_mark_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_core_count_to_mark"');
+
+{Error: Line 223: Syntax Error parsing " return (OSSL_FUNC_core_count_to_mark_fn *)opf->function; "
+
+ return (OSSL_FUNC_core_count_to_mark_fn *)opf->function; }
 end;
 
 function OSSL_FUNC_provider_teardown(opf: POSSL_DISPATCH): POSSL_FUNC_provider_teardown_fn{Has C Attribute: unused}; inline;
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_provider_teardown"');
 
-{Error: Line 203: Syntax Error parsing " return (OSSL_FUNC_provider_teardown_fn *)opf->function; "
+{Error: Line 227: Syntax Error parsing " return (OSSL_FUNC_provider_teardown_fn *)opf->function; "
 
  return (OSSL_FUNC_provider_teardown_fn *)opf->function; }
 end;
@@ -3550,7 +4196,7 @@ function OSSL_FUNC_provider_gettable_params(opf: POSSL_DISPATCH): POSSL_FUNC_pro
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_provider_gettable_params"');
 
-{Error: Line 205: Syntax Error parsing " return (OSSL_FUNC_provider_gettable_params_fn *)opf->function; "
+{Error: Line 229: Syntax Error parsing " return (OSSL_FUNC_provider_gettable_params_fn *)opf->function; "
 
  return (OSSL_FUNC_provider_gettable_params_fn *)opf->function; }
 end;
@@ -3559,7 +4205,7 @@ function OSSL_FUNC_provider_get_params(opf: POSSL_DISPATCH): POSSL_FUNC_provider
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_provider_get_params"');
 
-{Error: Line 208: Syntax Error parsing " return (OSSL_FUNC_provider_get_params_fn *)opf->function; "
+{Error: Line 232: Syntax Error parsing " return (OSSL_FUNC_provider_get_params_fn *)opf->function; "
 
  return (OSSL_FUNC_provider_get_params_fn *)opf->function; }
 end;
@@ -3568,7 +4214,7 @@ function OSSL_FUNC_provider_query_operation(opf: POSSL_DISPATCH): POSSL_FUNC_pro
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_provider_query_operation"');
 
-{Error: Line 210: Syntax Error parsing " return (OSSL_FUNC_provider_query_operation_fn *)opf->function; "
+{Error: Line 234: Syntax Error parsing " return (OSSL_FUNC_provider_query_operation_fn *)opf->function; "
 
  return (OSSL_FUNC_provider_query_operation_fn *)opf->function; }
 end;
@@ -3577,7 +4223,7 @@ function OSSL_FUNC_provider_unquery_operation(opf: POSSL_DISPATCH): POSSL_FUNC_p
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_provider_unquery_operation"');
 
-{Error: Line 213: Syntax Error parsing " return (OSSL_FUNC_provider_unquery_operation_fn *)opf->function; "
+{Error: Line 237: Syntax Error parsing " return (OSSL_FUNC_provider_unquery_operation_fn *)opf->function; "
 
  return (OSSL_FUNC_provider_unquery_operation_fn *)opf->function; }
 end;
@@ -3586,7 +4232,7 @@ function OSSL_FUNC_provider_get_reason_strings(opf: POSSL_DISPATCH): POSSL_FUNC_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_provider_get_reason_strings"');
 
-{Error: Line 216: Syntax Error parsing " return (OSSL_FUNC_provider_get_reason_strings_fn *)opf->function; "
+{Error: Line 240: Syntax Error parsing " return (OSSL_FUNC_provider_get_reason_strings_fn *)opf->function; "
 
  return (OSSL_FUNC_provider_get_reason_strings_fn *)opf->function; }
 end;
@@ -3595,7 +4241,7 @@ function OSSL_FUNC_provider_get_capabilities(opf: POSSL_DISPATCH): POSSL_FUNC_pr
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_provider_get_capabilities"');
 
-{Error: Line 219: Syntax Error parsing " return (OSSL_FUNC_provider_get_capabilities_fn *)opf->function; "
+{Error: Line 243: Syntax Error parsing " return (OSSL_FUNC_provider_get_capabilities_fn *)opf->function; "
 
  return (OSSL_FUNC_provider_get_capabilities_fn *)opf->function; }
 end;
@@ -3604,16 +4250,79 @@ function OSSL_FUNC_provider_self_test(opf: POSSL_DISPATCH): POSSL_FUNC_provider_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_provider_self_test"');
 
-{Error: Line 221: Syntax Error parsing " return (OSSL_FUNC_provider_self_test_fn *)opf->function; "
+{Error: Line 245: Syntax Error parsing " return (OSSL_FUNC_provider_self_test_fn *)opf->function; "
 
  return (OSSL_FUNC_provider_self_test_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_provider_random_bytes(opf: POSSL_DISPATCH): POSSL_FUNC_provider_random_bytes_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_provider_random_bytes"');
+
+{Error: Line 247: Syntax Error parsing " return (OSSL_FUNC_provider_random_bytes_fn *)opf->function; "
+
+ return (OSSL_FUNC_provider_random_bytes_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_SSL_QUIC_TLS_crypto_send(opf: POSSL_DISPATCH): POSSL_FUNC_SSL_QUIC_TLS_crypto_send_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_SSL_QUIC_TLS_crypto_send"');
+
+{Error: Line 251: Syntax Error parsing " return (OSSL_FUNC_SSL_QUIC_TLS_crypto_send_fn *)opf->function; "
+
+ return (OSSL_FUNC_SSL_QUIC_TLS_crypto_send_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_SSL_QUIC_TLS_crypto_recv_rcd(opf: POSSL_DISPATCH): POSSL_FUNC_SSL_QUIC_TLS_crypto_recv_rcd_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_SSL_QUIC_TLS_crypto_recv_rcd"');
+
+{Error: Line 255: Syntax Error parsing " return (OSSL_FUNC_SSL_QUIC_TLS_crypto_recv_rcd_fn *)opf->function; "
+
+ return (OSSL_FUNC_SSL_QUIC_TLS_crypto_recv_rcd_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_SSL_QUIC_TLS_crypto_release_rcd(opf: POSSL_DISPATCH): POSSL_FUNC_SSL_QUIC_TLS_crypto_release_rcd_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_SSL_QUIC_TLS_crypto_release_rcd"');
+
+{Error: Line 259: Syntax Error parsing " return (OSSL_FUNC_SSL_QUIC_TLS_crypto_release_rcd_fn *)opf->function; "
+
+ return (OSSL_FUNC_SSL_QUIC_TLS_crypto_release_rcd_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_SSL_QUIC_TLS_yield_secret(opf: POSSL_DISPATCH): POSSL_FUNC_SSL_QUIC_TLS_yield_secret_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_SSL_QUIC_TLS_yield_secret"');
+
+{Error: Line 262: Syntax Error parsing " return (OSSL_FUNC_SSL_QUIC_TLS_yield_secret_fn *)opf->function; "
+
+ return (OSSL_FUNC_SSL_QUIC_TLS_yield_secret_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_SSL_QUIC_TLS_got_transport_params(opf: POSSL_DISPATCH): POSSL_FUNC_SSL_QUIC_TLS_got_transport_params_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_SSL_QUIC_TLS_got_transport_params"');
+
+{Error: Line 266: Syntax Error parsing " return (OSSL_FUNC_SSL_QUIC_TLS_got_transport_params_fn *)opf->function; "
+
+ return (OSSL_FUNC_SSL_QUIC_TLS_got_transport_params_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_SSL_QUIC_TLS_alert(opf: POSSL_DISPATCH): POSSL_FUNC_SSL_QUIC_TLS_alert_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_SSL_QUIC_TLS_alert"');
+
+{Error: Line 270: Syntax Error parsing " return (OSSL_FUNC_SSL_QUIC_TLS_alert_fn *)opf->function; "
+
+ return (OSSL_FUNC_SSL_QUIC_TLS_alert_fn *)opf->function; }
 end;
 
 function OSSL_FUNC_digest_newctx(opf: POSSL_DISPATCH): POSSL_FUNC_digest_newctx_fn{Has C Attribute: unused}; inline;
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_digest_newctx"');
 
-{Error: Line 258: Syntax Error parsing " return (OSSL_FUNC_digest_newctx_fn *)opf->function; "
+{Error: Line 311: Syntax Error parsing " return (OSSL_FUNC_digest_newctx_fn *)opf->function; "
 
  return (OSSL_FUNC_digest_newctx_fn *)opf->function; }
 end;
@@ -3622,7 +4331,7 @@ function OSSL_FUNC_digest_init(opf: POSSL_DISPATCH): POSSL_FUNC_digest_init_fn{H
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_digest_init"');
 
-{Error: Line 259: Syntax Error parsing " return (OSSL_FUNC_digest_init_fn *)opf->function; "
+{Error: Line 312: Syntax Error parsing " return (OSSL_FUNC_digest_init_fn *)opf->function; "
 
  return (OSSL_FUNC_digest_init_fn *)opf->function; }
 end;
@@ -3631,7 +4340,7 @@ function OSSL_FUNC_digest_update(opf: POSSL_DISPATCH): POSSL_FUNC_digest_update_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_digest_update"');
 
-{Error: Line 260: Syntax Error parsing " return (OSSL_FUNC_digest_update_fn *)opf->function; "
+{Error: Line 313: Syntax Error parsing " return (OSSL_FUNC_digest_update_fn *)opf->function; "
 
  return (OSSL_FUNC_digest_update_fn *)opf->function; }
 end;
@@ -3640,16 +4349,25 @@ function OSSL_FUNC_digest_final(opf: POSSL_DISPATCH): POSSL_FUNC_digest_final_fn
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_digest_final"');
 
-{Error: Line 262: Syntax Error parsing " return (OSSL_FUNC_digest_final_fn *)opf->function; "
+{Error: Line 315: Syntax Error parsing " return (OSSL_FUNC_digest_final_fn *)opf->function; "
 
  return (OSSL_FUNC_digest_final_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_digest_squeeze(opf: POSSL_DISPATCH): POSSL_FUNC_digest_squeeze_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_digest_squeeze"');
+
+{Error: Line 318: Syntax Error parsing " return (OSSL_FUNC_digest_squeeze_fn *)opf->function; "
+
+ return (OSSL_FUNC_digest_squeeze_fn *)opf->function; }
 end;
 
 function OSSL_FUNC_digest_digest(opf: POSSL_DISPATCH): POSSL_FUNC_digest_digest_fn{Has C Attribute: unused}; inline;
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_digest_digest"');
 
-{Error: Line 265: Syntax Error parsing " return (OSSL_FUNC_digest_digest_fn *)opf->function; "
+{Error: Line 321: Syntax Error parsing " return (OSSL_FUNC_digest_digest_fn *)opf->function; "
 
  return (OSSL_FUNC_digest_digest_fn *)opf->function; }
 end;
@@ -3658,7 +4376,7 @@ function OSSL_FUNC_digest_freectx(opf: POSSL_DISPATCH): POSSL_FUNC_digest_freect
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_digest_freectx"');
 
-{Error: Line 269: Syntax Error parsing " return (OSSL_FUNC_digest_freectx_fn *)opf->function; "
+{Error: Line 325: Syntax Error parsing " return (OSSL_FUNC_digest_freectx_fn *)opf->function; "
 
  return (OSSL_FUNC_digest_freectx_fn *)opf->function; }
 end;
@@ -3667,16 +4385,25 @@ function OSSL_FUNC_digest_dupctx(opf: POSSL_DISPATCH): POSSL_FUNC_digest_dupctx_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_digest_dupctx"');
 
-{Error: Line 270: Syntax Error parsing " return (OSSL_FUNC_digest_dupctx_fn *)opf->function; "
+{Error: Line 326: Syntax Error parsing " return (OSSL_FUNC_digest_dupctx_fn *)opf->function; "
 
  return (OSSL_FUNC_digest_dupctx_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_digest_copyctx(opf: POSSL_DISPATCH): POSSL_FUNC_digest_copyctx_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_digest_copyctx"');
+
+{Error: Line 327: Syntax Error parsing " return (OSSL_FUNC_digest_copyctx_fn *)opf->function; "
+
+ return (OSSL_FUNC_digest_copyctx_fn *)opf->function; }
 end;
 
 function OSSL_FUNC_digest_get_params(opf: POSSL_DISPATCH): POSSL_FUNC_digest_get_params_fn{Has C Attribute: unused}; inline;
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_digest_get_params"');
 
-{Error: Line 272: Syntax Error parsing " return (OSSL_FUNC_digest_get_params_fn *)opf->function; "
+{Error: Line 329: Syntax Error parsing " return (OSSL_FUNC_digest_get_params_fn *)opf->function; "
 
  return (OSSL_FUNC_digest_get_params_fn *)opf->function; }
 end;
@@ -3685,7 +4412,7 @@ function OSSL_FUNC_digest_set_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_digest
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_digest_set_ctx_params"');
 
-{Error: Line 273: Syntax Error parsing " return (OSSL_FUNC_digest_set_ctx_params_fn *)opf->function; "
+{Error: Line 330: Syntax Error parsing " return (OSSL_FUNC_digest_set_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_digest_set_ctx_params_fn *)opf->function; }
 end;
@@ -3694,7 +4421,7 @@ function OSSL_FUNC_digest_get_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_digest
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_digest_get_ctx_params"');
 
-{Error: Line 275: Syntax Error parsing " return (OSSL_FUNC_digest_get_ctx_params_fn *)opf->function; "
+{Error: Line 332: Syntax Error parsing " return (OSSL_FUNC_digest_get_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_digest_get_ctx_params_fn *)opf->function; }
 end;
@@ -3703,7 +4430,7 @@ function OSSL_FUNC_digest_gettable_params(opf: POSSL_DISPATCH): POSSL_FUNC_diges
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_digest_gettable_params"');
 
-{Error: Line 277: Syntax Error parsing " return (OSSL_FUNC_digest_gettable_params_fn *)opf->function; "
+{Error: Line 334: Syntax Error parsing " return (OSSL_FUNC_digest_gettable_params_fn *)opf->function; "
 
  return (OSSL_FUNC_digest_gettable_params_fn *)opf->function; }
 end;
@@ -3712,7 +4439,7 @@ function OSSL_FUNC_digest_settable_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_d
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_digest_settable_ctx_params"');
 
-{Error: Line 279: Syntax Error parsing " return (OSSL_FUNC_digest_settable_ctx_params_fn *)opf->function; "
+{Error: Line 336: Syntax Error parsing " return (OSSL_FUNC_digest_settable_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_digest_settable_ctx_params_fn *)opf->function; }
 end;
@@ -3721,7 +4448,7 @@ function OSSL_FUNC_digest_gettable_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_d
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_digest_gettable_ctx_params"');
 
-{Error: Line 281: Syntax Error parsing " return (OSSL_FUNC_digest_gettable_ctx_params_fn *)opf->function; "
+{Error: Line 338: Syntax Error parsing " return (OSSL_FUNC_digest_gettable_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_digest_gettable_ctx_params_fn *)opf->function; }
 end;
@@ -3730,7 +4457,7 @@ function OSSL_FUNC_cipher_newctx(opf: POSSL_DISPATCH): POSSL_FUNC_cipher_newctx_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_cipher_newctx"');
 
-{Error: Line 301: Syntax Error parsing " return (OSSL_FUNC_cipher_newctx_fn *)opf->function; "
+{Error: Line 364: Syntax Error parsing " return (OSSL_FUNC_cipher_newctx_fn *)opf->function; "
 
  return (OSSL_FUNC_cipher_newctx_fn *)opf->function; }
 end;
@@ -3739,7 +4466,7 @@ function OSSL_FUNC_cipher_encrypt_init(opf: POSSL_DISPATCH): POSSL_FUNC_cipher_e
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_cipher_encrypt_init"');
 
-{Error: Line 302: Syntax Error parsing " return (OSSL_FUNC_cipher_encrypt_init_fn *)opf->function; "
+{Error: Line 365: Syntax Error parsing " return (OSSL_FUNC_cipher_encrypt_init_fn *)opf->function; "
 
  return (OSSL_FUNC_cipher_encrypt_init_fn *)opf->function; }
 end;
@@ -3748,7 +4475,7 @@ function OSSL_FUNC_cipher_decrypt_init(opf: POSSL_DISPATCH): POSSL_FUNC_cipher_d
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_cipher_decrypt_init"');
 
-{Error: Line 303: Syntax Error parsing " return (OSSL_FUNC_cipher_decrypt_init_fn *)opf->function; "
+{Error: Line 366: Syntax Error parsing " return (OSSL_FUNC_cipher_decrypt_init_fn *)opf->function; "
 
  return (OSSL_FUNC_cipher_decrypt_init_fn *)opf->function; }
 end;
@@ -3757,7 +4484,7 @@ function OSSL_FUNC_cipher_update(opf: POSSL_DISPATCH): POSSL_FUNC_cipher_update_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_cipher_update"');
 
-{Error: Line 304: Syntax Error parsing " return (OSSL_FUNC_cipher_update_fn *)opf->function; "
+{Error: Line 367: Syntax Error parsing " return (OSSL_FUNC_cipher_update_fn *)opf->function; "
 
  return (OSSL_FUNC_cipher_update_fn *)opf->function; }
 end;
@@ -3766,7 +4493,7 @@ function OSSL_FUNC_cipher_final(opf: POSSL_DISPATCH): POSSL_FUNC_cipher_final_fn
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_cipher_final"');
 
-{Error: Line 308: Syntax Error parsing " return (OSSL_FUNC_cipher_final_fn *)opf->function; "
+{Error: Line 371: Syntax Error parsing " return (OSSL_FUNC_cipher_final_fn *)opf->function; "
 
  return (OSSL_FUNC_cipher_final_fn *)opf->function; }
 end;
@@ -3775,16 +4502,52 @@ function OSSL_FUNC_cipher_cipher(opf: POSSL_DISPATCH): POSSL_FUNC_cipher_cipher_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_cipher_cipher"');
 
-{Error: Line 311: Syntax Error parsing " return (OSSL_FUNC_cipher_cipher_fn *)opf->function; "
+{Error: Line 374: Syntax Error parsing " return (OSSL_FUNC_cipher_cipher_fn *)opf->function; "
 
  return (OSSL_FUNC_cipher_cipher_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_cipher_pipeline_encrypt_init(opf: POSSL_DISPATCH): POSSL_FUNC_cipher_pipeline_encrypt_init_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_cipher_pipeline_encrypt_init"');
+
+{Error: Line 378: Syntax Error parsing " return (OSSL_FUNC_cipher_pipeline_encrypt_init_fn *)opf->function; "
+
+ return (OSSL_FUNC_cipher_pipeline_encrypt_init_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_cipher_pipeline_decrypt_init(opf: POSSL_DISPATCH): POSSL_FUNC_cipher_pipeline_decrypt_init_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_cipher_pipeline_decrypt_init"');
+
+{Error: Line 383: Syntax Error parsing " return (OSSL_FUNC_cipher_pipeline_decrypt_init_fn *)opf->function; "
+
+ return (OSSL_FUNC_cipher_pipeline_decrypt_init_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_cipher_pipeline_update(opf: POSSL_DISPATCH): POSSL_FUNC_cipher_pipeline_update_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_cipher_pipeline_update"');
+
+{Error: Line 388: Syntax Error parsing " return (OSSL_FUNC_cipher_pipeline_update_fn *)opf->function; "
+
+ return (OSSL_FUNC_cipher_pipeline_update_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_cipher_pipeline_final(opf: POSSL_DISPATCH): POSSL_FUNC_cipher_pipeline_final_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_cipher_pipeline_final"');
+
+{Error: Line 392: Syntax Error parsing " return (OSSL_FUNC_cipher_pipeline_final_fn *)opf->function; "
+
+ return (OSSL_FUNC_cipher_pipeline_final_fn *)opf->function; }
 end;
 
 function OSSL_FUNC_cipher_freectx(opf: POSSL_DISPATCH): POSSL_FUNC_cipher_freectx_fn{Has C Attribute: unused}; inline;
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_cipher_freectx"');
 
-{Error: Line 315: Syntax Error parsing " return (OSSL_FUNC_cipher_freectx_fn *)opf->function; "
+{Error: Line 395: Syntax Error parsing " return (OSSL_FUNC_cipher_freectx_fn *)opf->function; "
 
  return (OSSL_FUNC_cipher_freectx_fn *)opf->function; }
 end;
@@ -3793,7 +4556,7 @@ function OSSL_FUNC_cipher_dupctx(opf: POSSL_DISPATCH): POSSL_FUNC_cipher_dupctx_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_cipher_dupctx"');
 
-{Error: Line 316: Syntax Error parsing " return (OSSL_FUNC_cipher_dupctx_fn *)opf->function; "
+{Error: Line 396: Syntax Error parsing " return (OSSL_FUNC_cipher_dupctx_fn *)opf->function; "
 
  return (OSSL_FUNC_cipher_dupctx_fn *)opf->function; }
 end;
@@ -3802,7 +4565,7 @@ function OSSL_FUNC_cipher_get_params(opf: POSSL_DISPATCH): POSSL_FUNC_cipher_get
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_cipher_get_params"');
 
-{Error: Line 317: Syntax Error parsing " return (OSSL_FUNC_cipher_get_params_fn *)opf->function; "
+{Error: Line 397: Syntax Error parsing " return (OSSL_FUNC_cipher_get_params_fn *)opf->function; "
 
  return (OSSL_FUNC_cipher_get_params_fn *)opf->function; }
 end;
@@ -3811,7 +4574,7 @@ function OSSL_FUNC_cipher_get_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_cipher
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_cipher_get_ctx_params"');
 
-{Error: Line 318: Syntax Error parsing " return (OSSL_FUNC_cipher_get_ctx_params_fn *)opf->function; "
+{Error: Line 398: Syntax Error parsing " return (OSSL_FUNC_cipher_get_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_cipher_get_ctx_params_fn *)opf->function; }
 end;
@@ -3820,7 +4583,7 @@ function OSSL_FUNC_cipher_set_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_cipher
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_cipher_set_ctx_params"');
 
-{Error: Line 319: Syntax Error parsing " return (OSSL_FUNC_cipher_set_ctx_params_fn *)opf->function; "
+{Error: Line 399: Syntax Error parsing " return (OSSL_FUNC_cipher_set_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_cipher_set_ctx_params_fn *)opf->function; }
 end;
@@ -3829,7 +4592,7 @@ function OSSL_FUNC_cipher_gettable_params(opf: POSSL_DISPATCH): POSSL_FUNC_ciphe
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_cipher_gettable_params"');
 
-{Error: Line 320: Syntax Error parsing " return (OSSL_FUNC_cipher_gettable_params_fn *)opf->function; "
+{Error: Line 400: Syntax Error parsing " return (OSSL_FUNC_cipher_gettable_params_fn *)opf->function; "
 
  return (OSSL_FUNC_cipher_gettable_params_fn *)opf->function; }
 end;
@@ -3838,7 +4601,7 @@ function OSSL_FUNC_cipher_settable_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_c
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_cipher_settable_ctx_params"');
 
-{Error: Line 322: Syntax Error parsing " return (OSSL_FUNC_cipher_settable_ctx_params_fn *)opf->function; "
+{Error: Line 402: Syntax Error parsing " return (OSSL_FUNC_cipher_settable_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_cipher_settable_ctx_params_fn *)opf->function; }
 end;
@@ -3847,16 +4610,34 @@ function OSSL_FUNC_cipher_gettable_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_c
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_cipher_gettable_ctx_params"');
 
-{Error: Line 324: Syntax Error parsing " return (OSSL_FUNC_cipher_gettable_ctx_params_fn *)opf->function; "
+{Error: Line 404: Syntax Error parsing " return (OSSL_FUNC_cipher_gettable_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_cipher_gettable_ctx_params_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_cipher_encrypt_skey_init(opf: POSSL_DISPATCH): POSSL_FUNC_cipher_encrypt_skey_init_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_cipher_encrypt_skey_init"');
+
+{Error: Line 406: Syntax Error parsing " return (OSSL_FUNC_cipher_encrypt_skey_init_fn *)opf->function; "
+
+ return (OSSL_FUNC_cipher_encrypt_skey_init_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_cipher_decrypt_skey_init(opf: POSSL_DISPATCH): POSSL_FUNC_cipher_decrypt_skey_init_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_cipher_decrypt_skey_init"');
+
+{Error: Line 407: Syntax Error parsing " return (OSSL_FUNC_cipher_decrypt_skey_init_fn *)opf->function; "
+
+ return (OSSL_FUNC_cipher_decrypt_skey_init_fn *)opf->function; }
 end;
 
 function OSSL_FUNC_mac_newctx(opf: POSSL_DISPATCH): POSSL_FUNC_mac_newctx_fn{Has C Attribute: unused}; inline;
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_mac_newctx"');
 
-{Error: Line 342: Syntax Error parsing " return (OSSL_FUNC_mac_newctx_fn *)opf->function; "
+{Error: Line 425: Syntax Error parsing " return (OSSL_FUNC_mac_newctx_fn *)opf->function; "
 
  return (OSSL_FUNC_mac_newctx_fn *)opf->function; }
 end;
@@ -3865,7 +4646,7 @@ function OSSL_FUNC_mac_dupctx(opf: POSSL_DISPATCH): POSSL_FUNC_mac_dupctx_fn{Has
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_mac_dupctx"');
 
-{Error: Line 343: Syntax Error parsing " return (OSSL_FUNC_mac_dupctx_fn *)opf->function; "
+{Error: Line 426: Syntax Error parsing " return (OSSL_FUNC_mac_dupctx_fn *)opf->function; "
 
  return (OSSL_FUNC_mac_dupctx_fn *)opf->function; }
 end;
@@ -3874,7 +4655,7 @@ function OSSL_FUNC_mac_freectx(opf: POSSL_DISPATCH): POSSL_FUNC_mac_freectx_fn{H
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_mac_freectx"');
 
-{Error: Line 344: Syntax Error parsing " return (OSSL_FUNC_mac_freectx_fn *)opf->function; "
+{Error: Line 427: Syntax Error parsing " return (OSSL_FUNC_mac_freectx_fn *)opf->function; "
 
  return (OSSL_FUNC_mac_freectx_fn *)opf->function; }
 end;
@@ -3883,7 +4664,7 @@ function OSSL_FUNC_mac_init(opf: POSSL_DISPATCH): POSSL_FUNC_mac_init_fn{Has C A
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_mac_init"');
 
-{Error: Line 345: Syntax Error parsing " return (OSSL_FUNC_mac_init_fn *)opf->function; "
+{Error: Line 428: Syntax Error parsing " return (OSSL_FUNC_mac_init_fn *)opf->function; "
 
  return (OSSL_FUNC_mac_init_fn *)opf->function; }
 end;
@@ -3892,7 +4673,7 @@ function OSSL_FUNC_mac_update(opf: POSSL_DISPATCH): POSSL_FUNC_mac_update_fn{Has
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_mac_update"');
 
-{Error: Line 346: Syntax Error parsing " return (OSSL_FUNC_mac_update_fn *)opf->function; "
+{Error: Line 429: Syntax Error parsing " return (OSSL_FUNC_mac_update_fn *)opf->function; "
 
  return (OSSL_FUNC_mac_update_fn *)opf->function; }
 end;
@@ -3901,7 +4682,7 @@ function OSSL_FUNC_mac_final(opf: POSSL_DISPATCH): POSSL_FUNC_mac_final_fn{Has C
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_mac_final"');
 
-{Error: Line 348: Syntax Error parsing " return (OSSL_FUNC_mac_final_fn *)opf->function; "
+{Error: Line 431: Syntax Error parsing " return (OSSL_FUNC_mac_final_fn *)opf->function; "
 
  return (OSSL_FUNC_mac_final_fn *)opf->function; }
 end;
@@ -3910,7 +4691,7 @@ function OSSL_FUNC_mac_gettable_params(opf: POSSL_DISPATCH): POSSL_FUNC_mac_gett
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_mac_gettable_params"');
 
-{Error: Line 351: Syntax Error parsing " return (OSSL_FUNC_mac_gettable_params_fn *)opf->function; "
+{Error: Line 434: Syntax Error parsing " return (OSSL_FUNC_mac_gettable_params_fn *)opf->function; "
 
  return (OSSL_FUNC_mac_gettable_params_fn *)opf->function; }
 end;
@@ -3919,7 +4700,7 @@ function OSSL_FUNC_mac_gettable_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_mac_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_mac_gettable_ctx_params"');
 
-{Error: Line 352: Syntax Error parsing " return (OSSL_FUNC_mac_gettable_ctx_params_fn *)opf->function; "
+{Error: Line 435: Syntax Error parsing " return (OSSL_FUNC_mac_gettable_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_mac_gettable_ctx_params_fn *)opf->function; }
 end;
@@ -3928,7 +4709,7 @@ function OSSL_FUNC_mac_settable_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_mac_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_mac_settable_ctx_params"');
 
-{Error: Line 354: Syntax Error parsing " return (OSSL_FUNC_mac_settable_ctx_params_fn *)opf->function; "
+{Error: Line 437: Syntax Error parsing " return (OSSL_FUNC_mac_settable_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_mac_settable_ctx_params_fn *)opf->function; }
 end;
@@ -3937,7 +4718,7 @@ function OSSL_FUNC_mac_get_params(opf: POSSL_DISPATCH): POSSL_FUNC_mac_get_param
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_mac_get_params"');
 
-{Error: Line 356: Syntax Error parsing " return (OSSL_FUNC_mac_get_params_fn *)opf->function; "
+{Error: Line 439: Syntax Error parsing " return (OSSL_FUNC_mac_get_params_fn *)opf->function; "
 
  return (OSSL_FUNC_mac_get_params_fn *)opf->function; }
 end;
@@ -3946,7 +4727,7 @@ function OSSL_FUNC_mac_get_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_mac_get_c
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_mac_get_ctx_params"');
 
-{Error: Line 357: Syntax Error parsing " return (OSSL_FUNC_mac_get_ctx_params_fn *)opf->function; "
+{Error: Line 440: Syntax Error parsing " return (OSSL_FUNC_mac_get_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_mac_get_ctx_params_fn *)opf->function; }
 end;
@@ -3955,16 +4736,25 @@ function OSSL_FUNC_mac_set_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_mac_set_c
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_mac_set_ctx_params"');
 
-{Error: Line 359: Syntax Error parsing " return (OSSL_FUNC_mac_set_ctx_params_fn *)opf->function; "
+{Error: Line 442: Syntax Error parsing " return (OSSL_FUNC_mac_set_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_mac_set_ctx_params_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_mac_init_skey(opf: POSSL_DISPATCH): POSSL_FUNC_mac_init_skey_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_mac_init_skey"');
+
+{Error: Line 444: Syntax Error parsing " return (OSSL_FUNC_mac_init_skey_fn *)opf->function; "
+
+ return (OSSL_FUNC_mac_init_skey_fn *)opf->function; }
 end;
 
 function OSSL_FUNC_kdf_newctx(opf: POSSL_DISPATCH): POSSL_FUNC_kdf_newctx_fn{Has C Attribute: unused}; inline;
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_kdf_newctx"');
 
-{Error: Line 376: Syntax Error parsing " return (OSSL_FUNC_kdf_newctx_fn *)opf->function; "
+{Error: Line 460: Syntax Error parsing " return (OSSL_FUNC_kdf_newctx_fn *)opf->function; "
 
  return (OSSL_FUNC_kdf_newctx_fn *)opf->function; }
 end;
@@ -3973,7 +4763,7 @@ function OSSL_FUNC_kdf_dupctx(opf: POSSL_DISPATCH): POSSL_FUNC_kdf_dupctx_fn{Has
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_kdf_dupctx"');
 
-{Error: Line 377: Syntax Error parsing " return (OSSL_FUNC_kdf_dupctx_fn *)opf->function; "
+{Error: Line 461: Syntax Error parsing " return (OSSL_FUNC_kdf_dupctx_fn *)opf->function; "
 
  return (OSSL_FUNC_kdf_dupctx_fn *)opf->function; }
 end;
@@ -3982,7 +4772,7 @@ function OSSL_FUNC_kdf_freectx(opf: POSSL_DISPATCH): POSSL_FUNC_kdf_freectx_fn{H
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_kdf_freectx"');
 
-{Error: Line 378: Syntax Error parsing " return (OSSL_FUNC_kdf_freectx_fn *)opf->function; "
+{Error: Line 462: Syntax Error parsing " return (OSSL_FUNC_kdf_freectx_fn *)opf->function; "
 
  return (OSSL_FUNC_kdf_freectx_fn *)opf->function; }
 end;
@@ -3991,7 +4781,7 @@ function OSSL_FUNC_kdf_reset(opf: POSSL_DISPATCH): POSSL_FUNC_kdf_reset_fn{Has C
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_kdf_reset"');
 
-{Error: Line 379: Syntax Error parsing " return (OSSL_FUNC_kdf_reset_fn *)opf->function; "
+{Error: Line 463: Syntax Error parsing " return (OSSL_FUNC_kdf_reset_fn *)opf->function; "
 
  return (OSSL_FUNC_kdf_reset_fn *)opf->function; }
 end;
@@ -4000,7 +4790,7 @@ function OSSL_FUNC_kdf_derive(opf: POSSL_DISPATCH): POSSL_FUNC_kdf_derive_fn{Has
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_kdf_derive"');
 
-{Error: Line 380: Syntax Error parsing " return (OSSL_FUNC_kdf_derive_fn *)opf->function; "
+{Error: Line 464: Syntax Error parsing " return (OSSL_FUNC_kdf_derive_fn *)opf->function; "
 
  return (OSSL_FUNC_kdf_derive_fn *)opf->function; }
 end;
@@ -4009,7 +4799,7 @@ function OSSL_FUNC_kdf_gettable_params(opf: POSSL_DISPATCH): POSSL_FUNC_kdf_gett
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_kdf_gettable_params"');
 
-{Error: Line 381: Syntax Error parsing " return (OSSL_FUNC_kdf_gettable_params_fn *)opf->function; "
+{Error: Line 465: Syntax Error parsing " return (OSSL_FUNC_kdf_gettable_params_fn *)opf->function; "
 
  return (OSSL_FUNC_kdf_gettable_params_fn *)opf->function; }
 end;
@@ -4018,7 +4808,7 @@ function OSSL_FUNC_kdf_gettable_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_kdf_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_kdf_gettable_ctx_params"');
 
-{Error: Line 382: Syntax Error parsing " return (OSSL_FUNC_kdf_gettable_ctx_params_fn *)opf->function; "
+{Error: Line 466: Syntax Error parsing " return (OSSL_FUNC_kdf_gettable_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_kdf_gettable_ctx_params_fn *)opf->function; }
 end;
@@ -4027,7 +4817,7 @@ function OSSL_FUNC_kdf_settable_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_kdf_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_kdf_settable_ctx_params"');
 
-{Error: Line 384: Syntax Error parsing " return (OSSL_FUNC_kdf_settable_ctx_params_fn *)opf->function; "
+{Error: Line 468: Syntax Error parsing " return (OSSL_FUNC_kdf_settable_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_kdf_settable_ctx_params_fn *)opf->function; }
 end;
@@ -4036,7 +4826,7 @@ function OSSL_FUNC_kdf_get_params(opf: POSSL_DISPATCH): POSSL_FUNC_kdf_get_param
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_kdf_get_params"');
 
-{Error: Line 386: Syntax Error parsing " return (OSSL_FUNC_kdf_get_params_fn *)opf->function; "
+{Error: Line 470: Syntax Error parsing " return (OSSL_FUNC_kdf_get_params_fn *)opf->function; "
 
  return (OSSL_FUNC_kdf_get_params_fn *)opf->function; }
 end;
@@ -4045,7 +4835,7 @@ function OSSL_FUNC_kdf_get_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_kdf_get_c
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_kdf_get_ctx_params"');
 
-{Error: Line 387: Syntax Error parsing " return (OSSL_FUNC_kdf_get_ctx_params_fn *)opf->function; "
+{Error: Line 471: Syntax Error parsing " return (OSSL_FUNC_kdf_get_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_kdf_get_ctx_params_fn *)opf->function; }
 end;
@@ -4054,7 +4844,7 @@ function OSSL_FUNC_kdf_set_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_kdf_set_c
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_kdf_set_ctx_params"');
 
-{Error: Line 389: Syntax Error parsing " return (OSSL_FUNC_kdf_set_ctx_params_fn *)opf->function; "
+{Error: Line 473: Syntax Error parsing " return (OSSL_FUNC_kdf_set_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_kdf_set_ctx_params_fn *)opf->function; }
 end;
@@ -4063,7 +4853,7 @@ function OSSL_FUNC_rand_newctx(opf: POSSL_DISPATCH): POSSL_FUNC_rand_newctx_fn{H
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_rand_newctx"');
 
-{Error: Line 414: Syntax Error parsing " return (OSSL_FUNC_rand_newctx_fn *)opf->function; "
+{Error: Line 498: Syntax Error parsing " return (OSSL_FUNC_rand_newctx_fn *)opf->function; "
 
  return (OSSL_FUNC_rand_newctx_fn *)opf->function; }
 end;
@@ -4072,7 +4862,7 @@ function OSSL_FUNC_rand_freectx(opf: POSSL_DISPATCH): POSSL_FUNC_rand_freectx_fn
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_rand_freectx"');
 
-{Error: Line 417: Syntax Error parsing " return (OSSL_FUNC_rand_freectx_fn *)opf->function; "
+{Error: Line 501: Syntax Error parsing " return (OSSL_FUNC_rand_freectx_fn *)opf->function; "
 
  return (OSSL_FUNC_rand_freectx_fn *)opf->function; }
 end;
@@ -4081,7 +4871,7 @@ function OSSL_FUNC_rand_instantiate(opf: POSSL_DISPATCH): POSSL_FUNC_rand_instan
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_rand_instantiate"');
 
-{Error: Line 418: Syntax Error parsing " return (OSSL_FUNC_rand_instantiate_fn *)opf->function; "
+{Error: Line 502: Syntax Error parsing " return (OSSL_FUNC_rand_instantiate_fn *)opf->function; "
 
  return (OSSL_FUNC_rand_instantiate_fn *)opf->function; }
 end;
@@ -4090,7 +4880,7 @@ function OSSL_FUNC_rand_uninstantiate(opf: POSSL_DISPATCH): POSSL_FUNC_rand_unin
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_rand_uninstantiate"');
 
-{Error: Line 423: Syntax Error parsing " return (OSSL_FUNC_rand_uninstantiate_fn *)opf->function; "
+{Error: Line 507: Syntax Error parsing " return (OSSL_FUNC_rand_uninstantiate_fn *)opf->function; "
 
  return (OSSL_FUNC_rand_uninstantiate_fn *)opf->function; }
 end;
@@ -4099,7 +4889,7 @@ function OSSL_FUNC_rand_generate(opf: POSSL_DISPATCH): POSSL_FUNC_rand_generate_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_rand_generate"');
 
-{Error: Line 424: Syntax Error parsing " return (OSSL_FUNC_rand_generate_fn *)opf->function; "
+{Error: Line 508: Syntax Error parsing " return (OSSL_FUNC_rand_generate_fn *)opf->function; "
 
  return (OSSL_FUNC_rand_generate_fn *)opf->function; }
 end;
@@ -4108,7 +4898,7 @@ function OSSL_FUNC_rand_reseed(opf: POSSL_DISPATCH): POSSL_FUNC_rand_reseed_fn{H
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_rand_reseed"');
 
-{Error: Line 428: Syntax Error parsing " return (OSSL_FUNC_rand_reseed_fn *)opf->function; "
+{Error: Line 512: Syntax Error parsing " return (OSSL_FUNC_rand_reseed_fn *)opf->function; "
 
  return (OSSL_FUNC_rand_reseed_fn *)opf->function; }
 end;
@@ -4117,7 +4907,7 @@ function OSSL_FUNC_rand_nonce(opf: POSSL_DISPATCH): POSSL_FUNC_rand_nonce_fn{Has
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_rand_nonce"');
 
-{Error: Line 432: Syntax Error parsing " return (OSSL_FUNC_rand_nonce_fn *)opf->function; "
+{Error: Line 516: Syntax Error parsing " return (OSSL_FUNC_rand_nonce_fn *)opf->function; "
 
  return (OSSL_FUNC_rand_nonce_fn *)opf->function; }
 end;
@@ -4126,7 +4916,7 @@ function OSSL_FUNC_rand_enable_locking(opf: POSSL_DISPATCH): POSSL_FUNC_rand_ena
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_rand_enable_locking"');
 
-{Error: Line 435: Syntax Error parsing " return (OSSL_FUNC_rand_enable_locking_fn *)opf->function; "
+{Error: Line 519: Syntax Error parsing " return (OSSL_FUNC_rand_enable_locking_fn *)opf->function; "
 
  return (OSSL_FUNC_rand_enable_locking_fn *)opf->function; }
 end;
@@ -4135,7 +4925,7 @@ function OSSL_FUNC_rand_lock(opf: POSSL_DISPATCH): POSSL_FUNC_rand_lock_fn{Has C
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_rand_lock"');
 
-{Error: Line 436: Syntax Error parsing " return (OSSL_FUNC_rand_lock_fn *)opf->function; "
+{Error: Line 520: Syntax Error parsing " return (OSSL_FUNC_rand_lock_fn *)opf->function; "
 
  return (OSSL_FUNC_rand_lock_fn *)opf->function; }
 end;
@@ -4144,7 +4934,7 @@ function OSSL_FUNC_rand_unlock(opf: POSSL_DISPATCH): POSSL_FUNC_rand_unlock_fn{H
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_rand_unlock"');
 
-{Error: Line 437: Syntax Error parsing " return (OSSL_FUNC_rand_unlock_fn *)opf->function; "
+{Error: Line 521: Syntax Error parsing " return (OSSL_FUNC_rand_unlock_fn *)opf->function; "
 
  return (OSSL_FUNC_rand_unlock_fn *)opf->function; }
 end;
@@ -4153,7 +4943,7 @@ function OSSL_FUNC_rand_gettable_params(opf: POSSL_DISPATCH): POSSL_FUNC_rand_ge
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_rand_gettable_params"');
 
-{Error: Line 438: Syntax Error parsing " return (OSSL_FUNC_rand_gettable_params_fn *)opf->function; "
+{Error: Line 522: Syntax Error parsing " return (OSSL_FUNC_rand_gettable_params_fn *)opf->function; "
 
  return (OSSL_FUNC_rand_gettable_params_fn *)opf->function; }
 end;
@@ -4162,7 +4952,7 @@ function OSSL_FUNC_rand_gettable_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_ran
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_rand_gettable_ctx_params"');
 
-{Error: Line 439: Syntax Error parsing " return (OSSL_FUNC_rand_gettable_ctx_params_fn *)opf->function; "
+{Error: Line 523: Syntax Error parsing " return (OSSL_FUNC_rand_gettable_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_rand_gettable_ctx_params_fn *)opf->function; }
 end;
@@ -4171,7 +4961,7 @@ function OSSL_FUNC_rand_settable_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_ran
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_rand_settable_ctx_params"');
 
-{Error: Line 441: Syntax Error parsing " return (OSSL_FUNC_rand_settable_ctx_params_fn *)opf->function; "
+{Error: Line 525: Syntax Error parsing " return (OSSL_FUNC_rand_settable_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_rand_settable_ctx_params_fn *)opf->function; }
 end;
@@ -4180,7 +4970,7 @@ function OSSL_FUNC_rand_get_params(opf: POSSL_DISPATCH): POSSL_FUNC_rand_get_par
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_rand_get_params"');
 
-{Error: Line 443: Syntax Error parsing " return (OSSL_FUNC_rand_get_params_fn *)opf->function; "
+{Error: Line 527: Syntax Error parsing " return (OSSL_FUNC_rand_get_params_fn *)opf->function; "
 
  return (OSSL_FUNC_rand_get_params_fn *)opf->function; }
 end;
@@ -4189,7 +4979,7 @@ function OSSL_FUNC_rand_get_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_rand_get
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_rand_get_ctx_params"');
 
-{Error: Line 444: Syntax Error parsing " return (OSSL_FUNC_rand_get_ctx_params_fn *)opf->function; "
+{Error: Line 528: Syntax Error parsing " return (OSSL_FUNC_rand_get_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_rand_get_ctx_params_fn *)opf->function; }
 end;
@@ -4198,7 +4988,7 @@ function OSSL_FUNC_rand_set_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_rand_set
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_rand_set_ctx_params"');
 
-{Error: Line 446: Syntax Error parsing " return (OSSL_FUNC_rand_set_ctx_params_fn *)opf->function; "
+{Error: Line 530: Syntax Error parsing " return (OSSL_FUNC_rand_set_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_rand_set_ctx_params_fn *)opf->function; }
 end;
@@ -4207,7 +4997,7 @@ function OSSL_FUNC_rand_set_callbacks(opf: POSSL_DISPATCH): POSSL_FUNC_rand_set_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_rand_set_callbacks"');
 
-{Error: Line 448: Syntax Error parsing " return (OSSL_FUNC_rand_set_callbacks_fn *)opf->function; "
+{Error: Line 532: Syntax Error parsing " return (OSSL_FUNC_rand_set_callbacks_fn *)opf->function; "
 
  return (OSSL_FUNC_rand_set_callbacks_fn *)opf->function; }
 end;
@@ -4216,7 +5006,7 @@ function OSSL_FUNC_rand_verify_zeroization(opf: POSSL_DISPATCH): POSSL_FUNC_rand
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_rand_verify_zeroization"');
 
-{Error: Line 453: Syntax Error parsing " return (OSSL_FUNC_rand_verify_zeroization_fn *)opf->function; "
+{Error: Line 537: Syntax Error parsing " return (OSSL_FUNC_rand_verify_zeroization_fn *)opf->function; "
 
  return (OSSL_FUNC_rand_verify_zeroization_fn *)opf->function; }
 end;
@@ -4225,7 +5015,7 @@ function OSSL_FUNC_rand_get_seed(opf: POSSL_DISPATCH): POSSL_FUNC_rand_get_seed_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_rand_get_seed"');
 
-{Error: Line 455: Syntax Error parsing " return (OSSL_FUNC_rand_get_seed_fn *)opf->function; "
+{Error: Line 539: Syntax Error parsing " return (OSSL_FUNC_rand_get_seed_fn *)opf->function; "
 
  return (OSSL_FUNC_rand_get_seed_fn *)opf->function; }
 end;
@@ -4234,7 +5024,7 @@ function OSSL_FUNC_rand_clear_seed(opf: POSSL_DISPATCH): POSSL_FUNC_rand_clear_s
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_rand_clear_seed"');
 
-{Error: Line 460: Syntax Error parsing " return (OSSL_FUNC_rand_clear_seed_fn *)opf->function; "
+{Error: Line 544: Syntax Error parsing " return (OSSL_FUNC_rand_clear_seed_fn *)opf->function; "
 
  return (OSSL_FUNC_rand_clear_seed_fn *)opf->function; }
 end;
@@ -4243,7 +5033,7 @@ function OSSL_FUNC_keymgmt_new(opf: POSSL_DISPATCH): POSSL_FUNC_keymgmt_new_fn{H
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keymgmt_new"');
 
-{Error: Line 518: Syntax Error parsing " return (OSSL_FUNC_keymgmt_new_fn *)opf->function; "
+{Error: Line 602: Syntax Error parsing " return (OSSL_FUNC_keymgmt_new_fn *)opf->function; "
 
  return (OSSL_FUNC_keymgmt_new_fn *)opf->function; }
 end;
@@ -4252,7 +5042,7 @@ function OSSL_FUNC_keymgmt_gen_init(opf: POSSL_DISPATCH): POSSL_FUNC_keymgmt_gen
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keymgmt_gen_init"');
 
-{Error: Line 527: Syntax Error parsing " return (OSSL_FUNC_keymgmt_gen_init_fn *)opf->function; "
+{Error: Line 614: Syntax Error parsing " return (OSSL_FUNC_keymgmt_gen_init_fn *)opf->function; "
 
  return (OSSL_FUNC_keymgmt_gen_init_fn *)opf->function; }
 end;
@@ -4261,7 +5051,7 @@ function OSSL_FUNC_keymgmt_gen_set_template(opf: POSSL_DISPATCH): POSSL_FUNC_key
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keymgmt_gen_set_template"');
 
-{Error: Line 529: Syntax Error parsing " return (OSSL_FUNC_keymgmt_gen_set_template_fn *)opf->function; "
+{Error: Line 616: Syntax Error parsing " return (OSSL_FUNC_keymgmt_gen_set_template_fn *)opf->function; "
 
  return (OSSL_FUNC_keymgmt_gen_set_template_fn *)opf->function; }
 end;
@@ -4270,7 +5060,7 @@ function OSSL_FUNC_keymgmt_gen_set_params(opf: POSSL_DISPATCH): POSSL_FUNC_keymg
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keymgmt_gen_set_params"');
 
-{Error: Line 531: Syntax Error parsing " return (OSSL_FUNC_keymgmt_gen_set_params_fn *)opf->function; "
+{Error: Line 618: Syntax Error parsing " return (OSSL_FUNC_keymgmt_gen_set_params_fn *)opf->function; "
 
  return (OSSL_FUNC_keymgmt_gen_set_params_fn *)opf->function; }
 end;
@@ -4279,16 +5069,34 @@ function OSSL_FUNC_keymgmt_gen_settable_params(opf: POSSL_DISPATCH): POSSL_FUNC_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keymgmt_gen_settable_params"');
 
-{Error: Line 533: Syntax Error parsing " return (OSSL_FUNC_keymgmt_gen_settable_params_fn *)opf->function; "
+{Error: Line 620: Syntax Error parsing " return (OSSL_FUNC_keymgmt_gen_settable_params_fn *)opf->function; "
 
  return (OSSL_FUNC_keymgmt_gen_settable_params_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_keymgmt_gen_get_params(opf: POSSL_DISPATCH): POSSL_FUNC_keymgmt_gen_get_params_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keymgmt_gen_get_params"');
+
+{Error: Line 623: Syntax Error parsing " return (OSSL_FUNC_keymgmt_gen_get_params_fn *)opf->function; "
+
+ return (OSSL_FUNC_keymgmt_gen_get_params_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_keymgmt_gen_gettable_params(opf: POSSL_DISPATCH): POSSL_FUNC_keymgmt_gen_gettable_params_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keymgmt_gen_gettable_params"');
+
+{Error: Line 625: Syntax Error parsing " return (OSSL_FUNC_keymgmt_gen_gettable_params_fn *)opf->function; "
+
+ return (OSSL_FUNC_keymgmt_gen_gettable_params_fn *)opf->function; }
 end;
 
 function OSSL_FUNC_keymgmt_gen(opf: POSSL_DISPATCH): POSSL_FUNC_keymgmt_gen_fn{Has C Attribute: unused}; inline;
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keymgmt_gen"');
 
-{Error: Line 536: Syntax Error parsing " return (OSSL_FUNC_keymgmt_gen_fn *)opf->function; "
+{Error: Line 627: Syntax Error parsing " return (OSSL_FUNC_keymgmt_gen_fn *)opf->function; "
 
  return (OSSL_FUNC_keymgmt_gen_fn *)opf->function; }
 end;
@@ -4297,7 +5105,7 @@ function OSSL_FUNC_keymgmt_gen_cleanup(opf: POSSL_DISPATCH): POSSL_FUNC_keymgmt_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keymgmt_gen_cleanup"');
 
-{Error: Line 538: Syntax Error parsing " return (OSSL_FUNC_keymgmt_gen_cleanup_fn *)opf->function; "
+{Error: Line 629: Syntax Error parsing " return (OSSL_FUNC_keymgmt_gen_cleanup_fn *)opf->function; "
 
  return (OSSL_FUNC_keymgmt_gen_cleanup_fn *)opf->function; }
 end;
@@ -4306,7 +5114,7 @@ function OSSL_FUNC_keymgmt_load(opf: POSSL_DISPATCH): POSSL_FUNC_keymgmt_load_fn
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keymgmt_load"');
 
-{Error: Line 542: Syntax Error parsing " return (OSSL_FUNC_keymgmt_load_fn *)opf->function; "
+{Error: Line 633: Syntax Error parsing " return (OSSL_FUNC_keymgmt_load_fn *)opf->function; "
 
  return (OSSL_FUNC_keymgmt_load_fn *)opf->function; }
 end;
@@ -4315,7 +5123,7 @@ function OSSL_FUNC_keymgmt_free(opf: POSSL_DISPATCH): POSSL_FUNC_keymgmt_free_fn
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keymgmt_free"');
 
-{Error: Line 547: Syntax Error parsing " return (OSSL_FUNC_keymgmt_free_fn *)opf->function; "
+{Error: Line 638: Syntax Error parsing " return (OSSL_FUNC_keymgmt_free_fn *)opf->function; "
 
  return (OSSL_FUNC_keymgmt_free_fn *)opf->function; }
 end;
@@ -4324,7 +5132,7 @@ function OSSL_FUNC_keymgmt_get_params(opf: POSSL_DISPATCH): POSSL_FUNC_keymgmt_g
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keymgmt_get_params"');
 
-{Error: Line 552: Syntax Error parsing " return (OSSL_FUNC_keymgmt_get_params_fn *)opf->function; "
+{Error: Line 643: Syntax Error parsing " return (OSSL_FUNC_keymgmt_get_params_fn *)opf->function; "
 
  return (OSSL_FUNC_keymgmt_get_params_fn *)opf->function; }
 end;
@@ -4333,7 +5141,7 @@ function OSSL_FUNC_keymgmt_gettable_params(opf: POSSL_DISPATCH): POSSL_FUNC_keym
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keymgmt_gettable_params"');
 
-{Error: Line 554: Syntax Error parsing " return (OSSL_FUNC_keymgmt_gettable_params_fn *)opf->function; "
+{Error: Line 645: Syntax Error parsing " return (OSSL_FUNC_keymgmt_gettable_params_fn *)opf->function; "
 
  return (OSSL_FUNC_keymgmt_gettable_params_fn *)opf->function; }
 end;
@@ -4342,7 +5150,7 @@ function OSSL_FUNC_keymgmt_set_params(opf: POSSL_DISPATCH): POSSL_FUNC_keymgmt_s
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keymgmt_set_params"');
 
-{Error: Line 559: Syntax Error parsing " return (OSSL_FUNC_keymgmt_set_params_fn *)opf->function; "
+{Error: Line 650: Syntax Error parsing " return (OSSL_FUNC_keymgmt_set_params_fn *)opf->function; "
 
  return (OSSL_FUNC_keymgmt_set_params_fn *)opf->function; }
 end;
@@ -4351,7 +5159,7 @@ function OSSL_FUNC_keymgmt_settable_params(opf: POSSL_DISPATCH): POSSL_FUNC_keym
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keymgmt_settable_params"');
 
-{Error: Line 561: Syntax Error parsing " return (OSSL_FUNC_keymgmt_settable_params_fn *)opf->function; "
+{Error: Line 652: Syntax Error parsing " return (OSSL_FUNC_keymgmt_settable_params_fn *)opf->function; "
 
  return (OSSL_FUNC_keymgmt_settable_params_fn *)opf->function; }
 end;
@@ -4360,7 +5168,7 @@ function OSSL_FUNC_keymgmt_query_operation_name(opf: POSSL_DISPATCH): POSSL_FUNC
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keymgmt_query_operation_name"');
 
-{Error: Line 566: Syntax Error parsing " return (OSSL_FUNC_keymgmt_query_operation_name_fn *)opf->function; "
+{Error: Line 657: Syntax Error parsing " return (OSSL_FUNC_keymgmt_query_operation_name_fn *)opf->function; "
 
  return (OSSL_FUNC_keymgmt_query_operation_name_fn *)opf->function; }
 end;
@@ -4369,7 +5177,7 @@ function OSSL_FUNC_keymgmt_has(opf: POSSL_DISPATCH): POSSL_FUNC_keymgmt_has_fn{H
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keymgmt_has"');
 
-{Error: Line 571: Syntax Error parsing " return (OSSL_FUNC_keymgmt_has_fn *)opf->function; "
+{Error: Line 662: Syntax Error parsing " return (OSSL_FUNC_keymgmt_has_fn *)opf->function; "
 
  return (OSSL_FUNC_keymgmt_has_fn *)opf->function; }
 end;
@@ -4378,7 +5186,7 @@ function OSSL_FUNC_keymgmt_validate(opf: POSSL_DISPATCH): POSSL_FUNC_keymgmt_val
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keymgmt_validate"');
 
-{Error: Line 575: Syntax Error parsing " return (OSSL_FUNC_keymgmt_validate_fn *)opf->function; "
+{Error: Line 666: Syntax Error parsing " return (OSSL_FUNC_keymgmt_validate_fn *)opf->function; "
 
  return (OSSL_FUNC_keymgmt_validate_fn *)opf->function; }
 end;
@@ -4387,7 +5195,7 @@ function OSSL_FUNC_keymgmt_match(opf: POSSL_DISPATCH): POSSL_FUNC_keymgmt_match_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keymgmt_match"');
 
-{Error: Line 579: Syntax Error parsing " return (OSSL_FUNC_keymgmt_match_fn *)opf->function; "
+{Error: Line 670: Syntax Error parsing " return (OSSL_FUNC_keymgmt_match_fn *)opf->function; "
 
  return (OSSL_FUNC_keymgmt_match_fn *)opf->function; }
 end;
@@ -4396,7 +5204,7 @@ function OSSL_FUNC_keymgmt_import(opf: POSSL_DISPATCH): POSSL_FUNC_keymgmt_impor
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keymgmt_import"');
 
-{Error: Line 588: Syntax Error parsing " return (OSSL_FUNC_keymgmt_import_fn *)opf->function; "
+{Error: Line 679: Syntax Error parsing " return (OSSL_FUNC_keymgmt_import_fn *)opf->function; "
 
  return (OSSL_FUNC_keymgmt_import_fn *)opf->function; }
 end;
@@ -4405,7 +5213,7 @@ function OSSL_FUNC_keymgmt_import_types(opf: POSSL_DISPATCH): POSSL_FUNC_keymgmt
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keymgmt_import_types"');
 
-{Error: Line 590: Syntax Error parsing " return (OSSL_FUNC_keymgmt_import_types_fn *)opf->function; "
+{Error: Line 681: Syntax Error parsing " return (OSSL_FUNC_keymgmt_import_types_fn *)opf->function; "
 
  return (OSSL_FUNC_keymgmt_import_types_fn *)opf->function; }
 end;
@@ -4414,7 +5222,7 @@ function OSSL_FUNC_keymgmt_export(opf: POSSL_DISPATCH): POSSL_FUNC_keymgmt_expor
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keymgmt_export"');
 
-{Error: Line 592: Syntax Error parsing " return (OSSL_FUNC_keymgmt_export_fn *)opf->function; "
+{Error: Line 683: Syntax Error parsing " return (OSSL_FUNC_keymgmt_export_fn *)opf->function; "
 
  return (OSSL_FUNC_keymgmt_export_fn *)opf->function; }
 end;
@@ -4423,7 +5231,7 @@ function OSSL_FUNC_keymgmt_export_types(opf: POSSL_DISPATCH): POSSL_FUNC_keymgmt
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keymgmt_export_types"');
 
-{Error: Line 595: Syntax Error parsing " return (OSSL_FUNC_keymgmt_export_types_fn *)opf->function; "
+{Error: Line 686: Syntax Error parsing " return (OSSL_FUNC_keymgmt_export_types_fn *)opf->function; "
 
  return (OSSL_FUNC_keymgmt_export_types_fn *)opf->function; }
 end;
@@ -4432,16 +5240,34 @@ function OSSL_FUNC_keymgmt_dup(opf: POSSL_DISPATCH): POSSL_FUNC_keymgmt_dup_fn{H
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keymgmt_dup"');
 
-{Error: Line 600: Syntax Error parsing " return (OSSL_FUNC_keymgmt_dup_fn *)opf->function; "
+{Error: Line 691: Syntax Error parsing " return (OSSL_FUNC_keymgmt_dup_fn *)opf->function; "
 
  return (OSSL_FUNC_keymgmt_dup_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_keymgmt_import_types_ex(opf: POSSL_DISPATCH): POSSL_FUNC_keymgmt_import_types_ex_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keymgmt_import_types_ex"');
+
+{Error: Line 697: Syntax Error parsing " return (OSSL_FUNC_keymgmt_import_types_ex_fn *)opf->function; "
+
+ return (OSSL_FUNC_keymgmt_import_types_ex_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_keymgmt_export_types_ex(opf: POSSL_DISPATCH): POSSL_FUNC_keymgmt_export_types_ex_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keymgmt_export_types_ex"');
+
+{Error: Line 699: Syntax Error parsing " return (OSSL_FUNC_keymgmt_export_types_ex_fn *)opf->function; "
+
+ return (OSSL_FUNC_keymgmt_export_types_ex_fn *)opf->function; }
 end;
 
 function OSSL_FUNC_keyexch_newctx(opf: POSSL_DISPATCH): POSSL_FUNC_keyexch_newctx_fn{Has C Attribute: unused}; inline;
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keyexch_newctx"');
 
-{Error: Line 616: Syntax Error parsing " return (OSSL_FUNC_keyexch_newctx_fn *)opf->function; "
+{Error: Line 715: Syntax Error parsing " return (OSSL_FUNC_keyexch_newctx_fn *)opf->function; "
 
  return (OSSL_FUNC_keyexch_newctx_fn *)opf->function; }
 end;
@@ -4450,7 +5276,7 @@ function OSSL_FUNC_keyexch_init(opf: POSSL_DISPATCH): POSSL_FUNC_keyexch_init_fn
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keyexch_init"');
 
-{Error: Line 617: Syntax Error parsing " return (OSSL_FUNC_keyexch_init_fn *)opf->function; "
+{Error: Line 716: Syntax Error parsing " return (OSSL_FUNC_keyexch_init_fn *)opf->function; "
 
  return (OSSL_FUNC_keyexch_init_fn *)opf->function; }
 end;
@@ -4459,7 +5285,7 @@ function OSSL_FUNC_keyexch_derive(opf: POSSL_DISPATCH): POSSL_FUNC_keyexch_deriv
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keyexch_derive"');
 
-{Error: Line 618: Syntax Error parsing " return (OSSL_FUNC_keyexch_derive_fn *)opf->function; "
+{Error: Line 717: Syntax Error parsing " return (OSSL_FUNC_keyexch_derive_fn *)opf->function; "
 
  return (OSSL_FUNC_keyexch_derive_fn *)opf->function; }
 end;
@@ -4468,7 +5294,7 @@ function OSSL_FUNC_keyexch_set_peer(opf: POSSL_DISPATCH): POSSL_FUNC_keyexch_set
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keyexch_set_peer"');
 
-{Error: Line 619: Syntax Error parsing " return (OSSL_FUNC_keyexch_set_peer_fn *)opf->function; "
+{Error: Line 718: Syntax Error parsing " return (OSSL_FUNC_keyexch_set_peer_fn *)opf->function; "
 
  return (OSSL_FUNC_keyexch_set_peer_fn *)opf->function; }
 end;
@@ -4477,7 +5303,7 @@ function OSSL_FUNC_keyexch_freectx(opf: POSSL_DISPATCH): POSSL_FUNC_keyexch_free
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keyexch_freectx"');
 
-{Error: Line 620: Syntax Error parsing " return (OSSL_FUNC_keyexch_freectx_fn *)opf->function; "
+{Error: Line 719: Syntax Error parsing " return (OSSL_FUNC_keyexch_freectx_fn *)opf->function; "
 
  return (OSSL_FUNC_keyexch_freectx_fn *)opf->function; }
 end;
@@ -4486,7 +5312,7 @@ function OSSL_FUNC_keyexch_dupctx(opf: POSSL_DISPATCH): POSSL_FUNC_keyexch_dupct
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keyexch_dupctx"');
 
-{Error: Line 621: Syntax Error parsing " return (OSSL_FUNC_keyexch_dupctx_fn *)opf->function; "
+{Error: Line 720: Syntax Error parsing " return (OSSL_FUNC_keyexch_dupctx_fn *)opf->function; "
 
  return (OSSL_FUNC_keyexch_dupctx_fn *)opf->function; }
 end;
@@ -4495,7 +5321,7 @@ function OSSL_FUNC_keyexch_set_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_keyex
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keyexch_set_ctx_params"');
 
-{Error: Line 622: Syntax Error parsing " return (OSSL_FUNC_keyexch_set_ctx_params_fn *)opf->function; "
+{Error: Line 721: Syntax Error parsing " return (OSSL_FUNC_keyexch_set_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_keyexch_set_ctx_params_fn *)opf->function; }
 end;
@@ -4504,7 +5330,7 @@ function OSSL_FUNC_keyexch_settable_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keyexch_settable_ctx_params"');
 
-{Error: Line 623: Syntax Error parsing " return (OSSL_FUNC_keyexch_settable_ctx_params_fn *)opf->function; "
+{Error: Line 722: Syntax Error parsing " return (OSSL_FUNC_keyexch_settable_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_keyexch_settable_ctx_params_fn *)opf->function; }
 end;
@@ -4513,7 +5339,7 @@ function OSSL_FUNC_keyexch_get_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_keyex
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keyexch_get_ctx_params"');
 
-{Error: Line 625: Syntax Error parsing " return (OSSL_FUNC_keyexch_get_ctx_params_fn *)opf->function; "
+{Error: Line 724: Syntax Error parsing " return (OSSL_FUNC_keyexch_get_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_keyexch_get_ctx_params_fn *)opf->function; }
 end;
@@ -4522,7 +5348,7 @@ function OSSL_FUNC_keyexch_gettable_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_keyexch_gettable_ctx_params"');
 
-{Error: Line 626: Syntax Error parsing " return (OSSL_FUNC_keyexch_gettable_ctx_params_fn *)opf->function; "
+{Error: Line 725: Syntax Error parsing " return (OSSL_FUNC_keyexch_gettable_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_keyexch_gettable_ctx_params_fn *)opf->function; }
 end;
@@ -4531,7 +5357,7 @@ function OSSL_FUNC_signature_newctx(opf: POSSL_DISPATCH): POSSL_FUNC_signature_n
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_signature_newctx"');
 
-{Error: Line 657: Syntax Error parsing " return (OSSL_FUNC_signature_newctx_fn *)opf->function; "
+{Error: Line 763: Syntax Error parsing " return (OSSL_FUNC_signature_newctx_fn *)opf->function; "
 
  return (OSSL_FUNC_signature_newctx_fn *)opf->function; }
 end;
@@ -4540,7 +5366,7 @@ function OSSL_FUNC_signature_sign_init(opf: POSSL_DISPATCH): POSSL_FUNC_signatur
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_signature_sign_init"');
 
-{Error: Line 658: Syntax Error parsing " return (OSSL_FUNC_signature_sign_init_fn *)opf->function; "
+{Error: Line 764: Syntax Error parsing " return (OSSL_FUNC_signature_sign_init_fn *)opf->function; "
 
  return (OSSL_FUNC_signature_sign_init_fn *)opf->function; }
 end;
@@ -4549,16 +5375,43 @@ function OSSL_FUNC_signature_sign(opf: POSSL_DISPATCH): POSSL_FUNC_signature_sig
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_signature_sign"');
 
-{Error: Line 659: Syntax Error parsing " return (OSSL_FUNC_signature_sign_fn *)opf->function; "
+{Error: Line 765: Syntax Error parsing " return (OSSL_FUNC_signature_sign_fn *)opf->function; "
 
  return (OSSL_FUNC_signature_sign_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_signature_sign_message_init(opf: POSSL_DISPATCH): POSSL_FUNC_signature_sign_message_init_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_signature_sign_message_init"');
+
+{Error: Line 766: Syntax Error parsing " return (OSSL_FUNC_signature_sign_message_init_fn *)opf->function; "
+
+ return (OSSL_FUNC_signature_sign_message_init_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_signature_sign_message_update(opf: POSSL_DISPATCH): POSSL_FUNC_signature_sign_message_update_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_signature_sign_message_update"');
+
+{Error: Line 768: Syntax Error parsing " return (OSSL_FUNC_signature_sign_message_update_fn *)opf->function; "
+
+ return (OSSL_FUNC_signature_sign_message_update_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_signature_sign_message_final(opf: POSSL_DISPATCH): POSSL_FUNC_signature_sign_message_final_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_signature_sign_message_final"');
+
+{Error: Line 770: Syntax Error parsing " return (OSSL_FUNC_signature_sign_message_final_fn *)opf->function; "
+
+ return (OSSL_FUNC_signature_sign_message_final_fn *)opf->function; }
 end;
 
 function OSSL_FUNC_signature_verify_init(opf: POSSL_DISPATCH): POSSL_FUNC_signature_verify_init_fn{Has C Attribute: unused}; inline;
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_signature_verify_init"');
 
-{Error: Line 660: Syntax Error parsing " return (OSSL_FUNC_signature_verify_init_fn *)opf->function; "
+{Error: Line 773: Syntax Error parsing " return (OSSL_FUNC_signature_verify_init_fn *)opf->function; "
 
  return (OSSL_FUNC_signature_verify_init_fn *)opf->function; }
 end;
@@ -4567,16 +5420,43 @@ function OSSL_FUNC_signature_verify(opf: POSSL_DISPATCH): POSSL_FUNC_signature_v
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_signature_verify"');
 
-{Error: Line 661: Syntax Error parsing " return (OSSL_FUNC_signature_verify_fn *)opf->function; "
+{Error: Line 774: Syntax Error parsing " return (OSSL_FUNC_signature_verify_fn *)opf->function; "
 
  return (OSSL_FUNC_signature_verify_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_signature_verify_message_init(opf: POSSL_DISPATCH): POSSL_FUNC_signature_verify_message_init_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_signature_verify_message_init"');
+
+{Error: Line 775: Syntax Error parsing " return (OSSL_FUNC_signature_verify_message_init_fn *)opf->function; "
+
+ return (OSSL_FUNC_signature_verify_message_init_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_signature_verify_message_update(opf: POSSL_DISPATCH): POSSL_FUNC_signature_verify_message_update_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_signature_verify_message_update"');
+
+{Error: Line 777: Syntax Error parsing " return (OSSL_FUNC_signature_verify_message_update_fn *)opf->function; "
+
+ return (OSSL_FUNC_signature_verify_message_update_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_signature_verify_message_final(opf: POSSL_DISPATCH): POSSL_FUNC_signature_verify_message_final_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_signature_verify_message_final"');
+
+{Error: Line 783: Syntax Error parsing " return (OSSL_FUNC_signature_verify_message_final_fn *)opf->function; "
+
+ return (OSSL_FUNC_signature_verify_message_final_fn *)opf->function; }
 end;
 
 function OSSL_FUNC_signature_verify_recover_init(opf: POSSL_DISPATCH): POSSL_FUNC_signature_verify_recover_init_fn{Has C Attribute: unused}; inline;
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_signature_verify_recover_init"');
 
-{Error: Line 662: Syntax Error parsing " return (OSSL_FUNC_signature_verify_recover_init_fn *)opf->function; "
+{Error: Line 784: Syntax Error parsing " return (OSSL_FUNC_signature_verify_recover_init_fn *)opf->function; "
 
  return (OSSL_FUNC_signature_verify_recover_init_fn *)opf->function; }
 end;
@@ -4585,7 +5465,7 @@ function OSSL_FUNC_signature_verify_recover(opf: POSSL_DISPATCH): POSSL_FUNC_sig
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_signature_verify_recover"');
 
-{Error: Line 664: Syntax Error parsing " return (OSSL_FUNC_signature_verify_recover_fn *)opf->function; "
+{Error: Line 786: Syntax Error parsing " return (OSSL_FUNC_signature_verify_recover_fn *)opf->function; "
 
  return (OSSL_FUNC_signature_verify_recover_fn *)opf->function; }
 end;
@@ -4594,7 +5474,7 @@ function OSSL_FUNC_signature_digest_sign_init(opf: POSSL_DISPATCH): POSSL_FUNC_s
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_signature_digest_sign_init"');
 
-{Error: Line 667: Syntax Error parsing " return (OSSL_FUNC_signature_digest_sign_init_fn *)opf->function; "
+{Error: Line 789: Syntax Error parsing " return (OSSL_FUNC_signature_digest_sign_init_fn *)opf->function; "
 
  return (OSSL_FUNC_signature_digest_sign_init_fn *)opf->function; }
 end;
@@ -4603,7 +5483,7 @@ function OSSL_FUNC_signature_digest_sign_update(opf: POSSL_DISPATCH): POSSL_FUNC
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_signature_digest_sign_update"');
 
-{Error: Line 670: Syntax Error parsing " return (OSSL_FUNC_signature_digest_sign_update_fn *)opf->function; "
+{Error: Line 792: Syntax Error parsing " return (OSSL_FUNC_signature_digest_sign_update_fn *)opf->function; "
 
  return (OSSL_FUNC_signature_digest_sign_update_fn *)opf->function; }
 end;
@@ -4612,7 +5492,7 @@ function OSSL_FUNC_signature_digest_sign_final(opf: POSSL_DISPATCH): POSSL_FUNC_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_signature_digest_sign_final"');
 
-{Error: Line 672: Syntax Error parsing " return (OSSL_FUNC_signature_digest_sign_final_fn *)opf->function; "
+{Error: Line 794: Syntax Error parsing " return (OSSL_FUNC_signature_digest_sign_final_fn *)opf->function; "
 
  return (OSSL_FUNC_signature_digest_sign_final_fn *)opf->function; }
 end;
@@ -4621,7 +5501,7 @@ function OSSL_FUNC_signature_digest_sign(opf: POSSL_DISPATCH): POSSL_FUNC_signat
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_signature_digest_sign"');
 
-{Error: Line 675: Syntax Error parsing " return (OSSL_FUNC_signature_digest_sign_fn *)opf->function; "
+{Error: Line 797: Syntax Error parsing " return (OSSL_FUNC_signature_digest_sign_fn *)opf->function; "
 
  return (OSSL_FUNC_signature_digest_sign_fn *)opf->function; }
 end;
@@ -4630,7 +5510,7 @@ function OSSL_FUNC_signature_digest_verify_init(opf: POSSL_DISPATCH): POSSL_FUNC
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_signature_digest_verify_init"');
 
-{Error: Line 678: Syntax Error parsing " return (OSSL_FUNC_signature_digest_verify_init_fn *)opf->function; "
+{Error: Line 800: Syntax Error parsing " return (OSSL_FUNC_signature_digest_verify_init_fn *)opf->function; "
 
  return (OSSL_FUNC_signature_digest_verify_init_fn *)opf->function; }
 end;
@@ -4639,7 +5519,7 @@ function OSSL_FUNC_signature_digest_verify_update(opf: POSSL_DISPATCH): POSSL_FU
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_signature_digest_verify_update"');
 
-{Error: Line 681: Syntax Error parsing " return (OSSL_FUNC_signature_digest_verify_update_fn *)opf->function; "
+{Error: Line 803: Syntax Error parsing " return (OSSL_FUNC_signature_digest_verify_update_fn *)opf->function; "
 
  return (OSSL_FUNC_signature_digest_verify_update_fn *)opf->function; }
 end;
@@ -4648,7 +5528,7 @@ function OSSL_FUNC_signature_digest_verify_final(opf: POSSL_DISPATCH): POSSL_FUN
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_signature_digest_verify_final"');
 
-{Error: Line 683: Syntax Error parsing " return (OSSL_FUNC_signature_digest_verify_final_fn *)opf->function; "
+{Error: Line 805: Syntax Error parsing " return (OSSL_FUNC_signature_digest_verify_final_fn *)opf->function; "
 
  return (OSSL_FUNC_signature_digest_verify_final_fn *)opf->function; }
 end;
@@ -4657,7 +5537,7 @@ function OSSL_FUNC_signature_digest_verify(opf: POSSL_DISPATCH): POSSL_FUNC_sign
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_signature_digest_verify"');
 
-{Error: Line 685: Syntax Error parsing " return (OSSL_FUNC_signature_digest_verify_fn *)opf->function; "
+{Error: Line 807: Syntax Error parsing " return (OSSL_FUNC_signature_digest_verify_fn *)opf->function; "
 
  return (OSSL_FUNC_signature_digest_verify_fn *)opf->function; }
 end;
@@ -4666,7 +5546,7 @@ function OSSL_FUNC_signature_freectx(opf: POSSL_DISPATCH): POSSL_FUNC_signature_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_signature_freectx"');
 
-{Error: Line 688: Syntax Error parsing " return (OSSL_FUNC_signature_freectx_fn *)opf->function; "
+{Error: Line 810: Syntax Error parsing " return (OSSL_FUNC_signature_freectx_fn *)opf->function; "
 
  return (OSSL_FUNC_signature_freectx_fn *)opf->function; }
 end;
@@ -4675,7 +5555,7 @@ function OSSL_FUNC_signature_dupctx(opf: POSSL_DISPATCH): POSSL_FUNC_signature_d
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_signature_dupctx"');
 
-{Error: Line 689: Syntax Error parsing " return (OSSL_FUNC_signature_dupctx_fn *)opf->function; "
+{Error: Line 811: Syntax Error parsing " return (OSSL_FUNC_signature_dupctx_fn *)opf->function; "
 
  return (OSSL_FUNC_signature_dupctx_fn *)opf->function; }
 end;
@@ -4684,7 +5564,7 @@ function OSSL_FUNC_signature_get_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_sig
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_signature_get_ctx_params"');
 
-{Error: Line 690: Syntax Error parsing " return (OSSL_FUNC_signature_get_ctx_params_fn *)opf->function; "
+{Error: Line 812: Syntax Error parsing " return (OSSL_FUNC_signature_get_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_signature_get_ctx_params_fn *)opf->function; }
 end;
@@ -4693,7 +5573,7 @@ function OSSL_FUNC_signature_gettable_ctx_params(opf: POSSL_DISPATCH): POSSL_FUN
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_signature_gettable_ctx_params"');
 
-{Error: Line 692: Syntax Error parsing " return (OSSL_FUNC_signature_gettable_ctx_params_fn *)opf->function; "
+{Error: Line 814: Syntax Error parsing " return (OSSL_FUNC_signature_gettable_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_signature_gettable_ctx_params_fn *)opf->function; }
 end;
@@ -4702,7 +5582,7 @@ function OSSL_FUNC_signature_set_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_sig
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_signature_set_ctx_params"');
 
-{Error: Line 694: Syntax Error parsing " return (OSSL_FUNC_signature_set_ctx_params_fn *)opf->function; "
+{Error: Line 816: Syntax Error parsing " return (OSSL_FUNC_signature_set_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_signature_set_ctx_params_fn *)opf->function; }
 end;
@@ -4711,7 +5591,7 @@ function OSSL_FUNC_signature_settable_ctx_params(opf: POSSL_DISPATCH): POSSL_FUN
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_signature_settable_ctx_params"');
 
-{Error: Line 696: Syntax Error parsing " return (OSSL_FUNC_signature_settable_ctx_params_fn *)opf->function; "
+{Error: Line 818: Syntax Error parsing " return (OSSL_FUNC_signature_settable_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_signature_settable_ctx_params_fn *)opf->function; }
 end;
@@ -4720,7 +5600,7 @@ function OSSL_FUNC_signature_get_ctx_md_params(opf: POSSL_DISPATCH): POSSL_FUNC_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_signature_get_ctx_md_params"');
 
-{Error: Line 698: Syntax Error parsing " return (OSSL_FUNC_signature_get_ctx_md_params_fn *)opf->function; "
+{Error: Line 820: Syntax Error parsing " return (OSSL_FUNC_signature_get_ctx_md_params_fn *)opf->function; "
 
  return (OSSL_FUNC_signature_get_ctx_md_params_fn *)opf->function; }
 end;
@@ -4729,7 +5609,7 @@ function OSSL_FUNC_signature_gettable_ctx_md_params(opf: POSSL_DISPATCH): POSSL_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_signature_gettable_ctx_md_params"');
 
-{Error: Line 700: Syntax Error parsing " return (OSSL_FUNC_signature_gettable_ctx_md_params_fn *)opf->function; "
+{Error: Line 822: Syntax Error parsing " return (OSSL_FUNC_signature_gettable_ctx_md_params_fn *)opf->function; "
 
  return (OSSL_FUNC_signature_gettable_ctx_md_params_fn *)opf->function; }
 end;
@@ -4738,7 +5618,7 @@ function OSSL_FUNC_signature_set_ctx_md_params(opf: POSSL_DISPATCH): POSSL_FUNC_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_signature_set_ctx_md_params"');
 
-{Error: Line 702: Syntax Error parsing " return (OSSL_FUNC_signature_set_ctx_md_params_fn *)opf->function; "
+{Error: Line 824: Syntax Error parsing " return (OSSL_FUNC_signature_set_ctx_md_params_fn *)opf->function; "
 
  return (OSSL_FUNC_signature_set_ctx_md_params_fn *)opf->function; }
 end;
@@ -4747,16 +5627,88 @@ function OSSL_FUNC_signature_settable_ctx_md_params(opf: POSSL_DISPATCH): POSSL_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_signature_settable_ctx_md_params"');
 
-{Error: Line 704: Syntax Error parsing " return (OSSL_FUNC_signature_settable_ctx_md_params_fn *)opf->function; "
+{Error: Line 826: Syntax Error parsing " return (OSSL_FUNC_signature_settable_ctx_md_params_fn *)opf->function; "
 
  return (OSSL_FUNC_signature_settable_ctx_md_params_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_signature_query_key_types(opf: POSSL_DISPATCH): POSSL_FUNC_signature_query_key_types_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_signature_query_key_types"');
+
+{Error: Line 828: Syntax Error parsing " return (OSSL_FUNC_signature_query_key_types_fn *)opf->function; "
+
+ return (OSSL_FUNC_signature_query_key_types_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_skeymgmt_free(opf: POSSL_DISPATCH): POSSL_FUNC_skeymgmt_free_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_skeymgmt_free"');
+
+{Error: Line 862: Syntax Error parsing " return (OSSL_FUNC_skeymgmt_free_fn *)opf->function; "
+
+ return (OSSL_FUNC_skeymgmt_free_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_skeymgmt_imp_settable_params(opf: POSSL_DISPATCH): POSSL_FUNC_skeymgmt_imp_settable_params_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_skeymgmt_imp_settable_params"');
+
+{Error: Line 863: Syntax Error parsing " return (OSSL_FUNC_skeymgmt_imp_settable_params_fn *)opf->function; "
+
+ return (OSSL_FUNC_skeymgmt_imp_settable_params_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_skeymgmt_import(opf: POSSL_DISPATCH): POSSL_FUNC_skeymgmt_import_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_skeymgmt_import"');
+
+{Error: Line 865: Syntax Error parsing " return (OSSL_FUNC_skeymgmt_import_fn *)opf->function; "
+
+ return (OSSL_FUNC_skeymgmt_import_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_skeymgmt_export(opf: POSSL_DISPATCH): POSSL_FUNC_skeymgmt_export_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_skeymgmt_export"');
+
+{Error: Line 866: Syntax Error parsing " return (OSSL_FUNC_skeymgmt_export_fn *)opf->function; "
+
+ return (OSSL_FUNC_skeymgmt_export_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_skeymgmt_gen_settable_params(opf: POSSL_DISPATCH): POSSL_FUNC_skeymgmt_gen_settable_params_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_skeymgmt_gen_settable_params"');
+
+{Error: Line 869: Syntax Error parsing " return (OSSL_FUNC_skeymgmt_gen_settable_params_fn *)opf->function; "
+
+ return (OSSL_FUNC_skeymgmt_gen_settable_params_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_skeymgmt_generate(opf: POSSL_DISPATCH): POSSL_FUNC_skeymgmt_generate_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_skeymgmt_generate"');
+
+{Error: Line 871: Syntax Error parsing " return (OSSL_FUNC_skeymgmt_generate_fn *)opf->function; "
+
+ return (OSSL_FUNC_skeymgmt_generate_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_skeymgmt_get_key_id(opf: POSSL_DISPATCH): POSSL_FUNC_skeymgmt_get_key_id_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_skeymgmt_get_key_id"');
+
+{Error: Line 872: Syntax Error parsing " return (OSSL_FUNC_skeymgmt_get_key_id_fn *)opf->function; "
+
+ return (OSSL_FUNC_skeymgmt_get_key_id_fn *)opf->function; }
 end;
 
 function OSSL_FUNC_asym_cipher_newctx(opf: POSSL_DISPATCH): POSSL_FUNC_asym_cipher_newctx_fn{Has C Attribute: unused}; inline;
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_asym_cipher_newctx"');
 
-{Error: Line 721: Syntax Error parsing " return (OSSL_FUNC_asym_cipher_newctx_fn *)opf->function; "
+{Error: Line 888: Syntax Error parsing " return (OSSL_FUNC_asym_cipher_newctx_fn *)opf->function; "
 
  return (OSSL_FUNC_asym_cipher_newctx_fn *)opf->function; }
 end;
@@ -4765,7 +5717,7 @@ function OSSL_FUNC_asym_cipher_encrypt_init(opf: POSSL_DISPATCH): POSSL_FUNC_asy
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_asym_cipher_encrypt_init"');
 
-{Error: Line 722: Syntax Error parsing " return (OSSL_FUNC_asym_cipher_encrypt_init_fn *)opf->function; "
+{Error: Line 889: Syntax Error parsing " return (OSSL_FUNC_asym_cipher_encrypt_init_fn *)opf->function; "
 
  return (OSSL_FUNC_asym_cipher_encrypt_init_fn *)opf->function; }
 end;
@@ -4774,7 +5726,7 @@ function OSSL_FUNC_asym_cipher_encrypt(opf: POSSL_DISPATCH): POSSL_FUNC_asym_cip
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_asym_cipher_encrypt"');
 
-{Error: Line 723: Syntax Error parsing " return (OSSL_FUNC_asym_cipher_encrypt_fn *)opf->function; "
+{Error: Line 890: Syntax Error parsing " return (OSSL_FUNC_asym_cipher_encrypt_fn *)opf->function; "
 
  return (OSSL_FUNC_asym_cipher_encrypt_fn *)opf->function; }
 end;
@@ -4783,7 +5735,7 @@ function OSSL_FUNC_asym_cipher_decrypt_init(opf: POSSL_DISPATCH): POSSL_FUNC_asy
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_asym_cipher_decrypt_init"');
 
-{Error: Line 724: Syntax Error parsing " return (OSSL_FUNC_asym_cipher_decrypt_init_fn *)opf->function; "
+{Error: Line 891: Syntax Error parsing " return (OSSL_FUNC_asym_cipher_decrypt_init_fn *)opf->function; "
 
  return (OSSL_FUNC_asym_cipher_decrypt_init_fn *)opf->function; }
 end;
@@ -4792,7 +5744,7 @@ function OSSL_FUNC_asym_cipher_decrypt(opf: POSSL_DISPATCH): POSSL_FUNC_asym_cip
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_asym_cipher_decrypt"');
 
-{Error: Line 725: Syntax Error parsing " return (OSSL_FUNC_asym_cipher_decrypt_fn *)opf->function; "
+{Error: Line 892: Syntax Error parsing " return (OSSL_FUNC_asym_cipher_decrypt_fn *)opf->function; "
 
  return (OSSL_FUNC_asym_cipher_decrypt_fn *)opf->function; }
 end;
@@ -4801,7 +5753,7 @@ function OSSL_FUNC_asym_cipher_freectx(opf: POSSL_DISPATCH): POSSL_FUNC_asym_cip
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_asym_cipher_freectx"');
 
-{Error: Line 726: Syntax Error parsing " return (OSSL_FUNC_asym_cipher_freectx_fn *)opf->function; "
+{Error: Line 893: Syntax Error parsing " return (OSSL_FUNC_asym_cipher_freectx_fn *)opf->function; "
 
  return (OSSL_FUNC_asym_cipher_freectx_fn *)opf->function; }
 end;
@@ -4810,7 +5762,7 @@ function OSSL_FUNC_asym_cipher_dupctx(opf: POSSL_DISPATCH): POSSL_FUNC_asym_ciph
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_asym_cipher_dupctx"');
 
-{Error: Line 727: Syntax Error parsing " return (OSSL_FUNC_asym_cipher_dupctx_fn *)opf->function; "
+{Error: Line 894: Syntax Error parsing " return (OSSL_FUNC_asym_cipher_dupctx_fn *)opf->function; "
 
  return (OSSL_FUNC_asym_cipher_dupctx_fn *)opf->function; }
 end;
@@ -4819,7 +5771,7 @@ function OSSL_FUNC_asym_cipher_get_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_a
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_asym_cipher_get_ctx_params"');
 
-{Error: Line 728: Syntax Error parsing " return (OSSL_FUNC_asym_cipher_get_ctx_params_fn *)opf->function; "
+{Error: Line 895: Syntax Error parsing " return (OSSL_FUNC_asym_cipher_get_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_asym_cipher_get_ctx_params_fn *)opf->function; }
 end;
@@ -4828,7 +5780,7 @@ function OSSL_FUNC_asym_cipher_gettable_ctx_params(opf: POSSL_DISPATCH): POSSL_F
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_asym_cipher_gettable_ctx_params"');
 
-{Error: Line 730: Syntax Error parsing " return (OSSL_FUNC_asym_cipher_gettable_ctx_params_fn *)opf->function; "
+{Error: Line 897: Syntax Error parsing " return (OSSL_FUNC_asym_cipher_gettable_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_asym_cipher_gettable_ctx_params_fn *)opf->function; }
 end;
@@ -4837,7 +5789,7 @@ function OSSL_FUNC_asym_cipher_set_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_a
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_asym_cipher_set_ctx_params"');
 
-{Error: Line 732: Syntax Error parsing " return (OSSL_FUNC_asym_cipher_set_ctx_params_fn *)opf->function; "
+{Error: Line 899: Syntax Error parsing " return (OSSL_FUNC_asym_cipher_set_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_asym_cipher_set_ctx_params_fn *)opf->function; }
 end;
@@ -4846,7 +5798,7 @@ function OSSL_FUNC_asym_cipher_settable_ctx_params(opf: POSSL_DISPATCH): POSSL_F
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_asym_cipher_settable_ctx_params"');
 
-{Error: Line 734: Syntax Error parsing " return (OSSL_FUNC_asym_cipher_settable_ctx_params_fn *)opf->function; "
+{Error: Line 901: Syntax Error parsing " return (OSSL_FUNC_asym_cipher_settable_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_asym_cipher_settable_ctx_params_fn *)opf->function; }
 end;
@@ -4855,7 +5807,7 @@ function OSSL_FUNC_kem_newctx(opf: POSSL_DISPATCH): POSSL_FUNC_kem_newctx_fn{Has
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_kem_newctx"');
 
-{Error: Line 750: Syntax Error parsing " return (OSSL_FUNC_kem_newctx_fn *)opf->function; "
+{Error: Line 919: Syntax Error parsing " return (OSSL_FUNC_kem_newctx_fn *)opf->function; "
 
  return (OSSL_FUNC_kem_newctx_fn *)opf->function; }
 end;
@@ -4864,16 +5816,25 @@ function OSSL_FUNC_kem_encapsulate_init(opf: POSSL_DISPATCH): POSSL_FUNC_kem_enc
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_kem_encapsulate_init"');
 
-{Error: Line 751: Syntax Error parsing " return (OSSL_FUNC_kem_encapsulate_init_fn *)opf->function; "
+{Error: Line 920: Syntax Error parsing " return (OSSL_FUNC_kem_encapsulate_init_fn *)opf->function; "
 
  return (OSSL_FUNC_kem_encapsulate_init_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_kem_auth_encapsulate_init(opf: POSSL_DISPATCH): POSSL_FUNC_kem_auth_encapsulate_init_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_kem_auth_encapsulate_init"');
+
+{Error: Line 921: Syntax Error parsing " return (OSSL_FUNC_kem_auth_encapsulate_init_fn *)opf->function; "
+
+ return (OSSL_FUNC_kem_auth_encapsulate_init_fn *)opf->function; }
 end;
 
 function OSSL_FUNC_kem_encapsulate(opf: POSSL_DISPATCH): POSSL_FUNC_kem_encapsulate_fn{Has C Attribute: unused}; inline;
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_kem_encapsulate"');
 
-{Error: Line 752: Syntax Error parsing " return (OSSL_FUNC_kem_encapsulate_fn *)opf->function; "
+{Error: Line 922: Syntax Error parsing " return (OSSL_FUNC_kem_encapsulate_fn *)opf->function; "
 
  return (OSSL_FUNC_kem_encapsulate_fn *)opf->function; }
 end;
@@ -4882,16 +5843,25 @@ function OSSL_FUNC_kem_decapsulate_init(opf: POSSL_DISPATCH): POSSL_FUNC_kem_dec
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_kem_decapsulate_init"');
 
-{Error: Line 753: Syntax Error parsing " return (OSSL_FUNC_kem_decapsulate_init_fn *)opf->function; "
+{Error: Line 923: Syntax Error parsing " return (OSSL_FUNC_kem_decapsulate_init_fn *)opf->function; "
 
  return (OSSL_FUNC_kem_decapsulate_init_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_kem_auth_decapsulate_init(opf: POSSL_DISPATCH): POSSL_FUNC_kem_auth_decapsulate_init_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_kem_auth_decapsulate_init"');
+
+{Error: Line 924: Syntax Error parsing " return (OSSL_FUNC_kem_auth_decapsulate_init_fn *)opf->function; "
+
+ return (OSSL_FUNC_kem_auth_decapsulate_init_fn *)opf->function; }
 end;
 
 function OSSL_FUNC_kem_decapsulate(opf: POSSL_DISPATCH): POSSL_FUNC_kem_decapsulate_fn{Has C Attribute: unused}; inline;
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_kem_decapsulate"');
 
-{Error: Line 754: Syntax Error parsing " return (OSSL_FUNC_kem_decapsulate_fn *)opf->function; "
+{Error: Line 925: Syntax Error parsing " return (OSSL_FUNC_kem_decapsulate_fn *)opf->function; "
 
  return (OSSL_FUNC_kem_decapsulate_fn *)opf->function; }
 end;
@@ -4900,7 +5870,7 @@ function OSSL_FUNC_kem_freectx(opf: POSSL_DISPATCH): POSSL_FUNC_kem_freectx_fn{H
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_kem_freectx"');
 
-{Error: Line 755: Syntax Error parsing " return (OSSL_FUNC_kem_freectx_fn *)opf->function; "
+{Error: Line 926: Syntax Error parsing " return (OSSL_FUNC_kem_freectx_fn *)opf->function; "
 
  return (OSSL_FUNC_kem_freectx_fn *)opf->function; }
 end;
@@ -4909,7 +5879,7 @@ function OSSL_FUNC_kem_dupctx(opf: POSSL_DISPATCH): POSSL_FUNC_kem_dupctx_fn{Has
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_kem_dupctx"');
 
-{Error: Line 756: Syntax Error parsing " return (OSSL_FUNC_kem_dupctx_fn *)opf->function; "
+{Error: Line 927: Syntax Error parsing " return (OSSL_FUNC_kem_dupctx_fn *)opf->function; "
 
  return (OSSL_FUNC_kem_dupctx_fn *)opf->function; }
 end;
@@ -4918,7 +5888,7 @@ function OSSL_FUNC_kem_get_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_kem_get_c
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_kem_get_ctx_params"');
 
-{Error: Line 757: Syntax Error parsing " return (OSSL_FUNC_kem_get_ctx_params_fn *)opf->function; "
+{Error: Line 928: Syntax Error parsing " return (OSSL_FUNC_kem_get_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_kem_get_ctx_params_fn *)opf->function; }
 end;
@@ -4927,7 +5897,7 @@ function OSSL_FUNC_kem_gettable_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_kem_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_kem_gettable_ctx_params"');
 
-{Error: Line 758: Syntax Error parsing " return (OSSL_FUNC_kem_gettable_ctx_params_fn *)opf->function; "
+{Error: Line 929: Syntax Error parsing " return (OSSL_FUNC_kem_gettable_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_kem_gettable_ctx_params_fn *)opf->function; }
 end;
@@ -4936,7 +5906,7 @@ function OSSL_FUNC_kem_set_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_kem_set_c
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_kem_set_ctx_params"');
 
-{Error: Line 760: Syntax Error parsing " return (OSSL_FUNC_kem_set_ctx_params_fn *)opf->function; "
+{Error: Line 931: Syntax Error parsing " return (OSSL_FUNC_kem_set_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_kem_set_ctx_params_fn *)opf->function; }
 end;
@@ -4945,7 +5915,7 @@ function OSSL_FUNC_kem_settable_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_kem_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_kem_settable_ctx_params"');
 
-{Error: Line 762: Syntax Error parsing " return (OSSL_FUNC_kem_settable_ctx_params_fn *)opf->function; "
+{Error: Line 933: Syntax Error parsing " return (OSSL_FUNC_kem_settable_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_kem_settable_ctx_params_fn *)opf->function; }
 end;
@@ -4954,7 +5924,7 @@ function OSSL_FUNC_encoder_newctx(opf: POSSL_DISPATCH): POSSL_FUNC_encoder_newct
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_encoder_newctx"');
 
-{Error: Line 776: Syntax Error parsing " return (OSSL_FUNC_encoder_newctx_fn *)opf->function; "
+{Error: Line 947: Syntax Error parsing " return (OSSL_FUNC_encoder_newctx_fn *)opf->function; "
 
  return (OSSL_FUNC_encoder_newctx_fn *)opf->function; }
 end;
@@ -4963,7 +5933,7 @@ function OSSL_FUNC_encoder_freectx(opf: POSSL_DISPATCH): POSSL_FUNC_encoder_free
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_encoder_freectx"');
 
-{Error: Line 777: Syntax Error parsing " return (OSSL_FUNC_encoder_freectx_fn *)opf->function; "
+{Error: Line 948: Syntax Error parsing " return (OSSL_FUNC_encoder_freectx_fn *)opf->function; "
 
  return (OSSL_FUNC_encoder_freectx_fn *)opf->function; }
 end;
@@ -4972,7 +5942,7 @@ function OSSL_FUNC_encoder_get_params(opf: POSSL_DISPATCH): POSSL_FUNC_encoder_g
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_encoder_get_params"');
 
-{Error: Line 778: Syntax Error parsing " return (OSSL_FUNC_encoder_get_params_fn *)opf->function; "
+{Error: Line 949: Syntax Error parsing " return (OSSL_FUNC_encoder_get_params_fn *)opf->function; "
 
  return (OSSL_FUNC_encoder_get_params_fn *)opf->function; }
 end;
@@ -4981,7 +5951,7 @@ function OSSL_FUNC_encoder_gettable_params(opf: POSSL_DISPATCH): POSSL_FUNC_enco
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_encoder_gettable_params"');
 
-{Error: Line 779: Syntax Error parsing " return (OSSL_FUNC_encoder_gettable_params_fn *)opf->function; "
+{Error: Line 950: Syntax Error parsing " return (OSSL_FUNC_encoder_gettable_params_fn *)opf->function; "
 
  return (OSSL_FUNC_encoder_gettable_params_fn *)opf->function; }
 end;
@@ -4990,7 +5960,7 @@ function OSSL_FUNC_encoder_set_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_encod
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_encoder_set_ctx_params"');
 
-{Error: Line 781: Syntax Error parsing " return (OSSL_FUNC_encoder_set_ctx_params_fn *)opf->function; "
+{Error: Line 952: Syntax Error parsing " return (OSSL_FUNC_encoder_set_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_encoder_set_ctx_params_fn *)opf->function; }
 end;
@@ -4999,7 +5969,7 @@ function OSSL_FUNC_encoder_settable_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_encoder_settable_ctx_params"');
 
-{Error: Line 783: Syntax Error parsing " return (OSSL_FUNC_encoder_settable_ctx_params_fn *)opf->function; "
+{Error: Line 954: Syntax Error parsing " return (OSSL_FUNC_encoder_settable_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_encoder_settable_ctx_params_fn *)opf->function; }
 end;
@@ -5008,7 +5978,7 @@ function OSSL_FUNC_encoder_does_selection(opf: POSSL_DISPATCH): POSSL_FUNC_encod
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_encoder_does_selection"');
 
-{Error: Line 786: Syntax Error parsing " return (OSSL_FUNC_encoder_does_selection_fn *)opf->function; "
+{Error: Line 957: Syntax Error parsing " return (OSSL_FUNC_encoder_does_selection_fn *)opf->function; "
 
  return (OSSL_FUNC_encoder_does_selection_fn *)opf->function; }
 end;
@@ -5017,7 +5987,7 @@ function OSSL_FUNC_encoder_encode(opf: POSSL_DISPATCH): POSSL_FUNC_encoder_encod
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_encoder_encode"');
 
-{Error: Line 788: Syntax Error parsing " return (OSSL_FUNC_encoder_encode_fn *)opf->function; "
+{Error: Line 959: Syntax Error parsing " return (OSSL_FUNC_encoder_encode_fn *)opf->function; "
 
  return (OSSL_FUNC_encoder_encode_fn *)opf->function; }
 end;
@@ -5026,7 +5996,7 @@ function OSSL_FUNC_encoder_import_object(opf: POSSL_DISPATCH): POSSL_FUNC_encode
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_encoder_import_object"');
 
-{Error: Line 794: Syntax Error parsing " return (OSSL_FUNC_encoder_import_object_fn *)opf->function; "
+{Error: Line 965: Syntax Error parsing " return (OSSL_FUNC_encoder_import_object_fn *)opf->function; "
 
  return (OSSL_FUNC_encoder_import_object_fn *)opf->function; }
 end;
@@ -5035,7 +6005,7 @@ function OSSL_FUNC_encoder_free_object(opf: POSSL_DISPATCH): POSSL_FUNC_encoder_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_encoder_free_object"');
 
-{Error: Line 796: Syntax Error parsing " return (OSSL_FUNC_encoder_free_object_fn *)opf->function; "
+{Error: Line 967: Syntax Error parsing " return (OSSL_FUNC_encoder_free_object_fn *)opf->function; "
 
  return (OSSL_FUNC_encoder_free_object_fn *)opf->function; }
 end;
@@ -5044,7 +6014,7 @@ function OSSL_FUNC_decoder_newctx(opf: POSSL_DISPATCH): POSSL_FUNC_decoder_newct
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_decoder_newctx"');
 
-{Error: Line 807: Syntax Error parsing " return (OSSL_FUNC_decoder_newctx_fn *)opf->function; "
+{Error: Line 978: Syntax Error parsing " return (OSSL_FUNC_decoder_newctx_fn *)opf->function; "
 
  return (OSSL_FUNC_decoder_newctx_fn *)opf->function; }
 end;
@@ -5053,7 +6023,7 @@ function OSSL_FUNC_decoder_freectx(opf: POSSL_DISPATCH): POSSL_FUNC_decoder_free
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_decoder_freectx"');
 
-{Error: Line 808: Syntax Error parsing " return (OSSL_FUNC_decoder_freectx_fn *)opf->function; "
+{Error: Line 979: Syntax Error parsing " return (OSSL_FUNC_decoder_freectx_fn *)opf->function; "
 
  return (OSSL_FUNC_decoder_freectx_fn *)opf->function; }
 end;
@@ -5062,7 +6032,7 @@ function OSSL_FUNC_decoder_get_params(opf: POSSL_DISPATCH): POSSL_FUNC_decoder_g
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_decoder_get_params"');
 
-{Error: Line 809: Syntax Error parsing " return (OSSL_FUNC_decoder_get_params_fn *)opf->function; "
+{Error: Line 980: Syntax Error parsing " return (OSSL_FUNC_decoder_get_params_fn *)opf->function; "
 
  return (OSSL_FUNC_decoder_get_params_fn *)opf->function; }
 end;
@@ -5071,7 +6041,7 @@ function OSSL_FUNC_decoder_gettable_params(opf: POSSL_DISPATCH): POSSL_FUNC_deco
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_decoder_gettable_params"');
 
-{Error: Line 810: Syntax Error parsing " return (OSSL_FUNC_decoder_gettable_params_fn *)opf->function; "
+{Error: Line 981: Syntax Error parsing " return (OSSL_FUNC_decoder_gettable_params_fn *)opf->function; "
 
  return (OSSL_FUNC_decoder_gettable_params_fn *)opf->function; }
 end;
@@ -5080,7 +6050,7 @@ function OSSL_FUNC_decoder_set_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_decod
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_decoder_set_ctx_params"');
 
-{Error: Line 812: Syntax Error parsing " return (OSSL_FUNC_decoder_set_ctx_params_fn *)opf->function; "
+{Error: Line 983: Syntax Error parsing " return (OSSL_FUNC_decoder_set_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_decoder_set_ctx_params_fn *)opf->function; }
 end;
@@ -5089,7 +6059,7 @@ function OSSL_FUNC_decoder_settable_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_decoder_settable_ctx_params"');
 
-{Error: Line 814: Syntax Error parsing " return (OSSL_FUNC_decoder_settable_ctx_params_fn *)opf->function; "
+{Error: Line 985: Syntax Error parsing " return (OSSL_FUNC_decoder_settable_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_decoder_settable_ctx_params_fn *)opf->function; }
 end;
@@ -5098,7 +6068,7 @@ function OSSL_FUNC_decoder_does_selection(opf: POSSL_DISPATCH): POSSL_FUNC_decod
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_decoder_does_selection"');
 
-{Error: Line 817: Syntax Error parsing " return (OSSL_FUNC_decoder_does_selection_fn *)opf->function; "
+{Error: Line 988: Syntax Error parsing " return (OSSL_FUNC_decoder_does_selection_fn *)opf->function; "
 
  return (OSSL_FUNC_decoder_does_selection_fn *)opf->function; }
 end;
@@ -5107,7 +6077,7 @@ function OSSL_FUNC_decoder_decode(opf: POSSL_DISPATCH): POSSL_FUNC_decoder_decod
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_decoder_decode"');
 
-{Error: Line 819: Syntax Error parsing " return (OSSL_FUNC_decoder_decode_fn *)opf->function; "
+{Error: Line 990: Syntax Error parsing " return (OSSL_FUNC_decoder_decode_fn *)opf->function; "
 
  return (OSSL_FUNC_decoder_decode_fn *)opf->function; }
 end;
@@ -5116,7 +6086,7 @@ function OSSL_FUNC_decoder_export_object(opf: POSSL_DISPATCH): POSSL_FUNC_decode
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_decoder_export_object"');
 
-{Error: Line 823: Syntax Error parsing " return (OSSL_FUNC_decoder_export_object_fn *)opf->function; "
+{Error: Line 994: Syntax Error parsing " return (OSSL_FUNC_decoder_export_object_fn *)opf->function; "
 
  return (OSSL_FUNC_decoder_export_object_fn *)opf->function; }
 end;
@@ -5125,7 +6095,7 @@ function OSSL_FUNC_store_open(opf: POSSL_DISPATCH): POSSL_FUNC_store_open_fn{Has
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_store_open"');
 
-{Error: Line 847: Syntax Error parsing " return (OSSL_FUNC_store_open_fn *)opf->function; "
+{Error: Line 1020: Syntax Error parsing " return (OSSL_FUNC_store_open_fn *)opf->function; "
 
  return (OSSL_FUNC_store_open_fn *)opf->function; }
 end;
@@ -5134,7 +6104,7 @@ function OSSL_FUNC_store_attach(opf: POSSL_DISPATCH): POSSL_FUNC_store_attach_fn
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_store_attach"');
 
-{Error: Line 848: Syntax Error parsing " return (OSSL_FUNC_store_attach_fn *)opf->function; "
+{Error: Line 1021: Syntax Error parsing " return (OSSL_FUNC_store_attach_fn *)opf->function; "
 
  return (OSSL_FUNC_store_attach_fn *)opf->function; }
 end;
@@ -5143,7 +6113,7 @@ function OSSL_FUNC_store_settable_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_st
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_store_settable_ctx_params"');
 
-{Error: Line 849: Syntax Error parsing " return (OSSL_FUNC_store_settable_ctx_params_fn *)opf->function; "
+{Error: Line 1022: Syntax Error parsing " return (OSSL_FUNC_store_settable_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_store_settable_ctx_params_fn *)opf->function; }
 end;
@@ -5152,7 +6122,7 @@ function OSSL_FUNC_store_set_ctx_params(opf: POSSL_DISPATCH): POSSL_FUNC_store_s
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_store_set_ctx_params"');
 
-{Error: Line 851: Syntax Error parsing " return (OSSL_FUNC_store_set_ctx_params_fn *)opf->function; "
+{Error: Line 1024: Syntax Error parsing " return (OSSL_FUNC_store_set_ctx_params_fn *)opf->function; "
 
  return (OSSL_FUNC_store_set_ctx_params_fn *)opf->function; }
 end;
@@ -5161,7 +6131,7 @@ function OSSL_FUNC_store_load(opf: POSSL_DISPATCH): POSSL_FUNC_store_load_fn{Has
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_store_load"');
 
-{Error: Line 853: Syntax Error parsing " return (OSSL_FUNC_store_load_fn *)opf->function; "
+{Error: Line 1026: Syntax Error parsing " return (OSSL_FUNC_store_load_fn *)opf->function; "
 
  return (OSSL_FUNC_store_load_fn *)opf->function; }
 end;
@@ -5170,7 +6140,7 @@ function OSSL_FUNC_store_eof(opf: POSSL_DISPATCH): POSSL_FUNC_store_eof_fn{Has C
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_store_eof"');
 
-{Error: Line 857: Syntax Error parsing " return (OSSL_FUNC_store_eof_fn *)opf->function; "
+{Error: Line 1030: Syntax Error parsing " return (OSSL_FUNC_store_eof_fn *)opf->function; "
 
  return (OSSL_FUNC_store_eof_fn *)opf->function; }
 end;
@@ -5179,7 +6149,7 @@ function OSSL_FUNC_store_close(opf: POSSL_DISPATCH): POSSL_FUNC_store_close_fn{H
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_store_close"');
 
-{Error: Line 858: Syntax Error parsing " return (OSSL_FUNC_store_close_fn *)opf->function; "
+{Error: Line 1031: Syntax Error parsing " return (OSSL_FUNC_store_close_fn *)opf->function; "
 
  return (OSSL_FUNC_store_close_fn *)opf->function; }
 end;
@@ -5188,9 +6158,27 @@ function OSSL_FUNC_store_export_object(opf: POSSL_DISPATCH): POSSL_FUNC_store_ex
 begin
   raise Exception.Create('Unable to translate C Function "OSSL_FUNC_store_export_object"');
 
-{Error: Line 859: Syntax Error parsing " return (OSSL_FUNC_store_export_object_fn *)opf->function; "
+{Error: Line 1032: Syntax Error parsing " return (OSSL_FUNC_store_export_object_fn *)opf->function; "
 
  return (OSSL_FUNC_store_export_object_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_store_delete(opf: POSSL_DISPATCH): POSSL_FUNC_store_delete_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_store_delete"');
+
+{Error: Line 1035: Syntax Error parsing " return (OSSL_FUNC_store_delete_fn *)opf->function; "
+
+ return (OSSL_FUNC_store_delete_fn *)opf->function; }
+end;
+
+function OSSL_FUNC_store_open_ex(opf: POSSL_DISPATCH): POSSL_FUNC_store_open_ex_fn{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "OSSL_FUNC_store_open_ex"');
+
+{Error: Line 1038: Syntax Error parsing " return (OSSL_FUNC_store_open_ex_fn *)opf->function; "
+
+ return (OSSL_FUNC_store_open_ex_fn *)opf->function; }
 end;
 
 {$ifndef OPENSSL_STATIC_LINK_MODEL}

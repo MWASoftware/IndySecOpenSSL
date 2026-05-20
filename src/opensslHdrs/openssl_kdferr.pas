@@ -18,7 +18,7 @@
 unit openssl_kdferr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File kdferr.h - Tue 19 May 14:16:08 BST 2026
+  Generated from OpenSSL 3.5.6 Header File kdferr.h - Tue 19 May 14:27:51 BST 2026
 }
 
 {$IFNDEF FPC}

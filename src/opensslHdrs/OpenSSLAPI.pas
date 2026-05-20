@@ -395,8 +395,7 @@ uses SyncObjs,
      openssl_ssl,
      openssl_crypto,
      OpenSSLExceptionHandlers,
-     OpenSSLResourceStrings,
-     openssl_winx509;
+     OpenSSLResourceStrings;
      
 type
 

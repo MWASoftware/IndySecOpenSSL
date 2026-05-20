@@ -18,7 +18,7 @@
 unit openssl_bn;
 
 {
-  Generated from OpenSSL 3.0.20 Header File bn.h - Tue 19 May 14:15:28 BST 2026
+  Generated from OpenSSL 3.5.6 Header File bn.h - Tue 19 May 14:27:06 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -32,7 +32,7 @@ interface
 uses OpenSSLAPI,openssl_e_os2,openssl_types,openssl_crypto,openssl_bnerr;
 
 
-{* Copyright 1995-2021 The OpenSSL Project Authors. All Rights Reserved.
+{* Copyright 1995-2022 The OpenSSL Project Authors. All Rights Reserved.
 * Copyright (c) 2002, Oracle and/or its affiliates. All rights reserved
 *
 * Licensed under the Apache License 2.0 (the "License").  You may not use
@@ -461,12 +461,18 @@ var
   function BN_copy(a: PBIGNUM; b: PBIGNUM): PBIGNUM; cdecl; external CLibCrypto name 'BN_copy';
   procedure BN_swap(a: PBIGNUM; b: PBIGNUM); cdecl; external CLibCrypto name 'BN_swap';
   function BN_bin2bn(s: Pbyte; len: TOpenSSL_C_INT; ret: PBIGNUM): PBIGNUM; cdecl; external CLibCrypto name 'BN_bin2bn';
+  function BN_signed_bin2bn(s: Pbyte; len: TOpenSSL_C_INT; ret: PBIGNUM): PBIGNUM; cdecl; external CLibCrypto name 'BN_signed_bin2bn';
   function BN_bn2bin(a: PBIGNUM; to_: Pbyte): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_bn2bin';
   function BN_bn2binpad(a: PBIGNUM; to_: Pbyte; tolen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_bn2binpad';
+  function BN_signed_bn2bin(a: PBIGNUM; to_: Pbyte; tolen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_signed_bn2bin';
   function BN_lebin2bn(s: Pbyte; len: TOpenSSL_C_INT; ret: PBIGNUM): PBIGNUM; cdecl; external CLibCrypto name 'BN_lebin2bn';
+  function BN_signed_lebin2bn(s: Pbyte; len: TOpenSSL_C_INT; ret: PBIGNUM): PBIGNUM; cdecl; external CLibCrypto name 'BN_signed_lebin2bn';
   function BN_bn2lebinpad(a: PBIGNUM; to_: Pbyte; tolen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_bn2lebinpad';
+  function BN_signed_bn2lebin(a: PBIGNUM; to_: Pbyte; tolen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_signed_bn2lebin';
   function BN_native2bn(s: Pbyte; len: TOpenSSL_C_INT; ret: PBIGNUM): PBIGNUM; cdecl; external CLibCrypto name 'BN_native2bn';
+  function BN_signed_native2bn(s: Pbyte; len: TOpenSSL_C_INT; ret: PBIGNUM): PBIGNUM; cdecl; external CLibCrypto name 'BN_signed_native2bn';
   function BN_bn2nativepad(a: PBIGNUM; to_: Pbyte; tolen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_bn2nativepad';
+  function BN_signed_bn2native(a: PBIGNUM; to_: Pbyte; tolen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_signed_bn2native';
   function BN_mpi2bn(s: Pbyte; len: TOpenSSL_C_INT; ret: PBIGNUM): PBIGNUM; cdecl; external CLibCrypto name 'BN_mpi2bn';
   function BN_bn2mpi(a: PBIGNUM; to_: Pbyte): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_bn2mpi';
   function BN_sub(r: PBIGNUM; a: PBIGNUM; b: PBIGNUM): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_sub';
@@ -496,12 +502,18 @@ var
   {$EXTERNALSYM BN_copy}
   {$EXTERNALSYM BN_swap}
   {$EXTERNALSYM BN_bin2bn}
+  {$EXTERNALSYM BN_signed_bin2bn}
   {$EXTERNALSYM BN_bn2bin}
   {$EXTERNALSYM BN_bn2binpad}
+  {$EXTERNALSYM BN_signed_bn2bin}
   {$EXTERNALSYM BN_lebin2bn}
+  {$EXTERNALSYM BN_signed_lebin2bn}
   {$EXTERNALSYM BN_bn2lebinpad}
+  {$EXTERNALSYM BN_signed_bn2lebin}
   {$EXTERNALSYM BN_native2bn}
+  {$EXTERNALSYM BN_signed_native2bn}
   {$EXTERNALSYM BN_bn2nativepad}
+  {$EXTERNALSYM BN_signed_bn2native}
   {$EXTERNALSYM BN_mpi2bn}
   {$EXTERNALSYM BN_bn2mpi}
   {$EXTERNALSYM BN_sub}
@@ -523,12 +535,18 @@ var
   function Load_BN_copy(a: PBIGNUM; b: PBIGNUM): PBIGNUM; cdecl;
   procedure Load_BN_swap(a: PBIGNUM; b: PBIGNUM); cdecl;
   function Load_BN_bin2bn(s: Pbyte; len: TOpenSSL_C_INT; ret: PBIGNUM): PBIGNUM; cdecl;
+  function Load_BN_signed_bin2bn(s: Pbyte; len: TOpenSSL_C_INT; ret: PBIGNUM): PBIGNUM; cdecl;
   function Load_BN_bn2bin(a: PBIGNUM; to_: Pbyte): TOpenSSL_C_INT; cdecl;
   function Load_BN_bn2binpad(a: PBIGNUM; to_: Pbyte; tolen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
+  function Load_BN_signed_bn2bin(a: PBIGNUM; to_: Pbyte; tolen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
   function Load_BN_lebin2bn(s: Pbyte; len: TOpenSSL_C_INT; ret: PBIGNUM): PBIGNUM; cdecl;
+  function Load_BN_signed_lebin2bn(s: Pbyte; len: TOpenSSL_C_INT; ret: PBIGNUM): PBIGNUM; cdecl;
   function Load_BN_bn2lebinpad(a: PBIGNUM; to_: Pbyte; tolen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
+  function Load_BN_signed_bn2lebin(a: PBIGNUM; to_: Pbyte; tolen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
   function Load_BN_native2bn(s: Pbyte; len: TOpenSSL_C_INT; ret: PBIGNUM): PBIGNUM; cdecl;
+  function Load_BN_signed_native2bn(s: Pbyte; len: TOpenSSL_C_INT; ret: PBIGNUM): PBIGNUM; cdecl;
   function Load_BN_bn2nativepad(a: PBIGNUM; to_: Pbyte; tolen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
+  function Load_BN_signed_bn2native(a: PBIGNUM; to_: Pbyte; tolen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
   function Load_BN_mpi2bn(s: Pbyte; len: TOpenSSL_C_INT; ret: PBIGNUM): PBIGNUM; cdecl;
   function Load_BN_bn2mpi(a: PBIGNUM; to_: Pbyte): TOpenSSL_C_INT; cdecl;
   function Load_BN_sub(r: PBIGNUM; a: PBIGNUM; b: PBIGNUM): TOpenSSL_C_INT; cdecl;
@@ -551,12 +569,18 @@ var
   BN_copy: function(a: PBIGNUM; b: PBIGNUM): PBIGNUM; cdecl = Load_BN_copy;
   BN_swap: procedure(a: PBIGNUM; b: PBIGNUM); cdecl = Load_BN_swap;
   BN_bin2bn: function(s: Pbyte; len: TOpenSSL_C_INT; ret: PBIGNUM): PBIGNUM; cdecl = Load_BN_bin2bn;
+  BN_signed_bin2bn: function(s: Pbyte; len: TOpenSSL_C_INT; ret: PBIGNUM): PBIGNUM; cdecl = Load_BN_signed_bin2bn;
   BN_bn2bin: function(a: PBIGNUM; to_: Pbyte): TOpenSSL_C_INT; cdecl = Load_BN_bn2bin;
   BN_bn2binpad: function(a: PBIGNUM; to_: Pbyte; tolen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_BN_bn2binpad;
+  BN_signed_bn2bin: function(a: PBIGNUM; to_: Pbyte; tolen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_BN_signed_bn2bin;
   BN_lebin2bn: function(s: Pbyte; len: TOpenSSL_C_INT; ret: PBIGNUM): PBIGNUM; cdecl = Load_BN_lebin2bn;
+  BN_signed_lebin2bn: function(s: Pbyte; len: TOpenSSL_C_INT; ret: PBIGNUM): PBIGNUM; cdecl = Load_BN_signed_lebin2bn;
   BN_bn2lebinpad: function(a: PBIGNUM; to_: Pbyte; tolen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_BN_bn2lebinpad;
+  BN_signed_bn2lebin: function(a: PBIGNUM; to_: Pbyte; tolen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_BN_signed_bn2lebin;
   BN_native2bn: function(s: Pbyte; len: TOpenSSL_C_INT; ret: PBIGNUM): PBIGNUM; cdecl = Load_BN_native2bn;
+  BN_signed_native2bn: function(s: Pbyte; len: TOpenSSL_C_INT; ret: PBIGNUM): PBIGNUM; cdecl = Load_BN_signed_native2bn;
   BN_bn2nativepad: function(a: PBIGNUM; to_: Pbyte; tolen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_BN_bn2nativepad;
+  BN_signed_bn2native: function(a: PBIGNUM; to_: Pbyte; tolen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_BN_signed_bn2native;
   BN_mpi2bn: function(s: Pbyte; len: TOpenSSL_C_INT; ret: PBIGNUM): PBIGNUM; cdecl = Load_BN_mpi2bn;
   BN_bn2mpi: function(a: PBIGNUM; to_: Pbyte): TOpenSSL_C_INT; cdecl = Load_BN_bn2mpi;
   BN_sub: function(r: PBIGNUM; a: PBIGNUM; b: PBIGNUM): TOpenSSL_C_INT; cdecl = Load_BN_sub;
@@ -750,6 +774,7 @@ var
   { returns
   * -2 for
   * error }
+  function BN_are_coprime(a: PBIGNUM; b: PBIGNUM; ctx: PBN_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_are_coprime';
   function BN_mod_inverse(ret: PBIGNUM; a: PBIGNUM; n: PBIGNUM; ctx: PBN_CTX): PBIGNUM; cdecl; external CLibCrypto name 'BN_mod_inverse';
   function BN_mod_sqrt(ret: PBIGNUM; a: PBIGNUM; n: PBIGNUM; ctx: PBN_CTX): PBIGNUM; cdecl; external CLibCrypto name 'BN_mod_sqrt';
   procedure BN_consttime_swap(swap: TOpenSSL_C_UINT; a: PBIGNUM; b: PBIGNUM; nwords: TOpenSSL_C_INT); cdecl; external CLibCrypto name 'BN_consttime_swap';
@@ -771,6 +796,7 @@ var
   {$EXTERNALSYM BN_asc2bn}
   {$EXTERNALSYM BN_gcd}
   {$EXTERNALSYM BN_kronecker}
+  {$EXTERNALSYM BN_are_coprime}
   {$EXTERNALSYM BN_mod_inverse}
   {$EXTERNALSYM BN_mod_sqrt}
   {$EXTERNALSYM BN_consttime_swap}
@@ -791,6 +817,7 @@ var
   function Load_BN_asc2bn(a: PPBIGNUM; str: PAnsiChar): TOpenSSL_C_INT; cdecl;
   function Load_BN_gcd(r: PBIGNUM; a: PBIGNUM; b: PBIGNUM; ctx: PBN_CTX): TOpenSSL_C_INT; cdecl;
   function Load_BN_kronecker(a: PBIGNUM; b: PBIGNUM; ctx: PBN_CTX): TOpenSSL_C_INT; cdecl;
+  function Load_BN_are_coprime(a: PBIGNUM; b: PBIGNUM; ctx: PBN_CTX): TOpenSSL_C_INT; cdecl;
   function Load_BN_mod_inverse(ret: PBIGNUM; a: PBIGNUM; n: PBIGNUM; ctx: PBN_CTX): PBIGNUM; cdecl;
   function Load_BN_mod_sqrt(ret: PBIGNUM; a: PBIGNUM; n: PBIGNUM; ctx: PBN_CTX): PBIGNUM; cdecl;
   procedure Load_BN_consttime_swap(swap: TOpenSSL_C_UINT; a: PBIGNUM; b: PBIGNUM; nwords: TOpenSSL_C_INT); cdecl;
@@ -815,6 +842,7 @@ var
   { returns
   * -2 for
   * error }
+  BN_are_coprime: function(a: PBIGNUM; b: PBIGNUM; ctx: PBN_CTX): TOpenSSL_C_INT; cdecl = Load_BN_are_coprime;
   BN_mod_inverse: function(ret: PBIGNUM; a: PBIGNUM; n: PBIGNUM; ctx: PBN_CTX): PBIGNUM; cdecl = Load_BN_mod_inverse;
   BN_mod_sqrt: function(ret: PBIGNUM; a: PBIGNUM; n: PBIGNUM; ctx: PBN_CTX): PBIGNUM; cdecl = Load_BN_mod_sqrt;
   BN_consttime_swap: procedure(swap: TOpenSSL_C_UINT; a: PBIGNUM; b: PBIGNUM; nwords: TOpenSSL_C_INT); cdecl = Load_BN_consttime_swap;
@@ -1939,6 +1967,14 @@ begin
   Result := BN_bin2bn(s, len, ret);
 end;
 
+function Load_BN_signed_bin2bn(s: Pbyte; len: TOpenSSL_C_INT; ret: PBIGNUM): PBIGNUM; cdecl;
+begin
+  BN_signed_bin2bn := LoadLibCryptoFunction('BN_signed_bin2bn');
+  if not assigned(BN_signed_bin2bn) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('BN_signed_bin2bn');
+  Result := BN_signed_bin2bn(s, len, ret);
+end;
+
 function Load_BN_bn2bin(a: PBIGNUM; to_: Pbyte): TOpenSSL_C_INT; cdecl;
 begin
   BN_bn2bin := LoadLibCryptoFunction('BN_bn2bin');
@@ -1955,12 +1991,28 @@ begin
   Result := BN_bn2binpad(a, to_, tolen);
 end;
 
+function Load_BN_signed_bn2bin(a: PBIGNUM; to_: Pbyte; tolen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
+begin
+  BN_signed_bn2bin := LoadLibCryptoFunction('BN_signed_bn2bin');
+  if not assigned(BN_signed_bn2bin) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('BN_signed_bn2bin');
+  Result := BN_signed_bn2bin(a, to_, tolen);
+end;
+
 function Load_BN_lebin2bn(s: Pbyte; len: TOpenSSL_C_INT; ret: PBIGNUM): PBIGNUM; cdecl;
 begin
   BN_lebin2bn := LoadLibCryptoFunction('BN_lebin2bn');
   if not assigned(BN_lebin2bn) then
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_lebin2bn');
   Result := BN_lebin2bn(s, len, ret);
+end;
+
+function Load_BN_signed_lebin2bn(s: Pbyte; len: TOpenSSL_C_INT; ret: PBIGNUM): PBIGNUM; cdecl;
+begin
+  BN_signed_lebin2bn := LoadLibCryptoFunction('BN_signed_lebin2bn');
+  if not assigned(BN_signed_lebin2bn) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('BN_signed_lebin2bn');
+  Result := BN_signed_lebin2bn(s, len, ret);
 end;
 
 function Load_BN_bn2lebinpad(a: PBIGNUM; to_: Pbyte; tolen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
@@ -1971,6 +2023,14 @@ begin
   Result := BN_bn2lebinpad(a, to_, tolen);
 end;
 
+function Load_BN_signed_bn2lebin(a: PBIGNUM; to_: Pbyte; tolen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
+begin
+  BN_signed_bn2lebin := LoadLibCryptoFunction('BN_signed_bn2lebin');
+  if not assigned(BN_signed_bn2lebin) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('BN_signed_bn2lebin');
+  Result := BN_signed_bn2lebin(a, to_, tolen);
+end;
+
 function Load_BN_native2bn(s: Pbyte; len: TOpenSSL_C_INT; ret: PBIGNUM): PBIGNUM; cdecl;
 begin
   BN_native2bn := LoadLibCryptoFunction('BN_native2bn');
@@ -1979,12 +2039,28 @@ begin
   Result := BN_native2bn(s, len, ret);
 end;
 
+function Load_BN_signed_native2bn(s: Pbyte; len: TOpenSSL_C_INT; ret: PBIGNUM): PBIGNUM; cdecl;
+begin
+  BN_signed_native2bn := LoadLibCryptoFunction('BN_signed_native2bn');
+  if not assigned(BN_signed_native2bn) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('BN_signed_native2bn');
+  Result := BN_signed_native2bn(s, len, ret);
+end;
+
 function Load_BN_bn2nativepad(a: PBIGNUM; to_: Pbyte; tolen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
 begin
   BN_bn2nativepad := LoadLibCryptoFunction('BN_bn2nativepad');
   if not assigned(BN_bn2nativepad) then
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_bn2nativepad');
   Result := BN_bn2nativepad(a, to_, tolen);
+end;
+
+function Load_BN_signed_bn2native(a: PBIGNUM; to_: Pbyte; tolen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
+begin
+  BN_signed_bn2native := LoadLibCryptoFunction('BN_signed_bn2native');
+  if not assigned(BN_signed_bn2native) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('BN_signed_bn2native');
+  Result := BN_signed_bn2native(a, to_, tolen);
 end;
 
 function Load_BN_mpi2bn(s: Pbyte; len: TOpenSSL_C_INT; ret: PBIGNUM): PBIGNUM; cdecl;
@@ -2467,6 +2543,14 @@ begin
   if not assigned(BN_kronecker) then
     EOpenSSLAPIFunctionNotPresent.RaiseException('BN_kronecker');
   Result := BN_kronecker(a, b, ctx);
+end;
+
+function Load_BN_are_coprime(a: PBIGNUM; b: PBIGNUM; ctx: PBN_CTX): TOpenSSL_C_INT; cdecl;
+begin
+  BN_are_coprime := LoadLibCryptoFunction('BN_are_coprime');
+  if not assigned(BN_are_coprime) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('BN_are_coprime');
+  Result := BN_are_coprime(a, b, ctx);
 end;
 
 function Load_BN_mod_inverse(ret: PBIGNUM; a: PBIGNUM; n: PBIGNUM; ctx: PBN_CTX): PBIGNUM; cdecl;
@@ -3270,12 +3354,18 @@ begin
   BN_copy := Load_BN_copy;
   BN_swap := Load_BN_swap;
   BN_bin2bn := Load_BN_bin2bn;
+  BN_signed_bin2bn := Load_BN_signed_bin2bn;
   BN_bn2bin := Load_BN_bn2bin;
   BN_bn2binpad := Load_BN_bn2binpad;
+  BN_signed_bn2bin := Load_BN_signed_bn2bin;
   BN_lebin2bn := Load_BN_lebin2bn;
+  BN_signed_lebin2bn := Load_BN_signed_lebin2bn;
   BN_bn2lebinpad := Load_BN_bn2lebinpad;
+  BN_signed_bn2lebin := Load_BN_signed_bn2lebin;
   BN_native2bn := Load_BN_native2bn;
+  BN_signed_native2bn := Load_BN_signed_native2bn;
   BN_bn2nativepad := Load_BN_bn2nativepad;
+  BN_signed_bn2native := Load_BN_signed_bn2native;
   BN_mpi2bn := Load_BN_mpi2bn;
   BN_bn2mpi := Load_BN_bn2mpi;
   BN_sub := Load_BN_sub;
@@ -3338,6 +3428,7 @@ begin
   BN_asc2bn := Load_BN_asc2bn;
   BN_gcd := Load_BN_gcd;
   BN_kronecker := Load_BN_kronecker;
+  BN_are_coprime := Load_BN_are_coprime;
   BN_mod_inverse := Load_BN_mod_inverse;
   BN_mod_sqrt := Load_BN_mod_sqrt;
   BN_consttime_swap := Load_BN_consttime_swap;

@@ -18,7 +18,7 @@
 unit openssl_store;
 
 {
-  Generated from OpenSSL 3.0.20 Header File store.h - Tue 19 May 14:16:41 BST 2026
+  Generated from OpenSSL 3.5.6 Header File store.h - Tue 19 May 14:28:30 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -32,7 +32,7 @@ interface
 uses OpenSSLAPI,openssl_types,openssl_pem,openssl_storeerr;
 
 
-{* Copyright 2016-2021 The OpenSSL Project Authors. All Rights Reserved.
+{* Copyright 2016-2023 The OpenSSL Project Authors. All Rights Reserved.
 *
 * Licensed under the Apache License 2.0 (the "License").  You may not use
 * this file except in compliance with the License.  You can obtain a copy
@@ -152,6 +152,11 @@ const
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
   function OSSL_STORE_load(ctx: POSSL_STORE_CTX): POSSL_STORE_INFO; cdecl; external CLibCrypto name 'OSSL_STORE_load';
   
+  {* Deletes the object in the store by URI.
+  * Returns 1 on success, 0 otherwise.
+  }
+  function OSSL_STORE_delete(uri: PAnsiChar; libctx: POSSL_LIB_CTX; propq: PAnsiChar; ui_method: PUI_METHOD; ui_data: pointer; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_STORE_delete';
+  
   {* Check if end of data (end of file) is reached
   * Returns 1 on end, 0 otherwise.
   }
@@ -191,12 +196,14 @@ const
   }
   {$else}
   {$EXTERNALSYM OSSL_STORE_load}
+  {$EXTERNALSYM OSSL_STORE_delete}
   {$EXTERNALSYM OSSL_STORE_eof}
   {$EXTERNALSYM OSSL_STORE_error}
   {$EXTERNALSYM OSSL_STORE_close}
   {$EXTERNALSYM OSSL_STORE_attach}
   {Do not call Function LoadDeclarations. Internal use only}
   function Load_OSSL_STORE_load(ctx: POSSL_STORE_CTX): POSSL_STORE_INFO; cdecl;
+  function Load_OSSL_STORE_delete(uri: PAnsiChar; libctx: POSSL_LIB_CTX; propq: PAnsiChar; ui_method: PUI_METHOD; ui_data: pointer; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl;
   function Load_OSSL_STORE_eof(ctx: POSSL_STORE_CTX): TOpenSSL_C_INT; cdecl;
   function Load_OSSL_STORE_error(ctx: POSSL_STORE_CTX): TOpenSSL_C_INT; cdecl;
   function Load_OSSL_STORE_close(ctx: POSSL_STORE_CTX): TOpenSSL_C_INT; cdecl;
@@ -204,6 +211,11 @@ const
 
 var
   OSSL_STORE_load: function(ctx: POSSL_STORE_CTX): POSSL_STORE_INFO; cdecl = Load_OSSL_STORE_load;
+  
+  {* Deletes the object in the store by URI.
+  * Returns 1 on success, 0 otherwise.
+  }
+  OSSL_STORE_delete: function(uri: PAnsiChar; libctx: POSSL_LIB_CTX; propq: PAnsiChar; ui_method: PUI_METHOD; ui_data: pointer; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl = Load_OSSL_STORE_delete;
   
   {* Check if end of data (end of file) is reached
   * Returns 1 on end, 0 otherwise.
@@ -801,6 +813,14 @@ begin
   Result := OSSL_STORE_load(ctx);
 end;
 
+function Load_OSSL_STORE_delete(uri: PAnsiChar; libctx: POSSL_LIB_CTX; propq: PAnsiChar; ui_method: PUI_METHOD; ui_data: pointer; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl;
+begin
+  OSSL_STORE_delete := LoadLibCryptoFunction('OSSL_STORE_delete');
+  if not assigned(OSSL_STORE_delete) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_delete');
+  Result := OSSL_STORE_delete(uri, libctx, propq, ui_method, ui_data, params);
+end;
+
 function Load_OSSL_STORE_eof(ctx: POSSL_STORE_CTX): TOpenSSL_C_INT; cdecl;
 begin
   OSSL_STORE_eof := LoadLibCryptoFunction('OSSL_STORE_eof');
@@ -1378,6 +1398,7 @@ begin
   OSSL_STORE_vctrl := nil;
 {$endif} { OPENSSL_NO_DEPRECATED_3_0}
   OSSL_STORE_load := Load_OSSL_STORE_load;
+  OSSL_STORE_delete := Load_OSSL_STORE_delete;
   OSSL_STORE_eof := Load_OSSL_STORE_eof;
   OSSL_STORE_error := Load_OSSL_STORE_error;
   OSSL_STORE_close := Load_OSSL_STORE_close;

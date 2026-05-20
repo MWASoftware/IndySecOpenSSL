@@ -18,7 +18,7 @@
 unit openssl_rand;
 
 {
-  Generated from OpenSSL 3.0.20 Header File rand.h - Tue 19 May 14:16:26 BST 2026
+  Generated from OpenSSL 3.5.6 Header File rand.h - Tue 19 May 14:28:14 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -32,7 +32,7 @@ interface
 uses OpenSSLAPI,openssl_types,openssl_e_os2,openssl_randerr,openssl_evp;
 
 
-{* Copyright 1995-2021 The OpenSSL Project Authors. All Rights Reserved.
+{* Copyright 1995-2025 The OpenSSL Project Authors. All Rights Reserved.
 *
 * Licensed under the Apache License 2.0 (the "License").  You may not use
 * this file except in compliance with the License.  You can obtain a copy
@@ -201,6 +201,8 @@ var
   function RAND_get0_primary(ctx: POSSL_LIB_CTX): PEVP_RAND_CTX; cdecl; external CLibCrypto name 'RAND_get0_primary';
   function RAND_get0_public(ctx: POSSL_LIB_CTX): PEVP_RAND_CTX; cdecl; external CLibCrypto name 'RAND_get0_public';
   function RAND_get0_private(ctx: POSSL_LIB_CTX): PEVP_RAND_CTX; cdecl; external CLibCrypto name 'RAND_get0_private';
+  function RAND_set0_public(ctx: POSSL_LIB_CTX; rand: PEVP_RAND_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'RAND_set0_public';
+  function RAND_set0_private(ctx: POSSL_LIB_CTX; rand: PEVP_RAND_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'RAND_set0_private';
   function RAND_set_DRBG_type(ctx: POSSL_LIB_CTX; drbg: PAnsiChar; propq: PAnsiChar; cipher: PAnsiChar; digest: PAnsiChar): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'RAND_set_DRBG_type';
   function RAND_set_seed_source_type(ctx: POSSL_LIB_CTX; seed: PAnsiChar; propq: PAnsiChar): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'RAND_set_seed_source_type';
   procedure RAND_seed(buf: pointer; num: TOpenSSL_C_INT); cdecl; external CLibCrypto name 'RAND_seed';
@@ -209,6 +211,8 @@ var
   {$EXTERNALSYM RAND_get0_primary}
   {$EXTERNALSYM RAND_get0_public}
   {$EXTERNALSYM RAND_get0_private}
+  {$EXTERNALSYM RAND_set0_public}
+  {$EXTERNALSYM RAND_set0_private}
   {$EXTERNALSYM RAND_set_DRBG_type}
   {$EXTERNALSYM RAND_set_seed_source_type}
   {$EXTERNALSYM RAND_seed}
@@ -217,6 +221,8 @@ var
   function Load_RAND_get0_primary(ctx: POSSL_LIB_CTX): PEVP_RAND_CTX; cdecl;
   function Load_RAND_get0_public(ctx: POSSL_LIB_CTX): PEVP_RAND_CTX; cdecl;
   function Load_RAND_get0_private(ctx: POSSL_LIB_CTX): PEVP_RAND_CTX; cdecl;
+  function Load_RAND_set0_public(ctx: POSSL_LIB_CTX; rand: PEVP_RAND_CTX): TOpenSSL_C_INT; cdecl;
+  function Load_RAND_set0_private(ctx: POSSL_LIB_CTX; rand: PEVP_RAND_CTX): TOpenSSL_C_INT; cdecl;
   function Load_RAND_set_DRBG_type(ctx: POSSL_LIB_CTX; drbg: PAnsiChar; propq: PAnsiChar; cipher: PAnsiChar; digest: PAnsiChar): TOpenSSL_C_INT; cdecl;
   function Load_RAND_set_seed_source_type(ctx: POSSL_LIB_CTX; seed: PAnsiChar; propq: PAnsiChar): TOpenSSL_C_INT; cdecl;
   procedure Load_RAND_seed(buf: pointer; num: TOpenSSL_C_INT); cdecl;
@@ -226,6 +232,8 @@ var
   RAND_get0_primary: function(ctx: POSSL_LIB_CTX): PEVP_RAND_CTX; cdecl = Load_RAND_get0_primary;
   RAND_get0_public: function(ctx: POSSL_LIB_CTX): PEVP_RAND_CTX; cdecl = Load_RAND_get0_public;
   RAND_get0_private: function(ctx: POSSL_LIB_CTX): PEVP_RAND_CTX; cdecl = Load_RAND_get0_private;
+  RAND_set0_public: function(ctx: POSSL_LIB_CTX; rand: PEVP_RAND_CTX): TOpenSSL_C_INT; cdecl = Load_RAND_set0_public;
+  RAND_set0_private: function(ctx: POSSL_LIB_CTX; rand: PEVP_RAND_CTX): TOpenSSL_C_INT; cdecl = Load_RAND_set0_private;
   RAND_set_DRBG_type: function(ctx: POSSL_LIB_CTX; drbg: PAnsiChar; propq: PAnsiChar; cipher: PAnsiChar; digest: PAnsiChar): TOpenSSL_C_INT; cdecl = Load_RAND_set_DRBG_type;
   RAND_set_seed_source_type: function(ctx: POSSL_LIB_CTX; seed: PAnsiChar; propq: PAnsiChar): TOpenSSL_C_INT; cdecl = Load_RAND_set_seed_source_type;
   RAND_seed: procedure(buf: pointer; num: TOpenSSL_C_INT); cdecl = Load_RAND_seed;
@@ -317,6 +325,24 @@ var
       {$endif} {OPENSSL_STATIC_LINK_MODEL}
     {$endif}
   {$endif}
+
+
+  {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  function RAND_set1_random_provider(ctx: POSSL_LIB_CTX; p: POSSL_PROVIDER): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'RAND_set1_random_provider';
+  { Which parameter to provider_random call }
+  {$else}
+  {$EXTERNALSYM RAND_set1_random_provider}
+  {Do not call Function LoadDeclarations. Internal use only}
+  function Load_RAND_set1_random_provider(ctx: POSSL_LIB_CTX; p: POSSL_PROVIDER): TOpenSSL_C_INT; cdecl;
+
+var
+  RAND_set1_random_provider: function(ctx: POSSL_LIB_CTX; p: POSSL_PROVIDER): TOpenSSL_C_INT; cdecl = Load_RAND_set1_random_provider;
+  { Which parameter to provider_random call }
+  {$endif} {OPENSSL_STATIC_LINK_MODEL}
+
+const
+  OSSL_PROV_RANDOM_PUBLIC = 0;
+  OSSL_PROV_RANDOM_PRIVATE = 1;
 {$endif}
 
 implementation
@@ -460,6 +486,22 @@ begin
   Result := RAND_get0_private(ctx);
 end;
 
+function Load_RAND_set0_public(ctx: POSSL_LIB_CTX; rand: PEVP_RAND_CTX): TOpenSSL_C_INT; cdecl;
+begin
+  RAND_set0_public := LoadLibCryptoFunction('RAND_set0_public');
+  if not assigned(RAND_set0_public) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('RAND_set0_public');
+  Result := RAND_set0_public(ctx, rand);
+end;
+
+function Load_RAND_set0_private(ctx: POSSL_LIB_CTX; rand: PEVP_RAND_CTX): TOpenSSL_C_INT; cdecl;
+begin
+  RAND_set0_private := LoadLibCryptoFunction('RAND_set0_private');
+  if not assigned(RAND_set0_private) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('RAND_set0_private');
+  Result := RAND_set0_private(ctx, rand);
+end;
+
 function Load_RAND_set_DRBG_type(ctx: POSSL_LIB_CTX; drbg: PAnsiChar; propq: PAnsiChar; cipher: PAnsiChar; digest: PAnsiChar): TOpenSSL_C_INT; cdecl;
 begin
   RAND_set_DRBG_type := LoadLibCryptoFunction('RAND_set_DRBG_type');
@@ -586,6 +628,14 @@ end;
 
     {$endif} { OPENSSL_NO_DEPRECATED_1_1_0}
 {$endif} { defined(_WIN32)  and  (defined(BASETYPES)  or  defined(_WINDEF_H))}
+function Load_RAND_set1_random_provider(ctx: POSSL_LIB_CTX; p: POSSL_PROVIDER): TOpenSSL_C_INT; cdecl;
+begin
+  RAND_set1_random_provider := LoadLibCryptoFunction('RAND_set1_random_provider');
+  if not assigned(RAND_set1_random_provider) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('RAND_set1_random_provider');
+  Result := RAND_set1_random_provider(ctx, p);
+end;
+
 procedure Load;
 begin
   {$define EMPTY_LOAD_FUNCTION}
@@ -611,6 +661,8 @@ begin
   RAND_get0_primary := Load_RAND_get0_primary;
   RAND_get0_public := Load_RAND_get0_public;
   RAND_get0_private := Load_RAND_get0_private;
+  RAND_set0_public := Load_RAND_set0_public;
+  RAND_set0_private := Load_RAND_set0_private;
   RAND_set_DRBG_type := Load_RAND_set_DRBG_type;
   RAND_set_seed_source_type := Load_RAND_set_seed_source_type;
   RAND_seed := Load_RAND_seed;
@@ -632,6 +684,7 @@ begin
   RAND_event := Load_RAND_event;
     {$endif} { OPENSSL_NO_DEPRECATED_1_1_0}
 {$endif} { defined(_WIN32)  and  (defined(BASETYPES)  or  defined(_WINDEF_H))}
+  RAND_set1_random_provider := Load_RAND_set1_random_provider;
 end;
 
 {$endif} {OPENSSL_STATIC_LINK_MODEL}

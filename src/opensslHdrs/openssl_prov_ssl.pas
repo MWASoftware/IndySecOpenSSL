@@ -18,7 +18,7 @@
 unit openssl_prov_ssl;
 
 {
-  Generated from OpenSSL 3.0.20 Header File prov_ssl.h - Tue 19 May 14:16:24 BST 2026
+  Generated from OpenSSL 3.5.6 Header File prov_ssl.h - Tue 19 May 14:28:10 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -32,7 +32,7 @@ interface
 uses OpenSSLAPI;
 
 
-{* Copyright 2021 The OpenSSL Project Authors. All Rights Reserved.
+{* Copyright 2021-2023 The OpenSSL Project Authors. All Rights Reserved.
 *
 * Licensed under the Apache License 2.0 (the "License").  You may not use
 * this file except in compliance with the License.  You can obtain a copy
@@ -45,6 +45,7 @@ uses OpenSSLAPI;
 const
   { SSL/TLS related defines useful to providers }
   SSL_MAX_MASTER_KEY_LENGTH = 48;
+  { SSL/TLS uses a 2 byte unsigned version number }
   SSL3_VERSION = $0300;
   TLS1_VERSION = $0301;
   TLS1_1_VERSION = $0302;
@@ -53,6 +54,8 @@ const
   DTLS1_VERSION = $FEFF;
   DTLS1_2_VERSION = $FEFD;
   DTLS1_BAD_VER = $0100;
+  { QUIC uses a 4 byte unsigned version number }
+  OSSL_QUIC1_VERSION = $0000001;
 {$endif}
 { OPENSSL_PROV_SSL_H }
 

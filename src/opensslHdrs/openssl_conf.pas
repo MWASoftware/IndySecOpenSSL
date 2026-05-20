@@ -18,7 +18,7 @@
 unit openssl_conf;
 
 {
-  Generated from OpenSSL 3.0.20 Header File conf.h - Tue 19 May 14:15:41 BST 2026
+  Generated from OpenSSL 3.5.6 Header File conf.h - Tue 19 May 14:27:20 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -50,6 +50,8 @@ uses OpenSSLAPI,openssl_stack,openssl_bio,openssl_lhash,openssl_safestack,
   {$include openssl_macros.inc}
   {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
     {$define HEADER_CONF_H}
+  {$endif}
+  {$ifndef  OPENSSL_NO_STDIO}
   {$endif}
 
 type
@@ -224,6 +226,10 @@ type
   Tlh_CONF_VALUE_doallfunc = procedure(a: PCONF_VALUE); cdecl;
 
 
+  function lh_CONF_VALUE_hash_thunk(data: pointer; hfn: TOPENSSL_LH_HASHFUNC): TOpenSSL_C_UINT; inline;
+  function lh_CONF_VALUE_comp_thunk(da: pointer; db: pointer; cfn: TOPENSSL_LH_COMPFUNC): TOpenSSL_C_INT; inline;
+  procedure lh_CONF_VALUE_doall_thunk(node: pointer; doall: TOPENSSL_LH_DOALL_FUNC); inline;
+  procedure lh_CONF_VALUE_doall_arg_thunk(node: pointer; arg: pointer; doall: TOPENSSL_LH_DOALL_FUNCARG); inline;
   function ossl_check_CONF_VALUE_lh_plain_type(ptr: PCONF_VALUE): PCONF_VALUE{Has C Attribute: unused}; inline;
   function ossl_check_const_CONF_VALUE_lh_plain_type(ptr: PCONF_VALUE): PCONF_VALUE{Has C Attribute: unused}; inline;
   function ossl_check_const_CONF_VALUE_lh_type(lh: Plhash_st_CONF_VALUE): POPENSSL_LHASH{Has C Attribute: unused}; inline;
@@ -231,20 +237,21 @@ type
   function ossl_check_CONF_VALUE_lh_compfunc_type(cmp: Tlh_CONF_VALUE_compfunc): TOPENSSL_LH_COMPFUNC{Has C Attribute: unused}; inline;
   function ossl_check_CONF_VALUE_lh_hashfunc_type(hfn: Tlh_CONF_VALUE_hashfunc): TOPENSSL_LH_HASHFUNC{Has C Attribute: unused}; inline;
   function ossl_check_CONF_VALUE_lh_doallfunc_type(dfn: Tlh_CONF_VALUE_doallfunc): TOPENSSL_LH_DOALL_FUNC{Has C Attribute: unused}; inline;
-  {# define  lh_CONF_VALUE_new(hfn,cmp) ((LHASH_OF(CONF_VALUE) *)OPENSSL_LH_new(ossl_check_CONF_VALUE_lh_hashfunc_type(hfn), ossl_check_CONF_VALUE_lh_compfunc_type(cmp)))}
-  {# define  lh_CONF_VALUE_free(lh) OPENSSL_LH_free(ossl_check_CONF_VALUE_lh_type(lh))} {Macro Return Type unknown at line no 74}
-  {# define  lh_CONF_VALUE_flush(lh) OPENSSL_LH_flush(ossl_check_CONF_VALUE_lh_type(lh))} {Macro Return Type unknown at line no 75}
+  {# define  lh_CONF_VALUE_new(hfn,cmp) ((LHASH_OF(CONF_VALUE) *)OPENSSL_LH_set_thunks(OPENSSL_LH_new(ossl_check_CONF_VALUE_lh_hashfunc_type(hfn),
+ ossl_check_CONF_VALUE_lh_compfunc_type(cmp)), lh_CONF_VALUE_hash_thunk, lh_CONF_VALUE_comp_thunk, lh_CONF_VALUE_doall_thunk, lh_CONF_VALUE_doall_arg_thunk))}
+  {# define  lh_CONF_VALUE_free(lh) OPENSSL_LH_free(ossl_check_CONF_VALUE_lh_type(lh))} {Macro Return Type unknown at line no 77}
+  {# define  lh_CONF_VALUE_flush(lh) OPENSSL_LH_flush(ossl_check_CONF_VALUE_lh_type(lh))} {Macro Return Type unknown at line no 78}
   function lh_CONF_VALUE_insert(lh:Plhash_st_CONF_VALUE; ptr:PCONF_VALUE): PCONF_VALUE; inline;
   function lh_CONF_VALUE_delete(lh:Plhash_st_CONF_VALUE; ptr:PCONF_VALUE): PCONF_VALUE; inline;
   function lh_CONF_VALUE_retrieve(lh:Plhash_st_CONF_VALUE; ptr:PCONF_VALUE): PCONF_VALUE; inline;
-  {# define  lh_CONF_VALUE_error(lh) OPENSSL_LH_error(ossl_check_CONF_VALUE_lh_type(lh))} {Macro Return Type unknown at line no 79}
-  {# define  lh_CONF_VALUE_num_items(lh) OPENSSL_LH_num_items(ossl_check_CONF_VALUE_lh_type(lh))} {Macro Return Type unknown at line no 80}
-  {# define  lh_CONF_VALUE_node_stats_bio(lh,out) OPENSSL_LH_node_stats_bio(ossl_check_const_CONF_VALUE_lh_type(lh), out)} {Function argument out of range at line no 81}
-  {# define  lh_CONF_VALUE_node_usage_stats_bio(lh,out) OPENSSL_LH_node_usage_stats_bio(ossl_check_const_CONF_VALUE_lh_type(lh), out)} {Function argument out of range at line no 82}
-  {# define  lh_CONF_VALUE_stats_bio(lh,out) OPENSSL_LH_stats_bio(ossl_check_const_CONF_VALUE_lh_type(lh), out)} {Function argument out of range at line no 83}
-  {# define  lh_CONF_VALUE_get_down_load(lh) OPENSSL_LH_get_down_load(ossl_check_CONF_VALUE_lh_type(lh))} {Macro Return Type unknown at line no 84}
-  {# define  lh_CONF_VALUE_set_down_load(lh,dl) OPENSSL_LH_set_down_load(ossl_check_CONF_VALUE_lh_type(lh), dl)} {Function argument out of range at line no 85}
-  {# define  lh_CONF_VALUE_doall(lh,dfn) OPENSSL_LH_doall(ossl_check_CONF_VALUE_lh_type(lh), ossl_check_CONF_VALUE_lh_doallfunc_type(dfn))} {Macro Return Type unknown at line no 86}
+  {# define  lh_CONF_VALUE_error(lh) OPENSSL_LH_error(ossl_check_CONF_VALUE_lh_type(lh))} {Macro Return Type unknown at line no 82}
+  {# define  lh_CONF_VALUE_num_items(lh) OPENSSL_LH_num_items(ossl_check_CONF_VALUE_lh_type(lh))} {Macro Return Type unknown at line no 83}
+  {# define  lh_CONF_VALUE_node_stats_bio(lh,out) OPENSSL_LH_node_stats_bio(ossl_check_const_CONF_VALUE_lh_type(lh), out)} {Function argument out of range at line no 84}
+  {# define  lh_CONF_VALUE_node_usage_stats_bio(lh,out) OPENSSL_LH_node_usage_stats_bio(ossl_check_const_CONF_VALUE_lh_type(lh), out)} {Function argument out of range at line no 85}
+  {# define  lh_CONF_VALUE_stats_bio(lh,out) OPENSSL_LH_stats_bio(ossl_check_const_CONF_VALUE_lh_type(lh), out)} {Function argument out of range at line no 86}
+  {# define  lh_CONF_VALUE_get_down_load(lh) OPENSSL_LH_get_down_load(ossl_check_CONF_VALUE_lh_type(lh))} {Macro Return Type unknown at line no 87}
+  {# define  lh_CONF_VALUE_set_down_load(lh,dl) OPENSSL_LH_set_down_load(ossl_check_CONF_VALUE_lh_type(lh), dl)} {Function argument out of range at line no 88}
+  {# define  lh_CONF_VALUE_doall(lh,dfn) OPENSSL_LH_doall(ossl_check_CONF_VALUE_lh_type(lh), ossl_check_CONF_VALUE_lh_doallfunc_type(dfn))} {Macro Return Type unknown at line no 89}
 
 type
   {Auto-generated forward references}
@@ -408,7 +415,7 @@ var
     {$endif} {OPENSSL_STATIC_LINK_MODEL}
   {$endif}
   {$ifndef  OPENSSL_NO_DEPRECATED_1_1_0}
-{# define  OPENSSL_no_config() OPENSSL_init_crypto(OPENSSL_INIT_NO_LOAD_CONFIG, NULL)} {Macro Return Type unknown at line no 142}
+{# define  OPENSSL_no_config() OPENSSL_init_crypto(OPENSSL_INIT_NO_LOAD_CONFIG, NULL)} {Macro Return Type unknown at line no 145}
   {$endif}
 
 
@@ -719,6 +726,48 @@ begin
    Result := TOPENSSL_sk_freefunc(fr);
 end;
 
+function lh_CONF_VALUE_hash_thunk(data: pointer; hfn: TOPENSSL_LH_HASHFUNC): TOpenSSL_C_UINT; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "lh_CONF_VALUE_hash_thunk"');
+
+{Error: Line 75: Syntax Error parsing " unsigned long (*hfn_conv)(const CONF_VALUE *) = (unsigned long (*)(const CONF_VALUE *))hfn; 
+return hfn_conv((const CONF_VALUE *)data); "
+
+ unsigned long (*hfn_conv)(const CONF_VALUE *) = (unsigned long (*)(const CONF_VALUE *))hfn; return hfn_conv((const CONF_VALUE 
+*)data); }
+end;
+
+function lh_CONF_VALUE_comp_thunk(da: pointer; db: pointer; cfn: TOPENSSL_LH_COMPFUNC): TOpenSSL_C_INT; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "lh_CONF_VALUE_comp_thunk"');
+
+{Error: Line 75: Syntax Error parsing " int (*cfn_conv)(const CONF_VALUE *, const CONF_VALUE *) = (int (*)(const CONF_VALUE *, const 
+CONF_VALUE *))cfn; return cfn_conv((const CONF_VALUE *)da, (const CONF_VALUE *)db); "
+
+ int (*cfn_conv)(const CONF_VALUE *, const CONF_VALUE *) = (int (*)(const CONF_VALUE *, const CONF_VALUE *))cfn; return cfn_conv((const 
+CONF_VALUE *)da, (const CONF_VALUE *)db); }
+end;
+
+procedure lh_CONF_VALUE_doall_thunk(node: pointer; doall: TOPENSSL_LH_DOALL_FUNC); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "lh_CONF_VALUE_doall_thunk"');
+
+{Error: Line 75: Syntax Error parsing " void (*doall_conv)(CONF_VALUE *) = (void (*)(CONF_VALUE *))doall; doall_conv((CONF_VALUE 
+*)node); "
+
+ void (*doall_conv)(CONF_VALUE *) = (void (*)(CONF_VALUE *))doall; doall_conv((CONF_VALUE *)node); }
+end;
+
+procedure lh_CONF_VALUE_doall_arg_thunk(node: pointer; arg: pointer; doall: TOPENSSL_LH_DOALL_FUNCARG); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "lh_CONF_VALUE_doall_arg_thunk"');
+
+{Error: Line 75: Syntax Error parsing " void (*doall_conv)(CONF_VALUE *, void *) = (void (*)(CONF_VALUE *, void *))doall; doall_conv((CONF_VALUE 
+*)node, arg); "
+
+ void (*doall_conv)(CONF_VALUE *, void *) = (void (*)(CONF_VALUE *, void *))doall; doall_conv((CONF_VALUE *)node, arg); }
+end;
+
 function ossl_check_CONF_VALUE_lh_plain_type(ptr: PCONF_VALUE): PCONF_VALUE{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -743,7 +792,7 @@ function ossl_check_CONF_VALUE_lh_compfunc_type(cmp: Tlh_CONF_VALUE_compfunc): T
 begin
   raise Exception.Create('Unable to translate C Function "ossl_check_CONF_VALUE_lh_compfunc_type"');
 
-{Error: Line 72: Syntax Error parsing " return (OPENSSL_LH_COMPFUNC)cmp; "
+{Error: Line 75: Syntax Error parsing " return (OPENSSL_LH_COMPFUNC)cmp; "
 
  return (OPENSSL_LH_COMPFUNC)cmp; }
 end;
@@ -752,7 +801,7 @@ function ossl_check_CONF_VALUE_lh_hashfunc_type(hfn: Tlh_CONF_VALUE_hashfunc): T
 begin
   raise Exception.Create('Unable to translate C Function "ossl_check_CONF_VALUE_lh_hashfunc_type"');
 
-{Error: Line 72: Syntax Error parsing " return (OPENSSL_LH_HASHFUNC)hfn; "
+{Error: Line 75: Syntax Error parsing " return (OPENSSL_LH_HASHFUNC)hfn; "
 
  return (OPENSSL_LH_HASHFUNC)hfn; }
 end;
@@ -761,7 +810,7 @@ function ossl_check_CONF_VALUE_lh_doallfunc_type(dfn: Tlh_CONF_VALUE_doallfunc):
 begin
   raise Exception.Create('Unable to translate C Function "ossl_check_CONF_VALUE_lh_doallfunc_type"');
 
-{Error: Line 72: Syntax Error parsing " return (OPENSSL_LH_DOALL_FUNC)dfn; "
+{Error: Line 75: Syntax Error parsing " return (OPENSSL_LH_DOALL_FUNC)dfn; "
 
  return (OPENSSL_LH_DOALL_FUNC)dfn; }
 end;

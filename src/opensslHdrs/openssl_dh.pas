@@ -18,7 +18,7 @@
 unit openssl_dh;
 
 {
-  Generated from OpenSSL 3.0.20 Header File dh.h - Tue 19 May 14:15:51 BST 2026
+  Generated from OpenSSL 3.5.6 Header File dh.h - Tue 19 May 14:27:32 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -49,7 +49,11 @@ uses OpenSSLAPI,openssl_evp,openssl_types,openssl_e_os2,openssl_bio,
   {$include openssl_opensslconf.inc}
 
 const
-  { DH parameter generation types used by EVP_PKEY_CTX_set_dh_paramgen_type() }
+  
+  {* DH parameter generation types used by EVP_PKEY_CTX_set_dh_paramgen_type()
+  * Note that additions/changes to this set of values requires corresponding
+  * adjustments to range checks in dh_gen()
+  }
   DH_PARAMGEN_TYPE_GENERATOR = 0;
   DH_PARAMGEN_TYPE_FIPS_186_2 = 1;
   DH_PARAMGEN_TYPE_FIPS_186_4 = 2;
@@ -177,6 +181,8 @@ const
   { KDF types }
   EVP_PKEY_DH_KDF_NONE = 1;
   EVP_PKEY_DH_KDF_X9_42 = 2;
+  {$ifndef  OPENSSL_NO_STDIO}
+  {$endif}
   {$ifndef  OPENSSL_NO_DH}
     {$ifndef  OPENSSL_NO_DEPRECATED_1_1_0}
     {$endif}
@@ -267,13 +273,13 @@ const
       }
   DH_CHECK_P_NOT_STRONG_PRIME = DH_CHECK_P_NOT_SAFE_PRIME;
   {# define  d2i_DHparams_fp(fp,x) (DH *)ASN1_d2i_fp((void *(*)(void))DH_new, (d2i_of_void *)d2i_DHparams, (fp), (void **)(x))}
-  {# define  i2d_DHparams_fp(fp,x) ASN1_i2d_fp(i2d_DHparams, (fp), (unsigned char *)(x))} {Function argument out of range at line no 178}
-  {# define  d2i_DHparams_bio(bp,x) ASN1_d2i_bio_of(DH, DH_new, d2i_DHparams, bp, x)} {Function argument out of range at line no 180}
-  {# define  i2d_DHparams_bio(bp,x) ASN1_i2d_bio_of(DH, i2d_DHparams, bp, x)} {Function argument out of range at line no 182}
+  {# define  i2d_DHparams_fp(fp,x) ASN1_i2d_fp(i2d_DHparams, (fp), (unsigned char *)(x))} {Function argument out of range at line no 186}
+  {# define  d2i_DHparams_bio(bp,x) ASN1_d2i_bio_of(DH, DH_new, d2i_DHparams, bp, x)} {Function argument out of range at line no 188}
+  {# define  i2d_DHparams_bio(bp,x) ASN1_i2d_bio_of(DH, i2d_DHparams, bp, x)} {Function argument out of range at line no 190}
   {# define  d2i_DHxparams_fp(fp,x) (DH *)ASN1_d2i_fp((void *(*)(void))DH_new, (d2i_of_void *)d2i_DHxparams, (fp), (void **)(x))}
-  {# define  i2d_DHxparams_fp(fp,x) ASN1_i2d_fp(i2d_DHxparams, (fp), (unsigned char *)(x))} {Function argument out of range at line no 190}
-  {# define  d2i_DHxparams_bio(bp,x) ASN1_d2i_bio_of(DH, DH_new, d2i_DHxparams, bp, x)} {Function argument out of range at line no 192}
-  {# define  i2d_DHxparams_bio(bp,x) ASN1_i2d_bio_of(DH, i2d_DHxparams, bp, x)} {Function argument out of range at line no 194}
+  {# define  i2d_DHxparams_fp(fp,x) ASN1_i2d_fp(i2d_DHxparams, (fp), (unsigned char *)(x))} {Function argument out of range at line no 198}
+  {# define  d2i_DHxparams_bio(bp,x) ASN1_d2i_bio_of(DH, DH_new, d2i_DHxparams, bp, x)} {Function argument out of range at line no 200}
+  {# define  i2d_DHxparams_bio(bp,x) ASN1_i2d_bio_of(DH, i2d_DHxparams, bp, x)} {Function argument out of range at line no 202}
 
 
       {$ifdef OPENSSL_STATIC_LINK_MODEL}
@@ -330,7 +336,7 @@ var
   DH_size: function(dh: PDH): TOpenSSL_C_INT; cdecl = Load_DH_size;
   DH_security_bits: function(dh: PDH): TOpenSSL_C_INT; cdecl = Load_DH_security_bits;
       {$endif} {OPENSSL_STATIC_LINK_MODEL}
-  {# define  DH_get_ex_new_index(l,p,newf,dupf,freef) CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_DH, l, p, newf, dupf, freef)} {Macro Return Type unknown at line no 213}
+  {# define  DH_get_ex_new_index(l,p,newf,dupf,freef) CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_DH, l, p, newf, dupf, freef)} {Macro Return Type unknown at line no 221}
 
 
       {$ifdef OPENSSL_STATIC_LINK_MODEL}

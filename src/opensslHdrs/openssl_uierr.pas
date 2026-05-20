@@ -18,7 +18,7 @@
 unit openssl_uierr;
 
 {
-  Generated from OpenSSL 3.0.20 Header File uierr.h - Tue 19 May 14:16:51 BST 2026
+  Generated from OpenSSL 3.5.6 Header File uierr.h - Tue 19 May 14:28:41 BST 2026
 }
 
 {$IFNDEF FPC}

@@ -18,7 +18,7 @@
 unit openssl_pem;
 
 {
-  Generated from OpenSSL 3.0.20 Header File pem.h - Tue 19 May 14:16:20 BST 2026
+  Generated from OpenSSL 3.5.6 Header File pem.h - Tue 19 May 14:28:05 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -46,6 +46,8 @@ uses OpenSSLAPI,openssl_types,openssl_pkcs7,openssl_asn1,openssl_ec,
   {$include openssl_macros.inc}
   {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
     {$define HEADER_PEM_H}
+  {$endif}
+  {$ifndef  OPENSSL_NO_STDIO}
   {$endif}
 
 const
@@ -77,6 +79,7 @@ const
   PEM_STRING_CMS = 'CMS';
   PEM_STRING_SM2PRIVATEKEY = 'SM2 PRIVATE KEY';
   PEM_STRING_SM2PARAMETERS = 'SM2 PARAMETERS';
+  PEM_STRING_ACERT = 'ATTRIBUTE CERTIFICATE';
   PEM_TYPE_ENCRYPTED = 10;
   PEM_TYPE_MIC_ONLY = 20;
   PEM_TYPE_MIC_CLEAR = 30;
@@ -286,6 +289,7 @@ const
   function PEM_bytes_read_bio(pdata: PPbyte; plen: POpenSSL_C_INT; pnm: PPAnsiChar; name: PAnsiChar; bp: PBIO; cb: Tpem_password_cb; u: pointer): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'PEM_bytes_read_bio';
   function PEM_ASN1_read_bio(d2i: Pd2i_of_void; name: PAnsiChar; bp: PBIO; x: Ppointer; cb: Tpem_password_cb; u: pointer): pointer; cdecl; external CLibCrypto name 'PEM_ASN1_read_bio';
   function PEM_ASN1_write_bio(i2d: Pi2d_of_void; name: PAnsiChar; bp: PBIO; x: pointer; enc: PEVP_CIPHER; kstr: Pbyte; klen: TOpenSSL_C_INT; cb: Tpem_password_cb; u: pointer): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'PEM_ASN1_write_bio';
+  function PEM_ASN1_write_bio_ctx(i2d: POSSL_i2d_of_void_ctx; vctx: pointer; name: PAnsiChar; bp: PBIO; x: pointer; enc: PEVP_CIPHER; kstr: Pbyte; klen: TOpenSSL_C_INT; cb: Tpem_password_cb; u: pointer): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'PEM_ASN1_write_bio_ctx';
   function PEM_X509_INFO_read_bio(bp: PBIO; sk: Pstack_st_X509_INFO; cb: Tpem_password_cb; u: pointer): Pstack_st_X509_INFO; cdecl; external CLibCrypto name 'PEM_X509_INFO_read_bio';
   function PEM_X509_INFO_read_bio_ex(bp: PBIO; sk: Pstack_st_X509_INFO; cb: Tpem_password_cb; u: pointer; libctx: POSSL_LIB_CTX; propq: PAnsiChar): Pstack_st_X509_INFO; cdecl; external CLibCrypto name 'PEM_X509_INFO_read_bio_ex';
   function PEM_X509_INFO_write_bio(bp: PBIO; xi: PX509_INFO; enc: PEVP_CIPHER; kstr: Pbyte; klen: TOpenSSL_C_INT; cd: Tpem_password_cb; u: pointer): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'PEM_X509_INFO_write_bio';
@@ -296,6 +300,7 @@ const
   {$EXTERNALSYM PEM_bytes_read_bio}
   {$EXTERNALSYM PEM_ASN1_read_bio}
   {$EXTERNALSYM PEM_ASN1_write_bio}
+  {$EXTERNALSYM PEM_ASN1_write_bio_ctx}
   {$EXTERNALSYM PEM_X509_INFO_read_bio}
   {$EXTERNALSYM PEM_X509_INFO_read_bio_ex}
   {$EXTERNALSYM PEM_X509_INFO_write_bio}
@@ -306,6 +311,7 @@ const
   function Load_PEM_bytes_read_bio(pdata: PPbyte; plen: POpenSSL_C_INT; pnm: PPAnsiChar; name: PAnsiChar; bp: PBIO; cb: Tpem_password_cb; u: pointer): TOpenSSL_C_INT; cdecl;
   function Load_PEM_ASN1_read_bio(d2i: Pd2i_of_void; name: PAnsiChar; bp: PBIO; x: Ppointer; cb: Tpem_password_cb; u: pointer): pointer; cdecl;
   function Load_PEM_ASN1_write_bio(i2d: Pi2d_of_void; name: PAnsiChar; bp: PBIO; x: pointer; enc: PEVP_CIPHER; kstr: Pbyte; klen: TOpenSSL_C_INT; cb: Tpem_password_cb; u: pointer): TOpenSSL_C_INT; cdecl;
+  function Load_PEM_ASN1_write_bio_ctx(i2d: POSSL_i2d_of_void_ctx; vctx: pointer; name: PAnsiChar; bp: PBIO; x: pointer; enc: PEVP_CIPHER; kstr: Pbyte; klen: TOpenSSL_C_INT; cb: Tpem_password_cb; u: pointer): TOpenSSL_C_INT; cdecl;
   function Load_PEM_X509_INFO_read_bio(bp: PBIO; sk: Pstack_st_X509_INFO; cb: Tpem_password_cb; u: pointer): Pstack_st_X509_INFO; cdecl;
   function Load_PEM_X509_INFO_read_bio_ex(bp: PBIO; sk: Pstack_st_X509_INFO; cb: Tpem_password_cb; u: pointer; libctx: POSSL_LIB_CTX; propq: PAnsiChar): Pstack_st_X509_INFO; cdecl;
   function Load_PEM_X509_INFO_write_bio(bp: PBIO; xi: PX509_INFO; enc: PEVP_CIPHER; kstr: Pbyte; klen: TOpenSSL_C_INT; cd: Tpem_password_cb; u: pointer): TOpenSSL_C_INT; cdecl;
@@ -317,6 +323,7 @@ var
   PEM_bytes_read_bio: function(pdata: PPbyte; plen: POpenSSL_C_INT; pnm: PPAnsiChar; name: PAnsiChar; bp: PBIO; cb: Tpem_password_cb; u: pointer): TOpenSSL_C_INT; cdecl = Load_PEM_bytes_read_bio;
   PEM_ASN1_read_bio: function(d2i: Pd2i_of_void; name: PAnsiChar; bp: PBIO; x: Ppointer; cb: Tpem_password_cb; u: pointer): pointer; cdecl = Load_PEM_ASN1_read_bio;
   PEM_ASN1_write_bio: function(i2d: Pi2d_of_void; name: PAnsiChar; bp: PBIO; x: pointer; enc: PEVP_CIPHER; kstr: Pbyte; klen: TOpenSSL_C_INT; cb: Tpem_password_cb; u: pointer): TOpenSSL_C_INT; cdecl = Load_PEM_ASN1_write_bio;
+  PEM_ASN1_write_bio_ctx: function(i2d: POSSL_i2d_of_void_ctx; vctx: pointer; name: PAnsiChar; bp: PBIO; x: pointer; enc: PEVP_CIPHER; kstr: Pbyte; klen: TOpenSSL_C_INT; cb: Tpem_password_cb; u: pointer): TOpenSSL_C_INT; cdecl = Load_PEM_ASN1_write_bio_ctx;
   PEM_X509_INFO_read_bio: function(bp: PBIO; sk: Pstack_st_X509_INFO; cb: Tpem_password_cb; u: pointer): Pstack_st_X509_INFO; cdecl = Load_PEM_X509_INFO_read_bio;
   PEM_X509_INFO_read_bio_ex: function(bp: PBIO; sk: Pstack_st_X509_INFO; cb: Tpem_password_cb; u: pointer; libctx: POSSL_LIB_CTX; propq: PAnsiChar): Pstack_st_X509_INFO; cdecl = Load_PEM_X509_INFO_read_bio_ex;
   PEM_X509_INFO_write_bio: function(bp: PBIO; xi: PX509_INFO; enc: PEVP_CIPHER; kstr: Pbyte; klen: TOpenSSL_C_INT; cd: Tpem_password_cb; u: pointer): TOpenSSL_C_INT; cdecl = Load_PEM_X509_INFO_write_bio;
@@ -1054,6 +1061,14 @@ begin
   if not assigned(PEM_ASN1_write_bio) then
     EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_ASN1_write_bio');
   Result := PEM_ASN1_write_bio(i2d, name, bp, x, enc, kstr, klen, cb, u);
+end;
+
+function Load_PEM_ASN1_write_bio_ctx(i2d: POSSL_i2d_of_void_ctx; vctx: pointer; name: PAnsiChar; bp: PBIO; x: pointer; enc: PEVP_CIPHER; kstr: Pbyte; klen: TOpenSSL_C_INT; cb: Tpem_password_cb; u: pointer): TOpenSSL_C_INT; cdecl;
+begin
+  PEM_ASN1_write_bio_ctx := LoadLibCryptoFunction('PEM_ASN1_write_bio_ctx');
+  if not assigned(PEM_ASN1_write_bio_ctx) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('PEM_ASN1_write_bio_ctx');
+  Result := PEM_ASN1_write_bio_ctx(i2d, vctx, name, bp, x, enc, kstr, klen, cb, u);
 end;
 
 function Load_PEM_X509_INFO_read_bio(bp: PBIO; sk: Pstack_st_X509_INFO; cb: Tpem_password_cb; u: pointer): Pstack_st_X509_INFO; cdecl;
@@ -2170,6 +2185,7 @@ begin
   PEM_bytes_read_bio := Load_PEM_bytes_read_bio;
   PEM_ASN1_read_bio := Load_PEM_ASN1_read_bio;
   PEM_ASN1_write_bio := Load_PEM_ASN1_write_bio;
+  PEM_ASN1_write_bio_ctx := Load_PEM_ASN1_write_bio_ctx;
   PEM_X509_INFO_read_bio := Load_PEM_X509_INFO_read_bio;
   PEM_X509_INFO_read_bio_ex := Load_PEM_X509_INFO_read_bio_ex;
   PEM_X509_INFO_write_bio := Load_PEM_X509_INFO_write_bio;

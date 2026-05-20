@@ -18,7 +18,7 @@
 unit openssl_params;
 
 {
-  Generated from OpenSSL 3.0.20 Header File params.h - Tue 19 May 14:16:18 BST 2026
+  Generated from OpenSSL 3.5.6 Header File params.h - Tue 19 May 14:28:02 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -87,6 +87,7 @@ uses OpenSSLAPI,openssl_types,openssl_core,openssl_bn;
   function OSSL_PARAM_construct_octet_ptr(key: PAnsiChar; buf: Ppointer; bsize: TOpenSSL_C_SIZET): TOSSL_PARAM; cdecl; external CLibCrypto name 'OSSL_PARAM_construct_octet_ptr';
   function OSSL_PARAM_construct_end: TOSSL_PARAM; cdecl; external CLibCrypto name 'OSSL_PARAM_construct_end';
   function OSSL_PARAM_allocate_from_text(to_: POSSL_PARAM; paramdefs: POSSL_PARAM; key: PAnsiChar; value: PAnsiChar; value_n: TOpenSSL_C_SIZET; found: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PARAM_allocate_from_text';
+  function OSSL_PARAM_print_to_bio(params: POSSL_PARAM; bio: PBIO; print_values: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PARAM_print_to_bio';
   function OSSL_PARAM_get_int(p: POSSL_PARAM; val: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PARAM_get_int';
   function OSSL_PARAM_get_uint(p: POSSL_PARAM; val: POpenSSL_C_UINT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PARAM_get_uint';
   function OSSL_PARAM_get_long(p: POSSL_PARAM; val: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PARAM_get_long';
@@ -151,6 +152,7 @@ uses OpenSSLAPI,openssl_types,openssl_core,openssl_bn;
   {$EXTERNALSYM OSSL_PARAM_construct_octet_ptr}
   {$EXTERNALSYM OSSL_PARAM_construct_end}
   {$EXTERNALSYM OSSL_PARAM_allocate_from_text}
+  {$EXTERNALSYM OSSL_PARAM_print_to_bio}
   {$EXTERNALSYM OSSL_PARAM_get_int}
   {$EXTERNALSYM OSSL_PARAM_get_uint}
   {$EXTERNALSYM OSSL_PARAM_get_long}
@@ -211,6 +213,7 @@ uses OpenSSLAPI,openssl_types,openssl_core,openssl_bn;
   function Load_OSSL_PARAM_construct_octet_ptr(key: PAnsiChar; buf: Ppointer; bsize: TOpenSSL_C_SIZET): TOSSL_PARAM; cdecl;
   function Load_OSSL_PARAM_construct_end: TOSSL_PARAM; cdecl;
   function Load_OSSL_PARAM_allocate_from_text(to_: POSSL_PARAM; paramdefs: POSSL_PARAM; key: PAnsiChar; value: PAnsiChar; value_n: TOpenSSL_C_SIZET; found: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
+  function Load_OSSL_PARAM_print_to_bio(params: POSSL_PARAM; bio: PBIO; print_values: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
   function Load_OSSL_PARAM_get_int(p: POSSL_PARAM; val: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
   function Load_OSSL_PARAM_get_uint(p: POSSL_PARAM; val: POpenSSL_C_UINT): TOpenSSL_C_INT; cdecl;
   function Load_OSSL_PARAM_get_long(p: POSSL_PARAM; val: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
@@ -273,6 +276,7 @@ var
   OSSL_PARAM_construct_octet_ptr: function(key: PAnsiChar; buf: Ppointer; bsize: TOpenSSL_C_SIZET): TOSSL_PARAM; cdecl = Load_OSSL_PARAM_construct_octet_ptr;
   OSSL_PARAM_construct_end: function: TOSSL_PARAM; cdecl = Load_OSSL_PARAM_construct_end;
   OSSL_PARAM_allocate_from_text: function(to_: POSSL_PARAM; paramdefs: POSSL_PARAM; key: PAnsiChar; value: PAnsiChar; value_n: TOpenSSL_C_SIZET; found: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_OSSL_PARAM_allocate_from_text;
+  OSSL_PARAM_print_to_bio: function(params: POSSL_PARAM; bio: PBIO; print_values: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_OSSL_PARAM_print_to_bio;
   OSSL_PARAM_get_int: function(p: POSSL_PARAM; val: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_OSSL_PARAM_get_int;
   OSSL_PARAM_get_uint: function(p: POSSL_PARAM; val: POpenSSL_C_UINT): TOpenSSL_C_INT; cdecl = Load_OSSL_PARAM_get_uint;
   OSSL_PARAM_get_long: function(p: POSSL_PARAM; val: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_OSSL_PARAM_get_long;
@@ -519,6 +523,14 @@ begin
   if not assigned(OSSL_PARAM_allocate_from_text) then
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_allocate_from_text');
   Result := OSSL_PARAM_allocate_from_text(to_, paramdefs, key, value, value_n, found);
+end;
+
+function Load_OSSL_PARAM_print_to_bio(params: POSSL_PARAM; bio: PBIO; print_values: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
+begin
+  OSSL_PARAM_print_to_bio := LoadLibCryptoFunction('OSSL_PARAM_print_to_bio');
+  if not assigned(OSSL_PARAM_print_to_bio) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_print_to_bio');
+  Result := OSSL_PARAM_print_to_bio(params, bio, print_values);
 end;
 
 function Load_OSSL_PARAM_get_int(p: POSSL_PARAM; val: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
@@ -860,6 +872,7 @@ begin
   OSSL_PARAM_construct_octet_ptr := Load_OSSL_PARAM_construct_octet_ptr;
   OSSL_PARAM_construct_end := Load_OSSL_PARAM_construct_end;
   OSSL_PARAM_allocate_from_text := Load_OSSL_PARAM_allocate_from_text;
+  OSSL_PARAM_print_to_bio := Load_OSSL_PARAM_print_to_bio;
   OSSL_PARAM_get_int := Load_OSSL_PARAM_get_int;
   OSSL_PARAM_get_uint := Load_OSSL_PARAM_get_uint;
   OSSL_PARAM_get_long := Load_OSSL_PARAM_get_long;

@@ -18,7 +18,7 @@
 unit openssl_err;
 
 {
-  Generated from OpenSSL 3.0.20 Header File err.h - Tue 19 May 14:16:00 BST 2026
+  Generated from OpenSSL 3.5.6 Header File err.h - Tue 19 May 14:27:41 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -33,7 +33,7 @@ uses OpenSSLAPI,openssl_e_os2,openssl_types,openssl_bio,openssl_lhash,
      openssl_cryptoerr_legacy;
 
 
-{* Copyright 1995-2022 The OpenSSL Project Authors. All Rights Reserved.
+{* Copyright 1995-2023 The OpenSSL Project Authors. All Rights Reserved.
 *
 * Licensed under the Apache License 2.0 (the "License").  You may not use
 * this file except in compliance with the License.  You can obtain a copy
@@ -397,6 +397,10 @@ type
   Tlh_ERR_STRING_DATA_doallfunc = procedure(a: PERR_STRING_DATA); cdecl;
 
 
+  function lh_ERR_STRING_DATA_hash_thunk(data: pointer; hfn: TOPENSSL_LH_HASHFUNC): TOpenSSL_C_UINT; inline;
+  function lh_ERR_STRING_DATA_comp_thunk(da: pointer; db: pointer; cfn: TOPENSSL_LH_COMPFUNC): TOpenSSL_C_INT; inline;
+  procedure lh_ERR_STRING_DATA_doall_thunk(node: pointer; doall: TOPENSSL_LH_DOALL_FUNC); inline;
+  procedure lh_ERR_STRING_DATA_doall_arg_thunk(node: pointer; arg: pointer; doall: TOPENSSL_LH_DOALL_FUNCARG); inline;
   function ossl_check_ERR_STRING_DATA_lh_plain_type(ptr: PERR_STRING_DATA): PERR_STRING_DATA{Has C Attribute: unused}; inline;
   function ossl_check_const_ERR_STRING_DATA_lh_plain_type(ptr: PERR_STRING_DATA): PERR_STRING_DATA{Has C Attribute: unused}; inline;
   function ossl_check_const_ERR_STRING_DATA_lh_type(lh: Plhash_st_ERR_STRING_DATA): POPENSSL_LHASH{Has C Attribute: unused}; inline;
@@ -404,8 +408,9 @@ type
   function ossl_check_ERR_STRING_DATA_lh_compfunc_type(cmp: Tlh_ERR_STRING_DATA_compfunc): TOPENSSL_LH_COMPFUNC{Has C Attribute: unused}; inline;
   function ossl_check_ERR_STRING_DATA_lh_hashfunc_type(hfn: Tlh_ERR_STRING_DATA_hashfunc): TOPENSSL_LH_HASHFUNC{Has C Attribute: unused}; inline;
   function ossl_check_ERR_STRING_DATA_lh_doallfunc_type(dfn: Tlh_ERR_STRING_DATA_doallfunc): TOPENSSL_LH_DOALL_FUNC{Has C Attribute: unused}; inline;
-  {# define  lh_ERR_STRING_DATA_new(hfn,cmp) ((LHASH_OF(ERR_STRING_DATA) *)OPENSSL_LH_new(ossl_check_ERR_STRING_DATA_lh_hashfunc_type(hfn),
- ossl_check_ERR_STRING_DATA_lh_compfunc_type(cmp)))}
+  {# define  lh_ERR_STRING_DATA_new(hfn,cmp) ((LHASH_OF(ERR_STRING_DATA) *)OPENSSL_LH_set_thunks(OPENSSL_LH_new(ossl_check_ERR_STRING_DATA_lh_hashfunc_type(hfn),
+ ossl_check_ERR_STRING_DATA_lh_compfunc_type(cmp)), lh_ERR_STRING_DATA_hash_thunk, lh_ERR_STRING_DATA_comp_thunk, lh_ERR_STRING_DATA_doall_thunk,
+ lh_ERR_STRING_DATA_doall_arg_thunk))}
   {# define  lh_ERR_STRING_DATA_free(lh) OPENSSL_LH_free(ossl_check_ERR_STRING_DATA_lh_type(lh))} {Macro Return Type unknown at line no 386}
   {# define  lh_ERR_STRING_DATA_flush(lh) OPENSSL_LH_flush(ossl_check_ERR_STRING_DATA_lh_type(lh))} {Macro Return Type unknown at line no 387}
   function lh_ERR_STRING_DATA_insert(lh:Plhash_st_ERR_STRING_DATA; ptr:PERR_STRING_DATA): PERR_STRING_DATA; inline;
@@ -758,22 +763,50 @@ var
   function ERR_set_mark: TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ERR_set_mark';
   function ERR_pop_to_mark: TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ERR_pop_to_mark';
   function ERR_clear_last_mark: TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ERR_clear_last_mark';
+  function ERR_count_to_mark: TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ERR_count_to_mark';
+  function ERR_pop: TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ERR_pop';
+  function OSSL_ERR_STATE_new: PERR_STATE; cdecl; external CLibCrypto name 'OSSL_ERR_STATE_new';
+  procedure OSSL_ERR_STATE_save(es: PERR_STATE); cdecl; external CLibCrypto name 'OSSL_ERR_STATE_save';
+  procedure OSSL_ERR_STATE_save_to_mark(es: PERR_STATE); cdecl; external CLibCrypto name 'OSSL_ERR_STATE_save_to_mark';
+  procedure OSSL_ERR_STATE_restore(es: PERR_STATE); cdecl; external CLibCrypto name 'OSSL_ERR_STATE_restore';
+  procedure OSSL_ERR_STATE_free(es: PERR_STATE); cdecl; external CLibCrypto name 'OSSL_ERR_STATE_free';
   {$else}
   {$EXTERNALSYM ERR_get_next_error_library}
   {$EXTERNALSYM ERR_set_mark}
   {$EXTERNALSYM ERR_pop_to_mark}
   {$EXTERNALSYM ERR_clear_last_mark}
+  {$EXTERNALSYM ERR_count_to_mark}
+  {$EXTERNALSYM ERR_pop}
+  {$EXTERNALSYM OSSL_ERR_STATE_new}
+  {$EXTERNALSYM OSSL_ERR_STATE_save}
+  {$EXTERNALSYM OSSL_ERR_STATE_save_to_mark}
+  {$EXTERNALSYM OSSL_ERR_STATE_restore}
+  {$EXTERNALSYM OSSL_ERR_STATE_free}
   {Do not call Function LoadDeclarations. Internal use only}
   function Load_ERR_get_next_error_library: TOpenSSL_C_INT; cdecl;
   function Load_ERR_set_mark: TOpenSSL_C_INT; cdecl;
   function Load_ERR_pop_to_mark: TOpenSSL_C_INT; cdecl;
   function Load_ERR_clear_last_mark: TOpenSSL_C_INT; cdecl;
+  function Load_ERR_count_to_mark: TOpenSSL_C_INT; cdecl;
+  function Load_ERR_pop: TOpenSSL_C_INT; cdecl;
+  function Load_OSSL_ERR_STATE_new: PERR_STATE; cdecl;
+  procedure Load_OSSL_ERR_STATE_save(es: PERR_STATE); cdecl;
+  procedure Load_OSSL_ERR_STATE_save_to_mark(es: PERR_STATE); cdecl;
+  procedure Load_OSSL_ERR_STATE_restore(es: PERR_STATE); cdecl;
+  procedure Load_OSSL_ERR_STATE_free(es: PERR_STATE); cdecl;
 
 var
   ERR_get_next_error_library: function: TOpenSSL_C_INT; cdecl = Load_ERR_get_next_error_library;
   ERR_set_mark: function: TOpenSSL_C_INT; cdecl = Load_ERR_set_mark;
   ERR_pop_to_mark: function: TOpenSSL_C_INT; cdecl = Load_ERR_pop_to_mark;
   ERR_clear_last_mark: function: TOpenSSL_C_INT; cdecl = Load_ERR_clear_last_mark;
+  ERR_count_to_mark: function: TOpenSSL_C_INT; cdecl = Load_ERR_count_to_mark;
+  ERR_pop: function: TOpenSSL_C_INT; cdecl = Load_ERR_pop;
+  OSSL_ERR_STATE_new: function: PERR_STATE; cdecl = Load_OSSL_ERR_STATE_new;
+  OSSL_ERR_STATE_save: procedure(es: PERR_STATE); cdecl = Load_OSSL_ERR_STATE_save;
+  OSSL_ERR_STATE_save_to_mark: procedure(es: PERR_STATE); cdecl = Load_OSSL_ERR_STATE_save_to_mark;
+  OSSL_ERR_STATE_restore: procedure(es: PERR_STATE); cdecl = Load_OSSL_ERR_STATE_restore;
+  OSSL_ERR_STATE_free: procedure(es: PERR_STATE); cdecl = Load_OSSL_ERR_STATE_free;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
 {$endif}
 {$include errfunctions_h.inc}
@@ -855,6 +888,49 @@ end;
 function ERR_COMMON_ERROR(errcode: TOpenSSL_C_UINT): boolean{Has C Attribute: unused}; inline;
 begin
    Result := ((ERR_GET_RFLAGS(errcode)) and ($2 shl 18))<>0;
+end;
+
+function lh_ERR_STRING_DATA_hash_thunk(data: pointer; hfn: TOPENSSL_LH_HASHFUNC): TOpenSSL_C_UINT; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "lh_ERR_STRING_DATA_hash_thunk"');
+
+{Error: Line 384: Syntax Error parsing " unsigned long (*hfn_conv)(const ERR_STRING_DATA *) = (unsigned long (*)(const ERR_STRING_DATA 
+*))hfn; return hfn_conv((const ERR_STRING_DATA *)data); "
+
+ unsigned long (*hfn_conv)(const ERR_STRING_DATA *) = (unsigned long (*)(const ERR_STRING_DATA *))hfn; return hfn_conv((const ERR_STRING_DATA 
+*)data); }
+end;
+
+function lh_ERR_STRING_DATA_comp_thunk(da: pointer; db: pointer; cfn: TOPENSSL_LH_COMPFUNC): TOpenSSL_C_INT; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "lh_ERR_STRING_DATA_comp_thunk"');
+
+{Error: Line 384: Syntax Error parsing " int (*cfn_conv)(const ERR_STRING_DATA *, const ERR_STRING_DATA *) = (int (*)(const ERR_STRING_DATA 
+*, const ERR_STRING_DATA *))cfn; return cfn_conv((const ERR_STRING_DATA *)da, (const ERR_STRING_DATA *)db); "
+
+ int (*cfn_conv)(const ERR_STRING_DATA *, const ERR_STRING_DATA *) = (int (*)(const ERR_STRING_DATA *, const ERR_STRING_DATA *))cfn; 
+return cfn_conv((const ERR_STRING_DATA *)da, (const ERR_STRING_DATA *)db); }
+end;
+
+procedure lh_ERR_STRING_DATA_doall_thunk(node: pointer; doall: TOPENSSL_LH_DOALL_FUNC); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "lh_ERR_STRING_DATA_doall_thunk"');
+
+{Error: Line 384: Syntax Error parsing " void (*doall_conv)(ERR_STRING_DATA *) = (void (*)(ERR_STRING_DATA *))doall; doall_conv((ERR_STRING_DATA 
+*)node); "
+
+ void (*doall_conv)(ERR_STRING_DATA *) = (void (*)(ERR_STRING_DATA *))doall; doall_conv((ERR_STRING_DATA *)node); }
+end;
+
+procedure lh_ERR_STRING_DATA_doall_arg_thunk(node: pointer; arg: pointer; doall: TOPENSSL_LH_DOALL_FUNCARG); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "lh_ERR_STRING_DATA_doall_arg_thunk"');
+
+{Error: Line 384: Syntax Error parsing " void (*doall_conv)(ERR_STRING_DATA *, void *) = (void (*)(ERR_STRING_DATA *, void *))doall; 
+doall_conv((ERR_STRING_DATA *)node, arg); "
+
+ void (*doall_conv)(ERR_STRING_DATA *, void *) = (void (*)(ERR_STRING_DATA *, void *))doall; doall_conv((ERR_STRING_DATA *)node,
+ arg); }
 end;
 
 function ossl_check_ERR_STRING_DATA_lh_plain_type(ptr: PERR_STRING_DATA): PERR_STRING_DATA{Has C Attribute: unused}; inline;
@@ -1263,6 +1339,62 @@ begin
   Result := ERR_clear_last_mark;
 end;
 
+function Load_ERR_count_to_mark: TOpenSSL_C_INT; cdecl;
+begin
+  ERR_count_to_mark := LoadLibCryptoFunction('ERR_count_to_mark');
+  if not assigned(ERR_count_to_mark) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_count_to_mark');
+  Result := ERR_count_to_mark;
+end;
+
+function Load_ERR_pop: TOpenSSL_C_INT; cdecl;
+begin
+  ERR_pop := LoadLibCryptoFunction('ERR_pop');
+  if not assigned(ERR_pop) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_pop');
+  Result := ERR_pop;
+end;
+
+function Load_OSSL_ERR_STATE_new: PERR_STATE; cdecl;
+begin
+  OSSL_ERR_STATE_new := LoadLibCryptoFunction('OSSL_ERR_STATE_new');
+  if not assigned(OSSL_ERR_STATE_new) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_ERR_STATE_new');
+  Result := OSSL_ERR_STATE_new;
+end;
+
+procedure Load_OSSL_ERR_STATE_save(es: PERR_STATE); cdecl;
+begin
+  OSSL_ERR_STATE_save := LoadLibCryptoFunction('OSSL_ERR_STATE_save');
+  if not assigned(OSSL_ERR_STATE_save) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_ERR_STATE_save');
+  OSSL_ERR_STATE_save(es);
+end;
+
+procedure Load_OSSL_ERR_STATE_save_to_mark(es: PERR_STATE); cdecl;
+begin
+  OSSL_ERR_STATE_save_to_mark := LoadLibCryptoFunction('OSSL_ERR_STATE_save_to_mark');
+  if not assigned(OSSL_ERR_STATE_save_to_mark) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_ERR_STATE_save_to_mark');
+  OSSL_ERR_STATE_save_to_mark(es);
+end;
+
+procedure Load_OSSL_ERR_STATE_restore(es: PERR_STATE); cdecl;
+begin
+  OSSL_ERR_STATE_restore := LoadLibCryptoFunction('OSSL_ERR_STATE_restore');
+  if not assigned(OSSL_ERR_STATE_restore) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_ERR_STATE_restore');
+  OSSL_ERR_STATE_restore(es);
+end;
+
+procedure Load_OSSL_ERR_STATE_free(es: PERR_STATE); cdecl;
+begin
+  OSSL_ERR_STATE_free := LoadLibCryptoFunction('OSSL_ERR_STATE_free');
+  if not assigned(OSSL_ERR_STATE_free) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_ERR_STATE_free');
+  OSSL_ERR_STATE_free(es);
+end;
+
 procedure Load;
 begin
   ERR_set_error := LoadLibCryptoFunction('ERR_set_error');
@@ -1349,6 +1481,13 @@ begin
   ERR_set_mark := Load_ERR_set_mark;
   ERR_pop_to_mark := Load_ERR_pop_to_mark;
   ERR_clear_last_mark := Load_ERR_clear_last_mark;
+  ERR_count_to_mark := Load_ERR_count_to_mark;
+  ERR_pop := Load_ERR_pop;
+  OSSL_ERR_STATE_new := Load_OSSL_ERR_STATE_new;
+  OSSL_ERR_STATE_save := Load_OSSL_ERR_STATE_save;
+  OSSL_ERR_STATE_save_to_mark := Load_OSSL_ERR_STATE_save_to_mark;
+  OSSL_ERR_STATE_restore := Load_OSSL_ERR_STATE_restore;
+  OSSL_ERR_STATE_free := Load_OSSL_ERR_STATE_free;
 end;
 
 {$endif} {OPENSSL_STATIC_LINK_MODEL}

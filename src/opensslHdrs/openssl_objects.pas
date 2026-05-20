@@ -18,7 +18,7 @@
 unit openssl_objects;
 
 {
-  Generated from OpenSSL 3.0.20 Header File objects.h - Tue 19 May 14:16:12 BST 2026
+  Generated from OpenSSL 3.5.6 Header File objects.h - Tue 19 May 14:27:56 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -33,7 +33,7 @@ uses OpenSSLAPI,openssl_types,openssl_obj_mac,openssl_bio,openssl_asn1,
      openssl_objectserr;
 
 
-{* Copyright 1995-2019 The OpenSSL Project Authors. All Rights Reserved.
+{* Copyright 1995-2024 The OpenSSL Project Authors. All Rights Reserved.
 *
 * Licensed under the Apache License 2.0 (the "License").  You may not use
 * this file except in compliance with the License.  You can obtain a copy
@@ -360,6 +360,9 @@ var
   OBJ_add_sigid: function(signid: TOpenSSL_C_INT; dig_id: TOpenSSL_C_INT; pkey_id: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_OBJ_add_sigid;
   OBJ_sigid_free: procedure; cdecl = Load_OBJ_sigid_free;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
+
+const
+  SN_ac_auditEntity = SN_ac_auditIdentity;
 {$endif}
 
 implementation

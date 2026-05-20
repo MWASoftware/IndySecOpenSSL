@@ -18,7 +18,7 @@
 unit openssl_ocsp;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ocsp.h - Tue 19 May 14:16:15 BST 2026
+  Generated from OpenSSL 3.5.6 Header File ocsp.h - Tue 19 May 14:28:00 BST 2026
 }
 
 {$IFNDEF FPC}

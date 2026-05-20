@@ -18,7 +18,7 @@
 unit openssl_asn1t;
 
 {
-  Generated from OpenSSL 3.0.20 Header File asn1t.h - Tue 19 May 14:15:25 BST 2026
+  Generated from OpenSSL 3.5.6 Header File asn1t.h - Tue 19 May 14:27:03 BST 2026
 }
 
 {$IFNDEF FPC}

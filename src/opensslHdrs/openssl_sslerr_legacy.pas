@@ -18,7 +18,7 @@
 unit openssl_sslerr_legacy;
 
 {
-  Generated from OpenSSL 3.0.20 Header File sslerr_legacy.h - Tue 19 May 14:16:35 BST 2026
+  Generated from OpenSSL 3.5.6 Header File sslerr_legacy.h - Tue 19 May 14:28:24 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -32,7 +32,7 @@ interface
 uses OpenSSLAPI,openssl_symhacks;
 
 
-{* Copyright 2020-2021 The OpenSSL Project Authors. All Rights Reserved.
+{* Copyright 2020-2024 The OpenSSL Project Authors. All Rights Reserved.
 *
 * Licensed under the Apache License 2.0 (the "License").  You may not use
 * this file except in compliance with the License.  You can obtain a copy
@@ -185,7 +185,6 @@ const
   SSL_F_SSL_ADD_SERVERHELLO_RENEGOTIATE_EXT = 0;
   SSL_F_SSL_ADD_SERVERHELLO_TLSEXT = 0;
   SSL_F_SSL_ADD_SERVERHELLO_USE_SRTP_EXT = 0;
-  SSL_F_SSL_BAD_METHOD = 0;
   SSL_F_SSL_BUILD_CERT_CHAIN = 0;
   SSL_F_SSL_BYTES_TO_CIPHER_LIST = 0;
   SSL_F_SSL_CACHE_CIPHERLIST = 0;

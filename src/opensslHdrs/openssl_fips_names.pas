@@ -18,7 +18,7 @@
 unit openssl_fips_names;
 
 {
-  Generated from OpenSSL 3.0.20 Header File fips_names.h - Tue 19 May 14:16:05 BST 2026
+  Generated from OpenSSL 3.5.6 Header File fips_names.h - Tue 19 May 14:27:47 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -29,10 +29,10 @@ unit openssl_fips_names;
 
 interface
 
-uses OpenSSLAPI;
+uses OpenSSLAPI,openssl_core_names;
 
 
-{* Copyright 2019-2021 The OpenSSL Project Authors. All Rights Reserved.
+{* Copyright 2019-2024 The OpenSSL Project Authors. All Rights Reserved.
 *
 * Licensed under the Apache License 2.0 (the "License").  You may not use
 * this file except in compliance with the License.  You can obtain a copy
@@ -45,26 +45,16 @@ uses OpenSSLAPI;
 const
   
   {* Parameter names that the FIPS Provider defines
+  * All parameters are of type: OSSL_PARAM_UTF8_STRING
   }
-  
-  {* The calculated MAC of the module file (Used for FIPS Self Testing)
-  * Type: OSSL_PARAM_UTF8_STRING
-  }
+  { The following 4 Parameters are used for FIPS Self Testing }
+  { The calculated MAC of the module file }
   OSSL_PROV_FIPS_PARAM_MODULE_MAC = 'module-mac';
-  
-  {* A version number for the fips install process (Used for FIPS Self Testing)
-  * Type: OSSL_PARAM_UTF8_STRING
-  }
+  { The Version number for the fips install process }
   OSSL_PROV_FIPS_PARAM_INSTALL_VERSION = 'install-version';
-  
-  {* The calculated MAC of the install status indicator (Used for FIPS Self Testing)
-  * Type: OSSL_PARAM_UTF8_STRING
-  }
+  { The calculated MAC of the install status indicator }
   OSSL_PROV_FIPS_PARAM_INSTALL_MAC = 'install-mac';
-  
-  {* The install status indicator (Used for FIPS Self Testing)
-  * Type: OSSL_PARAM_UTF8_STRING
-  }
+  { The install status indicator }
   OSSL_PROV_FIPS_PARAM_INSTALL_STATUS = 'install-status';
   
   {* A boolean that determines if the FIPS conditional test errors result in
@@ -72,11 +62,10 @@ const
   * Type: OSSL_PARAM_UTF8_STRING
   }
   OSSL_PROV_FIPS_PARAM_CONDITIONAL_ERRORS = 'conditional-errors';
-  
-  {* A boolean that determines if the runtime FIPS security checks are performed.
-  * Type: OSSL_PARAM_UTF8_STRING
-  }
-  OSSL_PROV_FIPS_PARAM_SECURITY_CHECKS = 'security-checks';
+  { The following are provided for backwards compatibility }
+  OSSL_PROV_FIPS_PARAM_SECURITY_CHECKS = OSSL_PROV_PARAM_SECURITY_CHECKS;
+  OSSL_PROV_FIPS_PARAM_TLS1_PRF_EMS_CHECK = OSSL_PROV_PARAM_TLS1_PRF_EMS_CHECK;
+  OSSL_PROV_FIPS_PARAM_DRBG_TRUNC_DIGEST = OSSL_PROV_PARAM_DRBG_TRUNC_DIGEST;
 {$endif}
 { OPENSSL_FIPS_NAMES_H }
 

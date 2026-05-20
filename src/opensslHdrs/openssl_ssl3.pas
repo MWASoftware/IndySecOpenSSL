@@ -18,7 +18,7 @@
 unit openssl_ssl3;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ssl3.h - Tue 19 May 14:16:34 BST 2026
+  Generated from OpenSSL 3.5.6 Header File ssl3.h - Tue 19 May 14:28:23 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -32,7 +32,7 @@ interface
 uses OpenSSLAPI,openssl_comp,openssl_buffer,openssl_evp;
 
 
-{* Copyright 1995-2021 The OpenSSL Project Authors. All Rights Reserved.
+{* Copyright 1995-2025 The OpenSSL Project Authors. All Rights Reserved.
 * Copyright (c) 2002, Oracle and/or its affiliates. All rights reserved
 *
 * Licensed under the Apache License 2.0 (the "License").  You may not use
@@ -233,6 +233,12 @@ const
   { Pseudo content types for SSL/TLS header info }
   SSL3_RT_HEADER = $100;
   SSL3_RT_INNER_CONTENT_TYPE = $101;
+  { Pseudo content types for QUIC }
+  SSL3_RT_QUIC_DATAGRAM = $200;
+  SSL3_RT_QUIC_PACKET = $201;
+  SSL3_RT_QUIC_FRAME_FULL = $202;
+  SSL3_RT_QUIC_FRAME_HEADER = $203;
+  SSL3_RT_QUIC_FRAME_PADDING = $204;
   SSL3_AL_WARNING = 1;
   SSL3_AL_FATAL = 2;
   SSL3_AD_CLOSE_NOTIFY = 0;
@@ -282,6 +288,8 @@ const
   TLS1_FLAGS_STATELESS = $0800;
   { Set if extended master secret extension required on renegotiation }
   TLS1_FLAGS_REQUIRED_EXTMS = $1000;
+  { 0x2000 is reserved for TLS1_FLAGS_QUIC (internal) }
+  { 0x4000 is reserved for TLS1_FLAGS_QUIC_INTERNAL (internal) }
   SSL3_MT_HELLO_REQUEST = 0;
   SSL3_MT_CLIENT_HELLO = 1;
   SSL3_MT_SERVER_HELLO = 2;
@@ -299,6 +307,7 @@ const
   SSL3_MT_CERTIFICATE_STATUS = 22;
   SSL3_MT_SUPPLEMENTAL_DATA = 23;
   SSL3_MT_KEY_UPDATE = 24;
+  SSL3_MT_COMPRESSED_CERTIFICATE = 25;
   {$ifndef  OPENSSL_NO_NEXTPROTONEG}
 
 const

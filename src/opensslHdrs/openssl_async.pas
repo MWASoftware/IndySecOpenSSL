@@ -18,7 +18,7 @@
 unit openssl_async;
 
 {
-  Generated from OpenSSL 3.0.20 Header File async.h - Tue 19 May 14:15:26 BST 2026
+  Generated from OpenSSL 3.5.6 Header File async.h - Tue 19 May 14:27:04 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -32,7 +32,7 @@ interface
 uses OpenSSLAPI,openssl_asyncerr;
 
 
-{* Copyright 2015-2018 The OpenSSL Project Authors. All Rights Reserved.
+{* Copyright 2015-2022 The OpenSSL Project Authors. All Rights Reserved.
 *
 * Licensed under the Apache License 2.0 (the "License").  You may not use
 * this file except in compliance with the License.  You can obtain a copy
@@ -197,6 +197,33 @@ var
 
 var
   ASYNC_is_capable: function: TOpenSSL_C_INT; cdecl = Load_ASYNC_is_capable;
+  {$endif} {OPENSSL_STATIC_LINK_MODEL}
+
+type
+  {Auto-generated forward references}
+  PASYNC_stack_alloc_fn = ^TASYNC_stack_alloc_fn;
+  PPASYNC_stack_alloc_fn = ^PASYNC_stack_alloc_fn;
+  PASYNC_stack_free_fn = ^TASYNC_stack_free_fn;
+  PPASYNC_stack_free_fn = ^PASYNC_stack_free_fn;
+  {end of auto-generated forward references}
+
+  TASYNC_stack_alloc_fn = function(num: POpenSSL_C_SIZET): pointer; cdecl;
+  TASYNC_stack_free_fn = procedure(addr: pointer); cdecl;
+
+
+  {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  function ASYNC_set_mem_functions(alloc_fn: TASYNC_stack_alloc_fn; free_fn: TASYNC_stack_free_fn): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ASYNC_set_mem_functions';
+  procedure ASYNC_get_mem_functions(alloc_fn: PASYNC_stack_alloc_fn; free_fn: PASYNC_stack_free_fn); cdecl; external CLibCrypto name 'ASYNC_get_mem_functions';
+  {$else}
+  {$EXTERNALSYM ASYNC_set_mem_functions}
+  {$EXTERNALSYM ASYNC_get_mem_functions}
+  {Do not call Function LoadDeclarations. Internal use only}
+  function Load_ASYNC_set_mem_functions(alloc_fn: TASYNC_stack_alloc_fn; free_fn: TASYNC_stack_free_fn): TOpenSSL_C_INT; cdecl;
+  procedure Load_ASYNC_get_mem_functions(alloc_fn: PASYNC_stack_alloc_fn; free_fn: PASYNC_stack_free_fn); cdecl;
+
+var
+  ASYNC_set_mem_functions: function(alloc_fn: TASYNC_stack_alloc_fn; free_fn: TASYNC_stack_free_fn): TOpenSSL_C_INT; cdecl = Load_ASYNC_set_mem_functions;
+  ASYNC_get_mem_functions: procedure(alloc_fn: PASYNC_stack_alloc_fn; free_fn: PASYNC_stack_free_fn); cdecl = Load_ASYNC_get_mem_functions;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
 type
@@ -393,6 +420,22 @@ begin
   Result := ASYNC_is_capable;
 end;
 
+function Load_ASYNC_set_mem_functions(alloc_fn: TASYNC_stack_alloc_fn; free_fn: TASYNC_stack_free_fn): TOpenSSL_C_INT; cdecl;
+begin
+  ASYNC_set_mem_functions := LoadLibCryptoFunction('ASYNC_set_mem_functions');
+  if not assigned(ASYNC_set_mem_functions) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('ASYNC_set_mem_functions');
+  Result := ASYNC_set_mem_functions(alloc_fn, free_fn);
+end;
+
+procedure Load_ASYNC_get_mem_functions(alloc_fn: PASYNC_stack_alloc_fn; free_fn: PASYNC_stack_free_fn); cdecl;
+begin
+  ASYNC_get_mem_functions := LoadLibCryptoFunction('ASYNC_get_mem_functions');
+  if not assigned(ASYNC_get_mem_functions) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('ASYNC_get_mem_functions');
+  ASYNC_get_mem_functions(alloc_fn, free_fn);
+end;
+
 function Load_ASYNC_start_job(job: PPASYNC_JOB; ctx: PASYNC_WAIT_CTX; ret: POpenSSL_C_INT; func: TFuncType001; args: pointer; size: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
 begin
   ASYNC_start_job := LoadLibCryptoFunction('ASYNC_start_job');
@@ -464,6 +507,8 @@ begin
   ASYNC_WAIT_CTX_clear_fd := Load_ASYNC_WAIT_CTX_clear_fd;
 {$endif} {OSSL_ASYNC_FD}
   ASYNC_is_capable := Load_ASYNC_is_capable;
+  ASYNC_set_mem_functions := Load_ASYNC_set_mem_functions;
+  ASYNC_get_mem_functions := Load_ASYNC_get_mem_functions;
   ASYNC_start_job := Load_ASYNC_start_job;
   ASYNC_pause_job := Load_ASYNC_pause_job;
   ASYNC_get_current_job := Load_ASYNC_get_current_job;

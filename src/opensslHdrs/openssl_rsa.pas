@@ -18,7 +18,7 @@
 unit openssl_rsa;
 
 {
-  Generated from OpenSSL 3.0.20 Header File rsa.h - Tue 19 May 14:16:27 BST 2026
+  Generated from OpenSSL 3.5.6 Header File rsa.h - Tue 19 May 14:28:15 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -48,6 +48,8 @@ uses OpenSSLAPI,openssl_evp,openssl_asn1,openssl_bio,openssl_crypto,
   {$endif}
   {$include openssl_opensslconf.inc}
   {$ifndef  OPENSSL_NO_DEPRECATED_1_1_0}
+  {$endif}
+  {$ifndef  OPENSSL_NO_STDIO}
   {$endif}
   {$ifndef  OPENSSL_RSA_MAX_MODULUS_BITS}
 
@@ -208,6 +210,9 @@ const
   RSA_PSS_SALTLEN_AUTO = -(2);
   { Set salt length to maximum possible }
   RSA_PSS_SALTLEN_MAX = -(3);
+  { Auto-detect on verify, set salt length to min(maximum possible, digest
+  * length) on sign }
+  RSA_PSS_SALTLEN_AUTO_DIGEST_MAX = -(4);
   { Old compatible max salt length for sign only }
   RSA_PSS_SALTLEN_MAX_SIGN = -(2);
 
@@ -289,6 +294,7 @@ const
   EVP_PKEY_CTRL_GET_RSA_OAEP_MD = EVP_PKEY_ALG_CTRL+11;
   EVP_PKEY_CTRL_GET_RSA_OAEP_LABEL = EVP_PKEY_ALG_CTRL+12;
   EVP_PKEY_CTRL_RSA_KEYGEN_PRIMES = EVP_PKEY_ALG_CTRL+13;
+  EVP_PKEY_CTRL_RSA_IMPLICIT_REJECTION = EVP_PKEY_ALG_CTRL+14;
   RSA_PKCS1_PADDING = 1;
   RSA_NO_PADDING = 3;
   RSA_PKCS1_OAEP_PADDING = 4;
@@ -296,6 +302,8 @@ const
   { EVP_PKEY_ only }
   RSA_PKCS1_PSS_PADDING = 6;
   RSA_PKCS1_WITH_TLS_PADDING = 7;
+  { internal RSA_ only }
+  RSA_PKCS1_NO_IMPLICIT_REJECT_PADDING = 8;
   RSA_PKCS1_PADDING_SIZE = 11;
 
 
@@ -427,7 +435,7 @@ var
   RSA_get0_engine: function(r: PRSA): PENGINE; cdecl = Load_RSA_get0_engine;
     {$endif} {OPENSSL_STATIC_LINK_MODEL}
   {$endif}
-{# define  EVP_RSA_gen(bits) EVP_PKEY_Q_keygen(NULL, NULL, "RSA", (size_t)(0 + (bits)))} {Macro Return Type unknown at line no 253}
+{# define  EVP_RSA_gen(bits) EVP_PKEY_Q_keygen(NULL, NULL, "RSA", (size_t)(0 + (bits)))} {Macro Return Type unknown at line no 264}
   { !OPENSSL_NO_DEPRECATED_3_0 }
   { Deprecated version }
   {$ifndef  OPENSSL_NO_DEPRECATED_0_9_8}
@@ -814,7 +822,7 @@ var
   RSA_verify_PKCS1_PSS_mgf1: function(rsa: PRSA; mHash: Pbyte; Hash: PEVP_MD; mgf1Hash: PEVP_MD; EM: Pbyte; sLen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_RSA_verify_PKCS1_PSS_mgf1;
   RSA_padding_add_PKCS1_PSS_mgf1: function(rsa: PRSA; EM: Pbyte; mHash: Pbyte; Hash: PEVP_MD; mgf1Hash: PEVP_MD; sLen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_RSA_padding_add_PKCS1_PSS_mgf1;
     {$endif} {OPENSSL_STATIC_LINK_MODEL}
-  {# define  RSA_get_ex_new_index(l,p,newf,dupf,freef) CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_RSA, l, p, newf, dupf, freef)} {Macro Return Type unknown at line no 447}
+  {# define  RSA_get_ex_new_index(l,p,newf,dupf,freef) CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_RSA, l, p, newf, dupf, freef)} {Macro Return Type unknown at line no 458}
 
 
     {$ifdef OPENSSL_STATIC_LINK_MODEL}

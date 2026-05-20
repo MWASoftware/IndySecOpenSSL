@@ -18,7 +18,7 @@
 unit openssl_dsa;
 
 {
-  Generated from OpenSSL 3.0.20 Header File dsa.h - Tue 19 May 14:15:52 BST 2026
+  Generated from OpenSSL 3.5.6 Header File dsa.h - Tue 19 May 14:27:33 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -47,6 +47,12 @@ uses OpenSSLAPI,openssl_evp,openssl_types,openssl_e_os2,openssl_asn1,
     {$define HEADER_DSA_H}
   {$endif}
   {$include openssl_opensslconf.inc}
+  {$ifndef  OPENSSL_NO_DSA}
+    {$ifndef  OPENSSL_NO_DEPRECATED_1_1_0}
+    {$endif}
+    {$ifndef  OPENSSL_NO_STDIO}
+    {$endif}
+  {$endif}
 
 
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
@@ -93,8 +99,6 @@ const
   EVP_PKEY_CTRL_DSA_PARAMGEN_Q_BITS = EVP_PKEY_ALG_CTRL+2;
   EVP_PKEY_CTRL_DSA_PARAMGEN_MD = EVP_PKEY_ALG_CTRL+3;
   {$ifndef  OPENSSL_NO_DSA}
-    {$ifndef  OPENSSL_NO_DEPRECATED_1_1_0}
-    {$endif}
     {$ifndef  OPENSSL_DSA_MAX_MODULUS_BITS}
 
 const
@@ -173,9 +177,9 @@ const
   DSA_FLAG_NON_FIPS_ALLOW = $0400;
   DSA_FLAG_FIPS_CHECKED = $0800;
   {# define  d2i_DSAparams_fp(fp,x) (DSA *)ASN1_d2i_fp((void *(*)(void))DSA_new, (d2i_of_void *)d2i_DSAparams, (fp), (void **)(x))}
-  {# define  i2d_DSAparams_fp(fp,x) ASN1_i2d_fp(i2d_DSAparams, (fp), (unsigned char *)(x))} {Function argument out of range at line no 109}
-  {# define  d2i_DSAparams_bio(bp,x) ASN1_d2i_bio_of(DSA, DSA_new, d2i_DSAparams, bp, x)} {Function argument out of range at line no 111}
-  {# define  i2d_DSAparams_bio(bp,x) ASN1_i2d_bio_of(DSA, i2d_DSAparams, bp, x)} {Function argument out of range at line no 113}
+  {# define  i2d_DSAparams_fp(fp,x) ASN1_i2d_fp(i2d_DSAparams, (fp), (unsigned char *)(x))} {Function argument out of range at line no 115}
+  {# define  d2i_DSAparams_bio(bp,x) ASN1_d2i_bio_of(DSA, DSA_new, d2i_DSAparams, bp, x)} {Function argument out of range at line no 117}
+  {# define  i2d_DSAparams_bio(bp,x) ASN1_i2d_bio_of(DSA, i2d_DSAparams, bp, x)} {Function argument out of range at line no 119}
 
 
       { Already defined in ossl_typ.h }
@@ -263,7 +267,7 @@ var
   DSA_sign: function(type_: TOpenSSL_C_INT; dgst: Pbyte; dlen: TOpenSSL_C_INT; sig: Pbyte; siglen: POpenSSL_C_UINT; dsa: PDSA): TOpenSSL_C_INT; cdecl = Load_DSA_sign;
   DSA_verify: function(type_: TOpenSSL_C_INT; dgst: Pbyte; dgst_len: TOpenSSL_C_INT; sigbuf: Pbyte; siglen: TOpenSSL_C_INT; dsa: PDSA): TOpenSSL_C_INT; cdecl = Load_DSA_verify;
       {$endif} {OPENSSL_STATIC_LINK_MODEL}
-  {# define  DSA_get_ex_new_index(l,p,newf,dupf,freef) CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_DSA, l, p, newf, dupf, freef)} {Macro Return Type unknown at line no 147}
+  {# define  DSA_get_ex_new_index(l,p,newf,dupf,freef) CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_DSA, l, p, newf, dupf, freef)} {Macro Return Type unknown at line no 153}
 
 
       {$ifdef OPENSSL_STATIC_LINK_MODEL}
@@ -375,7 +379,7 @@ var
 
 const
   DSS_prime_checks = 64;
-  {# define  DSA_is_prime(n,callback,cb_arg) BN_is_prime(n, DSS_prime_checks, callback, NULL, cb_arg)} {Macro Return Type unknown at line no 194}
+  {# define  DSA_is_prime(n,callback,cb_arg) BN_is_prime(n, DSS_prime_checks, callback, NULL, cb_arg)} {Macro Return Type unknown at line no 200}
       
       {* Primality test according to FIPS PUB 186-4, Appendix C.3. Since we only
       * have one value here we set the number of checks to 64 which is the 128 bit

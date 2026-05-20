@@ -18,7 +18,7 @@
 unit openssl_provider;
 
 {
-  Generated from OpenSSL 3.0.20 Header File provider.h - Tue 19 May 14:16:24 BST 2026
+  Generated from OpenSSL 3.5.6 Header File provider.h - Tue 19 May 14:28:10 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -32,7 +32,7 @@ interface
 uses OpenSSLAPI,openssl_types,openssl_core;
 
 
-{* Copyright 2019-2021 The OpenSSL Project Authors. All Rights Reserved.
+{* Copyright 2019-2025 The OpenSSL Project Authors. All Rights Reserved.
 *
 * Licensed under the Apache License 2.0 (the "License").  You may not use
 * this file except in compliance with the License.  You can obtain a copy
@@ -43,12 +43,15 @@ uses OpenSSLAPI,openssl_types,openssl_core;
   {$define OPENSSL_PROVIDER_H}
 
 
-  { Set the default provider search path }
+  { Set and Get a library context search path }
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
   function OSSL_PROVIDER_set_default_search_path(_param1: POSSL_LIB_CTX; path: PAnsiChar): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PROVIDER_set_default_search_path';
+  function OSSL_PROVIDER_get0_default_search_path(libctx: POSSL_LIB_CTX): PAnsiChar; cdecl; external CLibCrypto name 'OSSL_PROVIDER_get0_default_search_path';
   { Load and unload a provider }
   function OSSL_PROVIDER_load(_param1: POSSL_LIB_CTX; name: PAnsiChar): POSSL_PROVIDER; cdecl; external CLibCrypto name 'OSSL_PROVIDER_load';
+  function OSSL_PROVIDER_load_ex(_param1: POSSL_LIB_CTX; name: PAnsiChar; params: POSSL_PARAM): POSSL_PROVIDER; cdecl; external CLibCrypto name 'OSSL_PROVIDER_load_ex';
   function OSSL_PROVIDER_try_load(_param1: POSSL_LIB_CTX; name: PAnsiChar; retain_fallbacks: TOpenSSL_C_INT): POSSL_PROVIDER; cdecl; external CLibCrypto name 'OSSL_PROVIDER_try_load';
+  function OSSL_PROVIDER_try_load_ex(_param1: POSSL_LIB_CTX; name: PAnsiChar; params: POSSL_PARAM; retain_fallbacks: TOpenSSL_C_INT): POSSL_PROVIDER; cdecl; external CLibCrypto name 'OSSL_PROVIDER_try_load_ex';
   function OSSL_PROVIDER_unload(prov: POSSL_PROVIDER): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PROVIDER_unload';
   function OSSL_PROVIDER_available(_param1: POSSL_LIB_CTX; name: PAnsiChar): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PROVIDER_available';
   {$else}
@@ -57,22 +60,31 @@ uses OpenSSLAPI,openssl_types,openssl_core;
   The EXTERNALSYM directive prevents the specified Delphi symbol from appearing in header
   files generated for C++. }
   {$EXTERNALSYM OSSL_PROVIDER_set_default_search_path}
+  {$EXTERNALSYM OSSL_PROVIDER_get0_default_search_path}
   {$EXTERNALSYM OSSL_PROVIDER_load}
+  {$EXTERNALSYM OSSL_PROVIDER_load_ex}
   {$EXTERNALSYM OSSL_PROVIDER_try_load}
+  {$EXTERNALSYM OSSL_PROVIDER_try_load_ex}
   {$EXTERNALSYM OSSL_PROVIDER_unload}
   {$EXTERNALSYM OSSL_PROVIDER_available}
   {Do not call Function LoadDeclarations. Internal use only}
   function Load_OSSL_PROVIDER_set_default_search_path(_param1: POSSL_LIB_CTX; path: PAnsiChar): TOpenSSL_C_INT; cdecl;
+  function Load_OSSL_PROVIDER_get0_default_search_path(libctx: POSSL_LIB_CTX): PAnsiChar; cdecl;
   function Load_OSSL_PROVIDER_load(_param1: POSSL_LIB_CTX; name: PAnsiChar): POSSL_PROVIDER; cdecl;
+  function Load_OSSL_PROVIDER_load_ex(_param1: POSSL_LIB_CTX; name: PAnsiChar; params: POSSL_PARAM): POSSL_PROVIDER; cdecl;
   function Load_OSSL_PROVIDER_try_load(_param1: POSSL_LIB_CTX; name: PAnsiChar; retain_fallbacks: TOpenSSL_C_INT): POSSL_PROVIDER; cdecl;
+  function Load_OSSL_PROVIDER_try_load_ex(_param1: POSSL_LIB_CTX; name: PAnsiChar; params: POSSL_PARAM; retain_fallbacks: TOpenSSL_C_INT): POSSL_PROVIDER; cdecl;
   function Load_OSSL_PROVIDER_unload(prov: POSSL_PROVIDER): TOpenSSL_C_INT; cdecl;
   function Load_OSSL_PROVIDER_available(_param1: POSSL_LIB_CTX; name: PAnsiChar): TOpenSSL_C_INT; cdecl;
 
 var
   OSSL_PROVIDER_set_default_search_path: function(_param1: POSSL_LIB_CTX; path: PAnsiChar): TOpenSSL_C_INT; cdecl = Load_OSSL_PROVIDER_set_default_search_path;
+  OSSL_PROVIDER_get0_default_search_path: function(libctx: POSSL_LIB_CTX): PAnsiChar; cdecl = Load_OSSL_PROVIDER_get0_default_search_path;
   { Load and unload a provider }
   OSSL_PROVIDER_load: function(_param1: POSSL_LIB_CTX; name: PAnsiChar): POSSL_PROVIDER; cdecl = Load_OSSL_PROVIDER_load;
+  OSSL_PROVIDER_load_ex: function(_param1: POSSL_LIB_CTX; name: PAnsiChar; params: POSSL_PARAM): POSSL_PROVIDER; cdecl = Load_OSSL_PROVIDER_load_ex;
   OSSL_PROVIDER_try_load: function(_param1: POSSL_LIB_CTX; name: PAnsiChar; retain_fallbacks: TOpenSSL_C_INT): POSSL_PROVIDER; cdecl = Load_OSSL_PROVIDER_try_load;
+  OSSL_PROVIDER_try_load_ex: function(_param1: POSSL_LIB_CTX; name: PAnsiChar; params: POSSL_PARAM; retain_fallbacks: TOpenSSL_C_INT): POSSL_PROVIDER; cdecl = Load_OSSL_PROVIDER_try_load_ex;
   OSSL_PROVIDER_unload: function(prov: POSSL_PROVIDER): TOpenSSL_C_INT; cdecl = Load_OSSL_PROVIDER_unload;
   OSSL_PROVIDER_available: function(_param1: POSSL_LIB_CTX; name: PAnsiChar): TOpenSSL_C_INT; cdecl = Load_OSSL_PROVIDER_available;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
@@ -92,6 +104,30 @@ type
   function OSSL_PROVIDER_get_params(prov: POSSL_PROVIDER; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PROVIDER_get_params';
   function OSSL_PROVIDER_self_test(prov: POSSL_PROVIDER): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PROVIDER_self_test';
   function OSSL_PROVIDER_get_capabilities(prov: POSSL_PROVIDER; capability: PAnsiChar; cb: POSSL_CALLBACK; arg: pointer): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PROVIDER_get_capabilities';
+  {-
+  * Provider configuration parameters are normally set in the configuration file,
+  * but can also be set early in the main program before a provider is in use by
+  * multiple threads.
+  *
+  * Only UTF8-string values are supported.
+  }
+  function OSSL_PROVIDER_add_conf_parameter(prov: POSSL_PROVIDER; name: PAnsiChar; value: PAnsiChar): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PROVIDER_add_conf_parameter';
+  
+  {* Retrieves any of the requested configuration parameters for the given
+  * provider that were set in the configuration file or via the above
+  * OSSL_PROVIDER_add_parameter() function.
+  *
+  * The |params| array elements MUST have type OSSL_PARAM_UTF8_PTR, values are
+  * returned by reference, not as copies.
+  }
+  function OSSL_PROVIDER_get_conf_parameters(prov: POSSL_PROVIDER; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PROVIDER_get_conf_parameters';
+  
+  {* Parse a provider configuration parameter as a boolean value,
+  * or return a default value if unable to retrieve the parameter.
+  * Values like "1", "yes", "true", ... are true (nonzero).
+  * Values like "0", "no", "false", ... are false (zero).
+  }
+  function OSSL_PROVIDER_conf_get_bool(prov: POSSL_PROVIDER; name: PAnsiChar; defval: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PROVIDER_conf_get_bool';
   function OSSL_PROVIDER_query_operation(prov: POSSL_PROVIDER; operation_id: TOpenSSL_C_INT; no_cache: POpenSSL_C_INT): POSSL_ALGORITHM; cdecl; external CLibCrypto name 'OSSL_PROVIDER_query_operation';
   procedure OSSL_PROVIDER_unquery_operation(prov: POSSL_PROVIDER; operation_id: TOpenSSL_C_INT; algs: POSSL_ALGORITHM); cdecl; external CLibCrypto name 'OSSL_PROVIDER_unquery_operation';
   function OSSL_PROVIDER_get0_provider_ctx(prov: POSSL_PROVIDER): pointer; cdecl; external CLibCrypto name 'OSSL_PROVIDER_get0_provider_ctx';
@@ -106,6 +142,9 @@ type
   {$EXTERNALSYM OSSL_PROVIDER_get_params}
   {$EXTERNALSYM OSSL_PROVIDER_self_test}
   {$EXTERNALSYM OSSL_PROVIDER_get_capabilities}
+  {$EXTERNALSYM OSSL_PROVIDER_add_conf_parameter}
+  {$EXTERNALSYM OSSL_PROVIDER_get_conf_parameters}
+  {$EXTERNALSYM OSSL_PROVIDER_conf_get_bool}
   {$EXTERNALSYM OSSL_PROVIDER_query_operation}
   {$EXTERNALSYM OSSL_PROVIDER_unquery_operation}
   {$EXTERNALSYM OSSL_PROVIDER_get0_provider_ctx}
@@ -118,6 +157,9 @@ type
   function Load_OSSL_PROVIDER_get_params(prov: POSSL_PROVIDER; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl;
   function Load_OSSL_PROVIDER_self_test(prov: POSSL_PROVIDER): TOpenSSL_C_INT; cdecl;
   function Load_OSSL_PROVIDER_get_capabilities(prov: POSSL_PROVIDER; capability: PAnsiChar; cb: POSSL_CALLBACK; arg: pointer): TOpenSSL_C_INT; cdecl;
+  function Load_OSSL_PROVIDER_add_conf_parameter(prov: POSSL_PROVIDER; name: PAnsiChar; value: PAnsiChar): TOpenSSL_C_INT; cdecl;
+  function Load_OSSL_PROVIDER_get_conf_parameters(prov: POSSL_PROVIDER; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl;
+  function Load_OSSL_PROVIDER_conf_get_bool(prov: POSSL_PROVIDER; name: PAnsiChar; defval: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
   function Load_OSSL_PROVIDER_query_operation(prov: POSSL_PROVIDER; operation_id: TOpenSSL_C_INT; no_cache: POpenSSL_C_INT): POSSL_ALGORITHM; cdecl;
   procedure Load_OSSL_PROVIDER_unquery_operation(prov: POSSL_PROVIDER; operation_id: TOpenSSL_C_INT; algs: POSSL_ALGORITHM); cdecl;
   function Load_OSSL_PROVIDER_get0_provider_ctx(prov: POSSL_PROVIDER): pointer; cdecl;
@@ -131,6 +173,30 @@ var
   OSSL_PROVIDER_get_params: function(prov: POSSL_PROVIDER; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl = Load_OSSL_PROVIDER_get_params;
   OSSL_PROVIDER_self_test: function(prov: POSSL_PROVIDER): TOpenSSL_C_INT; cdecl = Load_OSSL_PROVIDER_self_test;
   OSSL_PROVIDER_get_capabilities: function(prov: POSSL_PROVIDER; capability: PAnsiChar; cb: POSSL_CALLBACK; arg: pointer): TOpenSSL_C_INT; cdecl = Load_OSSL_PROVIDER_get_capabilities;
+  {-
+  * Provider configuration parameters are normally set in the configuration file,
+  * but can also be set early in the main program before a provider is in use by
+  * multiple threads.
+  *
+  * Only UTF8-string values are supported.
+  }
+  OSSL_PROVIDER_add_conf_parameter: function(prov: POSSL_PROVIDER; name: PAnsiChar; value: PAnsiChar): TOpenSSL_C_INT; cdecl = Load_OSSL_PROVIDER_add_conf_parameter;
+  
+  {* Retrieves any of the requested configuration parameters for the given
+  * provider that were set in the configuration file or via the above
+  * OSSL_PROVIDER_add_parameter() function.
+  *
+  * The |params| array elements MUST have type OSSL_PARAM_UTF8_PTR, values are
+  * returned by reference, not as copies.
+  }
+  OSSL_PROVIDER_get_conf_parameters: function(prov: POSSL_PROVIDER; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl = Load_OSSL_PROVIDER_get_conf_parameters;
+  
+  {* Parse a provider configuration parameter as a boolean value,
+  * or return a default value if unable to retrieve the parameter.
+  * Values like "1", "yes", "true", ... are true (nonzero).
+  * Values like "0", "no", "false", ... are false (zero).
+  }
+  OSSL_PROVIDER_conf_get_bool: function(prov: POSSL_PROVIDER; name: PAnsiChar; defval: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_OSSL_PROVIDER_conf_get_bool;
   OSSL_PROVIDER_query_operation: function(prov: POSSL_PROVIDER; operation_id: TOpenSSL_C_INT; no_cache: POpenSSL_C_INT): POSSL_ALGORITHM; cdecl = Load_OSSL_PROVIDER_query_operation;
   OSSL_PROVIDER_unquery_operation: procedure(prov: POSSL_PROVIDER; operation_id: TOpenSSL_C_INT; algs: POSSL_ALGORITHM); cdecl = Load_OSSL_PROVIDER_unquery_operation;
   OSSL_PROVIDER_get0_provider_ctx: function(prov: POSSL_PROVIDER): pointer; cdecl = Load_OSSL_PROVIDER_get0_provider_ctx;
@@ -189,6 +255,14 @@ begin
   Result := OSSL_PROVIDER_set_default_search_path(_param1, path);
 end;
 
+function Load_OSSL_PROVIDER_get0_default_search_path(libctx: POSSL_LIB_CTX): PAnsiChar; cdecl;
+begin
+  OSSL_PROVIDER_get0_default_search_path := LoadLibCryptoFunction('OSSL_PROVIDER_get0_default_search_path');
+  if not assigned(OSSL_PROVIDER_get0_default_search_path) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PROVIDER_get0_default_search_path');
+  Result := OSSL_PROVIDER_get0_default_search_path(libctx);
+end;
+
 function Load_OSSL_PROVIDER_load(_param1: POSSL_LIB_CTX; name: PAnsiChar): POSSL_PROVIDER; cdecl;
 begin
   OSSL_PROVIDER_load := LoadLibCryptoFunction('OSSL_PROVIDER_load');
@@ -197,12 +271,28 @@ begin
   Result := OSSL_PROVIDER_load(_param1, name);
 end;
 
+function Load_OSSL_PROVIDER_load_ex(_param1: POSSL_LIB_CTX; name: PAnsiChar; params: POSSL_PARAM): POSSL_PROVIDER; cdecl;
+begin
+  OSSL_PROVIDER_load_ex := LoadLibCryptoFunction('OSSL_PROVIDER_load_ex');
+  if not assigned(OSSL_PROVIDER_load_ex) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PROVIDER_load_ex');
+  Result := OSSL_PROVIDER_load_ex(_param1, name, params);
+end;
+
 function Load_OSSL_PROVIDER_try_load(_param1: POSSL_LIB_CTX; name: PAnsiChar; retain_fallbacks: TOpenSSL_C_INT): POSSL_PROVIDER; cdecl;
 begin
   OSSL_PROVIDER_try_load := LoadLibCryptoFunction('OSSL_PROVIDER_try_load');
   if not assigned(OSSL_PROVIDER_try_load) then
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PROVIDER_try_load');
   Result := OSSL_PROVIDER_try_load(_param1, name, retain_fallbacks);
+end;
+
+function Load_OSSL_PROVIDER_try_load_ex(_param1: POSSL_LIB_CTX; name: PAnsiChar; params: POSSL_PARAM; retain_fallbacks: TOpenSSL_C_INT): POSSL_PROVIDER; cdecl;
+begin
+  OSSL_PROVIDER_try_load_ex := LoadLibCryptoFunction('OSSL_PROVIDER_try_load_ex');
+  if not assigned(OSSL_PROVIDER_try_load_ex) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PROVIDER_try_load_ex');
+  Result := OSSL_PROVIDER_try_load_ex(_param1, name, params, retain_fallbacks);
 end;
 
 function Load_OSSL_PROVIDER_unload(prov: POSSL_PROVIDER): TOpenSSL_C_INT; cdecl;
@@ -261,6 +351,30 @@ begin
   Result := OSSL_PROVIDER_get_capabilities(prov, capability, cb, arg);
 end;
 
+function Load_OSSL_PROVIDER_add_conf_parameter(prov: POSSL_PROVIDER; name: PAnsiChar; value: PAnsiChar): TOpenSSL_C_INT; cdecl;
+begin
+  OSSL_PROVIDER_add_conf_parameter := LoadLibCryptoFunction('OSSL_PROVIDER_add_conf_parameter');
+  if not assigned(OSSL_PROVIDER_add_conf_parameter) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PROVIDER_add_conf_parameter');
+  Result := OSSL_PROVIDER_add_conf_parameter(prov, name, value);
+end;
+
+function Load_OSSL_PROVIDER_get_conf_parameters(prov: POSSL_PROVIDER; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl;
+begin
+  OSSL_PROVIDER_get_conf_parameters := LoadLibCryptoFunction('OSSL_PROVIDER_get_conf_parameters');
+  if not assigned(OSSL_PROVIDER_get_conf_parameters) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PROVIDER_get_conf_parameters');
+  Result := OSSL_PROVIDER_get_conf_parameters(prov, params);
+end;
+
+function Load_OSSL_PROVIDER_conf_get_bool(prov: POSSL_PROVIDER; name: PAnsiChar; defval: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
+begin
+  OSSL_PROVIDER_conf_get_bool := LoadLibCryptoFunction('OSSL_PROVIDER_conf_get_bool');
+  if not assigned(OSSL_PROVIDER_conf_get_bool) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PROVIDER_conf_get_bool');
+  Result := OSSL_PROVIDER_conf_get_bool(prov, name, defval);
+end;
+
 function Load_OSSL_PROVIDER_query_operation(prov: POSSL_PROVIDER; operation_id: TOpenSSL_C_INT; no_cache: POpenSSL_C_INT): POSSL_ALGORITHM; cdecl;
 begin
   OSSL_PROVIDER_query_operation := LoadLibCryptoFunction('OSSL_PROVIDER_query_operation');
@@ -317,8 +431,11 @@ end;
 procedure Unload;
 begin
   OSSL_PROVIDER_set_default_search_path := Load_OSSL_PROVIDER_set_default_search_path;
+  OSSL_PROVIDER_get0_default_search_path := Load_OSSL_PROVIDER_get0_default_search_path;
   OSSL_PROVIDER_load := Load_OSSL_PROVIDER_load;
+  OSSL_PROVIDER_load_ex := Load_OSSL_PROVIDER_load_ex;
   OSSL_PROVIDER_try_load := Load_OSSL_PROVIDER_try_load;
+  OSSL_PROVIDER_try_load_ex := Load_OSSL_PROVIDER_try_load_ex;
   OSSL_PROVIDER_unload := Load_OSSL_PROVIDER_unload;
   OSSL_PROVIDER_available := Load_OSSL_PROVIDER_available;
   OSSL_PROVIDER_do_all := Load_OSSL_PROVIDER_do_all;
@@ -326,6 +443,9 @@ begin
   OSSL_PROVIDER_get_params := Load_OSSL_PROVIDER_get_params;
   OSSL_PROVIDER_self_test := Load_OSSL_PROVIDER_self_test;
   OSSL_PROVIDER_get_capabilities := Load_OSSL_PROVIDER_get_capabilities;
+  OSSL_PROVIDER_add_conf_parameter := Load_OSSL_PROVIDER_add_conf_parameter;
+  OSSL_PROVIDER_get_conf_parameters := Load_OSSL_PROVIDER_get_conf_parameters;
+  OSSL_PROVIDER_conf_get_bool := Load_OSSL_PROVIDER_conf_get_bool;
   OSSL_PROVIDER_query_operation := Load_OSSL_PROVIDER_query_operation;
   OSSL_PROVIDER_unquery_operation := Load_OSSL_PROVIDER_unquery_operation;
   OSSL_PROVIDER_get0_provider_ctx := Load_OSSL_PROVIDER_get0_provider_ctx;

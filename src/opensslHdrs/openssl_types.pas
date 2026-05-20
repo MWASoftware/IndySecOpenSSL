@@ -18,7 +18,7 @@
 unit openssl_types;
 
 {
-  Generated from OpenSSL 3.0.20 Header File types.h - Tue 19 May 14:16:50 BST 2026
+  Generated from OpenSSL 3.5.6 Header File types.h - Tue 19 May 14:28:41 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -39,9 +39,26 @@ uses OpenSSLAPI,openssl_e_os2,openssl_safestack;
 * in the file LICENSE in the source distribution or at
 * https://www.openssl.org/source/license.html
 }
+
+{* Unfortunate workaround to avoid symbol conflict with wincrypt.h
+* See https://github.com/openssl/openssl/issues/9981
+}
+{$ifdef _WIN32}
+  {$define WINCRYPT_USE_SYMBOL_PREFIX}
+  {$undef  X509_NAME}
+  {$undef  X509_EXTENSIONS}
+  {$undef  PKCS7_SIGNER_INFO}
+  {$undef  OCSP_REQUEST}
+  {$undef  OCSP_RESPONSE}
+{$endif}
 {$ifndef  OPENSSL_TYPES_H}
   {$define OPENSSL_TYPES_H}
   {$include openssl_macros.inc}
+  {$if  OPENSSL_VERSION_MAJOR >= 4}
+{# define  OSSL_FUTURE_CONST const}
+  {$else}
+    {$define OSSL_FUTURE_CONST}
+  {$endif}
 
 type
   {Auto-generated forward references}
@@ -227,14 +244,6 @@ type
   TASN1_PCTX = Tasn1_pctx_st;
   Tasn1_sctx_st = record end;
   TASN1_SCTX = Tasn1_sctx_st;
-  {$ifdef _WIN32}
-    {$undef  X509_NAME}
-    {$undef  X509_EXTENSIONS}
-    {$undef  PKCS7_ISSUER_AND_SERIAL}
-    {$undef  PKCS7_SIGNER_INFO}
-    {$undef  OCSP_REQUEST}
-    {$undef  OCSP_RESPONSE}
-  {$endif}
   {$if declared(TBIGNUM)}
     {$undef  BIGNUM}
   {$endif}
@@ -309,6 +318,10 @@ type
   PPevp_pkey_st = ^Pevp_pkey_st;
   PEVP_PKEY = ^TEVP_PKEY;
   PPEVP_PKEY = ^PEVP_PKEY;
+  Pevp_skey_st = ^TEVP_SKEY;
+  PPevp_skey_st = ^Pevp_skey_st;
+  PEVP_SKEY = ^TEVP_SKEY;
+  PPEVP_SKEY = ^PEVP_SKEY;
   Pevp_pkey_asn1_method_st = ^TEVP_PKEY_ASN1_METHOD;
   PPevp_pkey_asn1_method_st = ^Pevp_pkey_asn1_method_st;
   PEVP_PKEY_ASN1_METHOD = ^TEVP_PKEY_ASN1_METHOD;
@@ -349,6 +362,10 @@ type
   PPevp_signature_st = ^Pevp_signature_st;
   PEVP_SIGNATURE = ^TEVP_SIGNATURE;
   PPEVP_SIGNATURE = ^PEVP_SIGNATURE;
+  Pevp_skeymgmt_st = ^TEVP_SKEYMGMT;
+  PPevp_skeymgmt_st = ^Pevp_skeymgmt_st;
+  PEVP_SKEYMGMT = ^TEVP_SKEYMGMT;
+  PPEVP_SKEYMGMT = ^PEVP_SKEYMGMT;
   Pevp_asym_cipher_st = ^TEVP_ASYM_CIPHER;
   PPevp_asym_cipher_st = ^Pevp_asym_cipher_st;
   PEVP_ASYM_CIPHER = ^TEVP_ASYM_CIPHER;
@@ -409,6 +426,8 @@ type
   TEVP_MAC_CTX = Tevp_mac_ctx_st;
   Tevp_pkey_st = record end;
   TEVP_PKEY = Tevp_pkey_st;
+  Tevp_skey_st = record end;
+  TEVP_SKEY = Tevp_skey_st;
   Tevp_pkey_asn1_method_st = record end;
   TEVP_PKEY_ASN1_METHOD = Tevp_pkey_asn1_method_st;
   Tevp_pkey_method_st = record end;
@@ -429,6 +448,8 @@ type
   TEVP_KEYEXCH = Tevp_keyexch_st;
   Tevp_signature_st = record end;
   TEVP_SIGNATURE = Tevp_signature_st;
+  Tevp_skeymgmt_st = record end;
+  TEVP_SKEYMGMT = Tevp_skeymgmt_st;
   Tevp_asym_cipher_st = record end;
   TEVP_ASYM_CIPHER = Tevp_asym_cipher_st;
   Tevp_kem_st = record end;

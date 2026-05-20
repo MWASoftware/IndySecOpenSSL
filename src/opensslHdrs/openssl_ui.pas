@@ -18,7 +18,7 @@
 unit openssl_ui;
 
 {
-  Generated from OpenSSL 3.0.20 Header File ui.h - Tue 19 May 14:16:52 BST 2026
+  Generated from OpenSSL 3.5.6 Header File ui.h - Tue 19 May 14:28:43 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -392,7 +392,7 @@ const
   { Some methods may use extra data }
   function UI_set_app_data(s:PUI; arg:pointer): TOpenSSL_C_INT; inline;
   function UI_get_app_data(s:PUI): pointer; inline;
-  {# define  UI_get_ex_new_index(l,p,newf,dupf,freef) CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_UI, l, p, newf, dupf, freef)} {Macro Return Type unknown at line no 224}
+  {# define  UI_get_ex_new_index(l,p,newf,dupf,freef) CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_UI, l, p, newf, dupf, freef)} {Macro Return Type unknown at line no 223}
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
   function UI_set_ex_data(r: PUI; idx: TOpenSSL_C_INT; arg: pointer): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'UI_set_ex_data';
   function UI_get_ex_data(r: PUI; idx: TOpenSSL_C_INT): pointer; cdecl; external CLibCrypto name 'UI_get_ex_data';
