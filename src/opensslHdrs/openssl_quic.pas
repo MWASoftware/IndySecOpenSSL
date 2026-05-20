@@ -18,7 +18,7 @@
 unit openssl_quic;
 
 {
-  Generated from OpenSSL 3.6.2 Header File quic.h - Tue 19 May 14:30:34 BST 2026
+  Generated from OpenSSL 4.0.0 Header File quic.h - Tue 19 May 14:33:08 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -110,13 +110,23 @@ const
     }
     {$ifdef OPENSSL_STATIC_LINK_MODEL}
   function OSSL_QUIC_server_method: PSSL_METHOD; cdecl; external CLibCrypto name 'OSSL_QUIC_server_method';
+  
+  {* Method used for QUIC client/server connection
+  }
+  function OSSL_QUIC_method: PSSL_METHOD; cdecl; external CLibCrypto name 'OSSL_QUIC_method';
     {$else}
   {$EXTERNALSYM OSSL_QUIC_server_method}
+  {$EXTERNALSYM OSSL_QUIC_method}
   {Do not call Function LoadDeclarations. Internal use only}
   function Load_OSSL_QUIC_server_method: PSSL_METHOD; cdecl;
+  function Load_OSSL_QUIC_method: PSSL_METHOD; cdecl;
 
 var
   OSSL_QUIC_server_method: function: PSSL_METHOD; cdecl = Load_OSSL_QUIC_server_method;
+  
+  {* Method used for QUIC client/server connection
+  }
+  OSSL_QUIC_method: function: PSSL_METHOD; cdecl = Load_OSSL_QUIC_method;
     {$endif} {OPENSSL_STATIC_LINK_MODEL}
   {$endif}
   { OPENSSL_NO_QUIC }
@@ -195,6 +205,14 @@ begin
   Result := OSSL_QUIC_server_method;
 end;
 
+function Load_OSSL_QUIC_method: PSSL_METHOD; cdecl;
+begin
+  OSSL_QUIC_method := LoadLibCryptoFunction('OSSL_QUIC_method');
+  if not assigned(OSSL_QUIC_method) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_QUIC_method');
+  Result := OSSL_QUIC_method;
+end;
+
 {$endif} { OPENSSL_NO_QUIC}
 procedure Load;
 begin
@@ -207,6 +225,7 @@ begin
   OSSL_QUIC_client_method := Load_OSSL_QUIC_client_method;
   OSSL_QUIC_client_thread_method := Load_OSSL_QUIC_client_thread_method;
   OSSL_QUIC_server_method := Load_OSSL_QUIC_server_method;
+  OSSL_QUIC_method := Load_OSSL_QUIC_method;
 {$endif} { OPENSSL_NO_QUIC}
 end;
 

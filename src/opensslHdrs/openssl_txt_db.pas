@@ -18,7 +18,7 @@
 unit openssl_txt_db;
 
 {
-  Generated from OpenSSL 3.6.2 Header File txt_db.h - Tue 19 May 14:31:03 BST 2026
+  Generated from OpenSSL 4.0.0 Header File txt_db.h - Tue 19 May 14:33:37 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -80,6 +80,17 @@ type
 
 
   procedure sk_OPENSSL_PSTRING_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+
+type
+  {Auto-generated forward references}
+  PFuncType000 = ^TFuncType000;
+  PPFuncType000 = ^PFuncType000;
+  {end of auto-generated forward references}
+
+  TFuncType000 = function(_param1: pointer; _param2: pointer): TOpenSSL_C_INT;
+
+
+  function sk_OPENSSL_PSTRING_cmpfunc_thunk(cmp: TFuncType000; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
   function sk_OPENSSL_PSTRING_num(sk: Pstack_st_OPENSSL_PSTRING): TOpenSSL_C_INT{Has C Attribute: unused}; inline;
   function sk_OPENSSL_PSTRING_value(sk: Pstack_st_OPENSSL_PSTRING; idx: TOpenSSL_C_INT): POPENSSL_STRING{Has C Attribute: unused}; inline;
   function sk_OPENSSL_PSTRING_new(compare: Tsk_OPENSSL_PSTRING_compfunc): Pstack_st_OPENSSL_PSTRING{Has C Attribute: unused}; inline;
@@ -108,20 +119,20 @@ type
 
 type
   {Auto-generated forward references}
-  PFuncType000 = ^TFuncType000;
-  PPFuncType000 = ^PFuncType000;
+  PFuncType001 = ^TFuncType001;
+  PPFuncType001 = ^PFuncType001;
   Ptxt_db_st = ^Ttxt_db_st;
   PPtxt_db_st = ^Ptxt_db_st;
   PTXT_DB = ^TTXT_DB;
   PPTXT_DB = ^PTXT_DB;
   {end of auto-generated forward references}
 
-  TFuncType000 = function(_param1: POPENSSL_STRING): TOpenSSL_C_INT; cdecl;
+  TFuncType001 = function(_param1: POPENSSL_STRING): TOpenSSL_C_INT; cdecl;
   Ttxt_db_st = record 
     num_fields: TOpenSSL_C_INT;
     data: Pstack_st_OPENSSL_PSTRING;
     index: PPlhash_st_OPENSSL_STRING;
-    qual: TFuncType000;
+    qual: TFuncType001;
     error: TOpenSSL_C_INT;
     arg1: TOpenSSL_C_INT;
     arg2: TOpenSSL_C_INT;
@@ -151,15 +162,15 @@ var
 
 type
   {Auto-generated forward references}
-  PFuncType001 = ^TFuncType001;
-  PPFuncType001 = ^PFuncType001;
+  PFuncType002 = ^TFuncType002;
+  PPFuncType002 = ^PFuncType002;
   {end of auto-generated forward references}
 
-  TFuncType001 = function(_param1: POPENSSL_STRING): TOpenSSL_C_INT; cdecl;
+  TFuncType002 = function(_param1: POPENSSL_STRING): TOpenSSL_C_INT; cdecl;
 
 
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function TXT_DB_create_index(db: PTXT_DB; field: TOpenSSL_C_INT; qual: TFuncType001; hash: TOPENSSL_LH_HASHFUNC; cmp: TOPENSSL_LH_COMPFUNC): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TXT_DB_create_index';
+  function TXT_DB_create_index(db: PTXT_DB; field: TOpenSSL_C_INT; qual: TFuncType002; hash: TOPENSSL_LH_HASHFUNC; cmp: TOPENSSL_LH_COMPFUNC): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TXT_DB_create_index';
   procedure TXT_DB_free(db: PTXT_DB); cdecl; external CLibCrypto name 'TXT_DB_free';
   function TXT_DB_get_by_index(db: PTXT_DB; idx: TOpenSSL_C_INT; value: POPENSSL_STRING): POPENSSL_STRING; cdecl; external CLibCrypto name 'TXT_DB_get_by_index';
   function TXT_DB_insert(db: PTXT_DB; value: POPENSSL_STRING): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TXT_DB_insert';
@@ -169,13 +180,13 @@ type
   {$EXTERNALSYM TXT_DB_get_by_index}
   {$EXTERNALSYM TXT_DB_insert}
   {Do not call Function LoadDeclarations. Internal use only}
-  function Load_TXT_DB_create_index(db: PTXT_DB; field: TOpenSSL_C_INT; qual: TFuncType001; hash: TOPENSSL_LH_HASHFUNC; cmp: TOPENSSL_LH_COMPFUNC): TOpenSSL_C_INT; cdecl;
+  function Load_TXT_DB_create_index(db: PTXT_DB; field: TOpenSSL_C_INT; qual: TFuncType002; hash: TOPENSSL_LH_HASHFUNC; cmp: TOPENSSL_LH_COMPFUNC): TOpenSSL_C_INT; cdecl;
   procedure Load_TXT_DB_free(db: PTXT_DB); cdecl;
   function Load_TXT_DB_get_by_index(db: PTXT_DB; idx: TOpenSSL_C_INT; value: POPENSSL_STRING): POPENSSL_STRING; cdecl;
   function Load_TXT_DB_insert(db: PTXT_DB; value: POPENSSL_STRING): TOpenSSL_C_INT; cdecl;
 
 var
-  TXT_DB_create_index: function(db: PTXT_DB; field: TOpenSSL_C_INT; qual: TFuncType001; hash: TOPENSSL_LH_HASHFUNC; cmp: TOPENSSL_LH_COMPFUNC): TOpenSSL_C_INT; cdecl = Load_TXT_DB_create_index;
+  TXT_DB_create_index: function(db: PTXT_DB; field: TOpenSSL_C_INT; qual: TFuncType002; hash: TOPENSSL_LH_HASHFUNC; cmp: TOPENSSL_LH_COMPFUNC): TOpenSSL_C_INT; cdecl = Load_TXT_DB_create_index;
   TXT_DB_free: procedure(db: PTXT_DB); cdecl = Load_TXT_DB_free;
   TXT_DB_get_by_index: function(db: PTXT_DB; idx: TOpenSSL_C_INT; value: POPENSSL_STRING): POPENSSL_STRING; cdecl = Load_TXT_DB_get_by_index;
   TXT_DB_insert: function(db: PTXT_DB; value: POPENSSL_STRING): TOpenSSL_C_INT; cdecl = Load_TXT_DB_insert;
@@ -230,6 +241,19 @@ begin
  sk_OPENSSL_PSTRING_freefunc freefunc = (sk_OPENSSL_PSTRING_freefunc)freefunc_arg; freefunc((OPENSSL_STRING *)ptr); }
 end;
 
+function sk_OPENSSL_PSTRING_cmpfunc_thunk(cmp: TFuncType000; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OPENSSL_PSTRING_cmpfunc_thunk"');
+
+{Error: Line 38: Syntax Error parsing " int (*realcmp)(const OPENSSL_STRING *const *a, const OPENSSL_STRING *const *b) = (int (*)(const 
+OPENSSL_STRING *const *a, const OPENSSL_STRING *const *b))(cmp); const OPENSSL_STRING *const *at = (const OPENSSL_STRING *const 
+*)a; const OPENSSL_STRING *const *bt = (const OPENSSL_STRING *const *)b; return realcmp(at, bt); "
+
+ int (*realcmp)(const OPENSSL_STRING *const *a, const OPENSSL_STRING *const *b) = (int (*)(const OPENSSL_STRING *const *a, const 
+OPENSSL_STRING *const *b))(cmp); const OPENSSL_STRING *const *at = (const OPENSSL_STRING *const *)a; const OPENSSL_STRING *const 
+*bt = (const OPENSSL_STRING *const *)b; return realcmp(at, bt); }
+end;
+
 function sk_OPENSSL_PSTRING_num(sk: Pstack_st_OPENSSL_PSTRING): TOpenSSL_C_INT{Has C Attribute: unused}; inline;
 begin
    Result := OPENSSL_sk_num(POPENSSL_STACK(sk));
@@ -245,16 +269,24 @@ begin
   raise Exception.Create('Unable to translate C Function "sk_OPENSSL_PSTRING_new"');
 
 {Error: Line 38: Syntax Error parsing " OPENSSL_STACK *ret = OPENSSL_sk_new((OPENSSL_sk_compfunc)compare); OPENSSL_sk_freefunc_thunk 
-f_thunk; f_thunk = (OPENSSL_sk_freefunc_thunk)sk_OPENSSL_PSTRING_freefunc_thunk; return (struct stack_st_OPENSSL_PSTRING *)OPENSSL_sk_set_thunks(ret,
- f_thunk); "
+f_thunk; f_thunk = (OPENSSL_sk_freefunc_thunk)sk_OPENSSL_PSTRING_freefunc_thunk; OPENSSL_sk_set_cmp_thunks(ret, sk_OPENSSL_PSTRING_cmpfunc_thunk); 
+return (struct stack_st_OPENSSL_PSTRING *)OPENSSL_sk_set_thunks(ret, f_thunk); "
 
  OPENSSL_STACK *ret = OPENSSL_sk_new((OPENSSL_sk_compfunc)compare); OPENSSL_sk_freefunc_thunk f_thunk; f_thunk = (OPENSSL_sk_freefunc_thunk)sk_OPENSSL_PSTRING_freefunc_thunk; 
-return (struct stack_st_OPENSSL_PSTRING *)OPENSSL_sk_set_thunks(ret, f_thunk); }
+OPENSSL_sk_set_cmp_thunks(ret, sk_OPENSSL_PSTRING_cmpfunc_thunk); return (struct stack_st_OPENSSL_PSTRING *)OPENSSL_sk_set_thunks(ret,
+ f_thunk); }
 end;
 
 function sk_OPENSSL_PSTRING_new_null: Pstack_st_OPENSSL_PSTRING{Has C Attribute: unused}; inline;
 begin
-   Result := Pstack_st_OPENSSL_PSTRING(OPENSSL_sk_new_null);
+  raise Exception.Create('Unable to translate C Function "sk_OPENSSL_PSTRING_new_null"');
+
+{Error: Line 38: Syntax Error parsing " OPENSSL_STACK *ret = OPENSSL_sk_new_null(); OPENSSL_sk_freefunc_thunk f_thunk; f_thunk = 
+(OPENSSL_sk_freefunc_thunk)sk_OPENSSL_PSTRING_freefunc_thunk; return (struct stack_st_OPENSSL_PSTRING *)OPENSSL_sk_set_thunks(ret,
+ f_thunk); "
+
+ OPENSSL_STACK *ret = OPENSSL_sk_new_null(); OPENSSL_sk_freefunc_thunk f_thunk; f_thunk = (OPENSSL_sk_freefunc_thunk)sk_OPENSSL_PSTRING_freefunc_thunk; 
+return (struct stack_st_OPENSSL_PSTRING *)OPENSSL_sk_set_thunks(ret, f_thunk); }
 end;
 
 function sk_OPENSSL_PSTRING_new_reserve(compare: Tsk_OPENSSL_PSTRING_compfunc; n: TOpenSSL_C_INT): Pstack_st_OPENSSL_PSTRING{Has C Attribute: unused}; inline;
@@ -262,11 +294,12 @@ begin
   raise Exception.Create('Unable to translate C Function "sk_OPENSSL_PSTRING_new_reserve"');
 
 {Error: Line 38: Syntax Error parsing " OPENSSL_STACK *ret = OPENSSL_sk_new_reserve((OPENSSL_sk_compfunc)compare, n); OPENSSL_sk_freefunc_thunk 
-f_thunk; f_thunk = (OPENSSL_sk_freefunc_thunk)sk_OPENSSL_PSTRING_freefunc_thunk; return (struct stack_st_OPENSSL_PSTRING *)OPENSSL_sk_set_thunks(ret,
- f_thunk); "
+f_thunk; f_thunk = (OPENSSL_sk_freefunc_thunk)sk_OPENSSL_PSTRING_freefunc_thunk; OPENSSL_sk_set_cmp_thunks(ret, sk_OPENSSL_PSTRING_cmpfunc_thunk); 
+return (struct stack_st_OPENSSL_PSTRING *)OPENSSL_sk_set_thunks(ret, f_thunk); "
 
  OPENSSL_STACK *ret = OPENSSL_sk_new_reserve((OPENSSL_sk_compfunc)compare, n); OPENSSL_sk_freefunc_thunk f_thunk; f_thunk = (OPENSSL_sk_freefunc_thunk)sk_OPENSSL_PSTRING_freefunc_thunk; 
-return (struct stack_st_OPENSSL_PSTRING *)OPENSSL_sk_set_thunks(ret, f_thunk); }
+OPENSSL_sk_set_cmp_thunks(ret, sk_OPENSSL_PSTRING_cmpfunc_thunk); return (struct stack_st_OPENSSL_PSTRING *)OPENSSL_sk_set_thunks(ret,
+ f_thunk); }
 end;
 
 function sk_OPENSSL_PSTRING_reserve(sk: Pstack_st_OPENSSL_PSTRING; n: TOpenSSL_C_INT): TOpenSSL_C_INT{Has C Attribute: unused}; inline;
@@ -394,7 +427,7 @@ begin
   Result := TXT_DB_write(out_, db);
 end;
 
-function Load_TXT_DB_create_index(db: PTXT_DB; field: TOpenSSL_C_INT; qual: TFuncType001; hash: TOPENSSL_LH_HASHFUNC; cmp: TOPENSSL_LH_COMPFUNC): TOpenSSL_C_INT; cdecl;
+function Load_TXT_DB_create_index(db: PTXT_DB; field: TOpenSSL_C_INT; qual: TFuncType002; hash: TOPENSSL_LH_HASHFUNC; cmp: TOPENSSL_LH_COMPFUNC): TOpenSSL_C_INT; cdecl;
 begin
   TXT_DB_create_index := LoadLibCryptoFunction('TXT_DB_create_index');
   if not assigned(TXT_DB_create_index) then

@@ -18,7 +18,7 @@
 unit openssl_rc5;
 
 {
-  Generated from OpenSSL 3.6.2 Header File rc5.h - Tue 19 May 14:30:36 BST 2026
+  Generated from OpenSSL 4.0.0 Header File rc5.h - Tue 19 May 14:33:10 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -85,7 +85,7 @@ type
   Trc5_key_st = record 
  { Number of rounds }
     rounds: TOpenSSL_C_INT;
-    data: array[0..(2*(16+1))-1] of TOpenSSL_C_UINT;
+    data: array[0..(2*(16+1))-1] of TRC5_32_INT;
   end;
   TRC5_32_KEY = Trc5_key_st;
     {$endif}

@@ -18,7 +18,7 @@
 unit openssl_types;
 
 {
-  Generated from OpenSSL 3.6.2 Header File types.h - Tue 19 May 14:31:04 BST 2026
+  Generated from OpenSSL 4.0.0 Header File types.h - Tue 19 May 14:33:38 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -54,11 +54,6 @@ uses OpenSSLAPI,openssl_e_os2,openssl_safestack;
 {$ifndef  OPENSSL_TYPES_H}
   {$define OPENSSL_TYPES_H}
   {$include openssl_macros.inc}
-  {$if  OPENSSL_VERSION_MAJOR >= 4}
-{# define  OSSL_FUTURE_CONST const}
-  {$else}
-    {$define OSSL_FUTURE_CONST}
-  {$endif}
 
 type
   {Auto-generated forward references}
@@ -70,28 +65,6 @@ type
   PPOSSL_PROVIDER = ^POSSL_PROVIDER;
   PASN1_INTEGER = ^TASN1_INTEGER;
   PPASN1_INTEGER = ^PASN1_INTEGER;
-  {end of auto-generated forward references}
-
-  { This is the base type that holds just about everything :-) }
-  { moved from asn1.h }
-  Tasn1_string_st = record 
-    length: TOpenSSL_C_INT;
-    type_: TOpenSSL_C_INT;
-    data: Pbyte; 
-    {* The value of the following field depends on the type being held.  It
-    * is mostly being used for BIT_STRING so if the input data has a
-    * non-zero 'unused bits' value, it will be handled correctly
-    }
-    flags: TOpenSSL_C_INT;
-  end;
-  Tossl_provider_st = record end;
-  TOSSL_PROVIDER = Tossl_provider_st;
-  { Provider Object }
-  TASN1_INTEGER = Tasn1_string_st;
-  {$ifndef  NO_ASN1_TYPEDEFS}
-
-type
-  {Auto-generated forward references}
   PASN1_ENUMERATED = ^TASN1_ENUMERATED;
   PPASN1_ENUMERATED = ^PASN1_ENUMERATED;
   PASN1_BIT_STRING = ^TASN1_BIT_STRING;
@@ -126,86 +99,6 @@ type
   PPASN1_BOOLEAN = ^PASN1_BOOLEAN;
   PASN1_NULL = ^TASN1_NULL;
   PPASN1_NULL = ^PASN1_NULL;
-  {end of auto-generated forward references}
-
-  TASN1_ENUMERATED = Tasn1_string_st;
-  TASN1_BIT_STRING = Tasn1_string_st;
-  TASN1_OCTET_STRING = Tasn1_string_st;
-  TASN1_PRINTABLESTRING = Tasn1_string_st;
-  TASN1_T61STRING = Tasn1_string_st;
-  TASN1_IA5STRING = Tasn1_string_st;
-  TASN1_GENERALSTRING = Tasn1_string_st;
-  TASN1_UNIVERSALSTRING = Tasn1_string_st;
-  TASN1_BMPSTRING = Tasn1_string_st;
-  TASN1_UTCTIME = Tasn1_string_st;
-  TASN1_TIME = Tasn1_string_st;
-  TASN1_GENERALIZEDTIME = Tasn1_string_st;
-  TASN1_VISIBLESTRING = Tasn1_string_st;
-  TASN1_UTF8STRING = Tasn1_string_st;
-  TASN1_STRING = Tasn1_string_st;
-  TASN1_BOOLEAN = TOpenSSL_C_INT;
-  TASN1_NULL = TOpenSSL_C_INT;
-  {$else}
-
-type
-  {Auto-generated forward references}
-  PASN1_INTEGER = ^TASN1_INTEGER;
-  PPASN1_INTEGER = ^PASN1_INTEGER;
-  PASN1_ENUMERATED = ^TASN1_ENUMERATED;
-  PPASN1_ENUMERATED = ^PASN1_ENUMERATED;
-  PASN1_BIT_STRING = ^TASN1_BIT_STRING;
-  PPASN1_BIT_STRING = ^PASN1_BIT_STRING;
-  PASN1_OCTET_STRING = ^TASN1_OCTET_STRING;
-  PPASN1_OCTET_STRING = ^PASN1_OCTET_STRING;
-  PASN1_PRINTABLESTRING = ^TASN1_PRINTABLESTRING;
-  PPASN1_PRINTABLESTRING = ^PASN1_PRINTABLESTRING;
-  PASN1_T61STRING = ^TASN1_T61STRING;
-  PPASN1_T61STRING = ^PASN1_T61STRING;
-  PASN1_IA5STRING = ^TASN1_IA5STRING;
-  PPASN1_IA5STRING = ^PASN1_IA5STRING;
-  PASN1_UTCTIME = ^TASN1_UTCTIME;
-  PPASN1_UTCTIME = ^PASN1_UTCTIME;
-  PASN1_GENERALIZEDTIME = ^TASN1_GENERALIZEDTIME;
-  PPASN1_GENERALIZEDTIME = ^PASN1_GENERALIZEDTIME;
-  PASN1_TIME = ^TASN1_TIME;
-  PPASN1_TIME = ^PASN1_TIME;
-  PASN1_GENERALSTRING = ^TASN1_GENERALSTRING;
-  PPASN1_GENERALSTRING = ^PASN1_GENERALSTRING;
-  PASN1_UNIVERSALSTRING = ^TASN1_UNIVERSALSTRING;
-  PPASN1_UNIVERSALSTRING = ^PASN1_UNIVERSALSTRING;
-  PASN1_BMPSTRING = ^TASN1_BMPSTRING;
-  PPASN1_BMPSTRING = ^PASN1_BMPSTRING;
-  PASN1_VISIBLESTRING = ^TASN1_VISIBLESTRING;
-  PPASN1_VISIBLESTRING = ^PASN1_VISIBLESTRING;
-  PASN1_UTF8STRING = ^TASN1_UTF8STRING;
-  PPASN1_UTF8STRING = ^PASN1_UTF8STRING;
-  PASN1_BOOLEAN = ^TASN1_BOOLEAN;
-  PPASN1_BOOLEAN = ^PASN1_BOOLEAN;
-  PASN1_NULL = ^TASN1_NULL;
-  PPASN1_NULL = ^PASN1_NULL;
-  {end of auto-generated forward references}
-
-  TASN1_INTEGER = TASN1_STRING;
-  TASN1_ENUMERATED = TASN1_STRING;
-  TASN1_BIT_STRING = TASN1_STRING;
-  TASN1_OCTET_STRING = TASN1_STRING;
-  TASN1_PRINTABLESTRING = TASN1_STRING;
-  TASN1_T61STRING = TASN1_STRING;
-  TASN1_IA5STRING = TASN1_STRING;
-  TASN1_UTCTIME = TASN1_STRING;
-  TASN1_GENERALIZEDTIME = TASN1_STRING;
-  TASN1_TIME = TASN1_STRING;
-  TASN1_GENERALSTRING = TASN1_STRING;
-  TASN1_UNIVERSALSTRING = TASN1_STRING;
-  TASN1_BMPSTRING = TASN1_STRING;
-  TASN1_VISIBLESTRING = TASN1_STRING;
-  TASN1_UTF8STRING = TASN1_STRING;
-  TASN1_BOOLEAN = TOpenSSL_C_INT;
-  TASN1_NULL = TOpenSSL_C_INT;
-  {$endif}
-
-type
-  {Auto-generated forward references}
   Pasn1_type_st = ^TASN1_TYPE;
   PPasn1_type_st = ^Pasn1_type_st;
   PASN1_TYPE = ^TASN1_TYPE;
@@ -232,6 +125,61 @@ type
   PPASN1_SCTX = ^PASN1_SCTX;
   {end of auto-generated forward references}
 
+  { This is the base type that holds just about everything :-) }
+  { moved from asn1.h }
+  Tasn1_string_st = record 
+    length: TOpenSSL_C_INT;
+    type_: TOpenSSL_C_INT;
+    data: Pbyte; 
+    {* The value of the following field depends on the type being held.  It
+    * is mostly being used for BIT_STRING so if the input data has a
+    * non-zero 'unused bits' value, it will be handled correctly
+    }
+    flags: TOpenSSL_C_INT;
+  end;
+  Tossl_provider_st = record end;
+  TOSSL_PROVIDER = Tossl_provider_st;
+  { Provider Object }
+  
+  {#ifdef NO_ASN1_TYPEDEFS
+  typedef ASN1_STRING ASN1_INTEGER;
+  typedef ASN1_STRING ASN1_ENUMERATED;
+  typedef ASN1_STRING ASN1_BIT_STRING;
+  typedef ASN1_STRING ASN1_OCTET_STRING;
+  typedef ASN1_STRING ASN1_PRINTABLESTRING;
+  typedef ASN1_STRING ASN1_T61STRING;
+  typedef ASN1_STRING ASN1_IA5STRING;
+  typedef ASN1_STRING ASN1_UTCTIME;
+  typedef ASN1_STRING ASN1_GENERALIZEDTIME;
+  typedef ASN1_STRING ASN1_TIME;
+  typedef ASN1_STRING ASN1_GENERALSTRING;
+  typedef ASN1_STRING ASN1_UNIVERSALSTRING;
+  typedef ASN1_STRING ASN1_BMPSTRING;
+  typedef ASN1_STRING ASN1_VISIBLESTRING;
+  typedef ASN1_STRING ASN1_UTF8STRING;
+  typedef int ASN1_BOOLEAN;
+  typedef int ASN1_NULL;
+  #else
+  }
+  TASN1_INTEGER = Tasn1_string_st;
+  TASN1_ENUMERATED = Tasn1_string_st;
+  TASN1_BIT_STRING = Tasn1_string_st;
+  TASN1_OCTET_STRING = Tasn1_string_st;
+  TASN1_PRINTABLESTRING = Tasn1_string_st;
+  TASN1_T61STRING = Tasn1_string_st;
+  TASN1_IA5STRING = Tasn1_string_st;
+  TASN1_GENERALSTRING = Tasn1_string_st;
+  TASN1_UNIVERSALSTRING = Tasn1_string_st;
+  TASN1_BMPSTRING = Tasn1_string_st;
+  TASN1_UTCTIME = Tasn1_string_st;
+  TASN1_TIME = Tasn1_string_st;
+  TASN1_GENERALIZEDTIME = Tasn1_string_st;
+  TASN1_VISIBLESTRING = Tasn1_string_st;
+  TASN1_UTF8STRING = Tasn1_string_st;
+  TASN1_STRING = Tasn1_string_st;
+  TASN1_BOOLEAN = TOpenSSL_C_INT;
+  TASN1_NULL = TOpenSSL_C_INT;
+  {#endif}
   Tasn1_type_st = record end;
   TASN1_TYPE = Tasn1_type_st;
   Tasn1_object_st = record end;
@@ -541,10 +489,6 @@ type
   PPrand_meth_st = ^Prand_meth_st;
   PRAND_METHOD = ^TRAND_METHOD;
   PPRAND_METHOD = ^PRAND_METHOD;
-  Prand_drbg_st = ^TRAND_DRBG;
-  PPrand_drbg_st = ^Prand_drbg_st;
-  PRAND_DRBG = ^TRAND_DRBG;
-  PPRAND_DRBG = ^PRAND_DRBG;
   Pssl_dane_st = ^TSSL_DANE;
   PPssl_dane_st = ^Pssl_dane_st;
   PSSL_DANE = ^TSSL_DANE;
@@ -725,6 +669,10 @@ type
   PPossl_store_search_st = ^Possl_store_search_st;
   POSSL_STORE_SEARCH = ^TOSSL_STORE_SEARCH;
   PPOSSL_STORE_SEARCH = ^POSSL_STORE_SEARCH;
+  Possl_store_loader_st = ^TOSSL_STORE_LOADER;
+  PPossl_store_loader_st = ^Possl_store_loader_st;
+  POSSL_STORE_LOADER = ^TOSSL_STORE_LOADER;
+  PPOSSL_STORE_LOADER = ^POSSL_STORE_LOADER;
   Possl_lib_ctx_st = ^TOSSL_LIB_CTX;
   PPossl_lib_ctx_st = ^Possl_lib_ctx_st;
   POSSL_LIB_CTX = ^TOSSL_LIB_CTX;
@@ -775,8 +723,6 @@ type
 
   Trand_meth_st = record end;
   TRAND_METHOD = Trand_meth_st;
-  Trand_drbg_st = record end;
-  TRAND_DRBG = Trand_drbg_st;
   Tssl_dane_st = record end;
   TSSL_DANE = Tssl_dane_st;
   Tx509_st = record end;
@@ -867,6 +813,8 @@ type
   TOSSL_STORE_INFO = Tossl_store_info_st;
   Tossl_store_search_st = record end;
   TOSSL_STORE_SEARCH = Tossl_store_search_st;
+  Tossl_store_loader_st = record end;
+  TOSSL_STORE_LOADER = Tossl_store_loader_st;
   Tossl_lib_ctx_st = record end;
   TOSSL_LIB_CTX = Tossl_lib_ctx_st;
   Tossl_dispatch_st = record end;
@@ -890,6 +838,20 @@ type
   TOSSL_DECODER_CTX = Tossl_decoder_ctx_st;
   Tossl_self_test_st = record end;
   TOSSL_SELF_TEST = Tossl_self_test_st;
+  {$ifndef  OPENSSL_NO_ECH}
+
+type
+  {Auto-generated forward references}
+  Possl_echstore_st = ^TOSSL_ECHSTORE;
+  PPossl_echstore_st = ^Possl_echstore_st;
+  POSSL_ECHSTORE = ^TOSSL_ECHSTORE;
+  PPOSSL_ECHSTORE = ^POSSL_ECHSTORE;
+  {end of auto-generated forward references}
+
+    { opaque type for ECH related information }
+  Tossl_echstore_st = record end;
+  TOSSL_ECHSTORE = Tossl_echstore_st;
+  {$endif}
 {$endif}
 { OPENSSL_TYPES_H }
 

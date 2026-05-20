@@ -18,7 +18,7 @@
 unit openssl_indicator;
 
 {
-  Generated from OpenSSL 3.6.2 Header File indicator.h - Tue 19 May 14:30:12 BST 2026
+  Generated from OpenSSL 4.0.0 Header File indicator.h - Tue 19 May 14:32:46 BST 2026
 }
 
 {$IFNDEF FPC}

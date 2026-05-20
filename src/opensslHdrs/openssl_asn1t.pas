@@ -18,7 +18,7 @@
 unit openssl_asn1t;
 
 {
-  Generated from OpenSSL 3.6.2 Header File asn1t.h - Tue 19 May 14:29:22 BST 2026
+  Generated from OpenSSL 4.0.0 Header File asn1t.h - Tue 19 May 14:31:54 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -705,6 +705,17 @@ type
 
 
   procedure sk_ASN1_VALUE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+
+type
+  {Auto-generated forward references}
+  PFuncType001 = ^TFuncType001;
+  PPFuncType001 = ^PFuncType001;
+  {end of auto-generated forward references}
+
+  TFuncType001 = function(_param1: pointer; _param2: pointer): TOpenSSL_C_INT;
+
+
+  function sk_ASN1_VALUE_cmpfunc_thunk(cmp: TFuncType001; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
   function ossl_check_ASN1_VALUE_type(ptr: PASN1_VALUE): PASN1_VALUE{Has C Attribute: unused}; inline;
   function ossl_check_const_ASN1_VALUE_sk_type(sk: Pstack_st_ASN1_VALUE): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_ASN1_VALUE_sk_type(sk: Pstack_st_ASN1_VALUE): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -904,6 +915,19 @@ begin
 *)ptr); "
 
  sk_ASN1_VALUE_freefunc freefunc = (sk_ASN1_VALUE_freefunc)freefunc_arg; freefunc((ASN1_VALUE *)ptr); }
+end;
+
+function sk_ASN1_VALUE_cmpfunc_thunk(cmp: TFuncType001; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_ASN1_VALUE_cmpfunc_thunk"');
+
+{Error: Line 709: Syntax Error parsing " int (*realcmp)(const ASN1_VALUE *const *a, const ASN1_VALUE *const *b) = (int (*)(const 
+ASN1_VALUE *const *a, const ASN1_VALUE *const *b))(cmp); const ASN1_VALUE *const *at = (const ASN1_VALUE *const *)a; const ASN1_VALUE 
+*const *bt = (const ASN1_VALUE *const *)b; return realcmp(at, bt); "
+
+ int (*realcmp)(const ASN1_VALUE *const *a, const ASN1_VALUE *const *b) = (int (*)(const ASN1_VALUE *const *a, const ASN1_VALUE 
+*const *b))(cmp); const ASN1_VALUE *const *at = (const ASN1_VALUE *const *)a; const ASN1_VALUE *const *bt = (const ASN1_VALUE *const 
+*)b; return realcmp(at, bt); }
 end;
 
 function ossl_check_ASN1_VALUE_type(ptr: PASN1_VALUE): PASN1_VALUE{Has C Attribute: unused}; inline;

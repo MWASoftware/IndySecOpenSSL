@@ -18,7 +18,7 @@
 unit openssl_md4;
 
 {
-  Generated from OpenSSL 3.6.2 Header File md4.h - Tue 19 May 14:30:14 BST 2026
+  Generated from OpenSSL 4.0.0 Header File md4.h - Tue 19 May 14:32:49 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -78,13 +78,13 @@ type
   {end of auto-generated forward references}
 
   TMD4state_st = record 
-    A: TOpenSSL_C_UINT;
-    B: TOpenSSL_C_UINT;
-    C: TOpenSSL_C_UINT;
-    D: TOpenSSL_C_UINT;
-    Nl: TOpenSSL_C_UINT;
-    Nh: TOpenSSL_C_UINT;
-    data: array[0..(64 div 4)-1] of TOpenSSL_C_UINT;
+    A: TMD4_LONG;
+    B: TMD4_LONG;
+    C: TMD4_LONG;
+    D: TMD4_LONG;
+    Nl: TMD4_LONG;
+    Nh: TMD4_LONG;
+    data: array[0..(64 div 4)-1] of TMD4_LONG;
     num: TOpenSSL_C_UINT;
   end;
   TMD4_CTX = TMD4state_st;

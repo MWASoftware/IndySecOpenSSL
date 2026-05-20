@@ -18,7 +18,7 @@
 unit openssl_ct;
 
 {
-  Generated from OpenSSL 3.6.2 Header File ct.h - Tue 19 May 14:29:50 BST 2026
+  Generated from OpenSSL 4.0.0 Header File ct.h - Tue 19 May 14:32:22 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -81,6 +81,17 @@ type
 
 
   procedure sk_SCT_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+
+type
+  {Auto-generated forward references}
+  PFuncType000 = ^TFuncType000;
+  PPFuncType000 = ^PFuncType000;
+  {end of auto-generated forward references}
+
+  TFuncType000 = function(_param1: pointer; _param2: pointer): TOpenSSL_C_INT;
+
+
+  function sk_SCT_cmpfunc_thunk(cmp: TFuncType000; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
   function ossl_check_SCT_type(ptr: PSCT): PSCT{Has C Attribute: unused}; inline;
   function ossl_check_const_SCT_sk_type(sk: Pstack_st_SCT): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_SCT_sk_type(sk: Pstack_st_SCT): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -218,6 +229,17 @@ type
 
 
   procedure sk_CTLOG_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+
+type
+  {Auto-generated forward references}
+  PFuncType001 = ^TFuncType001;
+  PPFuncType001 = ^PFuncType001;
+  {end of auto-generated forward references}
+
+  TFuncType001 = function(_param1: pointer; _param2: pointer): TOpenSSL_C_INT;
+
+
+  function sk_CTLOG_cmpfunc_thunk(cmp: TFuncType001; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
   function ossl_check_CTLOG_type(ptr: PCTLOG): PCTLOG{Has C Attribute: unused}; inline;
   function ossl_check_const_CTLOG_sk_type(sk: Pstack_st_CTLOG): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_CTLOG_sk_type(sk: Pstack_st_CTLOG): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -1258,6 +1280,18 @@ begin
  sk_SCT_freefunc freefunc = (sk_SCT_freefunc)freefunc_arg; freefunc((SCT *)ptr); }
 end;
 
+function sk_SCT_cmpfunc_thunk(cmp: TFuncType000; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_SCT_cmpfunc_thunk"');
+
+{Error: Line 45: Syntax Error parsing " int (*realcmp)(const SCT *const *a, const SCT *const *b) = (int (*)(const SCT *const *a,
+ const SCT *const *b))(cmp); const SCT *const *at = (const SCT *const *)a; const SCT *const *bt = (const SCT *const *)b; return 
+realcmp(at, bt); "
+
+ int (*realcmp)(const SCT *const *a, const SCT *const *b) = (int (*)(const SCT *const *a, const SCT *const *b))(cmp); const SCT 
+*const *at = (const SCT *const *)a; const SCT *const *bt = (const SCT *const *)b; return realcmp(at, bt); }
+end;
+
 function ossl_check_SCT_type(ptr: PSCT): PSCT{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -1295,6 +1329,18 @@ begin
 {Error: Line 71: Syntax Error parsing " sk_CTLOG_freefunc freefunc = (sk_CTLOG_freefunc)freefunc_arg; freefunc((CTLOG *)ptr); "
 
  sk_CTLOG_freefunc freefunc = (sk_CTLOG_freefunc)freefunc_arg; freefunc((CTLOG *)ptr); }
+end;
+
+function sk_CTLOG_cmpfunc_thunk(cmp: TFuncType001; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_CTLOG_cmpfunc_thunk"');
+
+{Error: Line 71: Syntax Error parsing " int (*realcmp)(const CTLOG *const *a, const CTLOG *const *b) = (int (*)(const CTLOG *const 
+*a, const CTLOG *const *b))(cmp); const CTLOG *const *at = (const CTLOG *const *)a; const CTLOG *const *bt = (const CTLOG *const 
+*)b; return realcmp(at, bt); "
+
+ int (*realcmp)(const CTLOG *const *a, const CTLOG *const *b) = (int (*)(const CTLOG *const *a, const CTLOG *const *b))(cmp); const 
+CTLOG *const *at = (const CTLOG *const *)a; const CTLOG *const *bt = (const CTLOG *const *)b; return realcmp(at, bt); }
 end;
 
 function ossl_check_CTLOG_type(ptr: PCTLOG): PCTLOG{Has C Attribute: unused}; inline;

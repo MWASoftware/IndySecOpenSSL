@@ -15,7 +15,7 @@
 
 
 {
-  Generated from OpenSSL 3.6.2 Header File macros.h - Tue 19 May 14:30:14 BST 2026
+  Generated from OpenSSL 4.0.0 Header File macros.h - Tue 19 May 14:32:48 BST 2026
 }
 
   {$if not declared(__FILE__)}
@@ -69,49 +69,71 @@
   {$ifndef  OSSL_DEPRECATED}
     {$undef  OSSL_DEPRECATED_FOR}
     {$ifndef  OPENSSL_SUPPRESS_DEPRECATED}
-      {$if  defined(_MSC_VER)}
-        
-        {* MSVC supports __declspec(deprecated) since MSVC 2003 (13.10),
-        * and __declspec(deprecated(message)) since MSVC 2005 (14.00)
-        }
-        {$if  _MSC_VER >= 1400}
-{# define  OSSL_DEPRECATED(since) __declspec(deprecated("Since OpenSSL " #since))}
-{# define  OSSL_DEPRECATED_FOR(since,message) __declspec(deprecated("Since OpenSSL " #since ";" message))}
-        {$elseif  _MSC_VER >= 1310}
-{# define  OSSL_DEPRECATED(since) __declspec(deprecated)} { Blacklisted Macro}
-{# define  OSSL_DEPRECATED_FOR(since,message) __declspec(deprecated)} { Blacklisted Macro}
-        {$endif}
-        { Commented out to avoid Delphi errors
-        #elif defined(__GNUC__)
-        / *
-        * According to GCC documentation, deprecations with message appeared in
-        * GCC 4.5.0
-        * /
-        #if __GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 5)
-        #define OSSL_DEPRECATED(since)     __attribute__((deprecated("Since OpenSSL " #since)))
-        )
-        #define OSSL_DEPRECATED_FOR(since, message)     __attribute__((deprecated("Since OpenSSL " #since ";" message)))
-        )
-        #elif __GNUC__ > 3 || (__GNUC__ == 3 && __GNUC_MINOR__ > 0)
-        #define OSSL_DEPRECATED(since) __attribute__((deprecated))
-        #define OSSL_DEPRECATED_FOR(since, message) __attribute__((deprecated))
-        #endif
-        #elif defined(__SUNPRO_C)
-        #if (__SUNPRO_C >= 0x5130)
-        #define OSSL_DEPRECATED(since) __attribute__((deprecated))
-        #define OSSL_DEPRECATED_FOR(since, message) __attribute__((deprecated))
-        #endif
-        }
-      {$endif}
+{# define  OSSL_END_ALLOW_DEPRECATED _Pragma("GCC diagnostic pop")} {Macro Return Type unknown}
+      {#if defined(_MSC_VER)}
+      
+      {* MSVC supports __declspec(deprecated) since MSVC 2003 (13.10),
+      * and __declspec(deprecated(message)) since MSVC 2005 (14.00)
+      }
+      { Commented out to avoid Delphi errors
+      #if _MSC_VER >= 1400
+      #define OSSL_DEPRECATED(since)     __declspec(deprecated("Since OpenSSL " #since))
+      )
+      #define OSSL_DEPRECATED_FOR(since, message)     __declspec(deprecated("Since OpenSSL " #since ";" message))
+      )
+      #define OSSL_DEPRECATED_MESSAGE(message) __declspec(deprecated(message))
+      #elif _MSC_VER >= 1310
+      #define OSSL_DEPRECATED(since) __declspec(deprecated)
+      #define OSSL_DEPRECATED_FOR(since, message) __declspec(deprecated)
+      #define OSSL_DEPRECATED_MESSAGE(message) __declspec(deprecated)
+      #endif
+      #define OSSL_BEGIN_ALLOW_DEPRECATED     __pragma(warning(push)) __pragma(warning(disable : 4996))
+      )
+      #define OSSL_END_ALLOW_DEPRECATED __pragma(warning(pop))
+      #elif defined(__GNUC__)
+      / *
+      * According to GCC documentation, deprecations with message appeared in
+      * GCC 4.5.0
+      * /
+      #if __GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 5)
+      #define OSSL_DEPRECATED(since)     __attribute__((deprecated("Since OpenSSL " #since)))
+      )
+      #define OSSL_DEPRECATED_FOR(since, message)     __attribute__((deprecated("Since OpenSSL " #since ";" message)))
+      )
+      #define OSSL_DEPRECATED_MESSAGE(message) __attribute__((deprecated(message)))
+      #elif __GNUC__ > 3 || (__GNUC__ == 3 && __GNUC_MINOR__ > 0)
+      #define OSSL_DEPRECATED(since) __attribute__((deprecated))
+      #define OSSL_DEPRECATED_FOR(since, message) __attribute__((deprecated))
+      #define OSSL_DEPRECATED_MESSAGE(message) __attribute__((deprecated))
+      #endif
+      #define OSSL_BEGIN_ALLOW_DEPRECATED     _Pragma("GCC diagnostic push")          _Pragma("GCC diagnostic ignored "-Wdeprecated-declarations"")
+      "")
+      }
+      
+      {#elif defined(__SUNPRO_C)
+      #if (__SUNPRO_C >= 0x5130)
+      #define OSSL_DEPRECATED(since) __attribute__((deprecated))
+      #define OSSL_DEPRECATED_FOR(since, message) __attribute__((deprecated))
+      #define OSSL_DEPRECATED_MESSAGE(message) __attribute__((deprecated))
+      #endif
+      #define OSSL_BEGIN_ALLOW_DEPRECATED     #pragma error_messages(off, E_DEPRECATED_ATT, E_DEPRECATED_ATT_MESS)
+      )
+      #define OSSL_END_ALLOW_DEPRECATED     #pragma error_messages(on, E_DEPRECATED_ATT, E_DEPRECATED_ATT_MESS)
+      )
+      #endif
+      }
     {$endif}
   {$endif}
   
   {* Still not defined?  Then define no-op macros. This means these macros
-  * are unsuitable for use in a typedef.
+  * are unsuitable for use in a typedef except OSSL_DEPRECATED_MESSAGE.
   }
   {$ifndef  OSSL_DEPRECATED}
 {# define  OSSL_DEPRECATED(since) extern}
 {# define  OSSL_DEPRECATED_FOR(since,message) extern}
+{# define  OSSL_DEPRECATED_MESSAGE(message)}
+    {$define OSSL_BEGIN_ALLOW_DEPRECATED}
+    {$define OSSL_END_ALLOW_DEPRECATED}
   {$endif}
   
   {* Applications should use -DOPENSSL_API_COMPAT=<version> to suppress the
@@ -200,6 +222,7 @@ const
   * deprecated up to that version, as an effect of the developer option
   * 'no-deprecated'.
   *)
+  {$undef  OPENSSL_NO_DEPRECATED_4_0}
   {$undef  OPENSSL_NO_DEPRECATED_3_6}
   {$undef  OPENSSL_NO_DEPRECATED_3_5}
   {$undef  OPENSSL_NO_DEPRECATED_3_4}
@@ -211,6 +234,17 @@ const
   {$undef  OPENSSL_NO_DEPRECATED_1_0_1}
   {$undef  OPENSSL_NO_DEPRECATED_1_0_0}
   {$undef  OPENSSL_NO_DEPRECATED_0_9_8}
+  {$if  OPENSSL_API_LEVEL >= 40000}
+    {$ifndef  OPENSSL_NO_DEPRECATED}
+{# define  OSSL_DEPRECATEDIN_4_0 OSSL_DEPRECATED(4.0)} {Macro Return Type unknown}
+{# define  OSSL_DEPRECATEDIN_4_0_FOR(msg) OSSL_DEPRECATED_FOR(4.0, msg)} { Blacklisted Macro}
+    {$else}
+      {$define OPENSSL_NO_DEPRECATED_4_0}
+    {$endif}
+  {$else}
+    {$define OSSL_DEPRECATEDIN_4_0}
+{# define  OSSL_DEPRECATEDIN_4_0_FOR(msg)}
+  {$endif}
   {$if  OPENSSL_API_LEVEL >= 30600}
     {$ifndef  OPENSSL_NO_DEPRECATED}
 {# define  OSSL_DEPRECATEDIN_3_6 OSSL_DEPRECATED(3.6)} {Macro Return Type unknown}
@@ -333,11 +367,10 @@ const
 {# define  OSSL_DEPRECATEDIN_0_9_8_FOR(msg)}
   {$endif}
   
-  {
-  * Make our own variants of __FILE__ and __LINE__, depending on configuration
+  {* Make our own variants of __FILE__ and __LINE__, depending on configuration
+  }
   
-  
-  #ifndef OPENSSL_FILE
+  {#ifndef OPENSSL_FILE
   #ifdef OPENSSL_NO_FILENAMES
   #define OPENSSL_FILE ""
   #define OPENSSL_LINE 0
@@ -360,28 +393,28 @@ const
   * If none of the above applies, we check if the compiler is MSVC,
   * and use __FUNCTION__ if that's the case.
   }
+  { Commented out to avoid Delphi errors
+  #ifndef OPENSSL_FUNC
+  #if defined(__STDC_VERSION__)
+  #if __STDC_VERSION__ >= 199901L
+  #define OPENSSL_FUNC __func__
+  #elif defined(__GNUC__) && __GNUC__ >= 2
+  #define OPENSSL_FUNC __FUNCTION__
+  #endif
+  #elif defined(_MSC_VER)
+  #define OPENSSL_FUNC __FUNCTION__
+  #endif
+  }
+  
+  {* If all these possibilities are exhausted, we give up and use a
+  * static string.
+  }
   {$ifndef  OPENSSL_FUNC}
-    { Commented out to avoid Delphi errors
-    #if defined(__STDC_VERSION__)
-    #if __STDC_VERSION__ >= 199901L
-    #define OPENSSL_FUNC __func__
-    #elif defined(__GNUC__) && __GNUC__ >= 2
-    #define OPENSSL_FUNC __FUNCTION__
-    #endif
-    #elif defined(_MSC_VER)
-    #define OPENSSL_FUNC __FUNCTION__
-    #endif
-    }
-    
-    {* If all these possibilities are exhausted, we give up and use a
-    * static string.
-    }
-    {$ifndef  OPENSSL_FUNC}
 
 const
   OPENSSL_FUNC = '(unknown function)';
-    {$endif}
   {$endif}
+  {#endif}
   {$ifndef  OSSL_CRYPTO_ALLOC}
     {$if  defined(__GNUC__)}
 {# define  OSSL_CRYPTO_ALLOC __attribute__((__malloc__))} {Macro Return Type unknown}

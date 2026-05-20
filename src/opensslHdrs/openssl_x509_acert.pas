@@ -18,7 +18,7 @@
 unit openssl_x509_acert;
 
 {
-  Generated from OpenSSL 3.6.2 Header File x509_acert.h - Tue 19 May 14:31:09 BST 2026
+  Generated from OpenSSL 4.0.0 Header File x509_acert.h - Tue 19 May 14:33:43 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -451,6 +451,17 @@ type
 
 
   procedure sk_OSSL_IETF_ATTR_SYNTAX_VALUE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+
+type
+  {Auto-generated forward references}
+  PFuncType000 = ^TFuncType000;
+  PPFuncType000 = ^PFuncType000;
+  {end of auto-generated forward references}
+
+  TFuncType000 = function(_param1: pointer; _param2: pointer): TOpenSSL_C_INT;
+
+
+  function sk_OSSL_IETF_ATTR_SYNTAX_VALUE_cmpfunc_thunk(cmp: TFuncType000; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
   function ossl_check_OSSL_IETF_ATTR_SYNTAX_VALUE_type(ptr: POSSL_IETF_ATTR_SYNTAX_VALUE): POSSL_IETF_ATTR_SYNTAX_VALUE{Has C Attribute: unused}; inline;
   function ossl_check_const_OSSL_IETF_ATTR_SYNTAX_VALUE_sk_type(sk: Pstack_st_OSSL_IETF_ATTR_SYNTAX_VALUE): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_OSSL_IETF_ATTR_SYNTAX_VALUE_sk_type(sk: Pstack_st_OSSL_IETF_ATTR_SYNTAX_VALUE): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -687,6 +698,17 @@ type
 
 
   procedure sk_OSSL_TARGET_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+
+type
+  {Auto-generated forward references}
+  PFuncType001 = ^TFuncType001;
+  PPFuncType001 = ^PFuncType001;
+  {end of auto-generated forward references}
+
+  TFuncType001 = function(_param1: pointer; _param2: pointer): TOpenSSL_C_INT;
+
+
+  function sk_OSSL_TARGET_cmpfunc_thunk(cmp: TFuncType001; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
   function ossl_check_OSSL_TARGET_type(ptr: POSSL_TARGET): POSSL_TARGET{Has C Attribute: unused}; inline;
   function ossl_check_const_OSSL_TARGET_sk_type(sk: Pstack_st_OSSL_TARGET): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_OSSL_TARGET_sk_type(sk: Pstack_st_OSSL_TARGET): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -820,6 +842,17 @@ type
 
 
   procedure sk_OSSL_TARGETS_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+
+type
+  {Auto-generated forward references}
+  PFuncType002 = ^TFuncType002;
+  PPFuncType002 = ^PFuncType002;
+  {end of auto-generated forward references}
+
+  TFuncType002 = function(_param1: pointer; _param2: pointer): TOpenSSL_C_INT;
+
+
+  function sk_OSSL_TARGETS_cmpfunc_thunk(cmp: TFuncType002; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
   function ossl_check_OSSL_TARGETS_type(ptr: POSSL_TARGETS): POSSL_TARGETS{Has C Attribute: unused}; inline;
   function ossl_check_const_OSSL_TARGETS_sk_type(sk: Pstack_st_OSSL_TARGETS): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_OSSL_TARGETS_sk_type(sk: Pstack_st_OSSL_TARGETS): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -1053,6 +1086,17 @@ type
 
 
   procedure sk_OSSL_ISSUER_SERIAL_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+
+type
+  {Auto-generated forward references}
+  PFuncType003 = ^TFuncType003;
+  PPFuncType003 = ^PFuncType003;
+  {end of auto-generated forward references}
+
+  TFuncType003 = function(_param1: pointer; _param2: pointer): TOpenSSL_C_INT;
+
+
+  function sk_OSSL_ISSUER_SERIAL_cmpfunc_thunk(cmp: TFuncType003; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
   function ossl_check_OSSL_ISSUER_SERIAL_type(ptr: POSSL_ISSUER_SERIAL): POSSL_ISSUER_SERIAL{Has C Attribute: unused}; inline;
   function ossl_check_const_OSSL_ISSUER_SERIAL_sk_type(sk: Pstack_st_OSSL_ISSUER_SERIAL): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_OSSL_ISSUER_SERIAL_sk_type(sk: Pstack_st_OSSL_ISSUER_SERIAL): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -1218,6 +1262,21 @@ freefunc((OSSL_IETF_ATTR_SYNTAX_VALUE *)ptr); "
 *)ptr); }
 end;
 
+function sk_OSSL_IETF_ATTR_SYNTAX_VALUE_cmpfunc_thunk(cmp: TFuncType000; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OSSL_IETF_ATTR_SYNTAX_VALUE_cmpfunc_thunk"');
+
+{Error: Line 138: Syntax Error parsing " int (*realcmp)(const OSSL_IETF_ATTR_SYNTAX_VALUE *const *a, const OSSL_IETF_ATTR_SYNTAX_VALUE 
+*const *b) = (int (*)(const OSSL_IETF_ATTR_SYNTAX_VALUE *const *a, const OSSL_IETF_ATTR_SYNTAX_VALUE *const *b))(cmp); const OSSL_IETF_ATTR_SYNTAX_VALUE 
+*const *at = (const OSSL_IETF_ATTR_SYNTAX_VALUE *const *)a; const OSSL_IETF_ATTR_SYNTAX_VALUE *const *bt = (const OSSL_IETF_ATTR_SYNTAX_VALUE 
+*const *)b; return realcmp(at, bt); "
+
+ int (*realcmp)(const OSSL_IETF_ATTR_SYNTAX_VALUE *const *a, const OSSL_IETF_ATTR_SYNTAX_VALUE *const *b) = (int (*)(const OSSL_IETF_ATTR_SYNTAX_VALUE 
+*const *a, const OSSL_IETF_ATTR_SYNTAX_VALUE *const *b))(cmp); const OSSL_IETF_ATTR_SYNTAX_VALUE *const *at = (const OSSL_IETF_ATTR_SYNTAX_VALUE 
+*const *)a; const OSSL_IETF_ATTR_SYNTAX_VALUE *const *bt = (const OSSL_IETF_ATTR_SYNTAX_VALUE *const *)b; return realcmp(at, bt); 
+}
+end;
+
 function ossl_check_OSSL_IETF_ATTR_SYNTAX_VALUE_type(ptr: POSSL_IETF_ATTR_SYNTAX_VALUE): POSSL_IETF_ATTR_SYNTAX_VALUE{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -1256,6 +1315,19 @@ begin
 *)ptr); "
 
  sk_OSSL_TARGET_freefunc freefunc = (sk_OSSL_TARGET_freefunc)freefunc_arg; freefunc((OSSL_TARGET *)ptr); }
+end;
+
+function sk_OSSL_TARGET_cmpfunc_thunk(cmp: TFuncType001; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OSSL_TARGET_cmpfunc_thunk"');
+
+{Error: Line 208: Syntax Error parsing " int (*realcmp)(const OSSL_TARGET *const *a, const OSSL_TARGET *const *b) = (int (*)(const 
+OSSL_TARGET *const *a, const OSSL_TARGET *const *b))(cmp); const OSSL_TARGET *const *at = (const OSSL_TARGET *const *)a; const OSSL_TARGET 
+*const *bt = (const OSSL_TARGET *const *)b; return realcmp(at, bt); "
+
+ int (*realcmp)(const OSSL_TARGET *const *a, const OSSL_TARGET *const *b) = (int (*)(const OSSL_TARGET *const *a, const OSSL_TARGET 
+*const *b))(cmp); const OSSL_TARGET *const *at = (const OSSL_TARGET *const *)a; const OSSL_TARGET *const *bt = (const OSSL_TARGET 
+*const *)b; return realcmp(at, bt); }
 end;
 
 function ossl_check_OSSL_TARGET_type(ptr: POSSL_TARGET): POSSL_TARGET{Has C Attribute: unused}; inline;
@@ -1298,6 +1370,19 @@ begin
  sk_OSSL_TARGETS_freefunc freefunc = (sk_OSSL_TARGETS_freefunc)freefunc_arg; freefunc((OSSL_TARGETS *)ptr); }
 end;
 
+function sk_OSSL_TARGETS_cmpfunc_thunk(cmp: TFuncType002; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OSSL_TARGETS_cmpfunc_thunk"');
+
+{Error: Line 238: Syntax Error parsing " int (*realcmp)(const OSSL_TARGETS *const *a, const OSSL_TARGETS *const *b) = (int (*)(const 
+OSSL_TARGETS *const *a, const OSSL_TARGETS *const *b))(cmp); const OSSL_TARGETS *const *at = (const OSSL_TARGETS *const *)a; const 
+OSSL_TARGETS *const *bt = (const OSSL_TARGETS *const *)b; return realcmp(at, bt); "
+
+ int (*realcmp)(const OSSL_TARGETS *const *a, const OSSL_TARGETS *const *b) = (int (*)(const OSSL_TARGETS *const *a, const OSSL_TARGETS 
+*const *b))(cmp); const OSSL_TARGETS *const *at = (const OSSL_TARGETS *const *)a; const OSSL_TARGETS *const *bt = (const OSSL_TARGETS 
+*const *)b; return realcmp(at, bt); }
+end;
+
 function ossl_check_OSSL_TARGETS_type(ptr: POSSL_TARGETS): POSSL_TARGETS{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -1336,6 +1421,20 @@ begin
 freefunc((OSSL_ISSUER_SERIAL *)ptr); "
 
  sk_OSSL_ISSUER_SERIAL_freefunc freefunc = (sk_OSSL_ISSUER_SERIAL_freefunc)freefunc_arg; freefunc((OSSL_ISSUER_SERIAL *)ptr); }
+end;
+
+function sk_OSSL_ISSUER_SERIAL_cmpfunc_thunk(cmp: TFuncType003; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OSSL_ISSUER_SERIAL_cmpfunc_thunk"');
+
+{Error: Line 275: Syntax Error parsing " int (*realcmp)(const OSSL_ISSUER_SERIAL *const *a, const OSSL_ISSUER_SERIAL *const *b) 
+= (int (*)(const OSSL_ISSUER_SERIAL *const *a, const OSSL_ISSUER_SERIAL *const *b))(cmp); const OSSL_ISSUER_SERIAL *const *at = 
+(const OSSL_ISSUER_SERIAL *const *)a; const OSSL_ISSUER_SERIAL *const *bt = (const OSSL_ISSUER_SERIAL *const *)b; return realcmp(at,
+ bt); "
+
+ int (*realcmp)(const OSSL_ISSUER_SERIAL *const *a, const OSSL_ISSUER_SERIAL *const *b) = (int (*)(const OSSL_ISSUER_SERIAL *const 
+*a, const OSSL_ISSUER_SERIAL *const *b))(cmp); const OSSL_ISSUER_SERIAL *const *at = (const OSSL_ISSUER_SERIAL *const *)a; const 
+OSSL_ISSUER_SERIAL *const *bt = (const OSSL_ISSUER_SERIAL *const *)b; return realcmp(at, bt); }
 end;
 
 function ossl_check_OSSL_ISSUER_SERIAL_type(ptr: POSSL_ISSUER_SERIAL): POSSL_ISSUER_SERIAL{Has C Attribute: unused}; inline;

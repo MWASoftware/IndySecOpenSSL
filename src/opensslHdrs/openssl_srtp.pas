@@ -18,7 +18,7 @@
 unit openssl_srtp;
 
 {
-  Generated from OpenSSL 3.6.2 Header File srtp.h - Tue 19 May 14:30:43 BST 2026
+  Generated from OpenSSL 4.0.0 Header File srtp.h - Tue 19 May 14:33:17 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -93,6 +93,17 @@ type
 
 
   procedure sk_SRTP_PROTECTION_PROFILE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+
+type
+  {Auto-generated forward references}
+  PFuncType000 = ^TFuncType000;
+  PPFuncType000 = ^PFuncType000;
+  {end of auto-generated forward references}
+
+  TFuncType000 = function(_param1: pointer; _param2: pointer): TOpenSSL_C_INT;
+
+
+  function sk_SRTP_PROTECTION_PROFILE_cmpfunc_thunk(cmp: TFuncType000; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
   function ossl_check_SRTP_PROTECTION_PROFILE_type(ptr: PSRTP_PROTECTION_PROFILE): PSRTP_PROTECTION_PROFILE{Has C Attribute: unused}; inline;
   function ossl_check_const_SRTP_PROTECTION_PROFILE_sk_type(sk: Pstack_st_SRTP_PROTECTION_PROFILE): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_SRTP_PROTECTION_PROFILE_sk_type(sk: Pstack_st_SRTP_PROTECTION_PROFILE): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -190,6 +201,20 @@ freefunc((SRTP_PROTECTION_PROFILE *)ptr); "
 
  sk_SRTP_PROTECTION_PROFILE_freefunc freefunc = (sk_SRTP_PROTECTION_PROFILE_freefunc)freefunc_arg; freefunc((SRTP_PROTECTION_PROFILE 
 *)ptr); }
+end;
+
+function sk_SRTP_PROTECTION_PROFILE_cmpfunc_thunk(cmp: TFuncType000; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_SRTP_PROTECTION_PROFILE_cmpfunc_thunk"');
+
+{Error: Line 47: Syntax Error parsing " int (*realcmp)(const SRTP_PROTECTION_PROFILE *const *a, const SRTP_PROTECTION_PROFILE *const 
+*b) = (int (*)(const SRTP_PROTECTION_PROFILE *const *a, const SRTP_PROTECTION_PROFILE *const *b))(cmp); const SRTP_PROTECTION_PROFILE 
+*const *at = (const SRTP_PROTECTION_PROFILE *const *)a; const SRTP_PROTECTION_PROFILE *const *bt = (const SRTP_PROTECTION_PROFILE 
+*const *)b; return realcmp(at, bt); "
+
+ int (*realcmp)(const SRTP_PROTECTION_PROFILE *const *a, const SRTP_PROTECTION_PROFILE *const *b) = (int (*)(const SRTP_PROTECTION_PROFILE 
+*const *a, const SRTP_PROTECTION_PROFILE *const *b))(cmp); const SRTP_PROTECTION_PROFILE *const *at = (const SRTP_PROTECTION_PROFILE 
+*const *)a; const SRTP_PROTECTION_PROFILE *const *bt = (const SRTP_PROTECTION_PROFILE *const *)b; return realcmp(at, bt); }
 end;
 
 function ossl_check_SRTP_PROTECTION_PROFILE_type(ptr: PSRTP_PROTECTION_PROFILE): PSRTP_PROTECTION_PROFILE{Has C Attribute: unused}; inline;

@@ -18,7 +18,7 @@
 unit openssl_bn;
 
 {
-  Generated from OpenSSL 3.6.2 Header File bn.h - Tue 19 May 14:29:26 BST 2026
+  Generated from OpenSSL 4.0.0 Header File bn.h - Tue 19 May 14:31:58 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -234,8 +234,8 @@ var
 
 const
   BN_prime_checks = 0;
-
-
+  {# define  BN_prime_checks_for_size(b) ((b) >= 3747 ? 3 : (b) >= 1345 ? 4 : (b) >= 476 ? 5 : (b) >= 400 ? 6 : (b) >= 347 ? 7 : (b) 
+>= 308 ? 8 : (b) >= 55 ? 27 : 34)} { Blacklisted Macro}
     
     {* BN_prime_checks_for_size() returns the number of Miller-Rabin iterations
     * that will be done for checking that a random number is probably prime. The
@@ -298,16 +298,15 @@ const
     *  (b) >=   55 |     >=   110 |         27 |         64 bit
     *  (b) >=    6 |     >=    12 |         34 |         64 bit
     }
-  function BN_prime_checks_for_size(b:int64): ansichar; inline;
   {$endif}
 
 
   function BN_num_bytes(a:PBIGNUM): TOpenSSL_C_INT; inline;
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function BN_abs_is_word(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_abs_is_word';
+  function BN_abs_is_word(a: PBIGNUM; w: TBN_ULONG): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_abs_is_word';
   function BN_is_zero(a: PBIGNUM): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_is_zero';
   function BN_is_one(a: PBIGNUM): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_is_one';
-  function BN_is_word(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_is_word';
+  function BN_is_word(a: PBIGNUM; w: TBN_ULONG): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_is_word';
   function BN_is_odd(a: PBIGNUM): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_is_odd';
   {$else}
   {$EXTERNALSYM BN_abs_is_word}
@@ -316,17 +315,17 @@ const
   {$EXTERNALSYM BN_is_word}
   {$EXTERNALSYM BN_is_odd}
   {Do not call Function LoadDeclarations. Internal use only}
-  function Load_BN_abs_is_word(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl;
+  function Load_BN_abs_is_word(a: PBIGNUM; w: TBN_ULONG): TOpenSSL_C_INT; cdecl;
   function Load_BN_is_zero(a: PBIGNUM): TOpenSSL_C_INT; cdecl;
   function Load_BN_is_one(a: PBIGNUM): TOpenSSL_C_INT; cdecl;
-  function Load_BN_is_word(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl;
+  function Load_BN_is_word(a: PBIGNUM; w: TBN_ULONG): TOpenSSL_C_INT; cdecl;
   function Load_BN_is_odd(a: PBIGNUM): TOpenSSL_C_INT; cdecl;
 
 var
-  BN_abs_is_word: function(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl = Load_BN_abs_is_word;
+  BN_abs_is_word: function(a: PBIGNUM; w: TBN_ULONG): TOpenSSL_C_INT; cdecl = Load_BN_abs_is_word;
   BN_is_zero: function(a: PBIGNUM): TOpenSSL_C_INT; cdecl = Load_BN_is_zero;
   BN_is_one: function(a: PBIGNUM): TOpenSSL_C_INT; cdecl = Load_BN_is_one;
-  BN_is_word: function(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl = Load_BN_is_word;
+  BN_is_word: function(a: PBIGNUM; w: TBN_ULONG): TOpenSSL_C_INT; cdecl = Load_BN_is_word;
   BN_is_odd: function(a: PBIGNUM): TOpenSSL_C_INT; cdecl = Load_BN_is_odd;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
@@ -453,7 +452,7 @@ var
 
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
   function BN_num_bits(a: PBIGNUM): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_num_bits';
-  function BN_num_bits_word(l: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_num_bits_word';
+  function BN_num_bits_word(l: TBN_ULONG): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_num_bits_word';
   function BN_security_bits(L: TOpenSSL_C_INT; N: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_security_bits';
   function BN_new: PBIGNUM; cdecl; external CLibCrypto name 'BN_new';
   function BN_secure_new: PBIGNUM; cdecl; external CLibCrypto name 'BN_secure_new';
@@ -527,7 +526,7 @@ var
   {$EXTERNALSYM BN_div}
   {Do not call Function LoadDeclarations. Internal use only}
   function Load_BN_num_bits(a: PBIGNUM): TOpenSSL_C_INT; cdecl;
-  function Load_BN_num_bits_word(l: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl;
+  function Load_BN_num_bits_word(l: TBN_ULONG): TOpenSSL_C_INT; cdecl;
   function Load_BN_security_bits(L: TOpenSSL_C_INT; N: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
   function Load_BN_new: PBIGNUM; cdecl;
   function Load_BN_secure_new: PBIGNUM; cdecl;
@@ -561,7 +560,7 @@ var
 
 var
   BN_num_bits: function(a: PBIGNUM): TOpenSSL_C_INT; cdecl = Load_BN_num_bits;
-  BN_num_bits_word: function(l: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl = Load_BN_num_bits_word;
+  BN_num_bits_word: function(l: TBN_ULONG): TOpenSSL_C_INT; cdecl = Load_BN_num_bits_word;
   BN_security_bits: function(L: TOpenSSL_C_INT; N: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_BN_security_bits;
   BN_new: function: PBIGNUM; cdecl = Load_BN_new;
   BN_secure_new: function: PBIGNUM; cdecl = Load_BN_secure_new;
@@ -616,13 +615,13 @@ var
   function BN_mod_lshift1_quick(r: PBIGNUM; a: PBIGNUM; m: PBIGNUM): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_mod_lshift1_quick';
   function BN_mod_lshift(r: PBIGNUM; a: PBIGNUM; n: TOpenSSL_C_INT; m: PBIGNUM; ctx: PBN_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_mod_lshift';
   function BN_mod_lshift_quick(r: PBIGNUM; a: PBIGNUM; n: TOpenSSL_C_INT; m: PBIGNUM): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_mod_lshift_quick';
-  function BN_mod_word(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_UINT; cdecl; external CLibCrypto name 'BN_mod_word';
-  function BN_div_word(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_UINT; cdecl; external CLibCrypto name 'BN_div_word';
-  function BN_mul_word(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_mul_word';
-  function BN_add_word(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_add_word';
-  function BN_sub_word(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_sub_word';
-  function BN_set_word(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_set_word';
-  function BN_get_word(a: PBIGNUM): TOpenSSL_C_UINT; cdecl; external CLibCrypto name 'BN_get_word';
+  function BN_mod_word(a: PBIGNUM; w: TBN_ULONG): TBN_ULONG; cdecl; external CLibCrypto name 'BN_mod_word';
+  function BN_div_word(a: PBIGNUM; w: TBN_ULONG): TBN_ULONG; cdecl; external CLibCrypto name 'BN_div_word';
+  function BN_mul_word(a: PBIGNUM; w: TBN_ULONG): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_mul_word';
+  function BN_add_word(a: PBIGNUM; w: TBN_ULONG): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_add_word';
+  function BN_sub_word(a: PBIGNUM; w: TBN_ULONG): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_sub_word';
+  function BN_set_word(a: PBIGNUM; w: TBN_ULONG): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_set_word';
+  function BN_get_word(a: PBIGNUM): TBN_ULONG; cdecl; external CLibCrypto name 'BN_get_word';
   function BN_cmp(a: PBIGNUM; b: PBIGNUM): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_cmp';
   procedure BN_free(a: PBIGNUM); cdecl; external CLibCrypto name 'BN_free';
   function BN_is_bit_set(a: PBIGNUM; n: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_is_bit_set';
@@ -632,7 +631,7 @@ var
   function BN_mod_exp(r: PBIGNUM; a: PBIGNUM; p: PBIGNUM; m: PBIGNUM; ctx: PBN_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_mod_exp';
   function BN_mod_exp_mont(r: PBIGNUM; a: PBIGNUM; p: PBIGNUM; m: PBIGNUM; ctx: PBN_CTX; m_ctx: PBN_MONT_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_mod_exp_mont';
   function BN_mod_exp_mont_consttime(rr: PBIGNUM; a: PBIGNUM; p: PBIGNUM; m: PBIGNUM; ctx: PBN_CTX; in_mont: PBN_MONT_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_mod_exp_mont_consttime';
-  function BN_mod_exp_mont_word(r: PBIGNUM; a: TOpenSSL_C_UINT; p: PBIGNUM; m: PBIGNUM; ctx: PBN_CTX; m_ctx: PBN_MONT_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_mod_exp_mont_word';
+  function BN_mod_exp_mont_word(r: PBIGNUM; a: TBN_ULONG; p: PBIGNUM; m: PBIGNUM; ctx: PBN_CTX; m_ctx: PBN_MONT_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_mod_exp_mont_word';
   function BN_mod_exp2_mont(r: PBIGNUM; a1: PBIGNUM; p1: PBIGNUM; a2: PBIGNUM; p2: PBIGNUM; m: PBIGNUM; ctx: PBN_CTX; m_ctx: PBN_MONT_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_mod_exp2_mont';
   function BN_mod_exp_simple(r: PBIGNUM; a: PBIGNUM; p: PBIGNUM; m: PBIGNUM; ctx: PBN_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_mod_exp_simple';
   function BN_mod_exp_mont_consttime_x2(rr1: PBIGNUM; a1: PBIGNUM; p1: PBIGNUM; m1: PBIGNUM; in_mont1: PBN_MONT_CTX; rr2: PBIGNUM; a2: PBIGNUM; p2: PBIGNUM; m2: PBIGNUM; in_mont2: PBN_MONT_CTX; ctx: PBN_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_mod_exp_mont_consttime_x2';
@@ -682,13 +681,13 @@ var
   function Load_BN_mod_lshift1_quick(r: PBIGNUM; a: PBIGNUM; m: PBIGNUM): TOpenSSL_C_INT; cdecl;
   function Load_BN_mod_lshift(r: PBIGNUM; a: PBIGNUM; n: TOpenSSL_C_INT; m: PBIGNUM; ctx: PBN_CTX): TOpenSSL_C_INT; cdecl;
   function Load_BN_mod_lshift_quick(r: PBIGNUM; a: PBIGNUM; n: TOpenSSL_C_INT; m: PBIGNUM): TOpenSSL_C_INT; cdecl;
-  function Load_BN_mod_word(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_UINT; cdecl;
-  function Load_BN_div_word(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_UINT; cdecl;
-  function Load_BN_mul_word(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl;
-  function Load_BN_add_word(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl;
-  function Load_BN_sub_word(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl;
-  function Load_BN_set_word(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl;
-  function Load_BN_get_word(a: PBIGNUM): TOpenSSL_C_UINT; cdecl;
+  function Load_BN_mod_word(a: PBIGNUM; w: TBN_ULONG): TBN_ULONG; cdecl;
+  function Load_BN_div_word(a: PBIGNUM; w: TBN_ULONG): TBN_ULONG; cdecl;
+  function Load_BN_mul_word(a: PBIGNUM; w: TBN_ULONG): TOpenSSL_C_INT; cdecl;
+  function Load_BN_add_word(a: PBIGNUM; w: TBN_ULONG): TOpenSSL_C_INT; cdecl;
+  function Load_BN_sub_word(a: PBIGNUM; w: TBN_ULONG): TOpenSSL_C_INT; cdecl;
+  function Load_BN_set_word(a: PBIGNUM; w: TBN_ULONG): TOpenSSL_C_INT; cdecl;
+  function Load_BN_get_word(a: PBIGNUM): TBN_ULONG; cdecl;
   function Load_BN_cmp(a: PBIGNUM; b: PBIGNUM): TOpenSSL_C_INT; cdecl;
   procedure Load_BN_free(a: PBIGNUM); cdecl;
   function Load_BN_is_bit_set(a: PBIGNUM; n: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
@@ -698,7 +697,7 @@ var
   function Load_BN_mod_exp(r: PBIGNUM; a: PBIGNUM; p: PBIGNUM; m: PBIGNUM; ctx: PBN_CTX): TOpenSSL_C_INT; cdecl;
   function Load_BN_mod_exp_mont(r: PBIGNUM; a: PBIGNUM; p: PBIGNUM; m: PBIGNUM; ctx: PBN_CTX; m_ctx: PBN_MONT_CTX): TOpenSSL_C_INT; cdecl;
   function Load_BN_mod_exp_mont_consttime(rr: PBIGNUM; a: PBIGNUM; p: PBIGNUM; m: PBIGNUM; ctx: PBN_CTX; in_mont: PBN_MONT_CTX): TOpenSSL_C_INT; cdecl;
-  function Load_BN_mod_exp_mont_word(r: PBIGNUM; a: TOpenSSL_C_UINT; p: PBIGNUM; m: PBIGNUM; ctx: PBN_CTX; m_ctx: PBN_MONT_CTX): TOpenSSL_C_INT; cdecl;
+  function Load_BN_mod_exp_mont_word(r: PBIGNUM; a: TBN_ULONG; p: PBIGNUM; m: PBIGNUM; ctx: PBN_CTX; m_ctx: PBN_MONT_CTX): TOpenSSL_C_INT; cdecl;
   function Load_BN_mod_exp2_mont(r: PBIGNUM; a1: PBIGNUM; p1: PBIGNUM; a2: PBIGNUM; p2: PBIGNUM; m: PBIGNUM; ctx: PBN_CTX; m_ctx: PBN_MONT_CTX): TOpenSSL_C_INT; cdecl;
   function Load_BN_mod_exp_simple(r: PBIGNUM; a: PBIGNUM; p: PBIGNUM; m: PBIGNUM; ctx: PBN_CTX): TOpenSSL_C_INT; cdecl;
   function Load_BN_mod_exp_mont_consttime_x2(rr1: PBIGNUM; a1: PBIGNUM; p1: PBIGNUM; m1: PBIGNUM; in_mont1: PBN_MONT_CTX; rr2: PBIGNUM; a2: PBIGNUM; p2: PBIGNUM; m2: PBIGNUM; in_mont2: PBN_MONT_CTX; ctx: PBN_CTX): TOpenSSL_C_INT; cdecl;
@@ -716,13 +715,13 @@ var
   BN_mod_lshift1_quick: function(r: PBIGNUM; a: PBIGNUM; m: PBIGNUM): TOpenSSL_C_INT; cdecl = Load_BN_mod_lshift1_quick;
   BN_mod_lshift: function(r: PBIGNUM; a: PBIGNUM; n: TOpenSSL_C_INT; m: PBIGNUM; ctx: PBN_CTX): TOpenSSL_C_INT; cdecl = Load_BN_mod_lshift;
   BN_mod_lshift_quick: function(r: PBIGNUM; a: PBIGNUM; n: TOpenSSL_C_INT; m: PBIGNUM): TOpenSSL_C_INT; cdecl = Load_BN_mod_lshift_quick;
-  BN_mod_word: function(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_UINT; cdecl = Load_BN_mod_word;
-  BN_div_word: function(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_UINT; cdecl = Load_BN_div_word;
-  BN_mul_word: function(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl = Load_BN_mul_word;
-  BN_add_word: function(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl = Load_BN_add_word;
-  BN_sub_word: function(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl = Load_BN_sub_word;
-  BN_set_word: function(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl = Load_BN_set_word;
-  BN_get_word: function(a: PBIGNUM): TOpenSSL_C_UINT; cdecl = Load_BN_get_word;
+  BN_mod_word: function(a: PBIGNUM; w: TBN_ULONG): TBN_ULONG; cdecl = Load_BN_mod_word;
+  BN_div_word: function(a: PBIGNUM; w: TBN_ULONG): TBN_ULONG; cdecl = Load_BN_div_word;
+  BN_mul_word: function(a: PBIGNUM; w: TBN_ULONG): TOpenSSL_C_INT; cdecl = Load_BN_mul_word;
+  BN_add_word: function(a: PBIGNUM; w: TBN_ULONG): TOpenSSL_C_INT; cdecl = Load_BN_add_word;
+  BN_sub_word: function(a: PBIGNUM; w: TBN_ULONG): TOpenSSL_C_INT; cdecl = Load_BN_sub_word;
+  BN_set_word: function(a: PBIGNUM; w: TBN_ULONG): TOpenSSL_C_INT; cdecl = Load_BN_set_word;
+  BN_get_word: function(a: PBIGNUM): TBN_ULONG; cdecl = Load_BN_get_word;
   BN_cmp: function(a: PBIGNUM; b: PBIGNUM): TOpenSSL_C_INT; cdecl = Load_BN_cmp;
   BN_free: procedure(a: PBIGNUM); cdecl = Load_BN_free;
   BN_is_bit_set: function(a: PBIGNUM; n: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_BN_is_bit_set;
@@ -732,7 +731,7 @@ var
   BN_mod_exp: function(r: PBIGNUM; a: PBIGNUM; p: PBIGNUM; m: PBIGNUM; ctx: PBN_CTX): TOpenSSL_C_INT; cdecl = Load_BN_mod_exp;
   BN_mod_exp_mont: function(r: PBIGNUM; a: PBIGNUM; p: PBIGNUM; m: PBIGNUM; ctx: PBN_CTX; m_ctx: PBN_MONT_CTX): TOpenSSL_C_INT; cdecl = Load_BN_mod_exp_mont;
   BN_mod_exp_mont_consttime: function(rr: PBIGNUM; a: PBIGNUM; p: PBIGNUM; m: PBIGNUM; ctx: PBN_CTX; in_mont: PBN_MONT_CTX): TOpenSSL_C_INT; cdecl = Load_BN_mod_exp_mont_consttime;
-  BN_mod_exp_mont_word: function(r: PBIGNUM; a: TOpenSSL_C_UINT; p: PBIGNUM; m: PBIGNUM; ctx: PBN_CTX; m_ctx: PBN_MONT_CTX): TOpenSSL_C_INT; cdecl = Load_BN_mod_exp_mont_word;
+  BN_mod_exp_mont_word: function(r: PBIGNUM; a: TBN_ULONG; p: PBIGNUM; m: PBIGNUM; ctx: PBN_CTX; m_ctx: PBN_MONT_CTX): TOpenSSL_C_INT; cdecl = Load_BN_mod_exp_mont_word;
   BN_mod_exp2_mont: function(r: PBIGNUM; a1: PBIGNUM; p1: PBIGNUM; a2: PBIGNUM; p2: PBIGNUM; m: PBIGNUM; ctx: PBN_CTX; m_ctx: PBN_MONT_CTX): TOpenSSL_C_INT; cdecl = Load_BN_mod_exp2_mont;
   BN_mod_exp_simple: function(r: PBIGNUM; a: PBIGNUM; p: PBIGNUM; m: PBIGNUM; ctx: PBN_CTX): TOpenSSL_C_INT; cdecl = Load_BN_mod_exp_simple;
   BN_mod_exp_mont_consttime_x2: function(rr1: PBIGNUM; a1: PBIGNUM; p1: PBIGNUM; m1: PBIGNUM; in_mont1: PBN_MONT_CTX; rr2: PBIGNUM; a2: PBIGNUM; p2: PBIGNUM; m2: PBIGNUM; in_mont2: PBN_MONT_CTX; ctx: PBN_CTX): TOpenSSL_C_INT; cdecl = Load_BN_mod_exp_mont_consttime_x2;
@@ -777,7 +776,7 @@ var
   function BN_are_coprime(a: PBIGNUM; b: PBIGNUM; ctx: PBN_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'BN_are_coprime';
   function BN_mod_inverse(ret: PBIGNUM; a: PBIGNUM; n: PBIGNUM; ctx: PBN_CTX): PBIGNUM; cdecl; external CLibCrypto name 'BN_mod_inverse';
   function BN_mod_sqrt(ret: PBIGNUM; a: PBIGNUM; n: PBIGNUM; ctx: PBN_CTX): PBIGNUM; cdecl; external CLibCrypto name 'BN_mod_sqrt';
-  procedure BN_consttime_swap(swap: TOpenSSL_C_UINT; a: PBIGNUM; b: PBIGNUM; nwords: TOpenSSL_C_INT); cdecl; external CLibCrypto name 'BN_consttime_swap';
+  procedure BN_consttime_swap(swap: TBN_ULONG; a: PBIGNUM; b: PBIGNUM; nwords: TOpenSSL_C_INT); cdecl; external CLibCrypto name 'BN_consttime_swap';
   { Deprecated versions }
   {$else}
   {$EXTERNALSYM BN_print}
@@ -820,7 +819,7 @@ var
   function Load_BN_are_coprime(a: PBIGNUM; b: PBIGNUM; ctx: PBN_CTX): TOpenSSL_C_INT; cdecl;
   function Load_BN_mod_inverse(ret: PBIGNUM; a: PBIGNUM; n: PBIGNUM; ctx: PBN_CTX): PBIGNUM; cdecl;
   function Load_BN_mod_sqrt(ret: PBIGNUM; a: PBIGNUM; n: PBIGNUM; ctx: PBN_CTX): PBIGNUM; cdecl;
-  procedure Load_BN_consttime_swap(swap: TOpenSSL_C_UINT; a: PBIGNUM; b: PBIGNUM; nwords: TOpenSSL_C_INT); cdecl;
+  procedure Load_BN_consttime_swap(swap: TBN_ULONG; a: PBIGNUM; b: PBIGNUM; nwords: TOpenSSL_C_INT); cdecl;
 
 var
   BN_print: function(bio: PBIO; a: PBIGNUM): TOpenSSL_C_INT; cdecl = Load_BN_print;
@@ -845,7 +844,7 @@ var
   BN_are_coprime: function(a: PBIGNUM; b: PBIGNUM; ctx: PBN_CTX): TOpenSSL_C_INT; cdecl = Load_BN_are_coprime;
   BN_mod_inverse: function(ret: PBIGNUM; a: PBIGNUM; n: PBIGNUM; ctx: PBN_CTX): PBIGNUM; cdecl = Load_BN_mod_inverse;
   BN_mod_sqrt: function(ret: PBIGNUM; a: PBIGNUM; n: PBIGNUM; ctx: PBN_CTX): PBIGNUM; cdecl = Load_BN_mod_sqrt;
-  BN_consttime_swap: procedure(swap: TOpenSSL_C_UINT; a: PBIGNUM; b: PBIGNUM; nwords: TOpenSSL_C_INT); cdecl = Load_BN_consttime_swap;
+  BN_consttime_swap: procedure(swap: TBN_ULONG; a: PBIGNUM; b: PBIGNUM; nwords: TOpenSSL_C_INT); cdecl = Load_BN_consttime_swap;
   { Deprecated versions }
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
   {$ifndef  OPENSSL_NO_DEPRECATED_0_9_8}
@@ -1512,52 +1511,6 @@ function BN_TBIT: TOpenSSL_C_UINT64;
 begin
   Result := TOpenSSL_C_UINT64((TBN_ULONG(1)) shl (BN_BITS2-1));
 end;
-{$ifndef  OPENSSL_NO_DEPRECATED_3_0}
-
-{# define  BN_prime_checks_for_size(b) ((b) >= 3747 ? 3 : (b) >= 1345 ? 4 : (b) >= 476 ? 5 : (b) >= 400 ? 6 : (b) >= 347 ? 7 : (b) 
->= 308 ? 8 : (b) >= 55 ? 27 : 34)}
-
-function BN_prime_checks_for_size(b:int64): ansichar;
-var
-    if_local1: variant;
-if_local2: variant;
-if_local3: variant;
-if_local4: variant;
-if_local5: variant;
-if_local6: variant;
-if_local7: variant;
-begin
-  if (3747 <> 0) then
-    if_local1 := 3
-  else
-    if_local1 := b;
-  if (1345 <> 0) then
-    if_local2 := 4
-  else
-    if_local2 := b;
-  if (476 <> 0) then
-    if_local3 := 5
-  else
-    if_local3 := b;
-  if (400 <> 0) then
-    if_local4 := 6
-  else
-    if_local4 := b;
-  if (347 <> 0) then
-    if_local5 := 7
-  else
-    if_local5 := b;
-  if (308 <> 0) then
-    if_local6 := 8
-  else
-    if_local6 := b;
-  if (55 <> 0) then
-    if_local7 := 27
-  else
-    if_local7 := 34;
-  Result := ansichar(((((((b>=(if_local1))>=(if_local2))>=(if_local3))>=(if_local4))>=(if_local5))>=(if_local6))>=(if_local7));
-end;
-{$endif} { OPENSSL_NO_DEPRECATED_3_0}
 
 {# define  BN_num_bytes(a) ((BN_num_bits(a) + 7) / 8)}
 
@@ -1685,7 +1638,7 @@ begin
   Result := BN_GENCB_get_arg(cb);
 end;
 
-function Load_BN_abs_is_word(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl;
+function Load_BN_abs_is_word(a: PBIGNUM; w: TBN_ULONG): TOpenSSL_C_INT; cdecl;
 begin
   BN_abs_is_word := LoadLibCryptoFunction('BN_abs_is_word');
   if not assigned(BN_abs_is_word) then
@@ -1709,7 +1662,7 @@ begin
   Result := BN_is_one(a);
 end;
 
-function Load_BN_is_word(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl;
+function Load_BN_is_word(a: PBIGNUM; w: TBN_ULONG): TOpenSSL_C_INT; cdecl;
 begin
   BN_is_word := LoadLibCryptoFunction('BN_is_word');
   if not assigned(BN_is_word) then
@@ -1903,7 +1856,7 @@ begin
   Result := BN_num_bits(a);
 end;
 
-function Load_BN_num_bits_word(l: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl;
+function Load_BN_num_bits_word(l: TBN_ULONG): TOpenSSL_C_INT; cdecl;
 begin
   BN_num_bits_word := LoadLibCryptoFunction('BN_num_bits_word');
   if not assigned(BN_num_bits_word) then
@@ -2239,7 +2192,7 @@ begin
   Result := BN_mod_lshift_quick(r, a, n, m);
 end;
 
-function Load_BN_mod_word(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_UINT; cdecl;
+function Load_BN_mod_word(a: PBIGNUM; w: TBN_ULONG): TBN_ULONG; cdecl;
 begin
   BN_mod_word := LoadLibCryptoFunction('BN_mod_word');
   if not assigned(BN_mod_word) then
@@ -2247,7 +2200,7 @@ begin
   Result := BN_mod_word(a, w);
 end;
 
-function Load_BN_div_word(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_UINT; cdecl;
+function Load_BN_div_word(a: PBIGNUM; w: TBN_ULONG): TBN_ULONG; cdecl;
 begin
   BN_div_word := LoadLibCryptoFunction('BN_div_word');
   if not assigned(BN_div_word) then
@@ -2255,7 +2208,7 @@ begin
   Result := BN_div_word(a, w);
 end;
 
-function Load_BN_mul_word(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl;
+function Load_BN_mul_word(a: PBIGNUM; w: TBN_ULONG): TOpenSSL_C_INT; cdecl;
 begin
   BN_mul_word := LoadLibCryptoFunction('BN_mul_word');
   if not assigned(BN_mul_word) then
@@ -2263,7 +2216,7 @@ begin
   Result := BN_mul_word(a, w);
 end;
 
-function Load_BN_add_word(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl;
+function Load_BN_add_word(a: PBIGNUM; w: TBN_ULONG): TOpenSSL_C_INT; cdecl;
 begin
   BN_add_word := LoadLibCryptoFunction('BN_add_word');
   if not assigned(BN_add_word) then
@@ -2271,7 +2224,7 @@ begin
   Result := BN_add_word(a, w);
 end;
 
-function Load_BN_sub_word(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl;
+function Load_BN_sub_word(a: PBIGNUM; w: TBN_ULONG): TOpenSSL_C_INT; cdecl;
 begin
   BN_sub_word := LoadLibCryptoFunction('BN_sub_word');
   if not assigned(BN_sub_word) then
@@ -2279,7 +2232,7 @@ begin
   Result := BN_sub_word(a, w);
 end;
 
-function Load_BN_set_word(a: PBIGNUM; w: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl;
+function Load_BN_set_word(a: PBIGNUM; w: TBN_ULONG): TOpenSSL_C_INT; cdecl;
 begin
   BN_set_word := LoadLibCryptoFunction('BN_set_word');
   if not assigned(BN_set_word) then
@@ -2287,7 +2240,7 @@ begin
   Result := BN_set_word(a, w);
 end;
 
-function Load_BN_get_word(a: PBIGNUM): TOpenSSL_C_UINT; cdecl;
+function Load_BN_get_word(a: PBIGNUM): TBN_ULONG; cdecl;
 begin
   BN_get_word := LoadLibCryptoFunction('BN_get_word');
   if not assigned(BN_get_word) then
@@ -2367,7 +2320,7 @@ begin
   Result := BN_mod_exp_mont_consttime(rr, a, p, m, ctx, in_mont);
 end;
 
-function Load_BN_mod_exp_mont_word(r: PBIGNUM; a: TOpenSSL_C_UINT; p: PBIGNUM; m: PBIGNUM; ctx: PBN_CTX; m_ctx: PBN_MONT_CTX): TOpenSSL_C_INT; cdecl;
+function Load_BN_mod_exp_mont_word(r: PBIGNUM; a: TBN_ULONG; p: PBIGNUM; m: PBIGNUM; ctx: PBN_CTX; m_ctx: PBN_MONT_CTX): TOpenSSL_C_INT; cdecl;
 begin
   BN_mod_exp_mont_word := LoadLibCryptoFunction('BN_mod_exp_mont_word');
   if not assigned(BN_mod_exp_mont_word) then
@@ -2569,7 +2522,7 @@ begin
   Result := BN_mod_sqrt(ret, a, n, ctx);
 end;
 
-procedure Load_BN_consttime_swap(swap: TOpenSSL_C_UINT; a: PBIGNUM; b: PBIGNUM; nwords: TOpenSSL_C_INT); cdecl;
+procedure Load_BN_consttime_swap(swap: TBN_ULONG; a: PBIGNUM; b: PBIGNUM; nwords: TOpenSSL_C_INT); cdecl;
 begin
   BN_consttime_swap := LoadLibCryptoFunction('BN_consttime_swap');
   if not assigned(BN_consttime_swap) then

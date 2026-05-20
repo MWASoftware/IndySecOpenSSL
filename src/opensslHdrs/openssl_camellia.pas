@@ -18,7 +18,7 @@
 unit openssl_camellia;
 
 {
-  Generated from OpenSSL 3.6.2 Header File camellia.h - Tue 19 May 14:29:28 BST 2026
+  Generated from OpenSSL 4.0.0 Header File camellia.h - Tue 19 May 14:32:00 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -32,7 +32,7 @@ interface
 uses OpenSSLAPI;
 
 
-{* Copyright 2006-2020 The OpenSSL Project Authors. All Rights Reserved.
+{* Copyright 2006-2026 The OpenSSL Project Authors. All Rights Reserved.
 *
 * Licensed under the Apache License 2.0 (the "License").  You may not use
 * this file except in compliance with the License.  You can obtain a copy

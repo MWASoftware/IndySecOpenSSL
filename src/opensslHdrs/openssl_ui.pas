@@ -18,7 +18,7 @@
 unit openssl_ui;
 
 {
-  Generated from OpenSSL 3.6.2 Header File ui.h - Tue 19 May 14:31:07 BST 2026
+  Generated from OpenSSL 4.0.0 Header File ui.h - Tue 19 May 14:33:41 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -576,6 +576,17 @@ type
 
 
   procedure sk_UI_STRING_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+
+type
+  {Auto-generated forward references}
+  PFuncType001 = ^TFuncType001;
+  PPFuncType001 = ^PFuncType001;
+  {end of auto-generated forward references}
+
+  TFuncType001 = function(_param1: pointer; _param2: pointer): TOpenSSL_C_INT;
+
+
+  function sk_UI_STRING_cmpfunc_thunk(cmp: TFuncType001; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
   function ossl_check_UI_STRING_type(ptr: PUI_STRING): PUI_STRING{Has C Attribute: unused}; inline;
   function ossl_check_const_UI_STRING_sk_type(sk: Pstack_st_UI_STRING): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_UI_STRING_sk_type(sk: Pstack_st_UI_STRING): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -728,42 +739,22 @@ var
 
 type
   {Auto-generated forward references}
-  PFuncType001 = ^TFuncType001;
-  PPFuncType001 = ^PFuncType001;
-  {end of auto-generated forward references}
-
-  TFuncType001 = function(ui: PUI): TOpenSSL_C_INT; cdecl;
-
-
-  {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function UI_method_set_opener(method: PUI_METHOD; opener: TFuncType001): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'UI_method_set_opener';
-  {$else}
-  {$EXTERNALSYM UI_method_set_opener}
-  {Do not call Function LoadDeclarations. Internal use only}
-  function Load_UI_method_set_opener(method: PUI_METHOD; opener: TFuncType001): TOpenSSL_C_INT; cdecl;
-
-var
-  UI_method_set_opener: function(method: PUI_METHOD; opener: TFuncType001): TOpenSSL_C_INT; cdecl = Load_UI_method_set_opener;
-  {$endif} {OPENSSL_STATIC_LINK_MODEL}
-
-type
-  {Auto-generated forward references}
   PFuncType002 = ^TFuncType002;
   PPFuncType002 = ^PFuncType002;
   {end of auto-generated forward references}
 
-  TFuncType002 = function(ui: PUI; uis: PUI_STRING): TOpenSSL_C_INT; cdecl;
+  TFuncType002 = function(ui: PUI): TOpenSSL_C_INT; cdecl;
 
 
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function UI_method_set_writer(method: PUI_METHOD; writer: TFuncType002): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'UI_method_set_writer';
+  function UI_method_set_opener(method: PUI_METHOD; opener: TFuncType002): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'UI_method_set_opener';
   {$else}
-  {$EXTERNALSYM UI_method_set_writer}
+  {$EXTERNALSYM UI_method_set_opener}
   {Do not call Function LoadDeclarations. Internal use only}
-  function Load_UI_method_set_writer(method: PUI_METHOD; writer: TFuncType002): TOpenSSL_C_INT; cdecl;
+  function Load_UI_method_set_opener(method: PUI_METHOD; opener: TFuncType002): TOpenSSL_C_INT; cdecl;
 
 var
-  UI_method_set_writer: function(method: PUI_METHOD; writer: TFuncType002): TOpenSSL_C_INT; cdecl = Load_UI_method_set_writer;
+  UI_method_set_opener: function(method: PUI_METHOD; opener: TFuncType002): TOpenSSL_C_INT; cdecl = Load_UI_method_set_opener;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
 type
@@ -772,18 +763,18 @@ type
   PPFuncType003 = ^PFuncType003;
   {end of auto-generated forward references}
 
-  TFuncType003 = function(ui: PUI): TOpenSSL_C_INT; cdecl;
+  TFuncType003 = function(ui: PUI; uis: PUI_STRING): TOpenSSL_C_INT; cdecl;
 
 
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function UI_method_set_flusher(method: PUI_METHOD; flusher: TFuncType003): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'UI_method_set_flusher';
+  function UI_method_set_writer(method: PUI_METHOD; writer: TFuncType003): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'UI_method_set_writer';
   {$else}
-  {$EXTERNALSYM UI_method_set_flusher}
+  {$EXTERNALSYM UI_method_set_writer}
   {Do not call Function LoadDeclarations. Internal use only}
-  function Load_UI_method_set_flusher(method: PUI_METHOD; flusher: TFuncType003): TOpenSSL_C_INT; cdecl;
+  function Load_UI_method_set_writer(method: PUI_METHOD; writer: TFuncType003): TOpenSSL_C_INT; cdecl;
 
 var
-  UI_method_set_flusher: function(method: PUI_METHOD; flusher: TFuncType003): TOpenSSL_C_INT; cdecl = Load_UI_method_set_flusher;
+  UI_method_set_writer: function(method: PUI_METHOD; writer: TFuncType003): TOpenSSL_C_INT; cdecl = Load_UI_method_set_writer;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
 type
@@ -792,18 +783,18 @@ type
   PPFuncType004 = ^PFuncType004;
   {end of auto-generated forward references}
 
-  TFuncType004 = function(ui: PUI; uis: PUI_STRING): TOpenSSL_C_INT; cdecl;
+  TFuncType004 = function(ui: PUI): TOpenSSL_C_INT; cdecl;
 
 
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function UI_method_set_reader(method: PUI_METHOD; reader: TFuncType004): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'UI_method_set_reader';
+  function UI_method_set_flusher(method: PUI_METHOD; flusher: TFuncType004): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'UI_method_set_flusher';
   {$else}
-  {$EXTERNALSYM UI_method_set_reader}
+  {$EXTERNALSYM UI_method_set_flusher}
   {Do not call Function LoadDeclarations. Internal use only}
-  function Load_UI_method_set_reader(method: PUI_METHOD; reader: TFuncType004): TOpenSSL_C_INT; cdecl;
+  function Load_UI_method_set_flusher(method: PUI_METHOD; flusher: TFuncType004): TOpenSSL_C_INT; cdecl;
 
 var
-  UI_method_set_reader: function(method: PUI_METHOD; reader: TFuncType004): TOpenSSL_C_INT; cdecl = Load_UI_method_set_reader;
+  UI_method_set_flusher: function(method: PUI_METHOD; flusher: TFuncType004): TOpenSSL_C_INT; cdecl = Load_UI_method_set_flusher;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
 type
@@ -812,65 +803,61 @@ type
   PPFuncType005 = ^PFuncType005;
   {end of auto-generated forward references}
 
-  TFuncType005 = function(ui: PUI): TOpenSSL_C_INT; cdecl;
+  TFuncType005 = function(ui: PUI; uis: PUI_STRING): TOpenSSL_C_INT; cdecl;
 
 
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function UI_method_set_closer(method: PUI_METHOD; closer: TFuncType005): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'UI_method_set_closer';
+  function UI_method_set_reader(method: PUI_METHOD; reader: TFuncType005): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'UI_method_set_reader';
   {$else}
-  {$EXTERNALSYM UI_method_set_closer}
+  {$EXTERNALSYM UI_method_set_reader}
   {Do not call Function LoadDeclarations. Internal use only}
-  function Load_UI_method_set_closer(method: PUI_METHOD; closer: TFuncType005): TOpenSSL_C_INT; cdecl;
+  function Load_UI_method_set_reader(method: PUI_METHOD; reader: TFuncType005): TOpenSSL_C_INT; cdecl;
 
 var
-  UI_method_set_closer: function(method: PUI_METHOD; closer: TFuncType005): TOpenSSL_C_INT; cdecl = Load_UI_method_set_closer;
+  UI_method_set_reader: function(method: PUI_METHOD; reader: TFuncType005): TOpenSSL_C_INT; cdecl = Load_UI_method_set_reader;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
 type
   {Auto-generated forward references}
   PFuncType006 = ^TFuncType006;
   PPFuncType006 = ^PFuncType006;
-  PFuncType007 = ^TFuncType007;
-  PPFuncType007 = ^PFuncType007;
   {end of auto-generated forward references}
 
-  TFuncType006 = function(ui: PUI; ui_data: pointer): pointer; cdecl;
-  TFuncType007 = procedure(ui: PUI; ui_data: pointer); cdecl;
+  TFuncType006 = function(ui: PUI): TOpenSSL_C_INT; cdecl;
 
 
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function UI_method_set_data_duplicator(method: PUI_METHOD; duplicator: TFuncType006; destructor_: TFuncType007): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'UI_method_set_data_duplicator';
+  function UI_method_set_closer(method: PUI_METHOD; closer: TFuncType006): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'UI_method_set_closer';
   {$else}
-  {$EXTERNALSYM UI_method_set_data_duplicator}
+  {$EXTERNALSYM UI_method_set_closer}
   {Do not call Function LoadDeclarations. Internal use only}
-  function Load_UI_method_set_data_duplicator(method: PUI_METHOD; duplicator: TFuncType006; destructor_: TFuncType007): TOpenSSL_C_INT; cdecl;
+  function Load_UI_method_set_closer(method: PUI_METHOD; closer: TFuncType006): TOpenSSL_C_INT; cdecl;
 
 var
-  UI_method_set_data_duplicator: function(method: PUI_METHOD; duplicator: TFuncType006; destructor_: TFuncType007): TOpenSSL_C_INT; cdecl = Load_UI_method_set_data_duplicator;
+  UI_method_set_closer: function(method: PUI_METHOD; closer: TFuncType006): TOpenSSL_C_INT; cdecl = Load_UI_method_set_closer;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
 type
   {Auto-generated forward references}
+  PFuncType007 = ^TFuncType007;
+  PPFuncType007 = ^PFuncType007;
   PFuncType008 = ^TFuncType008;
   PPFuncType008 = ^PFuncType008;
   {end of auto-generated forward references}
 
-  TFuncType008 = function(ui: PUI; phrase_desc: PAnsiChar; object_name: PAnsiChar): PAnsiChar; cdecl;
+  TFuncType007 = function(ui: PUI; ui_data: pointer): pointer; cdecl;
+  TFuncType008 = procedure(ui: PUI; ui_data: pointer); cdecl;
 
 
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function UI_method_set_prompt_constructor(method: PUI_METHOD; prompt_constructor: TFuncType008): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'UI_method_set_prompt_constructor';
-  function UI_method_set_ex_data(method: PUI_METHOD; idx: TOpenSSL_C_INT; data: pointer): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'UI_method_set_ex_data';
+  function UI_method_set_data_duplicator(method: PUI_METHOD; duplicator: TFuncType007; destructor_: TFuncType008): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'UI_method_set_data_duplicator';
   {$else}
-  {$EXTERNALSYM UI_method_set_prompt_constructor}
-  {$EXTERNALSYM UI_method_set_ex_data}
+  {$EXTERNALSYM UI_method_set_data_duplicator}
   {Do not call Function LoadDeclarations. Internal use only}
-  function Load_UI_method_set_prompt_constructor(method: PUI_METHOD; prompt_constructor: TFuncType008): TOpenSSL_C_INT; cdecl;
-  function Load_UI_method_set_ex_data(method: PUI_METHOD; idx: TOpenSSL_C_INT; data: pointer): TOpenSSL_C_INT; cdecl;
+  function Load_UI_method_set_data_duplicator(method: PUI_METHOD; duplicator: TFuncType007; destructor_: TFuncType008): TOpenSSL_C_INT; cdecl;
 
 var
-  UI_method_set_prompt_constructor: function(method: PUI_METHOD; prompt_constructor: TFuncType008): TOpenSSL_C_INT; cdecl = Load_UI_method_set_prompt_constructor;
-  UI_method_set_ex_data: function(method: PUI_METHOD; idx: TOpenSSL_C_INT; data: pointer): TOpenSSL_C_INT; cdecl = Load_UI_method_set_ex_data;
+  UI_method_set_data_duplicator: function(method: PUI_METHOD; duplicator: TFuncType007; destructor_: TFuncType008): TOpenSSL_C_INT; cdecl = Load_UI_method_set_data_duplicator;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
 type
@@ -879,18 +866,22 @@ type
   PPFuncType009 = ^PFuncType009;
   {end of auto-generated forward references}
 
-  TFuncType009 = function(_param1: PUI): TOpenSSL_C_INT; cdecl;
+  TFuncType009 = function(ui: PUI; phrase_desc: PAnsiChar; object_name: PAnsiChar): PAnsiChar; cdecl;
 
 
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function UI_method_get_opener(method: PUI_METHOD): TFuncType009; cdecl; external CLibCrypto name 'UI_method_get_opener';
+  function UI_method_set_prompt_constructor(method: PUI_METHOD; prompt_constructor: TFuncType009): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'UI_method_set_prompt_constructor';
+  function UI_method_set_ex_data(method: PUI_METHOD; idx: TOpenSSL_C_INT; data: pointer): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'UI_method_set_ex_data';
   {$else}
-  {$EXTERNALSYM UI_method_get_opener}
+  {$EXTERNALSYM UI_method_set_prompt_constructor}
+  {$EXTERNALSYM UI_method_set_ex_data}
   {Do not call Function LoadDeclarations. Internal use only}
-  function Load_UI_method_get_opener(method: PUI_METHOD): TFuncType009; cdecl;
+  function Load_UI_method_set_prompt_constructor(method: PUI_METHOD; prompt_constructor: TFuncType009): TOpenSSL_C_INT; cdecl;
+  function Load_UI_method_set_ex_data(method: PUI_METHOD; idx: TOpenSSL_C_INT; data: pointer): TOpenSSL_C_INT; cdecl;
 
 var
-  UI_method_get_opener: function(method: PUI_METHOD): TFuncType009; cdecl = Load_UI_method_get_opener;
+  UI_method_set_prompt_constructor: function(method: PUI_METHOD; prompt_constructor: TFuncType009): TOpenSSL_C_INT; cdecl = Load_UI_method_set_prompt_constructor;
+  UI_method_set_ex_data: function(method: PUI_METHOD; idx: TOpenSSL_C_INT; data: pointer): TOpenSSL_C_INT; cdecl = Load_UI_method_set_ex_data;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
 type
@@ -899,18 +890,18 @@ type
   PPFuncType010 = ^PFuncType010;
   {end of auto-generated forward references}
 
-  TFuncType010 = function(_param1: PUI; _param2: PUI_STRING): TOpenSSL_C_INT; cdecl;
+  TFuncType010 = function(_param1: PUI): TOpenSSL_C_INT; cdecl;
 
 
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function UI_method_get_writer(method: PUI_METHOD): TFuncType010; cdecl; external CLibCrypto name 'UI_method_get_writer';
+  function UI_method_get_opener(method: PUI_METHOD): TFuncType010; cdecl; external CLibCrypto name 'UI_method_get_opener';
   {$else}
-  {$EXTERNALSYM UI_method_get_writer}
+  {$EXTERNALSYM UI_method_get_opener}
   {Do not call Function LoadDeclarations. Internal use only}
-  function Load_UI_method_get_writer(method: PUI_METHOD): TFuncType010; cdecl;
+  function Load_UI_method_get_opener(method: PUI_METHOD): TFuncType010; cdecl;
 
 var
-  UI_method_get_writer: function(method: PUI_METHOD): TFuncType010; cdecl = Load_UI_method_get_writer;
+  UI_method_get_opener: function(method: PUI_METHOD): TFuncType010; cdecl = Load_UI_method_get_opener;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
 type
@@ -919,18 +910,18 @@ type
   PPFuncType011 = ^PFuncType011;
   {end of auto-generated forward references}
 
-  TFuncType011 = function(_param1: PUI): TOpenSSL_C_INT; cdecl;
+  TFuncType011 = function(_param1: PUI; _param2: PUI_STRING): TOpenSSL_C_INT; cdecl;
 
 
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function UI_method_get_flusher(method: PUI_METHOD): TFuncType011; cdecl; external CLibCrypto name 'UI_method_get_flusher';
+  function UI_method_get_writer(method: PUI_METHOD): TFuncType011; cdecl; external CLibCrypto name 'UI_method_get_writer';
   {$else}
-  {$EXTERNALSYM UI_method_get_flusher}
+  {$EXTERNALSYM UI_method_get_writer}
   {Do not call Function LoadDeclarations. Internal use only}
-  function Load_UI_method_get_flusher(method: PUI_METHOD): TFuncType011; cdecl;
+  function Load_UI_method_get_writer(method: PUI_METHOD): TFuncType011; cdecl;
 
 var
-  UI_method_get_flusher: function(method: PUI_METHOD): TFuncType011; cdecl = Load_UI_method_get_flusher;
+  UI_method_get_writer: function(method: PUI_METHOD): TFuncType011; cdecl = Load_UI_method_get_writer;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
 type
@@ -939,18 +930,18 @@ type
   PPFuncType012 = ^PFuncType012;
   {end of auto-generated forward references}
 
-  TFuncType012 = function(_param1: PUI; _param2: PUI_STRING): TOpenSSL_C_INT; cdecl;
+  TFuncType012 = function(_param1: PUI): TOpenSSL_C_INT; cdecl;
 
 
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function UI_method_get_reader(method: PUI_METHOD): TFuncType012; cdecl; external CLibCrypto name 'UI_method_get_reader';
+  function UI_method_get_flusher(method: PUI_METHOD): TFuncType012; cdecl; external CLibCrypto name 'UI_method_get_flusher';
   {$else}
-  {$EXTERNALSYM UI_method_get_reader}
+  {$EXTERNALSYM UI_method_get_flusher}
   {Do not call Function LoadDeclarations. Internal use only}
-  function Load_UI_method_get_reader(method: PUI_METHOD): TFuncType012; cdecl;
+  function Load_UI_method_get_flusher(method: PUI_METHOD): TFuncType012; cdecl;
 
 var
-  UI_method_get_reader: function(method: PUI_METHOD): TFuncType012; cdecl = Load_UI_method_get_reader;
+  UI_method_get_flusher: function(method: PUI_METHOD): TFuncType012; cdecl = Load_UI_method_get_flusher;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
 type
@@ -959,18 +950,18 @@ type
   PPFuncType013 = ^PFuncType013;
   {end of auto-generated forward references}
 
-  TFuncType013 = function(_param1: PUI): TOpenSSL_C_INT; cdecl;
+  TFuncType013 = function(_param1: PUI; _param2: PUI_STRING): TOpenSSL_C_INT; cdecl;
 
 
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function UI_method_get_closer(method: PUI_METHOD): TFuncType013; cdecl; external CLibCrypto name 'UI_method_get_closer';
+  function UI_method_get_reader(method: PUI_METHOD): TFuncType013; cdecl; external CLibCrypto name 'UI_method_get_reader';
   {$else}
-  {$EXTERNALSYM UI_method_get_closer}
+  {$EXTERNALSYM UI_method_get_reader}
   {Do not call Function LoadDeclarations. Internal use only}
-  function Load_UI_method_get_closer(method: PUI_METHOD): TFuncType013; cdecl;
+  function Load_UI_method_get_reader(method: PUI_METHOD): TFuncType013; cdecl;
 
 var
-  UI_method_get_closer: function(method: PUI_METHOD): TFuncType013; cdecl = Load_UI_method_get_closer;
+  UI_method_get_reader: function(method: PUI_METHOD): TFuncType013; cdecl = Load_UI_method_get_reader;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
 type
@@ -979,11 +970,31 @@ type
   PPFuncType014 = ^PFuncType014;
   {end of auto-generated forward references}
 
-  TFuncType014 = function(_param1: PUI; _param2: PAnsiChar; _param3: PAnsiChar): PAnsiChar; cdecl;
+  TFuncType014 = function(_param1: PUI): TOpenSSL_C_INT; cdecl;
 
 
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function UI_method_get_prompt_constructor(method: PUI_METHOD): TFuncType014; cdecl; external CLibCrypto name 'UI_method_get_prompt_constructor';
+  function UI_method_get_closer(method: PUI_METHOD): TFuncType014; cdecl; external CLibCrypto name 'UI_method_get_closer';
+  {$else}
+  {$EXTERNALSYM UI_method_get_closer}
+  {Do not call Function LoadDeclarations. Internal use only}
+  function Load_UI_method_get_closer(method: PUI_METHOD): TFuncType014; cdecl;
+
+var
+  UI_method_get_closer: function(method: PUI_METHOD): TFuncType014; cdecl = Load_UI_method_get_closer;
+  {$endif} {OPENSSL_STATIC_LINK_MODEL}
+
+type
+  {Auto-generated forward references}
+  PFuncType015 = ^TFuncType015;
+  PPFuncType015 = ^PFuncType015;
+  {end of auto-generated forward references}
+
+  TFuncType015 = function(_param1: PUI; _param2: PAnsiChar; _param3: PAnsiChar): PAnsiChar; cdecl;
+
+
+  {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  function UI_method_get_prompt_constructor(method: PUI_METHOD): TFuncType015; cdecl; external CLibCrypto name 'UI_method_get_prompt_constructor';
   function UI_method_get_data_duplicator(method: PUI_METHOD): pointer; cdecl; external CLibCrypto name 'UI_method_get_data_duplicator';
   function UI_method_get_data_destructor(method: PUI_METHOD): pointer; cdecl; external CLibCrypto name 'UI_method_get_data_destructor';
   function UI_method_get_ex_data(method: PUI_METHOD; idx: TOpenSSL_C_INT): pointer; cdecl; external CLibCrypto name 'UI_method_get_ex_data';
@@ -1040,7 +1051,7 @@ type
   {$EXTERNALSYM UI_UTIL_read_pw}
   {$EXTERNALSYM UI_UTIL_wrap_read_pem_callback}
   {Do not call Function LoadDeclarations. Internal use only}
-  function Load_UI_method_get_prompt_constructor(method: PUI_METHOD): TFuncType014; cdecl;
+  function Load_UI_method_get_prompt_constructor(method: PUI_METHOD): TFuncType015; cdecl;
   function Load_UI_method_get_data_duplicator(method: PUI_METHOD): pointer; cdecl;
   function Load_UI_method_get_data_destructor(method: PUI_METHOD): pointer; cdecl;
   function Load_UI_method_get_ex_data(method: PUI_METHOD; idx: TOpenSSL_C_INT): pointer; cdecl;
@@ -1060,7 +1071,7 @@ type
   function Load_UI_UTIL_wrap_read_pem_callback(cb: Tpem_password_cb; rwflag: TOpenSSL_C_INT): PUI_METHOD; cdecl;
 
 var
-  UI_method_get_prompt_constructor: function(method: PUI_METHOD): TFuncType014; cdecl = Load_UI_method_get_prompt_constructor;
+  UI_method_get_prompt_constructor: function(method: PUI_METHOD): TFuncType015; cdecl = Load_UI_method_get_prompt_constructor;
   UI_method_get_data_duplicator: function(method: PUI_METHOD): pointer; cdecl = Load_UI_method_get_data_duplicator;
   UI_method_get_data_destructor: function(method: PUI_METHOD): pointer; cdecl = Load_UI_method_get_data_destructor;
   UI_method_get_ex_data: function(method: PUI_METHOD; idx: TOpenSSL_C_INT): pointer; cdecl = Load_UI_method_get_ex_data;
@@ -1160,6 +1171,19 @@ begin
 *)ptr); "
 
  sk_UI_STRING_freefunc freefunc = (sk_UI_STRING_freefunc)freefunc_arg; freefunc((UI_STRING *)ptr); }
+end;
+
+function sk_UI_STRING_cmpfunc_thunk(cmp: TFuncType001; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_UI_STRING_cmpfunc_thunk"');
+
+{Error: Line 297: Syntax Error parsing " int (*realcmp)(const UI_STRING *const *a, const UI_STRING *const *b) = (int (*)(const UI_STRING 
+*const *a, const UI_STRING *const *b))(cmp); const UI_STRING *const *at = (const UI_STRING *const *)a; const UI_STRING *const *bt 
+= (const UI_STRING *const *)b; return realcmp(at, bt); "
+
+ int (*realcmp)(const UI_STRING *const *a, const UI_STRING *const *b) = (int (*)(const UI_STRING *const *a, const UI_STRING *const 
+*b))(cmp); const UI_STRING *const *at = (const UI_STRING *const *)a; const UI_STRING *const *bt = (const UI_STRING *const *)b; return 
+realcmp(at, bt); }
 end;
 
 function ossl_check_UI_STRING_type(ptr: PUI_STRING): PUI_STRING{Has C Attribute: unused}; inline;
@@ -1643,7 +1667,7 @@ begin
   UI_destroy_method(ui_method);
 end;
 
-function Load_UI_method_set_opener(method: PUI_METHOD; opener: TFuncType001): TOpenSSL_C_INT; cdecl;
+function Load_UI_method_set_opener(method: PUI_METHOD; opener: TFuncType002): TOpenSSL_C_INT; cdecl;
 begin
   UI_method_set_opener := LoadLibCryptoFunction('UI_method_set_opener');
   if not assigned(UI_method_set_opener) then
@@ -1651,7 +1675,7 @@ begin
   Result := UI_method_set_opener(method, opener);
 end;
 
-function Load_UI_method_set_writer(method: PUI_METHOD; writer: TFuncType002): TOpenSSL_C_INT; cdecl;
+function Load_UI_method_set_writer(method: PUI_METHOD; writer: TFuncType003): TOpenSSL_C_INT; cdecl;
 begin
   UI_method_set_writer := LoadLibCryptoFunction('UI_method_set_writer');
   if not assigned(UI_method_set_writer) then
@@ -1659,7 +1683,7 @@ begin
   Result := UI_method_set_writer(method, writer);
 end;
 
-function Load_UI_method_set_flusher(method: PUI_METHOD; flusher: TFuncType003): TOpenSSL_C_INT; cdecl;
+function Load_UI_method_set_flusher(method: PUI_METHOD; flusher: TFuncType004): TOpenSSL_C_INT; cdecl;
 begin
   UI_method_set_flusher := LoadLibCryptoFunction('UI_method_set_flusher');
   if not assigned(UI_method_set_flusher) then
@@ -1667,7 +1691,7 @@ begin
   Result := UI_method_set_flusher(method, flusher);
 end;
 
-function Load_UI_method_set_reader(method: PUI_METHOD; reader: TFuncType004): TOpenSSL_C_INT; cdecl;
+function Load_UI_method_set_reader(method: PUI_METHOD; reader: TFuncType005): TOpenSSL_C_INT; cdecl;
 begin
   UI_method_set_reader := LoadLibCryptoFunction('UI_method_set_reader');
   if not assigned(UI_method_set_reader) then
@@ -1675,7 +1699,7 @@ begin
   Result := UI_method_set_reader(method, reader);
 end;
 
-function Load_UI_method_set_closer(method: PUI_METHOD; closer: TFuncType005): TOpenSSL_C_INT; cdecl;
+function Load_UI_method_set_closer(method: PUI_METHOD; closer: TFuncType006): TOpenSSL_C_INT; cdecl;
 begin
   UI_method_set_closer := LoadLibCryptoFunction('UI_method_set_closer');
   if not assigned(UI_method_set_closer) then
@@ -1683,7 +1707,7 @@ begin
   Result := UI_method_set_closer(method, closer);
 end;
 
-function Load_UI_method_set_data_duplicator(method: PUI_METHOD; duplicator: TFuncType006; destructor_: TFuncType007): TOpenSSL_C_INT; cdecl;
+function Load_UI_method_set_data_duplicator(method: PUI_METHOD; duplicator: TFuncType007; destructor_: TFuncType008): TOpenSSL_C_INT; cdecl;
 begin
   UI_method_set_data_duplicator := LoadLibCryptoFunction('UI_method_set_data_duplicator');
   if not assigned(UI_method_set_data_duplicator) then
@@ -1691,7 +1715,7 @@ begin
   Result := UI_method_set_data_duplicator(method, duplicator, destructor_);
 end;
 
-function Load_UI_method_set_prompt_constructor(method: PUI_METHOD; prompt_constructor: TFuncType008): TOpenSSL_C_INT; cdecl;
+function Load_UI_method_set_prompt_constructor(method: PUI_METHOD; prompt_constructor: TFuncType009): TOpenSSL_C_INT; cdecl;
 begin
   UI_method_set_prompt_constructor := LoadLibCryptoFunction('UI_method_set_prompt_constructor');
   if not assigned(UI_method_set_prompt_constructor) then
@@ -1707,7 +1731,7 @@ begin
   Result := UI_method_set_ex_data(method, idx, data);
 end;
 
-function Load_UI_method_get_opener(method: PUI_METHOD): TFuncType009; cdecl;
+function Load_UI_method_get_opener(method: PUI_METHOD): TFuncType010; cdecl;
 begin
   UI_method_get_opener := LoadLibCryptoFunction('UI_method_get_opener');
   if not assigned(UI_method_get_opener) then
@@ -1715,7 +1739,7 @@ begin
   Result := UI_method_get_opener(method);
 end;
 
-function Load_UI_method_get_writer(method: PUI_METHOD): TFuncType010; cdecl;
+function Load_UI_method_get_writer(method: PUI_METHOD): TFuncType011; cdecl;
 begin
   UI_method_get_writer := LoadLibCryptoFunction('UI_method_get_writer');
   if not assigned(UI_method_get_writer) then
@@ -1723,7 +1747,7 @@ begin
   Result := UI_method_get_writer(method);
 end;
 
-function Load_UI_method_get_flusher(method: PUI_METHOD): TFuncType011; cdecl;
+function Load_UI_method_get_flusher(method: PUI_METHOD): TFuncType012; cdecl;
 begin
   UI_method_get_flusher := LoadLibCryptoFunction('UI_method_get_flusher');
   if not assigned(UI_method_get_flusher) then
@@ -1731,7 +1755,7 @@ begin
   Result := UI_method_get_flusher(method);
 end;
 
-function Load_UI_method_get_reader(method: PUI_METHOD): TFuncType012; cdecl;
+function Load_UI_method_get_reader(method: PUI_METHOD): TFuncType013; cdecl;
 begin
   UI_method_get_reader := LoadLibCryptoFunction('UI_method_get_reader');
   if not assigned(UI_method_get_reader) then
@@ -1739,7 +1763,7 @@ begin
   Result := UI_method_get_reader(method);
 end;
 
-function Load_UI_method_get_closer(method: PUI_METHOD): TFuncType013; cdecl;
+function Load_UI_method_get_closer(method: PUI_METHOD): TFuncType014; cdecl;
 begin
   UI_method_get_closer := LoadLibCryptoFunction('UI_method_get_closer');
   if not assigned(UI_method_get_closer) then
@@ -1747,7 +1771,7 @@ begin
   Result := UI_method_get_closer(method);
 end;
 
-function Load_UI_method_get_prompt_constructor(method: PUI_METHOD): TFuncType014; cdecl;
+function Load_UI_method_get_prompt_constructor(method: PUI_METHOD): TFuncType015; cdecl;
 begin
   UI_method_get_prompt_constructor := LoadLibCryptoFunction('UI_method_get_prompt_constructor');
   if not assigned(UI_method_get_prompt_constructor) then

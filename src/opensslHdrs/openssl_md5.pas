@@ -18,7 +18,7 @@
 unit openssl_md5;
 
 {
-  Generated from OpenSSL 3.6.2 Header File md5.h - Tue 19 May 14:30:15 BST 2026
+  Generated from OpenSSL 4.0.0 Header File md5.h - Tue 19 May 14:32:49 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -78,13 +78,13 @@ type
   {end of auto-generated forward references}
 
   TMD5state_st = record 
-    A: TOpenSSL_C_UINT;
-    B: TOpenSSL_C_UINT;
-    C: TOpenSSL_C_UINT;
-    D: TOpenSSL_C_UINT;
-    Nl: TOpenSSL_C_UINT;
-    Nh: TOpenSSL_C_UINT;
-    data: array[0..(64 div 4)-1] of TOpenSSL_C_UINT;
+    A: TMD5_LONG;
+    B: TMD5_LONG;
+    C: TMD5_LONG;
+    D: TMD5_LONG;
+    Nl: TMD5_LONG;
+    Nh: TMD5_LONG;
+    data: array[0..(64 div 4)-1] of TMD5_LONG;
     num: TOpenSSL_C_UINT;
   end;
   TMD5_CTX = TMD5state_st;

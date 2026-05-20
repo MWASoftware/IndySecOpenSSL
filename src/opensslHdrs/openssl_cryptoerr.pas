@@ -18,7 +18,7 @@
 unit openssl_cryptoerr;
 
 {
-  Generated from OpenSSL 3.6.2 Header File cryptoerr.h - Tue 19 May 14:29:46 BST 2026
+  Generated from OpenSSL 4.0.0 Header File cryptoerr.h - Tue 19 May 14:32:19 BST 2026
 }
 
 {$IFNDEF FPC}

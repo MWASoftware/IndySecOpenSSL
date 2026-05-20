@@ -18,7 +18,7 @@
 unit openssl_modes;
 
 {
-  Generated from OpenSSL 3.6.2 Header File modes.h - Tue 19 May 14:30:15 BST 2026
+  Generated from OpenSSL 4.0.0 Header File modes.h - Tue 19 May 14:32:50 BST 2026
 }
 
 {$IFNDEF FPC}

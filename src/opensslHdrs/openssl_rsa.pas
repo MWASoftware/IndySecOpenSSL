@@ -18,7 +18,7 @@
 unit openssl_rsa;
 
 {
-  Generated from OpenSSL 3.6.2 Header File rsa.h - Tue 19 May 14:30:37 BST 2026
+  Generated from OpenSSL 4.0.0 Header File rsa.h - Tue 19 May 14:33:12 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -314,6 +314,7 @@ const
 
     {$ifdef OPENSSL_STATIC_LINK_MODEL}
   function RSA_new: PRSA; cdecl; external CLibCrypto name 'RSA_new'; deprecated 'Since OpenSSL 3.0';
+  { must be NULL }
   function RSA_new_method(engine: PENGINE): PRSA; cdecl; external CLibCrypto name 'RSA_new_method'; deprecated 'Since OpenSSL 3.0';
   function RSA_bits(rsa: PRSA): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'RSA_bits'; deprecated 'Since OpenSSL 3.0';
   function RSA_size(rsa: PRSA): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'RSA_size'; deprecated 'Since OpenSSL 3.0';
@@ -341,7 +342,6 @@ const
   function RSA_test_flags(r: PRSA; flags: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'RSA_test_flags'; deprecated 'Since OpenSSL 3.0';
   procedure RSA_set_flags(r: PRSA; flags: TOpenSSL_C_INT); cdecl; external CLibCrypto name 'RSA_set_flags'; deprecated 'Since OpenSSL 3.0';
   function RSA_get_version(r: PRSA): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'RSA_get_version'; deprecated 'Since OpenSSL 3.0';
-  function RSA_get0_engine(r: PRSA): PENGINE; cdecl; external CLibCrypto name 'RSA_get0_engine'; deprecated 'Since OpenSSL 3.0';
     {$else}
   {$EXTERNALSYM RSA_new}
   {$EXTERNALSYM RSA_new_method}
@@ -371,7 +371,6 @@ const
   {$EXTERNALSYM RSA_test_flags}
   {$EXTERNALSYM RSA_set_flags}
   {$EXTERNALSYM RSA_get_version}
-  {$EXTERNALSYM RSA_get0_engine}
   {Do not call Function LoadDeclarations. Internal use only}
   function Load_RSA_new: PRSA; cdecl;
   function Load_RSA_new_method(engine: PENGINE): PRSA; cdecl;
@@ -401,10 +400,10 @@ const
   function Load_RSA_test_flags(r: PRSA; flags: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
   procedure Load_RSA_set_flags(r: PRSA; flags: TOpenSSL_C_INT); cdecl;
   function Load_RSA_get_version(r: PRSA): TOpenSSL_C_INT; cdecl;
-  function Load_RSA_get0_engine(r: PRSA): PENGINE; cdecl;
 
 var
   RSA_new: function: PRSA; cdecl = Load_RSA_new;
+  { must be NULL }
   RSA_new_method: function(engine: PENGINE): PRSA; cdecl = Load_RSA_new_method;
   RSA_bits: function(rsa: PRSA): TOpenSSL_C_INT; cdecl = Load_RSA_bits;
   RSA_size: function(rsa: PRSA): TOpenSSL_C_INT; cdecl = Load_RSA_size;
@@ -432,10 +431,9 @@ var
   RSA_test_flags: function(r: PRSA; flags: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_RSA_test_flags;
   RSA_set_flags: procedure(r: PRSA; flags: TOpenSSL_C_INT); cdecl = Load_RSA_set_flags;
   RSA_get_version: function(r: PRSA): TOpenSSL_C_INT; cdecl = Load_RSA_get_version;
-  RSA_get0_engine: function(r: PRSA): PENGINE; cdecl = Load_RSA_get0_engine;
     {$endif} {OPENSSL_STATIC_LINK_MODEL}
   {$endif}
-{# define  EVP_RSA_gen(bits) EVP_PKEY_Q_keygen(NULL, NULL, "RSA", (size_t)(0 + (bits)))} {Macro Return Type unknown at line no 264}
+{# define  EVP_RSA_gen(bits) EVP_PKEY_Q_keygen(NULL, NULL, "RSA", (size_t)(0 + (bits)))} {Macro Return Type unknown at line no 263}
   { !OPENSSL_NO_DEPRECATED_3_0 }
   { Deprecated version }
   {$ifndef  OPENSSL_NO_DEPRECATED_0_9_8}
@@ -822,7 +820,7 @@ var
   RSA_verify_PKCS1_PSS_mgf1: function(rsa: PRSA; mHash: Pbyte; Hash: PEVP_MD; mgf1Hash: PEVP_MD; EM: Pbyte; sLen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_RSA_verify_PKCS1_PSS_mgf1;
   RSA_padding_add_PKCS1_PSS_mgf1: function(rsa: PRSA; EM: Pbyte; mHash: Pbyte; Hash: PEVP_MD; mgf1Hash: PEVP_MD; sLen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_RSA_padding_add_PKCS1_PSS_mgf1;
     {$endif} {OPENSSL_STATIC_LINK_MODEL}
-  {# define  RSA_get_ex_new_index(l,p,newf,dupf,freef) CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_RSA, l, p, newf, dupf, freef)} {Macro Return Type unknown at line no 458}
+  {# define  RSA_get_ex_new_index(l,p,newf,dupf,freef) CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_RSA, l, p, newf, dupf, freef)} {Macro Return Type unknown at line no 457}
 
 
     {$ifdef OPENSSL_STATIC_LINK_MODEL}
@@ -1865,14 +1863,6 @@ begin
   Result := RSA_get_version(r);
 end;
 
-function Load_RSA_get0_engine(r: PRSA): PENGINE; cdecl;
-begin
-  RSA_get0_engine := LoadLibCryptoFunction('RSA_get0_engine');
-  if not assigned(RSA_get0_engine) then
-    EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_get0_engine');
-  Result := RSA_get0_engine(r);
-end;
-
 {$endif} { OPENSSL_NO_DEPRECATED_3_0}
 {$ifndef  OPENSSL_NO_DEPRECATED_0_9_8}
 function Load_RSA_generate_key(bits: TOpenSSL_C_INT; e: TOpenSSL_C_UINT; callback: TFuncType000; cb_arg: pointer): PRSA; cdecl;
@@ -2759,7 +2749,6 @@ begin
   RSA_test_flags := Load_RSA_test_flags;
   RSA_set_flags := Load_RSA_set_flags;
   RSA_get_version := Load_RSA_get_version;
-  RSA_get0_engine := Load_RSA_get0_engine;
 {$endif} { OPENSSL_NO_DEPRECATED_3_0}
 {$ifndef  OPENSSL_NO_DEPRECATED_0_9_8}
   RSA_generate_key := Load_RSA_generate_key;

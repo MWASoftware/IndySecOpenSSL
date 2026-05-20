@@ -18,7 +18,7 @@
 unit openssl_sha;
 
 {
-  Generated from OpenSSL 3.6.2 Header File sha.h - Tue 19 May 14:30:39 BST 2026
+  Generated from OpenSSL 4.0.0 Header File sha.h - Tue 19 May 14:33:14 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -32,7 +32,7 @@ interface
 uses OpenSSLAPI,openssl_e_os2;
 
 
-{* Copyright 1995-2023 The OpenSSL Project Authors. All Rights Reserved.
+{* Copyright 1995-2026 The OpenSSL Project Authors. All Rights Reserved.
 *
 * Licensed under the Apache License 2.0 (the "License").  You may not use
 * this file except in compliance with the License.  You can obtain a copy
@@ -77,14 +77,14 @@ type
   {end of auto-generated forward references}
 
   TSHAstate_st = record 
-    h0: TOpenSSL_C_UINT;
-    h1: TOpenSSL_C_UINT;
-    h2: TOpenSSL_C_UINT;
-    h3: TOpenSSL_C_UINT;
-    h4: TOpenSSL_C_UINT;
-    Nl: TOpenSSL_C_UINT;
-    Nh: TOpenSSL_C_UINT;
-    data: array[0..15] of TOpenSSL_C_UINT;
+    h0: TSHA_LONG;
+    h1: TSHA_LONG;
+    h2: TSHA_LONG;
+    h3: TSHA_LONG;
+    h4: TSHA_LONG;
+    Nl: TSHA_LONG;
+    Nh: TSHA_LONG;
+    data: array[0..15] of TSHA_LONG;
     num: TOpenSSL_C_UINT;
   end;
   TSHA_CTX = TSHAstate_st;
@@ -143,12 +143,12 @@ type
   {end of auto-generated forward references}
 
   TSHA256state_st = record 
-    h: array[0..7] of TOpenSSL_C_UINT;
-    Nl: TOpenSSL_C_UINT;
-    Nh: TOpenSSL_C_UINT;
-    data: array[0..15] of TOpenSSL_C_UINT;
-    num: TOpenSSL_C_UINT;
-    md_len: TOpenSSL_C_UINT;
+    h: array[0..7] of TSHA_LONG; { Hash values (32 bytes) }
+    Nl: TSHA_LONG; { The length of the message in bits is stored into 64 bits }
+    Nh: TSHA_LONG; { The length of the message in bits is stored into 64 bits }
+    data: array[0..15] of TSHA_LONG; { Buffer used to store input less than 512 bits }
+    num: TOpenSSL_C_UINT; { The size of the partial buffered input in data[] }
+    md_len: TOpenSSL_C_UINT; { The output size (used for truncation) }
   end;
   TSHA256_CTX = TSHA256state_st;
 
@@ -263,12 +263,12 @@ type
   {end of auto-generated forward references}
 
   TSHA512state_st = record 
-    h: array[0..7] of TOpenSSL_C_UINT64;
-    Nl: TOpenSSL_C_UINT64;
-    Nh: TOpenSSL_C_UINT64;
+    h: array[0..7] of TSHA_LONG64;
+    Nl: TSHA_LONG64;
+    Nh: TSHA_LONG64;
     u: record 
       case integer of 
-        0: (d: array[0..15] of TOpenSSL_C_UINT64);
+        0: (d: array[0..15] of TSHA_LONG64);
         1: (p: array[0..(16*8)-1] of byte);
     end;
     num: TOpenSSL_C_UINT;

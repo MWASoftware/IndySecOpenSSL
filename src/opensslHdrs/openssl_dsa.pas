@@ -18,7 +18,7 @@
 unit openssl_dsa;
 
 {
-  Generated from OpenSSL 3.6.2 Header File dsa.h - Tue 19 May 14:29:54 BST 2026
+  Generated from OpenSSL 4.0.0 Header File dsa.h - Tue 19 May 14:32:26 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -195,6 +195,7 @@ const
   function DSA_set_method(dsa: PDSA; _param2: PDSA_METHOD): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'DSA_set_method'; deprecated 'Since OpenSSL 3.0';
   function DSA_get_method(d: PDSA): PDSA_METHOD; cdecl; external CLibCrypto name 'DSA_get_method'; deprecated 'Since OpenSSL 3.0';
   function DSA_new: PDSA; cdecl; external CLibCrypto name 'DSA_new'; deprecated 'Since OpenSSL 3.0';
+  { must be NULL }
   function DSA_new_method(engine: PENGINE): PDSA; cdecl; external CLibCrypto name 'DSA_new_method'; deprecated 'Since OpenSSL 3.0';
   procedure DSA_free(r: PDSA); cdecl; external CLibCrypto name 'DSA_free'; deprecated 'Since OpenSSL 3.0';
   { "up" the DSA object's reference count }
@@ -255,6 +256,7 @@ var
   DSA_set_method: function(dsa: PDSA; _param2: PDSA_METHOD): TOpenSSL_C_INT; cdecl = Load_DSA_set_method;
   DSA_get_method: function(d: PDSA): PDSA_METHOD; cdecl = Load_DSA_get_method;
   DSA_new: function: PDSA; cdecl = Load_DSA_new;
+  { must be NULL }
   DSA_new_method: function(engine: PENGINE): PDSA; cdecl = Load_DSA_new_method;
   DSA_free: procedure(r: PDSA); cdecl = Load_DSA_free;
   { "up" the DSA object's reference count }
@@ -419,7 +421,6 @@ var
   procedure DSA_clear_flags(d: PDSA; flags: TOpenSSL_C_INT); cdecl; external CLibCrypto name 'DSA_clear_flags'; deprecated 'Since OpenSSL 3.0';
   function DSA_test_flags(d: PDSA; flags: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'DSA_test_flags'; deprecated 'Since OpenSSL 3.0';
   procedure DSA_set_flags(d: PDSA; flags: TOpenSSL_C_INT); cdecl; external CLibCrypto name 'DSA_set_flags'; deprecated 'Since OpenSSL 3.0';
-  function DSA_get0_engine(d: PDSA): PENGINE; cdecl; external CLibCrypto name 'DSA_get0_engine'; deprecated 'Since OpenSSL 3.0';
   function DSA_meth_new(name: PAnsiChar; flags: TOpenSSL_C_INT): PDSA_METHOD; cdecl; external CLibCrypto name 'DSA_meth_new'; deprecated 'Since OpenSSL 3.0';
   procedure DSA_meth_free(dsam: PDSA_METHOD); cdecl; external CLibCrypto name 'DSA_meth_free'; deprecated 'Since OpenSSL 3.0';
   function DSA_meth_dup(dsam: PDSA_METHOD): PDSA_METHOD; cdecl; external CLibCrypto name 'DSA_meth_dup'; deprecated 'Since OpenSSL 3.0';
@@ -442,7 +443,6 @@ var
   {$EXTERNALSYM DSA_clear_flags}
   {$EXTERNALSYM DSA_test_flags}
   {$EXTERNALSYM DSA_set_flags}
-  {$EXTERNALSYM DSA_get0_engine}
   {$EXTERNALSYM DSA_meth_new}
   {$EXTERNALSYM DSA_meth_free}
   {$EXTERNALSYM DSA_meth_dup}
@@ -465,7 +465,6 @@ var
   procedure Load_DSA_clear_flags(d: PDSA; flags: TOpenSSL_C_INT); cdecl;
   function Load_DSA_test_flags(d: PDSA; flags: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
   procedure Load_DSA_set_flags(d: PDSA; flags: TOpenSSL_C_INT); cdecl;
-  function Load_DSA_get0_engine(d: PDSA): PENGINE; cdecl;
   function Load_DSA_meth_new(name: PAnsiChar; flags: TOpenSSL_C_INT): PDSA_METHOD; cdecl;
   procedure Load_DSA_meth_free(dsam: PDSA_METHOD); cdecl;
   function Load_DSA_meth_dup(dsam: PDSA_METHOD): PDSA_METHOD; cdecl;
@@ -489,7 +488,6 @@ var
   DSA_clear_flags: procedure(d: PDSA; flags: TOpenSSL_C_INT); cdecl = Load_DSA_clear_flags;
   DSA_test_flags: function(d: PDSA; flags: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_DSA_test_flags;
   DSA_set_flags: procedure(d: PDSA; flags: TOpenSSL_C_INT); cdecl = Load_DSA_set_flags;
-  DSA_get0_engine: function(d: PDSA): PENGINE; cdecl = Load_DSA_get0_engine;
   DSA_meth_new: function(name: PAnsiChar; flags: TOpenSSL_C_INT): PDSA_METHOD; cdecl = Load_DSA_meth_new;
   DSA_meth_free: procedure(dsam: PDSA_METHOD); cdecl = Load_DSA_meth_free;
   DSA_meth_dup: function(dsam: PDSA_METHOD): PDSA_METHOD; cdecl = Load_DSA_meth_dup;
@@ -1385,14 +1383,6 @@ begin
   DSA_set_flags(d, flags);
 end;
 
-function Load_DSA_get0_engine(d: PDSA): PENGINE; cdecl;
-begin
-  DSA_get0_engine := LoadLibCryptoFunction('DSA_get0_engine');
-  if not assigned(DSA_get0_engine) then
-    EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_get0_engine');
-  Result := DSA_get0_engine(d);
-end;
-
 function Load_DSA_meth_new(name: PAnsiChar; flags: TOpenSSL_C_INT): PDSA_METHOD; cdecl;
 begin
   DSA_meth_new := LoadLibCryptoFunction('DSA_meth_new');
@@ -1687,7 +1677,6 @@ begin
   DSA_clear_flags := Load_DSA_clear_flags;
   DSA_test_flags := Load_DSA_test_flags;
   DSA_set_flags := Load_DSA_set_flags;
-  DSA_get0_engine := Load_DSA_get0_engine;
   DSA_meth_new := Load_DSA_meth_new;
   DSA_meth_free := Load_DSA_meth_free;
   DSA_meth_dup := Load_DSA_meth_dup;

@@ -18,7 +18,7 @@
 unit openssl_blowfish;
 
 {
-  Generated from OpenSSL 3.6.2 Header File blowfish.h - Tue 19 May 14:29:25 BST 2026
+  Generated from OpenSSL 4.0.0 Header File blowfish.h - Tue 19 May 14:31:57 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -81,8 +81,8 @@ type
   {end of auto-generated forward references}
 
   Tbf_key_st = record 
-    P: array[0..(16+2)-1] of TOpenSSL_C_UINT;
-    S: array[0..(4*256)-1] of TOpenSSL_C_UINT;
+    P: array[0..(16+2)-1] of TBF_LONG;
+    S: array[0..(4*256)-1] of TBF_LONG;
   end;
   TBF_KEY = Tbf_key_st;
     {$endif}
@@ -92,8 +92,8 @@ type
 
       {$ifdef OPENSSL_STATIC_LINK_MODEL}
   procedure BF_set_key(key: PBF_KEY; len: TOpenSSL_C_INT; data: Pbyte); cdecl; external CLibCrypto name 'BF_set_key'; deprecated 'Since OpenSSL 3.0';
-  procedure BF_encrypt(data: POpenSSL_C_UINT; key: PBF_KEY); cdecl; external CLibCrypto name 'BF_encrypt'; deprecated 'Since OpenSSL 3.0';
-  procedure BF_decrypt(data: POpenSSL_C_UINT; key: PBF_KEY); cdecl; external CLibCrypto name 'BF_decrypt'; deprecated 'Since OpenSSL 3.0';
+  procedure BF_encrypt(data: PBF_LONG; key: PBF_KEY); cdecl; external CLibCrypto name 'BF_encrypt'; deprecated 'Since OpenSSL 3.0';
+  procedure BF_decrypt(data: PBF_LONG; key: PBF_KEY); cdecl; external CLibCrypto name 'BF_decrypt'; deprecated 'Since OpenSSL 3.0';
   procedure BF_ecb_encrypt(in_: Pbyte; out_: Pbyte; key: PBF_KEY; enc: TOpenSSL_C_INT); cdecl; external CLibCrypto name 'BF_ecb_encrypt'; deprecated 'Since OpenSSL 3.0';
   procedure BF_cbc_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_INT; schedule: PBF_KEY; ivec: Pbyte; enc: TOpenSSL_C_INT); cdecl; external CLibCrypto name 'BF_cbc_encrypt'; deprecated 'Since OpenSSL 3.0';
   procedure BF_cfb64_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_INT; schedule: PBF_KEY; ivec: Pbyte; num: POpenSSL_C_INT; enc: TOpenSSL_C_INT); cdecl; external CLibCrypto name 'BF_cfb64_encrypt'; deprecated 'Since OpenSSL 3.0';
@@ -114,8 +114,8 @@ type
   {$EXTERNALSYM BF_options}
   {Do not call Function LoadDeclarations. Internal use only}
   procedure Load_BF_set_key(key: PBF_KEY; len: TOpenSSL_C_INT; data: Pbyte); cdecl;
-  procedure Load_BF_encrypt(data: POpenSSL_C_UINT; key: PBF_KEY); cdecl;
-  procedure Load_BF_decrypt(data: POpenSSL_C_UINT; key: PBF_KEY); cdecl;
+  procedure Load_BF_encrypt(data: PBF_LONG; key: PBF_KEY); cdecl;
+  procedure Load_BF_decrypt(data: PBF_LONG; key: PBF_KEY); cdecl;
   procedure Load_BF_ecb_encrypt(in_: Pbyte; out_: Pbyte; key: PBF_KEY; enc: TOpenSSL_C_INT); cdecl;
   procedure Load_BF_cbc_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_INT; schedule: PBF_KEY; ivec: Pbyte; enc: TOpenSSL_C_INT); cdecl;
   procedure Load_BF_cfb64_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_INT; schedule: PBF_KEY; ivec: Pbyte; num: POpenSSL_C_INT; enc: TOpenSSL_C_INT); cdecl;
@@ -124,8 +124,8 @@ type
 
 var
   BF_set_key: procedure(key: PBF_KEY; len: TOpenSSL_C_INT; data: Pbyte); cdecl = Load_BF_set_key;
-  BF_encrypt: procedure(data: POpenSSL_C_UINT; key: PBF_KEY); cdecl = Load_BF_encrypt;
-  BF_decrypt: procedure(data: POpenSSL_C_UINT; key: PBF_KEY); cdecl = Load_BF_decrypt;
+  BF_encrypt: procedure(data: PBF_LONG; key: PBF_KEY); cdecl = Load_BF_encrypt;
+  BF_decrypt: procedure(data: PBF_LONG; key: PBF_KEY); cdecl = Load_BF_decrypt;
   BF_ecb_encrypt: procedure(in_: Pbyte; out_: Pbyte; key: PBF_KEY; enc: TOpenSSL_C_INT); cdecl = Load_BF_ecb_encrypt;
   BF_cbc_encrypt: procedure(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_INT; schedule: PBF_KEY; ivec: Pbyte; enc: TOpenSSL_C_INT); cdecl = Load_BF_cbc_encrypt;
   BF_cfb64_encrypt: procedure(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_INT; schedule: PBF_KEY; ivec: Pbyte; num: POpenSSL_C_INT; enc: TOpenSSL_C_INT); cdecl = Load_BF_cfb64_encrypt;
@@ -185,7 +185,7 @@ begin
   BF_set_key(key, len, data);
 end;
 
-procedure Load_BF_encrypt(data: POpenSSL_C_UINT; key: PBF_KEY); cdecl;
+procedure Load_BF_encrypt(data: PBF_LONG; key: PBF_KEY); cdecl;
 begin
   BF_encrypt := LoadLibCryptoFunction('BF_encrypt');
   if not assigned(BF_encrypt) then
@@ -193,7 +193,7 @@ begin
   BF_encrypt(data, key);
 end;
 
-procedure Load_BF_decrypt(data: POpenSSL_C_UINT; key: PBF_KEY); cdecl;
+procedure Load_BF_decrypt(data: PBF_LONG; key: PBF_KEY); cdecl;
 begin
   BF_decrypt := LoadLibCryptoFunction('BF_decrypt');
   if not assigned(BF_decrypt) then

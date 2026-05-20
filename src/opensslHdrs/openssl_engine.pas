@@ -18,7 +18,7 @@
 unit openssl_engine;
 
 {
-  Generated from OpenSSL 3.6.2 Header File engine.h - Tue 19 May 14:30:01 BST 2026
+  Generated from OpenSSL 4.0.0 Header File engine.h - Tue 19 May 14:32:35 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -49,8 +49,46 @@ uses OpenSSLAPI,openssl_bn,openssl_rsa,openssl_dsa,openssl_dh,openssl_ec,
     {$define HEADER_ENGINE_H}
   {$endif}
   {$include openssl_opensslconf.inc}
-  {$ifndef  OPENSSL_NO_ENGINE}
+  
+  {* Engine support is gone. Definitions here are provided for the source code
+  * compatibility only. They are meant to keep compilation working for legacy
+  * projects that, for whatever reason, cannot remove/disable old legacy code.
+  *
+  * We deliberately keep the OPENSSL_NO_ENGINE macro around as it is supplied
+  * when the build is configured with the `no-engine` option. OpenSSL 4.0 keeps
+  * the `no-engine` option around.
+  *
+  * Note, we have to use a compile-time message to warn only if the API is really
+  * used. To avoid complex macros, we kind of abuse the existing OSSL_DEPRECATED
+  * macros.
+  }
+  {$ifdef OPENSSL_ENGINE_STUBS}
+
+const
+  ENGINE_INFO_MSG = ' API symbol is replaced with stub to avoid linker error.';
+  (*# define  ENGINE_FUNC(ret_type,name,args,default_val) OSSL_DEPRECATED_MESSAGE(#name ENGINE_INFO_MSG) static inline ret_type name 
+args { return default_val; }*)
+  (*# define  ENGINE_FUNC_NOARGS(ret_type,name,default_val) OSSL_DEPRECATED_MESSAGE(#name ENGINE_INFO_MSG) static inline ret_type 
+name(void) { return default_val; }*)
+  (*# define  ENGINE_VOID_FUNC(name,args) OSSL_DEPRECATED_MESSAGE(#name ENGINE_INFO_MSG) static inline void name args { }*)
+  (*# define  ENGINE_VOID_FUNC_NOARGS(name) OSSL_DEPRECATED_MESSAGE(#name ENGINE_INFO_MSG) static inline void name(void) { }*)
+  {$else}
+
+const
+    { OPENSSL_ENGINE_STUBS }
+  ENGINE_INFO_MSG = ' API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  {# define  ENGINE_FUNC(ret_type,name,args,default_val) OSSL_DEPRECATED_MESSAGE(#name ENGINE_INFO_MSG) ret_type name args;}
+  {# define  ENGINE_FUNC_NOARGS(ret_type,name,default_val) OSSL_DEPRECATED_MESSAGE(#name ENGINE_INFO_MSG) ret_type name(void);}
+  {# define  ENGINE_VOID_FUNC(name,args) OSSL_DEPRECATED_MESSAGE(#name ENGINE_INFO_MSG) void name args;}
+  {# define  ENGINE_VOID_FUNC_NOARGS(name) OSSL_DEPRECATED_MESSAGE(#name ENGINE_INFO_MSG) void name(void);}
+  {$endif}
+  { OPENSSL_ENGINE_STUBS }
+  {$ifdef ENGINE_FUNC}
     {$ifndef  OPENSSL_NO_DEPRECATED_1_1_0}
+    {$endif}
+    { Ignore stubs unused arguments }
+    {$if  defined(__GNUC__)}
+    {$elseif  defined(__clang__)}
     {$endif}
 
 
@@ -326,9 +364,11 @@ type
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
 
+      { OSSL_DEPRECATEDIN_3_0 ENGINE *ENGINE_get_first(void); }
       {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function ENGINE_get_first: PENGINE; cdecl; external CLibCrypto name 'ENGINE_get_first'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_get_last: PENGINE; cdecl; external CLibCrypto name 'ENGINE_get_last'; deprecated 'Since OpenSSL 3.0';
+  function ENGINE_get_first: PENGINE; cdecl; external CLibCrypto name 'ENGINE_get_first'; deprecated 'ENGINE_get_first API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 ENGINE *ENGINE_get_last(void); }
+  function ENGINE_get_last: PENGINE; cdecl; external CLibCrypto name 'ENGINE_get_last'; deprecated 'ENGINE_get_last API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
       {$else}
   { The EXTERNALSYM directive is ignored by FPC, however, it is used by Delphi as follows:
 
@@ -342,6 +382,7 @@ type
 
 var
   ENGINE_get_first: function: PENGINE; cdecl = Load_ENGINE_get_first;
+  { OSSL_DEPRECATEDIN_3_0 ENGINE *ENGINE_get_last(void); }
   ENGINE_get_last: function: PENGINE; cdecl = Load_ENGINE_get_last;
       {$endif} {OPENSSL_STATIC_LINK_MODEL}
     {$endif}
@@ -349,9 +390,11 @@ var
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
 
+      { OSSL_DEPRECATEDIN_3_0 ENGINE *ENGINE_get_next(ENGINE *e); }
       {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function ENGINE_get_next(e: PENGINE): PENGINE; cdecl; external CLibCrypto name 'ENGINE_get_next'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_get_prev(e: PENGINE): PENGINE; cdecl; external CLibCrypto name 'ENGINE_get_prev'; deprecated 'Since OpenSSL 3.0';
+  function ENGINE_get_next(e: PENGINE): PENGINE; cdecl; external CLibCrypto name 'ENGINE_get_next'; deprecated 'ENGINE_get_next API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 ENGINE *ENGINE_get_prev(ENGINE *e); }
+  function ENGINE_get_prev(e: PENGINE): PENGINE; cdecl; external CLibCrypto name 'ENGINE_get_prev'; deprecated 'ENGINE_get_prev API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
       {$else}
   {$EXTERNALSYM ENGINE_get_next}
   {$EXTERNALSYM ENGINE_get_prev}
@@ -361,6 +404,7 @@ var
 
 var
   ENGINE_get_next: function(e: PENGINE): PENGINE; cdecl = Load_ENGINE_get_next;
+  { OSSL_DEPRECATEDIN_3_0 ENGINE *ENGINE_get_prev(ENGINE *e); }
   ENGINE_get_prev: function(e: PENGINE): PENGINE; cdecl = Load_ENGINE_get_prev;
       {$endif} {OPENSSL_STATIC_LINK_MODEL}
     {$endif}
@@ -368,8 +412,9 @@ var
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
 
+      { OSSL_DEPRECATEDIN_3_0 int ENGINE_add(ENGINE *e); }
       {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function ENGINE_add(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_add'; deprecated 'Since OpenSSL 3.0';
+  function ENGINE_add(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_add'; deprecated 'ENGINE_add API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
       {$else}
   {$EXTERNALSYM ENGINE_add}
   {Do not call Function LoadDeclarations. Internal use only}
@@ -383,8 +428,9 @@ var
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
 
+      { OSSL_DEPRECATEDIN_3_0 int ENGINE_remove(ENGINE *e); }
       {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function ENGINE_remove(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_remove'; deprecated 'Since OpenSSL 3.0';
+  function ENGINE_remove(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_remove'; deprecated 'ENGINE_remove API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
       {$else}
   {$EXTERNALSYM ENGINE_remove}
   {Do not call Function LoadDeclarations. Internal use only}
@@ -398,8 +444,9 @@ var
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
 
+      { OSSL_DEPRECATEDIN_3_0 ENGINE *ENGINE_by_id(const char *id); }
       {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function ENGINE_by_id(id: PAnsiChar): PENGINE; cdecl; external CLibCrypto name 'ENGINE_by_id'; deprecated 'Since OpenSSL 3.0';
+  function ENGINE_by_id(id: PAnsiChar): PENGINE; cdecl; external CLibCrypto name 'ENGINE_by_id'; deprecated 'ENGINE_by_id API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
       {$else}
   {$EXTERNALSYM ENGINE_by_id}
   {Do not call Function LoadDeclarations. Internal use only}
@@ -410,21 +457,59 @@ var
       {$endif} {OPENSSL_STATIC_LINK_MODEL}
     {$endif}
     {$ifndef  OPENSSL_NO_DEPRECATED_1_1_0}
-{# define  ENGINE_load_openssl() OPENSSL_init_crypto(OPENSSL_INIT_ENGINE_OPENSSL, NULL)} {Macro Return Type unknown at line no 343}
-{# define  ENGINE_load_dynamic() OPENSSL_init_crypto(OPENSSL_INIT_ENGINE_DYNAMIC, NULL)} {Macro Return Type unknown at line no 345}
+
+
+      {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  function ENGINE_load_openssl: TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_load_openssl'; deprecated 'ENGINE_load_openssl API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  function ENGINE_load_dynamic: TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_load_dynamic'; deprecated 'ENGINE_load_dynamic API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  function ENGINE_load_cryptodev: TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_load_cryptodev'; deprecated 'ENGINE_load_cryptodev API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  function ENGINE_load_rdrand: TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_load_rdrand'; deprecated 'ENGINE_load_rdrand API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+      {$else}
+  {$EXTERNALSYM ENGINE_load_openssl}
+  {$EXTERNALSYM ENGINE_load_dynamic}
+  {$EXTERNALSYM ENGINE_load_cryptodev}
+  {$EXTERNALSYM ENGINE_load_rdrand}
+  {Do not call Function LoadDeclarations. Internal use only}
+  function Load_ENGINE_load_openssl: TOpenSSL_C_INT; cdecl;
+  function Load_ENGINE_load_dynamic: TOpenSSL_C_INT; cdecl;
+  function Load_ENGINE_load_cryptodev: TOpenSSL_C_INT; cdecl;
+  function Load_ENGINE_load_rdrand: TOpenSSL_C_INT; cdecl;
+
+var
+  ENGINE_load_openssl: function: TOpenSSL_C_INT; cdecl = Load_ENGINE_load_openssl;
+  ENGINE_load_dynamic: function: TOpenSSL_C_INT; cdecl = Load_ENGINE_load_dynamic;
+  ENGINE_load_cryptodev: function: TOpenSSL_C_INT; cdecl = Load_ENGINE_load_cryptodev;
+  ENGINE_load_rdrand: function: TOpenSSL_C_INT; cdecl = Load_ENGINE_load_rdrand;
+      {$endif} {OPENSSL_STATIC_LINK_MODEL}
       {$ifndef  OPENSSL_NO_STATIC_ENGINE}
-{# define  ENGINE_load_padlock() OPENSSL_init_crypto(OPENSSL_INIT_ENGINE_PADLOCK, NULL)} {Macro Return Type unknown at line no 348}
-{# define  ENGINE_load_capi() OPENSSL_init_crypto(OPENSSL_INIT_ENGINE_CAPI, NULL)} {Macro Return Type unknown at line no 350}
-{# define  ENGINE_load_afalg() OPENSSL_init_crypto(OPENSSL_INIT_ENGINE_AFALG, NULL)} {Macro Return Type unknown at line no 352}
+
+
+        {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  function ENGINE_load_padlock: TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_load_padlock'; deprecated 'ENGINE_load_padlock API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  function ENGINE_load_capi: TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_load_capi'; deprecated 'ENGINE_load_capi API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  function ENGINE_load_afalg: TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_load_afalg'; deprecated 'ENGINE_load_afalg API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+        {$else}
+  {$EXTERNALSYM ENGINE_load_padlock}
+  {$EXTERNALSYM ENGINE_load_capi}
+  {$EXTERNALSYM ENGINE_load_afalg}
+  {Do not call Function LoadDeclarations. Internal use only}
+  function Load_ENGINE_load_padlock: TOpenSSL_C_INT; cdecl;
+  function Load_ENGINE_load_capi: TOpenSSL_C_INT; cdecl;
+  function Load_ENGINE_load_afalg: TOpenSSL_C_INT; cdecl;
+
+var
+  ENGINE_load_padlock: function: TOpenSSL_C_INT; cdecl = Load_ENGINE_load_padlock;
+  ENGINE_load_capi: function: TOpenSSL_C_INT; cdecl = Load_ENGINE_load_capi;
+  ENGINE_load_afalg: function: TOpenSSL_C_INT; cdecl = Load_ENGINE_load_afalg;
+        {$endif} {OPENSSL_STATIC_LINK_MODEL}
       {$endif}
-{# define  ENGINE_load_cryptodev() OPENSSL_init_crypto(OPENSSL_INIT_ENGINE_CRYPTODEV, NULL)} {Macro Return Type unknown at line no 355}
-{# define  ENGINE_load_rdrand() OPENSSL_init_crypto(OPENSSL_INIT_ENGINE_RDRAND, NULL)} {Macro Return Type unknown at line no 357}
     {$endif}
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
 
+      { OSSL_DEPRECATEDIN_3_0 void ENGINE_load_builtin_engines(void); }
       {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  procedure ENGINE_load_builtin_engines; cdecl; external CLibCrypto name 'ENGINE_load_builtin_engines'; deprecated 'Since OpenSSL 3.0';
+  procedure ENGINE_load_builtin_engines; cdecl; external CLibCrypto name 'ENGINE_load_builtin_engines'; deprecated 'ENGINE_load_builtin_engines API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
       {$else}
   {$EXTERNALSYM ENGINE_load_builtin_engines}
   {Do not call Function LoadDeclarations. Internal use only}
@@ -441,9 +526,11 @@ var
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
 
+      { OSSL_DEPRECATEDIN_3_0 unsigned int ENGINE_get_table_flags(void); }
       {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function ENGINE_get_table_flags: TOpenSSL_C_UINT; cdecl; external CLibCrypto name 'ENGINE_get_table_flags'; deprecated 'Since OpenSSL 3.0';
-  procedure ENGINE_set_table_flags(flags: TOpenSSL_C_UINT); cdecl; external CLibCrypto name 'ENGINE_set_table_flags'; deprecated 'Since OpenSSL 3.0';
+  function ENGINE_get_table_flags: TOpenSSL_C_UINT; cdecl; external CLibCrypto name 'ENGINE_get_table_flags'; deprecated 'ENGINE_get_table_flags API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_set_table_flags(unsigned int flags); }
+  procedure ENGINE_set_table_flags(flags: TOpenSSL_C_UINT); cdecl; external CLibCrypto name 'ENGINE_set_table_flags'; deprecated 'ENGINE_set_table_flags API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
       {$else}
   {$EXTERNALSYM ENGINE_get_table_flags}
   {$EXTERNALSYM ENGINE_set_table_flags}
@@ -453,6 +540,7 @@ var
 
 var
   ENGINE_get_table_flags: function: TOpenSSL_C_UINT; cdecl = Load_ENGINE_get_table_flags;
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_set_table_flags(unsigned int flags); }
   ENGINE_set_table_flags: procedure(flags: TOpenSSL_C_UINT); cdecl = Load_ENGINE_set_table_flags;
       {$endif} {OPENSSL_STATIC_LINK_MODEL}
     {$endif}
@@ -466,34 +554,61 @@ var
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
 
+      { OSSL_DEPRECATEDIN_3_0 int ENGINE_register_RSA(ENGINE *e); }
       {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function ENGINE_register_RSA(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_register_RSA'; deprecated 'Since OpenSSL 3.0';
-  procedure ENGINE_unregister_RSA(e: PENGINE); cdecl; external CLibCrypto name 'ENGINE_unregister_RSA'; deprecated 'Since OpenSSL 3.0';
-  procedure ENGINE_register_all_RSA; cdecl; external CLibCrypto name 'ENGINE_register_all_RSA'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_register_DSA(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_register_DSA'; deprecated 'Since OpenSSL 3.0';
-  procedure ENGINE_unregister_DSA(e: PENGINE); cdecl; external CLibCrypto name 'ENGINE_unregister_DSA'; deprecated 'Since OpenSSL 3.0';
-  procedure ENGINE_register_all_DSA; cdecl; external CLibCrypto name 'ENGINE_register_all_DSA'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_register_EC(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_register_EC'; deprecated 'Since OpenSSL 3.0';
-  procedure ENGINE_unregister_EC(e: PENGINE); cdecl; external CLibCrypto name 'ENGINE_unregister_EC'; deprecated 'Since OpenSSL 3.0';
-  procedure ENGINE_register_all_EC; cdecl; external CLibCrypto name 'ENGINE_register_all_EC'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_register_DH(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_register_DH'; deprecated 'Since OpenSSL 3.0';
-  procedure ENGINE_unregister_DH(e: PENGINE); cdecl; external CLibCrypto name 'ENGINE_unregister_DH'; deprecated 'Since OpenSSL 3.0';
-  procedure ENGINE_register_all_DH; cdecl; external CLibCrypto name 'ENGINE_register_all_DH'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_register_RAND(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_register_RAND'; deprecated 'Since OpenSSL 3.0';
-  procedure ENGINE_unregister_RAND(e: PENGINE); cdecl; external CLibCrypto name 'ENGINE_unregister_RAND'; deprecated 'Since OpenSSL 3.0';
-  procedure ENGINE_register_all_RAND; cdecl; external CLibCrypto name 'ENGINE_register_all_RAND'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_register_ciphers(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_register_ciphers'; deprecated 'Since OpenSSL 3.0';
-  procedure ENGINE_unregister_ciphers(e: PENGINE); cdecl; external CLibCrypto name 'ENGINE_unregister_ciphers'; deprecated 'Since OpenSSL 3.0';
-  procedure ENGINE_register_all_ciphers; cdecl; external CLibCrypto name 'ENGINE_register_all_ciphers'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_register_digests(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_register_digests'; deprecated 'Since OpenSSL 3.0';
-  procedure ENGINE_unregister_digests(e: PENGINE); cdecl; external CLibCrypto name 'ENGINE_unregister_digests'; deprecated 'Since OpenSSL 3.0';
-  procedure ENGINE_register_all_digests; cdecl; external CLibCrypto name 'ENGINE_register_all_digests'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_register_pkey_meths(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_register_pkey_meths'; deprecated 'Since OpenSSL 3.0';
-  procedure ENGINE_unregister_pkey_meths(e: PENGINE); cdecl; external CLibCrypto name 'ENGINE_unregister_pkey_meths'; deprecated 'Since OpenSSL 3.0';
-  procedure ENGINE_register_all_pkey_meths; cdecl; external CLibCrypto name 'ENGINE_register_all_pkey_meths'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_register_pkey_asn1_meths(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_register_pkey_asn1_meths'; deprecated 'Since OpenSSL 3.0';
-  procedure ENGINE_unregister_pkey_asn1_meths(e: PENGINE); cdecl; external CLibCrypto name 'ENGINE_unregister_pkey_asn1_meths'; deprecated 'Since OpenSSL 3.0';
-  procedure ENGINE_register_all_pkey_asn1_meths; cdecl; external CLibCrypto name 'ENGINE_register_all_pkey_asn1_meths'; deprecated 'Since OpenSSL 3.0';
+  function ENGINE_register_RSA(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_register_RSA'; deprecated 'ENGINE_register_RSA API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_unregister_RSA(ENGINE *e); }
+  procedure ENGINE_unregister_RSA(e: PENGINE); cdecl; external CLibCrypto name 'ENGINE_unregister_RSA'; deprecated 'ENGINE_unregister_RSA API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_register_all_RSA(void); }
+  procedure ENGINE_register_all_RSA; cdecl; external CLibCrypto name 'ENGINE_register_all_RSA'; deprecated 'ENGINE_register_all_RSA API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_register_DSA(ENGINE *e); }
+  function ENGINE_register_DSA(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_register_DSA'; deprecated 'ENGINE_register_DSA API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_unregister_DSA(ENGINE *e); }
+  procedure ENGINE_unregister_DSA(e: PENGINE); cdecl; external CLibCrypto name 'ENGINE_unregister_DSA'; deprecated 'ENGINE_unregister_DSA API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_register_all_DSA(void); }
+  procedure ENGINE_register_all_DSA; cdecl; external CLibCrypto name 'ENGINE_register_all_DSA'; deprecated 'ENGINE_register_all_DSA API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_register_EC(ENGINE *e); }
+  function ENGINE_register_EC(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_register_EC'; deprecated 'ENGINE_register_EC API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_unregister_EC(ENGINE *e); }
+  procedure ENGINE_unregister_EC(e: PENGINE); cdecl; external CLibCrypto name 'ENGINE_unregister_EC'; deprecated 'ENGINE_unregister_EC API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_register_all_EC(void); }
+  procedure ENGINE_register_all_EC; cdecl; external CLibCrypto name 'ENGINE_register_all_EC'; deprecated 'ENGINE_register_all_EC API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_register_DH(ENGINE *e); }
+  function ENGINE_register_DH(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_register_DH'; deprecated 'ENGINE_register_DH API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_unregister_DH(ENGINE *e); }
+  procedure ENGINE_unregister_DH(e: PENGINE); cdecl; external CLibCrypto name 'ENGINE_unregister_DH'; deprecated 'ENGINE_unregister_DH API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_register_all_DH(void); }
+  procedure ENGINE_register_all_DH; cdecl; external CLibCrypto name 'ENGINE_register_all_DH'; deprecated 'ENGINE_register_all_DH API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_register_RAND(ENGINE *e); }
+  function ENGINE_register_RAND(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_register_RAND'; deprecated 'ENGINE_register_RAND API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_unregister_RAND(ENGINE *e); }
+  procedure ENGINE_unregister_RAND(e: PENGINE); cdecl; external CLibCrypto name 'ENGINE_unregister_RAND'; deprecated 'ENGINE_unregister_RAND API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_register_all_RAND(void); }
+  procedure ENGINE_register_all_RAND; cdecl; external CLibCrypto name 'ENGINE_register_all_RAND'; deprecated 'ENGINE_register_all_RAND API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_register_ciphers(ENGINE *e); }
+  function ENGINE_register_ciphers(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_register_ciphers'; deprecated 'ENGINE_register_ciphers API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_unregister_ciphers(ENGINE *e); }
+  procedure ENGINE_unregister_ciphers(e: PENGINE); cdecl; external CLibCrypto name 'ENGINE_unregister_ciphers'; deprecated 'ENGINE_unregister_ciphers API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_register_all_ciphers(void); }
+  procedure ENGINE_register_all_ciphers; cdecl; external CLibCrypto name 'ENGINE_register_all_ciphers'; deprecated 'ENGINE_register_all_ciphers API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_register_digests(ENGINE *e); }
+  function ENGINE_register_digests(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_register_digests'; deprecated 'ENGINE_register_digests API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_unregister_digests(ENGINE *e); }
+  procedure ENGINE_unregister_digests(e: PENGINE); cdecl; external CLibCrypto name 'ENGINE_unregister_digests'; deprecated 'ENGINE_unregister_digests API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_register_all_digests(void); }
+  procedure ENGINE_register_all_digests; cdecl; external CLibCrypto name 'ENGINE_register_all_digests'; deprecated 'ENGINE_register_all_digests API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_register_pkey_meths(ENGINE *e); }
+  function ENGINE_register_pkey_meths(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_register_pkey_meths'; deprecated 'ENGINE_register_pkey_meths API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_unregister_pkey_meths(ENGINE *e); }
+  procedure ENGINE_unregister_pkey_meths(e: PENGINE); cdecl; external CLibCrypto name 'ENGINE_unregister_pkey_meths'; deprecated 'ENGINE_unregister_pkey_meths API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_register_all_pkey_meths(void); }
+  procedure ENGINE_register_all_pkey_meths; cdecl; external CLibCrypto name 'ENGINE_register_all_pkey_meths'; deprecated 'ENGINE_register_all_pkey_meths API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_register_pkey_asn1_meths(ENGINE *e); }
+  function ENGINE_register_pkey_asn1_meths(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_register_pkey_asn1_meths'; deprecated 'ENGINE_register_pkey_asn1_meths API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_unregister_pkey_asn1_meths(ENGINE *e); }
+  procedure ENGINE_unregister_pkey_asn1_meths(e: PENGINE); cdecl; external CLibCrypto name 'ENGINE_unregister_pkey_asn1_meths'; deprecated 'ENGINE_unregister_pkey_asn1_meths API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_register_all_pkey_asn1_meths(void); }
+  procedure ENGINE_register_all_pkey_asn1_meths; cdecl; external CLibCrypto name 'ENGINE_register_all_pkey_asn1_meths'; deprecated 'ENGINE_register_all_pkey_asn1_meths API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
       {$else}
   {$EXTERNALSYM ENGINE_register_RSA}
   {$EXTERNALSYM ENGINE_unregister_RSA}
@@ -553,31 +668,57 @@ var
 
 var
   ENGINE_register_RSA: function(e: PENGINE): TOpenSSL_C_INT; cdecl = Load_ENGINE_register_RSA;
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_unregister_RSA(ENGINE *e); }
   ENGINE_unregister_RSA: procedure(e: PENGINE); cdecl = Load_ENGINE_unregister_RSA;
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_register_all_RSA(void); }
   ENGINE_register_all_RSA: procedure; cdecl = Load_ENGINE_register_all_RSA;
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_register_DSA(ENGINE *e); }
   ENGINE_register_DSA: function(e: PENGINE): TOpenSSL_C_INT; cdecl = Load_ENGINE_register_DSA;
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_unregister_DSA(ENGINE *e); }
   ENGINE_unregister_DSA: procedure(e: PENGINE); cdecl = Load_ENGINE_unregister_DSA;
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_register_all_DSA(void); }
   ENGINE_register_all_DSA: procedure; cdecl = Load_ENGINE_register_all_DSA;
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_register_EC(ENGINE *e); }
   ENGINE_register_EC: function(e: PENGINE): TOpenSSL_C_INT; cdecl = Load_ENGINE_register_EC;
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_unregister_EC(ENGINE *e); }
   ENGINE_unregister_EC: procedure(e: PENGINE); cdecl = Load_ENGINE_unregister_EC;
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_register_all_EC(void); }
   ENGINE_register_all_EC: procedure; cdecl = Load_ENGINE_register_all_EC;
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_register_DH(ENGINE *e); }
   ENGINE_register_DH: function(e: PENGINE): TOpenSSL_C_INT; cdecl = Load_ENGINE_register_DH;
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_unregister_DH(ENGINE *e); }
   ENGINE_unregister_DH: procedure(e: PENGINE); cdecl = Load_ENGINE_unregister_DH;
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_register_all_DH(void); }
   ENGINE_register_all_DH: procedure; cdecl = Load_ENGINE_register_all_DH;
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_register_RAND(ENGINE *e); }
   ENGINE_register_RAND: function(e: PENGINE): TOpenSSL_C_INT; cdecl = Load_ENGINE_register_RAND;
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_unregister_RAND(ENGINE *e); }
   ENGINE_unregister_RAND: procedure(e: PENGINE); cdecl = Load_ENGINE_unregister_RAND;
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_register_all_RAND(void); }
   ENGINE_register_all_RAND: procedure; cdecl = Load_ENGINE_register_all_RAND;
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_register_ciphers(ENGINE *e); }
   ENGINE_register_ciphers: function(e: PENGINE): TOpenSSL_C_INT; cdecl = Load_ENGINE_register_ciphers;
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_unregister_ciphers(ENGINE *e); }
   ENGINE_unregister_ciphers: procedure(e: PENGINE); cdecl = Load_ENGINE_unregister_ciphers;
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_register_all_ciphers(void); }
   ENGINE_register_all_ciphers: procedure; cdecl = Load_ENGINE_register_all_ciphers;
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_register_digests(ENGINE *e); }
   ENGINE_register_digests: function(e: PENGINE): TOpenSSL_C_INT; cdecl = Load_ENGINE_register_digests;
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_unregister_digests(ENGINE *e); }
   ENGINE_unregister_digests: procedure(e: PENGINE); cdecl = Load_ENGINE_unregister_digests;
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_register_all_digests(void); }
   ENGINE_register_all_digests: procedure; cdecl = Load_ENGINE_register_all_digests;
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_register_pkey_meths(ENGINE *e); }
   ENGINE_register_pkey_meths: function(e: PENGINE): TOpenSSL_C_INT; cdecl = Load_ENGINE_register_pkey_meths;
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_unregister_pkey_meths(ENGINE *e); }
   ENGINE_unregister_pkey_meths: procedure(e: PENGINE); cdecl = Load_ENGINE_unregister_pkey_meths;
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_register_all_pkey_meths(void); }
   ENGINE_register_all_pkey_meths: procedure; cdecl = Load_ENGINE_register_all_pkey_meths;
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_register_pkey_asn1_meths(ENGINE *e); }
   ENGINE_register_pkey_asn1_meths: function(e: PENGINE): TOpenSSL_C_INT; cdecl = Load_ENGINE_register_pkey_asn1_meths;
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_unregister_pkey_asn1_meths(ENGINE *e); }
   ENGINE_unregister_pkey_asn1_meths: procedure(e: PENGINE); cdecl = Load_ENGINE_unregister_pkey_asn1_meths;
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_register_all_pkey_asn1_meths(void); }
   ENGINE_register_all_pkey_asn1_meths: procedure; cdecl = Load_ENGINE_register_all_pkey_asn1_meths;
       {$endif} {OPENSSL_STATIC_LINK_MODEL}
     {$endif}
@@ -590,9 +731,11 @@ var
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
 
+      { OSSL_DEPRECATEDIN_3_0 int ENGINE_register_complete(ENGINE *e); }
       {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function ENGINE_register_complete(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_register_complete'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_register_all_complete: TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_register_all_complete'; deprecated 'Since OpenSSL 3.0';
+  function ENGINE_register_complete(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_register_complete'; deprecated 'ENGINE_register_complete API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_register_all_complete(void); }
+  function ENGINE_register_all_complete: TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_register_all_complete'; deprecated 'ENGINE_register_all_complete API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
       {$else}
   {$EXTERNALSYM ENGINE_register_complete}
   {$EXTERNALSYM ENGINE_register_all_complete}
@@ -602,6 +745,7 @@ var
 
 var
   ENGINE_register_complete: function(e: PENGINE): TOpenSSL_C_INT; cdecl = Load_ENGINE_register_complete;
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_register_all_complete(void); }
   ENGINE_register_all_complete: function: TOpenSSL_C_INT; cdecl = Load_ENGINE_register_all_complete;
       {$endif} {OPENSSL_STATIC_LINK_MODEL}
     {$endif}
@@ -623,11 +767,15 @@ type
   PPFuncType001 = ^PFuncType001;
   {end of auto-generated forward references}
 
+      
+      {* OSSL_DEPRECATEDIN_3_0 int ENGINE_ctrl(ENGINE *e, int cmd, long i, void *p,
+      *                                       void (*f) (void));
+      }
   TFuncType001 = procedure; cdecl;
 
 
       {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function ENGINE_ctrl(e: PENGINE; cmd: TOpenSSL_C_INT; i: TOpenSSL_C_INT; p: pointer; f: TFuncType001): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_ctrl'; deprecated 'Since OpenSSL 3.0';
+  function ENGINE_ctrl(e: PENGINE; cmd: TOpenSSL_C_INT; i: TOpenSSL_C_INT; p: pointer; f: TFuncType001): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_ctrl'; deprecated 'ENGINE_ctrl API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
       {$else}
   {$EXTERNALSYM ENGINE_ctrl}
   {Do not call Function LoadDeclarations. Internal use only}
@@ -646,8 +794,9 @@ var
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
 
+      { OSSL_DEPRECATEDIN_3_0 int ENGINE_cmd_is_executable(ENGINE *e, int cmd); }
       {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function ENGINE_cmd_is_executable(e: PENGINE; cmd: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_cmd_is_executable'; deprecated 'Since OpenSSL 3.0';
+  function ENGINE_cmd_is_executable(e: PENGINE; cmd: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_cmd_is_executable'; deprecated 'ENGINE_cmd_is_executable API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
       {$else}
   {$EXTERNALSYM ENGINE_cmd_is_executable}
   {Do not call Function LoadDeclarations. Internal use only}
@@ -671,11 +820,16 @@ type
   PPFuncType002 = ^PFuncType002;
   {end of auto-generated forward references}
 
+      
+      {* OSSL_DEPRECATEDIN_3_0 int ENGINE_ctrl_cmd(ENGINE *e, const char *cmd_name,
+      *                                           long i, void *p, void (*f) (void),
+      *                                           int cmd_optional);
+      }
   TFuncType002 = procedure; cdecl;
 
 
       {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function ENGINE_ctrl_cmd(e: PENGINE; cmd_name: PAnsiChar; i: TOpenSSL_C_INT; p: pointer; f: TFuncType002; cmd_optional: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_ctrl_cmd'; deprecated 'Since OpenSSL 3.0';
+  function ENGINE_ctrl_cmd(e: PENGINE; cmd_name: PAnsiChar; i: TOpenSSL_C_INT; p: pointer; f: TFuncType002; cmd_optional: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_ctrl_cmd'; deprecated 'ENGINE_ctrl_cmd API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
       {$else}
   {$EXTERNALSYM ENGINE_ctrl_cmd}
   {Do not call Function LoadDeclarations. Internal use only}
@@ -710,8 +864,13 @@ var
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
 
+      
+      {* OSSL_DEPRECATEDIN_3_0
+      * int ENGINE_ctrl_cmd_string(ENGINE *e, const char *cmd_name, const char *arg,
+      *                            int cmd_optional);
+      }
       {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function ENGINE_ctrl_cmd_string(e: PENGINE; cmd_name: PAnsiChar; arg: PAnsiChar; cmd_optional: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_ctrl_cmd_string'; deprecated 'Since OpenSSL 3.0';
+  function ENGINE_ctrl_cmd_string(e: PENGINE; cmd_name: PAnsiChar; arg: PAnsiChar; cmd_optional: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_ctrl_cmd_string'; deprecated 'ENGINE_ctrl_cmd_string API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
       {$else}
   {$EXTERNALSYM ENGINE_ctrl_cmd_string}
   {Do not call Function LoadDeclarations. Internal use only}
@@ -732,30 +891,107 @@ var
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
 
+      { OSSL_DEPRECATEDIN_3_0 ENGINE *ENGINE_new(void); }
       {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function ENGINE_new: PENGINE; cdecl; external CLibCrypto name 'ENGINE_new'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_free(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_free'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_up_ref(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_up_ref'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_set_id(e: PENGINE; id: PAnsiChar): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_id'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_set_name(e: PENGINE; name: PAnsiChar): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_name'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_set_RSA(e: PENGINE; rsa_meth: PRSA_METHOD): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_RSA'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_set_DSA(e: PENGINE; dsa_meth: PDSA_METHOD): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_DSA'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_set_EC(e: PENGINE; ecdsa_meth: PEC_KEY_METHOD): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_EC'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_set_DH(e: PENGINE; dh_meth: PDH_METHOD): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_DH'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_set_RAND(e: PENGINE; rand_meth: PRAND_METHOD): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_RAND'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_set_destroy_function(e: PENGINE; destroy_f: TENGINE_GEN_INT_FUNC_PTR): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_destroy_function'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_set_init_function(e: PENGINE; init_f: TENGINE_GEN_INT_FUNC_PTR): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_init_function'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_set_finish_function(e: PENGINE; finish_f: TENGINE_GEN_INT_FUNC_PTR): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_finish_function'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_set_ctrl_function(e: PENGINE; ctrl_f: TENGINE_CTRL_FUNC_PTR): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_ctrl_function'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_set_load_privkey_function(e: PENGINE; loadpriv_f: TENGINE_LOAD_KEY_PTR): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_load_privkey_function'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_set_load_pubkey_function(e: PENGINE; loadpub_f: TENGINE_LOAD_KEY_PTR): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_load_pubkey_function'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_set_load_ssl_client_cert_function(e: PENGINE; loadssl_f: TENGINE_SSL_CLIENT_CERT_PTR): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_load_ssl_client_cert_function'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_set_ciphers(e: PENGINE; f: TENGINE_CIPHERS_PTR): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_ciphers'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_set_digests(e: PENGINE; f: TENGINE_DIGESTS_PTR): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_digests'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_set_pkey_meths(e: PENGINE; f: TENGINE_PKEY_METHS_PTR): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_pkey_meths'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_set_pkey_asn1_meths(e: PENGINE; f: TENGINE_PKEY_ASN1_METHS_PTR): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_pkey_asn1_meths'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_set_flags(e: PENGINE; flags: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_flags'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_set_cmd_defns(e: PENGINE; defns: PENGINE_CMD_DEFN): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_cmd_defns'; deprecated 'Since OpenSSL 3.0';
+  function ENGINE_new: PENGINE; cdecl; external CLibCrypto name 'ENGINE_new'; deprecated 'ENGINE_new API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_free(ENGINE *e); }
+  function ENGINE_free(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_free'; deprecated 'ENGINE_free API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_up_ref(ENGINE *e); }
+  function ENGINE_up_ref(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_up_ref'; deprecated 'ENGINE_up_ref API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_set_id(ENGINE *e, const char *id); }
+  function ENGINE_set_id(e: PENGINE; id: PAnsiChar): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_id'; deprecated 'ENGINE_set_id API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_set_name(ENGINE *e, const char *name); }
+  function ENGINE_set_name(e: PENGINE; name: PAnsiChar): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_name'; deprecated 'ENGINE_set_name API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_RSA(ENGINE *e, const RSA_METHOD *rsa_meth);
+  }
+  function ENGINE_set_RSA(e: PENGINE; rsa_meth: PRSA_METHOD): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_RSA'; deprecated 'ENGINE_set_RSA API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_DSA(ENGINE *e, const DSA_METHOD *dsa_meth);
+  }
+  function ENGINE_set_DSA(e: PENGINE; dsa_meth: PDSA_METHOD): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_DSA'; deprecated 'ENGINE_set_DSA API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_EC(ENGINE *e, const EC_KEY_METHOD *ecdsa_meth);
+  }
+  function ENGINE_set_EC(e: PENGINE; ecdsa_meth: PEC_KEY_METHOD): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_EC'; deprecated 'ENGINE_set_EC API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_DH(ENGINE *e, const DH_METHOD *dh_meth);
+  }
+  function ENGINE_set_DH(e: PENGINE; dh_meth: PDH_METHOD): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_DH'; deprecated 'ENGINE_set_DH API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_RAND(ENGINE *e, const RAND_METHOD *rand_meth);
+  }
+  function ENGINE_set_RAND(e: PENGINE; rand_meth: PRAND_METHOD): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_RAND'; deprecated 'ENGINE_set_RAND API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_destroy_function(ENGINE *e, ENGINE_GEN_INT_FUNC_PTR destroy_f);
+  }
+  function ENGINE_set_destroy_function(e: PENGINE; destroy_f: TENGINE_GEN_INT_FUNC_PTR): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_destroy_function'; deprecated 'ENGINE_set_destroy_function API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_init_function(ENGINE *e, ENGINE_GEN_INT_FUNC_PTR init_f);
+  }
+  function ENGINE_set_init_function(e: PENGINE; init_f: TENGINE_GEN_INT_FUNC_PTR): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_init_function'; deprecated 'ENGINE_set_init_function API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_finish_function(ENGINE *e, ENGINE_GEN_INT_FUNC_PTR finish_f);
+  }
+  function ENGINE_set_finish_function(e: PENGINE; finish_f: TENGINE_GEN_INT_FUNC_PTR): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_finish_function'; deprecated 'ENGINE_set_finish_function API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_ctrl_function(ENGINE *e, ENGINE_CTRL_FUNC_PTR ctrl_f);
+  }
+  function ENGINE_set_ctrl_function(e: PENGINE; ctrl_f: TENGINE_CTRL_FUNC_PTR): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_ctrl_function'; deprecated 'ENGINE_set_ctrl_function API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_load_privkey_function(ENGINE *e, ENGINE_LOAD_KEY_PTR loadpriv_f);
+  }
+  function ENGINE_set_load_privkey_function(e: PENGINE; loadpriv_f: TENGINE_LOAD_KEY_PTR): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_load_privkey_function'; deprecated 'ENGINE_set_load_privkey_function API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_load_pubkey_function(ENGINE *e, ENGINE_LOAD_KEY_PTR loadpub_f);
+  }
+  function ENGINE_set_load_pubkey_function(e: PENGINE; loadpub_f: TENGINE_LOAD_KEY_PTR): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_load_pubkey_function'; deprecated 'ENGINE_set_load_pubkey_function API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_load_ssl_client_cert_function(ENGINE *e,
+  *                                      ENGINE_SSL_CLIENT_CERT_PTR loadssl_f);
+  }
+  function ENGINE_set_load_ssl_client_cert_function(e: PENGINE; loadssl_f: TENGINE_SSL_CLIENT_CERT_PTR): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_load_ssl_client_cert_function'; deprecated 'ENGINE_set_load_ssl_client_cert_function API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_ciphers(ENGINE *e, ENGINE_CIPHERS_PTR f);
+  }
+  function ENGINE_set_ciphers(e: PENGINE; f: TENGINE_CIPHERS_PTR): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_ciphers'; deprecated 'ENGINE_set_ciphers API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_digests(ENGINE *e, ENGINE_DIGESTS_PTR f);
+  }
+  function ENGINE_set_digests(e: PENGINE; f: TENGINE_DIGESTS_PTR): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_digests'; deprecated 'ENGINE_set_digests API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_pkey_meths(ENGINE *e, ENGINE_PKEY_METHS_PTR f);
+  }
+  function ENGINE_set_pkey_meths(e: PENGINE; f: TENGINE_PKEY_METHS_PTR): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_pkey_meths'; deprecated 'ENGINE_set_pkey_meths API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_pkey_asn1_meths(ENGINE *e, ENGINE_PKEY_ASN1_METHS_PTR f);
+  }
+  function ENGINE_set_pkey_asn1_meths(e: PENGINE; f: TENGINE_PKEY_ASN1_METHS_PTR): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_pkey_asn1_meths'; deprecated 'ENGINE_set_pkey_asn1_meths API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0 int ENGINE_set_flags(ENGINE *e, int flags);
+  }
+  function ENGINE_set_flags(e: PENGINE; flags: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_flags'; deprecated 'ENGINE_set_flags API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_cmd_defns(ENGINE *e, const ENGINE_CMD_DEFN *defns);
+  }
+  function ENGINE_set_cmd_defns(e: PENGINE; defns: PENGINE_CMD_DEFN): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_cmd_defns'; deprecated 'ENGINE_set_cmd_defns API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
       {$else}
   {$EXTERNALSYM ENGINE_new}
   {$EXTERNALSYM ENGINE_free}
@@ -807,38 +1043,130 @@ var
 
 var
   ENGINE_new: function: PENGINE; cdecl = Load_ENGINE_new;
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_free(ENGINE *e); }
   ENGINE_free: function(e: PENGINE): TOpenSSL_C_INT; cdecl = Load_ENGINE_free;
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_up_ref(ENGINE *e); }
   ENGINE_up_ref: function(e: PENGINE): TOpenSSL_C_INT; cdecl = Load_ENGINE_up_ref;
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_set_id(ENGINE *e, const char *id); }
   ENGINE_set_id: function(e: PENGINE; id: PAnsiChar): TOpenSSL_C_INT; cdecl = Load_ENGINE_set_id;
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_set_name(ENGINE *e, const char *name); }
   ENGINE_set_name: function(e: PENGINE; name: PAnsiChar): TOpenSSL_C_INT; cdecl = Load_ENGINE_set_name;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_RSA(ENGINE *e, const RSA_METHOD *rsa_meth);
+  }
   ENGINE_set_RSA: function(e: PENGINE; rsa_meth: PRSA_METHOD): TOpenSSL_C_INT; cdecl = Load_ENGINE_set_RSA;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_DSA(ENGINE *e, const DSA_METHOD *dsa_meth);
+  }
   ENGINE_set_DSA: function(e: PENGINE; dsa_meth: PDSA_METHOD): TOpenSSL_C_INT; cdecl = Load_ENGINE_set_DSA;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_EC(ENGINE *e, const EC_KEY_METHOD *ecdsa_meth);
+  }
   ENGINE_set_EC: function(e: PENGINE; ecdsa_meth: PEC_KEY_METHOD): TOpenSSL_C_INT; cdecl = Load_ENGINE_set_EC;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_DH(ENGINE *e, const DH_METHOD *dh_meth);
+  }
   ENGINE_set_DH: function(e: PENGINE; dh_meth: PDH_METHOD): TOpenSSL_C_INT; cdecl = Load_ENGINE_set_DH;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_RAND(ENGINE *e, const RAND_METHOD *rand_meth);
+  }
   ENGINE_set_RAND: function(e: PENGINE; rand_meth: PRAND_METHOD): TOpenSSL_C_INT; cdecl = Load_ENGINE_set_RAND;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_destroy_function(ENGINE *e, ENGINE_GEN_INT_FUNC_PTR destroy_f);
+  }
   ENGINE_set_destroy_function: function(e: PENGINE; destroy_f: TENGINE_GEN_INT_FUNC_PTR): TOpenSSL_C_INT; cdecl = Load_ENGINE_set_destroy_function;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_init_function(ENGINE *e, ENGINE_GEN_INT_FUNC_PTR init_f);
+  }
   ENGINE_set_init_function: function(e: PENGINE; init_f: TENGINE_GEN_INT_FUNC_PTR): TOpenSSL_C_INT; cdecl = Load_ENGINE_set_init_function;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_finish_function(ENGINE *e, ENGINE_GEN_INT_FUNC_PTR finish_f);
+  }
   ENGINE_set_finish_function: function(e: PENGINE; finish_f: TENGINE_GEN_INT_FUNC_PTR): TOpenSSL_C_INT; cdecl = Load_ENGINE_set_finish_function;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_ctrl_function(ENGINE *e, ENGINE_CTRL_FUNC_PTR ctrl_f);
+  }
   ENGINE_set_ctrl_function: function(e: PENGINE; ctrl_f: TENGINE_CTRL_FUNC_PTR): TOpenSSL_C_INT; cdecl = Load_ENGINE_set_ctrl_function;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_load_privkey_function(ENGINE *e, ENGINE_LOAD_KEY_PTR loadpriv_f);
+  }
   ENGINE_set_load_privkey_function: function(e: PENGINE; loadpriv_f: TENGINE_LOAD_KEY_PTR): TOpenSSL_C_INT; cdecl = Load_ENGINE_set_load_privkey_function;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_load_pubkey_function(ENGINE *e, ENGINE_LOAD_KEY_PTR loadpub_f);
+  }
   ENGINE_set_load_pubkey_function: function(e: PENGINE; loadpub_f: TENGINE_LOAD_KEY_PTR): TOpenSSL_C_INT; cdecl = Load_ENGINE_set_load_pubkey_function;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_load_ssl_client_cert_function(ENGINE *e,
+  *                                      ENGINE_SSL_CLIENT_CERT_PTR loadssl_f);
+  }
   ENGINE_set_load_ssl_client_cert_function: function(e: PENGINE; loadssl_f: TENGINE_SSL_CLIENT_CERT_PTR): TOpenSSL_C_INT; cdecl = Load_ENGINE_set_load_ssl_client_cert_function;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_ciphers(ENGINE *e, ENGINE_CIPHERS_PTR f);
+  }
   ENGINE_set_ciphers: function(e: PENGINE; f: TENGINE_CIPHERS_PTR): TOpenSSL_C_INT; cdecl = Load_ENGINE_set_ciphers;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_digests(ENGINE *e, ENGINE_DIGESTS_PTR f);
+  }
   ENGINE_set_digests: function(e: PENGINE; f: TENGINE_DIGESTS_PTR): TOpenSSL_C_INT; cdecl = Load_ENGINE_set_digests;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_pkey_meths(ENGINE *e, ENGINE_PKEY_METHS_PTR f);
+  }
   ENGINE_set_pkey_meths: function(e: PENGINE; f: TENGINE_PKEY_METHS_PTR): TOpenSSL_C_INT; cdecl = Load_ENGINE_set_pkey_meths;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_pkey_asn1_meths(ENGINE *e, ENGINE_PKEY_ASN1_METHS_PTR f);
+  }
   ENGINE_set_pkey_asn1_meths: function(e: PENGINE; f: TENGINE_PKEY_ASN1_METHS_PTR): TOpenSSL_C_INT; cdecl = Load_ENGINE_set_pkey_asn1_meths;
+  
+  {* OSSL_DEPRECATEDIN_3_0 int ENGINE_set_flags(ENGINE *e, int flags);
+  }
   ENGINE_set_flags: function(e: PENGINE; flags: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_ENGINE_set_flags;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_set_cmd_defns(ENGINE *e, const ENGINE_CMD_DEFN *defns);
+  }
   ENGINE_set_cmd_defns: function(e: PENGINE; defns: PENGINE_CMD_DEFN): TOpenSSL_C_INT; cdecl = Load_ENGINE_set_cmd_defns;
       {$endif} {OPENSSL_STATIC_LINK_MODEL}
     {$endif}
-{# define  ENGINE_get_ex_new_index(l,p,newf,dupf,freef) CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_ENGINE, l, p, newf, dupf, freef)} {Macro Return Type unknown at line no 533}
     { These functions allow control over any per-structure ENGINE data. }
+    {$ifndef  OPENSSL_ENGINE_STUBS}
+{# define  ENGINE_get_ex_new_index(l,p,newf,dupf,freef) CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_ENGINE, l, p, newf, dupf, freef)} {Macro Return Type unknown at line no 728}
+    {$else}
+      {__attribute__((deprecated("ENGINE_get_ex_new_index" " API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.
+"))) int CRYPTO_get_ex_new_index(10, long l, void *p, CRYPTO_EX_new *newf, CRYPTO_EX_dup *dupf, CRYPTO_EX_free *freef);}
+      { in declarator_list}
+      { in declarator_list}
+      { in declarator_list}
+      { in declarator_list}
+      { in declarator_list}
+      { in declarator_list}
+    {$endif}
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
 
+      
+      {* OSSL_DEPRECATEDIN_3_0
+      * int ENGINE_set_ex_data(ENGINE *e, int idx, void *arg);
+      }
       {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function ENGINE_set_ex_data(e: PENGINE; idx: TOpenSSL_C_INT; arg: pointer): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_ex_data'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_get_ex_data(e: PENGINE; idx: TOpenSSL_C_INT): pointer; cdecl; external CLibCrypto name 'ENGINE_get_ex_data'; deprecated 'Since OpenSSL 3.0';
+  function ENGINE_set_ex_data(e: PENGINE; idx: TOpenSSL_C_INT; arg: pointer): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_ex_data'; deprecated 'ENGINE_set_ex_data API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 void *ENGINE_get_ex_data(const ENGINE *e, int idx); }
+  function ENGINE_get_ex_data(e: PENGINE; idx: TOpenSSL_C_INT): pointer; cdecl; external CLibCrypto name 'ENGINE_get_ex_data'; deprecated 'ENGINE_get_ex_data API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
       {$else}
   {$EXTERNALSYM ENGINE_set_ex_data}
   {$EXTERNALSYM ENGINE_get_ex_data}
@@ -848,6 +1176,7 @@ var
 
 var
   ENGINE_set_ex_data: function(e: PENGINE; idx: TOpenSSL_C_INT; arg: pointer): TOpenSSL_C_INT; cdecl = Load_ENGINE_set_ex_data;
+  { OSSL_DEPRECATEDIN_3_0 void *ENGINE_get_ex_data(const ENGINE *e, int idx); }
   ENGINE_get_ex_data: function(e: PENGINE; idx: TOpenSSL_C_INT): pointer; cdecl = Load_ENGINE_get_ex_data;
       {$endif} {OPENSSL_STATIC_LINK_MODEL}
     {$endif}
@@ -867,33 +1196,115 @@ var
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
 
+      { OSSL_DEPRECATEDIN_3_0 const char *ENGINE_get_id(const ENGINE *e); }
       {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function ENGINE_get_id(e: PENGINE): PAnsiChar; cdecl; external CLibCrypto name 'ENGINE_get_id'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_get_name(e: PENGINE): PAnsiChar; cdecl; external CLibCrypto name 'ENGINE_get_name'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_get_RSA(e: PENGINE): PRSA_METHOD; cdecl; external CLibCrypto name 'ENGINE_get_RSA'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_get_DSA(e: PENGINE): PDSA_METHOD; cdecl; external CLibCrypto name 'ENGINE_get_DSA'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_get_EC(e: PENGINE): PEC_KEY_METHOD; cdecl; external CLibCrypto name 'ENGINE_get_EC'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_get_DH(e: PENGINE): PDH_METHOD; cdecl; external CLibCrypto name 'ENGINE_get_DH'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_get_RAND(e: PENGINE): PRAND_METHOD; cdecl; external CLibCrypto name 'ENGINE_get_RAND'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_get_destroy_function(e: PENGINE): TENGINE_GEN_INT_FUNC_PTR; cdecl; external CLibCrypto name 'ENGINE_get_destroy_function'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_get_init_function(e: PENGINE): TENGINE_GEN_INT_FUNC_PTR; cdecl; external CLibCrypto name 'ENGINE_get_init_function'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_get_finish_function(e: PENGINE): TENGINE_GEN_INT_FUNC_PTR; cdecl; external CLibCrypto name 'ENGINE_get_finish_function'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_get_ctrl_function(e: PENGINE): TENGINE_CTRL_FUNC_PTR; cdecl; external CLibCrypto name 'ENGINE_get_ctrl_function'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_get_load_privkey_function(e: PENGINE): TENGINE_LOAD_KEY_PTR; cdecl; external CLibCrypto name 'ENGINE_get_load_privkey_function'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_get_load_pubkey_function(e: PENGINE): TENGINE_LOAD_KEY_PTR; cdecl; external CLibCrypto name 'ENGINE_get_load_pubkey_function'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_get_ssl_client_cert_function(e: PENGINE): TENGINE_SSL_CLIENT_CERT_PTR; cdecl; external CLibCrypto name 'ENGINE_get_ssl_client_cert_function'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_get_ciphers(e: PENGINE): TENGINE_CIPHERS_PTR; cdecl; external CLibCrypto name 'ENGINE_get_ciphers'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_get_digests(e: PENGINE): TENGINE_DIGESTS_PTR; cdecl; external CLibCrypto name 'ENGINE_get_digests'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_get_pkey_meths(e: PENGINE): TENGINE_PKEY_METHS_PTR; cdecl; external CLibCrypto name 'ENGINE_get_pkey_meths'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_get_pkey_asn1_meths(e: PENGINE): TENGINE_PKEY_ASN1_METHS_PTR; cdecl; external CLibCrypto name 'ENGINE_get_pkey_asn1_meths'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_get_cipher(e: PENGINE; nid: TOpenSSL_C_INT): PEVP_CIPHER; cdecl; external CLibCrypto name 'ENGINE_get_cipher'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_get_digest(e: PENGINE; nid: TOpenSSL_C_INT): PEVP_MD; cdecl; external CLibCrypto name 'ENGINE_get_digest'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_get_pkey_meth(e: PENGINE; nid: TOpenSSL_C_INT): PEVP_PKEY_METHOD; cdecl; external CLibCrypto name 'ENGINE_get_pkey_meth'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_get_pkey_asn1_meth(e: PENGINE; nid: TOpenSSL_C_INT): PEVP_PKEY_ASN1_METHOD; cdecl; external CLibCrypto name 'ENGINE_get_pkey_asn1_meth'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_get_pkey_asn1_meth_str(e: PENGINE; str: PAnsiChar; len: TOpenSSL_C_INT): PEVP_PKEY_ASN1_METHOD; cdecl; external CLibCrypto name 'ENGINE_get_pkey_asn1_meth_str'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_pkey_asn1_find_str(pe: PPENGINE; str: PAnsiChar; len: TOpenSSL_C_INT): PEVP_PKEY_ASN1_METHOD; cdecl; external CLibCrypto name 'ENGINE_pkey_asn1_find_str'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_get_cmd_defns(e: PENGINE): PENGINE_CMD_DEFN; cdecl; external CLibCrypto name 'ENGINE_get_cmd_defns'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_get_flags(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_get_flags'; deprecated 'Since OpenSSL 3.0';
+  function ENGINE_get_id(e: PENGINE): PAnsiChar; cdecl; external CLibCrypto name 'ENGINE_get_id'; deprecated 'ENGINE_get_id API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 const char *ENGINE_get_name(const ENGINE *e); }
+  function ENGINE_get_name(e: PENGINE): PAnsiChar; cdecl; external CLibCrypto name 'ENGINE_get_name'; deprecated 'ENGINE_get_name API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 const RSA_METHOD *ENGINE_get_RSA(const ENGINE *e); }
+  function ENGINE_get_RSA(e: PENGINE): PRSA_METHOD; cdecl; external CLibCrypto name 'ENGINE_get_RSA'; deprecated 'ENGINE_get_RSA API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 const DSA_METHOD *ENGINE_get_DSA(const ENGINE *e); }
+  function ENGINE_get_DSA(e: PENGINE): PDSA_METHOD; cdecl; external CLibCrypto name 'ENGINE_get_DSA'; deprecated 'ENGINE_get_DSA API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 const EC_KEY_METHOD *ENGINE_get_EC(const ENGINE *e); }
+  function ENGINE_get_EC(e: PENGINE): PEC_KEY_METHOD; cdecl; external CLibCrypto name 'ENGINE_get_EC'; deprecated 'ENGINE_get_EC API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 const DH_METHOD *ENGINE_get_DH(const ENGINE *e); }
+  function ENGINE_get_DH(e: PENGINE): PDH_METHOD; cdecl; external CLibCrypto name 'ENGINE_get_DH'; deprecated 'ENGINE_get_DH API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 const RAND_METHOD *ENGINE_get_RAND(const ENGINE *e); }
+  function ENGINE_get_RAND(e: PENGINE): PRAND_METHOD; cdecl; external CLibCrypto name 'ENGINE_get_RAND'; deprecated 'ENGINE_get_RAND API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * ENGINE_GEN_INT_FUNC_PTR ENGINE_get_destroy_function(const ENGINE *e);
+  }
+  function ENGINE_get_destroy_function(e: PENGINE): TENGINE_GEN_INT_FUNC_PTR; cdecl; external CLibCrypto name 'ENGINE_get_destroy_function'; deprecated 'ENGINE_get_destroy_function API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * ENGINE_GEN_INT_FUNC_PTR ENGINE_get_init_function(const ENGINE *e);
+  }
+  function ENGINE_get_init_function(e: PENGINE): TENGINE_GEN_INT_FUNC_PTR; cdecl; external CLibCrypto name 'ENGINE_get_init_function'; deprecated 'ENGINE_get_init_function API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * ENGINE_GEN_INT_FUNC_PTR ENGINE_get_finish_function(const ENGINE *e);
+  }
+  function ENGINE_get_finish_function(e: PENGINE): TENGINE_GEN_INT_FUNC_PTR; cdecl; external CLibCrypto name 'ENGINE_get_finish_function'; deprecated 'ENGINE_get_finish_function API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * ENGINE_CTRL_FUNC_PTR ENGINE_get_ctrl_function(const ENGINE *e);
+  }
+  function ENGINE_get_ctrl_function(e: PENGINE): TENGINE_CTRL_FUNC_PTR; cdecl; external CLibCrypto name 'ENGINE_get_ctrl_function'; deprecated 'ENGINE_get_ctrl_function API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * ENGINE_LOAD_KEY_PTR ENGINE_get_load_privkey_function(const ENGINE *e);
+  }
+  function ENGINE_get_load_privkey_function(e: PENGINE): TENGINE_LOAD_KEY_PTR; cdecl; external CLibCrypto name 'ENGINE_get_load_privkey_function'; deprecated 'ENGINE_get_load_privkey_function API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * ENGINE_LOAD_KEY_PTR ENGINE_get_load_pubkey_function(const ENGINE *e);
+  }
+  function ENGINE_get_load_pubkey_function(e: PENGINE): TENGINE_LOAD_KEY_PTR; cdecl; external CLibCrypto name 'ENGINE_get_load_pubkey_function'; deprecated 'ENGINE_get_load_pubkey_function API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0 ENGINE_SSL_CLIENT_CERT_PTR
+  * ENGINE_get_ssl_client_cert_function(const ENGINE *e);
+  }
+  function ENGINE_get_ssl_client_cert_function(e: PENGINE): TENGINE_SSL_CLIENT_CERT_PTR; cdecl; external CLibCrypto name 'ENGINE_get_ssl_client_cert_function'; deprecated 'ENGINE_get_ssl_client_cert_function API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * ENGINE_CIPHERS_PTR ENGINE_get_ciphers(const ENGINE *e);
+  }
+  function ENGINE_get_ciphers(e: PENGINE): TENGINE_CIPHERS_PTR; cdecl; external CLibCrypto name 'ENGINE_get_ciphers'; deprecated 'ENGINE_get_ciphers API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * ENGINE_DIGESTS_PTR ENGINE_get_digests(const ENGINE *e);
+  }
+  function ENGINE_get_digests(e: PENGINE): TENGINE_DIGESTS_PTR; cdecl; external CLibCrypto name 'ENGINE_get_digests'; deprecated 'ENGINE_get_digests API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * ENGINE_PKEY_METHS_PTR ENGINE_get_pkey_meths(const ENGINE *e);
+  }
+  function ENGINE_get_pkey_meths(e: PENGINE): TENGINE_PKEY_METHS_PTR; cdecl; external CLibCrypto name 'ENGINE_get_pkey_meths'; deprecated 'ENGINE_get_pkey_meths API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * ENGINE_PKEY_ASN1_METHS_PTR ENGINE_get_pkey_asn1_meths(const ENGINE *e);
+  }
+  function ENGINE_get_pkey_asn1_meths(e: PENGINE): TENGINE_PKEY_ASN1_METHS_PTR; cdecl; external CLibCrypto name 'ENGINE_get_pkey_asn1_meths'; deprecated 'ENGINE_get_pkey_asn1_meths API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * const EVP_CIPHER *ENGINE_get_cipher(ENGINE *e, int nid);
+  }
+  function ENGINE_get_cipher(e: PENGINE; nid: TOpenSSL_C_INT): PEVP_CIPHER; cdecl; external CLibCrypto name 'ENGINE_get_cipher'; deprecated 'ENGINE_get_cipher API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * const EVP_MD *ENGINE_get_digest(ENGINE *e, int nid);
+  }
+  function ENGINE_get_digest(e: PENGINE; nid: TOpenSSL_C_INT): PEVP_MD; cdecl; external CLibCrypto name 'ENGINE_get_digest'; deprecated 'ENGINE_get_digest API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * const EVP_PKEY_METHOD *ENGINE_get_pkey_meth(ENGINE *e, int nid);
+  }
+  function ENGINE_get_pkey_meth(e: PENGINE; nid: TOpenSSL_C_INT): PEVP_PKEY_METHOD; cdecl; external CLibCrypto name 'ENGINE_get_pkey_meth'; deprecated 'ENGINE_get_pkey_meth API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * const EVP_PKEY_ASN1_METHOD *ENGINE_get_pkey_asn1_meth(ENGINE *e, int nid);
+  }
+  function ENGINE_get_pkey_asn1_meth(e: PENGINE; nid: TOpenSSL_C_INT): PEVP_PKEY_ASN1_METHOD; cdecl; external CLibCrypto name 'ENGINE_get_pkey_asn1_meth'; deprecated 'ENGINE_get_pkey_asn1_meth API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * const EVP_PKEY_ASN1_METHOD *ENGINE_get_pkey_asn1_meth_str(ENGINE *e,
+  *                                             const char *str, int len);
+  }
+  function ENGINE_get_pkey_asn1_meth_str(e: PENGINE; str: PAnsiChar; len: TOpenSSL_C_INT): PEVP_PKEY_ASN1_METHOD; cdecl; external CLibCrypto name 'ENGINE_get_pkey_asn1_meth_str'; deprecated 'ENGINE_get_pkey_asn1_meth_str API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * const EVP_PKEY_ASN1_METHOD *ENGINE_pkey_asn1_find_str(ENGINE **pe,
+  *                                             const char *str, int len);
+  }
+  function ENGINE_pkey_asn1_find_str(pe: PPENGINE; str: PAnsiChar; len: TOpenSSL_C_INT): PEVP_PKEY_ASN1_METHOD; cdecl; external CLibCrypto name 'ENGINE_pkey_asn1_find_str'; deprecated 'ENGINE_pkey_asn1_find_str API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * const ENGINE_CMD_DEFN *ENGINE_get_cmd_defns(const ENGINE *e);
+  }
+  function ENGINE_get_cmd_defns(e: PENGINE): PENGINE_CMD_DEFN; cdecl; external CLibCrypto name 'ENGINE_get_cmd_defns'; deprecated 'ENGINE_get_cmd_defns API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_get_flags(const ENGINE *e); }
+  function ENGINE_get_flags(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_get_flags'; deprecated 'ENGINE_get_flags API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
       {$else}
   {$EXTERNALSYM ENGINE_get_id}
   {$EXTERNALSYM ENGINE_get_name}
@@ -951,30 +1362,111 @@ var
 
 var
   ENGINE_get_id: function(e: PENGINE): PAnsiChar; cdecl = Load_ENGINE_get_id;
+  { OSSL_DEPRECATEDIN_3_0 const char *ENGINE_get_name(const ENGINE *e); }
   ENGINE_get_name: function(e: PENGINE): PAnsiChar; cdecl = Load_ENGINE_get_name;
+  { OSSL_DEPRECATEDIN_3_0 const RSA_METHOD *ENGINE_get_RSA(const ENGINE *e); }
   ENGINE_get_RSA: function(e: PENGINE): PRSA_METHOD; cdecl = Load_ENGINE_get_RSA;
+  { OSSL_DEPRECATEDIN_3_0 const DSA_METHOD *ENGINE_get_DSA(const ENGINE *e); }
   ENGINE_get_DSA: function(e: PENGINE): PDSA_METHOD; cdecl = Load_ENGINE_get_DSA;
+  { OSSL_DEPRECATEDIN_3_0 const EC_KEY_METHOD *ENGINE_get_EC(const ENGINE *e); }
   ENGINE_get_EC: function(e: PENGINE): PEC_KEY_METHOD; cdecl = Load_ENGINE_get_EC;
+  { OSSL_DEPRECATEDIN_3_0 const DH_METHOD *ENGINE_get_DH(const ENGINE *e); }
   ENGINE_get_DH: function(e: PENGINE): PDH_METHOD; cdecl = Load_ENGINE_get_DH;
+  { OSSL_DEPRECATEDIN_3_0 const RAND_METHOD *ENGINE_get_RAND(const ENGINE *e); }
   ENGINE_get_RAND: function(e: PENGINE): PRAND_METHOD; cdecl = Load_ENGINE_get_RAND;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * ENGINE_GEN_INT_FUNC_PTR ENGINE_get_destroy_function(const ENGINE *e);
+  }
   ENGINE_get_destroy_function: function(e: PENGINE): TENGINE_GEN_INT_FUNC_PTR; cdecl = Load_ENGINE_get_destroy_function;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * ENGINE_GEN_INT_FUNC_PTR ENGINE_get_init_function(const ENGINE *e);
+  }
   ENGINE_get_init_function: function(e: PENGINE): TENGINE_GEN_INT_FUNC_PTR; cdecl = Load_ENGINE_get_init_function;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * ENGINE_GEN_INT_FUNC_PTR ENGINE_get_finish_function(const ENGINE *e);
+  }
   ENGINE_get_finish_function: function(e: PENGINE): TENGINE_GEN_INT_FUNC_PTR; cdecl = Load_ENGINE_get_finish_function;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * ENGINE_CTRL_FUNC_PTR ENGINE_get_ctrl_function(const ENGINE *e);
+  }
   ENGINE_get_ctrl_function: function(e: PENGINE): TENGINE_CTRL_FUNC_PTR; cdecl = Load_ENGINE_get_ctrl_function;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * ENGINE_LOAD_KEY_PTR ENGINE_get_load_privkey_function(const ENGINE *e);
+  }
   ENGINE_get_load_privkey_function: function(e: PENGINE): TENGINE_LOAD_KEY_PTR; cdecl = Load_ENGINE_get_load_privkey_function;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * ENGINE_LOAD_KEY_PTR ENGINE_get_load_pubkey_function(const ENGINE *e);
+  }
   ENGINE_get_load_pubkey_function: function(e: PENGINE): TENGINE_LOAD_KEY_PTR; cdecl = Load_ENGINE_get_load_pubkey_function;
+  
+  {* OSSL_DEPRECATEDIN_3_0 ENGINE_SSL_CLIENT_CERT_PTR
+  * ENGINE_get_ssl_client_cert_function(const ENGINE *e);
+  }
   ENGINE_get_ssl_client_cert_function: function(e: PENGINE): TENGINE_SSL_CLIENT_CERT_PTR; cdecl = Load_ENGINE_get_ssl_client_cert_function;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * ENGINE_CIPHERS_PTR ENGINE_get_ciphers(const ENGINE *e);
+  }
   ENGINE_get_ciphers: function(e: PENGINE): TENGINE_CIPHERS_PTR; cdecl = Load_ENGINE_get_ciphers;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * ENGINE_DIGESTS_PTR ENGINE_get_digests(const ENGINE *e);
+  }
   ENGINE_get_digests: function(e: PENGINE): TENGINE_DIGESTS_PTR; cdecl = Load_ENGINE_get_digests;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * ENGINE_PKEY_METHS_PTR ENGINE_get_pkey_meths(const ENGINE *e);
+  }
   ENGINE_get_pkey_meths: function(e: PENGINE): TENGINE_PKEY_METHS_PTR; cdecl = Load_ENGINE_get_pkey_meths;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * ENGINE_PKEY_ASN1_METHS_PTR ENGINE_get_pkey_asn1_meths(const ENGINE *e);
+  }
   ENGINE_get_pkey_asn1_meths: function(e: PENGINE): TENGINE_PKEY_ASN1_METHS_PTR; cdecl = Load_ENGINE_get_pkey_asn1_meths;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * const EVP_CIPHER *ENGINE_get_cipher(ENGINE *e, int nid);
+  }
   ENGINE_get_cipher: function(e: PENGINE; nid: TOpenSSL_C_INT): PEVP_CIPHER; cdecl = Load_ENGINE_get_cipher;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * const EVP_MD *ENGINE_get_digest(ENGINE *e, int nid);
+  }
   ENGINE_get_digest: function(e: PENGINE; nid: TOpenSSL_C_INT): PEVP_MD; cdecl = Load_ENGINE_get_digest;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * const EVP_PKEY_METHOD *ENGINE_get_pkey_meth(ENGINE *e, int nid);
+  }
   ENGINE_get_pkey_meth: function(e: PENGINE; nid: TOpenSSL_C_INT): PEVP_PKEY_METHOD; cdecl = Load_ENGINE_get_pkey_meth;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * const EVP_PKEY_ASN1_METHOD *ENGINE_get_pkey_asn1_meth(ENGINE *e, int nid);
+  }
   ENGINE_get_pkey_asn1_meth: function(e: PENGINE; nid: TOpenSSL_C_INT): PEVP_PKEY_ASN1_METHOD; cdecl = Load_ENGINE_get_pkey_asn1_meth;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * const EVP_PKEY_ASN1_METHOD *ENGINE_get_pkey_asn1_meth_str(ENGINE *e,
+  *                                             const char *str, int len);
+  }
   ENGINE_get_pkey_asn1_meth_str: function(e: PENGINE; str: PAnsiChar; len: TOpenSSL_C_INT): PEVP_PKEY_ASN1_METHOD; cdecl = Load_ENGINE_get_pkey_asn1_meth_str;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * const EVP_PKEY_ASN1_METHOD *ENGINE_pkey_asn1_find_str(ENGINE **pe,
+  *                                             const char *str, int len);
+  }
   ENGINE_pkey_asn1_find_str: function(pe: PPENGINE; str: PAnsiChar; len: TOpenSSL_C_INT): PEVP_PKEY_ASN1_METHOD; cdecl = Load_ENGINE_pkey_asn1_find_str;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * const ENGINE_CMD_DEFN *ENGINE_get_cmd_defns(const ENGINE *e);
+  }
   ENGINE_get_cmd_defns: function(e: PENGINE): PENGINE_CMD_DEFN; cdecl = Load_ENGINE_get_cmd_defns;
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_get_flags(const ENGINE *e); }
   ENGINE_get_flags: function(e: PENGINE): TOpenSSL_C_INT; cdecl = Load_ENGINE_get_flags;
       {$endif} {OPENSSL_STATIC_LINK_MODEL}
     {$endif}
@@ -998,8 +1490,9 @@ var
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
 
+      { OSSL_DEPRECATEDIN_3_0 int ENGINE_init(ENGINE *e); }
       {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function ENGINE_init(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_init'; deprecated 'Since OpenSSL 3.0';
+  function ENGINE_init(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_init'; deprecated 'ENGINE_init API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
       {$else}
   {$EXTERNALSYM ENGINE_init}
   {Do not call Function LoadDeclarations. Internal use only}
@@ -1017,8 +1510,9 @@ var
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
 
+      { OSSL_DEPRECATEDIN_3_0 int ENGINE_finish(ENGINE *e); }
       {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function ENGINE_finish(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_finish'; deprecated 'Since OpenSSL 3.0';
+  function ENGINE_finish(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_finish'; deprecated 'ENGINE_finish API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
       {$else}
   {$EXTERNALSYM ENGINE_finish}
   {Do not call Function LoadDeclarations. Internal use only}
@@ -1036,10 +1530,27 @@ var
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
 
+      
+      {* OSSL_DEPRECATEDIN_3_0
+      * EVP_PKEY *ENGINE_load_private_key(ENGINE *e, const char *key_id,
+      *                                   UI_METHOD *ui_method, void *callback_data);
+      }
       {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function ENGINE_load_private_key(e: PENGINE; key_id: PAnsiChar; ui_method: PUI_METHOD; callback_data: pointer): PEVP_PKEY; cdecl; external CLibCrypto name 'ENGINE_load_private_key'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_load_public_key(e: PENGINE; key_id: PAnsiChar; ui_method: PUI_METHOD; callback_data: pointer): PEVP_PKEY; cdecl; external CLibCrypto name 'ENGINE_load_public_key'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_load_ssl_client_cert(e: PENGINE; s: PSSL; ca_dn: Pstack_st_X509_NAME; pcert: PPX509; ppkey: PPEVP_PKEY; pother: PPstack_st_X509; ui_method: PUI_METHOD; callback_data: pointer): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_load_ssl_client_cert'; deprecated 'Since OpenSSL 3.0';
+  function ENGINE_load_private_key(e: PENGINE; key_id: PAnsiChar; ui_method: PUI_METHOD; callback_data: pointer): PEVP_PKEY; cdecl; external CLibCrypto name 'ENGINE_load_private_key'; deprecated 'ENGINE_load_private_key API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * EVP_PKEY *ENGINE_load_public_key(ENGINE *e, const char *key_id,
+  *                                  UI_METHOD *ui_method, void *callback_data);
+  }
+  function ENGINE_load_public_key(e: PENGINE; key_id: PAnsiChar; ui_method: PUI_METHOD; callback_data: pointer): PEVP_PKEY; cdecl; external CLibCrypto name 'ENGINE_load_public_key'; deprecated 'ENGINE_load_public_key API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_load_ssl_client_cert(ENGINE *e, SSL *s, STACK_OF(X509_NAME) *ca_dn,
+  *                                 X509 **pcert, EVP_PKEY **ppkey,
+  *                                 STACK_OF(X509) **pother,
+  *                                 UI_METHOD *ui_method, void *callback_data);
+  }
+  function ENGINE_load_ssl_client_cert(e: PENGINE; s: PSSL; ca_dn: Pstack_st_X509_NAME; pcert: PPX509; ppkey: PPEVP_PKEY; pother: PPstack_st_X509; ui_method: PUI_METHOD; callback_data: pointer): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_load_ssl_client_cert'; deprecated 'ENGINE_load_ssl_client_cert API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
       {$else}
   {$EXTERNALSYM ENGINE_load_private_key}
   {$EXTERNALSYM ENGINE_load_public_key}
@@ -1051,7 +1562,19 @@ var
 
 var
   ENGINE_load_private_key: function(e: PENGINE; key_id: PAnsiChar; ui_method: PUI_METHOD; callback_data: pointer): PEVP_PKEY; cdecl = Load_ENGINE_load_private_key;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * EVP_PKEY *ENGINE_load_public_key(ENGINE *e, const char *key_id,
+  *                                  UI_METHOD *ui_method, void *callback_data);
+  }
   ENGINE_load_public_key: function(e: PENGINE; key_id: PAnsiChar; ui_method: PUI_METHOD; callback_data: pointer): PEVP_PKEY; cdecl = Load_ENGINE_load_public_key;
+  
+  {* OSSL_DEPRECATEDIN_3_0
+  * int ENGINE_load_ssl_client_cert(ENGINE *e, SSL *s, STACK_OF(X509_NAME) *ca_dn,
+  *                                 X509 **pcert, EVP_PKEY **ppkey,
+  *                                 STACK_OF(X509) **pother,
+  *                                 UI_METHOD *ui_method, void *callback_data);
+  }
   ENGINE_load_ssl_client_cert: function(e: PENGINE; s: PSSL; ca_dn: Pstack_st_X509_NAME; pcert: PPX509; ppkey: PPEVP_PKEY; pother: PPstack_st_X509; ui_method: PUI_METHOD; callback_data: pointer): TOpenSSL_C_INT; cdecl = Load_ENGINE_load_ssl_client_cert;
       {$endif} {OPENSSL_STATIC_LINK_MODEL}
     {$endif}
@@ -1064,8 +1587,9 @@ var
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
 
+      { OSSL_DEPRECATEDIN_3_0 ENGINE *ENGINE_get_default_RSA(void); }
       {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function ENGINE_get_default_RSA: PENGINE; cdecl; external CLibCrypto name 'ENGINE_get_default_RSA'; deprecated 'Since OpenSSL 3.0';
+  function ENGINE_get_default_RSA: PENGINE; cdecl; external CLibCrypto name 'ENGINE_get_default_RSA'; deprecated 'ENGINE_get_default_RSA API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
       {$else}
   {$EXTERNALSYM ENGINE_get_default_RSA}
   {Do not call Function LoadDeclarations. Internal use only}
@@ -1079,11 +1603,15 @@ var
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
 
+      { OSSL_DEPRECATEDIN_3_0 ENGINE *ENGINE_get_default_DSA(void); }
       {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function ENGINE_get_default_DSA: PENGINE; cdecl; external CLibCrypto name 'ENGINE_get_default_DSA'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_get_default_EC: PENGINE; cdecl; external CLibCrypto name 'ENGINE_get_default_EC'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_get_default_DH: PENGINE; cdecl; external CLibCrypto name 'ENGINE_get_default_DH'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_get_default_RAND: PENGINE; cdecl; external CLibCrypto name 'ENGINE_get_default_RAND'; deprecated 'Since OpenSSL 3.0';
+  function ENGINE_get_default_DSA: PENGINE; cdecl; external CLibCrypto name 'ENGINE_get_default_DSA'; deprecated 'ENGINE_get_default_DSA API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 ENGINE *ENGINE_get_default_EC(void); }
+  function ENGINE_get_default_EC: PENGINE; cdecl; external CLibCrypto name 'ENGINE_get_default_EC'; deprecated 'ENGINE_get_default_EC API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 ENGINE *ENGINE_get_default_DH(void); }
+  function ENGINE_get_default_DH: PENGINE; cdecl; external CLibCrypto name 'ENGINE_get_default_DH'; deprecated 'ENGINE_get_default_DH API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 ENGINE *ENGINE_get_default_RAND(void); }
+  function ENGINE_get_default_RAND: PENGINE; cdecl; external CLibCrypto name 'ENGINE_get_default_RAND'; deprecated 'ENGINE_get_default_RAND API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
       {$else}
   {$EXTERNALSYM ENGINE_get_default_DSA}
   {$EXTERNALSYM ENGINE_get_default_EC}
@@ -1097,8 +1625,11 @@ var
 
 var
   ENGINE_get_default_DSA: function: PENGINE; cdecl = Load_ENGINE_get_default_DSA;
+  { OSSL_DEPRECATEDIN_3_0 ENGINE *ENGINE_get_default_EC(void); }
   ENGINE_get_default_EC: function: PENGINE; cdecl = Load_ENGINE_get_default_EC;
+  { OSSL_DEPRECATEDIN_3_0 ENGINE *ENGINE_get_default_DH(void); }
   ENGINE_get_default_DH: function: PENGINE; cdecl = Load_ENGINE_get_default_DH;
+  { OSSL_DEPRECATEDIN_3_0 ENGINE *ENGINE_get_default_RAND(void); }
   ENGINE_get_default_RAND: function: PENGINE; cdecl = Load_ENGINE_get_default_RAND;
       {$endif} {OPENSSL_STATIC_LINK_MODEL}
     {$endif}
@@ -1109,11 +1640,15 @@ var
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
 
+      { OSSL_DEPRECATEDIN_3_0 ENGINE *ENGINE_get_cipher_engine(int nid); }
       {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function ENGINE_get_cipher_engine(nid: TOpenSSL_C_INT): PENGINE; cdecl; external CLibCrypto name 'ENGINE_get_cipher_engine'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_get_digest_engine(nid: TOpenSSL_C_INT): PENGINE; cdecl; external CLibCrypto name 'ENGINE_get_digest_engine'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_get_pkey_meth_engine(nid: TOpenSSL_C_INT): PENGINE; cdecl; external CLibCrypto name 'ENGINE_get_pkey_meth_engine'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_get_pkey_asn1_meth_engine(nid: TOpenSSL_C_INT): PENGINE; cdecl; external CLibCrypto name 'ENGINE_get_pkey_asn1_meth_engine'; deprecated 'Since OpenSSL 3.0';
+  function ENGINE_get_cipher_engine(nid: TOpenSSL_C_INT): PENGINE; cdecl; external CLibCrypto name 'ENGINE_get_cipher_engine'; deprecated 'ENGINE_get_cipher_engine API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 ENGINE *ENGINE_get_digest_engine(int nid); }
+  function ENGINE_get_digest_engine(nid: TOpenSSL_C_INT): PENGINE; cdecl; external CLibCrypto name 'ENGINE_get_digest_engine'; deprecated 'ENGINE_get_digest_engine API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 ENGINE *ENGINE_get_pkey_meth_engine(int nid); }
+  function ENGINE_get_pkey_meth_engine(nid: TOpenSSL_C_INT): PENGINE; cdecl; external CLibCrypto name 'ENGINE_get_pkey_meth_engine'; deprecated 'ENGINE_get_pkey_meth_engine API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 ENGINE *ENGINE_get_pkey_asn1_meth_engine(int nid); }
+  function ENGINE_get_pkey_asn1_meth_engine(nid: TOpenSSL_C_INT): PENGINE; cdecl; external CLibCrypto name 'ENGINE_get_pkey_asn1_meth_engine'; deprecated 'ENGINE_get_pkey_asn1_meth_engine API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
       {$else}
   {$EXTERNALSYM ENGINE_get_cipher_engine}
   {$EXTERNALSYM ENGINE_get_digest_engine}
@@ -1127,8 +1662,11 @@ var
 
 var
   ENGINE_get_cipher_engine: function(nid: TOpenSSL_C_INT): PENGINE; cdecl = Load_ENGINE_get_cipher_engine;
+  { OSSL_DEPRECATEDIN_3_0 ENGINE *ENGINE_get_digest_engine(int nid); }
   ENGINE_get_digest_engine: function(nid: TOpenSSL_C_INT): PENGINE; cdecl = Load_ENGINE_get_digest_engine;
+  { OSSL_DEPRECATEDIN_3_0 ENGINE *ENGINE_get_pkey_meth_engine(int nid); }
   ENGINE_get_pkey_meth_engine: function(nid: TOpenSSL_C_INT): PENGINE; cdecl = Load_ENGINE_get_pkey_meth_engine;
+  { OSSL_DEPRECATEDIN_3_0 ENGINE *ENGINE_get_pkey_asn1_meth_engine(int nid); }
   ENGINE_get_pkey_asn1_meth_engine: function(nid: TOpenSSL_C_INT): PENGINE; cdecl = Load_ENGINE_get_pkey_asn1_meth_engine;
       {$endif} {OPENSSL_STATIC_LINK_MODEL}
     {$endif}
@@ -1141,9 +1679,14 @@ var
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
 
+      { OSSL_DEPRECATEDIN_3_0 int ENGINE_set_default_RSA(ENGINE *e); }
       {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function ENGINE_set_default_RSA(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_default_RSA'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_set_default_string(e: PENGINE; def_list: PAnsiChar): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_default_string'; deprecated 'Since OpenSSL 3.0';
+  function ENGINE_set_default_RSA(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_default_RSA'; deprecated 'ENGINE_set_default_RSA API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  
+  {* OSSL_DEPRECATEDIN_3_0 int ENGINE_set_default_string(ENGINE *e,
+  *                                                     const char *def_list);
+  }
+  function ENGINE_set_default_string(e: PENGINE; def_list: PAnsiChar): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_default_string'; deprecated 'ENGINE_set_default_string API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
       {$else}
   {$EXTERNALSYM ENGINE_set_default_RSA}
   {$EXTERNALSYM ENGINE_set_default_string}
@@ -1153,6 +1696,10 @@ var
 
 var
   ENGINE_set_default_RSA: function(e: PENGINE): TOpenSSL_C_INT; cdecl = Load_ENGINE_set_default_RSA;
+  
+  {* OSSL_DEPRECATEDIN_3_0 int ENGINE_set_default_string(ENGINE *e,
+  *                                                     const char *def_list);
+  }
   ENGINE_set_default_string: function(e: PENGINE; def_list: PAnsiChar): TOpenSSL_C_INT; cdecl = Load_ENGINE_set_default_string;
       {$endif} {OPENSSL_STATIC_LINK_MODEL}
     {$endif}
@@ -1160,15 +1707,23 @@ var
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
 
+      { OSSL_DEPRECATEDIN_3_0 int ENGINE_set_default_DSA(ENGINE *e); }
       {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function ENGINE_set_default_DSA(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_default_DSA'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_set_default_EC(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_default_EC'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_set_default_DH(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_default_DH'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_set_default_RAND(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_default_RAND'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_set_default_ciphers(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_default_ciphers'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_set_default_digests(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_default_digests'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_set_default_pkey_meths(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_default_pkey_meths'; deprecated 'Since OpenSSL 3.0';
-  function ENGINE_set_default_pkey_asn1_meths(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_default_pkey_asn1_meths'; deprecated 'Since OpenSSL 3.0';
+  function ENGINE_set_default_DSA(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_default_DSA'; deprecated 'ENGINE_set_default_DSA API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_set_default_EC(ENGINE *e); }
+  function ENGINE_set_default_EC(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_default_EC'; deprecated 'ENGINE_set_default_EC API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_set_default_DH(ENGINE *e); }
+  function ENGINE_set_default_DH(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_default_DH'; deprecated 'ENGINE_set_default_DH API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_set_default_RAND(ENGINE *e); }
+  function ENGINE_set_default_RAND(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_default_RAND'; deprecated 'ENGINE_set_default_RAND API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_set_default_ciphers(ENGINE *e); }
+  function ENGINE_set_default_ciphers(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_default_ciphers'; deprecated 'ENGINE_set_default_ciphers API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_set_default_digests(ENGINE *e); }
+  function ENGINE_set_default_digests(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_default_digests'; deprecated 'ENGINE_set_default_digests API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_set_default_pkey_meths(ENGINE *e); }
+  function ENGINE_set_default_pkey_meths(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_default_pkey_meths'; deprecated 'ENGINE_set_default_pkey_meths API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_set_default_pkey_asn1_meths(ENGINE *e); }
+  function ENGINE_set_default_pkey_asn1_meths(e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_default_pkey_asn1_meths'; deprecated 'ENGINE_set_default_pkey_asn1_meths API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
       {$else}
   {$EXTERNALSYM ENGINE_set_default_DSA}
   {$EXTERNALSYM ENGINE_set_default_EC}
@@ -1190,12 +1745,19 @@ var
 
 var
   ENGINE_set_default_DSA: function(e: PENGINE): TOpenSSL_C_INT; cdecl = Load_ENGINE_set_default_DSA;
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_set_default_EC(ENGINE *e); }
   ENGINE_set_default_EC: function(e: PENGINE): TOpenSSL_C_INT; cdecl = Load_ENGINE_set_default_EC;
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_set_default_DH(ENGINE *e); }
   ENGINE_set_default_DH: function(e: PENGINE): TOpenSSL_C_INT; cdecl = Load_ENGINE_set_default_DH;
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_set_default_RAND(ENGINE *e); }
   ENGINE_set_default_RAND: function(e: PENGINE): TOpenSSL_C_INT; cdecl = Load_ENGINE_set_default_RAND;
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_set_default_ciphers(ENGINE *e); }
   ENGINE_set_default_ciphers: function(e: PENGINE): TOpenSSL_C_INT; cdecl = Load_ENGINE_set_default_ciphers;
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_set_default_digests(ENGINE *e); }
   ENGINE_set_default_digests: function(e: PENGINE): TOpenSSL_C_INT; cdecl = Load_ENGINE_set_default_digests;
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_set_default_pkey_meths(ENGINE *e); }
   ENGINE_set_default_pkey_meths: function(e: PENGINE): TOpenSSL_C_INT; cdecl = Load_ENGINE_set_default_pkey_meths;
+  { OSSL_DEPRECATEDIN_3_0 int ENGINE_set_default_pkey_asn1_meths(ENGINE *e); }
   ENGINE_set_default_pkey_asn1_meths: function(e: PENGINE): TOpenSSL_C_INT; cdecl = Load_ENGINE_set_default_pkey_asn1_meths;
       {$endif} {OPENSSL_STATIC_LINK_MODEL}
     {$endif}
@@ -1209,9 +1771,14 @@ var
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
 
+      
+      {* OSSL_DEPRECATEDIN_3_0
+      * int ENGINE_set_default(ENGINE *e, unsigned int flags);
+      }
       {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function ENGINE_set_default(e: PENGINE; flags: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_default'; deprecated 'Since OpenSSL 3.0';
-  procedure ENGINE_add_conf_module; cdecl; external CLibCrypto name 'ENGINE_add_conf_module'; deprecated 'Since OpenSSL 3.0';
+  function ENGINE_set_default(e: PENGINE; flags: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ENGINE_set_default'; deprecated 'ENGINE_set_default API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_add_conf_module(void); }
+  procedure ENGINE_add_conf_module; cdecl; external CLibCrypto name 'ENGINE_add_conf_module'; deprecated 'ENGINE_add_conf_module API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
       {$else}
   {$EXTERNALSYM ENGINE_set_default}
   {$EXTERNALSYM ENGINE_add_conf_module}
@@ -1221,6 +1788,7 @@ var
 
 var
   ENGINE_set_default: function(e: PENGINE; flags: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl = Load_ENGINE_set_default;
+  { OSSL_DEPRECATEDIN_3_0 void ENGINE_add_conf_module(void); }
   ENGINE_add_conf_module: procedure; cdecl = Load_ENGINE_add_conf_module;
       {$endif} {OPENSSL_STATIC_LINK_MODEL}
     {$endif}
@@ -1292,33 +1860,22 @@ type
   end;
   Tdynamic_fns = Tst_dynamic_fns;
     
-    {* The version checking function should be of this prototype. NB: The
-    * ossl_version value passed in is the OSSL_DYNAMIC_VERSION of the loading
-    * code. If this function returns zero, it indicates a (potential) version
+    {* The version checking function should be of this prototype.
+    * As a stub, this function returns zero, it indicates a (potential) version
     * incompatibility and the loaded library doesn't believe it can proceed.
-    * Otherwise, the returned value is the (latest) version supported by the
-    * loading library. The loader may still decide that the loaded code's
-    * version is unsatisfactory and could veto the load. The function is
-    * expected to be implemented with the symbol name "v_check", and a default
-    * implementation can be fully instantiated with
+    * The function is expected to be implemented with the symbol name "v_check",
+    * and a default implementation can be fully instantiated with
     * IMPLEMENT_DYNAMIC_CHECK_FN().
     }
   Tdynamic_v_check_fn = function(ossl_version: TOpenSSL_C_UINT): TOpenSSL_C_UINT; cdecl;
   (*# define  IMPLEMENT_DYNAMIC_CHECK_FN() OPENSSL_EXPORT unsigned long v_check(unsigned long v); OPENSSL_EXPORT unsigned long v_check(unsigned 
-long v) { if (v >= OSSL_DYNAMIC_OLDEST) return OSSL_DYNAMIC_VERSION; return 0; }*)
+long v) { return 0; }*)
     
     {* This function is passed the ENGINE structure to initialise with its own
     * function and command settings. It should not adjust the structural or
-    * functional reference counts. If this function returns zero, (a) the load
-    * will be aborted, (b) the previous ENGINE state will be memcpy'd back onto
-    * the structure, and (c) the shared library will be unloaded. So
-    * implementations should do their own internal cleanup in failure
-    * circumstances otherwise they could leak. The 'id' parameter, if non-NULL,
-    * represents the ENGINE id that the loader is looking for. If this is NULL,
-    * the shared library can choose to return failure or to initialise a
-    * 'default' ENGINE. If non-NULL, the shared library must initialise only an
-    * ENGINE matching the passed 'id'. The function is expected to be
-    * implemented with the symbol name "bind_engine". A standard implementation
+    * functional reference counts. As a stub, this function returns zero, the load
+    * will be aborted. The function is expected to be implemented with the symbol
+    * name "bind_engine". A standard implementation
     * can be instantiated with IMPLEMENT_DYNAMIC_BIND_FN(fn) where the parameter
     * 'fn' is a callback function that populates the ENGINE structure and
     * returns an int value (zero for failure). 'fn' should have prototype;
@@ -1326,9 +1883,7 @@ long v) { if (v >= OSSL_DYNAMIC_OLDEST) return OSSL_DYNAMIC_VERSION; return 0; }
     }
   Tdynamic_bind_engine = function(e: PENGINE; id: PAnsiChar; fns: Pdynamic_fns): TOpenSSL_C_INT; cdecl;
   (*# define  IMPLEMENT_DYNAMIC_BIND_FN(fn) OPENSSL_EXPORT int bind_engine(ENGINE *e, const char *id, const dynamic_fns *fns); OPENSSL_EXPORT 
-int bind_engine(ENGINE *e, const char *id, const dynamic_fns *fns) { if (ENGINE_get_static_state() == fns->static_state) goto skip_cbs; 
-CRYPTO_set_mem_functions(fns->mem_fns.malloc_fn, fns->mem_fns.realloc_fn, fns->mem_fns.free_fn); OPENSSL_init_crypto(OPENSSL_INIT_NO_ATEXIT,
- NULL); skip_cbs: if (!fn(e, id)) return 0; return 1; }*)
+int bind_engine(ENGINE *e, const char *id, const dynamic_fns *fns) { return 0; }*)
 
 
     
@@ -1342,8 +1897,9 @@ CRYPTO_set_mem_functions(fns->mem_fns.malloc_fn, fns->mem_fns.realloc_fn, fns->m
     * static data and let the loading application and loaded ENGINE compare
     * their respective values.
     }
+    { void *ENGINE_get_static_state(void); }
     {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function ENGINE_get_static_state: pointer; cdecl; external CLibCrypto name 'ENGINE_get_static_state';
+  function ENGINE_get_static_state: pointer; cdecl; external CLibCrypto name 'ENGINE_get_static_state'; deprecated 'ENGINE_get_static_state API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
     {$else}
   {$EXTERNALSYM ENGINE_get_static_state}
   {Do not call Function LoadDeclarations. Internal use only}
@@ -1356,8 +1912,9 @@ var
       {$ifndef  OPENSSL_NO_DEPRECATED_1_1_0}
 
 
+        { OSSL_DEPRECATEDIN_1_1_0 void ENGINE_setup_bsd_cryptodev(void); }
         {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  procedure ENGINE_setup_bsd_cryptodev; cdecl; external CLibCrypto name 'ENGINE_setup_bsd_cryptodev'; deprecated 'Since OpenSSL 1.1.0';
+  procedure ENGINE_setup_bsd_cryptodev; cdecl; external CLibCrypto name 'ENGINE_setup_bsd_cryptodev'; deprecated 'ENGINE_setup_bsd_cryptodev API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
         {$else}
   {$EXTERNALSYM ENGINE_setup_bsd_cryptodev}
   {Do not call Function LoadDeclarations. Internal use only}
@@ -1368,8 +1925,110 @@ var
         {$endif} {OPENSSL_STATIC_LINK_MODEL}
       {$endif}
     {$endif}
+    
+    {* Stubs for ENGINE-related API functions that were removed
+    * from other headers.
+    }
+    {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
+
+
+      { int EVP_PKEY_set1_engine(EVP_PKEY *pkey, ENGINE *e); }
+      {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  function EVP_PKEY_set1_engine(pkey: PEVP_PKEY; e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_set1_engine'; deprecated 'EVP_PKEY_set1_engine API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { ENGINE *EVP_PKEY_get0_engine(const EVP_PKEY *pkey); }
+  function EVP_PKEY_get0_engine(pkey: PEVP_PKEY): PENGINE; cdecl; external CLibCrypto name 'EVP_PKEY_get0_engine'; deprecated 'EVP_PKEY_get0_engine API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { ENGINE *DH_get0_engine(DH *d); }
+  function DH_get0_engine(d: PDH): PENGINE; cdecl; external CLibCrypto name 'DH_get0_engine'; deprecated 'DH_get0_engine API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { ENGINE *RSA_get0_engine(const RSA *r); }
+  function RSA_get0_engine(r: PRSA): PENGINE; cdecl; external CLibCrypto name 'RSA_get0_engine'; deprecated 'RSA_get0_engine API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { ENGINE *DSA_get0_engine(DSA *d); }
+  function DSA_get0_engine(d: PDSA): PENGINE; cdecl; external CLibCrypto name 'DSA_get0_engine'; deprecated 'DSA_get0_engine API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { ENGINE *EC_KEY_get0_engine(const EC_KEY *eckey); }
+  function EC_KEY_get0_engine(eckey: PEC_KEY): PENGINE; cdecl; external CLibCrypto name 'EC_KEY_get0_engine'; deprecated 'EC_KEY_get0_engine API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { const ENGINE *OSSL_STORE_LOADER_get0_engine(const OSSL_STORE_LOADER *loader); }
+  function OSSL_STORE_LOADER_get0_engine(loader: POSSL_STORE_LOADER): PENGINE; cdecl; external CLibCrypto name 'OSSL_STORE_LOADER_get0_engine'; deprecated 'OSSL_STORE_LOADER_get0_engine API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { int RAND_set_rand_engine(ENGINE *engine); }
+  function RAND_set_rand_engine(engine: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'RAND_set_rand_engine'; deprecated 'RAND_set_rand_engine API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { int ERR_load_ENGINE_strings(void); }
+  function ERR_load_ENGINE_strings: TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ERR_load_ENGINE_strings'; deprecated 'ERR_load_ENGINE_strings API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+      {$else}
+  {$EXTERNALSYM EVP_PKEY_set1_engine}
+  {$EXTERNALSYM EVP_PKEY_get0_engine}
+  {$EXTERNALSYM DH_get0_engine}
+  {$EXTERNALSYM RSA_get0_engine}
+  {$EXTERNALSYM DSA_get0_engine}
+  {$EXTERNALSYM EC_KEY_get0_engine}
+  {$EXTERNALSYM OSSL_STORE_LOADER_get0_engine}
+  {$EXTERNALSYM RAND_set_rand_engine}
+  {$EXTERNALSYM ERR_load_ENGINE_strings}
+  {Do not call Function LoadDeclarations. Internal use only}
+  function Load_EVP_PKEY_set1_engine(pkey: PEVP_PKEY; e: PENGINE): TOpenSSL_C_INT; cdecl;
+  function Load_EVP_PKEY_get0_engine(pkey: PEVP_PKEY): PENGINE; cdecl;
+  function Load_DH_get0_engine(d: PDH): PENGINE; cdecl;
+  function Load_RSA_get0_engine(r: PRSA): PENGINE; cdecl;
+  function Load_DSA_get0_engine(d: PDSA): PENGINE; cdecl;
+  function Load_EC_KEY_get0_engine(eckey: PEC_KEY): PENGINE; cdecl;
+  function Load_OSSL_STORE_LOADER_get0_engine(loader: POSSL_STORE_LOADER): PENGINE; cdecl;
+  function Load_RAND_set_rand_engine(engine: PENGINE): TOpenSSL_C_INT; cdecl;
+  function Load_ERR_load_ENGINE_strings: TOpenSSL_C_INT; cdecl;
+
+var
+  EVP_PKEY_set1_engine: function(pkey: PEVP_PKEY; e: PENGINE): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_set1_engine;
+  { ENGINE *EVP_PKEY_get0_engine(const EVP_PKEY *pkey); }
+  EVP_PKEY_get0_engine: function(pkey: PEVP_PKEY): PENGINE; cdecl = Load_EVP_PKEY_get0_engine;
+  { ENGINE *DH_get0_engine(DH *d); }
+  DH_get0_engine: function(d: PDH): PENGINE; cdecl = Load_DH_get0_engine;
+  { ENGINE *RSA_get0_engine(const RSA *r); }
+  RSA_get0_engine: function(r: PRSA): PENGINE; cdecl = Load_RSA_get0_engine;
+  { ENGINE *DSA_get0_engine(DSA *d); }
+  DSA_get0_engine: function(d: PDSA): PENGINE; cdecl = Load_DSA_get0_engine;
+  { ENGINE *EC_KEY_get0_engine(const EC_KEY *eckey); }
+  EC_KEY_get0_engine: function(eckey: PEC_KEY): PENGINE; cdecl = Load_EC_KEY_get0_engine;
+  { const ENGINE *OSSL_STORE_LOADER_get0_engine(const OSSL_STORE_LOADER *loader); }
+  OSSL_STORE_LOADER_get0_engine: function(loader: POSSL_STORE_LOADER): PENGINE; cdecl = Load_OSSL_STORE_LOADER_get0_engine;
+  { int RAND_set_rand_engine(ENGINE *engine); }
+  RAND_set_rand_engine: function(engine: PENGINE): TOpenSSL_C_INT; cdecl = Load_RAND_set_rand_engine;
+  { int ERR_load_ENGINE_strings(void); }
+  ERR_load_ENGINE_strings: function: TOpenSSL_C_INT; cdecl = Load_ERR_load_ENGINE_strings;
+      {$endif} {OPENSSL_STATIC_LINK_MODEL}
+    {$endif}
+
+
+    
+    {* int TS_CONF_set_crypto_device(CONF *conf, const char *section,
+    *                              const char *device);
+    }
+    {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  function TS_CONF_set_crypto_device(conf: PCONF; section: PAnsiChar; device: PAnsiChar): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_CONF_set_crypto_device'; deprecated 'TS_CONF_set_crypto_device API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { int TS_CONF_set_default_engine(const char *name); }
+  function TS_CONF_set_default_engine(name: PAnsiChar): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_CONF_set_default_engine'; deprecated 'TS_CONF_set_default_engine API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+  { int SSL_CTX_set_client_cert_engine(SSL_CTX *ctx, ENGINE *e); }
+  function SSL_CTX_set_client_cert_engine(ctx: PSSL_CTX; e: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'SSL_CTX_set_client_cert_engine'; deprecated 'SSL_CTX_set_client_cert_engine API symbol is removed. Define OPENSSL_ENGINE_STUBS to mask linker errors.';
+    {$else}
+  {$EXTERNALSYM TS_CONF_set_crypto_device}
+  {$EXTERNALSYM TS_CONF_set_default_engine}
+  {$EXTERNALSYM SSL_CTX_set_client_cert_engine}
+  {Do not call Function LoadDeclarations. Internal use only}
+  function Load_TS_CONF_set_crypto_device(conf: PCONF; section: PAnsiChar; device: PAnsiChar): TOpenSSL_C_INT; cdecl;
+  function Load_TS_CONF_set_default_engine(name: PAnsiChar): TOpenSSL_C_INT; cdecl;
+  function Load_SSL_CTX_set_client_cert_engine(ctx: PSSL_CTX; e: PENGINE): TOpenSSL_C_INT; cdecl;
+
+var
+  TS_CONF_set_crypto_device: function(conf: PCONF; section: PAnsiChar; device: PAnsiChar): TOpenSSL_C_INT; cdecl = Load_TS_CONF_set_crypto_device;
+  { int TS_CONF_set_default_engine(const char *name); }
+  TS_CONF_set_default_engine: function(name: PAnsiChar): TOpenSSL_C_INT; cdecl = Load_TS_CONF_set_default_engine;
+  { int SSL_CTX_set_client_cert_engine(SSL_CTX *ctx, ENGINE *e); }
+  SSL_CTX_set_client_cert_engine: function(ctx: PSSL_CTX; e: PENGINE): TOpenSSL_C_INT; cdecl = Load_SSL_CTX_set_client_cert_engine;
+    {$endif} {OPENSSL_STATIC_LINK_MODEL}
+    {$undef  ENGINE_INFO_MSG}
+    {$undef  ENGINE_FUNC}
+    {$undef  ENGINE_VOID_FUNC}
+    {$undef  ENGINE_FUNC_NOARGS}
+    {$undef  ENGINE_VOID_FUNC_NOARGS}
+    {$if  defined(__GNUC__)}
+    {$elseif  defined(__clang__)}
+    {$endif}
   {$endif}
-  { OPENSSL_NO_ENGINE }
 {$endif}
 { OPENSSL_ENGINE_H }
 
@@ -1411,7 +2070,7 @@ uses Sysutils, variants
     OPENSSL_LINE  = 0;
   {$ifend}
 
-{$ifndef  OPENSSL_NO_ENGINE}
+{$ifdef ENGINE_FUNC}
 
 {# define  ENGINE_METHOD_RSA (unsigned int)0x0001}
 
@@ -1559,9 +2218,9 @@ function OSSL_DYNAMIC_OLDEST: TOpenSSL_C_UINT;
 begin
   Result := TOpenSSL_C_UINT(TOpenSSL_C_UINT($00030000));
 end;
-{$endif} { OPENSSL_NO_ENGINE}
+{$endif} {ENGINE_FUNC}
 {$ifndef OPENSSL_STATIC_LINK_MODEL}
-{$ifndef  OPENSSL_NO_ENGINE}
+{$ifdef ENGINE_FUNC}
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 function Load_ENGINE_get_first: PENGINE; cdecl;
 begin
@@ -1628,6 +2287,66 @@ begin
 end;
 
     {$endif} { OPENSSL_NO_DEPRECATED_3_0}
+    {$ifndef  OPENSSL_NO_DEPRECATED_1_1_0}
+function Load_ENGINE_load_openssl: TOpenSSL_C_INT; cdecl;
+begin
+  ENGINE_load_openssl := LoadLibCryptoFunction('ENGINE_load_openssl');
+  if not assigned(ENGINE_load_openssl) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_load_openssl');
+  Result := ENGINE_load_openssl;
+end;
+
+function Load_ENGINE_load_dynamic: TOpenSSL_C_INT; cdecl;
+begin
+  ENGINE_load_dynamic := LoadLibCryptoFunction('ENGINE_load_dynamic');
+  if not assigned(ENGINE_load_dynamic) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_load_dynamic');
+  Result := ENGINE_load_dynamic;
+end;
+
+function Load_ENGINE_load_cryptodev: TOpenSSL_C_INT; cdecl;
+begin
+  ENGINE_load_cryptodev := LoadLibCryptoFunction('ENGINE_load_cryptodev');
+  if not assigned(ENGINE_load_cryptodev) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_load_cryptodev');
+  Result := ENGINE_load_cryptodev;
+end;
+
+function Load_ENGINE_load_rdrand: TOpenSSL_C_INT; cdecl;
+begin
+  ENGINE_load_rdrand := LoadLibCryptoFunction('ENGINE_load_rdrand');
+  if not assigned(ENGINE_load_rdrand) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_load_rdrand');
+  Result := ENGINE_load_rdrand;
+end;
+
+        {$ifndef  OPENSSL_NO_STATIC_ENGINE}
+function Load_ENGINE_load_padlock: TOpenSSL_C_INT; cdecl;
+begin
+  ENGINE_load_padlock := LoadLibCryptoFunction('ENGINE_load_padlock');
+  if not assigned(ENGINE_load_padlock) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_load_padlock');
+  Result := ENGINE_load_padlock;
+end;
+
+function Load_ENGINE_load_capi: TOpenSSL_C_INT; cdecl;
+begin
+  ENGINE_load_capi := LoadLibCryptoFunction('ENGINE_load_capi');
+  if not assigned(ENGINE_load_capi) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_load_capi');
+  Result := ENGINE_load_capi;
+end;
+
+function Load_ENGINE_load_afalg: TOpenSSL_C_INT; cdecl;
+begin
+  ENGINE_load_afalg := LoadLibCryptoFunction('ENGINE_load_afalg');
+  if not assigned(ENGINE_load_afalg) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('ENGINE_load_afalg');
+  Result := ENGINE_load_afalg;
+end;
+
+        {$endif} { OPENSSL_NO_STATIC_ENGINE}
+    {$endif} { OPENSSL_NO_DEPRECATED_1_1_0}
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 procedure Load_ENGINE_load_builtin_engines; cdecl;
 begin
@@ -2592,7 +3311,105 @@ end;
 
         {$endif} { OPENSSL_NO_DEPRECATED_1_1_0}
     {$endif} { defined(__OpenBSD__)  or  defined(__FreeBSD__)  or  defined(__DragonFly__)}
-{$endif} { OPENSSL_NO_ENGINE}
+    {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
+function Load_EVP_PKEY_set1_engine(pkey: PEVP_PKEY; e: PENGINE): TOpenSSL_C_INT; cdecl;
+begin
+  EVP_PKEY_set1_engine := LoadLibCryptoFunction('EVP_PKEY_set1_engine');
+  if not assigned(EVP_PKEY_set1_engine) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_set1_engine');
+  Result := EVP_PKEY_set1_engine(pkey, e);
+end;
+
+function Load_EVP_PKEY_get0_engine(pkey: PEVP_PKEY): PENGINE; cdecl;
+begin
+  EVP_PKEY_get0_engine := LoadLibCryptoFunction('EVP_PKEY_get0_engine');
+  if not assigned(EVP_PKEY_get0_engine) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_get0_engine');
+  Result := EVP_PKEY_get0_engine(pkey);
+end;
+
+function Load_DH_get0_engine(d: PDH): PENGINE; cdecl;
+begin
+  DH_get0_engine := LoadLibCryptoFunction('DH_get0_engine');
+  if not assigned(DH_get0_engine) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('DH_get0_engine');
+  Result := DH_get0_engine(d);
+end;
+
+function Load_RSA_get0_engine(r: PRSA): PENGINE; cdecl;
+begin
+  RSA_get0_engine := LoadLibCryptoFunction('RSA_get0_engine');
+  if not assigned(RSA_get0_engine) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('RSA_get0_engine');
+  Result := RSA_get0_engine(r);
+end;
+
+function Load_DSA_get0_engine(d: PDSA): PENGINE; cdecl;
+begin
+  DSA_get0_engine := LoadLibCryptoFunction('DSA_get0_engine');
+  if not assigned(DSA_get0_engine) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('DSA_get0_engine');
+  Result := DSA_get0_engine(d);
+end;
+
+function Load_EC_KEY_get0_engine(eckey: PEC_KEY): PENGINE; cdecl;
+begin
+  EC_KEY_get0_engine := LoadLibCryptoFunction('EC_KEY_get0_engine');
+  if not assigned(EC_KEY_get0_engine) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_get0_engine');
+  Result := EC_KEY_get0_engine(eckey);
+end;
+
+function Load_OSSL_STORE_LOADER_get0_engine(loader: POSSL_STORE_LOADER): PENGINE; cdecl;
+begin
+  OSSL_STORE_LOADER_get0_engine := LoadLibCryptoFunction('OSSL_STORE_LOADER_get0_engine');
+  if not assigned(OSSL_STORE_LOADER_get0_engine) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_LOADER_get0_engine');
+  Result := OSSL_STORE_LOADER_get0_engine(loader);
+end;
+
+function Load_RAND_set_rand_engine(engine: PENGINE): TOpenSSL_C_INT; cdecl;
+begin
+  RAND_set_rand_engine := LoadLibCryptoFunction('RAND_set_rand_engine');
+  if not assigned(RAND_set_rand_engine) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('RAND_set_rand_engine');
+  Result := RAND_set_rand_engine(engine);
+end;
+
+function Load_ERR_load_ENGINE_strings: TOpenSSL_C_INT; cdecl;
+begin
+  ERR_load_ENGINE_strings := LoadLibCryptoFunction('ERR_load_ENGINE_strings');
+  if not assigned(ERR_load_ENGINE_strings) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_load_ENGINE_strings');
+  Result := ERR_load_ENGINE_strings;
+end;
+
+    {$endif} { OPENSSL_NO_DEPRECATED_3_0}
+function Load_TS_CONF_set_crypto_device(conf: PCONF; section: PAnsiChar; device: PAnsiChar): TOpenSSL_C_INT; cdecl;
+begin
+  TS_CONF_set_crypto_device := LoadLibCryptoFunction('TS_CONF_set_crypto_device');
+  if not assigned(TS_CONF_set_crypto_device) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('TS_CONF_set_crypto_device');
+  Result := TS_CONF_set_crypto_device(conf, section, device);
+end;
+
+function Load_TS_CONF_set_default_engine(name: PAnsiChar): TOpenSSL_C_INT; cdecl;
+begin
+  TS_CONF_set_default_engine := LoadLibCryptoFunction('TS_CONF_set_default_engine');
+  if not assigned(TS_CONF_set_default_engine) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('TS_CONF_set_default_engine');
+  Result := TS_CONF_set_default_engine(name);
+end;
+
+function Load_SSL_CTX_set_client_cert_engine(ctx: PSSL_CTX; e: PENGINE): TOpenSSL_C_INT; cdecl;
+begin
+  SSL_CTX_set_client_cert_engine := LoadLibCryptoFunction('SSL_CTX_set_client_cert_engine');
+  if not assigned(SSL_CTX_set_client_cert_engine) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('SSL_CTX_set_client_cert_engine');
+  Result := SSL_CTX_set_client_cert_engine(ctx, e);
+end;
+
+{$endif} {ENGINE_FUNC}
 procedure Load;
 begin
   {$define EMPTY_LOAD_FUNCTION}
@@ -2600,7 +3417,7 @@ end;
 
 procedure Unload;
 begin
-{$ifndef  OPENSSL_NO_ENGINE}
+{$ifdef ENGINE_FUNC}
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
   ENGINE_get_first := Load_ENGINE_get_first;
   ENGINE_get_last := Load_ENGINE_get_last;
@@ -2618,6 +3435,17 @@ begin
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
   ENGINE_by_id := Load_ENGINE_by_id;
     {$endif} { OPENSSL_NO_DEPRECATED_3_0}
+    {$ifndef  OPENSSL_NO_DEPRECATED_1_1_0}
+  ENGINE_load_openssl := Load_ENGINE_load_openssl;
+  ENGINE_load_dynamic := Load_ENGINE_load_dynamic;
+  ENGINE_load_cryptodev := Load_ENGINE_load_cryptodev;
+  ENGINE_load_rdrand := Load_ENGINE_load_rdrand;
+        {$ifndef  OPENSSL_NO_STATIC_ENGINE}
+  ENGINE_load_padlock := Load_ENGINE_load_padlock;
+  ENGINE_load_capi := Load_ENGINE_load_capi;
+  ENGINE_load_afalg := Load_ENGINE_load_afalg;
+        {$endif} { OPENSSL_NO_STATIC_ENGINE}
+    {$endif} { OPENSSL_NO_DEPRECATED_1_1_0}
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
   ENGINE_load_builtin_engines := Load_ENGINE_load_builtin_engines;
     {$endif} { OPENSSL_NO_DEPRECATED_3_0}
@@ -2777,7 +3605,21 @@ begin
   ENGINE_setup_bsd_cryptodev := Load_ENGINE_setup_bsd_cryptodev;
         {$endif} { OPENSSL_NO_DEPRECATED_1_1_0}
     {$endif} { defined(__OpenBSD__)  or  defined(__FreeBSD__)  or  defined(__DragonFly__)}
-{$endif} { OPENSSL_NO_ENGINE}
+    {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
+  EVP_PKEY_set1_engine := Load_EVP_PKEY_set1_engine;
+  EVP_PKEY_get0_engine := Load_EVP_PKEY_get0_engine;
+  DH_get0_engine := Load_DH_get0_engine;
+  RSA_get0_engine := Load_RSA_get0_engine;
+  DSA_get0_engine := Load_DSA_get0_engine;
+  EC_KEY_get0_engine := Load_EC_KEY_get0_engine;
+  OSSL_STORE_LOADER_get0_engine := Load_OSSL_STORE_LOADER_get0_engine;
+  RAND_set_rand_engine := Load_RAND_set_rand_engine;
+  ERR_load_ENGINE_strings := Load_ERR_load_ENGINE_strings;
+    {$endif} { OPENSSL_NO_DEPRECATED_3_0}
+  TS_CONF_set_crypto_device := Load_TS_CONF_set_crypto_device;
+  TS_CONF_set_default_engine := Load_TS_CONF_set_default_engine;
+  SSL_CTX_set_client_cert_engine := Load_SSL_CTX_set_client_cert_engine;
+{$endif} {ENGINE_FUNC}
 end;
 
 {$endif} {OPENSSL_STATIC_LINK_MODEL}

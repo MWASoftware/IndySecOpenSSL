@@ -18,7 +18,7 @@
 unit openssl_ripemd;
 
 {
-  Generated from OpenSSL 3.6.2 Header File ripemd.h - Tue 19 May 14:30:36 BST 2026
+  Generated from OpenSSL 4.0.0 Header File ripemd.h - Tue 19 May 14:33:10 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -73,14 +73,14 @@ type
   {end of auto-generated forward references}
 
   TRIPEMD160state_st = record 
-    A: TOpenSSL_C_UINT;
-    B: TOpenSSL_C_UINT;
-    C: TOpenSSL_C_UINT;
-    D: TOpenSSL_C_UINT;
-    E: TOpenSSL_C_UINT;
-    Nl: TOpenSSL_C_UINT;
-    Nh: TOpenSSL_C_UINT;
-    data: array[0..(64 div 4)-1] of TOpenSSL_C_UINT;
+    A: TRIPEMD160_LONG;
+    B: TRIPEMD160_LONG;
+    C: TRIPEMD160_LONG;
+    D: TRIPEMD160_LONG;
+    E: TRIPEMD160_LONG;
+    Nl: TRIPEMD160_LONG;
+    Nh: TRIPEMD160_LONG;
+    data: array[0..(64 div 4)-1] of TRIPEMD160_LONG;
     num: TOpenSSL_C_UINT;
   end;
   TRIPEMD160_CTX = TRIPEMD160state_st;

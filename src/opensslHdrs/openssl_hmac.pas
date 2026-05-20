@@ -18,7 +18,7 @@
 unit openssl_hmac;
 
 {
-  Generated from OpenSSL 3.6.2 Header File hmac.h - Tue 19 May 14:30:10 BST 2026
+  Generated from OpenSSL 4.0.0 Header File hmac.h - Tue 19 May 14:32:44 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -98,6 +98,7 @@ var
   {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
 
+    { must be NULL }
     {$ifdef OPENSSL_STATIC_LINK_MODEL}
   function HMAC_Init_ex(ctx: PHMAC_CTX; key: pointer; len: TOpenSSL_C_INT; md: PEVP_MD; impl: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'HMAC_Init_ex'; deprecated 'Since OpenSSL 3.0';
   function HMAC_Update(ctx: PHMAC_CTX; data: Pbyte; len: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'HMAC_Update'; deprecated 'Since OpenSSL 3.0';

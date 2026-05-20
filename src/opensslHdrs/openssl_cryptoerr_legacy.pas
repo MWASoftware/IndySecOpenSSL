@@ -18,7 +18,7 @@
 unit openssl_cryptoerr_legacy;
 
 {
-  Generated from OpenSSL 3.6.2 Header File cryptoerr_legacy.h - Tue 19 May 14:29:47 BST 2026
+  Generated from OpenSSL 4.0.0 Header File cryptoerr_legacy.h - Tue 19 May 14:32:19 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -179,20 +179,6 @@ var
 
 var
   ERR_load_EC_strings: function: TOpenSSL_C_INT; cdecl = Load_ERR_load_EC_strings;
-      {$endif} {OPENSSL_STATIC_LINK_MODEL}
-    {$endif}
-    {$ifndef  OPENSSL_NO_ENGINE}
-
-
-      {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function ERR_load_ENGINE_strings: TOpenSSL_C_INT; cdecl; external CLibCrypto name 'ERR_load_ENGINE_strings'; deprecated 'Since OpenSSL 3.0';
-      {$else}
-  {$EXTERNALSYM ERR_load_ENGINE_strings}
-  {Do not call Function LoadDeclarations. Internal use only}
-  function Load_ERR_load_ENGINE_strings: TOpenSSL_C_INT; cdecl;
-
-var
-  ERR_load_ENGINE_strings: function: TOpenSSL_C_INT; cdecl = Load_ERR_load_ENGINE_strings;
       {$endif} {OPENSSL_STATIC_LINK_MODEL}
     {$endif}
 
@@ -982,9 +968,47 @@ const
   EC_F_PKEY_EC_SIGN = 0;
   EC_F_VALIDATE_ECX_DERIVE = 0;
     {$endif}
-    {$ifndef  OPENSSL_NO_ENGINE}
+    {$ifdef OPENSSL_ENGINE_STUBS}
 
 const
+      
+      {* ENGINE reason codes.
+      }
+  ENGINE_R_ALREADY_LOADED = 0;
+  ENGINE_R_ARGUMENT_IS_NOT_A_NUMBER = 0;
+  ENGINE_R_CMD_NOT_EXECUTABLE = 0;
+  ENGINE_R_COMMAND_TAKES_INPUT = 0;
+  ENGINE_R_COMMAND_TAKES_NO_INPUT = 0;
+  ENGINE_R_CONFLICTING_ENGINE_ID = 0;
+  ENGINE_R_CTRL_COMMAND_NOT_IMPLEMENTED = 0;
+  ENGINE_R_DSO_FAILURE = 0;
+  ENGINE_R_DSO_NOT_FOUND = 0;
+  ENGINE_R_ENGINES_SECTION_ERROR = 0;
+  ENGINE_R_ENGINE_CONFIGURATION_ERROR = 0;
+  ENGINE_R_ENGINE_IS_NOT_IN_LIST = 0;
+  ENGINE_R_ENGINE_SECTION_ERROR = 0;
+  ENGINE_R_FAILED_LOADING_PRIVATE_KEY = 0;
+  ENGINE_R_FAILED_LOADING_PUBLIC_KEY = 0;
+  ENGINE_R_FINISH_FAILED = 0;
+  ENGINE_R_ID_OR_NAME_MISSING = 0;
+  ENGINE_R_INIT_FAILED = 0;
+  ENGINE_R_INTERNAL_LIST_ERROR = 0;
+  ENGINE_R_INVALID_ARGUMENT = 0;
+  ENGINE_R_INVALID_CMD_NAME = 0;
+  ENGINE_R_INVALID_CMD_NUMBER = 0;
+  ENGINE_R_INVALID_INIT_VALUE = 0;
+  ENGINE_R_INVALID_STRING = 0;
+  ENGINE_R_NOT_INITIALISED = 0;
+  ENGINE_R_NOT_LOADED = 0;
+  ENGINE_R_NO_CONTROL_FUNCTION = 0;
+  ENGINE_R_NO_INDEX = 0;
+  ENGINE_R_NO_LOAD_FUNCTION = 0;
+  ENGINE_R_NO_REFERENCE = 0;
+  ENGINE_R_NO_SUCH_ENGINE = 0;
+  ENGINE_R_UNIMPLEMENTED_CIPHER = 0;
+  ENGINE_R_UNIMPLEMENTED_DIGEST = 0;
+  ENGINE_R_UNIMPLEMENTED_PUBLIC_KEY_METHOD = 0;
+  ENGINE_R_VERSION_INCOMPATIBILITY = 0;
       
       {* ENGINE function codes.
       }
@@ -1843,16 +1867,6 @@ begin
 end;
 
     {$endif} { OPENSSL_NO_EC}
-    {$ifndef  OPENSSL_NO_ENGINE}
-function Load_ERR_load_ENGINE_strings: TOpenSSL_C_INT; cdecl;
-begin
-  ERR_load_ENGINE_strings := LoadLibCryptoFunction('ERR_load_ENGINE_strings');
-  if not assigned(ERR_load_ENGINE_strings) then
-    EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_load_ENGINE_strings');
-  Result := ERR_load_ENGINE_strings;
-end;
-
-    {$endif} { OPENSSL_NO_ENGINE}
 function Load_ERR_load_ERR_strings: TOpenSSL_C_INT; cdecl;
 begin
   ERR_load_ERR_strings := LoadLibCryptoFunction('ERR_load_ERR_strings');
@@ -2011,9 +2025,6 @@ begin
     {$ifndef  OPENSSL_NO_EC}
   ERR_load_EC_strings := Load_ERR_load_EC_strings;
     {$endif} { OPENSSL_NO_EC}
-    {$ifndef  OPENSSL_NO_ENGINE}
-  ERR_load_ENGINE_strings := Load_ERR_load_ENGINE_strings;
-    {$endif} { OPENSSL_NO_ENGINE}
   ERR_load_ERR_strings := Load_ERR_load_ERR_strings;
   ERR_load_EVP_strings := Load_ERR_load_EVP_strings;
   ERR_load_KDF_strings := Load_ERR_load_KDF_strings;

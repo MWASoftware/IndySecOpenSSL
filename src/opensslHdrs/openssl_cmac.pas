@@ -18,7 +18,7 @@
 unit openssl_cmac;
 
 {
-  Generated from OpenSSL 3.6.2 Header File cmac.h - Tue 19 May 14:29:29 BST 2026
+  Generated from OpenSSL 4.0.0 Header File cmac.h - Tue 19 May 14:32:01 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -69,6 +69,7 @@ type
   procedure CMAC_CTX_free(ctx: PCMAC_CTX); cdecl; external CLibCrypto name 'CMAC_CTX_free'; deprecated 'Since OpenSSL 3.0';
   function CMAC_CTX_get0_cipher_ctx(ctx: PCMAC_CTX): PEVP_CIPHER_CTX; cdecl; external CLibCrypto name 'CMAC_CTX_get0_cipher_ctx'; deprecated 'Since OpenSSL 3.0';
   function CMAC_CTX_copy(out_: PCMAC_CTX; in_: PCMAC_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'CMAC_CTX_copy'; deprecated 'Since OpenSSL 3.0';
+  { must be NULL }
   function CMAC_Init(ctx: PCMAC_CTX; key: pointer; keylen: TOpenSSL_C_SIZET; cipher: PEVP_CIPHER; impl: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'CMAC_Init'; deprecated 'Since OpenSSL 3.0';
   function CMAC_Update(ctx: PCMAC_CTX; data: pointer; dlen: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'CMAC_Update'; deprecated 'Since OpenSSL 3.0';
   function CMAC_Final(ctx: PCMAC_CTX; out_: Pbyte; poutlen: POpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'CMAC_Final'; deprecated 'Since OpenSSL 3.0';
@@ -104,6 +105,7 @@ var
   CMAC_CTX_free: procedure(ctx: PCMAC_CTX); cdecl = Load_CMAC_CTX_free;
   CMAC_CTX_get0_cipher_ctx: function(ctx: PCMAC_CTX): PEVP_CIPHER_CTX; cdecl = Load_CMAC_CTX_get0_cipher_ctx;
   CMAC_CTX_copy: function(out_: PCMAC_CTX; in_: PCMAC_CTX): TOpenSSL_C_INT; cdecl = Load_CMAC_CTX_copy;
+  { must be NULL }
   CMAC_Init: function(ctx: PCMAC_CTX; key: pointer; keylen: TOpenSSL_C_SIZET; cipher: PEVP_CIPHER; impl: PENGINE): TOpenSSL_C_INT; cdecl = Load_CMAC_Init;
   CMAC_Update: function(ctx: PCMAC_CTX; data: pointer; dlen: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl = Load_CMAC_Update;
   CMAC_Final: function(ctx: PCMAC_CTX; out_: Pbyte; poutlen: POpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl = Load_CMAC_Final;

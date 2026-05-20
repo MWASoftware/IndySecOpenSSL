@@ -18,7 +18,7 @@
 unit openssl_err;
 
 {
-  Generated from OpenSSL 3.6.2 Header File err.h - Tue 19 May 14:30:02 BST 2026
+  Generated from OpenSSL 4.0.0 Header File err.h - Tue 19 May 14:32:37 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -33,7 +33,7 @@ uses OpenSSLAPI,openssl_e_os2,openssl_types,openssl_bio,openssl_lhash,
      openssl_cryptoerr_legacy;
 
 
-{* Copyright 1995-2023 The OpenSSL Project Authors. All Rights Reserved.
+{* Copyright 1995-2026 The OpenSSL Project Authors. All Rights Reserved.
 *
 * Licensed under the Apache License 2.0 (the "License").  You may not use
 * this file except in compliance with the License.  You can obtain a copy
@@ -61,35 +61,6 @@ uses OpenSSLAPI,openssl_e_os2,openssl_types,openssl_bio,openssl_lhash,
 const
   ERR_TXT_MALLOCED = $01;
   ERR_TXT_STRING = $02;
-  {$if  not defined(OPENSSL_NO_DEPRECATED_3_0)  or defined(OSSL_FORCE_ERR_STATE)}
-
-const
-  ERR_FLAG_MARK = $01;
-  ERR_FLAG_CLEAR = $02;
-  ERR_NUM_ERRORS = 16;
-
-type
-  {Auto-generated forward references}
-  Perr_state_st = ^Terr_state_st;
-  PPerr_state_st = ^Perr_state_st;
-  {end of auto-generated forward references}
-
-  Terr_state_st = record 
-    err_flags: array[0..15] of TOpenSSL_C_INT;
-    err_marks: array[0..15] of TOpenSSL_C_INT;
-    err_buffer: array[0..15] of TOpenSSL_C_UINT;
-    err_data: array[0..15] of ansichar;
-    err_data_size: array[0..15] of TOpenSSL_C_SIZET;
-    err_data_flags: array[0..15] of TOpenSSL_C_INT;
-    err_file: array[0..15] of ansichar;
-    err_line: array[0..15] of TOpenSSL_C_INT;
-    err_func: array[0..15] of ansichar;
-    top: TOpenSSL_C_INT;
-    bottom: TOpenSSL_C_INT;
-  end;
-  {$endif}
-
-const
   { library }
   ERR_LIB_NONE = 1;
   ERR_LIB_SYS = 2;
@@ -145,49 +116,49 @@ const
   ERR_LIB_HTTP = 61;
   ERR_LIB_USER = 128;
   {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
-{# define  ASN1err(f,r) ERR_raise_data(ERR_LIB_ASN1, (r), NULL)} {Macro Return Type unknown at line no 133}
-{# define  ASYNCerr(f,r) ERR_raise_data(ERR_LIB_ASYNC, (r), NULL)} {Macro Return Type unknown at line no 134}
-{# define  BIOerr(f,r) ERR_raise_data(ERR_LIB_BIO, (r), NULL)} {Macro Return Type unknown at line no 135}
-{# define  BNerr(f,r) ERR_raise_data(ERR_LIB_BN, (r), NULL)} {Macro Return Type unknown at line no 136}
-{# define  BUFerr(f,r) ERR_raise_data(ERR_LIB_BUF, (r), NULL)} {Macro Return Type unknown at line no 137}
-{# define  CMPerr(f,r) ERR_raise_data(ERR_LIB_CMP, (r), NULL)} {Macro Return Type unknown at line no 138}
-{# define  CMSerr(f,r) ERR_raise_data(ERR_LIB_CMS, (r), NULL)} {Macro Return Type unknown at line no 139}
-{# define  COMPerr(f,r) ERR_raise_data(ERR_LIB_COMP, (r), NULL)} {Macro Return Type unknown at line no 140}
-{# define  CONFerr(f,r) ERR_raise_data(ERR_LIB_CONF, (r), NULL)} {Macro Return Type unknown at line no 141}
-{# define  CRMFerr(f,r) ERR_raise_data(ERR_LIB_CRMF, (r), NULL)} {Macro Return Type unknown at line no 142}
-{# define  CRYPTOerr(f,r) ERR_raise_data(ERR_LIB_CRYPTO, (r), NULL)} {Macro Return Type unknown at line no 143}
-{# define  CTerr(f,r) ERR_raise_data(ERR_LIB_CT, (r), NULL)} {Macro Return Type unknown at line no 144}
-{# define  DHerr(f,r) ERR_raise_data(ERR_LIB_DH, (r), NULL)} {Macro Return Type unknown at line no 145}
-{# define  DSAerr(f,r) ERR_raise_data(ERR_LIB_DSA, (r), NULL)} {Macro Return Type unknown at line no 146}
-{# define  DSOerr(f,r) ERR_raise_data(ERR_LIB_DSO, (r), NULL)} {Macro Return Type unknown at line no 147}
-{# define  ECDHerr(f,r) ERR_raise_data(ERR_LIB_ECDH, (r), NULL)} {Macro Return Type unknown at line no 148}
-{# define  ECDSAerr(f,r) ERR_raise_data(ERR_LIB_ECDSA, (r), NULL)} {Macro Return Type unknown at line no 149}
-{# define  ECerr(f,r) ERR_raise_data(ERR_LIB_EC, (r), NULL)} {Macro Return Type unknown at line no 150}
-{# define  ENGINEerr(f,r) ERR_raise_data(ERR_LIB_ENGINE, (r), NULL)} {Macro Return Type unknown at line no 151}
-{# define  ESSerr(f,r) ERR_raise_data(ERR_LIB_ESS, (r), NULL)} {Macro Return Type unknown at line no 152}
-{# define  EVPerr(f,r) ERR_raise_data(ERR_LIB_EVP, (r), NULL)} {Macro Return Type unknown at line no 153}
-{# define  FIPSerr(f,r) ERR_raise_data(ERR_LIB_FIPS, (r), NULL)} {Macro Return Type unknown at line no 154}
-{# define  HMACerr(f,r) ERR_raise_data(ERR_LIB_HMAC, (r), NULL)} {Macro Return Type unknown at line no 155}
-{# define  HTTPerr(f,r) ERR_raise_data(ERR_LIB_HTTP, (r), NULL)} {Macro Return Type unknown at line no 156}
-{# define  KDFerr(f,r) ERR_raise_data(ERR_LIB_KDF, (r), NULL)} {Macro Return Type unknown at line no 157}
-{# define  OBJerr(f,r) ERR_raise_data(ERR_LIB_OBJ, (r), NULL)} {Macro Return Type unknown at line no 158}
-{# define  OCSPerr(f,r) ERR_raise_data(ERR_LIB_OCSP, (r), NULL)} {Macro Return Type unknown at line no 159}
-{# define  OSSL_STOREerr(f,r) ERR_raise_data(ERR_LIB_OSSL_STORE, (r), NULL)} {Macro Return Type unknown at line no 160}
-{# define  PEMerr(f,r) ERR_raise_data(ERR_LIB_PEM, (r), NULL)} {Macro Return Type unknown at line no 161}
-{# define  PKCS12err(f,r) ERR_raise_data(ERR_LIB_PKCS12, (r), NULL)} {Macro Return Type unknown at line no 162}
-{# define  PKCS7err(f,r) ERR_raise_data(ERR_LIB_PKCS7, (r), NULL)} {Macro Return Type unknown at line no 163}
-{# define  PROPerr(f,r) ERR_raise_data(ERR_LIB_PROP, (r), NULL)} {Macro Return Type unknown at line no 164}
-{# define  PROVerr(f,r) ERR_raise_data(ERR_LIB_PROV, (r), NULL)} {Macro Return Type unknown at line no 165}
-{# define  RANDerr(f,r) ERR_raise_data(ERR_LIB_RAND, (r), NULL)} {Macro Return Type unknown at line no 166}
-{# define  RSAerr(f,r) ERR_raise_data(ERR_LIB_RSA, (r), NULL)} {Macro Return Type unknown at line no 167}
-{# define  KDFerr(f,r) ERR_raise_data(ERR_LIB_KDF, (r), NULL)} {Macro Return Type unknown at line no 168}
-{# define  SM2err(f,r) ERR_raise_data(ERR_LIB_SM2, (r), NULL)} {Macro Return Type unknown at line no 169}
-{# define  SSLerr(f,r) ERR_raise_data(ERR_LIB_SSL, (r), NULL)} {Macro Return Type unknown at line no 170}
-{# define  SYSerr(f,r) ERR_raise_data(ERR_LIB_SYS, (r), NULL)} {Macro Return Type unknown at line no 171}
-{# define  TSerr(f,r) ERR_raise_data(ERR_LIB_TS, (r), NULL)} {Macro Return Type unknown at line no 172}
-{# define  UIerr(f,r) ERR_raise_data(ERR_LIB_UI, (r), NULL)} {Macro Return Type unknown at line no 173}
-{# define  X509V3err(f,r) ERR_raise_data(ERR_LIB_X509V3, (r), NULL)} {Macro Return Type unknown at line no 174}
-{# define  X509err(f,r) ERR_raise_data(ERR_LIB_X509, (r), NULL)} {Macro Return Type unknown at line no 175}
+{# define  ASN1err(f,r) ERR_raise_data(ERR_LIB_ASN1, (r), NULL)} {Macro Return Type unknown at line no 114}
+{# define  ASYNCerr(f,r) ERR_raise_data(ERR_LIB_ASYNC, (r), NULL)} {Macro Return Type unknown at line no 115}
+{# define  BIOerr(f,r) ERR_raise_data(ERR_LIB_BIO, (r), NULL)} {Macro Return Type unknown at line no 116}
+{# define  BNerr(f,r) ERR_raise_data(ERR_LIB_BN, (r), NULL)} {Macro Return Type unknown at line no 117}
+{# define  BUFerr(f,r) ERR_raise_data(ERR_LIB_BUF, (r), NULL)} {Macro Return Type unknown at line no 118}
+{# define  CMPerr(f,r) ERR_raise_data(ERR_LIB_CMP, (r), NULL)} {Macro Return Type unknown at line no 119}
+{# define  CMSerr(f,r) ERR_raise_data(ERR_LIB_CMS, (r), NULL)} {Macro Return Type unknown at line no 120}
+{# define  COMPerr(f,r) ERR_raise_data(ERR_LIB_COMP, (r), NULL)} {Macro Return Type unknown at line no 121}
+{# define  CONFerr(f,r) ERR_raise_data(ERR_LIB_CONF, (r), NULL)} {Macro Return Type unknown at line no 122}
+{# define  CRMFerr(f,r) ERR_raise_data(ERR_LIB_CRMF, (r), NULL)} {Macro Return Type unknown at line no 123}
+{# define  CRYPTOerr(f,r) ERR_raise_data(ERR_LIB_CRYPTO, (r), NULL)} {Macro Return Type unknown at line no 124}
+{# define  CTerr(f,r) ERR_raise_data(ERR_LIB_CT, (r), NULL)} {Macro Return Type unknown at line no 125}
+{# define  DHerr(f,r) ERR_raise_data(ERR_LIB_DH, (r), NULL)} {Macro Return Type unknown at line no 126}
+{# define  DSAerr(f,r) ERR_raise_data(ERR_LIB_DSA, (r), NULL)} {Macro Return Type unknown at line no 127}
+{# define  DSOerr(f,r) ERR_raise_data(ERR_LIB_DSO, (r), NULL)} {Macro Return Type unknown at line no 128}
+{# define  ECDHerr(f,r) ERR_raise_data(ERR_LIB_ECDH, (r), NULL)} {Macro Return Type unknown at line no 129}
+{# define  ECDSAerr(f,r) ERR_raise_data(ERR_LIB_ECDSA, (r), NULL)} {Macro Return Type unknown at line no 130}
+{# define  ECerr(f,r) ERR_raise_data(ERR_LIB_EC, (r), NULL)} {Macro Return Type unknown at line no 131}
+{# define  ENGINEerr(f,r) ERR_raise_data(ERR_LIB_ENGINE, (r), NULL)} {Macro Return Type unknown at line no 132}
+{# define  ESSerr(f,r) ERR_raise_data(ERR_LIB_ESS, (r), NULL)} {Macro Return Type unknown at line no 133}
+{# define  EVPerr(f,r) ERR_raise_data(ERR_LIB_EVP, (r), NULL)} {Macro Return Type unknown at line no 134}
+{# define  FIPSerr(f,r) ERR_raise_data(ERR_LIB_FIPS, (r), NULL)} {Macro Return Type unknown at line no 135}
+{# define  HMACerr(f,r) ERR_raise_data(ERR_LIB_HMAC, (r), NULL)} {Macro Return Type unknown at line no 136}
+{# define  HTTPerr(f,r) ERR_raise_data(ERR_LIB_HTTP, (r), NULL)} {Macro Return Type unknown at line no 137}
+{# define  KDFerr(f,r) ERR_raise_data(ERR_LIB_KDF, (r), NULL)} {Macro Return Type unknown at line no 138}
+{# define  OBJerr(f,r) ERR_raise_data(ERR_LIB_OBJ, (r), NULL)} {Macro Return Type unknown at line no 139}
+{# define  OCSPerr(f,r) ERR_raise_data(ERR_LIB_OCSP, (r), NULL)} {Macro Return Type unknown at line no 140}
+{# define  OSSL_STOREerr(f,r) ERR_raise_data(ERR_LIB_OSSL_STORE, (r), NULL)} {Macro Return Type unknown at line no 141}
+{# define  PEMerr(f,r) ERR_raise_data(ERR_LIB_PEM, (r), NULL)} {Macro Return Type unknown at line no 142}
+{# define  PKCS12err(f,r) ERR_raise_data(ERR_LIB_PKCS12, (r), NULL)} {Macro Return Type unknown at line no 143}
+{# define  PKCS7err(f,r) ERR_raise_data(ERR_LIB_PKCS7, (r), NULL)} {Macro Return Type unknown at line no 144}
+{# define  PROPerr(f,r) ERR_raise_data(ERR_LIB_PROP, (r), NULL)} {Macro Return Type unknown at line no 145}
+{# define  PROVerr(f,r) ERR_raise_data(ERR_LIB_PROV, (r), NULL)} {Macro Return Type unknown at line no 146}
+{# define  RANDerr(f,r) ERR_raise_data(ERR_LIB_RAND, (r), NULL)} {Macro Return Type unknown at line no 147}
+{# define  RSAerr(f,r) ERR_raise_data(ERR_LIB_RSA, (r), NULL)} {Macro Return Type unknown at line no 148}
+{# define  KDFerr(f,r) ERR_raise_data(ERR_LIB_KDF, (r), NULL)} {Macro Return Type unknown at line no 149}
+{# define  SM2err(f,r) ERR_raise_data(ERR_LIB_SM2, (r), NULL)} {Macro Return Type unknown at line no 150}
+{# define  SSLerr(f,r) ERR_raise_data(ERR_LIB_SSL, (r), NULL)} {Macro Return Type unknown at line no 151}
+{# define  SYSerr(f,r) ERR_raise_data(ERR_LIB_SYS, (r), NULL)} {Macro Return Type unknown at line no 152}
+{# define  TSerr(f,r) ERR_raise_data(ERR_LIB_TS, (r), NULL)} {Macro Return Type unknown at line no 153}
+{# define  UIerr(f,r) ERR_raise_data(ERR_LIB_UI, (r), NULL)} {Macro Return Type unknown at line no 154}
+{# define  X509V3err(f,r) ERR_raise_data(ERR_LIB_X509V3, (r), NULL)} {Macro Return Type unknown at line no 155}
+{# define  X509err(f,r) ERR_raise_data(ERR_LIB_X509, (r), NULL)} {Macro Return Type unknown at line no 156}
   {$endif}
 {# define  ERR_SYSTEM_FLAG ((unsigned int)INT_MAX + 1)} {Macro Return Type unknown}
 
@@ -256,7 +227,7 @@ const
   }
   ERR_RFLAG_FATAL = $1 shl ERR_RFLAGS_OFFSET;
   ERR_RFLAG_COMMON = $2 shl ERR_RFLAGS_OFFSET;
-  {# define  ERR_SYSTEM_ERROR(errcode) (((errcode) & ERR_SYSTEM_FLAG) != 0)} {Macro Return Type unknown at line no 245}
+  {# define  ERR_SYSTEM_ERROR(errcode) (((errcode) & ERR_SYSTEM_FLAG) != 0)} {Macro Return Type unknown at line no 226}
 
 
   function ERR_GET_LIB(errcode: TOpenSSL_C_UINT): TOpenSSL_C_INT{Has C Attribute: unused}; inline;
@@ -264,44 +235,15 @@ const
   function ERR_GET_REASON(errcode: TOpenSSL_C_UINT): TOpenSSL_C_INT{Has C Attribute: unused}; inline;
   function ERR_FATAL_ERROR(errcode: TOpenSSL_C_UINT): boolean{Has C Attribute: unused}; inline;
   function ERR_COMMON_ERROR(errcode: TOpenSSL_C_UINT): boolean{Has C Attribute: unused}; inline;
-  {# define  ERR_PACK(lib,func,reason) ((((unsigned long)(lib) & ERR_LIB_MASK) << ERR_LIB_OFFSET) | (((unsigned long)(reason) & ERR_REASON_MASK)))} {Macro Return Type unknown at line no 288}
+  {# define  ERR_PACK(lib,func,reason) ((((unsigned long)(lib) & ERR_LIB_MASK) << ERR_LIB_OFFSET) | (((unsigned long)(reason) & ERR_REASON_MASK)))} {Macro Return Type unknown at line no 269}
+
+const
   
   {* ERR_PACK is a helper macro to properly pack OpenSSL error codes and may
   * only be used for that purpose.  System errors are packed internally.
   * ERR_PACK takes reason flags and reason code combined in |reason|.
   * ERR_PACK ignores |func|, that parameter is just legacy from pre-3.0 OpenSSL.
   }
-  {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
-
-const
-  SYS_F_FOPEN = 0;
-  SYS_F_CONNECT = 0;
-  SYS_F_GETSERVBYNAME = 0;
-  SYS_F_SOCKET = 0;
-  SYS_F_IOCTLSOCKET = 0;
-  SYS_F_BIND = 0;
-  SYS_F_LISTEN = 0;
-  SYS_F_ACCEPT = 0;
-  SYS_F_WSASTARTUP = 0;
-  SYS_F_OPENDIR = 0;
-  SYS_F_FREAD = 0;
-  SYS_F_GETADDRINFO = 0;
-  SYS_F_GETNAMEINFO = 0;
-  SYS_F_SETSOCKOPT = 0;
-  SYS_F_GETSOCKOPT = 0;
-  SYS_F_GETSOCKNAME = 0;
-  SYS_F_GETHOSTBYNAME = 0;
-  SYS_F_FFLUSH = 0;
-  SYS_F_OPEN = 0;
-  SYS_F_CLOSE = 0;
-  SYS_F_IOCTL = 0;
-  SYS_F_STAT = 0;
-  SYS_F_FCNTL = 0;
-  SYS_F_FSTAT = 0;
-  SYS_F_SENDFILE = 0;
-  {$endif}
-
-const
   
   {* All ERR_R_ codes must be combined with ERR_RFLAG_COMMON.
   }
@@ -411,20 +353,20 @@ type
   {# define  lh_ERR_STRING_DATA_new(hfn,cmp) ((LHASH_OF(ERR_STRING_DATA) *)OPENSSL_LH_set_thunks(OPENSSL_LH_new(ossl_check_ERR_STRING_DATA_lh_hashfunc_type(hfn),
  ossl_check_ERR_STRING_DATA_lh_compfunc_type(cmp)), lh_ERR_STRING_DATA_hash_thunk, lh_ERR_STRING_DATA_comp_thunk, lh_ERR_STRING_DATA_doall_thunk,
  lh_ERR_STRING_DATA_doall_arg_thunk))}
-  {# define  lh_ERR_STRING_DATA_free(lh) OPENSSL_LH_free(ossl_check_ERR_STRING_DATA_lh_type(lh))} {Macro Return Type unknown at line no 386}
-  {# define  lh_ERR_STRING_DATA_flush(lh) OPENSSL_LH_flush(ossl_check_ERR_STRING_DATA_lh_type(lh))} {Macro Return Type unknown at line no 387}
+  {# define  lh_ERR_STRING_DATA_free(lh) OPENSSL_LH_free(ossl_check_ERR_STRING_DATA_lh_type(lh))} {Macro Return Type unknown at line no 339}
+  {# define  lh_ERR_STRING_DATA_flush(lh) OPENSSL_LH_flush(ossl_check_ERR_STRING_DATA_lh_type(lh))} {Macro Return Type unknown at line no 340}
   function lh_ERR_STRING_DATA_insert(lh:Plhash_st_ERR_STRING_DATA; ptr:PERR_STRING_DATA): PERR_STRING_DATA; inline;
   function lh_ERR_STRING_DATA_delete(lh:Plhash_st_ERR_STRING_DATA; ptr:PERR_STRING_DATA): PERR_STRING_DATA; inline;
   function lh_ERR_STRING_DATA_retrieve(lh:Plhash_st_ERR_STRING_DATA; ptr:PERR_STRING_DATA): PERR_STRING_DATA; inline;
-  {# define  lh_ERR_STRING_DATA_error(lh) OPENSSL_LH_error(ossl_check_ERR_STRING_DATA_lh_type(lh))} {Macro Return Type unknown at line no 391}
-  {# define  lh_ERR_STRING_DATA_num_items(lh) OPENSSL_LH_num_items(ossl_check_ERR_STRING_DATA_lh_type(lh))} {Macro Return Type unknown at line no 392}
-  {# define  lh_ERR_STRING_DATA_node_stats_bio(lh,out) OPENSSL_LH_node_stats_bio(ossl_check_const_ERR_STRING_DATA_lh_type(lh), out)} {Function argument out of range at line no 393}
+  {# define  lh_ERR_STRING_DATA_error(lh) OPENSSL_LH_error(ossl_check_ERR_STRING_DATA_lh_type(lh))} {Macro Return Type unknown at line no 344}
+  {# define  lh_ERR_STRING_DATA_num_items(lh) OPENSSL_LH_num_items(ossl_check_ERR_STRING_DATA_lh_type(lh))} {Macro Return Type unknown at line no 345}
+  {# define  lh_ERR_STRING_DATA_node_stats_bio(lh,out) OPENSSL_LH_node_stats_bio(ossl_check_const_ERR_STRING_DATA_lh_type(lh), out)} {Function argument out of range at line no 346}
   {# define  lh_ERR_STRING_DATA_node_usage_stats_bio(lh,out) OPENSSL_LH_node_usage_stats_bio(ossl_check_const_ERR_STRING_DATA_lh_type(lh),
- out)} {Function argument out of range at line no 394}
-  {# define  lh_ERR_STRING_DATA_stats_bio(lh,out) OPENSSL_LH_stats_bio(ossl_check_const_ERR_STRING_DATA_lh_type(lh), out)} {Function argument out of range at line no 395}
-  {# define  lh_ERR_STRING_DATA_get_down_load(lh) OPENSSL_LH_get_down_load(ossl_check_ERR_STRING_DATA_lh_type(lh))} {Macro Return Type unknown at line no 396}
-  {# define  lh_ERR_STRING_DATA_set_down_load(lh,dl) OPENSSL_LH_set_down_load(ossl_check_ERR_STRING_DATA_lh_type(lh), dl)} {Function argument out of range at line no 397}
-  {# define  lh_ERR_STRING_DATA_doall(lh,dfn) OPENSSL_LH_doall(ossl_check_ERR_STRING_DATA_lh_type(lh), ossl_check_ERR_STRING_DATA_lh_doallfunc_type(dfn))} {Macro Return Type unknown at line no 398}
+ out)} {Function argument out of range at line no 347}
+  {# define  lh_ERR_STRING_DATA_stats_bio(lh,out) OPENSSL_LH_stats_bio(ossl_check_const_ERR_STRING_DATA_lh_type(lh), out)} {Function argument out of range at line no 348}
+  {# define  lh_ERR_STRING_DATA_get_down_load(lh) OPENSSL_LH_get_down_load(ossl_check_ERR_STRING_DATA_lh_type(lh))} {Macro Return Type unknown at line no 349}
+  {# define  lh_ERR_STRING_DATA_set_down_load(lh,dl) OPENSSL_LH_set_down_load(ossl_check_ERR_STRING_DATA_lh_type(lh), dl)} {Function argument out of range at line no 350}
+  {# define  lh_ERR_STRING_DATA_doall(lh,dfn) OPENSSL_LH_doall(ossl_check_ERR_STRING_DATA_lh_type(lh), ossl_check_ERR_STRING_DATA_lh_doallfunc_type(dfn))} {Macro Return Type unknown at line no 351}
 
 const
   { clang-format on }
@@ -459,7 +401,7 @@ var
   ERR_vset_error: procedure(lib: TOpenSSL_C_INT; reason: TOpenSSL_C_INT; fmt: PAnsiChar; args: array of const); cdecl = nil;
   { Main error raising functions }
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
-  {# define  ERR_raise(lib,reason) ERR_raise_data((lib), (reason), NULL)} {Macro Return Type unknown at line no 412}
+  {# define  ERR_raise(lib,reason) ERR_raise_data((lib), (reason), NULL)} {Macro Return Type unknown at line no 365}
   {# define  ERR_raise_data (ERR_new(), ERR_set_debug(OPENSSL_FILE, OPENSSL_LINE, OPENSSL_FUNC), ERR_set_error)}
   {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 {# define  ERR_put_error(lib,func,reason,file,line) (ERR_new(), ERR_set_debug((file), (line), OPENSSL_FUNC), ERR_set_error((lib),
@@ -711,50 +653,8 @@ var
   ERR_unload_strings: function(lib: TOpenSSL_C_INT; str: PERR_STRING_DATA): TOpenSSL_C_INT; cdecl = Load_ERR_unload_strings;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
   {$ifndef  OPENSSL_NO_DEPRECATED_1_1_0}
-{# define  ERR_load_crypto_strings() OPENSSL_init_crypto(OPENSSL_INIT_LOAD_CRYPTO_STRINGS, NULL)} {Macro Return Type unknown at line no 491}
+{# define  ERR_load_crypto_strings() OPENSSL_init_crypto(OPENSSL_INIT_LOAD_CRYPTO_STRINGS, NULL)} {Macro Return Type unknown at line no 444}
 {# define  ERR_free_strings() while (0) continue}
-  {$endif}
-  {$ifndef  OPENSSL_NO_DEPRECATED_1_1_0}
-
-
-    {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  procedure ERR_remove_thread_state(_param1: pointer); cdecl; external CLibCrypto name 'ERR_remove_thread_state'; deprecated 'Since OpenSSL 1.1.0';
-    {$else}
-  {$EXTERNALSYM ERR_remove_thread_state}
-  {Do not call Function LoadDeclarations. Internal use only}
-  procedure Load_ERR_remove_thread_state(_param1: pointer); cdecl;
-
-var
-  ERR_remove_thread_state: procedure(_param1: pointer); cdecl = Load_ERR_remove_thread_state;
-    {$endif} {OPENSSL_STATIC_LINK_MODEL}
-  {$endif}
-  {$ifndef  OPENSSL_NO_DEPRECATED_1_0_0}
-
-
-    {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  procedure ERR_remove_state(pid: TOpenSSL_C_UINT); cdecl; external CLibCrypto name 'ERR_remove_state'; deprecated 'Since OpenSSL 1.0.0';
-    {$else}
-  {$EXTERNALSYM ERR_remove_state}
-  {Do not call Function LoadDeclarations. Internal use only}
-  procedure Load_ERR_remove_state(pid: TOpenSSL_C_UINT); cdecl;
-
-var
-  ERR_remove_state: procedure(pid: TOpenSSL_C_UINT); cdecl = Load_ERR_remove_state;
-    {$endif} {OPENSSL_STATIC_LINK_MODEL}
-  {$endif}
-  {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
-
-
-    {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function ERR_get_state: PERR_STATE; cdecl; external CLibCrypto name 'ERR_get_state'; deprecated 'Since OpenSSL 3.0';
-    {$else}
-  {$EXTERNALSYM ERR_get_state}
-  {Do not call Function LoadDeclarations. Internal use only}
-  function Load_ERR_get_state: PERR_STATE; cdecl;
-
-var
-  ERR_get_state: function: PERR_STATE; cdecl = Load_ERR_get_state;
-    {$endif} {OPENSSL_STATIC_LINK_MODEL}
   {$endif}
 
 
@@ -894,7 +794,7 @@ function lh_ERR_STRING_DATA_hash_thunk(data: pointer; hfn: TOPENSSL_LH_HASHFUNC)
 begin
   raise Exception.Create('Unable to translate C Function "lh_ERR_STRING_DATA_hash_thunk"');
 
-{Error: Line 384: Syntax Error parsing " unsigned long (*hfn_conv)(const ERR_STRING_DATA *) = (unsigned long (*)(const ERR_STRING_DATA 
+{Error: Line 337: Syntax Error parsing " unsigned long (*hfn_conv)(const ERR_STRING_DATA *) = (unsigned long (*)(const ERR_STRING_DATA 
 *))hfn; return hfn_conv((const ERR_STRING_DATA *)data); "
 
  unsigned long (*hfn_conv)(const ERR_STRING_DATA *) = (unsigned long (*)(const ERR_STRING_DATA *))hfn; return hfn_conv((const ERR_STRING_DATA 
@@ -905,7 +805,7 @@ function lh_ERR_STRING_DATA_comp_thunk(da: pointer; db: pointer; cfn: TOPENSSL_L
 begin
   raise Exception.Create('Unable to translate C Function "lh_ERR_STRING_DATA_comp_thunk"');
 
-{Error: Line 384: Syntax Error parsing " int (*cfn_conv)(const ERR_STRING_DATA *, const ERR_STRING_DATA *) = (int (*)(const ERR_STRING_DATA 
+{Error: Line 337: Syntax Error parsing " int (*cfn_conv)(const ERR_STRING_DATA *, const ERR_STRING_DATA *) = (int (*)(const ERR_STRING_DATA 
 *, const ERR_STRING_DATA *))cfn; return cfn_conv((const ERR_STRING_DATA *)da, (const ERR_STRING_DATA *)db); "
 
  int (*cfn_conv)(const ERR_STRING_DATA *, const ERR_STRING_DATA *) = (int (*)(const ERR_STRING_DATA *, const ERR_STRING_DATA *))cfn; 
@@ -916,7 +816,7 @@ procedure lh_ERR_STRING_DATA_doall_thunk(node: pointer; doall: TOPENSSL_LH_DOALL
 begin
   raise Exception.Create('Unable to translate C Function "lh_ERR_STRING_DATA_doall_thunk"');
 
-{Error: Line 384: Syntax Error parsing " void (*doall_conv)(ERR_STRING_DATA *) = (void (*)(ERR_STRING_DATA *))doall; doall_conv((ERR_STRING_DATA 
+{Error: Line 337: Syntax Error parsing " void (*doall_conv)(ERR_STRING_DATA *) = (void (*)(ERR_STRING_DATA *))doall; doall_conv((ERR_STRING_DATA 
 *)node); "
 
  void (*doall_conv)(ERR_STRING_DATA *) = (void (*)(ERR_STRING_DATA *))doall; doall_conv((ERR_STRING_DATA *)node); }
@@ -926,7 +826,7 @@ procedure lh_ERR_STRING_DATA_doall_arg_thunk(node: pointer; arg: pointer; doall:
 begin
   raise Exception.Create('Unable to translate C Function "lh_ERR_STRING_DATA_doall_arg_thunk"');
 
-{Error: Line 384: Syntax Error parsing " void (*doall_conv)(ERR_STRING_DATA *, void *) = (void (*)(ERR_STRING_DATA *, void *))doall; 
+{Error: Line 337: Syntax Error parsing " void (*doall_conv)(ERR_STRING_DATA *, void *) = (void (*)(ERR_STRING_DATA *, void *))doall; 
 doall_conv((ERR_STRING_DATA *)node, arg); "
 
  void (*doall_conv)(ERR_STRING_DATA *, void *) = (void (*)(ERR_STRING_DATA *, void *))doall; doall_conv((ERR_STRING_DATA *)node,
@@ -957,7 +857,7 @@ function ossl_check_ERR_STRING_DATA_lh_compfunc_type(cmp: Tlh_ERR_STRING_DATA_co
 begin
   raise Exception.Create('Unable to translate C Function "ossl_check_ERR_STRING_DATA_lh_compfunc_type"');
 
-{Error: Line 384: Syntax Error parsing " return (OPENSSL_LH_COMPFUNC)cmp; "
+{Error: Line 337: Syntax Error parsing " return (OPENSSL_LH_COMPFUNC)cmp; "
 
  return (OPENSSL_LH_COMPFUNC)cmp; }
 end;
@@ -966,7 +866,7 @@ function ossl_check_ERR_STRING_DATA_lh_hashfunc_type(hfn: Tlh_ERR_STRING_DATA_ha
 begin
   raise Exception.Create('Unable to translate C Function "ossl_check_ERR_STRING_DATA_lh_hashfunc_type"');
 
-{Error: Line 384: Syntax Error parsing " return (OPENSSL_LH_HASHFUNC)hfn; "
+{Error: Line 337: Syntax Error parsing " return (OPENSSL_LH_HASHFUNC)hfn; "
 
  return (OPENSSL_LH_HASHFUNC)hfn; }
 end;
@@ -975,7 +875,7 @@ function ossl_check_ERR_STRING_DATA_lh_doallfunc_type(dfn: Tlh_ERR_STRING_DATA_d
 begin
   raise Exception.Create('Unable to translate C Function "ossl_check_ERR_STRING_DATA_lh_doallfunc_type"');
 
-{Error: Line 384: Syntax Error parsing " return (OPENSSL_LH_DOALL_FUNC)dfn; "
+{Error: Line 337: Syntax Error parsing " return (OPENSSL_LH_DOALL_FUNC)dfn; "
 
  return (OPENSSL_LH_DOALL_FUNC)dfn; }
 end;
@@ -1277,36 +1177,6 @@ begin
   Result := ERR_unload_strings(lib, str);
 end;
 
-{$ifndef  OPENSSL_NO_DEPRECATED_1_1_0}
-procedure Load_ERR_remove_thread_state(_param1: pointer); cdecl;
-begin
-  ERR_remove_thread_state := LoadLibCryptoFunction('ERR_remove_thread_state');
-  if not assigned(ERR_remove_thread_state) then
-    EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_remove_thread_state');
-  ERR_remove_thread_state(_param1);
-end;
-
-{$endif} { OPENSSL_NO_DEPRECATED_1_1_0}
-{$ifndef  OPENSSL_NO_DEPRECATED_1_0_0}
-procedure Load_ERR_remove_state(pid: TOpenSSL_C_UINT); cdecl;
-begin
-  ERR_remove_state := LoadLibCryptoFunction('ERR_remove_state');
-  if not assigned(ERR_remove_state) then
-    EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_remove_state');
-  ERR_remove_state(pid);
-end;
-
-{$endif} { OPENSSL_NO_DEPRECATED_1_0_0}
-{$ifndef  OPENSSL_NO_DEPRECATED_3_0}
-function Load_ERR_get_state: PERR_STATE; cdecl;
-begin
-  ERR_get_state := LoadLibCryptoFunction('ERR_get_state');
-  if not assigned(ERR_get_state) then
-    EOpenSSLAPIFunctionNotPresent.RaiseException('ERR_get_state');
-  Result := ERR_get_state;
-end;
-
-{$endif} { OPENSSL_NO_DEPRECATED_3_0}
 function Load_ERR_get_next_error_library: TOpenSSL_C_INT; cdecl;
 begin
   ERR_get_next_error_library := LoadLibCryptoFunction('ERR_get_next_error_library');
@@ -1411,12 +1281,6 @@ begin
 {$endif} { OPENSSL_NO_STDIO}
   ERR_add_error_data := LoadLibCryptoFunction('ERR_add_error_data');
   ERR_add_error_vdata := LoadLibCryptoFunction('ERR_add_error_vdata');
-{$ifndef  OPENSSL_NO_DEPRECATED_1_1_0}
-{$endif} { OPENSSL_NO_DEPRECATED_1_1_0}
-{$ifndef  OPENSSL_NO_DEPRECATED_1_0_0}
-{$endif} { OPENSSL_NO_DEPRECATED_1_0_0}
-{$ifndef  OPENSSL_NO_DEPRECATED_3_0}
-{$endif} { OPENSSL_NO_DEPRECATED_3_0}
 end;
 
 procedure Unload;
@@ -1468,15 +1332,6 @@ begin
   ERR_load_strings := Load_ERR_load_strings;
   ERR_load_strings_const := Load_ERR_load_strings_const;
   ERR_unload_strings := Load_ERR_unload_strings;
-{$ifndef  OPENSSL_NO_DEPRECATED_1_1_0}
-  ERR_remove_thread_state := Load_ERR_remove_thread_state;
-{$endif} { OPENSSL_NO_DEPRECATED_1_1_0}
-{$ifndef  OPENSSL_NO_DEPRECATED_1_0_0}
-  ERR_remove_state := Load_ERR_remove_state;
-{$endif} { OPENSSL_NO_DEPRECATED_1_0_0}
-{$ifndef  OPENSSL_NO_DEPRECATED_3_0}
-  ERR_get_state := Load_ERR_get_state;
-{$endif} { OPENSSL_NO_DEPRECATED_3_0}
   ERR_get_next_error_library := Load_ERR_get_next_error_library;
   ERR_set_mark := Load_ERR_set_mark;
   ERR_pop_to_mark := Load_ERR_pop_to_mark;

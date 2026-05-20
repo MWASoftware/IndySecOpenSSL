@@ -18,7 +18,7 @@
 unit openssl_cterr;
 
 {
-  Generated from OpenSSL 3.6.2 Header File cterr.h - Tue 19 May 14:29:48 BST 2026
+  Generated from OpenSSL 4.0.0 Header File cterr.h - Tue 19 May 14:32:20 BST 2026
 }
 
 {$IFNDEF FPC}

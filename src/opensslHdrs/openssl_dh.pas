@@ -18,7 +18,7 @@
 unit openssl_dh;
 
 {
-  Generated from OpenSSL 3.6.2 Header File dh.h - Tue 19 May 14:29:52 BST 2026
+  Generated from OpenSSL 4.0.0 Header File dh.h - Tue 19 May 14:32:25 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -288,6 +288,7 @@ const
   procedure DH_set_default_method(meth: PDH_METHOD); cdecl; external CLibCrypto name 'DH_set_default_method'; deprecated 'Since OpenSSL 3.0';
   function DH_get_default_method: PDH_METHOD; cdecl; external CLibCrypto name 'DH_get_default_method'; deprecated 'Since OpenSSL 3.0';
   function DH_set_method(dh: PDH; meth: PDH_METHOD): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'DH_set_method'; deprecated 'Since OpenSSL 3.0';
+  { must be NULL }
   function DH_new_method(engine: PENGINE): PDH; cdecl; external CLibCrypto name 'DH_new_method'; deprecated 'Since OpenSSL 3.0';
   function DH_new: PDH; cdecl; external CLibCrypto name 'DH_new'; deprecated 'Since OpenSSL 3.0';
   procedure DH_free(dh: PDH); cdecl; external CLibCrypto name 'DH_free'; deprecated 'Since OpenSSL 3.0';
@@ -328,6 +329,7 @@ var
   DH_set_default_method: procedure(meth: PDH_METHOD); cdecl = Load_DH_set_default_method;
   DH_get_default_method: function: PDH_METHOD; cdecl = Load_DH_get_default_method;
   DH_set_method: function(dh: PDH; meth: PDH_METHOD): TOpenSSL_C_INT; cdecl = Load_DH_set_method;
+  { must be NULL }
   DH_new_method: function(engine: PENGINE): PDH; cdecl = Load_DH_new_method;
   DH_new: function: PDH; cdecl = Load_DH_new;
   DH_free: procedure(dh: PDH); cdecl = Load_DH_free;
@@ -448,7 +450,6 @@ var
   procedure DH_clear_flags(dh: PDH; flags: TOpenSSL_C_INT); cdecl; external CLibCrypto name 'DH_clear_flags'; deprecated 'Since OpenSSL 3.0';
   function DH_test_flags(dh: PDH; flags: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'DH_test_flags'; deprecated 'Since OpenSSL 3.0';
   procedure DH_set_flags(dh: PDH; flags: TOpenSSL_C_INT); cdecl; external CLibCrypto name 'DH_set_flags'; deprecated 'Since OpenSSL 3.0';
-  function DH_get0_engine(d: PDH): PENGINE; cdecl; external CLibCrypto name 'DH_get0_engine'; deprecated 'Since OpenSSL 3.0';
   function DH_get_length(dh: PDH): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'DH_get_length'; deprecated 'Since OpenSSL 3.0';
   function DH_set_length(dh: PDH; length: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'DH_set_length'; deprecated 'Since OpenSSL 3.0';
   function DH_meth_new(name: PAnsiChar; flags: TOpenSSL_C_INT): PDH_METHOD; cdecl; external CLibCrypto name 'DH_meth_new'; deprecated 'Since OpenSSL 3.0';
@@ -480,7 +481,6 @@ var
   {$EXTERNALSYM DH_clear_flags}
   {$EXTERNALSYM DH_test_flags}
   {$EXTERNALSYM DH_set_flags}
-  {$EXTERNALSYM DH_get0_engine}
   {$EXTERNALSYM DH_get_length}
   {$EXTERNALSYM DH_set_length}
   {$EXTERNALSYM DH_meth_new}
@@ -512,7 +512,6 @@ var
   procedure Load_DH_clear_flags(dh: PDH; flags: TOpenSSL_C_INT); cdecl;
   function Load_DH_test_flags(dh: PDH; flags: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
   procedure Load_DH_set_flags(dh: PDH; flags: TOpenSSL_C_INT); cdecl;
-  function Load_DH_get0_engine(d: PDH): PENGINE; cdecl;
   function Load_DH_get_length(dh: PDH): TOpenSSL_C_INT; cdecl;
   function Load_DH_set_length(dh: PDH; length: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
   function Load_DH_meth_new(name: PAnsiChar; flags: TOpenSSL_C_INT): PDH_METHOD; cdecl;
@@ -548,7 +547,6 @@ var
   DH_clear_flags: procedure(dh: PDH; flags: TOpenSSL_C_INT); cdecl = Load_DH_clear_flags;
   DH_test_flags: function(dh: PDH; flags: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_DH_test_flags;
   DH_set_flags: procedure(dh: PDH; flags: TOpenSSL_C_INT); cdecl = Load_DH_set_flags;
-  DH_get0_engine: function(d: PDH): PENGINE; cdecl = Load_DH_get0_engine;
   DH_get_length: function(dh: PDH): TOpenSSL_C_INT; cdecl = Load_DH_get_length;
   DH_set_length: function(dh: PDH; length: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_DH_set_length;
   DH_meth_new: function(name: PAnsiChar; flags: TOpenSSL_C_INT): PDH_METHOD; cdecl = Load_DH_meth_new;
@@ -1425,14 +1423,6 @@ begin
   DH_set_flags(dh, flags);
 end;
 
-function Load_DH_get0_engine(d: PDH): PENGINE; cdecl;
-begin
-  DH_get0_engine := LoadLibCryptoFunction('DH_get0_engine');
-  if not assigned(DH_get0_engine) then
-    EOpenSSLAPIFunctionNotPresent.RaiseException('DH_get0_engine');
-  Result := DH_get0_engine(d);
-end;
-
 function Load_DH_get_length(dh: PDH): TOpenSSL_C_INT; cdecl;
 begin
   DH_get_length := LoadLibCryptoFunction('DH_get_length');
@@ -1711,7 +1701,6 @@ begin
   DH_clear_flags := Load_DH_clear_flags;
   DH_test_flags := Load_DH_test_flags;
   DH_set_flags := Load_DH_set_flags;
-  DH_get0_engine := Load_DH_get0_engine;
   DH_get_length := Load_DH_get_length;
   DH_set_length := Load_DH_set_length;
   DH_meth_new := Load_DH_meth_new;

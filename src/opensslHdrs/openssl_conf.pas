@@ -18,7 +18,7 @@
 unit openssl_conf;
 
 {
-  Generated from OpenSSL 3.6.2 Header File conf.h - Tue 19 May 14:29:40 BST 2026
+  Generated from OpenSSL 4.0.0 Header File conf.h - Tue 19 May 14:32:12 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -82,6 +82,17 @@ type
 
 
   procedure sk_CONF_VALUE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+
+type
+  {Auto-generated forward references}
+  PFuncType000 = ^TFuncType000;
+  PPFuncType000 = ^PFuncType000;
+  {end of auto-generated forward references}
+
+  TFuncType000 = function(_param1: pointer; _param2: pointer): TOpenSSL_C_INT;
+
+
+  function sk_CONF_VALUE_cmpfunc_thunk(cmp: TFuncType000; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
   function ossl_check_CONF_VALUE_type(ptr: PCONF_VALUE): PCONF_VALUE{Has C Attribute: unused}; inline;
   function ossl_check_const_CONF_VALUE_sk_type(sk: Pstack_st_CONF_VALUE): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_CONF_VALUE_sk_type(sk: Pstack_st_CONF_VALUE): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -636,25 +647,25 @@ var
 
 type
   {Auto-generated forward references}
-  PFuncType000 = ^TFuncType000;
-  PPFuncType000 = ^PFuncType000;
+  PFuncType001 = ^TFuncType001;
+  PPFuncType001 = ^PFuncType001;
   {end of auto-generated forward references}
 
-  TFuncType000 = function(elem: PAnsiChar; len: TOpenSSL_C_INT; usr: pointer): TOpenSSL_C_INT; cdecl;
+  TFuncType001 = function(elem: PAnsiChar; len: TOpenSSL_C_INT; usr: pointer): TOpenSSL_C_INT; cdecl;
 
 
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function CONF_parse_list(list: PAnsiChar; sep: TOpenSSL_C_INT; nospc: TOpenSSL_C_INT; list_cb: TFuncType000; arg: pointer): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'CONF_parse_list';
+  function CONF_parse_list(list: PAnsiChar; sep: TOpenSSL_C_INT; nospc: TOpenSSL_C_INT; list_cb: TFuncType001; arg: pointer): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'CONF_parse_list';
   procedure OPENSSL_load_builtin_modules; cdecl; external CLibCrypto name 'OPENSSL_load_builtin_modules';
   {$else}
   {$EXTERNALSYM CONF_parse_list}
   {$EXTERNALSYM OPENSSL_load_builtin_modules}
   {Do not call Function LoadDeclarations. Internal use only}
-  function Load_CONF_parse_list(list: PAnsiChar; sep: TOpenSSL_C_INT; nospc: TOpenSSL_C_INT; list_cb: TFuncType000; arg: pointer): TOpenSSL_C_INT; cdecl;
+  function Load_CONF_parse_list(list: PAnsiChar; sep: TOpenSSL_C_INT; nospc: TOpenSSL_C_INT; list_cb: TFuncType001; arg: pointer): TOpenSSL_C_INT; cdecl;
   procedure Load_OPENSSL_load_builtin_modules; cdecl;
 
 var
-  CONF_parse_list: function(list: PAnsiChar; sep: TOpenSSL_C_INT; nospc: TOpenSSL_C_INT; list_cb: TFuncType000; arg: pointer): TOpenSSL_C_INT; cdecl = Load_CONF_parse_list;
+  CONF_parse_list: function(list: PAnsiChar; sep: TOpenSSL_C_INT; nospc: TOpenSSL_C_INT; list_cb: TFuncType001; arg: pointer): TOpenSSL_C_INT; cdecl = Load_CONF_parse_list;
   OPENSSL_load_builtin_modules: procedure; cdecl = Load_OPENSSL_load_builtin_modules;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
 {$endif}
@@ -705,6 +716,19 @@ begin
 *)ptr); "
 
  sk_CONF_VALUE_freefunc freefunc = (sk_CONF_VALUE_freefunc)freefunc_arg; freefunc((CONF_VALUE *)ptr); }
+end;
+
+function sk_CONF_VALUE_cmpfunc_thunk(cmp: TFuncType000; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_CONF_VALUE_cmpfunc_thunk"');
+
+{Error: Line 49: Syntax Error parsing " int (*realcmp)(const CONF_VALUE *const *a, const CONF_VALUE *const *b) = (int (*)(const 
+CONF_VALUE *const *a, const CONF_VALUE *const *b))(cmp); const CONF_VALUE *const *at = (const CONF_VALUE *const *)a; const CONF_VALUE 
+*const *bt = (const CONF_VALUE *const *)b; return realcmp(at, bt); "
+
+ int (*realcmp)(const CONF_VALUE *const *a, const CONF_VALUE *const *b) = (int (*)(const CONF_VALUE *const *a, const CONF_VALUE 
+*const *b))(cmp); const CONF_VALUE *const *at = (const CONF_VALUE *const *)a; const CONF_VALUE *const *bt = (const CONF_VALUE *const 
+*)b; return realcmp(at, bt); }
 end;
 
 function ossl_check_CONF_VALUE_type(ptr: PCONF_VALUE): PCONF_VALUE{Has C Attribute: unused}; inline;
@@ -1419,7 +1443,7 @@ begin
   Result := CONF_get1_default_config_file;
 end;
 
-function Load_CONF_parse_list(list: PAnsiChar; sep: TOpenSSL_C_INT; nospc: TOpenSSL_C_INT; list_cb: TFuncType000; arg: pointer): TOpenSSL_C_INT; cdecl;
+function Load_CONF_parse_list(list: PAnsiChar; sep: TOpenSSL_C_INT; nospc: TOpenSSL_C_INT; list_cb: TFuncType001; arg: pointer): TOpenSSL_C_INT; cdecl;
 begin
   CONF_parse_list := LoadLibCryptoFunction('CONF_parse_list');
   if not assigned(CONF_parse_list) then

@@ -18,7 +18,7 @@
 unit openssl_comp;
 
 {
-  Generated from OpenSSL 3.6.2 Header File comp.h - Tue 19 May 14:29:38 BST 2026
+  Generated from OpenSSL 4.0.0 Header File comp.h - Tue 19 May 14:32:10 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -171,6 +171,17 @@ type
 
 
   procedure sk_SSL_COMP_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+
+type
+  {Auto-generated forward references}
+  PFuncType000 = ^TFuncType000;
+  PPFuncType000 = ^PFuncType000;
+  {end of auto-generated forward references}
+
+  TFuncType000 = function(_param1: pointer; _param2: pointer): TOpenSSL_C_INT;
+
+
+  function sk_SSL_COMP_cmpfunc_thunk(cmp: TFuncType000; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
   function ossl_check_SSL_COMP_type(ptr: PSSL_COMP): PSSL_COMP{Has C Attribute: unused}; inline;
   function ossl_check_const_SSL_COMP_sk_type(sk: Pstack_st_SSL_COMP): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_SSL_COMP_sk_type(sk: Pstack_st_SSL_COMP): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -333,6 +344,19 @@ begin
 "
 
  sk_SSL_COMP_freefunc freefunc = (sk_SSL_COMP_freefunc)freefunc_arg; freefunc((SSL_COMP *)ptr); }
+end;
+
+function sk_SSL_COMP_cmpfunc_thunk(cmp: TFuncType000; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_SSL_COMP_cmpfunc_thunk"');
+
+{Error: Line 69: Syntax Error parsing " int (*realcmp)(const SSL_COMP *const *a, const SSL_COMP *const *b) = (int (*)(const SSL_COMP 
+*const *a, const SSL_COMP *const *b))(cmp); const SSL_COMP *const *at = (const SSL_COMP *const *)a; const SSL_COMP *const *bt = 
+(const SSL_COMP *const *)b; return realcmp(at, bt); "
+
+ int (*realcmp)(const SSL_COMP *const *a, const SSL_COMP *const *b) = (int (*)(const SSL_COMP *const *a, const SSL_COMP *const 
+*b))(cmp); const SSL_COMP *const *at = (const SSL_COMP *const *)a; const SSL_COMP *const *bt = (const SSL_COMP *const *)b; return 
+realcmp(at, bt); }
 end;
 
 function ossl_check_SSL_COMP_type(ptr: PSSL_COMP): PSSL_COMP{Has C Attribute: unused}; inline;

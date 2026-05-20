@@ -18,7 +18,7 @@
 unit openssl_idea;
 
 {
-  Generated from OpenSSL 3.6.2 Header File idea.h - Tue 19 May 14:30:11 BST 2026
+  Generated from OpenSSL 4.0.0 Header File idea.h - Tue 19 May 14:32:46 BST 2026
 }
 
 {$IFNDEF FPC}

@@ -18,7 +18,7 @@
 unit openssl_encoder;
 
 {
-  Generated from OpenSSL 3.6.2 Header File encoder.h - Tue 19 May 14:29:58 BST 2026
+  Generated from OpenSSL 4.0.0 Header File encoder.h - Tue 19 May 14:32:33 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -125,6 +125,7 @@ type
   function OSSL_ENCODER_settable_ctx_params(encoder: POSSL_ENCODER): POSSL_PARAM; cdecl; external CLibCrypto name 'OSSL_ENCODER_settable_ctx_params';
   function OSSL_ENCODER_CTX_new: POSSL_ENCODER_CTX; cdecl; external CLibCrypto name 'OSSL_ENCODER_CTX_new';
   function OSSL_ENCODER_CTX_set_params(ctx: POSSL_ENCODER_CTX; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_ENCODER_CTX_set_params';
+  function OSSL_ENCODER_CTX_ctrl_string(ctx: POSSL_ENCODER_CTX; name: PAnsiChar; val: PAnsiChar): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_ENCODER_CTX_ctrl_string';
   procedure OSSL_ENCODER_CTX_free(ctx: POSSL_ENCODER_CTX); cdecl; external CLibCrypto name 'OSSL_ENCODER_CTX_free';
   { Utilities that help set specific parameters }
   function OSSL_ENCODER_CTX_set_passphrase(ctx: POSSL_ENCODER_CTX; kstr: Pbyte; klen: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_ENCODER_CTX_set_passphrase';
@@ -146,6 +147,7 @@ type
   {$EXTERNALSYM OSSL_ENCODER_settable_ctx_params}
   {$EXTERNALSYM OSSL_ENCODER_CTX_new}
   {$EXTERNALSYM OSSL_ENCODER_CTX_set_params}
+  {$EXTERNALSYM OSSL_ENCODER_CTX_ctrl_string}
   {$EXTERNALSYM OSSL_ENCODER_CTX_free}
   {$EXTERNALSYM OSSL_ENCODER_CTX_set_passphrase}
   {$EXTERNALSYM OSSL_ENCODER_CTX_set_pem_password_cb}
@@ -165,6 +167,7 @@ type
   function Load_OSSL_ENCODER_settable_ctx_params(encoder: POSSL_ENCODER): POSSL_PARAM; cdecl;
   function Load_OSSL_ENCODER_CTX_new: POSSL_ENCODER_CTX; cdecl;
   function Load_OSSL_ENCODER_CTX_set_params(ctx: POSSL_ENCODER_CTX; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl;
+  function Load_OSSL_ENCODER_CTX_ctrl_string(ctx: POSSL_ENCODER_CTX; name: PAnsiChar; val: PAnsiChar): TOpenSSL_C_INT; cdecl;
   procedure Load_OSSL_ENCODER_CTX_free(ctx: POSSL_ENCODER_CTX); cdecl;
   function Load_OSSL_ENCODER_CTX_set_passphrase(ctx: POSSL_ENCODER_CTX; kstr: Pbyte; klen: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
   function Load_OSSL_ENCODER_CTX_set_pem_password_cb(ctx: POSSL_ENCODER_CTX; cb: Tpem_password_cb; cbarg: pointer): TOpenSSL_C_INT; cdecl;
@@ -185,6 +188,7 @@ var
   OSSL_ENCODER_settable_ctx_params: function(encoder: POSSL_ENCODER): POSSL_PARAM; cdecl = Load_OSSL_ENCODER_settable_ctx_params;
   OSSL_ENCODER_CTX_new: function: POSSL_ENCODER_CTX; cdecl = Load_OSSL_ENCODER_CTX_new;
   OSSL_ENCODER_CTX_set_params: function(ctx: POSSL_ENCODER_CTX; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl = Load_OSSL_ENCODER_CTX_set_params;
+  OSSL_ENCODER_CTX_ctrl_string: function(ctx: POSSL_ENCODER_CTX; name: PAnsiChar; val: PAnsiChar): TOpenSSL_C_INT; cdecl = Load_OSSL_ENCODER_CTX_ctrl_string;
   OSSL_ENCODER_CTX_free: procedure(ctx: POSSL_ENCODER_CTX); cdecl = Load_OSSL_ENCODER_CTX_free;
   { Utilities that help set specific parameters }
   OSSL_ENCODER_CTX_set_passphrase: function(ctx: POSSL_ENCODER_CTX; kstr: Pbyte; klen: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl = Load_OSSL_ENCODER_CTX_set_passphrase;
@@ -473,6 +477,14 @@ begin
   Result := OSSL_ENCODER_CTX_set_params(ctx, params);
 end;
 
+function Load_OSSL_ENCODER_CTX_ctrl_string(ctx: POSSL_ENCODER_CTX; name: PAnsiChar; val: PAnsiChar): TOpenSSL_C_INT; cdecl;
+begin
+  OSSL_ENCODER_CTX_ctrl_string := LoadLibCryptoFunction('OSSL_ENCODER_CTX_ctrl_string');
+  if not assigned(OSSL_ENCODER_CTX_ctrl_string) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_ENCODER_CTX_ctrl_string');
+  Result := OSSL_ENCODER_CTX_ctrl_string(ctx, name, val);
+end;
+
 procedure Load_OSSL_ENCODER_CTX_free(ctx: POSSL_ENCODER_CTX); cdecl;
 begin
   OSSL_ENCODER_CTX_free := LoadLibCryptoFunction('OSSL_ENCODER_CTX_free');
@@ -681,6 +693,7 @@ begin
   OSSL_ENCODER_settable_ctx_params := Load_OSSL_ENCODER_settable_ctx_params;
   OSSL_ENCODER_CTX_new := Load_OSSL_ENCODER_CTX_new;
   OSSL_ENCODER_CTX_set_params := Load_OSSL_ENCODER_CTX_set_params;
+  OSSL_ENCODER_CTX_ctrl_string := Load_OSSL_ENCODER_CTX_ctrl_string;
   OSSL_ENCODER_CTX_free := Load_OSSL_ENCODER_CTX_free;
   OSSL_ENCODER_CTX_set_passphrase := Load_OSSL_ENCODER_CTX_set_passphrase;
   OSSL_ENCODER_CTX_set_pem_password_cb := Load_OSSL_ENCODER_CTX_set_pem_password_cb;

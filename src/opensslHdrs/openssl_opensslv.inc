@@ -15,7 +15,7 @@
 
 
 {
-  Generated from OpenSSL 3.6.2 Header File opensslv.h - Tue 19 May 14:30:22 BST 2026
+  Generated from OpenSSL 4.0.0 Header File opensslv.h - Tue 19 May 14:32:56 BST 2026
 }
 
   {$if not declared(__FILE__)}
@@ -64,13 +64,13 @@ const
   * These macros express version number MAJOR.MINOR.PATCH exactly
   }
   { clang-format off }
-  OPENSSL_VERSION_MAJOR = 3;
+  OPENSSL_VERSION_MAJOR = 4;
   { clang-format on }
   { clang-format off }
-  OPENSSL_VERSION_MINOR = 6;
+  OPENSSL_VERSION_MINOR = 0;
   { clang-format on }
   { clang-format off }
-  OPENSSL_VERSION_PATCH = 2;
+  OPENSSL_VERSION_PATCH = 0;
   { clang-format on }
   
   {* Additional version information
@@ -100,7 +100,7 @@ const
   * This is defined in free form.
   }
   { clang-format off }
-  OPENSSL_SHLIB_VERSION = 3;
+  OPENSSL_SHLIB_VERSION = 4;
   {# define  OPENSSL_VERSION_PREREQ(maj,min) ((OPENSSL_VERSION_MAJOR << 16) + OPENSSL_VERSION_MINOR >= ((maj) << 16) + (min))} {Macro Return Type unknown at line no 78}
   { clang-format on }
   
@@ -115,10 +115,10 @@ const
   * OPENSSL_VERSION_BUILD_METADATA_STR appended.
   }
   { clang-format off }
-  OPENSSL_VERSION_STR = '3.6.2';
+  OPENSSL_VERSION_STR = '4.0.0';
   { clang-format on }
   { clang-format off }
-  OPENSSL_FULL_VERSION_STR = '3.6.2';
+  OPENSSL_FULL_VERSION_STR = '4.0.0';
   { clang-format on }
   
   {* SECTION 3: ADDITIONAL METADATA
@@ -126,13 +126,13 @@ const
   * These strings are defined separately to allow them to be parsable.
   }
   { clang-format off }
-  OPENSSL_RELEASE_DATE = '7 Apr 2026';
+  OPENSSL_RELEASE_DATE = '14 Apr 2026';
   { clang-format on }
   
   {* SECTION 4: BACKWARD COMPATIBILITY
   }
   { clang-format off }
-  OPENSSL_VERSION_TEXT = 'OpenSSL 3.6.2 7 Apr 2026';
+  OPENSSL_VERSION_TEXT = 'OpenSSL 4.0.0 14 Apr 2026';
   { clang-format on }
   { clang-format off }
   { Synthesize OPENSSL_VERSION_NUMBER with the layout 0xMNN00PP0L }

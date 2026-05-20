@@ -18,7 +18,7 @@
 unit openssl_cmp;
 
 {
-  Generated from OpenSSL 3.6.2 Header File cmp.h - Tue 19 May 14:29:32 BST 2026
+  Generated from OpenSSL 4.0.0 Header File cmp.h - Tue 19 May 14:32:04 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -373,6 +373,17 @@ type
 
 
   procedure sk_OSSL_CMP_CERTSTATUS_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+
+type
+  {Auto-generated forward references}
+  PFuncType000 = ^TFuncType000;
+  PPFuncType000 = ^PFuncType000;
+  {end of auto-generated forward references}
+
+  TFuncType000 = function(_param1: pointer; _param2: pointer): TOpenSSL_C_INT;
+
+
+  function sk_OSSL_CMP_CERTSTATUS_cmpfunc_thunk(cmp: TFuncType000; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
   function ossl_check_OSSL_CMP_CERTSTATUS_type(ptr: POSSL_CMP_CERTSTATUS): POSSL_CMP_CERTSTATUS{Has C Attribute: unused}; inline;
   function ossl_check_const_OSSL_CMP_CERTSTATUS_sk_type(sk: Pstack_st_OSSL_CMP_CERTSTATUS): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_OSSL_CMP_CERTSTATUS_sk_type(sk: Pstack_st_OSSL_CMP_CERTSTATUS): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -533,6 +544,17 @@ type
 
 
   procedure sk_OSSL_CMP_ITAV_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+
+type
+  {Auto-generated forward references}
+  PFuncType001 = ^TFuncType001;
+  PPFuncType001 = ^PFuncType001;
+  {end of auto-generated forward references}
+
+  TFuncType001 = function(_param1: pointer; _param2: pointer): TOpenSSL_C_INT;
+
+
+  function sk_OSSL_CMP_ITAV_cmpfunc_thunk(cmp: TFuncType001; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
   function ossl_check_OSSL_CMP_ITAV_type(ptr: POSSL_CMP_ITAV): POSSL_CMP_ITAV{Has C Attribute: unused}; inline;
   function ossl_check_const_OSSL_CMP_ITAV_sk_type(sk: Pstack_st_OSSL_CMP_ITAV): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_OSSL_CMP_ITAV_sk_type(sk: Pstack_st_OSSL_CMP_ITAV): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -675,6 +697,17 @@ type
 
 
   procedure sk_OSSL_CMP_CRLSTATUS_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+
+type
+  {Auto-generated forward references}
+  PFuncType002 = ^TFuncType002;
+  PPFuncType002 = ^PFuncType002;
+  {end of auto-generated forward references}
+
+  TFuncType002 = function(_param1: pointer; _param2: pointer): TOpenSSL_C_INT;
+
+
+  function sk_OSSL_CMP_CRLSTATUS_cmpfunc_thunk(cmp: TFuncType002; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
   function ossl_check_OSSL_CMP_CRLSTATUS_type(ptr: POSSL_CMP_CRLSTATUS): POSSL_CMP_CRLSTATUS{Has C Attribute: unused}; inline;
   function ossl_check_const_OSSL_CMP_CRLSTATUS_sk_type(sk: Pstack_st_OSSL_CMP_CRLSTATUS): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_OSSL_CMP_CRLSTATUS_sk_type(sk: Pstack_st_OSSL_CMP_CRLSTATUS): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -906,6 +939,17 @@ type
 
 
   procedure sk_OSSL_CMP_PKISI_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+
+type
+  {Auto-generated forward references}
+  PFuncType003 = ^TFuncType003;
+  PPFuncType003 = ^PFuncType003;
+  {end of auto-generated forward references}
+
+  TFuncType003 = function(_param1: pointer; _param2: pointer): TOpenSSL_C_INT;
+
+
+  function sk_OSSL_CMP_PKISI_cmpfunc_thunk(cmp: TFuncType003; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
   function ossl_check_OSSL_CMP_PKISI_type(ptr: POSSL_CMP_PKISI): POSSL_CMP_PKISI{Has C Attribute: unused}; inline;
   function ossl_check_const_OSSL_CMP_PKISI_sk_type(sk: Pstack_st_OSSL_CMP_PKISI): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_OSSL_CMP_PKISI_sk_type(sk: Pstack_st_OSSL_CMP_PKISI): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -1048,6 +1092,17 @@ type
 
 
   procedure sk_OSSL_CMP_CERTREPMESSAGE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+
+type
+  {Auto-generated forward references}
+  PFuncType004 = ^TFuncType004;
+  PPFuncType004 = ^PFuncType004;
+  {end of auto-generated forward references}
+
+  TFuncType004 = function(_param1: pointer; _param2: pointer): TOpenSSL_C_INT;
+
+
+  function sk_OSSL_CMP_CERTREPMESSAGE_cmpfunc_thunk(cmp: TFuncType004; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
   function ossl_check_OSSL_CMP_CERTREPMESSAGE_type(ptr: POSSL_CMP_CERTREPMESSAGE): POSSL_CMP_CERTREPMESSAGE{Has C Attribute: unused}; inline;
   function ossl_check_const_OSSL_CMP_CERTREPMESSAGE_sk_type(sk: Pstack_st_OSSL_CMP_CERTREPMESSAGE): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_OSSL_CMP_CERTREPMESSAGE_sk_type(sk: Pstack_st_OSSL_CMP_CERTREPMESSAGE): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -1202,6 +1257,17 @@ type
 
 
   procedure sk_OSSL_CMP_CERTRESPONSE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+
+type
+  {Auto-generated forward references}
+  PFuncType005 = ^TFuncType005;
+  PPFuncType005 = ^PFuncType005;
+  {end of auto-generated forward references}
+
+  TFuncType005 = function(_param1: pointer; _param2: pointer): TOpenSSL_C_INT;
+
+
+  function sk_OSSL_CMP_CERTRESPONSE_cmpfunc_thunk(cmp: TFuncType005; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
   function ossl_check_OSSL_CMP_CERTRESPONSE_type(ptr: POSSL_CMP_CERTRESPONSE): POSSL_CMP_CERTRESPONSE{Has C Attribute: unused}; inline;
   function ossl_check_const_OSSL_CMP_CERTRESPONSE_sk_type(sk: Pstack_st_OSSL_CMP_CERTRESPONSE): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_OSSL_CMP_CERTRESPONSE_sk_type(sk: Pstack_st_OSSL_CMP_CERTRESPONSE): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -1998,7 +2064,7 @@ type
   PPOSSL_CMP_SRV_pollReq_cb_t = ^POSSL_CMP_SRV_pollReq_cb_t;
   {end of auto-generated forward references}
 
-  TOSSL_CMP_SRV_cert_request_cb_t = function(srv_ctx: POSSL_CMP_SRV_CTX; req: POSSL_CMP_MSG; certReqId: TOpenSSL_C_INT; crm: POSSL_CRMF_MSG; p10cr: PX509_REQ; certOut: PPX509; chainOut: PPstack_st_X509; caPubs: PPstack_st_X509): POSSL_CMP_PKISI; cdecl;
+  TOSSL_CMP_SRV_cert_request_cb_t = function(srv_ctx: POSSL_CMP_SRV_CTX; req: POSSL_CMP_MSG; certReqId: TOpenSSL_C_INT; crm: POSSL_CRMF_MSG; p10: PX509_REQ; certOut: PPX509; chainOut: PPstack_st_X509; caPubs: PPstack_st_X509): POSSL_CMP_PKISI; cdecl;
   TOSSL_CMP_SRV_rr_cb_t = function(srv_ctx: POSSL_CMP_SRV_CTX; req: POSSL_CMP_MSG; issuer: PX509_NAME; serial: PASN1_INTEGER): POSSL_CMP_PKISI; cdecl;
   TOSSL_CMP_SRV_genm_cb_t = function(srv_ctx: POSSL_CMP_SRV_CTX; req: POSSL_CMP_MSG; in_: Pstack_st_OSSL_CMP_ITAV; out_: PPstack_st_OSSL_CMP_ITAV): TOpenSSL_C_INT; cdecl;
   TOSSL_CMP_SRV_error_cb_t = procedure(srv_ctx: POSSL_CMP_SRV_CTX; req: POSSL_CMP_MSG; statusInfo: POSSL_CMP_PKISI; errorCode: PASN1_INTEGER; errDetails: POSSL_CMP_PKIFREETEXT); cdecl;
@@ -2174,6 +2240,20 @@ freefunc((OSSL_CMP_CERTSTATUS *)ptr); "
 }
 end;
 
+function sk_OSSL_CMP_CERTSTATUS_cmpfunc_thunk(cmp: TFuncType000; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OSSL_CMP_CERTSTATUS_cmpfunc_thunk"');
+
+{Error: Line 231: Syntax Error parsing " int (*realcmp)(const OSSL_CMP_CERTSTATUS *const *a, const OSSL_CMP_CERTSTATUS *const *b) 
+= (int (*)(const OSSL_CMP_CERTSTATUS *const *a, const OSSL_CMP_CERTSTATUS *const *b))(cmp); const OSSL_CMP_CERTSTATUS *const *at 
+= (const OSSL_CMP_CERTSTATUS *const *)a; const OSSL_CMP_CERTSTATUS *const *bt = (const OSSL_CMP_CERTSTATUS *const *)b; return realcmp(at,
+ bt); "
+
+ int (*realcmp)(const OSSL_CMP_CERTSTATUS *const *a, const OSSL_CMP_CERTSTATUS *const *b) = (int (*)(const OSSL_CMP_CERTSTATUS 
+*const *a, const OSSL_CMP_CERTSTATUS *const *b))(cmp); const OSSL_CMP_CERTSTATUS *const *at = (const OSSL_CMP_CERTSTATUS *const 
+*)a; const OSSL_CMP_CERTSTATUS *const *bt = (const OSSL_CMP_CERTSTATUS *const *)b; return realcmp(at, bt); }
+end;
+
 function ossl_check_OSSL_CMP_CERTSTATUS_type(ptr: POSSL_CMP_CERTSTATUS): POSSL_CMP_CERTSTATUS{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -2212,6 +2292,19 @@ begin
 *)ptr); "
 
  sk_OSSL_CMP_ITAV_freefunc freefunc = (sk_OSSL_CMP_ITAV_freefunc)freefunc_arg; freefunc((OSSL_CMP_ITAV *)ptr); }
+end;
+
+function sk_OSSL_CMP_ITAV_cmpfunc_thunk(cmp: TFuncType001; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OSSL_CMP_ITAV_cmpfunc_thunk"');
+
+{Error: Line 262: Syntax Error parsing " int (*realcmp)(const OSSL_CMP_ITAV *const *a, const OSSL_CMP_ITAV *const *b) = (int (*)(const 
+OSSL_CMP_ITAV *const *a, const OSSL_CMP_ITAV *const *b))(cmp); const OSSL_CMP_ITAV *const *at = (const OSSL_CMP_ITAV *const *)a; 
+const OSSL_CMP_ITAV *const *bt = (const OSSL_CMP_ITAV *const *)b; return realcmp(at, bt); "
+
+ int (*realcmp)(const OSSL_CMP_ITAV *const *a, const OSSL_CMP_ITAV *const *b) = (int (*)(const OSSL_CMP_ITAV *const *a, const OSSL_CMP_ITAV 
+*const *b))(cmp); const OSSL_CMP_ITAV *const *at = (const OSSL_CMP_ITAV *const *)a; const OSSL_CMP_ITAV *const *bt = (const OSSL_CMP_ITAV 
+*const *)b; return realcmp(at, bt); }
 end;
 
 function ossl_check_OSSL_CMP_ITAV_type(ptr: POSSL_CMP_ITAV): POSSL_CMP_ITAV{Has C Attribute: unused}; inline;
@@ -2254,6 +2347,20 @@ freefunc((OSSL_CMP_CRLSTATUS *)ptr); "
  sk_OSSL_CMP_CRLSTATUS_freefunc freefunc = (sk_OSSL_CMP_CRLSTATUS_freefunc)freefunc_arg; freefunc((OSSL_CMP_CRLSTATUS *)ptr); }
 end;
 
+function sk_OSSL_CMP_CRLSTATUS_cmpfunc_thunk(cmp: TFuncType002; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OSSL_CMP_CRLSTATUS_cmpfunc_thunk"');
+
+{Error: Line 293: Syntax Error parsing " int (*realcmp)(const OSSL_CMP_CRLSTATUS *const *a, const OSSL_CMP_CRLSTATUS *const *b) 
+= (int (*)(const OSSL_CMP_CRLSTATUS *const *a, const OSSL_CMP_CRLSTATUS *const *b))(cmp); const OSSL_CMP_CRLSTATUS *const *at = 
+(const OSSL_CMP_CRLSTATUS *const *)a; const OSSL_CMP_CRLSTATUS *const *bt = (const OSSL_CMP_CRLSTATUS *const *)b; return realcmp(at,
+ bt); "
+
+ int (*realcmp)(const OSSL_CMP_CRLSTATUS *const *a, const OSSL_CMP_CRLSTATUS *const *b) = (int (*)(const OSSL_CMP_CRLSTATUS *const 
+*a, const OSSL_CMP_CRLSTATUS *const *b))(cmp); const OSSL_CMP_CRLSTATUS *const *at = (const OSSL_CMP_CRLSTATUS *const *)a; const 
+OSSL_CMP_CRLSTATUS *const *bt = (const OSSL_CMP_CRLSTATUS *const *)b; return realcmp(at, bt); }
+end;
+
 function ossl_check_OSSL_CMP_CRLSTATUS_type(ptr: POSSL_CMP_CRLSTATUS): POSSL_CMP_CRLSTATUS{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -2292,6 +2399,19 @@ begin
 *)ptr); "
 
  sk_OSSL_CMP_PKISI_freefunc freefunc = (sk_OSSL_CMP_PKISI_freefunc)freefunc_arg; freefunc((OSSL_CMP_PKISI *)ptr); }
+end;
+
+function sk_OSSL_CMP_PKISI_cmpfunc_thunk(cmp: TFuncType003; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OSSL_CMP_PKISI_cmpfunc_thunk"');
+
+{Error: Line 331: Syntax Error parsing " int (*realcmp)(const OSSL_CMP_PKISI *const *a, const OSSL_CMP_PKISI *const *b) = (int (*)(const 
+OSSL_CMP_PKISI *const *a, const OSSL_CMP_PKISI *const *b))(cmp); const OSSL_CMP_PKISI *const *at = (const OSSL_CMP_PKISI *const 
+*)a; const OSSL_CMP_PKISI *const *bt = (const OSSL_CMP_PKISI *const *)b; return realcmp(at, bt); "
+
+ int (*realcmp)(const OSSL_CMP_PKISI *const *a, const OSSL_CMP_PKISI *const *b) = (int (*)(const OSSL_CMP_PKISI *const *a, const 
+OSSL_CMP_PKISI *const *b))(cmp); const OSSL_CMP_PKISI *const *at = (const OSSL_CMP_PKISI *const *)a; const OSSL_CMP_PKISI *const 
+*bt = (const OSSL_CMP_PKISI *const *)b; return realcmp(at, bt); }
 end;
 
 function ossl_check_OSSL_CMP_PKISI_type(ptr: POSSL_CMP_PKISI): POSSL_CMP_PKISI{Has C Attribute: unused}; inline;
@@ -2335,6 +2455,20 @@ freefunc((OSSL_CMP_CERTREPMESSAGE *)ptr); "
 *)ptr); }
 end;
 
+function sk_OSSL_CMP_CERTREPMESSAGE_cmpfunc_thunk(cmp: TFuncType004; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OSSL_CMP_CERTREPMESSAGE_cmpfunc_thunk"');
+
+{Error: Line 361: Syntax Error parsing " int (*realcmp)(const OSSL_CMP_CERTREPMESSAGE *const *a, const OSSL_CMP_CERTREPMESSAGE *const 
+*b) = (int (*)(const OSSL_CMP_CERTREPMESSAGE *const *a, const OSSL_CMP_CERTREPMESSAGE *const *b))(cmp); const OSSL_CMP_CERTREPMESSAGE 
+*const *at = (const OSSL_CMP_CERTREPMESSAGE *const *)a; const OSSL_CMP_CERTREPMESSAGE *const *bt = (const OSSL_CMP_CERTREPMESSAGE 
+*const *)b; return realcmp(at, bt); "
+
+ int (*realcmp)(const OSSL_CMP_CERTREPMESSAGE *const *a, const OSSL_CMP_CERTREPMESSAGE *const *b) = (int (*)(const OSSL_CMP_CERTREPMESSAGE 
+*const *a, const OSSL_CMP_CERTREPMESSAGE *const *b))(cmp); const OSSL_CMP_CERTREPMESSAGE *const *at = (const OSSL_CMP_CERTREPMESSAGE 
+*const *)a; const OSSL_CMP_CERTREPMESSAGE *const *bt = (const OSSL_CMP_CERTREPMESSAGE *const *)b; return realcmp(at, bt); }
+end;
+
 function ossl_check_OSSL_CMP_CERTREPMESSAGE_type(ptr: POSSL_CMP_CERTREPMESSAGE): POSSL_CMP_CERTREPMESSAGE{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -2374,6 +2508,20 @@ freefunc((OSSL_CMP_CERTRESPONSE *)ptr); "
 
  sk_OSSL_CMP_CERTRESPONSE_freefunc freefunc = (sk_OSSL_CMP_CERTRESPONSE_freefunc)freefunc_arg; freefunc((OSSL_CMP_CERTRESPONSE 
 *)ptr); }
+end;
+
+function sk_OSSL_CMP_CERTRESPONSE_cmpfunc_thunk(cmp: TFuncType005; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OSSL_CMP_CERTRESPONSE_cmpfunc_thunk"');
+
+{Error: Line 393: Syntax Error parsing " int (*realcmp)(const OSSL_CMP_CERTRESPONSE *const *a, const OSSL_CMP_CERTRESPONSE *const 
+*b) = (int (*)(const OSSL_CMP_CERTRESPONSE *const *a, const OSSL_CMP_CERTRESPONSE *const *b))(cmp); const OSSL_CMP_CERTRESPONSE 
+*const *at = (const OSSL_CMP_CERTRESPONSE *const *)a; const OSSL_CMP_CERTRESPONSE *const *bt = (const OSSL_CMP_CERTRESPONSE *const 
+*)b; return realcmp(at, bt); "
+
+ int (*realcmp)(const OSSL_CMP_CERTRESPONSE *const *a, const OSSL_CMP_CERTRESPONSE *const *b) = (int (*)(const OSSL_CMP_CERTRESPONSE 
+*const *a, const OSSL_CMP_CERTRESPONSE *const *b))(cmp); const OSSL_CMP_CERTRESPONSE *const *at = (const OSSL_CMP_CERTRESPONSE *const 
+*)a; const OSSL_CMP_CERTRESPONSE *const *bt = (const OSSL_CMP_CERTRESPONSE *const *)b; return realcmp(at, bt); }
 end;
 
 function ossl_check_OSSL_CMP_CERTRESPONSE_type(ptr: POSSL_CMP_CERTRESPONSE): POSSL_CMP_CERTRESPONSE{Has C Attribute: unused}; inline;

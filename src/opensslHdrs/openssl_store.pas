@@ -18,7 +18,7 @@
 unit openssl_store;
 
 {
-  Generated from OpenSSL 3.6.2 Header File store.h - Tue 19 May 14:30:53 BST 2026
+  Generated from OpenSSL 4.0.0 Header File store.h - Tue 19 May 14:33:27 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -32,7 +32,7 @@ interface
 uses OpenSSLAPI,openssl_types,openssl_pem,openssl_storeerr;
 
 
-{* Copyright 2016-2025 The OpenSSL Project Authors. All Rights Reserved.
+{* Copyright 2016-2026 The OpenSSL Project Authors. All Rights Reserved.
 *
 * Licensed under the Apache License 2.0 (the "License").  You may not use
 * this file except in compliance with the License.  You can obtain a copy
@@ -263,6 +263,7 @@ const
   OSSL_STORE_INFO_PKEY = 4;
   OSSL_STORE_INFO_CERT = 5;
   OSSL_STORE_INFO_CRL = 6;
+  OSSL_STORE_INFO_SKEY = 7;
 
 
   
@@ -281,6 +282,7 @@ const
   function OSSL_STORE_INFO_new_PKEY(pkey: PEVP_PKEY): POSSL_STORE_INFO; cdecl; external CLibCrypto name 'OSSL_STORE_INFO_new_PKEY';
   function OSSL_STORE_INFO_new_CERT(x509: PX509): POSSL_STORE_INFO; cdecl; external CLibCrypto name 'OSSL_STORE_INFO_new_CERT';
   function OSSL_STORE_INFO_new_CRL(crl: PX509_CRL): POSSL_STORE_INFO; cdecl; external CLibCrypto name 'OSSL_STORE_INFO_new_CRL';
+  function OSSL_STORE_INFO_new_SKEY(skey: PEVP_SKEY): POSSL_STORE_INFO; cdecl; external CLibCrypto name 'OSSL_STORE_INFO_new_SKEY';
   
   {* Functions to try to extract data from a OSSL_STORE_INFO.
   }
@@ -300,6 +302,8 @@ const
   function OSSL_STORE_INFO_get1_CERT(info: POSSL_STORE_INFO): PX509; cdecl; external CLibCrypto name 'OSSL_STORE_INFO_get1_CERT';
   function OSSL_STORE_INFO_get0_CRL(info: POSSL_STORE_INFO): PX509_CRL; cdecl; external CLibCrypto name 'OSSL_STORE_INFO_get0_CRL';
   function OSSL_STORE_INFO_get1_CRL(info: POSSL_STORE_INFO): PX509_CRL; cdecl; external CLibCrypto name 'OSSL_STORE_INFO_get1_CRL';
+  function OSSL_STORE_INFO_get0_SKEY(info: POSSL_STORE_INFO): PEVP_SKEY; cdecl; external CLibCrypto name 'OSSL_STORE_INFO_get0_SKEY';
+  function OSSL_STORE_INFO_get1_SKEY(info: POSSL_STORE_INFO): PEVP_SKEY; cdecl; external CLibCrypto name 'OSSL_STORE_INFO_get1_SKEY';
   function OSSL_STORE_INFO_type_string(type_: TOpenSSL_C_INT): PAnsiChar; cdecl; external CLibCrypto name 'OSSL_STORE_INFO_type_string';
   
   {* Free the OSSL_STORE_INFO
@@ -319,6 +323,7 @@ const
   {$EXTERNALSYM OSSL_STORE_INFO_new_PKEY}
   {$EXTERNALSYM OSSL_STORE_INFO_new_CERT}
   {$EXTERNALSYM OSSL_STORE_INFO_new_CRL}
+  {$EXTERNALSYM OSSL_STORE_INFO_new_SKEY}
   {$EXTERNALSYM OSSL_STORE_INFO_get_type}
   {$EXTERNALSYM OSSL_STORE_INFO_get0_data}
   {$EXTERNALSYM OSSL_STORE_INFO_get0_NAME}
@@ -335,6 +340,8 @@ const
   {$EXTERNALSYM OSSL_STORE_INFO_get1_CERT}
   {$EXTERNALSYM OSSL_STORE_INFO_get0_CRL}
   {$EXTERNALSYM OSSL_STORE_INFO_get1_CRL}
+  {$EXTERNALSYM OSSL_STORE_INFO_get0_SKEY}
+  {$EXTERNALSYM OSSL_STORE_INFO_get1_SKEY}
   {$EXTERNALSYM OSSL_STORE_INFO_type_string}
   {$EXTERNALSYM OSSL_STORE_INFO_free}
   {Do not call Function LoadDeclarations. Internal use only}
@@ -346,6 +353,7 @@ const
   function Load_OSSL_STORE_INFO_new_PKEY(pkey: PEVP_PKEY): POSSL_STORE_INFO; cdecl;
   function Load_OSSL_STORE_INFO_new_CERT(x509: PX509): POSSL_STORE_INFO; cdecl;
   function Load_OSSL_STORE_INFO_new_CRL(crl: PX509_CRL): POSSL_STORE_INFO; cdecl;
+  function Load_OSSL_STORE_INFO_new_SKEY(skey: PEVP_SKEY): POSSL_STORE_INFO; cdecl;
   function Load_OSSL_STORE_INFO_get_type(info: POSSL_STORE_INFO): TOpenSSL_C_INT; cdecl;
   function Load_OSSL_STORE_INFO_get0_data(type_: TOpenSSL_C_INT; info: POSSL_STORE_INFO): pointer; cdecl;
   function Load_OSSL_STORE_INFO_get0_NAME(info: POSSL_STORE_INFO): PAnsiChar; cdecl;
@@ -362,6 +370,8 @@ const
   function Load_OSSL_STORE_INFO_get1_CERT(info: POSSL_STORE_INFO): PX509; cdecl;
   function Load_OSSL_STORE_INFO_get0_CRL(info: POSSL_STORE_INFO): PX509_CRL; cdecl;
   function Load_OSSL_STORE_INFO_get1_CRL(info: POSSL_STORE_INFO): PX509_CRL; cdecl;
+  function Load_OSSL_STORE_INFO_get0_SKEY(info: POSSL_STORE_INFO): PEVP_SKEY; cdecl;
+  function Load_OSSL_STORE_INFO_get1_SKEY(info: POSSL_STORE_INFO): PEVP_SKEY; cdecl;
   function Load_OSSL_STORE_INFO_type_string(type_: TOpenSSL_C_INT): PAnsiChar; cdecl;
   procedure Load_OSSL_STORE_INFO_free(info: POSSL_STORE_INFO); cdecl;
 
@@ -374,6 +384,7 @@ var
   OSSL_STORE_INFO_new_PKEY: function(pkey: PEVP_PKEY): POSSL_STORE_INFO; cdecl = Load_OSSL_STORE_INFO_new_PKEY;
   OSSL_STORE_INFO_new_CERT: function(x509: PX509): POSSL_STORE_INFO; cdecl = Load_OSSL_STORE_INFO_new_CERT;
   OSSL_STORE_INFO_new_CRL: function(crl: PX509_CRL): POSSL_STORE_INFO; cdecl = Load_OSSL_STORE_INFO_new_CRL;
+  OSSL_STORE_INFO_new_SKEY: function(skey: PEVP_SKEY): POSSL_STORE_INFO; cdecl = Load_OSSL_STORE_INFO_new_SKEY;
   
   {* Functions to try to extract data from a OSSL_STORE_INFO.
   }
@@ -393,6 +404,8 @@ var
   OSSL_STORE_INFO_get1_CERT: function(info: POSSL_STORE_INFO): PX509; cdecl = Load_OSSL_STORE_INFO_get1_CERT;
   OSSL_STORE_INFO_get0_CRL: function(info: POSSL_STORE_INFO): PX509_CRL; cdecl = Load_OSSL_STORE_INFO_get0_CRL;
   OSSL_STORE_INFO_get1_CRL: function(info: POSSL_STORE_INFO): PX509_CRL; cdecl = Load_OSSL_STORE_INFO_get1_CRL;
+  OSSL_STORE_INFO_get0_SKEY: function(info: POSSL_STORE_INFO): PEVP_SKEY; cdecl = Load_OSSL_STORE_INFO_get0_SKEY;
+  OSSL_STORE_INFO_get1_SKEY: function(info: POSSL_STORE_INFO): PEVP_SKEY; cdecl = Load_OSSL_STORE_INFO_get1_SKEY;
   OSSL_STORE_INFO_type_string: function(type_: TOpenSSL_C_INT): PAnsiChar; cdecl = Load_OSSL_STORE_INFO_type_string;
   
   {* Free the OSSL_STORE_INFO
@@ -443,6 +456,13 @@ const
   *  Function to fetch a loader and extract data from it
   *  ---------------------------------------------------
   }
+  function OSSL_STORE_LOADER_fetch(libctx: POSSL_LIB_CTX; scheme: PAnsiChar; properties: PAnsiChar): POSSL_STORE_LOADER; cdecl; external CLibCrypto name 'OSSL_STORE_LOADER_fetch';
+  function OSSL_STORE_LOADER_up_ref(loader: POSSL_STORE_LOADER): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_STORE_LOADER_up_ref';
+  procedure OSSL_STORE_LOADER_free(loader: POSSL_STORE_LOADER); cdecl; external CLibCrypto name 'OSSL_STORE_LOADER_free';
+  function OSSL_STORE_LOADER_get0_provider(loader: POSSL_STORE_LOADER): POSSL_PROVIDER; cdecl; external CLibCrypto name 'OSSL_STORE_LOADER_get0_provider';
+  function OSSL_STORE_LOADER_get0_properties(loader: POSSL_STORE_LOADER): PAnsiChar; cdecl; external CLibCrypto name 'OSSL_STORE_LOADER_get0_properties';
+  function OSSL_STORE_LOADER_get0_description(loader: POSSL_STORE_LOADER): PAnsiChar; cdecl; external CLibCrypto name 'OSSL_STORE_LOADER_get0_description';
+  function OSSL_STORE_LOADER_is_a(loader: POSSL_STORE_LOADER; scheme: PAnsiChar): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_STORE_LOADER_is_a';
   {$else}
   {$EXTERNALSYM OSSL_STORE_supports_search}
   {$EXTERNALSYM OSSL_STORE_SEARCH_by_name}
@@ -458,6 +478,13 @@ const
   {$EXTERNALSYM OSSL_STORE_SEARCH_get0_digest}
   {$EXTERNALSYM OSSL_STORE_expect}
   {$EXTERNALSYM OSSL_STORE_find}
+  {$EXTERNALSYM OSSL_STORE_LOADER_fetch}
+  {$EXTERNALSYM OSSL_STORE_LOADER_up_ref}
+  {$EXTERNALSYM OSSL_STORE_LOADER_free}
+  {$EXTERNALSYM OSSL_STORE_LOADER_get0_provider}
+  {$EXTERNALSYM OSSL_STORE_LOADER_get0_properties}
+  {$EXTERNALSYM OSSL_STORE_LOADER_get0_description}
+  {$EXTERNALSYM OSSL_STORE_LOADER_is_a}
   {Do not call Function LoadDeclarations. Internal use only}
   function Load_OSSL_STORE_supports_search(ctx: POSSL_STORE_CTX; search_type: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
   function Load_OSSL_STORE_SEARCH_by_name(name: PX509_NAME): POSSL_STORE_SEARCH; cdecl;
@@ -473,6 +500,13 @@ const
   function Load_OSSL_STORE_SEARCH_get0_digest(criterion: POSSL_STORE_SEARCH): PEVP_MD; cdecl;
   function Load_OSSL_STORE_expect(ctx: POSSL_STORE_CTX; expected_type: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
   function Load_OSSL_STORE_find(ctx: POSSL_STORE_CTX; search: POSSL_STORE_SEARCH): TOpenSSL_C_INT; cdecl;
+  function Load_OSSL_STORE_LOADER_fetch(libctx: POSSL_LIB_CTX; scheme: PAnsiChar; properties: PAnsiChar): POSSL_STORE_LOADER; cdecl;
+  function Load_OSSL_STORE_LOADER_up_ref(loader: POSSL_STORE_LOADER): TOpenSSL_C_INT; cdecl;
+  procedure Load_OSSL_STORE_LOADER_free(loader: POSSL_STORE_LOADER); cdecl;
+  function Load_OSSL_STORE_LOADER_get0_provider(loader: POSSL_STORE_LOADER): POSSL_PROVIDER; cdecl;
+  function Load_OSSL_STORE_LOADER_get0_properties(loader: POSSL_STORE_LOADER): PAnsiChar; cdecl;
+  function Load_OSSL_STORE_LOADER_get0_description(loader: POSSL_STORE_LOADER): PAnsiChar; cdecl;
+  function Load_OSSL_STORE_LOADER_is_a(loader: POSSL_STORE_LOADER; scheme: PAnsiChar): TOpenSSL_C_INT; cdecl;
 
 var
   OSSL_STORE_supports_search: function(ctx: POSSL_STORE_CTX; search_type: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_OSSL_STORE_supports_search;
@@ -504,46 +538,6 @@ var
   *  Function to fetch a loader and extract data from it
   *  ---------------------------------------------------
   }
-  {$endif} {OPENSSL_STATIC_LINK_MODEL}
-
-type
-  {Auto-generated forward references}
-  Possl_store_loader_st = ^TOSSL_STORE_LOADER;
-  PPossl_store_loader_st = ^Possl_store_loader_st;
-  POSSL_STORE_LOADER = ^TOSSL_STORE_LOADER;
-  PPOSSL_STORE_LOADER = ^POSSL_STORE_LOADER;
-  {end of auto-generated forward references}
-
-  Tossl_store_loader_st = record end;
-  TOSSL_STORE_LOADER = Tossl_store_loader_st;
-
-
-  {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function OSSL_STORE_LOADER_fetch(libctx: POSSL_LIB_CTX; scheme: PAnsiChar; properties: PAnsiChar): POSSL_STORE_LOADER; cdecl; external CLibCrypto name 'OSSL_STORE_LOADER_fetch';
-  function OSSL_STORE_LOADER_up_ref(loader: POSSL_STORE_LOADER): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_STORE_LOADER_up_ref';
-  procedure OSSL_STORE_LOADER_free(loader: POSSL_STORE_LOADER); cdecl; external CLibCrypto name 'OSSL_STORE_LOADER_free';
-  function OSSL_STORE_LOADER_get0_provider(loader: POSSL_STORE_LOADER): POSSL_PROVIDER; cdecl; external CLibCrypto name 'OSSL_STORE_LOADER_get0_provider';
-  function OSSL_STORE_LOADER_get0_properties(loader: POSSL_STORE_LOADER): PAnsiChar; cdecl; external CLibCrypto name 'OSSL_STORE_LOADER_get0_properties';
-  function OSSL_STORE_LOADER_get0_description(loader: POSSL_STORE_LOADER): PAnsiChar; cdecl; external CLibCrypto name 'OSSL_STORE_LOADER_get0_description';
-  function OSSL_STORE_LOADER_is_a(loader: POSSL_STORE_LOADER; scheme: PAnsiChar): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_STORE_LOADER_is_a';
-  {$else}
-  {$EXTERNALSYM OSSL_STORE_LOADER_fetch}
-  {$EXTERNALSYM OSSL_STORE_LOADER_up_ref}
-  {$EXTERNALSYM OSSL_STORE_LOADER_free}
-  {$EXTERNALSYM OSSL_STORE_LOADER_get0_provider}
-  {$EXTERNALSYM OSSL_STORE_LOADER_get0_properties}
-  {$EXTERNALSYM OSSL_STORE_LOADER_get0_description}
-  {$EXTERNALSYM OSSL_STORE_LOADER_is_a}
-  {Do not call Function LoadDeclarations. Internal use only}
-  function Load_OSSL_STORE_LOADER_fetch(libctx: POSSL_LIB_CTX; scheme: PAnsiChar; properties: PAnsiChar): POSSL_STORE_LOADER; cdecl;
-  function Load_OSSL_STORE_LOADER_up_ref(loader: POSSL_STORE_LOADER): TOpenSSL_C_INT; cdecl;
-  procedure Load_OSSL_STORE_LOADER_free(loader: POSSL_STORE_LOADER); cdecl;
-  function Load_OSSL_STORE_LOADER_get0_provider(loader: POSSL_STORE_LOADER): POSSL_PROVIDER; cdecl;
-  function Load_OSSL_STORE_LOADER_get0_properties(loader: POSSL_STORE_LOADER): PAnsiChar; cdecl;
-  function Load_OSSL_STORE_LOADER_get0_description(loader: POSSL_STORE_LOADER): PAnsiChar; cdecl;
-  function Load_OSSL_STORE_LOADER_is_a(loader: POSSL_STORE_LOADER; scheme: PAnsiChar): TOpenSSL_C_INT; cdecl;
-
-var
   OSSL_STORE_LOADER_fetch: function(libctx: POSSL_LIB_CTX; scheme: PAnsiChar; properties: PAnsiChar): POSSL_STORE_LOADER; cdecl = Load_OSSL_STORE_LOADER_fetch;
   OSSL_STORE_LOADER_up_ref: function(loader: POSSL_STORE_LOADER): TOpenSSL_C_INT; cdecl = Load_OSSL_STORE_LOADER_up_ref;
   OSSL_STORE_LOADER_free: procedure(loader: POSSL_STORE_LOADER); cdecl = Load_OSSL_STORE_LOADER_free;
@@ -657,6 +651,7 @@ type
   {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
 
+    { must be NULL }
     {$ifdef OPENSSL_STATIC_LINK_MODEL}
   function OSSL_STORE_LOADER_new(e: PENGINE; scheme: PAnsiChar): POSSL_STORE_LOADER; cdecl; external CLibCrypto name 'OSSL_STORE_LOADER_new'; deprecated 'Since OpenSSL 3.0';
   function OSSL_STORE_LOADER_set_open(loader: POSSL_STORE_LOADER; open_function: TOSSL_STORE_open_fn): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_STORE_LOADER_set_open'; deprecated 'Since OpenSSL 3.0';
@@ -669,7 +664,6 @@ type
   function OSSL_STORE_LOADER_set_eof(loader: POSSL_STORE_LOADER; eof_function: TOSSL_STORE_eof_fn): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_STORE_LOADER_set_eof'; deprecated 'Since OpenSSL 3.0';
   function OSSL_STORE_LOADER_set_error(loader: POSSL_STORE_LOADER; error_function: TOSSL_STORE_error_fn): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_STORE_LOADER_set_error'; deprecated 'Since OpenSSL 3.0';
   function OSSL_STORE_LOADER_set_close(loader: POSSL_STORE_LOADER; close_function: TOSSL_STORE_close_fn): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_STORE_LOADER_set_close'; deprecated 'Since OpenSSL 3.0';
-  function OSSL_STORE_LOADER_get0_engine(loader: POSSL_STORE_LOADER): PENGINE; cdecl; external CLibCrypto name 'OSSL_STORE_LOADER_get0_engine'; deprecated 'Since OpenSSL 3.0';
   function OSSL_STORE_LOADER_get0_scheme(loader: POSSL_STORE_LOADER): PAnsiChar; cdecl; external CLibCrypto name 'OSSL_STORE_LOADER_get0_scheme'; deprecated 'Since OpenSSL 3.0';
   function OSSL_STORE_register_loader(loader: POSSL_STORE_LOADER): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_STORE_register_loader'; deprecated 'Since OpenSSL 3.0';
   function OSSL_STORE_unregister_loader(scheme: PAnsiChar): POSSL_STORE_LOADER; cdecl; external CLibCrypto name 'OSSL_STORE_unregister_loader'; deprecated 'Since OpenSSL 3.0';
@@ -685,7 +679,6 @@ type
   {$EXTERNALSYM OSSL_STORE_LOADER_set_eof}
   {$EXTERNALSYM OSSL_STORE_LOADER_set_error}
   {$EXTERNALSYM OSSL_STORE_LOADER_set_close}
-  {$EXTERNALSYM OSSL_STORE_LOADER_get0_engine}
   {$EXTERNALSYM OSSL_STORE_LOADER_get0_scheme}
   {$EXTERNALSYM OSSL_STORE_register_loader}
   {$EXTERNALSYM OSSL_STORE_unregister_loader}
@@ -701,7 +694,6 @@ type
   function Load_OSSL_STORE_LOADER_set_eof(loader: POSSL_STORE_LOADER; eof_function: TOSSL_STORE_eof_fn): TOpenSSL_C_INT; cdecl;
   function Load_OSSL_STORE_LOADER_set_error(loader: POSSL_STORE_LOADER; error_function: TOSSL_STORE_error_fn): TOpenSSL_C_INT; cdecl;
   function Load_OSSL_STORE_LOADER_set_close(loader: POSSL_STORE_LOADER; close_function: TOSSL_STORE_close_fn): TOpenSSL_C_INT; cdecl;
-  function Load_OSSL_STORE_LOADER_get0_engine(loader: POSSL_STORE_LOADER): PENGINE; cdecl;
   function Load_OSSL_STORE_LOADER_get0_scheme(loader: POSSL_STORE_LOADER): PAnsiChar; cdecl;
   function Load_OSSL_STORE_register_loader(loader: POSSL_STORE_LOADER): TOpenSSL_C_INT; cdecl;
   function Load_OSSL_STORE_unregister_loader(scheme: PAnsiChar): POSSL_STORE_LOADER; cdecl;
@@ -718,7 +710,6 @@ var
   OSSL_STORE_LOADER_set_eof: function(loader: POSSL_STORE_LOADER; eof_function: TOSSL_STORE_eof_fn): TOpenSSL_C_INT; cdecl = Load_OSSL_STORE_LOADER_set_eof;
   OSSL_STORE_LOADER_set_error: function(loader: POSSL_STORE_LOADER; error_function: TOSSL_STORE_error_fn): TOpenSSL_C_INT; cdecl = Load_OSSL_STORE_LOADER_set_error;
   OSSL_STORE_LOADER_set_close: function(loader: POSSL_STORE_LOADER; close_function: TOSSL_STORE_close_fn): TOpenSSL_C_INT; cdecl = Load_OSSL_STORE_LOADER_set_close;
-  OSSL_STORE_LOADER_get0_engine: function(loader: POSSL_STORE_LOADER): PENGINE; cdecl = Load_OSSL_STORE_LOADER_get0_engine;
   OSSL_STORE_LOADER_get0_scheme: function(loader: POSSL_STORE_LOADER): PAnsiChar; cdecl = Load_OSSL_STORE_LOADER_get0_scheme;
   OSSL_STORE_register_loader: function(loader: POSSL_STORE_LOADER): TOpenSSL_C_INT; cdecl = Load_OSSL_STORE_register_loader;
   OSSL_STORE_unregister_loader: function(scheme: PAnsiChar): POSSL_STORE_LOADER; cdecl = Load_OSSL_STORE_unregister_loader;
@@ -921,6 +912,14 @@ begin
   Result := OSSL_STORE_INFO_new_CRL(crl);
 end;
 
+function Load_OSSL_STORE_INFO_new_SKEY(skey: PEVP_SKEY): POSSL_STORE_INFO; cdecl;
+begin
+  OSSL_STORE_INFO_new_SKEY := LoadLibCryptoFunction('OSSL_STORE_INFO_new_SKEY');
+  if not assigned(OSSL_STORE_INFO_new_SKEY) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_INFO_new_SKEY');
+  Result := OSSL_STORE_INFO_new_SKEY(skey);
+end;
+
 function Load_OSSL_STORE_INFO_get_type(info: POSSL_STORE_INFO): TOpenSSL_C_INT; cdecl;
 begin
   OSSL_STORE_INFO_get_type := LoadLibCryptoFunction('OSSL_STORE_INFO_get_type');
@@ -1047,6 +1046,22 @@ begin
   if not assigned(OSSL_STORE_INFO_get1_CRL) then
     EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_INFO_get1_CRL');
   Result := OSSL_STORE_INFO_get1_CRL(info);
+end;
+
+function Load_OSSL_STORE_INFO_get0_SKEY(info: POSSL_STORE_INFO): PEVP_SKEY; cdecl;
+begin
+  OSSL_STORE_INFO_get0_SKEY := LoadLibCryptoFunction('OSSL_STORE_INFO_get0_SKEY');
+  if not assigned(OSSL_STORE_INFO_get0_SKEY) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_INFO_get0_SKEY');
+  Result := OSSL_STORE_INFO_get0_SKEY(info);
+end;
+
+function Load_OSSL_STORE_INFO_get1_SKEY(info: POSSL_STORE_INFO): PEVP_SKEY; cdecl;
+begin
+  OSSL_STORE_INFO_get1_SKEY := LoadLibCryptoFunction('OSSL_STORE_INFO_get1_SKEY');
+  if not assigned(OSSL_STORE_INFO_get1_SKEY) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_INFO_get1_SKEY');
+  Result := OSSL_STORE_INFO_get1_SKEY(info);
 end;
 
 function Load_OSSL_STORE_INFO_type_string(type_: TOpenSSL_C_INT): PAnsiChar; cdecl;
@@ -1346,14 +1361,6 @@ begin
   Result := OSSL_STORE_LOADER_set_close(loader, close_function);
 end;
 
-function Load_OSSL_STORE_LOADER_get0_engine(loader: POSSL_STORE_LOADER): PENGINE; cdecl;
-begin
-  OSSL_STORE_LOADER_get0_engine := LoadLibCryptoFunction('OSSL_STORE_LOADER_get0_engine');
-  if not assigned(OSSL_STORE_LOADER_get0_engine) then
-    EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_LOADER_get0_engine');
-  Result := OSSL_STORE_LOADER_get0_engine(loader);
-end;
-
 function Load_OSSL_STORE_LOADER_get0_scheme(loader: POSSL_STORE_LOADER): PAnsiChar; cdecl;
 begin
   OSSL_STORE_LOADER_get0_scheme := LoadLibCryptoFunction('OSSL_STORE_LOADER_get0_scheme');
@@ -1423,6 +1430,7 @@ begin
   OSSL_STORE_INFO_new_PKEY := Load_OSSL_STORE_INFO_new_PKEY;
   OSSL_STORE_INFO_new_CERT := Load_OSSL_STORE_INFO_new_CERT;
   OSSL_STORE_INFO_new_CRL := Load_OSSL_STORE_INFO_new_CRL;
+  OSSL_STORE_INFO_new_SKEY := Load_OSSL_STORE_INFO_new_SKEY;
   OSSL_STORE_INFO_get_type := Load_OSSL_STORE_INFO_get_type;
   OSSL_STORE_INFO_get0_data := Load_OSSL_STORE_INFO_get0_data;
   OSSL_STORE_INFO_get0_NAME := Load_OSSL_STORE_INFO_get0_NAME;
@@ -1439,6 +1447,8 @@ begin
   OSSL_STORE_INFO_get1_CERT := Load_OSSL_STORE_INFO_get1_CERT;
   OSSL_STORE_INFO_get0_CRL := Load_OSSL_STORE_INFO_get0_CRL;
   OSSL_STORE_INFO_get1_CRL := Load_OSSL_STORE_INFO_get1_CRL;
+  OSSL_STORE_INFO_get0_SKEY := Load_OSSL_STORE_INFO_get0_SKEY;
+  OSSL_STORE_INFO_get1_SKEY := Load_OSSL_STORE_INFO_get1_SKEY;
   OSSL_STORE_INFO_type_string := Load_OSSL_STORE_INFO_type_string;
   OSSL_STORE_INFO_free := Load_OSSL_STORE_INFO_free;
   OSSL_STORE_supports_search := Load_OSSL_STORE_supports_search;
@@ -1477,7 +1487,6 @@ begin
   OSSL_STORE_LOADER_set_eof := Load_OSSL_STORE_LOADER_set_eof;
   OSSL_STORE_LOADER_set_error := Load_OSSL_STORE_LOADER_set_error;
   OSSL_STORE_LOADER_set_close := Load_OSSL_STORE_LOADER_set_close;
-  OSSL_STORE_LOADER_get0_engine := Load_OSSL_STORE_LOADER_get0_engine;
   OSSL_STORE_LOADER_get0_scheme := Load_OSSL_STORE_LOADER_get0_scheme;
   OSSL_STORE_register_loader := Load_OSSL_STORE_register_loader;
   OSSL_STORE_unregister_loader := Load_OSSL_STORE_unregister_loader;

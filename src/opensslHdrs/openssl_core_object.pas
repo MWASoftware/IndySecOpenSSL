@@ -18,7 +18,7 @@
 unit openssl_core_object;
 
 {
-  Generated from OpenSSL 3.6.2 Header File core_object.h - Tue 19 May 14:29:43 BST 2026
+  Generated from OpenSSL 4.0.0 Header File core_object.h - Tue 19 May 14:32:16 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -57,6 +57,7 @@ const
   OSSL_OBJECT_PKEY = 2;
   OSSL_OBJECT_CERT = 3;
   OSSL_OBJECT_CRL = 4;
+  OSSL_OBJECT_SKEY = 5;
   
   {* The rest of the associated OSSL_PARAM elements is described in core_names.h
   }

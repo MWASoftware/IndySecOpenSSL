@@ -18,7 +18,7 @@
 unit openssl_stack;
 
 {
-  Generated from OpenSSL 3.6.2 Header File stack.h - Tue 19 May 14:30:51 BST 2026
+  Generated from OpenSSL 4.0.0 Header File stack.h - Tue 19 May 14:33:25 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -32,7 +32,7 @@ interface
 uses OpenSSLAPI;
 
 
-{* Copyright 1995-2025 The OpenSSL Project Authors. All Rights Reserved.
+{* Copyright 1995-2026 The OpenSSL Project Authors. All Rights Reserved.
 *
 * Licensed under the Apache License 2.0 (the "License").  You may not use
 * this file except in compliance with the License.  You can obtain a copy
@@ -79,6 +79,51 @@ type
   function OPENSSL_sk_new_null: POPENSSL_STACK; cdecl; external CLibCrypto name 'OPENSSL_sk_new_null';
   function OPENSSL_sk_new_reserve(c: TOPENSSL_sk_compfunc; n: TOpenSSL_C_INT): POPENSSL_STACK; cdecl; external CLibCrypto name 'OPENSSL_sk_new_reserve';
   function OPENSSL_sk_set_thunks(st: POPENSSL_STACK; f_thunk: TOPENSSL_sk_freefunc_thunk): POPENSSL_STACK; cdecl; external CLibCrypto name 'OPENSSL_sk_set_thunks';
+  {$else}
+  { The EXTERNALSYM directive is ignored by FPC, however, it is used by Delphi as follows:
+
+  The EXTERNALSYM directive prevents the specified Delphi symbol from appearing in header
+  files generated for C++. }
+  {$EXTERNALSYM OPENSSL_sk_num}
+  {$EXTERNALSYM OPENSSL_sk_value}
+  {$EXTERNALSYM OPENSSL_sk_set}
+  {$EXTERNALSYM OPENSSL_sk_new}
+  {$EXTERNALSYM OPENSSL_sk_new_null}
+  {$EXTERNALSYM OPENSSL_sk_new_reserve}
+  {$EXTERNALSYM OPENSSL_sk_set_thunks}
+  {Do not call Function LoadDeclarations. Internal use only}
+  function Load_OPENSSL_sk_num(_param1: POPENSSL_STACK): TOpenSSL_C_INT; cdecl;
+  function Load_OPENSSL_sk_value(_param1: POPENSSL_STACK; _param2: TOpenSSL_C_INT): pointer; cdecl;
+  function Load_OPENSSL_sk_set(st: POPENSSL_STACK; i: TOpenSSL_C_INT; data: pointer): pointer; cdecl;
+  function Load_OPENSSL_sk_new(cmp: TOPENSSL_sk_compfunc): POPENSSL_STACK; cdecl;
+  function Load_OPENSSL_sk_new_null: POPENSSL_STACK; cdecl;
+  function Load_OPENSSL_sk_new_reserve(c: TOPENSSL_sk_compfunc; n: TOpenSSL_C_INT): POPENSSL_STACK; cdecl;
+  function Load_OPENSSL_sk_set_thunks(st: POPENSSL_STACK; f_thunk: TOPENSSL_sk_freefunc_thunk): POPENSSL_STACK; cdecl;
+
+var
+  OPENSSL_sk_num: function(_param1: POPENSSL_STACK): TOpenSSL_C_INT; cdecl = Load_OPENSSL_sk_num;
+  OPENSSL_sk_value: function(_param1: POPENSSL_STACK; _param2: TOpenSSL_C_INT): pointer; cdecl = Load_OPENSSL_sk_value;
+  OPENSSL_sk_set: function(st: POPENSSL_STACK; i: TOpenSSL_C_INT; data: pointer): pointer; cdecl = Load_OPENSSL_sk_set;
+  OPENSSL_sk_new: function(cmp: TOPENSSL_sk_compfunc): POPENSSL_STACK; cdecl = Load_OPENSSL_sk_new;
+  OPENSSL_sk_new_null: function: POPENSSL_STACK; cdecl = Load_OPENSSL_sk_new_null;
+  OPENSSL_sk_new_reserve: function(c: TOPENSSL_sk_compfunc; n: TOpenSSL_C_INT): POPENSSL_STACK; cdecl = Load_OPENSSL_sk_new_reserve;
+  OPENSSL_sk_set_thunks: function(st: POPENSSL_STACK; f_thunk: TOPENSSL_sk_freefunc_thunk): POPENSSL_STACK; cdecl = Load_OPENSSL_sk_set_thunks;
+  {$endif} {OPENSSL_STATIC_LINK_MODEL}
+
+type
+  {Auto-generated forward references}
+  PFuncType000 = ^TFuncType000;
+  PPFuncType000 = ^PFuncType000;
+  PFuncType001 = ^TFuncType001;
+  PPFuncType001 = ^PFuncType001;
+  {end of auto-generated forward references}
+
+  TFuncType000 = function(_param1: pointer; _param2: pointer): TOpenSSL_C_INT; cdecl;
+  TFuncType001 = function(_param1: TFuncType000; _param2: pointer; _param3: pointer): TOpenSSL_C_INT; cdecl;
+
+
+  {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  function OPENSSL_sk_set_cmp_thunks(st: POPENSSL_STACK; c_thunk: TFuncType001): POPENSSL_STACK; cdecl; external CLibCrypto name 'OPENSSL_sk_set_cmp_thunks';
   function OPENSSL_sk_reserve(st: POPENSSL_STACK; n: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OPENSSL_sk_reserve';
   procedure OPENSSL_sk_free(_param1: POPENSSL_STACK); cdecl; external CLibCrypto name 'OPENSSL_sk_free';
   procedure OPENSSL_sk_pop_free(st: POPENSSL_STACK; func: TOPENSSL_sk_freefunc); cdecl; external CLibCrypto name 'OPENSSL_sk_pop_free';
@@ -99,17 +144,7 @@ type
   procedure OPENSSL_sk_sort(st: POPENSSL_STACK); cdecl; external CLibCrypto name 'OPENSSL_sk_sort';
   function OPENSSL_sk_is_sorted(st: POPENSSL_STACK): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OPENSSL_sk_is_sorted';
   {$else}
-  { The EXTERNALSYM directive is ignored by FPC, however, it is used by Delphi as follows:
-
-  The EXTERNALSYM directive prevents the specified Delphi symbol from appearing in header
-  files generated for C++. }
-  {$EXTERNALSYM OPENSSL_sk_num}
-  {$EXTERNALSYM OPENSSL_sk_value}
-  {$EXTERNALSYM OPENSSL_sk_set}
-  {$EXTERNALSYM OPENSSL_sk_new}
-  {$EXTERNALSYM OPENSSL_sk_new_null}
-  {$EXTERNALSYM OPENSSL_sk_new_reserve}
-  {$EXTERNALSYM OPENSSL_sk_set_thunks}
+  {$EXTERNALSYM OPENSSL_sk_set_cmp_thunks}
   {$EXTERNALSYM OPENSSL_sk_reserve}
   {$EXTERNALSYM OPENSSL_sk_free}
   {$EXTERNALSYM OPENSSL_sk_pop_free}
@@ -130,13 +165,7 @@ type
   {$EXTERNALSYM OPENSSL_sk_sort}
   {$EXTERNALSYM OPENSSL_sk_is_sorted}
   {Do not call Function LoadDeclarations. Internal use only}
-  function Load_OPENSSL_sk_num(_param1: POPENSSL_STACK): TOpenSSL_C_INT; cdecl;
-  function Load_OPENSSL_sk_value(_param1: POPENSSL_STACK; _param2: TOpenSSL_C_INT): pointer; cdecl;
-  function Load_OPENSSL_sk_set(st: POPENSSL_STACK; i: TOpenSSL_C_INT; data: pointer): pointer; cdecl;
-  function Load_OPENSSL_sk_new(cmp: TOPENSSL_sk_compfunc): POPENSSL_STACK; cdecl;
-  function Load_OPENSSL_sk_new_null: POPENSSL_STACK; cdecl;
-  function Load_OPENSSL_sk_new_reserve(c: TOPENSSL_sk_compfunc; n: TOpenSSL_C_INT): POPENSSL_STACK; cdecl;
-  function Load_OPENSSL_sk_set_thunks(st: POPENSSL_STACK; f_thunk: TOPENSSL_sk_freefunc_thunk): POPENSSL_STACK; cdecl;
+  function Load_OPENSSL_sk_set_cmp_thunks(st: POPENSSL_STACK; c_thunk: TFuncType001): POPENSSL_STACK; cdecl;
   function Load_OPENSSL_sk_reserve(st: POPENSSL_STACK; n: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
   procedure Load_OPENSSL_sk_free(_param1: POPENSSL_STACK); cdecl;
   procedure Load_OPENSSL_sk_pop_free(st: POPENSSL_STACK; func: TOPENSSL_sk_freefunc); cdecl;
@@ -158,13 +187,7 @@ type
   function Load_OPENSSL_sk_is_sorted(st: POPENSSL_STACK): TOpenSSL_C_INT; cdecl;
 
 var
-  OPENSSL_sk_num: function(_param1: POPENSSL_STACK): TOpenSSL_C_INT; cdecl = Load_OPENSSL_sk_num;
-  OPENSSL_sk_value: function(_param1: POPENSSL_STACK; _param2: TOpenSSL_C_INT): pointer; cdecl = Load_OPENSSL_sk_value;
-  OPENSSL_sk_set: function(st: POPENSSL_STACK; i: TOpenSSL_C_INT; data: pointer): pointer; cdecl = Load_OPENSSL_sk_set;
-  OPENSSL_sk_new: function(cmp: TOPENSSL_sk_compfunc): POPENSSL_STACK; cdecl = Load_OPENSSL_sk_new;
-  OPENSSL_sk_new_null: function: POPENSSL_STACK; cdecl = Load_OPENSSL_sk_new_null;
-  OPENSSL_sk_new_reserve: function(c: TOPENSSL_sk_compfunc; n: TOpenSSL_C_INT): POPENSSL_STACK; cdecl = Load_OPENSSL_sk_new_reserve;
-  OPENSSL_sk_set_thunks: function(st: POPENSSL_STACK; f_thunk: TOPENSSL_sk_freefunc_thunk): POPENSSL_STACK; cdecl = Load_OPENSSL_sk_set_thunks;
+  OPENSSL_sk_set_cmp_thunks: function(st: POPENSSL_STACK; c_thunk: TFuncType001): POPENSSL_STACK; cdecl = Load_OPENSSL_sk_set_cmp_thunks;
   OPENSSL_sk_reserve: function(st: POPENSSL_STACK; n: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_OPENSSL_sk_reserve;
   OPENSSL_sk_free: procedure(_param1: POPENSSL_STACK); cdecl = Load_OPENSSL_sk_free;
   OPENSSL_sk_pop_free: procedure(st: POPENSSL_STACK; func: TOPENSSL_sk_freefunc); cdecl = Load_OPENSSL_sk_pop_free;
@@ -386,6 +409,14 @@ begin
   if not assigned(OPENSSL_sk_set_thunks) then
     EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set_thunks');
   Result := OPENSSL_sk_set_thunks(st, f_thunk);
+end;
+
+function Load_OPENSSL_sk_set_cmp_thunks(st: POPENSSL_STACK; c_thunk: TFuncType001): POPENSSL_STACK; cdecl;
+begin
+  OPENSSL_sk_set_cmp_thunks := LoadLibCryptoFunction('OPENSSL_sk_set_cmp_thunks');
+  if not assigned(OPENSSL_sk_set_cmp_thunks) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('OPENSSL_sk_set_cmp_thunks');
+  Result := OPENSSL_sk_set_cmp_thunks(st, c_thunk);
 end;
 
 function Load_OPENSSL_sk_reserve(st: POPENSSL_STACK; n: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
@@ -732,6 +763,7 @@ begin
   OPENSSL_sk_new_null := Load_OPENSSL_sk_new_null;
   OPENSSL_sk_new_reserve := Load_OPENSSL_sk_new_reserve;
   OPENSSL_sk_set_thunks := Load_OPENSSL_sk_set_thunks;
+  OPENSSL_sk_set_cmp_thunks := Load_OPENSSL_sk_set_cmp_thunks;
   OPENSSL_sk_reserve := Load_OPENSSL_sk_reserve;
   OPENSSL_sk_free := Load_OPENSSL_sk_free;
   OPENSSL_sk_pop_free := Load_OPENSSL_sk_pop_free;

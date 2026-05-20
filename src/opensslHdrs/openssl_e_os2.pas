@@ -18,7 +18,7 @@
 unit openssl_e_os2;
 
 {
-  Generated from OpenSSL 3.6.2 Header File e_os2.h - Tue 19 May 14:30:01 BST 2026
+  Generated from OpenSSL 4.0.0 Header File e_os2.h - Tue 19 May 14:32:36 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -32,7 +32,7 @@ interface
 uses OpenSSLAPI;
 
 
-{* Copyright 1995-2024 The OpenSSL Project Authors. All Rights Reserved.
+{* Copyright 1995-2026 The OpenSSL Project Authors. All Rights Reserved.
 *
 * Licensed under the Apache License 2.0 (the "License").  You may not use
 * this file except in compliance with the License.  You can obtain a copy
@@ -194,60 +194,6 @@ const
 {# define  OPENSSL_EXPORT extern}
 {# define  OPENSSL_EXTERN extern}
   {$endif}
-  {$ifdef _WIN32}
-    {$ifdef _WIN64}
-
-type
-  {Auto-generated forward references}
-  Possl_ssize_t = ^Tossl_ssize_t;
-  PPossl_ssize_t = ^Possl_ssize_t;
-  {end of auto-generated forward references}
-
-  Tossl_ssize_t = TOpenSSL_C_LONG;
-
-const
-  OSSL_SSIZE_MAX = _I64_MAX;
-    {$else}
-
-type
-  {Auto-generated forward references}
-  Possl_ssize_t = ^Tossl_ssize_t;
-  PPossl_ssize_t = ^Possl_ssize_t;
-  {end of auto-generated forward references}
-
-  Tossl_ssize_t = TOpenSSL_C_INT;
-
-const
-  OSSL_SSIZE_MAX = INT_MAX;
-    {$endif}
-  {$endif}
-  {$if  defined(OPENSSL_SYS_UEFI)  and  not declared(ossl_ssize_t)}
-
-const
-  ossl_ssize_t = INTN;
-  OSSL_SSIZE_MAX = MAX_INTN;
-  {$endif}
-  {$if not declared(Tossl_ssize_t)}
-
-type
-  {Auto-generated forward references}
-  Possl_ssize_t = ^Tossl_ssize_t;
-  PPossl_ssize_t = ^Possl_ssize_t;
-  {end of auto-generated forward references}
-
-  Tossl_ssize_t = TOpenSSL_C_SSIZET;
-    {$if  defined(SSIZE_MAX)}
-
-const
-  OSSL_SSIZE_MAX = SSIZE_MAX;
-    {$elseif  defined(_POSIX_SSIZE_MAX)}
-
-const
-  OSSL_SSIZE_MAX = _POSIX_SSIZE_MAX;
-    {$else}
-{# define  OSSL_SSIZE_MAX SIZE_MAX>>1)}
-    {$endif}
-  {$endif}
   {$if  defined(UNUSEDRESULT_DEBUG)}
 {# define  __owur __attribute__((__warn_unused_result__))} {Macro Return Type unknown}
   {$else}
@@ -276,29 +222,88 @@ type
     {typedef UINT64 uint64_t; - Redefinition of Builtin Type}
   TUINTN = record end;
   PByte = TUINTN;
-    { #elif  __STDC_VERSION__ >= 199901L || defined(__osf__) || defined(__sgi) || defined(__hpux) || defined(OPENSSL_SYS_VMS) || defined(__OpenBSD__)
+    {$ifndef  OSSL_SSIZE_MAX}
+
+type
+  {Auto-generated forward references}
+  PINTN = ^Tossl_ssize_t;
+  PPINTN = ^PINTN;
+  Possl_ssize_t = ^Tossl_ssize_t;
+  PPossl_ssize_t = ^Possl_ssize_t;
+  {end of auto-generated forward references}
+
+  TINTN = record end;
+  Tossl_ssize_t = TINTN;
+
+const
+  OSSL_SSIZE_MAX = MAX_INTN;
+    {$endif}
+    
+    {#elif (defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L) || defined(__osf__) || defined(__sgi) || defined(__hpux) || defined(OPENSSL_SYS_VMS) 
+    || defined(__OpenBSD__)
     #include <inttypes.h>
     #include <inttypes.h>
     #undef OPENSSL_NO_INTTYPES_H
-     Because the specs say that inttypes.h includes stdint.h if present 
+    / * Because the specs say that inttypes.h includes stdint.h if present * /
     #undef OPENSSL_NO_STDINT_H
-    #elif defined(_MSC_VER) && _MSC_VER < 1600
-    
-    * minimally required typdefs for systems not supporting inttypes.h or
-    * stdint.h: currently just older VC++
-    
-    typedef signed char int8_t;
-    typedef unsigned char uint8_t;
-    typedef short int16_t;
-    typedef unsigned short uint16_t;
-    typedef int int32_t;
-    typedef unsigned int uint32_t;
-    typedef __int64 int64_t;
-    typedef unsigned __int64 uint64_t;
+    #elif defined(OPENSSL_SYS_TANDEM)
+    #include <stdint.h>
+    #include <stdint.h>
+    #include <sys/types.h>
+    #include <sys/types.h>
+    #else
+    #include <stdint.h>
+    #include <stdint.h>
+    #undef OPENSSL_NO_STDINT_H
     }
-  {$elseif  defined(OPENSSL_SYS_TANDEM)}
-  {$else}
-    {$undef  OPENSSL_NO_STDINT_H}
+  {$endif}
+  {$ifdef _WIN32}
+    {$ifdef _WIN64}
+
+type
+  {Auto-generated forward references}
+  Possl_ssize_t = ^Tossl_ssize_t;
+  PPossl_ssize_t = ^Possl_ssize_t;
+  {end of auto-generated forward references}
+
+  Tossl_ssize_t = TOpenSSL_C_LONG;
+
+const
+  OSSL_SSIZE_MAX = INT64_MAX;
+    {$else}
+
+type
+  {Auto-generated forward references}
+  Possl_ssize_t = ^Tossl_ssize_t;
+  PPossl_ssize_t = ^Possl_ssize_t;
+  {end of auto-generated forward references}
+
+  Tossl_ssize_t = TOpenSSL_C_INT;
+
+const
+  OSSL_SSIZE_MAX = INT_MAX;
+    {$endif}
+  {$endif}
+  {$ifndef  OSSL_SSIZE_MAX}
+
+type
+  {Auto-generated forward references}
+  Possl_ssize_t = ^Tossl_ssize_t;
+  PPossl_ssize_t = ^Possl_ssize_t;
+  {end of auto-generated forward references}
+
+  Tossl_ssize_t = TOpenSSL_C_SSIZET;
+    {$if  defined(SSIZE_MAX)}
+
+const
+  OSSL_SSIZE_MAX = SSIZE_MAX;
+    {$elseif  defined(_POSIX_SSIZE_MAX)}
+
+const
+  OSSL_SSIZE_MAX = _POSIX_SSIZE_MAX;
+    {$else}
+{# define  OSSL_SSIZE_MAX SIZE_MAX>>1)}
+    {$endif}
   {$endif}
 
 type
@@ -309,23 +314,21 @@ type
   PPossl_uintmax_t = ^Possl_uintmax_t;
   {end of auto-generated forward references}
 
-  { Commented out to avoid Delphi errors
-  #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L && defined(INTMAX_MAX) && defined(UINTMAX_MAX)
+  
+  {#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L && defined(INTMAX_MAX) && defined(UINTMAX_MAX)
   typedef intmax_t ossl_intmax_t;
   typedef uintmax_t ossl_uintmax_t;
-  #else }
+  #else
+  }
   { Fall back to the largest we know we require and can handle }
   Tossl_intmax_t = TOpenSSL_C_LONG;
   Tossl_uintmax_t = TOpenSSL_C_UINT64;
-  {# define  ossl_inline inline} { Blacklisted Macro}
-  {# define  ossl_noreturn __attribute__((noreturn))} {Macro Return Type unknown}
-  {# define  ossl_unused __attribute__((unused))} {Macro Return Type unknown}
-  {#endif}
+  { #endif}
   { ossl_inline: portable inline definition usable in public headers }
-  { Causes runtime problems for Pascal - inline is reserved word
-  #if !defined(inline) && !defined(__cplusplus)
+  
+  {#if !defined(inline) && !defined(__cplusplus)
   #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L
-   just use inline 
+  / * just use inline * /
   #define ossl_inline inline
   #elif defined(__GNUC__) && __GNUC__ >= 2
   #define ossl_inline __inline__
@@ -337,23 +340,30 @@ type
   * /
   #define ossl_inline __inline
   #else
-  #define ossl_inline
-  #endif
-  #else
   }
-  {#endif}
-  { #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L && !defined(__cplusplus)
-  //#define ossl_noreturn _Noreturn
-  #define ossl_noreturn
+  {$define ossl_inline}
+{# define  ossl_noreturn __attribute__((noreturn))} {Macro Return Type unknown}
+{# define  ossl_unused __attribute__((unused))} {Macro Return Type unknown}
+  
+  {#endif
+  #else
+  #define ossl_inline inline
+  #endif
+  }
+  
+  {#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L && !defined(__cplusplus)
+  #define ossl_noreturn _Noreturn
   #elif defined(__GNUC__) && __GNUC__ >= 2
   }
-  { #else
+  
+  {#else
   #define ossl_noreturn
   #endif
   }
   { ossl_unused: portable unused attribute for use in public headers }
-  { #if defined(__GNUC__)}
-  { #else
+  {#if defined(__GNUC__)}
+  
+  {#else
   #define ossl_unused
   #endif
   }

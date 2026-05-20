@@ -18,7 +18,7 @@
 unit openssl_ebcdic;
 
 {
-  Generated from OpenSSL 3.6.2 Header File ebcdic.h - Tue 19 May 14:29:54 BST 2026
+  Generated from OpenSSL 4.0.0 Header File ebcdic.h - Tue 19 May 14:32:27 BST 2026
 }
 
 {$IFNDEF FPC}

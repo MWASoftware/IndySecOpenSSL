@@ -18,7 +18,7 @@
 unit openssl_ts;
 
 {
-  Generated from OpenSSL 3.6.2 Header File ts.h - Tue 19 May 14:31:03 BST 2026
+  Generated from OpenSSL 4.0.0 Header File ts.h - Tue 19 May 14:33:37 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -34,7 +34,7 @@ uses OpenSSLAPI,openssl_types,openssl_pkcs7,openssl_symhacks,openssl_buffer,
      openssl_dh,openssl_tserr,openssl_ess,openssl_x509,openssl_x509v3;
 
 
-{* Copyright 2006-2024 The OpenSSL Project Authors. All Rights Reserved.
+{* Copyright 2006-2026 The OpenSSL Project Authors. All Rights Reserved.
 *
 * Licensed under the Apache License 2.0 (the "License").  You may not use
 * this file except in compliance with the License.  You can obtain a copy
@@ -1132,6 +1132,19 @@ var
   function TS_CONF_load_key(file_: PAnsiChar; pass: PAnsiChar): PEVP_PKEY; cdecl; external CLibCrypto name 'TS_CONF_load_key';
   function TS_CONF_get_tsa_section(conf: PCONF; section: PAnsiChar): PAnsiChar; cdecl; external CLibCrypto name 'TS_CONF_get_tsa_section';
   function TS_CONF_set_serial(conf: PCONF; section: PAnsiChar; cb: TTS_serial_cb; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_CONF_set_serial';
+  function TS_CONF_set_signer_cert(conf: PCONF; section: PAnsiChar; cert: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_CONF_set_signer_cert';
+  function TS_CONF_set_certs(conf: PCONF; section: PAnsiChar; certs: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_CONF_set_certs';
+  function TS_CONF_set_signer_key(conf: PCONF; section: PAnsiChar; key: PAnsiChar; pass: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_CONF_set_signer_key';
+  function TS_CONF_set_signer_digest(conf: PCONF; section: PAnsiChar; md: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_CONF_set_signer_digest';
+  function TS_CONF_set_def_policy(conf: PCONF; section: PAnsiChar; policy: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_CONF_set_def_policy';
+  function TS_CONF_set_policies(conf: PCONF; section: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_CONF_set_policies';
+  function TS_CONF_set_digests(conf: PCONF; section: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_CONF_set_digests';
+  function TS_CONF_set_accuracy(conf: PCONF; section: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_CONF_set_accuracy';
+  function TS_CONF_set_clock_precision_digits(conf: PCONF; section: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_CONF_set_clock_precision_digits';
+  function TS_CONF_set_ordering(conf: PCONF; section: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_CONF_set_ordering';
+  function TS_CONF_set_tsa_name(conf: PCONF; section: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_CONF_set_tsa_name';
+  function TS_CONF_set_ess_cert_id_chain(conf: PCONF; section: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_CONF_set_ess_cert_id_chain';
+  function TS_CONF_set_ess_cert_id_digest(conf: PCONF; section: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_CONF_set_ess_cert_id_digest';
     {$else}
   {$EXTERNALSYM TS_VERIFY_CTX_set0_certs}
   {$EXTERNALSYM TS_REQ_to_TS_VERIFY_CTX}
@@ -1148,6 +1161,19 @@ var
   {$EXTERNALSYM TS_CONF_load_key}
   {$EXTERNALSYM TS_CONF_get_tsa_section}
   {$EXTERNALSYM TS_CONF_set_serial}
+  {$EXTERNALSYM TS_CONF_set_signer_cert}
+  {$EXTERNALSYM TS_CONF_set_certs}
+  {$EXTERNALSYM TS_CONF_set_signer_key}
+  {$EXTERNALSYM TS_CONF_set_signer_digest}
+  {$EXTERNALSYM TS_CONF_set_def_policy}
+  {$EXTERNALSYM TS_CONF_set_policies}
+  {$EXTERNALSYM TS_CONF_set_digests}
+  {$EXTERNALSYM TS_CONF_set_accuracy}
+  {$EXTERNALSYM TS_CONF_set_clock_precision_digits}
+  {$EXTERNALSYM TS_CONF_set_ordering}
+  {$EXTERNALSYM TS_CONF_set_tsa_name}
+  {$EXTERNALSYM TS_CONF_set_ess_cert_id_chain}
+  {$EXTERNALSYM TS_CONF_set_ess_cert_id_digest}
   {Do not call Function LoadDeclarations. Internal use only}
   function Load_TS_VERIFY_CTX_set0_certs(ctx: PTS_VERIFY_CTX; certs: Pstack_st_X509): TOpenSSL_C_INT; cdecl;
   function Load_TS_REQ_to_TS_VERIFY_CTX(req: PTS_REQ; ctx: PTS_VERIFY_CTX): PTS_VERIFY_CTX; cdecl;
@@ -1164,6 +1190,19 @@ var
   function Load_TS_CONF_load_key(file_: PAnsiChar; pass: PAnsiChar): PEVP_PKEY; cdecl;
   function Load_TS_CONF_get_tsa_section(conf: PCONF; section: PAnsiChar): PAnsiChar; cdecl;
   function Load_TS_CONF_set_serial(conf: PCONF; section: PAnsiChar; cb: TTS_serial_cb; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl;
+  function Load_TS_CONF_set_signer_cert(conf: PCONF; section: PAnsiChar; cert: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl;
+  function Load_TS_CONF_set_certs(conf: PCONF; section: PAnsiChar; certs: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl;
+  function Load_TS_CONF_set_signer_key(conf: PCONF; section: PAnsiChar; key: PAnsiChar; pass: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl;
+  function Load_TS_CONF_set_signer_digest(conf: PCONF; section: PAnsiChar; md: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl;
+  function Load_TS_CONF_set_def_policy(conf: PCONF; section: PAnsiChar; policy: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl;
+  function Load_TS_CONF_set_policies(conf: PCONF; section: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl;
+  function Load_TS_CONF_set_digests(conf: PCONF; section: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl;
+  function Load_TS_CONF_set_accuracy(conf: PCONF; section: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl;
+  function Load_TS_CONF_set_clock_precision_digits(conf: PCONF; section: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl;
+  function Load_TS_CONF_set_ordering(conf: PCONF; section: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl;
+  function Load_TS_CONF_set_tsa_name(conf: PCONF; section: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl;
+  function Load_TS_CONF_set_ess_cert_id_chain(conf: PCONF; section: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl;
+  function Load_TS_CONF_set_ess_cert_id_digest(conf: PCONF; section: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl;
 
 var
   TS_VERIFY_CTX_set0_certs: function(ctx: PTS_VERIFY_CTX; certs: Pstack_st_X509): TOpenSSL_C_INT; cdecl = Load_TS_VERIFY_CTX_set0_certs;
@@ -1203,71 +1242,6 @@ var
   TS_CONF_load_key: function(file_: PAnsiChar; pass: PAnsiChar): PEVP_PKEY; cdecl = Load_TS_CONF_load_key;
   TS_CONF_get_tsa_section: function(conf: PCONF; section: PAnsiChar): PAnsiChar; cdecl = Load_TS_CONF_get_tsa_section;
   TS_CONF_set_serial: function(conf: PCONF; section: PAnsiChar; cb: TTS_serial_cb; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl = Load_TS_CONF_set_serial;
-    {$endif} {OPENSSL_STATIC_LINK_MODEL}
-    {$ifndef  OPENSSL_NO_ENGINE}
-
-
-      {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function TS_CONF_set_crypto_device(conf: PCONF; section: PAnsiChar; device: PAnsiChar): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_CONF_set_crypto_device';
-  function TS_CONF_set_default_engine(name: PAnsiChar): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_CONF_set_default_engine';
-      {$else}
-  {$EXTERNALSYM TS_CONF_set_crypto_device}
-  {$EXTERNALSYM TS_CONF_set_default_engine}
-  {Do not call Function LoadDeclarations. Internal use only}
-  function Load_TS_CONF_set_crypto_device(conf: PCONF; section: PAnsiChar; device: PAnsiChar): TOpenSSL_C_INT; cdecl;
-  function Load_TS_CONF_set_default_engine(name: PAnsiChar): TOpenSSL_C_INT; cdecl;
-
-var
-  TS_CONF_set_crypto_device: function(conf: PCONF; section: PAnsiChar; device: PAnsiChar): TOpenSSL_C_INT; cdecl = Load_TS_CONF_set_crypto_device;
-  TS_CONF_set_default_engine: function(name: PAnsiChar): TOpenSSL_C_INT; cdecl = Load_TS_CONF_set_default_engine;
-      {$endif} {OPENSSL_STATIC_LINK_MODEL}
-    {$endif}
-
-
-    {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function TS_CONF_set_signer_cert(conf: PCONF; section: PAnsiChar; cert: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_CONF_set_signer_cert';
-  function TS_CONF_set_certs(conf: PCONF; section: PAnsiChar; certs: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_CONF_set_certs';
-  function TS_CONF_set_signer_key(conf: PCONF; section: PAnsiChar; key: PAnsiChar; pass: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_CONF_set_signer_key';
-  function TS_CONF_set_signer_digest(conf: PCONF; section: PAnsiChar; md: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_CONF_set_signer_digest';
-  function TS_CONF_set_def_policy(conf: PCONF; section: PAnsiChar; policy: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_CONF_set_def_policy';
-  function TS_CONF_set_policies(conf: PCONF; section: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_CONF_set_policies';
-  function TS_CONF_set_digests(conf: PCONF; section: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_CONF_set_digests';
-  function TS_CONF_set_accuracy(conf: PCONF; section: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_CONF_set_accuracy';
-  function TS_CONF_set_clock_precision_digits(conf: PCONF; section: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_CONF_set_clock_precision_digits';
-  function TS_CONF_set_ordering(conf: PCONF; section: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_CONF_set_ordering';
-  function TS_CONF_set_tsa_name(conf: PCONF; section: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_CONF_set_tsa_name';
-  function TS_CONF_set_ess_cert_id_chain(conf: PCONF; section: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_CONF_set_ess_cert_id_chain';
-  function TS_CONF_set_ess_cert_id_digest(conf: PCONF; section: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'TS_CONF_set_ess_cert_id_digest';
-    {$else}
-  {$EXTERNALSYM TS_CONF_set_signer_cert}
-  {$EXTERNALSYM TS_CONF_set_certs}
-  {$EXTERNALSYM TS_CONF_set_signer_key}
-  {$EXTERNALSYM TS_CONF_set_signer_digest}
-  {$EXTERNALSYM TS_CONF_set_def_policy}
-  {$EXTERNALSYM TS_CONF_set_policies}
-  {$EXTERNALSYM TS_CONF_set_digests}
-  {$EXTERNALSYM TS_CONF_set_accuracy}
-  {$EXTERNALSYM TS_CONF_set_clock_precision_digits}
-  {$EXTERNALSYM TS_CONF_set_ordering}
-  {$EXTERNALSYM TS_CONF_set_tsa_name}
-  {$EXTERNALSYM TS_CONF_set_ess_cert_id_chain}
-  {$EXTERNALSYM TS_CONF_set_ess_cert_id_digest}
-  {Do not call Function LoadDeclarations. Internal use only}
-  function Load_TS_CONF_set_signer_cert(conf: PCONF; section: PAnsiChar; cert: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl;
-  function Load_TS_CONF_set_certs(conf: PCONF; section: PAnsiChar; certs: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl;
-  function Load_TS_CONF_set_signer_key(conf: PCONF; section: PAnsiChar; key: PAnsiChar; pass: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl;
-  function Load_TS_CONF_set_signer_digest(conf: PCONF; section: PAnsiChar; md: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl;
-  function Load_TS_CONF_set_def_policy(conf: PCONF; section: PAnsiChar; policy: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl;
-  function Load_TS_CONF_set_policies(conf: PCONF; section: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl;
-  function Load_TS_CONF_set_digests(conf: PCONF; section: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl;
-  function Load_TS_CONF_set_accuracy(conf: PCONF; section: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl;
-  function Load_TS_CONF_set_clock_precision_digits(conf: PCONF; section: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl;
-  function Load_TS_CONF_set_ordering(conf: PCONF; section: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl;
-  function Load_TS_CONF_set_tsa_name(conf: PCONF; section: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl;
-  function Load_TS_CONF_set_ess_cert_id_chain(conf: PCONF; section: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl;
-  function Load_TS_CONF_set_ess_cert_id_digest(conf: PCONF; section: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl;
-
-var
   TS_CONF_set_signer_cert: function(conf: PCONF; section: PAnsiChar; cert: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl = Load_TS_CONF_set_signer_cert;
   TS_CONF_set_certs: function(conf: PCONF; section: PAnsiChar; certs: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl = Load_TS_CONF_set_certs;
   TS_CONF_set_signer_key: function(conf: PCONF; section: PAnsiChar; key: PAnsiChar; pass: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl = Load_TS_CONF_set_signer_key;
@@ -2704,24 +2678,6 @@ begin
   Result := TS_CONF_set_serial(conf, section, cb, ctx);
 end;
 
-    {$ifndef  OPENSSL_NO_ENGINE}
-function Load_TS_CONF_set_crypto_device(conf: PCONF; section: PAnsiChar; device: PAnsiChar): TOpenSSL_C_INT; cdecl;
-begin
-  TS_CONF_set_crypto_device := LoadLibCryptoFunction('TS_CONF_set_crypto_device');
-  if not assigned(TS_CONF_set_crypto_device) then
-    EOpenSSLAPIFunctionNotPresent.RaiseException('TS_CONF_set_crypto_device');
-  Result := TS_CONF_set_crypto_device(conf, section, device);
-end;
-
-function Load_TS_CONF_set_default_engine(name: PAnsiChar): TOpenSSL_C_INT; cdecl;
-begin
-  TS_CONF_set_default_engine := LoadLibCryptoFunction('TS_CONF_set_default_engine');
-  if not assigned(TS_CONF_set_default_engine) then
-    EOpenSSLAPIFunctionNotPresent.RaiseException('TS_CONF_set_default_engine');
-  Result := TS_CONF_set_default_engine(name);
-end;
-
-    {$endif} { OPENSSL_NO_ENGINE}
 function Load_TS_CONF_set_signer_cert(conf: PCONF; section: PAnsiChar; cert: PAnsiChar; ctx: PTS_RESP_CTX): TOpenSSL_C_INT; cdecl;
 begin
   TS_CONF_set_signer_cert := LoadLibCryptoFunction('TS_CONF_set_signer_cert');
@@ -3020,10 +2976,6 @@ begin
   TS_CONF_load_key := Load_TS_CONF_load_key;
   TS_CONF_get_tsa_section := Load_TS_CONF_get_tsa_section;
   TS_CONF_set_serial := Load_TS_CONF_set_serial;
-    {$ifndef  OPENSSL_NO_ENGINE}
-  TS_CONF_set_crypto_device := Load_TS_CONF_set_crypto_device;
-  TS_CONF_set_default_engine := Load_TS_CONF_set_default_engine;
-    {$endif} { OPENSSL_NO_ENGINE}
   TS_CONF_set_signer_cert := Load_TS_CONF_set_signer_cert;
   TS_CONF_set_certs := Load_TS_CONF_set_certs;
   TS_CONF_set_signer_key := Load_TS_CONF_set_signer_key;

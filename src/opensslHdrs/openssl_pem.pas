@@ -18,7 +18,7 @@
 unit openssl_pem;
 
 {
-  Generated from OpenSSL 3.6.2 Header File pem.h - Tue 19 May 14:30:27 BST 2026
+  Generated from OpenSSL 4.0.0 Header File pem.h - Tue 19 May 14:33:01 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -34,7 +34,7 @@ uses OpenSSLAPI,openssl_types,openssl_pkcs7,openssl_asn1,openssl_ec,
      openssl_pemerr,openssl_symhacks;
 
 
-{* Copyright 1995-2025 The OpenSSL Project Authors. All Rights Reserved.
+{* Copyright 1995-2026 The OpenSSL Project Authors. All Rights Reserved.
 *
 * Licensed under the Apache License 2.0 (the "License").  You may not use
 * this file except in compliance with the License.  You can obtain a copy
@@ -80,6 +80,7 @@ const
   PEM_STRING_SM2PRIVATEKEY = 'SM2 PRIVATE KEY';
   PEM_STRING_SM2PARAMETERS = 'SM2 PARAMETERS';
   PEM_STRING_ACERT = 'ATTRIBUTE CERTIFICATE';
+  PEM_STRING_ECHCONFIG = 'ECHCONFIG';
   PEM_TYPE_ENCRYPTED = 10;
   PEM_TYPE_MIC_ONLY = 20;
   PEM_TYPE_MIC_CLEAR = 30;

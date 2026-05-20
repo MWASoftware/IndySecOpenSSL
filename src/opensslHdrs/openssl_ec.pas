@@ -18,7 +18,7 @@
 unit openssl_ec;
 
 {
-  Generated from OpenSSL 3.6.2 Header File ec.h - Tue 19 May 14:29:57 BST 2026
+  Generated from OpenSSL 4.0.0 Header File ec.h - Tue 19 May 14:32:30 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -33,7 +33,7 @@ uses OpenSSLAPI,openssl_evp,openssl_types,openssl_asn1,openssl_symhacks,
      openssl_bn,openssl_ecerr,openssl_params;
 
 
-{* Copyright 2002-2023 The OpenSSL Project Authors. All Rights Reserved.
+{* Copyright 2002-2026 The OpenSSL Project Authors. All Rights Reserved.
 * Copyright (c) 2002, Oracle and/or its affiliates. All rights reserved
 *
 * Licensed under the Apache License 2.0 (the "License").  You may not use
@@ -434,6 +434,13 @@ var
   *  return number of bits of group order.
   }
   function EC_GROUP_order_bits(group: PEC_GROUP): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EC_GROUP_order_bits';
+  {* Gets the symmetric-equivalent security bit size an EC_GROUP.
+  * This is rounded down to one of the standard sizes, (80, 112,
+  * 128, 192, 256) or reported as-is when smaller than 80.
+  *  param  group  EC_GROUP object
+  *  return symmetric-equivalent security bits.
+  }
+  function EC_GROUP_security_bits(group: PEC_GROUP): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EC_GROUP_security_bits';
   {* Gets the cofactor of a EC_GROUP
   *  param  group     EC_GROUP object
   *  param  cofactor  BIGNUM to which the cofactor is copied
@@ -505,6 +512,7 @@ var
   {$EXTERNALSYM EC_GROUP_get_order}
   {$EXTERNALSYM EC_GROUP_get0_order}
   {$EXTERNALSYM EC_GROUP_order_bits}
+  {$EXTERNALSYM EC_GROUP_security_bits}
   {$EXTERNALSYM EC_GROUP_get_cofactor}
   {$EXTERNALSYM EC_GROUP_get0_cofactor}
   {$EXTERNALSYM EC_GROUP_set_curve_name}
@@ -530,6 +538,7 @@ var
   function Load_EC_GROUP_get_order(group: PEC_GROUP; order: PBIGNUM; ctx: PBN_CTX): TOpenSSL_C_INT; cdecl;
   function Load_EC_GROUP_get0_order(group: PEC_GROUP): PBIGNUM; cdecl;
   function Load_EC_GROUP_order_bits(group: PEC_GROUP): TOpenSSL_C_INT; cdecl;
+  function Load_EC_GROUP_security_bits(group: PEC_GROUP): TOpenSSL_C_INT; cdecl;
   function Load_EC_GROUP_get_cofactor(group: PEC_GROUP; cofactor: PBIGNUM; ctx: PBN_CTX): TOpenSSL_C_INT; cdecl;
   function Load_EC_GROUP_get0_cofactor(group: PEC_GROUP): PBIGNUM; cdecl;
   procedure Load_EC_GROUP_set_curve_name(group: PEC_GROUP; nid: TOpenSSL_C_INT); cdecl;
@@ -596,6 +605,13 @@ var
   *  return number of bits of group order.
   }
   EC_GROUP_order_bits: function(group: PEC_GROUP): TOpenSSL_C_INT; cdecl = Load_EC_GROUP_order_bits;
+  {* Gets the symmetric-equivalent security bit size an EC_GROUP.
+  * This is rounded down to one of the standard sizes, (80, 112,
+  * 128, 192, 256) or reported as-is when smaller than 80.
+  *  param  group  EC_GROUP object
+  *  return symmetric-equivalent security bits.
+  }
+  EC_GROUP_security_bits: function(group: PEC_GROUP): TOpenSSL_C_INT; cdecl = Load_EC_GROUP_security_bits;
   {* Gets the cofactor of a EC_GROUP
   *  param  group     EC_GROUP object
   *  param  cofactor  BIGNUM to which the cofactor is copied
@@ -1787,8 +1803,8 @@ var
   d2i_ECPKParameters: function(_param1: PPEC_GROUP; in_: PPbyte; len: TOpenSSL_C_INT): PEC_GROUP; cdecl = Load_d2i_ECPKParameters;
   i2d_ECPKParameters: function(_param1: PEC_GROUP; out_: PPbyte): TOpenSSL_C_INT; cdecl = Load_i2d_ECPKParameters;
     {$endif} {OPENSSL_STATIC_LINK_MODEL}
-  {# define  d2i_ECPKParameters_bio(bp,x) ASN1_d2i_bio_of(EC_GROUP, NULL, d2i_ECPKParameters, bp, x)} {Function argument out of range at line no 930}
-  {# define  i2d_ECPKParameters_bio(bp,x) ASN1_i2d_bio_of(EC_GROUP, i2d_ECPKParameters, bp, x)} {Function argument out of range at line no 932}
+  {# define  d2i_ECPKParameters_bio(bp,x) ASN1_d2i_bio_of(EC_GROUP, NULL, d2i_ECPKParameters, bp, x)} {Function argument out of range at line no 938}
+  {# define  i2d_ECPKParameters_bio(bp,x) ASN1_i2d_bio_of(EC_GROUP, i2d_ECPKParameters, bp, x)} {Function argument out of range at line no 940}
   {# define  d2i_ECPKParameters_fp(fp,x) (EC_GROUP *)ASN1_d2i_fp(NULL, (d2i_of_void *)d2i_ECPKParameters, (fp), (void **)(x))}
   {# define  i2d_ECPKParameters_fp(fp,x) ASN1_i2d_fp((i2d_of_void *)i2d_ECPKParameters, (fp), (void *)(x))}
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
@@ -1896,11 +1912,6 @@ const
   *  return 1 on success and 0 if an error occurred.
   }
   function EC_KEY_up_ref(key: PEC_KEY): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EC_KEY_up_ref'; deprecated 'Since OpenSSL 3.0';
-  {* Returns the ENGINE object of a EC_KEY object
-  *  param  eckey  EC_KEY object
-  *  return the ENGINE object (possibly NULL).
-  }
-  function EC_KEY_get0_engine(eckey: PEC_KEY): PENGINE; cdecl; external CLibCrypto name 'EC_KEY_get0_engine'; deprecated 'Since OpenSSL 3.0';
   {* Returns the EC_GROUP object of a EC_KEY object
   *  param  key  EC_KEY object
   *  return the EC_GROUP object (possibly NULL).
@@ -1954,7 +1965,6 @@ const
   {$EXTERNALSYM EC_KEY_copy}
   {$EXTERNALSYM EC_KEY_dup}
   {$EXTERNALSYM EC_KEY_up_ref}
-  {$EXTERNALSYM EC_KEY_get0_engine}
   {$EXTERNALSYM EC_KEY_get0_group}
   {$EXTERNALSYM EC_KEY_set_group}
   {$EXTERNALSYM EC_KEY_get0_private_key}
@@ -1978,7 +1988,6 @@ const
   function Load_EC_KEY_copy(dst: PEC_KEY; src: PEC_KEY): PEC_KEY; cdecl;
   function Load_EC_KEY_dup(src: PEC_KEY): PEC_KEY; cdecl;
   function Load_EC_KEY_up_ref(key: PEC_KEY): TOpenSSL_C_INT; cdecl;
-  function Load_EC_KEY_get0_engine(eckey: PEC_KEY): PENGINE; cdecl;
   function Load_EC_KEY_get0_group(key: PEC_KEY): PEC_GROUP; cdecl;
   function Load_EC_KEY_set_group(key: PEC_KEY; group: PEC_GROUP): TOpenSSL_C_INT; cdecl;
   function Load_EC_KEY_get0_private_key(key: PEC_KEY): PBIGNUM; cdecl;
@@ -2040,11 +2049,6 @@ var
   *  return 1 on success and 0 if an error occurred.
   }
   EC_KEY_up_ref: function(key: PEC_KEY): TOpenSSL_C_INT; cdecl = Load_EC_KEY_up_ref;
-  {* Returns the ENGINE object of a EC_KEY object
-  *  param  eckey  EC_KEY object
-  *  return the ENGINE object (possibly NULL).
-  }
-  EC_KEY_get0_engine: function(eckey: PEC_KEY): PENGINE; cdecl = Load_EC_KEY_get0_engine;
   {* Returns the EC_GROUP object of a EC_KEY object
   *  param  key  EC_KEY object
   *  return the EC_GROUP object (possibly NULL).
@@ -2087,7 +2091,7 @@ var
   EC_KEY_set_conv_form: procedure(eckey: PEC_KEY; cform: Tpoint_conversion_form_t); cdecl = Load_EC_KEY_set_conv_form;
       {$endif} {OPENSSL_STATIC_LINK_MODEL}
     {$endif}
-{# define  EC_KEY_get_ex_new_index(l,p,newf,dupf,freef) CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_EC_KEY, l, p, newf, dupf, freef)} {Macro Return Type unknown at line no 1094}
+{# define  EC_KEY_get_ex_new_index(l,p,newf,dupf,freef) CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_EC_KEY, l, p, newf, dupf, freef)} {Macro Return Type unknown at line no 1096}
     {OPENSSL_NO_DEPRECATED_3_0 }
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 
@@ -3079,8 +3083,8 @@ var
   EC_KEY_METHOD_get_verify: procedure(meth: PEC_KEY_METHOD; pverify: TFuncType025; pverify_sig: TFuncType026); cdecl = Load_EC_KEY_METHOD_get_verify;
       {$endif} {OPENSSL_STATIC_LINK_MODEL}
     {$endif}
-{# define  EVP_EC_gen(curve) EVP_PKEY_Q_keygen(NULL, NULL, "EC", (char *)(strstr(curve, "")))} {Macro Return Type unknown at line no 1555}
-{# define  ECParameters_dup(x) ASN1_dup_of(EC_KEY, i2d_ECParameters, d2i_ECParameters, x)} {Function argument out of range at line no 1558}
+{# define  EVP_EC_gen(curve) EVP_PKEY_Q_keygen(NULL, NULL, "EC", (char *)(strstr(curve, "")))} {Macro Return Type unknown at line no 1557}
+{# define  ECParameters_dup(x) ASN1_dup_of(EC_KEY, i2d_ECParameters, d2i_ECParameters, x)} {Function argument out of range at line no 1560}
     { OPENSSL_NO_DEPRECATED_3_0 }
     { strstr is used to enable type checking for the variadic string arg }
     {$ifndef  __cplusplus}
@@ -3402,6 +3406,14 @@ begin
   if not assigned(EC_GROUP_order_bits) then
     EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_order_bits');
   Result := EC_GROUP_order_bits(group);
+end;
+
+function Load_EC_GROUP_security_bits(group: PEC_GROUP): TOpenSSL_C_INT; cdecl;
+begin
+  EC_GROUP_security_bits := LoadLibCryptoFunction('EC_GROUP_security_bits');
+  if not assigned(EC_GROUP_security_bits) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('EC_GROUP_security_bits');
+  Result := EC_GROUP_security_bits(group);
 end;
 
 function Load_EC_GROUP_get_cofactor(group: PEC_GROUP; cofactor: PBIGNUM; ctx: PBN_CTX): TOpenSSL_C_INT; cdecl;
@@ -4223,14 +4235,6 @@ begin
   Result := EC_KEY_up_ref(key);
 end;
 
-function Load_EC_KEY_get0_engine(eckey: PEC_KEY): PENGINE; cdecl;
-begin
-  EC_KEY_get0_engine := LoadLibCryptoFunction('EC_KEY_get0_engine');
-  if not assigned(EC_KEY_get0_engine) then
-    EOpenSSLAPIFunctionNotPresent.RaiseException('EC_KEY_get0_engine');
-  Result := EC_KEY_get0_engine(eckey);
-end;
-
 function Load_EC_KEY_get0_group(key: PEC_KEY): PEC_GROUP; cdecl;
 begin
   EC_KEY_get0_group := LoadLibCryptoFunction('EC_KEY_get0_group');
@@ -4840,6 +4844,7 @@ begin
   EC_GROUP_get_order := Load_EC_GROUP_get_order;
   EC_GROUP_get0_order := Load_EC_GROUP_get0_order;
   EC_GROUP_order_bits := Load_EC_GROUP_order_bits;
+  EC_GROUP_security_bits := Load_EC_GROUP_security_bits;
   EC_GROUP_get_cofactor := Load_EC_GROUP_get_cofactor;
   EC_GROUP_get0_cofactor := Load_EC_GROUP_get0_cofactor;
   EC_GROUP_set_curve_name := Load_EC_GROUP_set_curve_name;
@@ -4966,7 +4971,6 @@ begin
   EC_KEY_copy := Load_EC_KEY_copy;
   EC_KEY_dup := Load_EC_KEY_dup;
   EC_KEY_up_ref := Load_EC_KEY_up_ref;
-  EC_KEY_get0_engine := Load_EC_KEY_get0_engine;
   EC_KEY_get0_group := Load_EC_KEY_get0_group;
   EC_KEY_set_group := Load_EC_KEY_set_group;
   EC_KEY_get0_private_key := Load_EC_KEY_get0_private_key;

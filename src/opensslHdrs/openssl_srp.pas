@@ -18,7 +18,7 @@
 unit openssl_srp;
 
 {
-  Generated from OpenSSL 3.6.2 Header File srp.h - Tue 19 May 14:30:40 BST 2026
+  Generated from OpenSSL 4.0.0 Header File srp.h - Tue 19 May 14:33:14 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -81,6 +81,17 @@ type
 
 
   procedure sk_SRP_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+
+type
+  {Auto-generated forward references}
+  PFuncType000 = ^TFuncType000;
+  PPFuncType000 = ^PFuncType000;
+  {end of auto-generated forward references}
+
+  TFuncType000 = function(_param1: pointer; _param2: pointer): TOpenSSL_C_INT;
+
+
+  function sk_SRP_cmpfunc_thunk(cmp: TFuncType000; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
   function ossl_check_SRP_type(ptr: PSRP): PSRP{Has C Attribute: unused}; inline;
   function ossl_check_const_SRP_sk_type(sk: Pstack_st_SRP): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_SRP_sk_type(sk: Pstack_st_SRP): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -89,10 +100,13 @@ type
   function ossl_check_SRP_freefunc_type(fr: Tsk_SRP_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
     (*struct stack_st_SRP; typedef int ( *sk_SRP_compfunc)(const SRP *const *a, const SRP *const *b); typedef void ( *sk_SRP_freefunc)(SRP 
 * a); typedef SRP *( *sk_SRP_copyfunc)(const SRP *a); static inline void sk_SRP_freefunc_thunk(OPENSSL_sk_freefunc freefunc_arg,
- void *ptr) { sk_SRP_freefunc freefunc = (sk_SRP_freefunc)freefunc_arg; freefunc((SRP * )ptr); } static __attribute__((unused)) 
-inline SRP *ossl_check_SRP_type(SRP *ptr) { return ptr; } static __attribute__((unused)) inline const OPENSSL_STACK *ossl_check_const_SRP_sk_type(const 
-struct stack_st_SRP *sk) { return (const OPENSSL_STACK * )sk; } static __attribute__((unused)) inline OPENSSL_STACK *ossl_check_SRP_sk_type(struct 
-stack_st_SRP *sk) { return (OPENSSL_STACK * )sk; } static __attribute__((unused)) inline OPENSSL_sk_compfunc ossl_check_SRP_compfunc_type(sk_SRP_compfunc 
+ void *ptr) { sk_SRP_freefunc freefunc = (sk_SRP_freefunc)freefunc_arg; freefunc((SRP * )ptr); } static inline int sk_SRP_cmpfunc_thunk(int 
+( *cmp)(const void *, const void * ), const void *a, const void *b) { int ( *realcmp)(const SRP *const *a, const SRP *const *b) 
+= (int ( * )(const SRP *const *a, const SRP *const *b))(cmp); const SRP *const *at = (const SRP *const * )a; const SRP *const *bt 
+= (const SRP *const * )b; return realcmp(at, bt); } static __attribute__((unused)) inline SRP *ossl_check_SRP_type(SRP *ptr) { return 
+ptr; } static __attribute__((unused)) inline const OPENSSL_STACK *ossl_check_const_SRP_sk_type(const struct stack_st_SRP *sk) { 
+return (const OPENSSL_STACK * )sk; } static __attribute__((unused)) inline OPENSSL_STACK *ossl_check_SRP_sk_type(struct stack_st_SRP 
+*sk) { return (OPENSSL_STACK * )sk; } static __attribute__((unused)) inline OPENSSL_sk_compfunc ossl_check_SRP_compfunc_type(sk_SRP_compfunc 
 cmp) { return (OPENSSL_sk_compfunc)cmp; } static __attribute__((unused)) inline OPENSSL_sk_copyfunc ossl_check_SRP_copyfunc_type(sk_SRP_copyfunc 
 cpy) { return (OPENSSL_sk_copyfunc)cpy; } static __attribute__((unused)) inline OPENSSL_sk_freefunc ossl_check_SRP_freefunc_type(sk_SRP_freefunc 
 fr) { return (OPENSSL_sk_freefunc)fr; };*)
@@ -129,6 +143,17 @@ type
 
 
   procedure sk_SRP_gN_cache_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+
+type
+  {Auto-generated forward references}
+  PFuncType001 = ^TFuncType001;
+  PPFuncType001 = ^PFuncType001;
+  {end of auto-generated forward references}
+
+  TFuncType001 = function(_param1: pointer; _param2: pointer): TOpenSSL_C_INT;
+
+
+  function sk_SRP_gN_cache_cmpfunc_thunk(cmp: TFuncType001; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
   function ossl_check_SRP_gN_cache_type(ptr: PSRP_gN_cache): PSRP_gN_cache{Has C Attribute: unused}; inline;
   function ossl_check_const_SRP_gN_cache_sk_type(sk: Pstack_st_SRP_gN_cache): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_SRP_gN_cache_sk_type(sk: Pstack_st_SRP_gN_cache): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -137,10 +162,11 @@ type
   function ossl_check_SRP_gN_cache_freefunc_type(fr: Tsk_SRP_gN_cache_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
   {# define  sk_SRP_gN_cache_num(sk) OPENSSL_sk_num(ossl_check_const_SRP_gN_cache_sk_type(sk))} {Macro Return Type unknown at line no 57}
   {# define  sk_SRP_gN_cache_value(sk,idx) ((SRP_gN_cache *)OPENSSL_sk_value(ossl_check_const_SRP_gN_cache_sk_type(sk), (idx)))} {Function argument out of range at line no 58}
-  {# define  sk_SRP_gN_cache_new(cmp) ((STACK_OF(SRP_gN_cache) *)OPENSSL_sk_new(ossl_check_SRP_gN_cache_compfunc_type(cmp)))}
-  {# define  sk_SRP_gN_cache_new_null() ((STACK_OF(SRP_gN_cache) *)OPENSSL_sk_new_null())}
-  {# define  sk_SRP_gN_cache_new_reserve(cmp,n) ((STACK_OF(SRP_gN_cache) *)OPENSSL_sk_new_reserve(ossl_check_SRP_gN_cache_compfunc_type(cmp),
- (n)))}
+  {# define  sk_SRP_gN_cache_new(cmp) ((STACK_OF(SRP_gN_cache) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new(ossl_check_SRP_gN_cache_compfunc_type(cmp)),
+ sk_SRP_gN_cache_cmpfunc_thunk))}
+  {# define  sk_SRP_gN_cache_new_null() ((STACK_OF(SRP_gN_cache) *)OPENSSL_sk_set_thunks(OPENSSL_sk_new_null(), sk_SRP_gN_cache_freefunc_thunk))}
+  {# define  sk_SRP_gN_cache_new_reserve(cmp,n) ((STACK_OF(SRP_gN_cache) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new_reserve(ossl_check_SRP_gN_cache_compfunc_type(cmp),
+ (n)), sk_SRP_gN_cache_cmpfunc_thunk))}
   {# define  sk_SRP_gN_cache_reserve(sk,n) OPENSSL_sk_reserve(ossl_check_SRP_gN_cache_sk_type(sk), (n))} {Function argument out of range at line no 62}
   {# define  sk_SRP_gN_cache_free(sk) OPENSSL_sk_free(ossl_check_SRP_gN_cache_sk_type(sk))} {Macro Return Type unknown at line no 63}
   {# define  sk_SRP_gN_cache_zero(sk) OPENSSL_sk_zero(ossl_check_SRP_gN_cache_sk_type(sk))} {Macro Return Type unknown at line no 64}
@@ -201,6 +227,17 @@ type
 
 
   procedure sk_SRP_user_pwd_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+
+type
+  {Auto-generated forward references}
+  PFuncType002 = ^TFuncType002;
+  PPFuncType002 = ^PFuncType002;
+  {end of auto-generated forward references}
+
+  TFuncType002 = function(_param1: pointer; _param2: pointer): TOpenSSL_C_INT;
+
+
+  function sk_SRP_user_pwd_cmpfunc_thunk(cmp: TFuncType002; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
   function ossl_check_SRP_user_pwd_type(ptr: PSRP_user_pwd): PSRP_user_pwd{Has C Attribute: unused}; inline;
   function ossl_check_const_SRP_user_pwd_sk_type(sk: Pstack_st_SRP_user_pwd): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_SRP_user_pwd_sk_type(sk: Pstack_st_SRP_user_pwd): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -386,6 +423,17 @@ type
 
 
   procedure sk_SRP_gN_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+
+type
+  {Auto-generated forward references}
+  PFuncType003 = ^TFuncType003;
+  PPFuncType003 = ^PFuncType003;
+  {end of auto-generated forward references}
+
+  TFuncType003 = function(_param1: pointer; _param2: pointer): TOpenSSL_C_INT;
+
+
+  function sk_SRP_gN_cmpfunc_thunk(cmp: TFuncType003; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
   function ossl_check_SRP_gN_type(ptr: PSRP_gN): PSRP_gN{Has C Attribute: unused}; inline;
   function ossl_check_const_SRP_gN_sk_type(sk: Pstack_st_SRP_gN): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_SRP_gN_sk_type(sk: Pstack_st_SRP_gN): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -394,9 +442,11 @@ type
   function ossl_check_SRP_gN_freefunc_type(fr: Tsk_SRP_gN_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
   {# define  sk_SRP_gN_num(sk) OPENSSL_sk_num(ossl_check_const_SRP_gN_sk_type(sk))} {Macro Return Type unknown at line no 159}
   {# define  sk_SRP_gN_value(sk,idx) ((SRP_gN *)OPENSSL_sk_value(ossl_check_const_SRP_gN_sk_type(sk), (idx)))} {Function argument out of range at line no 160}
-  {# define  sk_SRP_gN_new(cmp) ((STACK_OF(SRP_gN) *)OPENSSL_sk_new(ossl_check_SRP_gN_compfunc_type(cmp)))}
-  {# define  sk_SRP_gN_new_null() ((STACK_OF(SRP_gN) *)OPENSSL_sk_new_null())}
-  {# define  sk_SRP_gN_new_reserve(cmp,n) ((STACK_OF(SRP_gN) *)OPENSSL_sk_new_reserve(ossl_check_SRP_gN_compfunc_type(cmp), (n)))}
+  {# define  sk_SRP_gN_new(cmp) ((STACK_OF(SRP_gN) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new(ossl_check_SRP_gN_compfunc_type(cmp)),
+ sk_SRP_gN_cmpfunc_thunk))}
+  {# define  sk_SRP_gN_new_null() ((STACK_OF(SRP_gN) *)OPENSSL_sk_set_thunks(OPENSSL_sk_new_null(), sk_SRP_gN_freefunc_thunk))}
+  {# define  sk_SRP_gN_new_reserve(cmp,n) ((STACK_OF(SRP_gN) *)OPENSSL_sk_set_cmp_thunks(OPENSSL_sk_new_reserve(ossl_check_SRP_gN_compfunc_type(cmp),
+ (n)), sk_SRP_gN_cmpfunc_thunk))}
   {# define  sk_SRP_gN_reserve(sk,n) OPENSSL_sk_reserve(ossl_check_SRP_gN_sk_type(sk), (n))} {Function argument out of range at line no 164}
   {# define  sk_SRP_gN_free(sk) OPENSSL_sk_free(ossl_check_SRP_gN_sk_type(sk))} {Macro Return Type unknown at line no 165}
   {# define  sk_SRP_gN_zero(sk) OPENSSL_sk_zero(ossl_check_SRP_gN_sk_type(sk))} {Macro Return Type unknown at line no 166}
@@ -624,6 +674,18 @@ begin
  sk_SRP_freefunc freefunc = (sk_SRP_freefunc)freefunc_arg; freefunc((SRP *)ptr); }
 end;
 
+function sk_SRP_cmpfunc_thunk(cmp: TFuncType000; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_SRP_cmpfunc_thunk"');
+
+{Error: Line 47: Syntax Error parsing " int (*realcmp)(const SRP *const *a, const SRP *const *b) = (int (*)(const SRP *const *a,
+ const SRP *const *b))(cmp); const SRP *const *at = (const SRP *const *)a; const SRP *const *bt = (const SRP *const *)b; return 
+realcmp(at, bt); "
+
+ int (*realcmp)(const SRP *const *a, const SRP *const *b) = (int (*)(const SRP *const *a, const SRP *const *b))(cmp); const SRP 
+*const *at = (const SRP *const *)a; const SRP *const *bt = (const SRP *const *)b; return realcmp(at, bt); }
+end;
+
 function ossl_check_SRP_type(ptr: PSRP): PSRP{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -663,6 +725,19 @@ begin
 *)ptr); "
 
  sk_SRP_gN_cache_freefunc freefunc = (sk_SRP_gN_cache_freefunc)freefunc_arg; freefunc((SRP_gN_cache *)ptr); }
+end;
+
+function sk_SRP_gN_cache_cmpfunc_thunk(cmp: TFuncType001; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_SRP_gN_cache_cmpfunc_thunk"');
+
+{Error: Line 56: Syntax Error parsing " int (*realcmp)(const SRP_gN_cache *const *a, const SRP_gN_cache *const *b) = (int (*)(const 
+SRP_gN_cache *const *a, const SRP_gN_cache *const *b))(cmp); const SRP_gN_cache *const *at = (const SRP_gN_cache *const *)a; const 
+SRP_gN_cache *const *bt = (const SRP_gN_cache *const *)b; return realcmp(at, bt); "
+
+ int (*realcmp)(const SRP_gN_cache *const *a, const SRP_gN_cache *const *b) = (int (*)(const SRP_gN_cache *const *a, const SRP_gN_cache 
+*const *b))(cmp); const SRP_gN_cache *const *at = (const SRP_gN_cache *const *)a; const SRP_gN_cache *const *bt = (const SRP_gN_cache 
+*const *)b; return realcmp(at, bt); }
 end;
 
 function ossl_check_SRP_gN_cache_type(ptr: PSRP_gN_cache): PSRP_gN_cache{Has C Attribute: unused}; inline;
@@ -734,6 +809,19 @@ begin
  sk_SRP_user_pwd_freefunc freefunc = (sk_SRP_user_pwd_freefunc)freefunc_arg; freefunc((SRP_user_pwd *)ptr); }
 end;
 
+function sk_SRP_user_pwd_cmpfunc_thunk(cmp: TFuncType002; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_SRP_user_pwd_cmpfunc_thunk"');
+
+{Error: Line 97: Syntax Error parsing " int (*realcmp)(const SRP_user_pwd *const *a, const SRP_user_pwd *const *b) = (int (*)(const 
+SRP_user_pwd *const *a, const SRP_user_pwd *const *b))(cmp); const SRP_user_pwd *const *at = (const SRP_user_pwd *const *)a; const 
+SRP_user_pwd *const *bt = (const SRP_user_pwd *const *)b; return realcmp(at, bt); "
+
+ int (*realcmp)(const SRP_user_pwd *const *a, const SRP_user_pwd *const *b) = (int (*)(const SRP_user_pwd *const *a, const SRP_user_pwd 
+*const *b))(cmp); const SRP_user_pwd *const *at = (const SRP_user_pwd *const *)a; const SRP_user_pwd *const *bt = (const SRP_user_pwd 
+*const *)b; return realcmp(at, bt); }
+end;
+
 function ossl_check_SRP_user_pwd_type(ptr: PSRP_user_pwd): PSRP_user_pwd{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -772,6 +860,19 @@ begin
 "
 
  sk_SRP_gN_freefunc freefunc = (sk_SRP_gN_freefunc)freefunc_arg; freefunc((SRP_gN *)ptr); }
+end;
+
+function sk_SRP_gN_cmpfunc_thunk(cmp: TFuncType003; a: pointer; b: pointer): TOpenSSL_C_INT; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_SRP_gN_cmpfunc_thunk"');
+
+{Error: Line 158: Syntax Error parsing " int (*realcmp)(const SRP_gN *const *a, const SRP_gN *const *b) = (int (*)(const SRP_gN 
+*const *a, const SRP_gN *const *b))(cmp); const SRP_gN *const *at = (const SRP_gN *const *)a; const SRP_gN *const *bt = (const SRP_gN 
+*const *)b; return realcmp(at, bt); "
+
+ int (*realcmp)(const SRP_gN *const *a, const SRP_gN *const *b) = (int (*)(const SRP_gN *const *a, const SRP_gN *const *b))(cmp); 
+const SRP_gN *const *at = (const SRP_gN *const *)a; const SRP_gN *const *bt = (const SRP_gN *const *)b; return realcmp(at, bt); 
+}
 end;
 
 function ossl_check_SRP_gN_type(ptr: PSRP_gN): PSRP_gN{Has C Attribute: unused}; inline;

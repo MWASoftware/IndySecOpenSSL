@@ -18,7 +18,7 @@
 unit openssl_cast;
 
 {
-  Generated from OpenSSL 3.6.2 Header File cast.h - Tue 19 May 14:29:28 BST 2026
+  Generated from OpenSSL 4.0.0 Header File cast.h - Tue 19 May 14:32:00 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -69,7 +69,7 @@ type
 
   TCAST_LONG = TOpenSSL_C_UINT;
   Tcast_key_st = record 
-    data: array[0..31] of TOpenSSL_C_UINT;
+    data: array[0..31] of TCAST_LONG;
     short_key: TOpenSSL_C_INT; { Use reduced rounds for short key }
   end;
   TCAST_KEY = Tcast_key_st;
@@ -81,8 +81,8 @@ type
       {$ifdef OPENSSL_STATIC_LINK_MODEL}
   procedure CAST_set_key(key: PCAST_KEY; len: TOpenSSL_C_INT; data: Pbyte); cdecl; external CLibCrypto name 'CAST_set_key'; deprecated 'Since OpenSSL 3.0';
   procedure CAST_ecb_encrypt(in_: Pbyte; out_: Pbyte; key: PCAST_KEY; enc: TOpenSSL_C_INT); cdecl; external CLibCrypto name 'CAST_ecb_encrypt'; deprecated 'Since OpenSSL 3.0';
-  procedure CAST_encrypt(data: POpenSSL_C_UINT; key: PCAST_KEY); cdecl; external CLibCrypto name 'CAST_encrypt'; deprecated 'Since OpenSSL 3.0';
-  procedure CAST_decrypt(data: POpenSSL_C_UINT; key: PCAST_KEY); cdecl; external CLibCrypto name 'CAST_decrypt'; deprecated 'Since OpenSSL 3.0';
+  procedure CAST_encrypt(data: PCAST_LONG; key: PCAST_KEY); cdecl; external CLibCrypto name 'CAST_encrypt'; deprecated 'Since OpenSSL 3.0';
+  procedure CAST_decrypt(data: PCAST_LONG; key: PCAST_KEY); cdecl; external CLibCrypto name 'CAST_decrypt'; deprecated 'Since OpenSSL 3.0';
   procedure CAST_cbc_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_INT; ks: PCAST_KEY; iv: Pbyte; enc: TOpenSSL_C_INT); cdecl; external CLibCrypto name 'CAST_cbc_encrypt'; deprecated 'Since OpenSSL 3.0';
   procedure CAST_cfb64_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_INT; schedule: PCAST_KEY; ivec: Pbyte; num: POpenSSL_C_INT; enc: TOpenSSL_C_INT); cdecl; external CLibCrypto name 'CAST_cfb64_encrypt'; deprecated 'Since OpenSSL 3.0';
   procedure CAST_ofb64_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_INT; schedule: PCAST_KEY; ivec: Pbyte; num: POpenSSL_C_INT); cdecl; external CLibCrypto name 'CAST_ofb64_encrypt'; deprecated 'Since OpenSSL 3.0';
@@ -101,8 +101,8 @@ type
   {Do not call Function LoadDeclarations. Internal use only}
   procedure Load_CAST_set_key(key: PCAST_KEY; len: TOpenSSL_C_INT; data: Pbyte); cdecl;
   procedure Load_CAST_ecb_encrypt(in_: Pbyte; out_: Pbyte; key: PCAST_KEY; enc: TOpenSSL_C_INT); cdecl;
-  procedure Load_CAST_encrypt(data: POpenSSL_C_UINT; key: PCAST_KEY); cdecl;
-  procedure Load_CAST_decrypt(data: POpenSSL_C_UINT; key: PCAST_KEY); cdecl;
+  procedure Load_CAST_encrypt(data: PCAST_LONG; key: PCAST_KEY); cdecl;
+  procedure Load_CAST_decrypt(data: PCAST_LONG; key: PCAST_KEY); cdecl;
   procedure Load_CAST_cbc_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_INT; ks: PCAST_KEY; iv: Pbyte; enc: TOpenSSL_C_INT); cdecl;
   procedure Load_CAST_cfb64_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_INT; schedule: PCAST_KEY; ivec: Pbyte; num: POpenSSL_C_INT; enc: TOpenSSL_C_INT); cdecl;
   procedure Load_CAST_ofb64_encrypt(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_INT; schedule: PCAST_KEY; ivec: Pbyte; num: POpenSSL_C_INT); cdecl;
@@ -110,8 +110,8 @@ type
 var
   CAST_set_key: procedure(key: PCAST_KEY; len: TOpenSSL_C_INT; data: Pbyte); cdecl = Load_CAST_set_key;
   CAST_ecb_encrypt: procedure(in_: Pbyte; out_: Pbyte; key: PCAST_KEY; enc: TOpenSSL_C_INT); cdecl = Load_CAST_ecb_encrypt;
-  CAST_encrypt: procedure(data: POpenSSL_C_UINT; key: PCAST_KEY); cdecl = Load_CAST_encrypt;
-  CAST_decrypt: procedure(data: POpenSSL_C_UINT; key: PCAST_KEY); cdecl = Load_CAST_decrypt;
+  CAST_encrypt: procedure(data: PCAST_LONG; key: PCAST_KEY); cdecl = Load_CAST_encrypt;
+  CAST_decrypt: procedure(data: PCAST_LONG; key: PCAST_KEY); cdecl = Load_CAST_decrypt;
   CAST_cbc_encrypt: procedure(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_INT; ks: PCAST_KEY; iv: Pbyte; enc: TOpenSSL_C_INT); cdecl = Load_CAST_cbc_encrypt;
   CAST_cfb64_encrypt: procedure(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_INT; schedule: PCAST_KEY; ivec: Pbyte; num: POpenSSL_C_INT; enc: TOpenSSL_C_INT); cdecl = Load_CAST_cfb64_encrypt;
   CAST_ofb64_encrypt: procedure(in_: Pbyte; out_: Pbyte; length: TOpenSSL_C_INT; schedule: PCAST_KEY; ivec: Pbyte; num: POpenSSL_C_INT); cdecl = Load_CAST_ofb64_encrypt;
@@ -177,7 +177,7 @@ begin
   CAST_ecb_encrypt(in_, out_, key, enc);
 end;
 
-procedure Load_CAST_encrypt(data: POpenSSL_C_UINT; key: PCAST_KEY); cdecl;
+procedure Load_CAST_encrypt(data: PCAST_LONG; key: PCAST_KEY); cdecl;
 begin
   CAST_encrypt := LoadLibCryptoFunction('CAST_encrypt');
   if not assigned(CAST_encrypt) then
@@ -185,7 +185,7 @@ begin
   CAST_encrypt(data, key);
 end;
 
-procedure Load_CAST_decrypt(data: POpenSSL_C_UINT; key: PCAST_KEY); cdecl;
+procedure Load_CAST_decrypt(data: PCAST_LONG; key: PCAST_KEY); cdecl;
 begin
   CAST_decrypt := LoadLibCryptoFunction('CAST_decrypt');
   if not assigned(CAST_decrypt) then

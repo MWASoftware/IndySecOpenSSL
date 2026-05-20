@@ -1,12 +1,12 @@
 # Indy TLS for OpenSSL
 
-This branch updates the IndySecOpenSSL package to use the 3.6.2 headers from the
+This branch updates the IndySecOpenSSL package to use the 4.0.0 headers from the
 MWASoftware/PascalAPI4OpenSSL repository. Other branches of IndySecOpenSSL are also 
 available using different OpenSSL release headers provided by the PascalAPI4OpenSSL. 
 Support for the Windows Trusted Certificate store is now provided by the PascalAPI4OpenSSL 
 instead of a unit within  IndySecOpenSSL.
 
-This version requires the OpenSSL 3.6.x libraries (.so or .dll) or later.
+This version requires the OpenSSL 4.0.x libraries (.so or .dll) or later.
 
 This repo provides the IndySecOpenSSL package for both Delphi and Lazarus/fpc.
 
@@ -15,7 +15,7 @@ This package provides a new (optional) OpenSSL package separate from Indy's
 as an add-on the Indy 10.6 or the forthcoming Indy 10.7 releases.
 
 The IndySecOpenSSL package's purpose is to provide Indy users with an upgrade path to 
-the use of current OpenSSL (3.x) libraries with the minimum of change. This includes users 
+the use of current OpenSSL libraries with the minimum of change. This includes users 
 that use the existing version of Indy bundled with Delphi and the version provided with 
 the Lazarus Online Package Manager.
 

@@ -18,7 +18,7 @@
 unit openssl_self_test;
 
 {
-  Generated from OpenSSL 3.6.2 Header File self_test.h - Tue 19 May 14:30:39 BST 2026
+  Generated from OpenSSL 4.0.0 Header File self_test.h - Tue 19 May 14:33:13 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -32,7 +32,7 @@ interface
 uses OpenSSLAPI,openssl_types,openssl_core;
 
 
-{* Copyright 2019-2025 The OpenSSL Project Authors. All Rights Reserved.
+{* Copyright 2019-2026 The OpenSSL Project Authors. All Rights Reserved.
 *
 * Licensed under the Apache License 2.0 (the "License").  You may not use
 * this file except in compliance with the License.  You can obtain a copy
@@ -64,6 +64,7 @@ const
   OSSL_SELF_TEST_TYPE_KAT_ASYM_KEYGEN = 'KAT_AsymmetricKeyGeneration';
   OSSL_SELF_TEST_TYPE_KAT_KEM = 'KAT_KEM';
   OSSL_SELF_TEST_TYPE_KAT_DIGEST = 'KAT_Digest';
+  OSSL_SELF_TEST_TYPE_KAT_MAC = 'KAT_Mac';
   OSSL_SELF_TEST_TYPE_KAT_SIGNATURE = 'KAT_Signature';
   OSSL_SELF_TEST_TYPE_PCT_SIGNATURE = 'PCT_Signature';
   OSSL_SELF_TEST_TYPE_KAT_KDF = 'KAT_KDF';
@@ -108,6 +109,8 @@ const
   OSSL_SELF_TEST_DESC_KDF_X963KDF = 'X963KDF';
   OSSL_SELF_TEST_DESC_KDF_X942KDF = 'X942KDF';
   OSSL_SELF_TEST_DESC_KDF_PBKDF2 = 'PBKDF2';
+  OSSL_SELF_TEST_DESC_KDF_SNMPKDF = 'SNMPKDF';
+  OSSL_SELF_TEST_DESC_KDF_SRTPKDF = 'SRTPKDF';
   OSSL_SELF_TEST_DESC_KDF_SSHKDF = 'SSHKDF';
   OSSL_SELF_TEST_DESC_KDF_TLS12_PRF = 'TLS12_PRF';
   OSSL_SELF_TEST_DESC_KDF_KBKDF = 'KBKDF';

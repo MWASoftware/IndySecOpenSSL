@@ -18,7 +18,7 @@
 unit openssl_tls1;
 
 {
-  Generated from OpenSSL 3.6.2 Header File tls1.h - Tue 19 May 14:30:56 BST 2026
+  Generated from OpenSSL 4.0.0 Header File tls1.h - Tue 19 May 14:33:30 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -32,7 +32,7 @@ interface
 uses OpenSSLAPI,openssl_types,openssl_buffer,openssl_x509,openssl_prov_ssl;
 
 
-{* Copyright 1995-2025 The OpenSSL Project Authors. All Rights Reserved.
+{* Copyright 1995-2026 The OpenSSL Project Authors. All Rights Reserved.
 * Copyright (c) 2002, Oracle and/or its affiliates. All rights reserved
 * Copyright 2005 Nokia. All rights reserved.
 *
@@ -95,6 +95,13 @@ const
   TLS1_AD_BAD_CERTIFICATE_HASH_VALUE = 114;
   TLS1_AD_UNKNOWN_PSK_IDENTITY = 115;
   TLS1_AD_NO_APPLICATION_PROTOCOL = 120;
+  {$ifndef  OPENSSL_NO_ECH}
+
+const
+  TLS1_AD_ECH_REQUIRED = 121;
+  {$endif}
+
+const
   { ExtensionType values from RFC3546 / RFC4366 / RFC6066 }
   TLSEXT_TYPE_server_name = 0;
   TLSEXT_TYPE_max_fragment_length = 1;
@@ -168,6 +175,12 @@ const
 const
     { This is not an IANA defined extension number }
   TLSEXT_TYPE_next_proto_neg = 13172;
+  {$endif}
+  {$ifndef  OPENSSL_NO_ECH}
+
+const
+  TLSEXT_TYPE_ech = $fe0d;
+  TLSEXT_TYPE_outer_extensions = $fd00;
   {$endif}
 
 const
@@ -279,6 +292,8 @@ const
   function SSL_export_keying_material_early(s: PSSL; out_: Pbyte; olen: TOpenSSL_C_SIZET; label_: PAnsiChar; llen: TOpenSSL_C_SIZET; context: Pbyte; contextlen: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl; external CLibSSL name 'SSL_export_keying_material_early';
   function SSL_get_peer_signature_type_nid(s: PSSL; pnid: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibSSL name 'SSL_get_peer_signature_type_nid';
   function SSL_get_signature_type_nid(s: PSSL; pnid: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibSSL name 'SSL_get_signature_type_nid';
+  function SSL_get0_sigalg(s: PSSL; idx: TOpenSSL_C_INT; codepoint: POpenSSL_C_UINT; name: PPAnsiChar): TOpenSSL_C_INT; cdecl; external CLibSSL name 'SSL_get0_sigalg';
+  function SSL_get0_shared_sigalg(s: PSSL; idx: TOpenSSL_C_INT; codepoint: POpenSSL_C_UINT; name: PPAnsiChar): TOpenSSL_C_INT; cdecl; external CLibSSL name 'SSL_get0_shared_sigalg';
   function SSL_get_sigalgs(s: PSSL; idx: TOpenSSL_C_INT; psign: POpenSSL_C_INT; phash: POpenSSL_C_INT; psignandhash: POpenSSL_C_INT; rsig: Pbyte; rhash: Pbyte): TOpenSSL_C_INT; cdecl; external CLibSSL name 'SSL_get_sigalgs';
   function SSL_get1_builtin_sigalgs(libctx: POSSL_LIB_CTX): PAnsiChar; cdecl; external CLibSSL name 'SSL_get1_builtin_sigalgs';
   function SSL_get_shared_sigalgs(s: PSSL; idx: TOpenSSL_C_INT; psign: POpenSSL_C_INT; phash: POpenSSL_C_INT; psignandhash: POpenSSL_C_INT; rsig: Pbyte; rhash: Pbyte): TOpenSSL_C_INT; cdecl; external CLibSSL name 'SSL_get_shared_sigalgs';
@@ -290,6 +305,8 @@ const
   {$EXTERNALSYM SSL_export_keying_material_early}
   {$EXTERNALSYM SSL_get_peer_signature_type_nid}
   {$EXTERNALSYM SSL_get_signature_type_nid}
+  {$EXTERNALSYM SSL_get0_sigalg}
+  {$EXTERNALSYM SSL_get0_shared_sigalg}
   {$EXTERNALSYM SSL_get_sigalgs}
   {$EXTERNALSYM SSL_get1_builtin_sigalgs}
   {$EXTERNALSYM SSL_get_shared_sigalgs}
@@ -301,6 +318,8 @@ const
   function Load_SSL_export_keying_material_early(s: PSSL; out_: Pbyte; olen: TOpenSSL_C_SIZET; label_: PAnsiChar; llen: TOpenSSL_C_SIZET; context: Pbyte; contextlen: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
   function Load_SSL_get_peer_signature_type_nid(s: PSSL; pnid: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
   function Load_SSL_get_signature_type_nid(s: PSSL; pnid: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
+  function Load_SSL_get0_sigalg(s: PSSL; idx: TOpenSSL_C_INT; codepoint: POpenSSL_C_UINT; name: PPAnsiChar): TOpenSSL_C_INT; cdecl;
+  function Load_SSL_get0_shared_sigalg(s: PSSL; idx: TOpenSSL_C_INT; codepoint: POpenSSL_C_UINT; name: PPAnsiChar): TOpenSSL_C_INT; cdecl;
   function Load_SSL_get_sigalgs(s: PSSL; idx: TOpenSSL_C_INT; psign: POpenSSL_C_INT; phash: POpenSSL_C_INT; psignandhash: POpenSSL_C_INT; rsig: Pbyte; rhash: Pbyte): TOpenSSL_C_INT; cdecl;
   function Load_SSL_get1_builtin_sigalgs(libctx: POSSL_LIB_CTX): PAnsiChar; cdecl;
   function Load_SSL_get_shared_sigalgs(s: PSSL; idx: TOpenSSL_C_INT; psign: POpenSSL_C_INT; phash: POpenSSL_C_INT; psignandhash: POpenSSL_C_INT; rsig: Pbyte; rhash: Pbyte): TOpenSSL_C_INT; cdecl;
@@ -327,24 +346,26 @@ var
   SSL_export_keying_material_early: function(s: PSSL; out_: Pbyte; olen: TOpenSSL_C_SIZET; label_: PAnsiChar; llen: TOpenSSL_C_SIZET; context: Pbyte; contextlen: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl = Load_SSL_export_keying_material_early;
   SSL_get_peer_signature_type_nid: function(s: PSSL; pnid: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_SSL_get_peer_signature_type_nid;
   SSL_get_signature_type_nid: function(s: PSSL; pnid: POpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_SSL_get_signature_type_nid;
+  SSL_get0_sigalg: function(s: PSSL; idx: TOpenSSL_C_INT; codepoint: POpenSSL_C_UINT; name: PPAnsiChar): TOpenSSL_C_INT; cdecl = Load_SSL_get0_sigalg;
+  SSL_get0_shared_sigalg: function(s: PSSL; idx: TOpenSSL_C_INT; codepoint: POpenSSL_C_UINT; name: PPAnsiChar): TOpenSSL_C_INT; cdecl = Load_SSL_get0_shared_sigalg;
   SSL_get_sigalgs: function(s: PSSL; idx: TOpenSSL_C_INT; psign: POpenSSL_C_INT; phash: POpenSSL_C_INT; psignandhash: POpenSSL_C_INT; rsig: Pbyte; rhash: Pbyte): TOpenSSL_C_INT; cdecl = Load_SSL_get_sigalgs;
   SSL_get1_builtin_sigalgs: function(libctx: POSSL_LIB_CTX): PAnsiChar; cdecl = Load_SSL_get1_builtin_sigalgs;
   SSL_get_shared_sigalgs: function(s: PSSL; idx: TOpenSSL_C_INT; psign: POpenSSL_C_INT; phash: POpenSSL_C_INT; psignandhash: POpenSSL_C_INT; rsig: Pbyte; rhash: Pbyte): TOpenSSL_C_INT; cdecl = Load_SSL_get_shared_sigalgs;
   SSL_check_chain: function(s: PSSL; x: PX509; pk: PEVP_PKEY; chain: Pstack_st_X509): TOpenSSL_C_INT; cdecl = Load_SSL_check_chain;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
-  {# define  SSL_set_tlsext_host_name(s,name) SSL_ctrl(s, SSL_CTRL_SET_TLSEXT_HOSTNAME, TLSEXT_NAMETYPE_host_name, (void *)name)} {Macro Return Type unknown at line no 291}
+  {# define  SSL_set_tlsext_host_name(s,name) SSL_ctrl(s, SSL_CTRL_SET_TLSEXT_HOSTNAME, TLSEXT_NAMETYPE_host_name, (void *)name)} {Macro Return Type unknown at line no 304}
   {# define  SSL_set_tlsext_debug_callback(ssl,cb) SSL_callback_ctrl(ssl, SSL_CTRL_SET_TLSEXT_DEBUG_CB, (void (*)(void))cb)}
-  {# define  SSL_set_tlsext_debug_arg(ssl,arg) SSL_ctrl(ssl, SSL_CTRL_SET_TLSEXT_DEBUG_ARG, 0, arg)} {Macro Return Type unknown at line no 299}
-  {# define  SSL_get_tlsext_status_type(ssl) SSL_ctrl(ssl, SSL_CTRL_GET_TLSEXT_STATUS_REQ_TYPE, 0, NULL)} {Macro Return Type unknown at line no 302}
-  {# define  SSL_set_tlsext_status_type(ssl,type) SSL_ctrl(ssl, SSL_CTRL_SET_TLSEXT_STATUS_REQ_TYPE, type, NULL)} {Macro Return Type unknown at line no 305}
-  {# define  SSL_get_tlsext_status_exts(ssl,arg) SSL_ctrl(ssl, SSL_CTRL_GET_TLSEXT_STATUS_REQ_EXTS, 0, arg)} {Macro Return Type unknown at line no 308}
-  {# define  SSL_set_tlsext_status_exts(ssl,arg) SSL_ctrl(ssl, SSL_CTRL_SET_TLSEXT_STATUS_REQ_EXTS, 0, arg)} {Macro Return Type unknown at line no 311}
-  {# define  SSL_get_tlsext_status_ids(ssl,arg) SSL_ctrl(ssl, SSL_CTRL_GET_TLSEXT_STATUS_REQ_IDS, 0, arg)} {Macro Return Type unknown at line no 314}
-  {# define  SSL_set_tlsext_status_ids(ssl,arg) SSL_ctrl(ssl, SSL_CTRL_SET_TLSEXT_STATUS_REQ_IDS, 0, arg)} {Macro Return Type unknown at line no 317}
-  {# define  SSL_get_tlsext_status_ocsp_resp(ssl,arg) SSL_ctrl(ssl, SSL_CTRL_GET_TLSEXT_STATUS_REQ_OCSP_RESP, 0, arg)} {Macro Return Type unknown at line no 320}
-  {# define  SSL_set_tlsext_status_ocsp_resp(ssl,arg,arglen) SSL_ctrl(ssl, SSL_CTRL_SET_TLSEXT_STATUS_REQ_OCSP_RESP, arglen, arg)} {Macro Return Type unknown at line no 323}
-  {# define  SSL_get0_tlsext_status_ocsp_resp_ex(ssl,arg) SSL_ctrl(ssl, SSL_CTRL_GET_TLSEXT_STATUS_REQ_OCSP_RESP_EX, 0, arg)} {Macro Return Type unknown at line no 326}
-  {# define  SSL_set0_tlsext_status_ocsp_resp_ex(ssl,arg) SSL_ctrl(ssl, SSL_CTRL_SET_TLSEXT_STATUS_REQ_OCSP_RESP_EX, 0, arg)} {Macro Return Type unknown at line no 329}
+  {# define  SSL_set_tlsext_debug_arg(ssl,arg) SSL_ctrl(ssl, SSL_CTRL_SET_TLSEXT_DEBUG_ARG, 0, arg)} {Macro Return Type unknown at line no 312}
+  {# define  SSL_get_tlsext_status_type(ssl) SSL_ctrl(ssl, SSL_CTRL_GET_TLSEXT_STATUS_REQ_TYPE, 0, NULL)} {Macro Return Type unknown at line no 315}
+  {# define  SSL_set_tlsext_status_type(ssl,type) SSL_ctrl(ssl, SSL_CTRL_SET_TLSEXT_STATUS_REQ_TYPE, type, NULL)} {Macro Return Type unknown at line no 318}
+  {# define  SSL_get_tlsext_status_exts(ssl,arg) SSL_ctrl(ssl, SSL_CTRL_GET_TLSEXT_STATUS_REQ_EXTS, 0, arg)} {Macro Return Type unknown at line no 321}
+  {# define  SSL_set_tlsext_status_exts(ssl,arg) SSL_ctrl(ssl, SSL_CTRL_SET_TLSEXT_STATUS_REQ_EXTS, 0, arg)} {Macro Return Type unknown at line no 324}
+  {# define  SSL_get_tlsext_status_ids(ssl,arg) SSL_ctrl(ssl, SSL_CTRL_GET_TLSEXT_STATUS_REQ_IDS, 0, arg)} {Macro Return Type unknown at line no 327}
+  {# define  SSL_set_tlsext_status_ids(ssl,arg) SSL_ctrl(ssl, SSL_CTRL_SET_TLSEXT_STATUS_REQ_IDS, 0, arg)} {Macro Return Type unknown at line no 330}
+  {# define  SSL_get_tlsext_status_ocsp_resp(ssl,arg) SSL_ctrl(ssl, SSL_CTRL_GET_TLSEXT_STATUS_REQ_OCSP_RESP, 0, arg)} {Macro Return Type unknown at line no 333}
+  {# define  SSL_set_tlsext_status_ocsp_resp(ssl,arg,arglen) SSL_ctrl(ssl, SSL_CTRL_SET_TLSEXT_STATUS_REQ_OCSP_RESP, arglen, arg)} {Macro Return Type unknown at line no 336}
+  {# define  SSL_get0_tlsext_status_ocsp_resp_ex(ssl,arg) SSL_ctrl(ssl, SSL_CTRL_GET_TLSEXT_STATUS_REQ_OCSP_RESP_EX, 0, arg)} {Macro Return Type unknown at line no 339}
+  {# define  SSL_set0_tlsext_status_ocsp_resp_ex(ssl,arg) SSL_ctrl(ssl, SSL_CTRL_SET_TLSEXT_STATUS_REQ_OCSP_RESP_EX, 0, arg)} {Macro Return Type unknown at line no 342}
   {# define  SSL_CTX_set_tlsext_servername_callback(ctx,cb) SSL_CTX_callback_ctrl(ctx, SSL_CTRL_SET_TLSEXT_SERVERNAME_CB, (void (*)(void))cb)}
 
 const
@@ -352,15 +373,15 @@ const
   SSL_TLSEXT_ERR_ALERT_WARNING = 1;
   SSL_TLSEXT_ERR_ALERT_FATAL = 2;
   SSL_TLSEXT_ERR_NOACK = 3;
-  {# define  SSL_CTX_set_tlsext_servername_arg(ctx,arg) SSL_CTX_ctrl(ctx, SSL_CTRL_SET_TLSEXT_SERVERNAME_ARG, 0, arg)} {Macro Return Type unknown at line no 341}
-  {# define  SSL_CTX_get_tlsext_ticket_keys(ctx,keys,keylen) SSL_CTX_ctrl(ctx, SSL_CTRL_GET_TLSEXT_TICKET_KEYS, keylen, keys)} {Macro Return Type unknown at line no 344}
-  {# define  SSL_CTX_set_tlsext_ticket_keys(ctx,keys,keylen) SSL_CTX_ctrl(ctx, SSL_CTRL_SET_TLSEXT_TICKET_KEYS, keylen, keys)} {Macro Return Type unknown at line no 346}
-  {# define  SSL_CTX_get_tlsext_status_cb(ssl,cb) SSL_CTX_ctrl(ssl, SSL_CTRL_GET_TLSEXT_STATUS_REQ_CB, 0, (void *)cb)} {Macro Return Type unknown at line no 349}
+  {# define  SSL_CTX_set_tlsext_servername_arg(ctx,arg) SSL_CTX_ctrl(ctx, SSL_CTRL_SET_TLSEXT_SERVERNAME_ARG, 0, arg)} {Macro Return Type unknown at line no 354}
+  {# define  SSL_CTX_get_tlsext_ticket_keys(ctx,keys,keylen) SSL_CTX_ctrl(ctx, SSL_CTRL_GET_TLSEXT_TICKET_KEYS, keylen, keys)} {Macro Return Type unknown at line no 357}
+  {# define  SSL_CTX_set_tlsext_ticket_keys(ctx,keys,keylen) SSL_CTX_ctrl(ctx, SSL_CTRL_SET_TLSEXT_TICKET_KEYS, keylen, keys)} {Macro Return Type unknown at line no 359}
+  {# define  SSL_CTX_get_tlsext_status_cb(ssl,cb) SSL_CTX_ctrl(ssl, SSL_CTRL_GET_TLSEXT_STATUS_REQ_CB, 0, (void *)cb)} {Macro Return Type unknown at line no 362}
   {# define  SSL_CTX_set_tlsext_status_cb(ssl,cb) SSL_CTX_callback_ctrl(ssl, SSL_CTRL_SET_TLSEXT_STATUS_REQ_CB, (void (*)(void))cb)}
-  {# define  SSL_CTX_get_tlsext_status_arg(ssl,arg) SSL_CTX_ctrl(ssl, SSL_CTRL_GET_TLSEXT_STATUS_REQ_CB_ARG, 0, arg)} {Macro Return Type unknown at line no 355}
-  {# define  SSL_CTX_set_tlsext_status_arg(ssl,arg) SSL_CTX_ctrl(ssl, SSL_CTRL_SET_TLSEXT_STATUS_REQ_CB_ARG, 0, arg)} {Macro Return Type unknown at line no 357}
-  {# define  SSL_CTX_set_tlsext_status_type(ssl,type) SSL_CTX_ctrl(ssl, SSL_CTRL_SET_TLSEXT_STATUS_REQ_TYPE, type, NULL)} {Macro Return Type unknown at line no 360}
-  {# define  SSL_CTX_get_tlsext_status_type(ssl) SSL_CTX_ctrl(ssl, SSL_CTRL_GET_TLSEXT_STATUS_REQ_TYPE, 0, NULL)} {Macro Return Type unknown at line no 363}
+  {# define  SSL_CTX_get_tlsext_status_arg(ssl,arg) SSL_CTX_ctrl(ssl, SSL_CTRL_GET_TLSEXT_STATUS_REQ_CB_ARG, 0, arg)} {Macro Return Type unknown at line no 368}
+  {# define  SSL_CTX_set_tlsext_status_arg(ssl,arg) SSL_CTX_ctrl(ssl, SSL_CTRL_SET_TLSEXT_STATUS_REQ_CB_ARG, 0, arg)} {Macro Return Type unknown at line no 370}
+  {# define  SSL_CTX_set_tlsext_status_type(ssl,type) SSL_CTX_ctrl(ssl, SSL_CTRL_SET_TLSEXT_STATUS_REQ_TYPE, type, NULL)} {Macro Return Type unknown at line no 373}
+  {# define  SSL_CTX_get_tlsext_status_type(ssl) SSL_CTX_ctrl(ssl, SSL_CTRL_GET_TLSEXT_STATUS_REQ_TYPE, 0, NULL)} {Macro Return Type unknown at line no 376}
   {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 {# define  SSL_CTX_set_tlsext_ticket_key_cb(ssl,cb) SSL_CTX_callback_ctrl(ssl, SSL_CTRL_SET_TLSEXT_TICKET_KEY_CB, (void (*)(void))cb)}
   {$endif}
@@ -646,6 +667,9 @@ const
   TLS1_CK_DHE_PSK_WITH_ARIA_256_GCM_SHA384 = $0300C06D;
   TLS1_CK_RSA_PSK_WITH_ARIA_128_GCM_SHA256 = $0300C06E;
   TLS1_CK_RSA_PSK_WITH_ARIA_256_GCM_SHA384 = $0300C06F;
+  { SM ciphersuites from RFC8998 }
+  TLS1_3_CK_SM4_GCM_SM3 = $030000C6;
+  TLS1_3_CK_SM4_CCM_SM3 = $030000C7;
   { a bundle of RFC standard cipher names, generated from ssl3_ciphers[] }
   TLS1_RFC_RSA_WITH_AES_128_SHA = 'TLS_RSA_WITH_AES_128_CBC_SHA';
   TLS1_RFC_DHE_DSS_WITH_AES_128_SHA = 'TLS_DHE_DSS_WITH_AES_128_CBC_SHA';
@@ -838,6 +862,8 @@ const
   TLS1_RFC_DHE_PSK_WITH_ARIA_256_GCM_SHA384 = 'TLS_DHE_PSK_WITH_ARIA_256_GCM_SHA384';
   TLS1_RFC_RSA_PSK_WITH_ARIA_128_GCM_SHA256 = 'TLS_RSA_PSK_WITH_ARIA_128_GCM_SHA256';
   TLS1_RFC_RSA_PSK_WITH_ARIA_256_GCM_SHA384 = 'TLS_RSA_PSK_WITH_ARIA_256_GCM_SHA384';
+  TLS1_3_RFC_SM4_GCM_SM3 = 'TLS_SM4_GCM_SM3';
+  TLS1_3_RFC_SM4_CCM_SM3 = 'TLS_SM4_CCM_SM3';
   
   {* XXX Backward compatibility alert: Older versions of OpenSSL gave some DHE
   * ciphers names with "EDH" instead of "DHE".  Going forward, we should be
@@ -1272,6 +1298,22 @@ begin
   Result := SSL_get_signature_type_nid(s, pnid);
 end;
 
+function Load_SSL_get0_sigalg(s: PSSL; idx: TOpenSSL_C_INT; codepoint: POpenSSL_C_UINT; name: PPAnsiChar): TOpenSSL_C_INT; cdecl;
+begin
+  SSL_get0_sigalg := LoadLibSSLFunction('SSL_get0_sigalg');
+  if not assigned(SSL_get0_sigalg) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('SSL_get0_sigalg');
+  Result := SSL_get0_sigalg(s, idx, codepoint, name);
+end;
+
+function Load_SSL_get0_shared_sigalg(s: PSSL; idx: TOpenSSL_C_INT; codepoint: POpenSSL_C_UINT; name: PPAnsiChar): TOpenSSL_C_INT; cdecl;
+begin
+  SSL_get0_shared_sigalg := LoadLibSSLFunction('SSL_get0_shared_sigalg');
+  if not assigned(SSL_get0_shared_sigalg) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('SSL_get0_shared_sigalg');
+  Result := SSL_get0_shared_sigalg(s, idx, codepoint, name);
+end;
+
 function Load_SSL_get_sigalgs(s: PSSL; idx: TOpenSSL_C_INT; psign: POpenSSL_C_INT; phash: POpenSSL_C_INT; psignandhash: POpenSSL_C_INT; rsig: Pbyte; rhash: Pbyte): TOpenSSL_C_INT; cdecl;
 begin
   SSL_get_sigalgs := LoadLibSSLFunction('SSL_get_sigalgs');
@@ -1327,6 +1369,8 @@ begin
   SSL_export_keying_material_early := Load_SSL_export_keying_material_early;
   SSL_get_peer_signature_type_nid := Load_SSL_get_peer_signature_type_nid;
   SSL_get_signature_type_nid := Load_SSL_get_signature_type_nid;
+  SSL_get0_sigalg := Load_SSL_get0_sigalg;
+  SSL_get0_shared_sigalg := Load_SSL_get0_shared_sigalg;
   SSL_get_sigalgs := Load_SSL_get_sigalgs;
   SSL_get1_builtin_sigalgs := Load_SSL_get1_builtin_sigalgs;
   SSL_get_shared_sigalgs := Load_SSL_get_shared_sigalgs;

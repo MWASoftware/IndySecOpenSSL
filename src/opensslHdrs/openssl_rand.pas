@@ -18,7 +18,7 @@
 unit openssl_rand;
 
 {
-  Generated from OpenSSL 3.6.2 Header File rand.h - Tue 19 May 14:30:36 BST 2026
+  Generated from OpenSSL 4.0.0 Header File rand.h - Tue 19 May 14:33:10 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -95,6 +95,7 @@ type
     {$ifdef OPENSSL_STATIC_LINK_MODEL}
   function RAND_set_rand_method(meth: PRAND_METHOD): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'RAND_set_rand_method'; deprecated 'Since OpenSSL 3.0';
   function RAND_get_rand_method: PRAND_METHOD; cdecl; external CLibCrypto name 'RAND_get_rand_method'; deprecated 'Since OpenSSL 3.0';
+  function RAND_OpenSSL: PRAND_METHOD; cdecl; external CLibCrypto name 'RAND_OpenSSL'; deprecated 'Since OpenSSL 3.0';
     {$else}
   { The EXTERNALSYM directive is ignored by FPC, however, it is used by Delphi as follows:
 
@@ -102,38 +103,15 @@ type
   files generated for C++. }
   {$EXTERNALSYM RAND_set_rand_method}
   {$EXTERNALSYM RAND_get_rand_method}
+  {$EXTERNALSYM RAND_OpenSSL}
   {Do not call Function LoadDeclarations. Internal use only}
   function Load_RAND_set_rand_method(meth: PRAND_METHOD): TOpenSSL_C_INT; cdecl;
   function Load_RAND_get_rand_method: PRAND_METHOD; cdecl;
+  function Load_RAND_OpenSSL: PRAND_METHOD; cdecl;
 
 var
   RAND_set_rand_method: function(meth: PRAND_METHOD): TOpenSSL_C_INT; cdecl = Load_RAND_set_rand_method;
   RAND_get_rand_method: function: PRAND_METHOD; cdecl = Load_RAND_get_rand_method;
-    {$endif} {OPENSSL_STATIC_LINK_MODEL}
-    {$ifndef  OPENSSL_NO_ENGINE}
-
-
-      {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function RAND_set_rand_engine(engine: PENGINE): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'RAND_set_rand_engine'; deprecated 'Since OpenSSL 3.0';
-      {$else}
-  {$EXTERNALSYM RAND_set_rand_engine}
-  {Do not call Function LoadDeclarations. Internal use only}
-  function Load_RAND_set_rand_engine(engine: PENGINE): TOpenSSL_C_INT; cdecl;
-
-var
-  RAND_set_rand_engine: function(engine: PENGINE): TOpenSSL_C_INT; cdecl = Load_RAND_set_rand_engine;
-      {$endif} {OPENSSL_STATIC_LINK_MODEL}
-    {$endif}
-
-
-    {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function RAND_OpenSSL: PRAND_METHOD; cdecl; external CLibCrypto name 'RAND_OpenSSL'; deprecated 'Since OpenSSL 3.0';
-    {$else}
-  {$EXTERNALSYM RAND_OpenSSL}
-  {Do not call Function LoadDeclarations. Internal use only}
-  function Load_RAND_OpenSSL: PRAND_METHOD; cdecl;
-
-var
   RAND_OpenSSL: function: PRAND_METHOD; cdecl = Load_RAND_OpenSSL;
     {$endif} {OPENSSL_STATIC_LINK_MODEL}
   {$endif}
@@ -401,16 +379,6 @@ begin
   Result := RAND_get_rand_method;
 end;
 
-    {$ifndef  OPENSSL_NO_ENGINE}
-function Load_RAND_set_rand_engine(engine: PENGINE): TOpenSSL_C_INT; cdecl;
-begin
-  RAND_set_rand_engine := LoadLibCryptoFunction('RAND_set_rand_engine');
-  if not assigned(RAND_set_rand_engine) then
-    EOpenSSLAPIFunctionNotPresent.RaiseException('RAND_set_rand_engine');
-  Result := RAND_set_rand_engine(engine);
-end;
-
-    {$endif} { OPENSSL_NO_ENGINE}
 function Load_RAND_OpenSSL: PRAND_METHOD; cdecl;
 begin
   RAND_OpenSSL := LoadLibCryptoFunction('RAND_OpenSSL');
@@ -646,9 +614,6 @@ begin
 {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
   RAND_set_rand_method := Load_RAND_set_rand_method;
   RAND_get_rand_method := Load_RAND_get_rand_method;
-    {$ifndef  OPENSSL_NO_ENGINE}
-  RAND_set_rand_engine := Load_RAND_set_rand_engine;
-    {$endif} { OPENSSL_NO_ENGINE}
   RAND_OpenSSL := Load_RAND_OpenSSL;
 {$endif} { OPENSSL_NO_DEPRECATED_3_0}
   RAND_bytes := Load_RAND_bytes;
