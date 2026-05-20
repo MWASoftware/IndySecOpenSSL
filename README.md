@@ -1,12 +1,13 @@
 # Indy TLS for OpenSSL
 
-This branch updates the IndySecOpenSSL package to use the 3.0.20 headers from the
+This branch updates the IndySecOpenSSL package to use the 
 OpenSSL 3.0.20 with legacy support headers from the MWASoftware/PascalAPI4OpenSSL
 repository. Other branches of IndySecOpenSSL are also available using different 
 OpenSSL release headers provided by the PascalAPI4OpenSSL. Support for the Windows 
-Trusted Certificate store is now provided by the PascalAPI4OpenSSL instead of a unit within  ndySecOpenSSL.
+Trusted Certificate store is now provided by the PascalAPI4OpenSSL instead of a unit 
+within IndySecOpenSSL.
 
-This branch includes legacysupport (i.e. support for the OpenSSL 1.0.2 and
+This branch includes legacy support (i.e. support for the OpenSSL 1.0.2 and
 1.1.1 libraries) for the Dynamic Library Load link Model (see below). 
 
 This repo provides the IndySecOpenSSL package for both Delphi and Lazarus/fpc.
