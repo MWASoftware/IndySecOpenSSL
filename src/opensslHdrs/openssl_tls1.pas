@@ -18,7 +18,7 @@
 unit openssl_tls1;
 
 {
-  Generated from OpenSSL 3.5.6 Header File tls1.h - Tue 19 May 14:28:33 BST 2026
+  Generated from OpenSSL 3.6.2 Header File tls1.h - Tue 19 May 14:30:56 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -32,7 +32,7 @@ interface
 uses OpenSSLAPI,openssl_types,openssl_buffer,openssl_x509,openssl_prov_ssl;
 
 
-{* Copyright 1995-2024 The OpenSSL Project Authors. All Rights Reserved.
+{* Copyright 1995-2025 The OpenSSL Project Authors. All Rights Reserved.
 * Copyright (c) 2002, Oracle and/or its affiliates. All rights reserved
 * Copyright 2005 Nokia. All rights reserved.
 *
@@ -343,6 +343,8 @@ var
   {# define  SSL_set_tlsext_status_ids(ssl,arg) SSL_ctrl(ssl, SSL_CTRL_SET_TLSEXT_STATUS_REQ_IDS, 0, arg)} {Macro Return Type unknown at line no 317}
   {# define  SSL_get_tlsext_status_ocsp_resp(ssl,arg) SSL_ctrl(ssl, SSL_CTRL_GET_TLSEXT_STATUS_REQ_OCSP_RESP, 0, arg)} {Macro Return Type unknown at line no 320}
   {# define  SSL_set_tlsext_status_ocsp_resp(ssl,arg,arglen) SSL_ctrl(ssl, SSL_CTRL_SET_TLSEXT_STATUS_REQ_OCSP_RESP, arglen, arg)} {Macro Return Type unknown at line no 323}
+  {# define  SSL_get0_tlsext_status_ocsp_resp_ex(ssl,arg) SSL_ctrl(ssl, SSL_CTRL_GET_TLSEXT_STATUS_REQ_OCSP_RESP_EX, 0, arg)} {Macro Return Type unknown at line no 326}
+  {# define  SSL_set0_tlsext_status_ocsp_resp_ex(ssl,arg) SSL_ctrl(ssl, SSL_CTRL_SET_TLSEXT_STATUS_REQ_OCSP_RESP_EX, 0, arg)} {Macro Return Type unknown at line no 329}
   {# define  SSL_CTX_set_tlsext_servername_callback(ctx,cb) SSL_CTX_callback_ctrl(ctx, SSL_CTRL_SET_TLSEXT_SERVERNAME_CB, (void (*)(void))cb)}
 
 const
@@ -350,15 +352,15 @@ const
   SSL_TLSEXT_ERR_ALERT_WARNING = 1;
   SSL_TLSEXT_ERR_ALERT_FATAL = 2;
   SSL_TLSEXT_ERR_NOACK = 3;
-  {# define  SSL_CTX_set_tlsext_servername_arg(ctx,arg) SSL_CTX_ctrl(ctx, SSL_CTRL_SET_TLSEXT_SERVERNAME_ARG, 0, arg)} {Macro Return Type unknown at line no 335}
-  {# define  SSL_CTX_get_tlsext_ticket_keys(ctx,keys,keylen) SSL_CTX_ctrl(ctx, SSL_CTRL_GET_TLSEXT_TICKET_KEYS, keylen, keys)} {Macro Return Type unknown at line no 338}
-  {# define  SSL_CTX_set_tlsext_ticket_keys(ctx,keys,keylen) SSL_CTX_ctrl(ctx, SSL_CTRL_SET_TLSEXT_TICKET_KEYS, keylen, keys)} {Macro Return Type unknown at line no 340}
-  {# define  SSL_CTX_get_tlsext_status_cb(ssl,cb) SSL_CTX_ctrl(ssl, SSL_CTRL_GET_TLSEXT_STATUS_REQ_CB, 0, (void *)cb)} {Macro Return Type unknown at line no 343}
+  {# define  SSL_CTX_set_tlsext_servername_arg(ctx,arg) SSL_CTX_ctrl(ctx, SSL_CTRL_SET_TLSEXT_SERVERNAME_ARG, 0, arg)} {Macro Return Type unknown at line no 341}
+  {# define  SSL_CTX_get_tlsext_ticket_keys(ctx,keys,keylen) SSL_CTX_ctrl(ctx, SSL_CTRL_GET_TLSEXT_TICKET_KEYS, keylen, keys)} {Macro Return Type unknown at line no 344}
+  {# define  SSL_CTX_set_tlsext_ticket_keys(ctx,keys,keylen) SSL_CTX_ctrl(ctx, SSL_CTRL_SET_TLSEXT_TICKET_KEYS, keylen, keys)} {Macro Return Type unknown at line no 346}
+  {# define  SSL_CTX_get_tlsext_status_cb(ssl,cb) SSL_CTX_ctrl(ssl, SSL_CTRL_GET_TLSEXT_STATUS_REQ_CB, 0, (void *)cb)} {Macro Return Type unknown at line no 349}
   {# define  SSL_CTX_set_tlsext_status_cb(ssl,cb) SSL_CTX_callback_ctrl(ssl, SSL_CTRL_SET_TLSEXT_STATUS_REQ_CB, (void (*)(void))cb)}
-  {# define  SSL_CTX_get_tlsext_status_arg(ssl,arg) SSL_CTX_ctrl(ssl, SSL_CTRL_GET_TLSEXT_STATUS_REQ_CB_ARG, 0, arg)} {Macro Return Type unknown at line no 349}
-  {# define  SSL_CTX_set_tlsext_status_arg(ssl,arg) SSL_CTX_ctrl(ssl, SSL_CTRL_SET_TLSEXT_STATUS_REQ_CB_ARG, 0, arg)} {Macro Return Type unknown at line no 351}
-  {# define  SSL_CTX_set_tlsext_status_type(ssl,type) SSL_CTX_ctrl(ssl, SSL_CTRL_SET_TLSEXT_STATUS_REQ_TYPE, type, NULL)} {Macro Return Type unknown at line no 354}
-  {# define  SSL_CTX_get_tlsext_status_type(ssl) SSL_CTX_ctrl(ssl, SSL_CTRL_GET_TLSEXT_STATUS_REQ_TYPE, 0, NULL)} {Macro Return Type unknown at line no 357}
+  {# define  SSL_CTX_get_tlsext_status_arg(ssl,arg) SSL_CTX_ctrl(ssl, SSL_CTRL_GET_TLSEXT_STATUS_REQ_CB_ARG, 0, arg)} {Macro Return Type unknown at line no 355}
+  {# define  SSL_CTX_set_tlsext_status_arg(ssl,arg) SSL_CTX_ctrl(ssl, SSL_CTRL_SET_TLSEXT_STATUS_REQ_CB_ARG, 0, arg)} {Macro Return Type unknown at line no 357}
+  {# define  SSL_CTX_set_tlsext_status_type(ssl,type) SSL_CTX_ctrl(ssl, SSL_CTRL_SET_TLSEXT_STATUS_REQ_TYPE, type, NULL)} {Macro Return Type unknown at line no 360}
+  {# define  SSL_CTX_get_tlsext_status_type(ssl) SSL_CTX_ctrl(ssl, SSL_CTRL_GET_TLSEXT_STATUS_REQ_TYPE, 0, NULL)} {Macro Return Type unknown at line no 363}
   {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 {# define  SSL_CTX_set_tlsext_ticket_key_cb(ssl,cb) SSL_CTX_callback_ctrl(ssl, SSL_CTRL_SET_TLSEXT_TICKET_KEY_CB, (void (*)(void))cb)}
   {$endif}

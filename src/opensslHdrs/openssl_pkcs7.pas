@@ -18,7 +18,7 @@
 unit openssl_pkcs7;
 
 {
-  Generated from OpenSSL 3.5.6 Header File pkcs7.h - Tue 19 May 14:28:09 BST 2026
+  Generated from OpenSSL 3.6.2 Header File pkcs7.h - Tue 19 May 14:30:31 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -114,6 +114,7 @@ type
   Tsk_PKCS7_SIGNER_INFO_copyfunc = function(a: PPKCS7_SIGNER_INFO): PPKCS7_SIGNER_INFO; cdecl;
 
 
+  procedure sk_PKCS7_SIGNER_INFO_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_PKCS7_SIGNER_INFO_type(ptr: PPKCS7_SIGNER_INFO): PPKCS7_SIGNER_INFO{Has C Attribute: unused}; inline;
   function ossl_check_const_PKCS7_SIGNER_INFO_sk_type(sk: Pstack_st_PKCS7_SIGNER_INFO): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_PKCS7_SIGNER_INFO_sk_type(sk: Pstack_st_PKCS7_SIGNER_INFO): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -266,6 +267,7 @@ type
   Tsk_PKCS7_RECIP_INFO_copyfunc = function(a: PPKCS7_RECIP_INFO): PPKCS7_RECIP_INFO; cdecl;
 
 
+  procedure sk_PKCS7_RECIP_INFO_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_PKCS7_RECIP_INFO_type(ptr: PPKCS7_RECIP_INFO): PPKCS7_RECIP_INFO{Has C Attribute: unused}; inline;
   function ossl_check_const_PKCS7_RECIP_INFO_sk_type(sk: Pstack_st_PKCS7_RECIP_INFO): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_PKCS7_RECIP_INFO_sk_type(sk: Pstack_st_PKCS7_RECIP_INFO): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -515,6 +517,7 @@ type
   Tsk_PKCS7_copyfunc = function(a: PPKCS7): PPKCS7; cdecl;
 
 
+  procedure sk_PKCS7_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_PKCS7_type(ptr: PPKCS7): PPKCS7{Has C Attribute: unused}; inline;
   function ossl_check_const_PKCS7_sk_type(sk: Pstack_st_PKCS7): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_PKCS7_sk_type(sk: Pstack_st_PKCS7): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -1216,6 +1219,16 @@ uses Sysutils, variants
     OPENSSL_LINE  = 0;
   {$ifend}
 
+procedure sk_PKCS7_SIGNER_INFO_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_PKCS7_SIGNER_INFO_freefunc_thunk"');
+
+{Error: Line 74: Syntax Error parsing " sk_PKCS7_SIGNER_INFO_freefunc freefunc = (sk_PKCS7_SIGNER_INFO_freefunc)freefunc_arg; freefunc((PKCS7_SIGNER_INFO 
+*)ptr); "
+
+ sk_PKCS7_SIGNER_INFO_freefunc freefunc = (sk_PKCS7_SIGNER_INFO_freefunc)freefunc_arg; freefunc((PKCS7_SIGNER_INFO *)ptr); }
+end;
+
 function ossl_check_PKCS7_SIGNER_INFO_type(ptr: PPKCS7_SIGNER_INFO): PPKCS7_SIGNER_INFO{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -1246,6 +1259,16 @@ begin
    Result := TOPENSSL_sk_freefunc(fr);
 end;
 
+procedure sk_PKCS7_RECIP_INFO_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_PKCS7_RECIP_INFO_freefunc_thunk"');
+
+{Error: Line 112: Syntax Error parsing " sk_PKCS7_RECIP_INFO_freefunc freefunc = (sk_PKCS7_RECIP_INFO_freefunc)freefunc_arg; freefunc((PKCS7_RECIP_INFO 
+*)ptr); "
+
+ sk_PKCS7_RECIP_INFO_freefunc freefunc = (sk_PKCS7_RECIP_INFO_freefunc)freefunc_arg; freefunc((PKCS7_RECIP_INFO *)ptr); }
+end;
+
 function ossl_check_PKCS7_RECIP_INFO_type(ptr: PPKCS7_RECIP_INFO): PPKCS7_RECIP_INFO{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -1274,6 +1297,15 @@ end;
 function ossl_check_PKCS7_RECIP_INFO_freefunc_type(fr: Tsk_PKCS7_RECIP_INFO_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
 begin
    Result := TOPENSSL_sk_freefunc(fr);
+end;
+
+procedure sk_PKCS7_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_PKCS7_freefunc_thunk"');
+
+{Error: Line 228: Syntax Error parsing " sk_PKCS7_freefunc freefunc = (sk_PKCS7_freefunc)freefunc_arg; freefunc((PKCS7 *)ptr); "
+
+ sk_PKCS7_freefunc freefunc = (sk_PKCS7_freefunc)freefunc_arg; freefunc((PKCS7 *)ptr); }
 end;
 
 function ossl_check_PKCS7_type(ptr: PPKCS7): PPKCS7{Has C Attribute: unused}; inline;

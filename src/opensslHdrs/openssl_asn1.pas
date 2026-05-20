@@ -18,7 +18,7 @@
 unit openssl_asn1;
 
 {
-  Generated from OpenSSL 3.5.6 Header File asn1.h - Tue 19 May 14:27:01 BST 2026
+  Generated from OpenSSL 3.6.2 Header File asn1.h - Tue 19 May 14:29:21 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -161,6 +161,7 @@ type
   Tsk_X509_ALGOR_copyfunc = function(a: PX509_ALGOR): PX509_ALGOR; cdecl;
 
 
+  procedure sk_X509_ALGOR_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_X509_ALGOR_type(ptr: PX509_ALGOR): PX509_ALGOR{Has C Attribute: unused}; inline;
   function ossl_check_const_X509_ALGOR_sk_type(sk: Pstack_st_X509_ALGOR): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_X509_ALGOR_sk_type(sk: Pstack_st_X509_ALGOR): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -381,6 +382,7 @@ type
   Tsk_ASN1_STRING_TABLE_copyfunc = function(a: PASN1_STRING_TABLE): PASN1_STRING_TABLE; cdecl;
 
 
+  procedure sk_ASN1_STRING_TABLE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_ASN1_STRING_TABLE_type(ptr: PASN1_STRING_TABLE): PASN1_STRING_TABLE{Has C Attribute: unused}; inline;
   function ossl_check_const_ASN1_STRING_TABLE_sk_type(sk: Pstack_st_ASN1_STRING_TABLE): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_ASN1_STRING_TABLE_sk_type(sk: Pstack_st_ASN1_STRING_TABLE): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -414,7 +416,7 @@ type
   function sk_ASN1_STRING_TABLE_deep_copy(st: Pstack_st_ASN1_STRING_TABLE; c: Tsk_ASN1_STRING_TABLE_compfunc; f: Tsk_ASN1_STRING_TABLE_freefunc): Pstack_st_ASN1_STRING_TABLE; cdecl; external CLibCrypto name 'OPENSSL_sk_deep_copy';
   function sk_ASN1_STRING_TABLE_set_cmp_func(st: Pstack_st_ASN1_STRING_TABLE; cmp: Tsk_ASN1_STRING_TABLE_compfunc): Tsk_ASN1_STRING_TABLE_compfunc; cdecl; external CLibCrypto name 'OPENSSL_sk_set_cmp_func';
   { clang-format on }
-  { size limits: this stuff is taken straight from RFC2459 }
+  { size limits: this stuff is taken straight from RFC 5280 }
   {$else}
   {$EXTERNALSYM sk_ASN1_STRING_TABLE_num}
   {$EXTERNALSYM sk_ASN1_STRING_TABLE_value}
@@ -495,7 +497,7 @@ var
   sk_ASN1_STRING_TABLE_deep_copy: function(st: Pstack_st_ASN1_STRING_TABLE; c: Tsk_ASN1_STRING_TABLE_compfunc; f: Tsk_ASN1_STRING_TABLE_freefunc): Pstack_st_ASN1_STRING_TABLE; cdecl = Load_sk_ASN1_STRING_TABLE_deep_copy;
   sk_ASN1_STRING_TABLE_set_cmp_func: function(st: Pstack_st_ASN1_STRING_TABLE; cmp: Tsk_ASN1_STRING_TABLE_compfunc): Tsk_ASN1_STRING_TABLE_compfunc; cdecl = Load_sk_ASN1_STRING_TABLE_set_cmp_func;
   { clang-format on }
-  { size limits: this stuff is taken straight from RFC2459 }
+  { size limits: this stuff is taken straight from RFC 5280 }
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
 const
@@ -755,6 +757,7 @@ type
   Tsk_ASN1_TYPE_copyfunc = function(a: PASN1_TYPE): PASN1_TYPE; cdecl;
 
 
+  procedure sk_ASN1_TYPE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_ASN1_TYPE_type(ptr: PASN1_TYPE): PASN1_TYPE{Has C Attribute: unused}; inline;
   function ossl_check_const_ASN1_TYPE_sk_type(sk: Pstack_st_ASN1_TYPE): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_ASN1_TYPE_sk_type(sk: Pstack_st_ASN1_TYPE): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -1006,6 +1009,7 @@ type
   Tsk_ASN1_OBJECT_copyfunc = function(a: PASN1_OBJECT): PASN1_OBJECT; cdecl;
 
 
+  procedure sk_ASN1_OBJECT_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_ASN1_OBJECT_type(ptr: PASN1_OBJECT): PASN1_OBJECT{Has C Attribute: unused}; inline;
   function ossl_check_const_ASN1_OBJECT_sk_type(sk: Pstack_st_ASN1_OBJECT): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_ASN1_OBJECT_sk_type(sk: Pstack_st_ASN1_OBJECT): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -1310,6 +1314,7 @@ type
   Tsk_ASN1_INTEGER_copyfunc = function(a: PASN1_INTEGER): PASN1_INTEGER; cdecl;
 
 
+  procedure sk_ASN1_INTEGER_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_ASN1_INTEGER_type(ptr: PASN1_INTEGER): PASN1_INTEGER{Has C Attribute: unused}; inline;
   function ossl_check_const_ASN1_INTEGER_sk_type(sk: Pstack_st_ASN1_INTEGER): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_ASN1_INTEGER_sk_type(sk: Pstack_st_ASN1_INTEGER): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -1570,6 +1575,7 @@ type
   Tsk_ASN1_UTF8STRING_copyfunc = function(a: PASN1_UTF8STRING): PASN1_UTF8STRING; cdecl;
 
 
+  procedure sk_ASN1_UTF8STRING_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_ASN1_UTF8STRING_type(ptr: PASN1_UTF8STRING): PASN1_UTF8STRING{Has C Attribute: unused}; inline;
   function ossl_check_const_ASN1_UTF8STRING_sk_type(sk: Pstack_st_ASN1_UTF8STRING): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_ASN1_UTF8STRING_sk_type(sk: Pstack_st_ASN1_UTF8STRING): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -1814,6 +1820,7 @@ type
   Tsk_ASN1_GENERALSTRING_copyfunc = function(a: PASN1_GENERALSTRING): PASN1_GENERALSTRING; cdecl;
 
 
+  procedure sk_ASN1_GENERALSTRING_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_ASN1_GENERALSTRING_type(ptr: PASN1_GENERALSTRING): PASN1_GENERALSTRING{Has C Attribute: unused}; inline;
   function ossl_check_const_ASN1_GENERALSTRING_sk_type(sk: Pstack_st_ASN1_GENERALSTRING): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_ASN1_GENERALSTRING_sk_type(sk: Pstack_st_ASN1_GENERALSTRING): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -2877,6 +2884,16 @@ uses Sysutils, variants
     OPENSSL_LINE  = 0;
   {$ifend}
 
+procedure sk_X509_ALGOR_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_X509_ALGOR_freefunc_thunk"');
+
+{Error: Line 139: Syntax Error parsing " sk_X509_ALGOR_freefunc freefunc = (sk_X509_ALGOR_freefunc)freefunc_arg; freefunc((X509_ALGOR 
+*)ptr); "
+
+ sk_X509_ALGOR_freefunc freefunc = (sk_X509_ALGOR_freefunc)freefunc_arg; freefunc((X509_ALGOR *)ptr); }
+end;
+
 function ossl_check_X509_ALGOR_type(ptr: PX509_ALGOR): PX509_ALGOR{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -2905,6 +2922,16 @@ end;
 function ossl_check_X509_ALGOR_freefunc_type(fr: Tsk_X509_ALGOR_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
 begin
    Result := TOPENSSL_sk_freefunc(fr);
+end;
+
+procedure sk_ASN1_STRING_TABLE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_ASN1_STRING_TABLE_freefunc_thunk"');
+
+{Error: Line 243: Syntax Error parsing " sk_ASN1_STRING_TABLE_freefunc freefunc = (sk_ASN1_STRING_TABLE_freefunc)freefunc_arg; freefunc((ASN1_STRING_TABLE 
+*)ptr); "
+
+ sk_ASN1_STRING_TABLE_freefunc freefunc = (sk_ASN1_STRING_TABLE_freefunc)freefunc_arg; freefunc((ASN1_STRING_TABLE *)ptr); }
 end;
 
 function ossl_check_ASN1_STRING_TABLE_type(ptr: PASN1_STRING_TABLE): PASN1_STRING_TABLE{Has C Attribute: unused}; inline;
@@ -2937,6 +2964,16 @@ begin
    Result := TOPENSSL_sk_freefunc(fr);
 end;
 
+procedure sk_ASN1_TYPE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_ASN1_TYPE_freefunc_thunk"');
+
+{Error: Line 561: Syntax Error parsing " sk_ASN1_TYPE_freefunc freefunc = (sk_ASN1_TYPE_freefunc)freefunc_arg; freefunc((ASN1_TYPE 
+*)ptr); "
+
+ sk_ASN1_TYPE_freefunc freefunc = (sk_ASN1_TYPE_freefunc)freefunc_arg; freefunc((ASN1_TYPE *)ptr); }
+end;
+
 function ossl_check_ASN1_TYPE_type(ptr: PASN1_TYPE): PASN1_TYPE{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -2965,6 +3002,16 @@ end;
 function ossl_check_ASN1_TYPE_freefunc_type(fr: Tsk_ASN1_TYPE_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
 begin
    Result := TOPENSSL_sk_freefunc(fr);
+end;
+
+procedure sk_ASN1_OBJECT_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_ASN1_OBJECT_freefunc_thunk"');
+
+{Error: Line 626: Syntax Error parsing " sk_ASN1_OBJECT_freefunc freefunc = (sk_ASN1_OBJECT_freefunc)freefunc_arg; freefunc((ASN1_OBJECT 
+*)ptr); "
+
+ sk_ASN1_OBJECT_freefunc freefunc = (sk_ASN1_OBJECT_freefunc)freefunc_arg; freefunc((ASN1_OBJECT *)ptr); }
 end;
 
 function ossl_check_ASN1_OBJECT_type(ptr: PASN1_OBJECT): PASN1_OBJECT{Has C Attribute: unused}; inline;
@@ -2997,6 +3044,16 @@ begin
    Result := TOPENSSL_sk_freefunc(fr);
 end;
 
+procedure sk_ASN1_INTEGER_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_ASN1_INTEGER_freefunc_thunk"');
+
+{Error: Line 694: Syntax Error parsing " sk_ASN1_INTEGER_freefunc freefunc = (sk_ASN1_INTEGER_freefunc)freefunc_arg; freefunc((ASN1_INTEGER 
+*)ptr); "
+
+ sk_ASN1_INTEGER_freefunc freefunc = (sk_ASN1_INTEGER_freefunc)freefunc_arg; freefunc((ASN1_INTEGER *)ptr); }
+end;
+
 function ossl_check_ASN1_INTEGER_type(ptr: PASN1_INTEGER): PASN1_INTEGER{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -3027,6 +3084,16 @@ begin
    Result := TOPENSSL_sk_freefunc(fr);
 end;
 
+procedure sk_ASN1_UTF8STRING_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_ASN1_UTF8STRING_freefunc_thunk"');
+
+{Error: Line 757: Syntax Error parsing " sk_ASN1_UTF8STRING_freefunc freefunc = (sk_ASN1_UTF8STRING_freefunc)freefunc_arg; freefunc((ASN1_UTF8STRING 
+*)ptr); "
+
+ sk_ASN1_UTF8STRING_freefunc freefunc = (sk_ASN1_UTF8STRING_freefunc)freefunc_arg; freefunc((ASN1_UTF8STRING *)ptr); }
+end;
+
 function ossl_check_ASN1_UTF8STRING_type(ptr: PASN1_UTF8STRING): PASN1_UTF8STRING{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -3055,6 +3122,16 @@ end;
 function ossl_check_ASN1_UTF8STRING_freefunc_type(fr: Tsk_ASN1_UTF8STRING_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
 begin
    Result := TOPENSSL_sk_freefunc(fr);
+end;
+
+procedure sk_ASN1_GENERALSTRING_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_ASN1_GENERALSTRING_freefunc_thunk"');
+
+{Error: Line 796: Syntax Error parsing " sk_ASN1_GENERALSTRING_freefunc freefunc = (sk_ASN1_GENERALSTRING_freefunc)freefunc_arg; 
+freefunc((ASN1_GENERALSTRING *)ptr); "
+
+ sk_ASN1_GENERALSTRING_freefunc freefunc = (sk_ASN1_GENERALSTRING_freefunc)freefunc_arg; freefunc((ASN1_GENERALSTRING *)ptr); }
 end;
 
 function ossl_check_ASN1_GENERALSTRING_type(ptr: PASN1_GENERALSTRING): PASN1_GENERALSTRING{Has C Attribute: unused}; inline;

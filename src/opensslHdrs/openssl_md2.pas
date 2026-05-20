@@ -18,7 +18,7 @@
 unit openssl_md2;
 
 {
-  Generated from OpenSSL 3.5.6 Header File md2.h - Tue 19 May 14:27:53 BST 2026
+  Generated from OpenSSL 3.6.2 Header File md2.h - Tue 19 May 14:30:14 BST 2026
 }
 
 {$IFNDEF FPC}

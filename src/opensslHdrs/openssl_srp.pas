@@ -18,7 +18,7 @@
 unit openssl_srp;
 
 {
-  Generated from OpenSSL 3.5.6 Header File srp.h - Tue 19 May 14:28:18 BST 2026
+  Generated from OpenSSL 3.6.2 Header File srp.h - Tue 19 May 14:30:40 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -80,6 +80,7 @@ type
   Tsk_SRP_copyfunc = function(a: PSRP): PSRP; cdecl;
 
 
+  procedure sk_SRP_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_SRP_type(ptr: PSRP): PSRP{Has C Attribute: unused}; inline;
   function ossl_check_const_SRP_sk_type(sk: Pstack_st_SRP): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_SRP_sk_type(sk: Pstack_st_SRP): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -87,10 +88,11 @@ type
   function ossl_check_SRP_copyfunc_type(cpy: Tsk_SRP_copyfunc): TOPENSSL_sk_copyfunc{Has C Attribute: unused}; inline;
   function ossl_check_SRP_freefunc_type(fr: Tsk_SRP_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
     (*struct stack_st_SRP; typedef int ( *sk_SRP_compfunc)(const SRP *const *a, const SRP *const *b); typedef void ( *sk_SRP_freefunc)(SRP 
-* a); typedef SRP *( *sk_SRP_copyfunc)(const SRP *a); static __attribute__((unused)) inline SRP *ossl_check_SRP_type(SRP *ptr) { 
-return ptr; } static __attribute__((unused)) inline const OPENSSL_STACK *ossl_check_const_SRP_sk_type(const struct stack_st_SRP 
-*sk) { return (const OPENSSL_STACK * )sk; } static __attribute__((unused)) inline OPENSSL_STACK *ossl_check_SRP_sk_type(struct stack_st_SRP 
-*sk) { return (OPENSSL_STACK * )sk; } static __attribute__((unused)) inline OPENSSL_sk_compfunc ossl_check_SRP_compfunc_type(sk_SRP_compfunc 
+* a); typedef SRP *( *sk_SRP_copyfunc)(const SRP *a); static inline void sk_SRP_freefunc_thunk(OPENSSL_sk_freefunc freefunc_arg,
+ void *ptr) { sk_SRP_freefunc freefunc = (sk_SRP_freefunc)freefunc_arg; freefunc((SRP * )ptr); } static __attribute__((unused)) 
+inline SRP *ossl_check_SRP_type(SRP *ptr) { return ptr; } static __attribute__((unused)) inline const OPENSSL_STACK *ossl_check_const_SRP_sk_type(const 
+struct stack_st_SRP *sk) { return (const OPENSSL_STACK * )sk; } static __attribute__((unused)) inline OPENSSL_STACK *ossl_check_SRP_sk_type(struct 
+stack_st_SRP *sk) { return (OPENSSL_STACK * )sk; } static __attribute__((unused)) inline OPENSSL_sk_compfunc ossl_check_SRP_compfunc_type(sk_SRP_compfunc 
 cmp) { return (OPENSSL_sk_compfunc)cmp; } static __attribute__((unused)) inline OPENSSL_sk_copyfunc ossl_check_SRP_copyfunc_type(sk_SRP_copyfunc 
 cpy) { return (OPENSSL_sk_copyfunc)cpy; } static __attribute__((unused)) inline OPENSSL_sk_freefunc ossl_check_SRP_freefunc_type(sk_SRP_freefunc 
 fr) { return (OPENSSL_sk_freefunc)fr; };*)
@@ -126,6 +128,7 @@ type
   Tsk_SRP_gN_cache_copyfunc = function(a: PSRP_gN_cache): PSRP_gN_cache; cdecl;
 
 
+  procedure sk_SRP_gN_cache_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_SRP_gN_cache_type(ptr: PSRP_gN_cache): PSRP_gN_cache{Has C Attribute: unused}; inline;
   function ossl_check_const_SRP_gN_cache_sk_type(sk: Pstack_st_SRP_gN_cache): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_SRP_gN_cache_sk_type(sk: Pstack_st_SRP_gN_cache): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -147,7 +150,7 @@ type
   {# define  sk_SRP_gN_cache_unshift(sk,ptr) OPENSSL_sk_unshift(ossl_check_SRP_gN_cache_sk_type(sk), ossl_check_SRP_gN_cache_type(ptr))} {Macro Return Type unknown at line no 68}
   function sk_SRP_gN_cache_pop(sk:Pstack_st_SRP_gN_cache): PSRP_gN_cache; inline;
   function sk_SRP_gN_cache_shift(sk:Pstack_st_SRP_gN_cache): PSRP_gN_cache; inline;
-  {# define  sk_SRP_gN_cache_pop_free(sk,freefunc) OPENSSL_sk_pop_free(ossl_check_SRP_gN_cache_sk_type(sk),ossl_check_SRP_gN_cache_freefunc_type(freefunc))} {Macro Return Type unknown at line no 71}
+  {# define  sk_SRP_gN_cache_pop_free(sk,freefunc) OPENSSL_sk_pop_free(ossl_check_SRP_gN_cache_sk_type(sk), ossl_check_SRP_gN_cache_freefunc_type(freefunc))} {Macro Return Type unknown at line no 71}
   {# define  sk_SRP_gN_cache_insert(sk,ptr,idx) OPENSSL_sk_insert(ossl_check_SRP_gN_cache_sk_type(sk), ossl_check_SRP_gN_cache_type(ptr),
  (idx))} {Function argument out of range at line no 72}
   {# define  sk_SRP_gN_cache_set(sk,idx,ptr) ((SRP_gN_cache *)OPENSSL_sk_set(ossl_check_SRP_gN_cache_sk_type(sk), (idx), ossl_check_SRP_gN_cache_type(ptr)))} {Function argument out of range at line no 73}
@@ -197,6 +200,7 @@ type
   Tsk_SRP_user_pwd_copyfunc = function(a: PSRP_user_pwd): PSRP_user_pwd; cdecl;
 
 
+  procedure sk_SRP_user_pwd_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_SRP_user_pwd_type(ptr: PSRP_user_pwd): PSRP_user_pwd{Has C Attribute: unused}; inline;
   function ossl_check_const_SRP_user_pwd_sk_type(sk: Pstack_st_SRP_user_pwd): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_SRP_user_pwd_sk_type(sk: Pstack_st_SRP_user_pwd): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -381,6 +385,7 @@ type
   Tsk_SRP_gN_copyfunc = function(a: PSRP_gN): PSRP_gN; cdecl;
 
 
+  procedure sk_SRP_gN_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_SRP_gN_type(ptr: PSRP_gN): PSRP_gN{Has C Attribute: unused}; inline;
   function ossl_check_const_SRP_gN_sk_type(sk: Pstack_st_SRP_gN): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_SRP_gN_sk_type(sk: Pstack_st_SRP_gN): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -401,7 +406,7 @@ type
   {# define  sk_SRP_gN_unshift(sk,ptr) OPENSSL_sk_unshift(ossl_check_SRP_gN_sk_type(sk), ossl_check_SRP_gN_type(ptr))} {Macro Return Type unknown at line no 170}
   function sk_SRP_gN_pop(sk:Pstack_st_SRP_gN): PSRP_gN; inline;
   function sk_SRP_gN_shift(sk:Pstack_st_SRP_gN): PSRP_gN; inline;
-  {# define  sk_SRP_gN_pop_free(sk,freefunc) OPENSSL_sk_pop_free(ossl_check_SRP_gN_sk_type(sk),ossl_check_SRP_gN_freefunc_type(freefunc))} {Macro Return Type unknown at line no 173}
+  {# define  sk_SRP_gN_pop_free(sk,freefunc) OPENSSL_sk_pop_free(ossl_check_SRP_gN_sk_type(sk), ossl_check_SRP_gN_freefunc_type(freefunc))} {Macro Return Type unknown at line no 173}
   {# define  sk_SRP_gN_insert(sk,ptr,idx) OPENSSL_sk_insert(ossl_check_SRP_gN_sk_type(sk), ossl_check_SRP_gN_type(ptr), (idx))} {Function argument out of range at line no 174}
   {# define  sk_SRP_gN_set(sk,idx,ptr) ((SRP_gN *)OPENSSL_sk_set(ossl_check_SRP_gN_sk_type(sk), (idx), ossl_check_SRP_gN_type(ptr)))} {Function argument out of range at line no 175}
   {# define  sk_SRP_gN_find(sk,ptr) OPENSSL_sk_find(ossl_check_SRP_gN_sk_type(sk), ossl_check_SRP_gN_type(ptr))} {Macro Return Type unknown at line no 176}
@@ -610,6 +615,15 @@ uses Sysutils, variants
   {$ifend}
 
 {$ifndef  OPENSSL_NO_SRP}
+procedure sk_SRP_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_SRP_freefunc_thunk"');
+
+{Error: Line 47: Syntax Error parsing " sk_SRP_freefunc freefunc = (sk_SRP_freefunc)freefunc_arg; freefunc((SRP *)ptr); "
+
+ sk_SRP_freefunc freefunc = (sk_SRP_freefunc)freefunc_arg; freefunc((SRP *)ptr); }
+end;
+
 function ossl_check_SRP_type(ptr: PSRP): PSRP{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -641,6 +655,16 @@ begin
 end;
 
     {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
+procedure sk_SRP_gN_cache_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_SRP_gN_cache_freefunc_thunk"');
+
+{Error: Line 56: Syntax Error parsing " sk_SRP_gN_cache_freefunc freefunc = (sk_SRP_gN_cache_freefunc)freefunc_arg; freefunc((SRP_gN_cache 
+*)ptr); "
+
+ sk_SRP_gN_cache_freefunc freefunc = (sk_SRP_gN_cache_freefunc)freefunc_arg; freefunc((SRP_gN_cache *)ptr); }
+end;
+
 function ossl_check_SRP_gN_cache_type(ptr: PSRP_gN_cache): PSRP_gN_cache{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -700,6 +724,16 @@ function sk_SRP_gN_cache_set_cmp_func(sk:Pstack_st_SRP_gN_cache; cmp:Tsk_SRP_gN_
 begin
   Result := Tsk_SRP_gN_cache_compfunc(Tsk_SRP_gN_cache_compfunc(OPENSSL_sk_set_cmp_func(ossl_check_SRP_gN_cache_sk_type(sk),ossl_check_SRP_gN_cache_compfunc_type(cmp))));
 end;
+procedure sk_SRP_user_pwd_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_SRP_user_pwd_freefunc_thunk"');
+
+{Error: Line 97: Syntax Error parsing " sk_SRP_user_pwd_freefunc freefunc = (sk_SRP_user_pwd_freefunc)freefunc_arg; freefunc((SRP_user_pwd 
+*)ptr); "
+
+ sk_SRP_user_pwd_freefunc freefunc = (sk_SRP_user_pwd_freefunc)freefunc_arg; freefunc((SRP_user_pwd *)ptr); }
+end;
+
 function ossl_check_SRP_user_pwd_type(ptr: PSRP_user_pwd): PSRP_user_pwd{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -728,6 +762,16 @@ end;
 function ossl_check_SRP_user_pwd_freefunc_type(fr: Tsk_SRP_user_pwd_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
 begin
    Result := TOPENSSL_sk_freefunc(fr);
+end;
+
+procedure sk_SRP_gN_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_SRP_gN_freefunc_thunk"');
+
+{Error: Line 158: Syntax Error parsing " sk_SRP_gN_freefunc freefunc = (sk_SRP_gN_freefunc)freefunc_arg; freefunc((SRP_gN *)ptr); 
+"
+
+ sk_SRP_gN_freefunc freefunc = (sk_SRP_gN_freefunc)freefunc_arg; freefunc((SRP_gN *)ptr); }
 end;
 
 function ossl_check_SRP_gN_type(ptr: PSRP_gN): PSRP_gN{Has C Attribute: unused}; inline;

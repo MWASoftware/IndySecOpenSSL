@@ -18,7 +18,7 @@
 unit openssl_bn;
 
 {
-  Generated from OpenSSL 3.5.6 Header File bn.h - Tue 19 May 14:27:06 BST 2026
+  Generated from OpenSSL 3.6.2 Header File bn.h - Tue 19 May 14:29:26 BST 2026
 }
 
 {$IFNDEF FPC}

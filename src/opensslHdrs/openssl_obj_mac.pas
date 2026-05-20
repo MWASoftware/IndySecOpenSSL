@@ -18,7 +18,7 @@
 unit openssl_obj_mac;
 
 {
-  Generated from OpenSSL 3.5.6 Header File obj_mac.h - Tue 19 May 14:27:56 BST 2026
+  Generated from OpenSSL 3.6.2 Header File obj_mac.h - Tue 19 May 14:30:17 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -626,6 +626,9 @@ const
   SN_id_smime_cti = 'id-smime-cti';
   NID_id_smime_cti = 195;
   OBJ_id_smime_cti = OBJ_SMIME + ',' + '6';
+  SN_id_smime_ori = 'id-smime-ori';
+  NID_id_smime_ori = 1499;
+  OBJ_id_smime_ori = OBJ_SMIME + ',' + '13';
   SN_id_smime_mod_cms = 'id-smime-mod-cms';
   NID_id_smime_mod_cms = 196;
   OBJ_id_smime_mod_cms = OBJ_id_smime_mod + ',' + '1';
@@ -839,6 +842,18 @@ const
   SN_id_alg_PWRI_KEK = 'id-alg-PWRI-KEK';
   NID_id_alg_PWRI_KEK = 893;
   OBJ_id_alg_PWRI_KEK = OBJ_id_smime_alg + ',' + '9';
+  SN_HKDF_SHA256 = 'id-alg-hkdf-with-sha256';
+  LN_HKDF_SHA256 = 'HKDF-SHA256';
+  NID_HKDF_SHA256 = 1496;
+  OBJ_HKDF_SHA256 = OBJ_id_smime_alg + ',' + '28';
+  SN_HKDF_SHA384 = 'id-alg-hkdf-with-sha384';
+  LN_HKDF_SHA384 = 'HKDF-SHA384';
+  NID_HKDF_SHA384 = 1497;
+  OBJ_HKDF_SHA384 = OBJ_id_smime_alg + ',' + '29';
+  SN_HKDF_SHA512 = 'id-alg-hkdf-with-sha512';
+  LN_HKDF_SHA512 = 'HKDF-SHA512';
+  NID_HKDF_SHA512 = 1498;
+  OBJ_HKDF_SHA512 = OBJ_id_smime_alg + ',' + '30';
   SN_id_smime_cd_ldap = 'id-smime-cd-ldap';
   NID_id_smime_cd_ldap = 248;
   OBJ_id_smime_cd_ldap = OBJ_id_smime_cd + ',' + '1';
@@ -866,6 +881,9 @@ const
   SN_id_smime_cti_ets_proofOfCreation = 'id-smime-cti-ets-proofOfCreation';
   NID_id_smime_cti_ets_proofOfCreation = 256;
   OBJ_id_smime_cti_ets_proofOfCreation = OBJ_id_smime_cti + ',' + '6';
+  SN_id_smime_ori_kem = 'id-smime-ori-kem';
+  NID_id_smime_ori_kem = 1500;
+  OBJ_id_smime_ori_kem = OBJ_id_smime_ori + ',' + '3';
   LN_friendlyName = 'friendlyName';
   NID_friendlyName = 156;
   OBJ_friendlyName = OBJ_pkcs9 + ',' + '20';
@@ -4229,6 +4247,33 @@ const
   SN_chacha20 = 'ChaCha20';
   LN_chacha20 = 'chacha20';
   NID_chacha20 = 1019;
+  SN_aes_128_cbc_hmac_sha1_etm = 'AES-128-CBC-HMAC-SHA1-ETM';
+  LN_aes_128_cbc_hmac_sha1_etm = 'aes-128-cbc-hmac-sha1-etm';
+  NID_aes_128_cbc_hmac_sha1_etm = 1487;
+  SN_aes_192_cbc_hmac_sha1_etm = 'AES-192-CBC-HMAC-SHA1-ETM';
+  LN_aes_192_cbc_hmac_sha1_etm = 'aes-192-cbc-hmac-sha1-etm';
+  NID_aes_192_cbc_hmac_sha1_etm = 1488;
+  SN_aes_256_cbc_hmac_sha1_etm = 'AES-256-CBC-HMAC-SHA1-ETM';
+  LN_aes_256_cbc_hmac_sha1_etm = 'aes-256-cbc-hmac-sha1-etm';
+  NID_aes_256_cbc_hmac_sha1_etm = 1489;
+  SN_aes_128_cbc_hmac_sha256_etm = 'AES-128-CBC-HMAC-SHA256-ETM';
+  LN_aes_128_cbc_hmac_sha256_etm = 'aes-128-cbc-hmac-sha256-etm';
+  NID_aes_128_cbc_hmac_sha256_etm = 1490;
+  SN_aes_192_cbc_hmac_sha256_etm = 'AES-192-CBC-HMAC-SHA256-ETM';
+  LN_aes_192_cbc_hmac_sha256_etm = 'aes-192-cbc-hmac-sha256-etm';
+  NID_aes_192_cbc_hmac_sha256_etm = 1491;
+  SN_aes_256_cbc_hmac_sha256_etm = 'AES-256-CBC-HMAC-SHA256-ETM';
+  LN_aes_256_cbc_hmac_sha256_etm = 'aes-256-cbc-hmac-sha256-etm';
+  NID_aes_256_cbc_hmac_sha256_etm = 1492;
+  SN_aes_128_cbc_hmac_sha512_etm = 'AES-128-CBC-HMAC-SHA512-ETM';
+  LN_aes_128_cbc_hmac_sha512_etm = 'aes-128-cbc-hmac-sha512-etm';
+  NID_aes_128_cbc_hmac_sha512_etm = 1493;
+  SN_aes_192_cbc_hmac_sha512_etm = 'AES-192-CBC-HMAC-SHA512-ETM';
+  LN_aes_192_cbc_hmac_sha512_etm = 'aes-192-cbc-hmac-sha512-etm';
+  NID_aes_192_cbc_hmac_sha512_etm = 1494;
+  SN_aes_256_cbc_hmac_sha512_etm = 'AES-256-CBC-HMAC-SHA512-ETM';
+  LN_aes_256_cbc_hmac_sha512_etm = 'aes-256-cbc-hmac-sha512-etm';
+  NID_aes_256_cbc_hmac_sha512_etm = 1495;
   SN_dhpublicnumber = 'dhpublicnumber';
   LN_dhpublicnumber = 'X9.42 DH';
   NID_dhpublicnumber = 920;

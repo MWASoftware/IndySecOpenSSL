@@ -18,7 +18,7 @@
 unit openssl_aes;
 
 {
-  Generated from OpenSSL 3.5.6 Header File aes.h - Tue 19 May 14:27:00 BST 2026
+  Generated from OpenSSL 3.6.2 Header File aes.h - Tue 19 May 14:29:19 BST 2026
 }
 
 {$IFNDEF FPC}

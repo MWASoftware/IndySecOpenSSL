@@ -18,7 +18,7 @@
 unit openssl_params;
 
 {
-  Generated from OpenSSL 3.5.6 Header File params.h - Tue 19 May 14:28:02 BST 2026
+  Generated from OpenSSL 3.6.2 Header File params.h - Tue 19 May 14:30:24 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -32,7 +32,7 @@ interface
 uses OpenSSLAPI,openssl_types,openssl_core,openssl_bn;
 
 
-{* Copyright 2019-2021 The OpenSSL Project Authors. All Rights Reserved.
+{* Copyright 2019-2025 The OpenSSL Project Authors. All Rights Reserved.
 * Copyright (c) 2019, Oracle and/or its affiliates.  All rights reserved.
 *
 * Licensed under the Apache License 2.0 (the "License").  You may not use
@@ -127,6 +127,7 @@ uses OpenSSLAPI,openssl_types,openssl_core,openssl_bn;
   function OSSL_PARAM_dup(p: POSSL_PARAM): POSSL_PARAM; cdecl; external CLibCrypto name 'OSSL_PARAM_dup';
   function OSSL_PARAM_merge(p1: POSSL_PARAM; p2: POSSL_PARAM): POSSL_PARAM; cdecl; external CLibCrypto name 'OSSL_PARAM_merge';
   procedure OSSL_PARAM_free(p: POSSL_PARAM); cdecl; external CLibCrypto name 'OSSL_PARAM_free';
+  function OSSL_PARAM_set_octet_string_or_ptr(p: POSSL_PARAM; val: pointer; len: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_PARAM_set_octet_string_or_ptr';
   {$else}
   { The EXTERNALSYM directive is ignored by FPC, however, it is used by Delphi as follows:
 
@@ -192,6 +193,7 @@ uses OpenSSLAPI,openssl_types,openssl_core,openssl_bn;
   {$EXTERNALSYM OSSL_PARAM_dup}
   {$EXTERNALSYM OSSL_PARAM_merge}
   {$EXTERNALSYM OSSL_PARAM_free}
+  {$EXTERNALSYM OSSL_PARAM_set_octet_string_or_ptr}
   {Do not call Function LoadDeclarations. Internal use only}
   function Load_OSSL_PARAM_locate(p: POSSL_PARAM; key: PAnsiChar): POSSL_PARAM; cdecl;
   function Load_OSSL_PARAM_locate_const(p: POSSL_PARAM; key: PAnsiChar): POSSL_PARAM; cdecl;
@@ -253,6 +255,7 @@ uses OpenSSLAPI,openssl_types,openssl_core,openssl_bn;
   function Load_OSSL_PARAM_dup(p: POSSL_PARAM): POSSL_PARAM; cdecl;
   function Load_OSSL_PARAM_merge(p1: POSSL_PARAM; p2: POSSL_PARAM): POSSL_PARAM; cdecl;
   procedure Load_OSSL_PARAM_free(p: POSSL_PARAM); cdecl;
+  function Load_OSSL_PARAM_set_octet_string_or_ptr(p: POSSL_PARAM; val: pointer; len: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
 
 var
   OSSL_PARAM_locate: function(p: POSSL_PARAM; key: PAnsiChar): POSSL_PARAM; cdecl = Load_OSSL_PARAM_locate;
@@ -316,6 +319,7 @@ var
   OSSL_PARAM_dup: function(p: POSSL_PARAM): POSSL_PARAM; cdecl = Load_OSSL_PARAM_dup;
   OSSL_PARAM_merge: function(p1: POSSL_PARAM; p2: POSSL_PARAM): POSSL_PARAM; cdecl = Load_OSSL_PARAM_merge;
   OSSL_PARAM_free: procedure(p: POSSL_PARAM); cdecl = Load_OSSL_PARAM_free;
+  OSSL_PARAM_set_octet_string_or_ptr: function(p: POSSL_PARAM; val: pointer; len: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl = Load_OSSL_PARAM_set_octet_string_or_ptr;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
 {$endif}
 
@@ -845,6 +849,14 @@ begin
   OSSL_PARAM_free(p);
 end;
 
+function Load_OSSL_PARAM_set_octet_string_or_ptr(p: POSSL_PARAM; val: pointer; len: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
+begin
+  OSSL_PARAM_set_octet_string_or_ptr := LoadLibCryptoFunction('OSSL_PARAM_set_octet_string_or_ptr');
+  if not assigned(OSSL_PARAM_set_octet_string_or_ptr) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_PARAM_set_octet_string_or_ptr');
+  Result := OSSL_PARAM_set_octet_string_or_ptr(p, val, len);
+end;
+
 procedure Load;
 begin
   {$define EMPTY_LOAD_FUNCTION}
@@ -912,6 +924,7 @@ begin
   OSSL_PARAM_dup := Load_OSSL_PARAM_dup;
   OSSL_PARAM_merge := Load_OSSL_PARAM_merge;
   OSSL_PARAM_free := Load_OSSL_PARAM_free;
+  OSSL_PARAM_set_octet_string_or_ptr := Load_OSSL_PARAM_set_octet_string_or_ptr;
 end;
 
 {$endif} {OPENSSL_STATIC_LINK_MODEL}

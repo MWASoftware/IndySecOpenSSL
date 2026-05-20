@@ -18,7 +18,7 @@
 unit openssl_crypto;
 
 {
-  Generated from OpenSSL 3.5.6 Header File crypto.h - Tue 19 May 14:27:27 BST 2026
+  Generated from OpenSSL 3.6.2 Header File crypto.h - Tue 19 May 14:29:48 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -137,9 +137,14 @@ var
 
   function OPENSSL_malloc(num:TOpenSSL_C_SIZET): pointer; inline;
   function OPENSSL_zalloc(num:TOpenSSL_C_SIZET): pointer; inline;
+  function OPENSSL_malloc_array(num:TOpenSSL_C_SIZET; size:TOpenSSL_C_SIZET): pointer; inline;
+  function OPENSSL_calloc(num:TOpenSSL_C_SIZET; size:TOpenSSL_C_SIZET): pointer; inline;
   function OPENSSL_aligned_alloc(num:TOpenSSL_C_SIZET; alignment:TOpenSSL_C_SIZET; freeptr:Ppointer): pointer; inline;
+  function OPENSSL_aligned_alloc_array(num:TOpenSSL_C_SIZET; size:TOpenSSL_C_SIZET; alignment:TOpenSSL_C_SIZET; freeptr:Ppointer): pointer; inline;
   function OPENSSL_realloc(addr:pointer; num:TOpenSSL_C_SIZET): pointer; inline;
   function OPENSSL_clear_realloc(addr:pointer; old_num:TOpenSSL_C_SIZET; num:TOpenSSL_C_SIZET): pointer; inline;
+  function OPENSSL_realloc_array(addr:pointer; num:TOpenSSL_C_SIZET; size:TOpenSSL_C_SIZET): pointer; inline;
+  function OPENSSL_clear_realloc_array(addr:pointer; old_num:TOpenSSL_C_SIZET; num:TOpenSSL_C_SIZET; size:TOpenSSL_C_SIZET): pointer; inline;
   procedure OPENSSL_clear_free(addr:pointer; num:TOpenSSL_C_SIZET); inline;
   procedure OPENSSL_free(addr:pointer); inline;
   function OPENSSL_memdup(str:pointer; s:TOpenSSL_C_SIZET): pointer; inline;
@@ -147,6 +152,8 @@ var
   function OPENSSL_strndup(str:PAnsiChar; n:TOpenSSL_C_SIZET): PAnsiChar; inline;
   function OPENSSL_secure_malloc(num:TOpenSSL_C_SIZET): pointer; inline;
   function OPENSSL_secure_zalloc(num:TOpenSSL_C_SIZET): pointer; inline;
+  function OPENSSL_secure_malloc_array(num:TOpenSSL_C_SIZET; size:TOpenSSL_C_SIZET): pointer; inline;
+  function OPENSSL_secure_calloc(num:TOpenSSL_C_SIZET; size:TOpenSSL_C_SIZET): pointer; inline;
   procedure OPENSSL_secure_free(addr:pointer); inline;
   procedure OPENSSL_secure_clear_free(addr:pointer; num:TOpenSSL_C_SIZET); inline;
   function OPENSSL_secure_actual_size(ptr:pointer): TOpenSSL_C_SIZET; inline;
@@ -325,6 +332,7 @@ type
   Tsk_void_copyfunc = function(a: pointer): pointer; cdecl;
 
 
+  procedure sk_void_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_void_type(ptr: pointer): pointer{Has C Attribute: unused}; inline;
   function ossl_check_const_void_sk_type(sk: Pstack_st_void): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_void_sk_type(sk: Pstack_st_void): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -561,9 +569,9 @@ var
     }
   function CRYPTO_num_locks(): int64; inline;
   {# define  CRYPTO_set_locking_callback(func)}
-  {# define  CRYPTO_get_locking_callback() (NULL)} {Macro Return Type unknown at line no 297}
+  {# define  CRYPTO_get_locking_callback() (NULL)} {Macro Return Type unknown at line no 313}
   {# define  CRYPTO_set_add_lock_callback(func)}
-  {# define  CRYPTO_get_add_lock_callback() (NULL)} {Macro Return Type unknown at line no 299}
+  {# define  CRYPTO_get_add_lock_callback() (NULL)} {Macro Return Type unknown at line no 315}
 
 const
     
@@ -595,14 +603,14 @@ type
 
     { Only use CRYPTO_THREADID_set_[numeric|pointer]() within callbacks }
   function CRYPTO_THREADID_set_callback(threadid_func:int64): int64; inline;
-  {# define  CRYPTO_THREADID_get_callback() (NULL)} {Macro Return Type unknown at line no 319}
+  {# define  CRYPTO_THREADID_get_callback() (NULL)} {Macro Return Type unknown at line no 335}
   {# define  CRYPTO_THREADID_current(id)}
   function CRYPTO_THREADID_cmp(a:int64; b:int64): int64; inline;
   {# define  CRYPTO_THREADID_cpy(dest,src)}
   function CRYPTO_THREADID_hash(id:int64): int64; inline;
     {$ifndef  OPENSSL_NO_DEPRECATED_1_0_0}
 {# define  CRYPTO_set_id_callback(func)}
-{# define  CRYPTO_get_id_callback() (NULL)} {Macro Return Type unknown at line no 327}
+{# define  CRYPTO_get_id_callback() (NULL)} {Macro Return Type unknown at line no 343}
 
 
   function CRYPTO_thread_id_(): int64; inline;
@@ -610,9 +618,9 @@ type
 {# define  CRYPTO_set_dynlock_create_callback(dyn_create_function)}
 {# define  CRYPTO_set_dynlock_lock_callback(dyn_lock_function)}
 {# define  CRYPTO_set_dynlock_destroy_callback(dyn_destroy_function)}
-{# define  CRYPTO_get_dynlock_create_callback() (NULL)} {Macro Return Type unknown at line no 334}
-{# define  CRYPTO_get_dynlock_lock_callback() (NULL)} {Macro Return Type unknown at line no 335}
-{# define  CRYPTO_get_dynlock_destroy_callback() (NULL)} {Macro Return Type unknown at line no 336}
+{# define  CRYPTO_get_dynlock_create_callback() (NULL)} {Macro Return Type unknown at line no 350}
+{# define  CRYPTO_get_dynlock_lock_callback() (NULL)} {Macro Return Type unknown at line no 351}
+{# define  CRYPTO_get_dynlock_destroy_callback() (NULL)} {Macro Return Type unknown at line no 352}
     { OPENSSL_NO_DEPRECATED_1_0_0 }
   {$endif}
 
@@ -637,7 +645,10 @@ type
   procedure CRYPTO_get_mem_functions(malloc_fn: PCRYPTO_malloc_fn; realloc_fn: PCRYPTO_realloc_fn; free_fn: PCRYPTO_free_fn); cdecl; external CLibCrypto name 'CRYPTO_get_mem_functions';
   function CRYPTO_malloc(num: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl; external CLibCrypto name 'CRYPTO_malloc'{Has C Attribute: __malloc__};
   function CRYPTO_zalloc(num: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl; external CLibCrypto name 'CRYPTO_zalloc'{Has C Attribute: __malloc__};
+  function CRYPTO_malloc_array(num: TOpenSSL_C_SIZET; size: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl; external CLibCrypto name 'CRYPTO_malloc_array'{Has C Attribute: __malloc__};
+  function CRYPTO_calloc(num: TOpenSSL_C_SIZET; size: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl; external CLibCrypto name 'CRYPTO_calloc'{Has C Attribute: __malloc__};
   function CRYPTO_aligned_alloc(num: TOpenSSL_C_SIZET; align: TOpenSSL_C_SIZET; freeptr: Ppointer; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl; external CLibCrypto name 'CRYPTO_aligned_alloc'{Has C Attribute: __malloc__};
+  function CRYPTO_aligned_alloc_array(num: TOpenSSL_C_SIZET; size: TOpenSSL_C_SIZET; align: TOpenSSL_C_SIZET; freeptr: Ppointer; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl; external CLibCrypto name 'CRYPTO_aligned_alloc_array'{Has C Attribute: __malloc__};
   function CRYPTO_memdup(str: pointer; siz: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl; external CLibCrypto name 'CRYPTO_memdup';
   function CRYPTO_strdup(str: PAnsiChar; file_: PAnsiChar; line: TOpenSSL_C_INT): PAnsiChar; cdecl; external CLibCrypto name 'CRYPTO_strdup';
   function CRYPTO_strndup(str: PAnsiChar; s: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): PAnsiChar; cdecl; external CLibCrypto name 'CRYPTO_strndup';
@@ -645,10 +656,14 @@ type
   procedure CRYPTO_clear_free(ptr: pointer; num: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT); cdecl; external CLibCrypto name 'CRYPTO_clear_free';
   function CRYPTO_realloc(addr: pointer; num: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl; external CLibCrypto name 'CRYPTO_realloc';
   function CRYPTO_clear_realloc(addr: pointer; old_num: TOpenSSL_C_SIZET; num: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl; external CLibCrypto name 'CRYPTO_clear_realloc';
+  function CRYPTO_realloc_array(addr: pointer; num: TOpenSSL_C_SIZET; size: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl; external CLibCrypto name 'CRYPTO_realloc_array';
+  function CRYPTO_clear_realloc_array(addr: pointer; old_num: TOpenSSL_C_SIZET; num: TOpenSSL_C_SIZET; size: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl; external CLibCrypto name 'CRYPTO_clear_realloc_array';
   function CRYPTO_secure_malloc_init(sz: TOpenSSL_C_SIZET; minsize: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'CRYPTO_secure_malloc_init';
   function CRYPTO_secure_malloc_done: TOpenSSL_C_INT; cdecl; external CLibCrypto name 'CRYPTO_secure_malloc_done';
   function CRYPTO_secure_malloc(num: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl; external CLibCrypto name 'CRYPTO_secure_malloc'{Has C Attribute: __malloc__};
   function CRYPTO_secure_zalloc(num: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl; external CLibCrypto name 'CRYPTO_secure_zalloc'{Has C Attribute: __malloc__};
+  function CRYPTO_secure_malloc_array(num: TOpenSSL_C_SIZET; size: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl; external CLibCrypto name 'CRYPTO_secure_malloc_array'{Has C Attribute: __malloc__};
+  function CRYPTO_secure_calloc(num: TOpenSSL_C_SIZET; size: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl; external CLibCrypto name 'CRYPTO_secure_calloc'{Has C Attribute: __malloc__};
   procedure CRYPTO_secure_free(ptr: pointer; file_: PAnsiChar; line: TOpenSSL_C_INT); cdecl; external CLibCrypto name 'CRYPTO_secure_free';
   procedure CRYPTO_secure_clear_free(ptr: pointer; num: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT); cdecl; external CLibCrypto name 'CRYPTO_secure_clear_free';
   function CRYPTO_secure_allocated(ptr: pointer): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'CRYPTO_secure_allocated';
@@ -661,7 +676,10 @@ type
   {$EXTERNALSYM CRYPTO_get_mem_functions}
   {$EXTERNALSYM CRYPTO_malloc}
   {$EXTERNALSYM CRYPTO_zalloc}
+  {$EXTERNALSYM CRYPTO_malloc_array}
+  {$EXTERNALSYM CRYPTO_calloc}
   {$EXTERNALSYM CRYPTO_aligned_alloc}
+  {$EXTERNALSYM CRYPTO_aligned_alloc_array}
   {$EXTERNALSYM CRYPTO_memdup}
   {$EXTERNALSYM CRYPTO_strdup}
   {$EXTERNALSYM CRYPTO_strndup}
@@ -669,10 +687,14 @@ type
   {$EXTERNALSYM CRYPTO_clear_free}
   {$EXTERNALSYM CRYPTO_realloc}
   {$EXTERNALSYM CRYPTO_clear_realloc}
+  {$EXTERNALSYM CRYPTO_realloc_array}
+  {$EXTERNALSYM CRYPTO_clear_realloc_array}
   {$EXTERNALSYM CRYPTO_secure_malloc_init}
   {$EXTERNALSYM CRYPTO_secure_malloc_done}
   {$EXTERNALSYM CRYPTO_secure_malloc}
   {$EXTERNALSYM CRYPTO_secure_zalloc}
+  {$EXTERNALSYM CRYPTO_secure_malloc_array}
+  {$EXTERNALSYM CRYPTO_secure_calloc}
   {$EXTERNALSYM CRYPTO_secure_free}
   {$EXTERNALSYM CRYPTO_secure_clear_free}
   {$EXTERNALSYM CRYPTO_secure_allocated}
@@ -685,7 +707,10 @@ type
   procedure Load_CRYPTO_get_mem_functions(malloc_fn: PCRYPTO_malloc_fn; realloc_fn: PCRYPTO_realloc_fn; free_fn: PCRYPTO_free_fn); cdecl;
   function Load_CRYPTO_malloc(num: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl;
   function Load_CRYPTO_zalloc(num: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl;
+  function Load_CRYPTO_malloc_array(num: TOpenSSL_C_SIZET; size: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl;
+  function Load_CRYPTO_calloc(num: TOpenSSL_C_SIZET; size: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl;
   function Load_CRYPTO_aligned_alloc(num: TOpenSSL_C_SIZET; align: TOpenSSL_C_SIZET; freeptr: Ppointer; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl;
+  function Load_CRYPTO_aligned_alloc_array(num: TOpenSSL_C_SIZET; size: TOpenSSL_C_SIZET; align: TOpenSSL_C_SIZET; freeptr: Ppointer; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl;
   function Load_CRYPTO_memdup(str: pointer; siz: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl;
   function Load_CRYPTO_strdup(str: PAnsiChar; file_: PAnsiChar; line: TOpenSSL_C_INT): PAnsiChar; cdecl;
   function Load_CRYPTO_strndup(str: PAnsiChar; s: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): PAnsiChar; cdecl;
@@ -693,10 +718,14 @@ type
   procedure Load_CRYPTO_clear_free(ptr: pointer; num: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT); cdecl;
   function Load_CRYPTO_realloc(addr: pointer; num: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl;
   function Load_CRYPTO_clear_realloc(addr: pointer; old_num: TOpenSSL_C_SIZET; num: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl;
+  function Load_CRYPTO_realloc_array(addr: pointer; num: TOpenSSL_C_SIZET; size: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl;
+  function Load_CRYPTO_clear_realloc_array(addr: pointer; old_num: TOpenSSL_C_SIZET; num: TOpenSSL_C_SIZET; size: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl;
   function Load_CRYPTO_secure_malloc_init(sz: TOpenSSL_C_SIZET; minsize: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
   function Load_CRYPTO_secure_malloc_done: TOpenSSL_C_INT; cdecl;
   function Load_CRYPTO_secure_malloc(num: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl;
   function Load_CRYPTO_secure_zalloc(num: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl;
+  function Load_CRYPTO_secure_malloc_array(num: TOpenSSL_C_SIZET; size: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl;
+  function Load_CRYPTO_secure_calloc(num: TOpenSSL_C_SIZET; size: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl;
   procedure Load_CRYPTO_secure_free(ptr: pointer; file_: PAnsiChar; line: TOpenSSL_C_INT); cdecl;
   procedure Load_CRYPTO_secure_clear_free(ptr: pointer; num: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT); cdecl;
   function Load_CRYPTO_secure_allocated(ptr: pointer): TOpenSSL_C_INT; cdecl;
@@ -710,7 +739,10 @@ var
   CRYPTO_get_mem_functions: procedure(malloc_fn: PCRYPTO_malloc_fn; realloc_fn: PCRYPTO_realloc_fn; free_fn: PCRYPTO_free_fn); cdecl = Load_CRYPTO_get_mem_functions;
   CRYPTO_malloc: function(num: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl = Load_CRYPTO_malloc;
   CRYPTO_zalloc: function(num: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl = Load_CRYPTO_zalloc;
+  CRYPTO_malloc_array: function(num: TOpenSSL_C_SIZET; size: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl = Load_CRYPTO_malloc_array;
+  CRYPTO_calloc: function(num: TOpenSSL_C_SIZET; size: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl = Load_CRYPTO_calloc;
   CRYPTO_aligned_alloc: function(num: TOpenSSL_C_SIZET; align: TOpenSSL_C_SIZET; freeptr: Ppointer; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl = Load_CRYPTO_aligned_alloc;
+  CRYPTO_aligned_alloc_array: function(num: TOpenSSL_C_SIZET; size: TOpenSSL_C_SIZET; align: TOpenSSL_C_SIZET; freeptr: Ppointer; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl = Load_CRYPTO_aligned_alloc_array;
   CRYPTO_memdup: function(str: pointer; siz: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl = Load_CRYPTO_memdup;
   CRYPTO_strdup: function(str: PAnsiChar; file_: PAnsiChar; line: TOpenSSL_C_INT): PAnsiChar; cdecl = Load_CRYPTO_strdup;
   CRYPTO_strndup: function(str: PAnsiChar; s: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): PAnsiChar; cdecl = Load_CRYPTO_strndup;
@@ -718,10 +750,14 @@ var
   CRYPTO_clear_free: procedure(ptr: pointer; num: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT); cdecl = Load_CRYPTO_clear_free;
   CRYPTO_realloc: function(addr: pointer; num: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl = Load_CRYPTO_realloc;
   CRYPTO_clear_realloc: function(addr: pointer; old_num: TOpenSSL_C_SIZET; num: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl = Load_CRYPTO_clear_realloc;
+  CRYPTO_realloc_array: function(addr: pointer; num: TOpenSSL_C_SIZET; size: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl = Load_CRYPTO_realloc_array;
+  CRYPTO_clear_realloc_array: function(addr: pointer; old_num: TOpenSSL_C_SIZET; num: TOpenSSL_C_SIZET; size: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl = Load_CRYPTO_clear_realloc_array;
   CRYPTO_secure_malloc_init: function(sz: TOpenSSL_C_SIZET; minsize: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl = Load_CRYPTO_secure_malloc_init;
   CRYPTO_secure_malloc_done: function: TOpenSSL_C_INT; cdecl = Load_CRYPTO_secure_malloc_done;
   CRYPTO_secure_malloc: function(num: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl = Load_CRYPTO_secure_malloc;
   CRYPTO_secure_zalloc: function(num: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl = Load_CRYPTO_secure_zalloc;
+  CRYPTO_secure_malloc_array: function(num: TOpenSSL_C_SIZET; size: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl = Load_CRYPTO_secure_malloc_array;
+  CRYPTO_secure_calloc: function(num: TOpenSSL_C_SIZET; size: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl = Load_CRYPTO_secure_calloc;
   CRYPTO_secure_free: procedure(ptr: pointer; file_: PAnsiChar; line: TOpenSSL_C_INT); cdecl = Load_CRYPTO_secure_free;
   CRYPTO_secure_clear_free: procedure(ptr: pointer; num: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT); cdecl = Load_CRYPTO_secure_clear_free;
   CRYPTO_secure_allocated: function(ptr: pointer): TOpenSSL_C_INT; cdecl = Load_CRYPTO_secure_allocated;
@@ -1361,11 +1397,33 @@ begin
   Result := pointer(CRYPTO_zalloc(num,OPENSSL_FILE,OPENSSL_LINE));
 end;
 
+{# define  OPENSSL_malloc_array(num,size) CRYPTO_malloc_array(num, size, OPENSSL_FILE, OPENSSL_LINE)}
+
+function OPENSSL_malloc_array(num:TOpenSSL_C_SIZET; size:TOpenSSL_C_SIZET): pointer;
+begin
+  Result := pointer(CRYPTO_malloc_array(num,size,OPENSSL_FILE,OPENSSL_LINE));
+end;
+
+{# define  OPENSSL_calloc(num,size) CRYPTO_calloc(num, size, OPENSSL_FILE, OPENSSL_LINE)}
+
+function OPENSSL_calloc(num:TOpenSSL_C_SIZET; size:TOpenSSL_C_SIZET): pointer;
+begin
+  Result := pointer(CRYPTO_calloc(num,size,OPENSSL_FILE,OPENSSL_LINE));
+end;
+
 {# define  OPENSSL_aligned_alloc(num,alignment,freeptr) CRYPTO_aligned_alloc(num, alignment, freeptr, OPENSSL_FILE, OPENSSL_LINE)}
 
 function OPENSSL_aligned_alloc(num:TOpenSSL_C_SIZET; alignment:TOpenSSL_C_SIZET; freeptr:Ppointer): pointer;
 begin
   Result := pointer(CRYPTO_aligned_alloc(num,alignment,freeptr,OPENSSL_FILE,OPENSSL_LINE));
+end;
+
+{# define  OPENSSL_aligned_alloc_array(num,size,alignment,freeptr) CRYPTO_aligned_alloc_array(num, size, alignment, freeptr, OPENSSL_FILE,
+ OPENSSL_LINE)}
+
+function OPENSSL_aligned_alloc_array(num:TOpenSSL_C_SIZET; size:TOpenSSL_C_SIZET; alignment:TOpenSSL_C_SIZET; freeptr:Ppointer): pointer;
+begin
+  Result := pointer(CRYPTO_aligned_alloc_array(num,size,alignment,freeptr,OPENSSL_FILE,OPENSSL_LINE));
 end;
 
 {# define  OPENSSL_realloc(addr,num) CRYPTO_realloc(addr, num, OPENSSL_FILE, OPENSSL_LINE)}
@@ -1380,6 +1438,21 @@ end;
 function OPENSSL_clear_realloc(addr:pointer; old_num:TOpenSSL_C_SIZET; num:TOpenSSL_C_SIZET): pointer;
 begin
   Result := pointer(CRYPTO_clear_realloc(addr,old_num,num,OPENSSL_FILE,OPENSSL_LINE));
+end;
+
+{# define  OPENSSL_realloc_array(addr,num,size) CRYPTO_realloc_array(addr, num, size, OPENSSL_FILE, OPENSSL_LINE)}
+
+function OPENSSL_realloc_array(addr:pointer; num:TOpenSSL_C_SIZET; size:TOpenSSL_C_SIZET): pointer;
+begin
+  Result := pointer(CRYPTO_realloc_array(addr,num,size,OPENSSL_FILE,OPENSSL_LINE));
+end;
+
+{# define  OPENSSL_clear_realloc_array(addr,old_num,num,size) CRYPTO_clear_realloc_array(addr, old_num, num, size, OPENSSL_FILE,
+ OPENSSL_LINE)}
+
+function OPENSSL_clear_realloc_array(addr:pointer; old_num:TOpenSSL_C_SIZET; num:TOpenSSL_C_SIZET; size:TOpenSSL_C_SIZET): pointer;
+begin
+  Result := pointer(CRYPTO_clear_realloc_array(addr,old_num,num,size,OPENSSL_FILE,OPENSSL_LINE));
 end;
 
 {# define  OPENSSL_clear_free(addr,num) CRYPTO_clear_free(addr, num, OPENSSL_FILE, OPENSSL_LINE)}
@@ -1431,6 +1504,20 @@ begin
   Result := pointer(CRYPTO_secure_zalloc(num,OPENSSL_FILE,OPENSSL_LINE));
 end;
 
+{# define  OPENSSL_secure_malloc_array(num,size) CRYPTO_secure_malloc_array(num, size, OPENSSL_FILE, OPENSSL_LINE)}
+
+function OPENSSL_secure_malloc_array(num:TOpenSSL_C_SIZET; size:TOpenSSL_C_SIZET): pointer;
+begin
+  Result := pointer(CRYPTO_secure_malloc_array(num,size,OPENSSL_FILE,OPENSSL_LINE));
+end;
+
+{# define  OPENSSL_secure_calloc(num,size) CRYPTO_secure_calloc(num, size, OPENSSL_FILE, OPENSSL_LINE)}
+
+function OPENSSL_secure_calloc(num:TOpenSSL_C_SIZET; size:TOpenSSL_C_SIZET): pointer;
+begin
+  Result := pointer(CRYPTO_secure_calloc(num,size,OPENSSL_FILE,OPENSSL_LINE));
+end;
+
 {# define  OPENSSL_secure_free(addr) CRYPTO_secure_free(addr, OPENSSL_FILE, OPENSSL_LINE)}
 
 procedure OPENSSL_secure_free(addr:pointer);
@@ -1451,6 +1538,15 @@ function OPENSSL_secure_actual_size(ptr:pointer): TOpenSSL_C_SIZET;
 begin
   Result := TOpenSSL_C_SIZET(CRYPTO_secure_actual_size(ptr));
 end;
+procedure sk_void_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_void_freefunc_thunk"');
+
+{Error: Line 205: Syntax Error parsing " sk_void_freefunc freefunc = (sk_void_freefunc)freefunc_arg; freefunc((void *)ptr); "
+
+ sk_void_freefunc freefunc = (sk_void_freefunc)freefunc_arg; freefunc((void *)ptr); }
+end;
+
 function ossl_check_void_type(ptr: pointer): pointer{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -2100,12 +2196,36 @@ begin
   Result := CRYPTO_zalloc(num, file_, line);
 end;
 
+function Load_CRYPTO_malloc_array(num: TOpenSSL_C_SIZET; size: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl;
+begin
+  CRYPTO_malloc_array := LoadLibCryptoFunction('CRYPTO_malloc_array');
+  if not assigned(CRYPTO_malloc_array) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_malloc_array');
+  Result := CRYPTO_malloc_array(num, size, file_, line);
+end;
+
+function Load_CRYPTO_calloc(num: TOpenSSL_C_SIZET; size: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl;
+begin
+  CRYPTO_calloc := LoadLibCryptoFunction('CRYPTO_calloc');
+  if not assigned(CRYPTO_calloc) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_calloc');
+  Result := CRYPTO_calloc(num, size, file_, line);
+end;
+
 function Load_CRYPTO_aligned_alloc(num: TOpenSSL_C_SIZET; align: TOpenSSL_C_SIZET; freeptr: Ppointer; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl;
 begin
   CRYPTO_aligned_alloc := LoadLibCryptoFunction('CRYPTO_aligned_alloc');
   if not assigned(CRYPTO_aligned_alloc) then
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_aligned_alloc');
   Result := CRYPTO_aligned_alloc(num, align, freeptr, file_, line);
+end;
+
+function Load_CRYPTO_aligned_alloc_array(num: TOpenSSL_C_SIZET; size: TOpenSSL_C_SIZET; align: TOpenSSL_C_SIZET; freeptr: Ppointer; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl;
+begin
+  CRYPTO_aligned_alloc_array := LoadLibCryptoFunction('CRYPTO_aligned_alloc_array');
+  if not assigned(CRYPTO_aligned_alloc_array) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_aligned_alloc_array');
+  Result := CRYPTO_aligned_alloc_array(num, size, align, freeptr, file_, line);
 end;
 
 function Load_CRYPTO_memdup(str: pointer; siz: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl;
@@ -2164,6 +2284,22 @@ begin
   Result := CRYPTO_clear_realloc(addr, old_num, num, file_, line);
 end;
 
+function Load_CRYPTO_realloc_array(addr: pointer; num: TOpenSSL_C_SIZET; size: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl;
+begin
+  CRYPTO_realloc_array := LoadLibCryptoFunction('CRYPTO_realloc_array');
+  if not assigned(CRYPTO_realloc_array) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_realloc_array');
+  Result := CRYPTO_realloc_array(addr, num, size, file_, line);
+end;
+
+function Load_CRYPTO_clear_realloc_array(addr: pointer; old_num: TOpenSSL_C_SIZET; num: TOpenSSL_C_SIZET; size: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl;
+begin
+  CRYPTO_clear_realloc_array := LoadLibCryptoFunction('CRYPTO_clear_realloc_array');
+  if not assigned(CRYPTO_clear_realloc_array) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_clear_realloc_array');
+  Result := CRYPTO_clear_realloc_array(addr, old_num, num, size, file_, line);
+end;
+
 function Load_CRYPTO_secure_malloc_init(sz: TOpenSSL_C_SIZET; minsize: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
 begin
   CRYPTO_secure_malloc_init := LoadLibCryptoFunction('CRYPTO_secure_malloc_init');
@@ -2194,6 +2330,22 @@ begin
   if not assigned(CRYPTO_secure_zalloc) then
     EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_secure_zalloc');
   Result := CRYPTO_secure_zalloc(num, file_, line);
+end;
+
+function Load_CRYPTO_secure_malloc_array(num: TOpenSSL_C_SIZET; size: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl;
+begin
+  CRYPTO_secure_malloc_array := LoadLibCryptoFunction('CRYPTO_secure_malloc_array');
+  if not assigned(CRYPTO_secure_malloc_array) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_secure_malloc_array');
+  Result := CRYPTO_secure_malloc_array(num, size, file_, line);
+end;
+
+function Load_CRYPTO_secure_calloc(num: TOpenSSL_C_SIZET; size: TOpenSSL_C_SIZET; file_: PAnsiChar; line: TOpenSSL_C_INT): pointer; cdecl;
+begin
+  CRYPTO_secure_calloc := LoadLibCryptoFunction('CRYPTO_secure_calloc');
+  if not assigned(CRYPTO_secure_calloc) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('CRYPTO_secure_calloc');
+  Result := CRYPTO_secure_calloc(num, size, file_, line);
 end;
 
 procedure Load_CRYPTO_secure_free(ptr: pointer; file_: PAnsiChar; line: TOpenSSL_C_INT); cdecl;
@@ -2762,7 +2914,10 @@ begin
   CRYPTO_get_mem_functions := Load_CRYPTO_get_mem_functions;
   CRYPTO_malloc := Load_CRYPTO_malloc;
   CRYPTO_zalloc := Load_CRYPTO_zalloc;
+  CRYPTO_malloc_array := Load_CRYPTO_malloc_array;
+  CRYPTO_calloc := Load_CRYPTO_calloc;
   CRYPTO_aligned_alloc := Load_CRYPTO_aligned_alloc;
+  CRYPTO_aligned_alloc_array := Load_CRYPTO_aligned_alloc_array;
   CRYPTO_memdup := Load_CRYPTO_memdup;
   CRYPTO_strdup := Load_CRYPTO_strdup;
   CRYPTO_strndup := Load_CRYPTO_strndup;
@@ -2770,10 +2925,14 @@ begin
   CRYPTO_clear_free := Load_CRYPTO_clear_free;
   CRYPTO_realloc := Load_CRYPTO_realloc;
   CRYPTO_clear_realloc := Load_CRYPTO_clear_realloc;
+  CRYPTO_realloc_array := Load_CRYPTO_realloc_array;
+  CRYPTO_clear_realloc_array := Load_CRYPTO_clear_realloc_array;
   CRYPTO_secure_malloc_init := Load_CRYPTO_secure_malloc_init;
   CRYPTO_secure_malloc_done := Load_CRYPTO_secure_malloc_done;
   CRYPTO_secure_malloc := Load_CRYPTO_secure_malloc;
   CRYPTO_secure_zalloc := Load_CRYPTO_secure_zalloc;
+  CRYPTO_secure_malloc_array := Load_CRYPTO_secure_malloc_array;
+  CRYPTO_secure_calloc := Load_CRYPTO_secure_calloc;
   CRYPTO_secure_free := Load_CRYPTO_secure_free;
   CRYPTO_secure_clear_free := Load_CRYPTO_secure_clear_free;
   CRYPTO_secure_allocated := Load_CRYPTO_secure_allocated;

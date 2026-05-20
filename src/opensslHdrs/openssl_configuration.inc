@@ -15,7 +15,7 @@
 
 
 {
-  Generated from OpenSSL 3.5.6 Header File configuration.h - Tue 19 May 14:27:20 BST 2026
+  Generated from OpenSSL 3.6.2 Header File configuration.h - Tue 19 May 14:29:40 BST 2026
 }
 
   {$if not declared(__FILE__)}
@@ -63,7 +63,7 @@ const
   {* OpenSSL was configured with the following options:
   }
   { clang-format off }
-  OPENSSL_CONFIGURED_API = 30500;
+  OPENSSL_CONFIGURED_API = 30600;
   {$ifndef  OPENSSL_RAND_SEED_OS}
     {$define OPENSSL_RAND_SEED_OS}
   {$endif}
@@ -72,6 +72,9 @@ const
   {$endif}
   {$ifndef  OPENSSL_NO_ACVP_TESTS}
     {$define OPENSSL_NO_ACVP_TESTS}
+  {$endif}
+  {$ifndef  OPENSSL_NO_ALLOCFAIL_TESTS}
+    {$define OPENSSL_NO_ALLOCFAIL_TESTS}
   {$endif}
   {$ifndef  OPENSSL_NO_ASAN}
     {$define OPENSSL_NO_ASAN}
@@ -129,6 +132,9 @@ const
   {$endif}
   {$ifndef  OPENSSL_NO_KTLS}
     {$define OPENSSL_NO_KTLS}
+  {$endif}
+  {$ifndef  OPENSSL_NO_LMS}
+    {$define OPENSSL_NO_LMS}
   {$endif}
   {$ifndef  OPENSSL_NO_MD2}
     {$define OPENSSL_NO_MD2}

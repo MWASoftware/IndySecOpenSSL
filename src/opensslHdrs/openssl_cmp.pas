@@ -18,7 +18,7 @@
 unit openssl_cmp;
 
 {
-  Generated from OpenSSL 3.5.6 Header File cmp.h - Tue 19 May 14:27:12 BST 2026
+  Generated from OpenSSL 3.6.2 Header File cmp.h - Tue 19 May 14:29:32 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -372,6 +372,7 @@ type
   Tsk_OSSL_CMP_CERTSTATUS_copyfunc = function(a: POSSL_CMP_CERTSTATUS): POSSL_CMP_CERTSTATUS; cdecl;
 
 
+  procedure sk_OSSL_CMP_CERTSTATUS_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_OSSL_CMP_CERTSTATUS_type(ptr: POSSL_CMP_CERTSTATUS): POSSL_CMP_CERTSTATUS{Has C Attribute: unused}; inline;
   function ossl_check_const_OSSL_CMP_CERTSTATUS_sk_type(sk: Pstack_st_OSSL_CMP_CERTSTATUS): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_OSSL_CMP_CERTSTATUS_sk_type(sk: Pstack_st_OSSL_CMP_CERTSTATUS): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -531,6 +532,7 @@ type
   Tsk_OSSL_CMP_ITAV_copyfunc = function(a: POSSL_CMP_ITAV): POSSL_CMP_ITAV; cdecl;
 
 
+  procedure sk_OSSL_CMP_ITAV_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_OSSL_CMP_ITAV_type(ptr: POSSL_CMP_ITAV): POSSL_CMP_ITAV{Has C Attribute: unused}; inline;
   function ossl_check_const_OSSL_CMP_ITAV_sk_type(sk: Pstack_st_OSSL_CMP_ITAV): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_OSSL_CMP_ITAV_sk_type(sk: Pstack_st_OSSL_CMP_ITAV): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -672,6 +674,7 @@ type
   Tsk_OSSL_CMP_CRLSTATUS_copyfunc = function(a: POSSL_CMP_CRLSTATUS): POSSL_CMP_CRLSTATUS; cdecl;
 
 
+  procedure sk_OSSL_CMP_CRLSTATUS_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_OSSL_CMP_CRLSTATUS_type(ptr: POSSL_CMP_CRLSTATUS): POSSL_CMP_CRLSTATUS{Has C Attribute: unused}; inline;
   function ossl_check_const_OSSL_CMP_CRLSTATUS_sk_type(sk: Pstack_st_OSSL_CMP_CRLSTATUS): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_OSSL_CMP_CRLSTATUS_sk_type(sk: Pstack_st_OSSL_CMP_CRLSTATUS): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -902,6 +905,7 @@ type
   Tsk_OSSL_CMP_PKISI_copyfunc = function(a: POSSL_CMP_PKISI): POSSL_CMP_PKISI; cdecl;
 
 
+  procedure sk_OSSL_CMP_PKISI_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_OSSL_CMP_PKISI_type(ptr: POSSL_CMP_PKISI): POSSL_CMP_PKISI{Has C Attribute: unused}; inline;
   function ossl_check_const_OSSL_CMP_PKISI_sk_type(sk: Pstack_st_OSSL_CMP_PKISI): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_OSSL_CMP_PKISI_sk_type(sk: Pstack_st_OSSL_CMP_PKISI): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -1043,6 +1047,7 @@ type
   Tsk_OSSL_CMP_CERTREPMESSAGE_copyfunc = function(a: POSSL_CMP_CERTREPMESSAGE): POSSL_CMP_CERTREPMESSAGE; cdecl;
 
 
+  procedure sk_OSSL_CMP_CERTREPMESSAGE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_OSSL_CMP_CERTREPMESSAGE_type(ptr: POSSL_CMP_CERTREPMESSAGE): POSSL_CMP_CERTREPMESSAGE{Has C Attribute: unused}; inline;
   function ossl_check_const_OSSL_CMP_CERTREPMESSAGE_sk_type(sk: Pstack_st_OSSL_CMP_CERTREPMESSAGE): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_OSSL_CMP_CERTREPMESSAGE_sk_type(sk: Pstack_st_OSSL_CMP_CERTREPMESSAGE): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -1196,6 +1201,7 @@ type
   Tsk_OSSL_CMP_CERTRESPONSE_copyfunc = function(a: POSSL_CMP_CERTRESPONSE): POSSL_CMP_CERTRESPONSE; cdecl;
 
 
+  procedure sk_OSSL_CMP_CERTRESPONSE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_OSSL_CMP_CERTRESPONSE_type(ptr: POSSL_CMP_CERTRESPONSE): POSSL_CMP_CERTRESPONSE{Has C Attribute: unused}; inline;
   function ossl_check_const_OSSL_CMP_CERTRESPONSE_sk_type(sk: Pstack_st_OSSL_CMP_CERTRESPONSE): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_OSSL_CMP_CERTRESPONSE_sk_type(sk: Pstack_st_OSSL_CMP_CERTRESPONSE): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -2157,6 +2163,17 @@ uses Sysutils, variants
   {$ifend}
 
 {$ifndef  OPENSSL_NO_CMP}
+procedure sk_OSSL_CMP_CERTSTATUS_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OSSL_CMP_CERTSTATUS_freefunc_thunk"');
+
+{Error: Line 231: Syntax Error parsing " sk_OSSL_CMP_CERTSTATUS_freefunc freefunc = (sk_OSSL_CMP_CERTSTATUS_freefunc)freefunc_arg; 
+freefunc((OSSL_CMP_CERTSTATUS *)ptr); "
+
+ sk_OSSL_CMP_CERTSTATUS_freefunc freefunc = (sk_OSSL_CMP_CERTSTATUS_freefunc)freefunc_arg; freefunc((OSSL_CMP_CERTSTATUS *)ptr); 
+}
+end;
+
 function ossl_check_OSSL_CMP_CERTSTATUS_type(ptr: POSSL_CMP_CERTSTATUS): POSSL_CMP_CERTSTATUS{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -2185,6 +2202,16 @@ end;
 function ossl_check_OSSL_CMP_CERTSTATUS_freefunc_type(fr: Tsk_OSSL_CMP_CERTSTATUS_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
 begin
    Result := TOPENSSL_sk_freefunc(fr);
+end;
+
+procedure sk_OSSL_CMP_ITAV_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OSSL_CMP_ITAV_freefunc_thunk"');
+
+{Error: Line 262: Syntax Error parsing " sk_OSSL_CMP_ITAV_freefunc freefunc = (sk_OSSL_CMP_ITAV_freefunc)freefunc_arg; freefunc((OSSL_CMP_ITAV 
+*)ptr); "
+
+ sk_OSSL_CMP_ITAV_freefunc freefunc = (sk_OSSL_CMP_ITAV_freefunc)freefunc_arg; freefunc((OSSL_CMP_ITAV *)ptr); }
 end;
 
 function ossl_check_OSSL_CMP_ITAV_type(ptr: POSSL_CMP_ITAV): POSSL_CMP_ITAV{Has C Attribute: unused}; inline;
@@ -2217,6 +2244,16 @@ begin
    Result := TOPENSSL_sk_freefunc(fr);
 end;
 
+procedure sk_OSSL_CMP_CRLSTATUS_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OSSL_CMP_CRLSTATUS_freefunc_thunk"');
+
+{Error: Line 293: Syntax Error parsing " sk_OSSL_CMP_CRLSTATUS_freefunc freefunc = (sk_OSSL_CMP_CRLSTATUS_freefunc)freefunc_arg; 
+freefunc((OSSL_CMP_CRLSTATUS *)ptr); "
+
+ sk_OSSL_CMP_CRLSTATUS_freefunc freefunc = (sk_OSSL_CMP_CRLSTATUS_freefunc)freefunc_arg; freefunc((OSSL_CMP_CRLSTATUS *)ptr); }
+end;
+
 function ossl_check_OSSL_CMP_CRLSTATUS_type(ptr: POSSL_CMP_CRLSTATUS): POSSL_CMP_CRLSTATUS{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -2245,6 +2282,16 @@ end;
 function ossl_check_OSSL_CMP_CRLSTATUS_freefunc_type(fr: Tsk_OSSL_CMP_CRLSTATUS_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
 begin
    Result := TOPENSSL_sk_freefunc(fr);
+end;
+
+procedure sk_OSSL_CMP_PKISI_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OSSL_CMP_PKISI_freefunc_thunk"');
+
+{Error: Line 331: Syntax Error parsing " sk_OSSL_CMP_PKISI_freefunc freefunc = (sk_OSSL_CMP_PKISI_freefunc)freefunc_arg; freefunc((OSSL_CMP_PKISI 
+*)ptr); "
+
+ sk_OSSL_CMP_PKISI_freefunc freefunc = (sk_OSSL_CMP_PKISI_freefunc)freefunc_arg; freefunc((OSSL_CMP_PKISI *)ptr); }
 end;
 
 function ossl_check_OSSL_CMP_PKISI_type(ptr: POSSL_CMP_PKISI): POSSL_CMP_PKISI{Has C Attribute: unused}; inline;
@@ -2277,6 +2324,17 @@ begin
    Result := TOPENSSL_sk_freefunc(fr);
 end;
 
+procedure sk_OSSL_CMP_CERTREPMESSAGE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OSSL_CMP_CERTREPMESSAGE_freefunc_thunk"');
+
+{Error: Line 361: Syntax Error parsing " sk_OSSL_CMP_CERTREPMESSAGE_freefunc freefunc = (sk_OSSL_CMP_CERTREPMESSAGE_freefunc)freefunc_arg; 
+freefunc((OSSL_CMP_CERTREPMESSAGE *)ptr); "
+
+ sk_OSSL_CMP_CERTREPMESSAGE_freefunc freefunc = (sk_OSSL_CMP_CERTREPMESSAGE_freefunc)freefunc_arg; freefunc((OSSL_CMP_CERTREPMESSAGE 
+*)ptr); }
+end;
+
 function ossl_check_OSSL_CMP_CERTREPMESSAGE_type(ptr: POSSL_CMP_CERTREPMESSAGE): POSSL_CMP_CERTREPMESSAGE{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -2305,6 +2363,17 @@ end;
 function ossl_check_OSSL_CMP_CERTREPMESSAGE_freefunc_type(fr: Tsk_OSSL_CMP_CERTREPMESSAGE_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
 begin
    Result := TOPENSSL_sk_freefunc(fr);
+end;
+
+procedure sk_OSSL_CMP_CERTRESPONSE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OSSL_CMP_CERTRESPONSE_freefunc_thunk"');
+
+{Error: Line 393: Syntax Error parsing " sk_OSSL_CMP_CERTRESPONSE_freefunc freefunc = (sk_OSSL_CMP_CERTRESPONSE_freefunc)freefunc_arg; 
+freefunc((OSSL_CMP_CERTRESPONSE *)ptr); "
+
+ sk_OSSL_CMP_CERTRESPONSE_freefunc freefunc = (sk_OSSL_CMP_CERTRESPONSE_freefunc)freefunc_arg; freefunc((OSSL_CMP_CERTRESPONSE 
+*)ptr); }
 end;
 
 function ossl_check_OSSL_CMP_CERTRESPONSE_type(ptr: POSSL_CMP_CERTRESPONSE): POSSL_CMP_CERTRESPONSE{Has C Attribute: unused}; inline;

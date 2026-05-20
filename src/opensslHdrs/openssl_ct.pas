@@ -18,7 +18,7 @@
 unit openssl_ct;
 
 {
-  Generated from OpenSSL 3.5.6 Header File ct.h - Tue 19 May 14:27:29 BST 2026
+  Generated from OpenSSL 3.6.2 Header File ct.h - Tue 19 May 14:29:50 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -80,6 +80,7 @@ type
   Tsk_SCT_copyfunc = function(a: PSCT): PSCT; cdecl;
 
 
+  procedure sk_SCT_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_SCT_type(ptr: PSCT): PSCT{Has C Attribute: unused}; inline;
   function ossl_check_const_SCT_sk_type(sk: Pstack_st_SCT): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_SCT_sk_type(sk: Pstack_st_SCT): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -216,6 +217,7 @@ type
   Tsk_CTLOG_copyfunc = function(a: PCTLOG): PCTLOG; cdecl;
 
 
+  procedure sk_CTLOG_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_CTLOG_type(ptr: PCTLOG): PCTLOG{Has C Attribute: unused}; inline;
   function ossl_check_const_CTLOG_sk_type(sk: Pstack_st_CTLOG): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_CTLOG_sk_type(sk: Pstack_st_CTLOG): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -1247,6 +1249,15 @@ uses Sysutils, variants
   {$ifend}
 
 {$ifndef  OPENSSL_NO_CT}
+procedure sk_SCT_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_SCT_freefunc_thunk"');
+
+{Error: Line 45: Syntax Error parsing " sk_SCT_freefunc freefunc = (sk_SCT_freefunc)freefunc_arg; freefunc((SCT *)ptr); "
+
+ sk_SCT_freefunc freefunc = (sk_SCT_freefunc)freefunc_arg; freefunc((SCT *)ptr); }
+end;
+
 function ossl_check_SCT_type(ptr: PSCT): PSCT{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -1275,6 +1286,15 @@ end;
 function ossl_check_SCT_freefunc_type(fr: Tsk_SCT_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
 begin
    Result := TOPENSSL_sk_freefunc(fr);
+end;
+
+procedure sk_CTLOG_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_CTLOG_freefunc_thunk"');
+
+{Error: Line 71: Syntax Error parsing " sk_CTLOG_freefunc freefunc = (sk_CTLOG_freefunc)freefunc_arg; freefunc((CTLOG *)ptr); "
+
+ sk_CTLOG_freefunc freefunc = (sk_CTLOG_freefunc)freefunc_arg; freefunc((CTLOG *)ptr); }
 end;
 
 function ossl_check_CTLOG_type(ptr: PCTLOG): PCTLOG{Has C Attribute: unused}; inline;

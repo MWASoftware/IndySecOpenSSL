@@ -18,7 +18,7 @@
 unit openssl_x509v3;
 
 {
-  Generated from OpenSSL 3.5.6 Header File x509v3.h - Tue 19 May 14:28:51 BST 2026
+  Generated from OpenSSL 3.6.2 Header File x509v3.h - Tue 19 May 14:31:15 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -180,6 +180,7 @@ type
   Tsk_X509V3_EXT_METHOD_copyfunc = function(a: PX509V3_EXT_METHOD): PX509V3_EXT_METHOD; cdecl;
 
 
+  procedure sk_X509V3_EXT_METHOD_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_X509V3_EXT_METHOD_type(ptr: PX509V3_EXT_METHOD): PX509V3_EXT_METHOD{Has C Attribute: unused}; inline;
   function ossl_check_const_X509V3_EXT_METHOD_sk_type(sk: Pstack_st_X509V3_EXT_METHOD): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_X509V3_EXT_METHOD_sk_type(sk: Pstack_st_X509V3_EXT_METHOD): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -447,6 +448,7 @@ type
   Tsk_ACCESS_DESCRIPTION_copyfunc = function(a: PACCESS_DESCRIPTION): PACCESS_DESCRIPTION; cdecl;
 
 
+  procedure sk_ACCESS_DESCRIPTION_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_ACCESS_DESCRIPTION_type(ptr: PACCESS_DESCRIPTION): PACCESS_DESCRIPTION{Has C Attribute: unused}; inline;
   function ossl_check_const_ACCESS_DESCRIPTION_sk_type(sk: Pstack_st_ACCESS_DESCRIPTION): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_ACCESS_DESCRIPTION_sk_type(sk: Pstack_st_ACCESS_DESCRIPTION): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -579,6 +581,7 @@ type
   Tsk_GENERAL_NAME_copyfunc = function(a: PGENERAL_NAME): PGENERAL_NAME; cdecl;
 
 
+  procedure sk_GENERAL_NAME_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_GENERAL_NAME_type(ptr: PGENERAL_NAME): PGENERAL_NAME{Has C Attribute: unused}; inline;
   function ossl_check_const_GENERAL_NAME_sk_type(sk: Pstack_st_GENERAL_NAME): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_GENERAL_NAME_sk_type(sk: Pstack_st_GENERAL_NAME): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -732,6 +735,7 @@ type
   Tsk_GENERAL_NAMES_copyfunc = function(a: PGENERAL_NAMES): PGENERAL_NAMES; cdecl;
 
 
+  procedure sk_GENERAL_NAMES_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_GENERAL_NAMES_type(ptr: PGENERAL_NAMES): PGENERAL_NAMES{Has C Attribute: unused}; inline;
   function ossl_check_const_GENERAL_NAMES_sk_type(sk: Pstack_st_GENERAL_NAMES): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_GENERAL_NAMES_sk_type(sk: Pstack_st_GENERAL_NAMES): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -922,6 +926,7 @@ type
   Tsk_DIST_POINT_copyfunc = function(a: PDIST_POINT): PDIST_POINT; cdecl;
 
 
+  procedure sk_DIST_POINT_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_DIST_POINT_type(ptr: PDIST_POINT): PDIST_POINT{Has C Attribute: unused}; inline;
   function ossl_check_const_DIST_POINT_sk_type(sk: Pstack_st_DIST_POINT): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_DIST_POINT_sk_type(sk: Pstack_st_DIST_POINT): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -1077,6 +1082,7 @@ type
   Tsk_SXNETID_copyfunc = function(a: PSXNETID): PSXNETID; cdecl;
 
 
+  procedure sk_SXNETID_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_SXNETID_type(ptr: PSXNETID): PSXNETID{Has C Attribute: unused}; inline;
   function ossl_check_const_SXNETID_sk_type(sk: Pstack_st_SXNETID): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_SXNETID_sk_type(sk: Pstack_st_SXNETID): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -1264,6 +1270,7 @@ type
   Tsk_POLICYQUALINFO_copyfunc = function(a: PPOLICYQUALINFO): PPOLICYQUALINFO; cdecl;
 
 
+  procedure sk_POLICYQUALINFO_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_POLICYQUALINFO_type(ptr: PPOLICYQUALINFO): PPOLICYQUALINFO{Has C Attribute: unused}; inline;
   function ossl_check_const_POLICYQUALINFO_sk_type(sk: Pstack_st_POLICYQUALINFO): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_POLICYQUALINFO_sk_type(sk: Pstack_st_POLICYQUALINFO): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -1408,6 +1415,7 @@ type
   Tsk_POLICYINFO_copyfunc = function(a: PPOLICYINFO): PPOLICYINFO; cdecl;
 
 
+  procedure sk_POLICYINFO_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_POLICYINFO_type(ptr: PPOLICYINFO): PPOLICYINFO{Has C Attribute: unused}; inline;
   function ossl_check_const_POLICYINFO_sk_type(sk: Pstack_st_POLICYINFO): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_POLICYINFO_sk_type(sk: Pstack_st_POLICYINFO): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -1555,6 +1563,7 @@ type
   Tsk_POLICY_MAPPING_copyfunc = function(a: PPOLICY_MAPPING): PPOLICY_MAPPING; cdecl;
 
 
+  procedure sk_POLICY_MAPPING_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_POLICY_MAPPING_type(ptr: PPOLICY_MAPPING): PPOLICY_MAPPING{Has C Attribute: unused}; inline;
   function ossl_check_const_POLICY_MAPPING_sk_type(sk: Pstack_st_POLICY_MAPPING): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_POLICY_MAPPING_sk_type(sk: Pstack_st_POLICY_MAPPING): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -1703,6 +1712,7 @@ type
   Tsk_GENERAL_SUBTREE_copyfunc = function(a: PGENERAL_SUBTREE): PGENERAL_SUBTREE; cdecl;
 
 
+  procedure sk_GENERAL_SUBTREE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_GENERAL_SUBTREE_type(ptr: PGENERAL_SUBTREE): PGENERAL_SUBTREE{Has C Attribute: unused}; inline;
   function ossl_check_const_GENERAL_SUBTREE_sk_type(sk: Pstack_st_GENERAL_SUBTREE): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_GENERAL_SUBTREE_sk_type(sk: Pstack_st_GENERAL_SUBTREE): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -2040,6 +2050,7 @@ type
   Tsk_X509_PURPOSE_copyfunc = function(a: PX509_PURPOSE): PX509_PURPOSE; cdecl;
 
 
+  procedure sk_X509_PURPOSE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_X509_PURPOSE_type(ptr: PX509_PURPOSE): PX509_PURPOSE{Has C Attribute: unused}; inline;
   function ossl_check_const_X509_PURPOSE_sk_type(sk: Pstack_st_X509_PURPOSE): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_X509_PURPOSE_sk_type(sk: Pstack_st_X509_PURPOSE): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -3326,6 +3337,7 @@ type
   Tsk_X509_POLICY_NODE_copyfunc = function(a: PX509_POLICY_NODE): PX509_POLICY_NODE; cdecl;
 
 
+  procedure sk_X509_POLICY_NODE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_X509_POLICY_NODE_type(ptr: PX509_POLICY_NODE): PX509_POLICY_NODE{Has C Attribute: unused}; inline;
   function ossl_check_const_X509_POLICY_NODE_sk_type(sk: Pstack_st_X509_POLICY_NODE): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_X509_POLICY_NODE_sk_type(sk: Pstack_st_X509_POLICY_NODE): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -3493,6 +3505,7 @@ type
   Tsk_ASIdOrRange_copyfunc = function(a: PASIdOrRange): PASIdOrRange; cdecl;
 
 
+  procedure sk_ASIdOrRange_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_ASIdOrRange_type(ptr: PASIdOrRange): PASIdOrRange{Has C Attribute: unused}; inline;
   function ossl_check_const_ASIdOrRange_sk_type(sk: Pstack_st_ASIdOrRange): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_ASIdOrRange_sk_type(sk: Pstack_st_ASIdOrRange): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -3514,7 +3527,7 @@ type
   {# define  sk_ASIdOrRange_unshift(sk,ptr) OPENSSL_sk_unshift(ossl_check_ASIdOrRange_sk_type(sk), ossl_check_ASIdOrRange_type(ptr))} {Macro Return Type unknown at line no 1146}
   function sk_ASIdOrRange_pop(sk:Pstack_st_ASIdOrRange): PASIdOrRange; inline;
   function sk_ASIdOrRange_shift(sk:Pstack_st_ASIdOrRange): PASIdOrRange; inline;
-  {# define  sk_ASIdOrRange_pop_free(sk,freefunc) OPENSSL_sk_pop_free(ossl_check_ASIdOrRange_sk_type(sk),ossl_check_ASIdOrRange_freefunc_type(freefunc))} {Macro Return Type unknown at line no 1149}
+  {# define  sk_ASIdOrRange_pop_free(sk,freefunc) OPENSSL_sk_pop_free(ossl_check_ASIdOrRange_sk_type(sk), ossl_check_ASIdOrRange_freefunc_type(freefunc))} {Macro Return Type unknown at line no 1149}
   {# define  sk_ASIdOrRange_insert(sk,ptr,idx) OPENSSL_sk_insert(ossl_check_ASIdOrRange_sk_type(sk), ossl_check_ASIdOrRange_type(ptr),
  (idx))} {Function argument out of range at line no 1150}
   {# define  sk_ASIdOrRange_set(sk,idx,ptr) ((ASIdOrRange *)OPENSSL_sk_set(ossl_check_ASIdOrRange_sk_type(sk), (idx), ossl_check_ASIdOrRange_type(ptr)))} {Function argument out of range at line no 1151}
@@ -3708,6 +3721,7 @@ type
   Tsk_IPAddressOrRange_copyfunc = function(a: PIPAddressOrRange): PIPAddressOrRange; cdecl;
 
 
+  procedure sk_IPAddressOrRange_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_IPAddressOrRange_type(ptr: PIPAddressOrRange): PIPAddressOrRange{Has C Attribute: unused}; inline;
   function ossl_check_const_IPAddressOrRange_sk_type(sk: Pstack_st_IPAddressOrRange): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_IPAddressOrRange_sk_type(sk: Pstack_st_IPAddressOrRange): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -3730,7 +3744,7 @@ type
   {# define  sk_IPAddressOrRange_unshift(sk,ptr) OPENSSL_sk_unshift(ossl_check_IPAddressOrRange_sk_type(sk), ossl_check_IPAddressOrRange_type(ptr))} {Macro Return Type unknown at line no 1213}
   function sk_IPAddressOrRange_pop(sk:Pstack_st_IPAddressOrRange): PIPAddressOrRange; inline;
   function sk_IPAddressOrRange_shift(sk:Pstack_st_IPAddressOrRange): PIPAddressOrRange; inline;
-  {# define  sk_IPAddressOrRange_pop_free(sk,freefunc) OPENSSL_sk_pop_free(ossl_check_IPAddressOrRange_sk_type(sk),ossl_check_IPAddressOrRange_freefunc_type(freefunc))} {Macro Return Type unknown at line no 1216}
+  {# define  sk_IPAddressOrRange_pop_free(sk,freefunc) OPENSSL_sk_pop_free(ossl_check_IPAddressOrRange_sk_type(sk), ossl_check_IPAddressOrRange_freefunc_type(freefunc))} {Macro Return Type unknown at line no 1216}
   {# define  sk_IPAddressOrRange_insert(sk,ptr,idx) OPENSSL_sk_insert(ossl_check_IPAddressOrRange_sk_type(sk), ossl_check_IPAddressOrRange_type(ptr),
  (idx))} {Function argument out of range at line no 1217}
   {# define  sk_IPAddressOrRange_set(sk,idx,ptr) ((IPAddressOrRange *)OPENSSL_sk_set(ossl_check_IPAddressOrRange_sk_type(sk), (idx),
@@ -3801,6 +3815,7 @@ type
   Tsk_IPAddressFamily_copyfunc = function(a: PIPAddressFamily): PIPAddressFamily; cdecl;
 
 
+  procedure sk_IPAddressFamily_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_IPAddressFamily_type(ptr: PIPAddressFamily): PIPAddressFamily{Has C Attribute: unused}; inline;
   function ossl_check_const_IPAddressFamily_sk_type(sk: Pstack_st_IPAddressFamily): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_IPAddressFamily_sk_type(sk: Pstack_st_IPAddressFamily): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -3822,7 +3837,7 @@ type
   {# define  sk_IPAddressFamily_unshift(sk,ptr) OPENSSL_sk_unshift(ossl_check_IPAddressFamily_sk_type(sk), ossl_check_IPAddressFamily_type(ptr))} {Macro Return Type unknown at line no 1261}
   function sk_IPAddressFamily_pop(sk:Pstack_st_IPAddressFamily): PIPAddressFamily; inline;
   function sk_IPAddressFamily_shift(sk:Pstack_st_IPAddressFamily): PIPAddressFamily; inline;
-  {# define  sk_IPAddressFamily_pop_free(sk,freefunc) OPENSSL_sk_pop_free(ossl_check_IPAddressFamily_sk_type(sk),ossl_check_IPAddressFamily_freefunc_type(freefunc))} {Macro Return Type unknown at line no 1264}
+  {# define  sk_IPAddressFamily_pop_free(sk,freefunc) OPENSSL_sk_pop_free(ossl_check_IPAddressFamily_sk_type(sk), ossl_check_IPAddressFamily_freefunc_type(freefunc))} {Macro Return Type unknown at line no 1264}
   {# define  sk_IPAddressFamily_insert(sk,ptr,idx) OPENSSL_sk_insert(ossl_check_IPAddressFamily_sk_type(sk), ossl_check_IPAddressFamily_type(ptr),
  (idx))} {Function argument out of range at line no 1265}
   {# define  sk_IPAddressFamily_set(sk,idx,ptr) ((IPAddressFamily *)OPENSSL_sk_set(ossl_check_IPAddressFamily_sk_type(sk), (idx), 
@@ -4082,6 +4097,7 @@ type
   Tsk_ASN1_STRING_copyfunc = function(a: PASN1_STRING): PASN1_STRING; cdecl;
 
 
+  procedure sk_ASN1_STRING_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_ASN1_STRING_type(ptr: PASN1_STRING): PASN1_STRING{Has C Attribute: unused}; inline;
   function ossl_check_const_ASN1_STRING_sk_type(sk: Pstack_st_ASN1_STRING): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_ASN1_STRING_sk_type(sk: Pstack_st_ASN1_STRING): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -4357,6 +4373,7 @@ type
   Tsk_PROFESSION_INFO_copyfunc = function(a: PPROFESSION_INFO): PPROFESSION_INFO; cdecl;
 
 
+  procedure sk_PROFESSION_INFO_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_PROFESSION_INFO_type(ptr: PPROFESSION_INFO): PPROFESSION_INFO{Has C Attribute: unused}; inline;
   function ossl_check_const_PROFESSION_INFO_sk_type(sk: Pstack_st_PROFESSION_INFO): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_PROFESSION_INFO_sk_type(sk: Pstack_st_PROFESSION_INFO): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -4489,6 +4506,7 @@ type
   Tsk_ADMISSIONS_copyfunc = function(a: PADMISSIONS): PADMISSIONS; cdecl;
 
 
+  procedure sk_ADMISSIONS_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_ADMISSIONS_type(ptr: PADMISSIONS): PADMISSIONS{Has C Attribute: unused}; inline;
   function ossl_check_const_ADMISSIONS_sk_type(sk: Pstack_st_ADMISSIONS): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_ADMISSIONS_sk_type(sk: Pstack_st_ADMISSIONS): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -4769,6 +4787,7 @@ type
   Tsk_USERNOTICE_copyfunc = function(a: PUSERNOTICE): PUSERNOTICE; cdecl;
 
 
+  procedure sk_USERNOTICE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_USERNOTICE_type(ptr: PUSERNOTICE): PUSERNOTICE{Has C Attribute: unused}; inline;
   function ossl_check_const_USERNOTICE_sk_type(sk: Pstack_st_USERNOTICE): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_USERNOTICE_sk_type(sk: Pstack_st_USERNOTICE): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -4949,6 +4968,7 @@ type
   Tsk_OSSL_ROLE_SPEC_CERT_ID_copyfunc = function(a: POSSL_ROLE_SPEC_CERT_ID): POSSL_ROLE_SPEC_CERT_ID; cdecl;
 
 
+  procedure sk_OSSL_ROLE_SPEC_CERT_ID_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_OSSL_ROLE_SPEC_CERT_ID_type(ptr: POSSL_ROLE_SPEC_CERT_ID): POSSL_ROLE_SPEC_CERT_ID{Has C Attribute: unused}; inline;
   function ossl_check_const_OSSL_ROLE_SPEC_CERT_ID_sk_type(sk: Pstack_st_OSSL_ROLE_SPEC_CERT_ID): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_OSSL_ROLE_SPEC_CERT_ID_sk_type(sk: Pstack_st_OSSL_ROLE_SPEC_CERT_ID): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -5783,6 +5803,7 @@ type
   Tsk_OSSL_TIME_PERIOD_copyfunc = function(a: POSSL_TIME_PERIOD): POSSL_TIME_PERIOD; cdecl;
 
 
+  procedure sk_OSSL_TIME_PERIOD_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_OSSL_TIME_PERIOD_type(ptr: POSSL_TIME_PERIOD): POSSL_TIME_PERIOD{Has C Attribute: unused}; inline;
   function ossl_check_const_OSSL_TIME_PERIOD_sk_type(sk: Pstack_st_OSSL_TIME_PERIOD): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_OSSL_TIME_PERIOD_sk_type(sk: Pstack_st_OSSL_TIME_PERIOD): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -5915,6 +5936,7 @@ type
   Tsk_OSSL_DAY_TIME_BAND_copyfunc = function(a: POSSL_DAY_TIME_BAND): POSSL_DAY_TIME_BAND; cdecl;
 
 
+  procedure sk_OSSL_DAY_TIME_BAND_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_OSSL_DAY_TIME_BAND_type(ptr: POSSL_DAY_TIME_BAND): POSSL_DAY_TIME_BAND{Has C Attribute: unused}; inline;
   function ossl_check_const_OSSL_DAY_TIME_BAND_sk_type(sk: Pstack_st_OSSL_DAY_TIME_BAND): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_OSSL_DAY_TIME_BAND_sk_type(sk: Pstack_st_OSSL_DAY_TIME_BAND): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -6218,6 +6240,7 @@ type
   Tsk_OSSL_ATTRIBUTE_MAPPING_copyfunc = function(a: POSSL_ATTRIBUTE_MAPPING): POSSL_ATTRIBUTE_MAPPING; cdecl;
 
 
+  procedure sk_OSSL_ATTRIBUTE_MAPPING_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_OSSL_ATTRIBUTE_MAPPING_type(ptr: POSSL_ATTRIBUTE_MAPPING): POSSL_ATTRIBUTE_MAPPING{Has C Attribute: unused}; inline;
   function ossl_check_const_OSSL_ATTRIBUTE_MAPPING_sk_type(sk: Pstack_st_OSSL_ATTRIBUTE_MAPPING): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_OSSL_ATTRIBUTE_MAPPING_sk_type(sk: Pstack_st_OSSL_ATTRIBUTE_MAPPING): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -6460,6 +6483,7 @@ type
   Tsk_OSSL_ALLOWED_ATTRIBUTES_CHOICE_copyfunc = function(a: POSSL_ALLOWED_ATTRIBUTES_CHOICE): POSSL_ALLOWED_ATTRIBUTES_CHOICE; cdecl;
 
 
+  procedure sk_OSSL_ALLOWED_ATTRIBUTES_CHOICE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_OSSL_ALLOWED_ATTRIBUTES_CHOICE_type(ptr: POSSL_ALLOWED_ATTRIBUTES_CHOICE): POSSL_ALLOWED_ATTRIBUTES_CHOICE{Has C Attribute: unused}; inline;
   function ossl_check_const_OSSL_ALLOWED_ATTRIBUTES_CHOICE_sk_type(sk: Pstack_st_OSSL_ALLOWED_ATTRIBUTES_CHOICE): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_OSSL_ALLOWED_ATTRIBUTES_CHOICE_sk_type(sk: Pstack_st_OSSL_ALLOWED_ATTRIBUTES_CHOICE): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -6592,6 +6616,7 @@ type
   Tsk_OSSL_ALLOWED_ATTRIBUTES_ITEM_copyfunc = function(a: POSSL_ALLOWED_ATTRIBUTES_ITEM): POSSL_ALLOWED_ATTRIBUTES_ITEM; cdecl;
 
 
+  procedure sk_OSSL_ALLOWED_ATTRIBUTES_ITEM_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_OSSL_ALLOWED_ATTRIBUTES_ITEM_type(ptr: POSSL_ALLOWED_ATTRIBUTES_ITEM): POSSL_ALLOWED_ATTRIBUTES_ITEM{Has C Attribute: unused}; inline;
   function ossl_check_const_OSSL_ALLOWED_ATTRIBUTES_ITEM_sk_type(sk: Pstack_st_OSSL_ALLOWED_ATTRIBUTES_ITEM): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_OSSL_ALLOWED_ATTRIBUTES_ITEM_sk_type(sk: Pstack_st_OSSL_ALLOWED_ATTRIBUTES_ITEM): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -6793,6 +6818,16 @@ uses Sysutils, variants
     OPENSSL_LINE  = 0;
   {$ifend}
 
+procedure sk_X509V3_EXT_METHOD_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_X509V3_EXT_METHOD_freefunc_thunk"');
+
+{Error: Line 115: Syntax Error parsing " sk_X509V3_EXT_METHOD_freefunc freefunc = (sk_X509V3_EXT_METHOD_freefunc)freefunc_arg; freefunc((X509V3_EXT_METHOD 
+*)ptr); "
+
+ sk_X509V3_EXT_METHOD_freefunc freefunc = (sk_X509V3_EXT_METHOD_freefunc)freefunc_arg; freefunc((X509V3_EXT_METHOD *)ptr); }
+end;
+
 function ossl_check_X509V3_EXT_METHOD_type(ptr: PX509V3_EXT_METHOD): PX509V3_EXT_METHOD{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -6821,6 +6856,16 @@ end;
 function ossl_check_X509V3_EXT_METHOD_freefunc_type(fr: Tsk_X509V3_EXT_METHOD_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
 begin
    Result := TOPENSSL_sk_freefunc(fr);
+end;
+
+procedure sk_ACCESS_DESCRIPTION_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_ACCESS_DESCRIPTION_freefunc_thunk"');
+
+{Error: Line 216: Syntax Error parsing " sk_ACCESS_DESCRIPTION_freefunc freefunc = (sk_ACCESS_DESCRIPTION_freefunc)freefunc_arg; 
+freefunc((ACCESS_DESCRIPTION *)ptr); "
+
+ sk_ACCESS_DESCRIPTION_freefunc freefunc = (sk_ACCESS_DESCRIPTION_freefunc)freefunc_arg; freefunc((ACCESS_DESCRIPTION *)ptr); }
 end;
 
 function ossl_check_ACCESS_DESCRIPTION_type(ptr: PACCESS_DESCRIPTION): PACCESS_DESCRIPTION{Has C Attribute: unused}; inline;
@@ -6853,6 +6898,16 @@ begin
    Result := TOPENSSL_sk_freefunc(fr);
 end;
 
+procedure sk_GENERAL_NAME_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_GENERAL_NAME_freefunc_thunk"');
+
+{Error: Line 242: Syntax Error parsing " sk_GENERAL_NAME_freefunc freefunc = (sk_GENERAL_NAME_freefunc)freefunc_arg; freefunc((GENERAL_NAME 
+*)ptr); "
+
+ sk_GENERAL_NAME_freefunc freefunc = (sk_GENERAL_NAME_freefunc)freefunc_arg; freefunc((GENERAL_NAME *)ptr); }
+end;
+
 function ossl_check_GENERAL_NAME_type(ptr: PGENERAL_NAME): PGENERAL_NAME{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -6881,6 +6936,16 @@ end;
 function ossl_check_GENERAL_NAME_freefunc_type(fr: Tsk_GENERAL_NAME_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
 begin
    Result := TOPENSSL_sk_freefunc(fr);
+end;
+
+procedure sk_GENERAL_NAMES_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_GENERAL_NAMES_freefunc_thunk"');
+
+{Error: Line 277: Syntax Error parsing " sk_GENERAL_NAMES_freefunc freefunc = (sk_GENERAL_NAMES_freefunc)freefunc_arg; freefunc((GENERAL_NAMES 
+*)ptr); "
+
+ sk_GENERAL_NAMES_freefunc freefunc = (sk_GENERAL_NAMES_freefunc)freefunc_arg; freefunc((GENERAL_NAMES *)ptr); }
 end;
 
 function ossl_check_GENERAL_NAMES_type(ptr: PGENERAL_NAMES): PGENERAL_NAMES{Has C Attribute: unused}; inline;
@@ -6913,6 +6978,16 @@ begin
    Result := TOPENSSL_sk_freefunc(fr);
 end;
 
+procedure sk_DIST_POINT_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_DIST_POINT_freefunc_thunk"');
+
+{Error: Line 339: Syntax Error parsing " sk_DIST_POINT_freefunc freefunc = (sk_DIST_POINT_freefunc)freefunc_arg; freefunc((DIST_POINT 
+*)ptr); "
+
+ sk_DIST_POINT_freefunc freefunc = (sk_DIST_POINT_freefunc)freefunc_arg; freefunc((DIST_POINT *)ptr); }
+end;
+
 function ossl_check_DIST_POINT_type(ptr: PDIST_POINT): PDIST_POINT{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -6941,6 +7016,16 @@ end;
 function ossl_check_DIST_POINT_freefunc_type(fr: Tsk_DIST_POINT_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
 begin
    Result := TOPENSSL_sk_freefunc(fr);
+end;
+
+procedure sk_SXNETID_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_SXNETID_freefunc_thunk"');
+
+{Error: Line 384: Syntax Error parsing " sk_SXNETID_freefunc freefunc = (sk_SXNETID_freefunc)freefunc_arg; freefunc((SXNETID *)ptr); 
+"
+
+ sk_SXNETID_freefunc freefunc = (sk_SXNETID_freefunc)freefunc_arg; freefunc((SXNETID *)ptr); }
 end;
 
 function ossl_check_SXNETID_type(ptr: PSXNETID): PSXNETID{Has C Attribute: unused}; inline;
@@ -6973,6 +7058,16 @@ begin
    Result := TOPENSSL_sk_freefunc(fr);
 end;
 
+procedure sk_POLICYQUALINFO_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_POLICYQUALINFO_freefunc_thunk"');
+
+{Error: Line 445: Syntax Error parsing " sk_POLICYQUALINFO_freefunc freefunc = (sk_POLICYQUALINFO_freefunc)freefunc_arg; freefunc((POLICYQUALINFO 
+*)ptr); "
+
+ sk_POLICYQUALINFO_freefunc freefunc = (sk_POLICYQUALINFO_freefunc)freefunc_arg; freefunc((POLICYQUALINFO *)ptr); }
+end;
+
 function ossl_check_POLICYQUALINFO_type(ptr: PPOLICYQUALINFO): PPOLICYQUALINFO{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -7001,6 +7096,16 @@ end;
 function ossl_check_POLICYQUALINFO_freefunc_type(fr: Tsk_POLICYQUALINFO_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
 begin
    Result := TOPENSSL_sk_freefunc(fr);
+end;
+
+procedure sk_POLICYINFO_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_POLICYINFO_freefunc_thunk"');
+
+{Error: Line 480: Syntax Error parsing " sk_POLICYINFO_freefunc freefunc = (sk_POLICYINFO_freefunc)freefunc_arg; freefunc((POLICYINFO 
+*)ptr); "
+
+ sk_POLICYINFO_freefunc freefunc = (sk_POLICYINFO_freefunc)freefunc_arg; freefunc((POLICYINFO *)ptr); }
 end;
 
 function ossl_check_POLICYINFO_type(ptr: PPOLICYINFO): PPOLICYINFO{Has C Attribute: unused}; inline;
@@ -7033,6 +7138,16 @@ begin
    Result := TOPENSSL_sk_freefunc(fr);
 end;
 
+procedure sk_POLICY_MAPPING_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_POLICY_MAPPING_freefunc_thunk"');
+
+{Error: Line 517: Syntax Error parsing " sk_POLICY_MAPPING_freefunc freefunc = (sk_POLICY_MAPPING_freefunc)freefunc_arg; freefunc((POLICY_MAPPING 
+*)ptr); "
+
+ sk_POLICY_MAPPING_freefunc freefunc = (sk_POLICY_MAPPING_freefunc)freefunc_arg; freefunc((POLICY_MAPPING *)ptr); }
+end;
+
 function ossl_check_POLICY_MAPPING_type(ptr: PPOLICY_MAPPING): PPOLICY_MAPPING{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -7061,6 +7176,16 @@ end;
 function ossl_check_POLICY_MAPPING_freefunc_type(fr: Tsk_POLICY_MAPPING_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
 begin
    Result := TOPENSSL_sk_freefunc(fr);
+end;
+
+procedure sk_GENERAL_SUBTREE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_GENERAL_SUBTREE_freefunc_thunk"');
+
+{Error: Line 555: Syntax Error parsing " sk_GENERAL_SUBTREE_freefunc freefunc = (sk_GENERAL_SUBTREE_freefunc)freefunc_arg; freefunc((GENERAL_SUBTREE 
+*)ptr); "
+
+ sk_GENERAL_SUBTREE_freefunc freefunc = (sk_GENERAL_SUBTREE_freefunc)freefunc_arg; freefunc((GENERAL_SUBTREE *)ptr); }
 end;
 
 function ossl_check_GENERAL_SUBTREE_type(ptr: PGENERAL_SUBTREE): PGENERAL_SUBTREE{Has C Attribute: unused}; inline;
@@ -7100,6 +7225,16 @@ procedure X509V3_set_ctx_test(ctx:PX509V3_CTX);
 begin
   X509V3_set_ctx(ctx,nil,nil,nil,nil,X509V3_CTX_TEST);
 end;
+procedure sk_X509_PURPOSE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_X509_PURPOSE_freefunc_thunk"');
+
+{Error: Line 737: Syntax Error parsing " sk_X509_PURPOSE_freefunc freefunc = (sk_X509_PURPOSE_freefunc)freefunc_arg; freefunc((X509_PURPOSE 
+*)ptr); "
+
+ sk_X509_PURPOSE_freefunc freefunc = (sk_X509_PURPOSE_freefunc)freefunc_arg; freefunc((X509_PURPOSE *)ptr); }
+end;
+
 function ossl_check_X509_PURPOSE_type(ptr: PX509_PURPOSE): PX509_PURPOSE{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -7128,6 +7263,16 @@ end;
 function ossl_check_X509_PURPOSE_freefunc_type(fr: Tsk_X509_PURPOSE_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
 begin
    Result := TOPENSSL_sk_freefunc(fr);
+end;
+
+procedure sk_X509_POLICY_NODE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_X509_POLICY_NODE_freefunc_thunk"');
+
+{Error: Line 1088: Syntax Error parsing " sk_X509_POLICY_NODE_freefunc freefunc = (sk_X509_POLICY_NODE_freefunc)freefunc_arg; freefunc((X509_POLICY_NODE 
+*)ptr); "
+
+ sk_X509_POLICY_NODE_freefunc freefunc = (sk_X509_POLICY_NODE_freefunc)freefunc_arg; freefunc((X509_POLICY_NODE *)ptr); }
 end;
 
 function ossl_check_X509_POLICY_NODE_type(ptr: PX509_POLICY_NODE): PX509_POLICY_NODE{Has C Attribute: unused}; inline;
@@ -7161,6 +7306,16 @@ begin
 end;
 
 {$ifndef  OPENSSL_NO_RFC3779}
+procedure sk_ASIdOrRange_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_ASIdOrRange_freefunc_thunk"');
+
+{Error: Line 1134: Syntax Error parsing " sk_ASIdOrRange_freefunc freefunc = (sk_ASIdOrRange_freefunc)freefunc_arg; freefunc((ASIdOrRange 
+*)ptr); "
+
+ sk_ASIdOrRange_freefunc freefunc = (sk_ASIdOrRange_freefunc)freefunc_arg; freefunc((ASIdOrRange *)ptr); }
+end;
+
 function ossl_check_ASIdOrRange_type(ptr: PASIdOrRange): PASIdOrRange{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -7220,6 +7375,16 @@ function sk_ASIdOrRange_set_cmp_func(sk:Pstack_st_ASIdOrRange; cmp:Tsk_ASIdOrRan
 begin
   Result := Tsk_ASIdOrRange_compfunc(Tsk_ASIdOrRange_compfunc(OPENSSL_sk_set_cmp_func(ossl_check_ASIdOrRange_sk_type(sk),ossl_check_ASIdOrRange_compfunc_type(cmp))));
 end;
+procedure sk_IPAddressOrRange_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_IPAddressOrRange_freefunc_thunk"');
+
+{Error: Line 1201: Syntax Error parsing " sk_IPAddressOrRange_freefunc freefunc = (sk_IPAddressOrRange_freefunc)freefunc_arg; freefunc((IPAddressOrRange 
+*)ptr); "
+
+ sk_IPAddressOrRange_freefunc freefunc = (sk_IPAddressOrRange_freefunc)freefunc_arg; freefunc((IPAddressOrRange *)ptr); }
+end;
+
 function ossl_check_IPAddressOrRange_type(ptr: PIPAddressOrRange): PIPAddressOrRange{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -7280,6 +7445,16 @@ function sk_IPAddressOrRange_set_cmp_func(sk:Pstack_st_IPAddressOrRange; cmp:Tsk
 begin
   Result := Tsk_IPAddressOrRange_compfunc(Tsk_IPAddressOrRange_compfunc(OPENSSL_sk_set_cmp_func(ossl_check_IPAddressOrRange_sk_type(sk),ossl_check_IPAddressOrRange_compfunc_type(cmp))));
 end;
+procedure sk_IPAddressFamily_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_IPAddressFamily_freefunc_thunk"');
+
+{Error: Line 1249: Syntax Error parsing " sk_IPAddressFamily_freefunc freefunc = (sk_IPAddressFamily_freefunc)freefunc_arg; freefunc((IPAddressFamily 
+*)ptr); "
+
+ sk_IPAddressFamily_freefunc freefunc = (sk_IPAddressFamily_freefunc)freefunc_arg; freefunc((IPAddressFamily *)ptr); }
+end;
+
 function ossl_check_IPAddressFamily_type(ptr: PIPAddressFamily): PIPAddressFamily{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -7341,6 +7516,16 @@ begin
   Result := Tsk_IPAddressFamily_compfunc(Tsk_IPAddressFamily_compfunc(OPENSSL_sk_set_cmp_func(ossl_check_IPAddressFamily_sk_type(sk),ossl_check_IPAddressFamily_compfunc_type(cmp))));
 end;
 {$endif} { OPENSSL_NO_RFC3779}
+procedure sk_ASN1_STRING_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_ASN1_STRING_freefunc_thunk"');
+
+{Error: Line 1351: Syntax Error parsing " sk_ASN1_STRING_freefunc freefunc = (sk_ASN1_STRING_freefunc)freefunc_arg; freefunc((ASN1_STRING 
+*)ptr); "
+
+ sk_ASN1_STRING_freefunc freefunc = (sk_ASN1_STRING_freefunc)freefunc_arg; freefunc((ASN1_STRING *)ptr); }
+end;
+
 function ossl_check_ASN1_STRING_type(ptr: PASN1_STRING): PASN1_STRING{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -7369,6 +7554,16 @@ end;
 function ossl_check_ASN1_STRING_freefunc_type(fr: Tsk_ASN1_STRING_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
 begin
    Result := TOPENSSL_sk_freefunc(fr);
+end;
+
+procedure sk_PROFESSION_INFO_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_PROFESSION_INFO_freefunc_thunk"');
+
+{Error: Line 1395: Syntax Error parsing " sk_PROFESSION_INFO_freefunc freefunc = (sk_PROFESSION_INFO_freefunc)freefunc_arg; freefunc((PROFESSION_INFO 
+*)ptr); "
+
+ sk_PROFESSION_INFO_freefunc freefunc = (sk_PROFESSION_INFO_freefunc)freefunc_arg; freefunc((PROFESSION_INFO *)ptr); }
 end;
 
 function ossl_check_PROFESSION_INFO_type(ptr: PPROFESSION_INFO): PPROFESSION_INFO{Has C Attribute: unused}; inline;
@@ -7401,6 +7596,16 @@ begin
    Result := TOPENSSL_sk_freefunc(fr);
 end;
 
+procedure sk_ADMISSIONS_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_ADMISSIONS_freefunc_thunk"');
+
+{Error: Line 1421: Syntax Error parsing " sk_ADMISSIONS_freefunc freefunc = (sk_ADMISSIONS_freefunc)freefunc_arg; freefunc((ADMISSIONS 
+*)ptr); "
+
+ sk_ADMISSIONS_freefunc freefunc = (sk_ADMISSIONS_freefunc)freefunc_arg; freefunc((ADMISSIONS *)ptr); }
+end;
+
 function ossl_check_ADMISSIONS_type(ptr: PADMISSIONS): PADMISSIONS{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -7429,6 +7634,16 @@ end;
 function ossl_check_ADMISSIONS_freefunc_type(fr: Tsk_ADMISSIONS_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
 begin
    Result := TOPENSSL_sk_freefunc(fr);
+end;
+
+procedure sk_USERNOTICE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_USERNOTICE_freefunc_thunk"');
+
+{Error: Line 1506: Syntax Error parsing " sk_USERNOTICE_freefunc freefunc = (sk_USERNOTICE_freefunc)freefunc_arg; freefunc((USERNOTICE 
+*)ptr); "
+
+ sk_USERNOTICE_freefunc freefunc = (sk_USERNOTICE_freefunc)freefunc_arg; freefunc((USERNOTICE *)ptr); }
 end;
 
 function ossl_check_USERNOTICE_type(ptr: PUSERNOTICE): PUSERNOTICE{Has C Attribute: unused}; inline;
@@ -7461,6 +7676,17 @@ begin
    Result := TOPENSSL_sk_freefunc(fr);
 end;
 
+procedure sk_OSSL_ROLE_SPEC_CERT_ID_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OSSL_ROLE_SPEC_CERT_ID_freefunc_thunk"');
+
+{Error: Line 1545: Syntax Error parsing " sk_OSSL_ROLE_SPEC_CERT_ID_freefunc freefunc = (sk_OSSL_ROLE_SPEC_CERT_ID_freefunc)freefunc_arg; 
+freefunc((OSSL_ROLE_SPEC_CERT_ID *)ptr); "
+
+ sk_OSSL_ROLE_SPEC_CERT_ID_freefunc freefunc = (sk_OSSL_ROLE_SPEC_CERT_ID_freefunc)freefunc_arg; freefunc((OSSL_ROLE_SPEC_CERT_ID 
+*)ptr); }
+end;
+
 function ossl_check_OSSL_ROLE_SPEC_CERT_ID_type(ptr: POSSL_ROLE_SPEC_CERT_ID): POSSL_ROLE_SPEC_CERT_ID{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -7489,6 +7715,16 @@ end;
 function ossl_check_OSSL_ROLE_SPEC_CERT_ID_freefunc_type(fr: Tsk_OSSL_ROLE_SPEC_CERT_ID_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
 begin
    Result := TOPENSSL_sk_freefunc(fr);
+end;
+
+procedure sk_OSSL_TIME_PERIOD_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OSSL_TIME_PERIOD_freefunc_thunk"');
+
+{Error: Line 1795: Syntax Error parsing " sk_OSSL_TIME_PERIOD_freefunc freefunc = (sk_OSSL_TIME_PERIOD_freefunc)freefunc_arg; freefunc((OSSL_TIME_PERIOD 
+*)ptr); "
+
+ sk_OSSL_TIME_PERIOD_freefunc freefunc = (sk_OSSL_TIME_PERIOD_freefunc)freefunc_arg; freefunc((OSSL_TIME_PERIOD *)ptr); }
 end;
 
 function ossl_check_OSSL_TIME_PERIOD_type(ptr: POSSL_TIME_PERIOD): POSSL_TIME_PERIOD{Has C Attribute: unused}; inline;
@@ -7521,6 +7757,16 @@ begin
    Result := TOPENSSL_sk_freefunc(fr);
 end;
 
+procedure sk_OSSL_DAY_TIME_BAND_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OSSL_DAY_TIME_BAND_freefunc_thunk"');
+
+{Error: Line 1825: Syntax Error parsing " sk_OSSL_DAY_TIME_BAND_freefunc freefunc = (sk_OSSL_DAY_TIME_BAND_freefunc)freefunc_arg; 
+freefunc((OSSL_DAY_TIME_BAND *)ptr); "
+
+ sk_OSSL_DAY_TIME_BAND_freefunc freefunc = (sk_OSSL_DAY_TIME_BAND_freefunc)freefunc_arg; freefunc((OSSL_DAY_TIME_BAND *)ptr); }
+end;
+
 function ossl_check_OSSL_DAY_TIME_BAND_type(ptr: POSSL_DAY_TIME_BAND): POSSL_DAY_TIME_BAND{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -7549,6 +7795,17 @@ end;
 function ossl_check_OSSL_DAY_TIME_BAND_freefunc_type(fr: Tsk_OSSL_DAY_TIME_BAND_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
 begin
    Result := TOPENSSL_sk_freefunc(fr);
+end;
+
+procedure sk_OSSL_ATTRIBUTE_MAPPING_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OSSL_ATTRIBUTE_MAPPING_freefunc_thunk"');
+
+{Error: Line 1889: Syntax Error parsing " sk_OSSL_ATTRIBUTE_MAPPING_freefunc freefunc = (sk_OSSL_ATTRIBUTE_MAPPING_freefunc)freefunc_arg; 
+freefunc((OSSL_ATTRIBUTE_MAPPING *)ptr); "
+
+ sk_OSSL_ATTRIBUTE_MAPPING_freefunc freefunc = (sk_OSSL_ATTRIBUTE_MAPPING_freefunc)freefunc_arg; freefunc((OSSL_ATTRIBUTE_MAPPING 
+*)ptr); }
 end;
 
 function ossl_check_OSSL_ATTRIBUTE_MAPPING_type(ptr: POSSL_ATTRIBUTE_MAPPING): POSSL_ATTRIBUTE_MAPPING{Has C Attribute: unused}; inline;
@@ -7581,6 +7838,17 @@ begin
    Result := TOPENSSL_sk_freefunc(fr);
 end;
 
+procedure sk_OSSL_ALLOWED_ATTRIBUTES_CHOICE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OSSL_ALLOWED_ATTRIBUTES_CHOICE_freefunc_thunk"');
+
+{Error: Line 1941: Syntax Error parsing " sk_OSSL_ALLOWED_ATTRIBUTES_CHOICE_freefunc freefunc = (sk_OSSL_ALLOWED_ATTRIBUTES_CHOICE_freefunc)freefunc_arg; 
+freefunc((OSSL_ALLOWED_ATTRIBUTES_CHOICE *)ptr); "
+
+ sk_OSSL_ALLOWED_ATTRIBUTES_CHOICE_freefunc freefunc = (sk_OSSL_ALLOWED_ATTRIBUTES_CHOICE_freefunc)freefunc_arg; freefunc((OSSL_ALLOWED_ATTRIBUTES_CHOICE 
+*)ptr); }
+end;
+
 function ossl_check_OSSL_ALLOWED_ATTRIBUTES_CHOICE_type(ptr: POSSL_ALLOWED_ATTRIBUTES_CHOICE): POSSL_ALLOWED_ATTRIBUTES_CHOICE{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -7609,6 +7877,17 @@ end;
 function ossl_check_OSSL_ALLOWED_ATTRIBUTES_CHOICE_freefunc_type(fr: Tsk_OSSL_ALLOWED_ATTRIBUTES_CHOICE_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
 begin
    Result := TOPENSSL_sk_freefunc(fr);
+end;
+
+procedure sk_OSSL_ALLOWED_ATTRIBUTES_ITEM_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OSSL_ALLOWED_ATTRIBUTES_ITEM_freefunc_thunk"');
+
+{Error: Line 1971: Syntax Error parsing " sk_OSSL_ALLOWED_ATTRIBUTES_ITEM_freefunc freefunc = (sk_OSSL_ALLOWED_ATTRIBUTES_ITEM_freefunc)freefunc_arg; 
+freefunc((OSSL_ALLOWED_ATTRIBUTES_ITEM *)ptr); "
+
+ sk_OSSL_ALLOWED_ATTRIBUTES_ITEM_freefunc freefunc = (sk_OSSL_ALLOWED_ATTRIBUTES_ITEM_freefunc)freefunc_arg; freefunc((OSSL_ALLOWED_ATTRIBUTES_ITEM 
+*)ptr); }
 end;
 
 function ossl_check_OSSL_ALLOWED_ATTRIBUTES_ITEM_type(ptr: POSSL_ALLOWED_ATTRIBUTES_ITEM): POSSL_ALLOWED_ATTRIBUTES_ITEM{Has C Attribute: unused}; inline;

@@ -18,7 +18,7 @@
 unit openssl_pemerr;
 
 {
-  Generated from OpenSSL 3.5.6 Header File pemerr.h - Tue 19 May 14:28:03 BST 2026
+  Generated from OpenSSL 3.6.2 Header File pemerr.h - Tue 19 May 14:30:25 BST 2026
 }
 
 {$IFNDEF FPC}

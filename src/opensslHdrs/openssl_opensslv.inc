@@ -15,7 +15,7 @@
 
 
 {
-  Generated from OpenSSL 3.5.6 Header File opensslv.h - Tue 19 May 14:28:01 BST 2026
+  Generated from OpenSSL 3.6.2 Header File opensslv.h - Tue 19 May 14:30:22 BST 2026
 }
 
   {$if not declared(__FILE__)}
@@ -67,10 +67,10 @@ const
   OPENSSL_VERSION_MAJOR = 3;
   { clang-format on }
   { clang-format off }
-  OPENSSL_VERSION_MINOR = 5;
+  OPENSSL_VERSION_MINOR = 6;
   { clang-format on }
   { clang-format off }
-  OPENSSL_VERSION_PATCH = 6;
+  OPENSSL_VERSION_PATCH = 2;
   { clang-format on }
   
   {* Additional version information
@@ -115,10 +115,10 @@ const
   * OPENSSL_VERSION_BUILD_METADATA_STR appended.
   }
   { clang-format off }
-  OPENSSL_VERSION_STR = '3.5.6';
+  OPENSSL_VERSION_STR = '3.6.2';
   { clang-format on }
   { clang-format off }
-  OPENSSL_FULL_VERSION_STR = '3.5.6';
+  OPENSSL_FULL_VERSION_STR = '3.6.2';
   { clang-format on }
   
   {* SECTION 3: ADDITIONAL METADATA
@@ -132,7 +132,7 @@ const
   {* SECTION 4: BACKWARD COMPATIBILITY
   }
   { clang-format off }
-  OPENSSL_VERSION_TEXT = 'OpenSSL 3.5.6 7 Apr 2026';
+  OPENSSL_VERSION_TEXT = 'OpenSSL 3.6.2 7 Apr 2026';
   { clang-format on }
   { clang-format off }
   { Synthesize OPENSSL_VERSION_NUMBER with the layout 0xMNN00PP0L }

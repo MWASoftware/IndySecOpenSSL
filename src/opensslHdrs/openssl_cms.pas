@@ -18,7 +18,7 @@
 unit openssl_cms;
 
 {
-  Generated from OpenSSL 3.5.6 Header File cms.h - Tue 19 May 14:27:15 BST 2026
+  Generated from OpenSSL 3.6.2 Header File cms.h - Tue 19 May 14:29:35 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -138,6 +138,7 @@ type
   Tsk_CMS_SignerInfo_copyfunc = function(a: PCMS_SignerInfo): PCMS_SignerInfo; cdecl;
 
 
+  procedure sk_CMS_SignerInfo_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_CMS_SignerInfo_type(ptr: PCMS_SignerInfo): PCMS_SignerInfo{Has C Attribute: unused}; inline;
   function ossl_check_const_CMS_SignerInfo_sk_type(sk: Pstack_st_CMS_SignerInfo): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_CMS_SignerInfo_sk_type(sk: Pstack_st_CMS_SignerInfo): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -159,7 +160,7 @@ type
   {# define  sk_CMS_SignerInfo_unshift(sk,ptr) OPENSSL_sk_unshift(ossl_check_CMS_SignerInfo_sk_type(sk), ossl_check_CMS_SignerInfo_type(ptr))} {Macro Return Type unknown at line no 61}
   function sk_CMS_SignerInfo_pop(sk:Pstack_st_CMS_SignerInfo): PCMS_SignerInfo; inline;
   function sk_CMS_SignerInfo_shift(sk:Pstack_st_CMS_SignerInfo): PCMS_SignerInfo; inline;
-  {# define  sk_CMS_SignerInfo_pop_free(sk,freefunc) OPENSSL_sk_pop_free(ossl_check_CMS_SignerInfo_sk_type(sk),ossl_check_CMS_SignerInfo_freefunc_type(freefunc))} {Macro Return Type unknown at line no 64}
+  {# define  sk_CMS_SignerInfo_pop_free(sk,freefunc) OPENSSL_sk_pop_free(ossl_check_CMS_SignerInfo_sk_type(sk), ossl_check_CMS_SignerInfo_freefunc_type(freefunc))} {Macro Return Type unknown at line no 64}
   {# define  sk_CMS_SignerInfo_insert(sk,ptr,idx) OPENSSL_sk_insert(ossl_check_CMS_SignerInfo_sk_type(sk), ossl_check_CMS_SignerInfo_type(ptr),
  (idx))} {Function argument out of range at line no 65}
   {# define  sk_CMS_SignerInfo_set(sk,idx,ptr) ((CMS_SignerInfo *)OPENSSL_sk_set(ossl_check_CMS_SignerInfo_sk_type(sk), (idx), ossl_check_CMS_SignerInfo_type(ptr)))} {Function argument out of range at line no 66}
@@ -193,6 +194,7 @@ type
   Tsk_CMS_RecipientEncryptedKey_copyfunc = function(a: PCMS_RecipientEncryptedKey): PCMS_RecipientEncryptedKey; cdecl;
 
 
+  procedure sk_CMS_RecipientEncryptedKey_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_CMS_RecipientEncryptedKey_type(ptr: PCMS_RecipientEncryptedKey): PCMS_RecipientEncryptedKey{Has C Attribute: unused}; inline;
   function ossl_check_const_CMS_RecipientEncryptedKey_sk_type(sk: Pstack_st_CMS_RecipientEncryptedKey): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_CMS_RecipientEncryptedKey_sk_type(sk: Pstack_st_CMS_RecipientEncryptedKey): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -217,7 +219,7 @@ type
   function sk_CMS_RecipientEncryptedKey_pop(sk:Pstack_st_CMS_RecipientEncryptedKey): PCMS_RecipientEncryptedKey; inline;
   function sk_CMS_RecipientEncryptedKey_shift(sk:Pstack_st_CMS_RecipientEncryptedKey): PCMS_RecipientEncryptedKey; inline;
   {# define  sk_CMS_RecipientEncryptedKey_pop_free(sk,freefunc) OPENSSL_sk_pop_free(ossl_check_CMS_RecipientEncryptedKey_sk_type(sk),
-ossl_check_CMS_RecipientEncryptedKey_freefunc_type(freefunc))} {Macro Return Type unknown at line no 90}
+ ossl_check_CMS_RecipientEncryptedKey_freefunc_type(freefunc))} {Macro Return Type unknown at line no 90}
   {# define  sk_CMS_RecipientEncryptedKey_insert(sk,ptr,idx) OPENSSL_sk_insert(ossl_check_CMS_RecipientEncryptedKey_sk_type(sk), ossl_check_CMS_RecipientEncryptedKey_type(ptr),
  (idx))} {Function argument out of range at line no 91}
   {# define  sk_CMS_RecipientEncryptedKey_set(sk,idx,ptr) ((CMS_RecipientEncryptedKey *)OPENSSL_sk_set(ossl_check_CMS_RecipientEncryptedKey_sk_type(sk),
@@ -252,6 +254,7 @@ type
   Tsk_CMS_RecipientInfo_copyfunc = function(a: PCMS_RecipientInfo): PCMS_RecipientInfo; cdecl;
 
 
+  procedure sk_CMS_RecipientInfo_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_CMS_RecipientInfo_type(ptr: PCMS_RecipientInfo): PCMS_RecipientInfo{Has C Attribute: unused}; inline;
   function ossl_check_const_CMS_RecipientInfo_sk_type(sk: Pstack_st_CMS_RecipientInfo): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_CMS_RecipientInfo_sk_type(sk: Pstack_st_CMS_RecipientInfo): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -274,7 +277,7 @@ type
   {# define  sk_CMS_RecipientInfo_unshift(sk,ptr) OPENSSL_sk_unshift(ossl_check_CMS_RecipientInfo_sk_type(sk), ossl_check_CMS_RecipientInfo_type(ptr))} {Macro Return Type unknown at line no 113}
   function sk_CMS_RecipientInfo_pop(sk:Pstack_st_CMS_RecipientInfo): PCMS_RecipientInfo; inline;
   function sk_CMS_RecipientInfo_shift(sk:Pstack_st_CMS_RecipientInfo): PCMS_RecipientInfo; inline;
-  {# define  sk_CMS_RecipientInfo_pop_free(sk,freefunc) OPENSSL_sk_pop_free(ossl_check_CMS_RecipientInfo_sk_type(sk),ossl_check_CMS_RecipientInfo_freefunc_type(freefunc))} {Macro Return Type unknown at line no 116}
+  {# define  sk_CMS_RecipientInfo_pop_free(sk,freefunc) OPENSSL_sk_pop_free(ossl_check_CMS_RecipientInfo_sk_type(sk), ossl_check_CMS_RecipientInfo_freefunc_type(freefunc))} {Macro Return Type unknown at line no 116}
   {# define  sk_CMS_RecipientInfo_insert(sk,ptr,idx) OPENSSL_sk_insert(ossl_check_CMS_RecipientInfo_sk_type(sk), ossl_check_CMS_RecipientInfo_type(ptr),
  (idx))} {Function argument out of range at line no 117}
   {# define  sk_CMS_RecipientInfo_set(sk,idx,ptr) ((CMS_RecipientInfo *)OPENSSL_sk_set(ossl_check_CMS_RecipientInfo_sk_type(sk), (idx),
@@ -309,6 +312,7 @@ type
   Tsk_CMS_RevocationInfoChoice_copyfunc = function(a: PCMS_RevocationInfoChoice): PCMS_RevocationInfoChoice; cdecl;
 
 
+  procedure sk_CMS_RevocationInfoChoice_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_CMS_RevocationInfoChoice_type(ptr: PCMS_RevocationInfoChoice): PCMS_RevocationInfoChoice{Has C Attribute: unused}; inline;
   function ossl_check_const_CMS_RevocationInfoChoice_sk_type(sk: Pstack_st_CMS_RevocationInfoChoice): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_CMS_RevocationInfoChoice_sk_type(sk: Pstack_st_CMS_RevocationInfoChoice): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -333,7 +337,7 @@ type
   function sk_CMS_RevocationInfoChoice_pop(sk:Pstack_st_CMS_RevocationInfoChoice): PCMS_RevocationInfoChoice; inline;
   function sk_CMS_RevocationInfoChoice_shift(sk:Pstack_st_CMS_RevocationInfoChoice): PCMS_RevocationInfoChoice; inline;
   {# define  sk_CMS_RevocationInfoChoice_pop_free(sk,freefunc) OPENSSL_sk_pop_free(ossl_check_CMS_RevocationInfoChoice_sk_type(sk),
-ossl_check_CMS_RevocationInfoChoice_freefunc_type(freefunc))} {Macro Return Type unknown at line no 142}
+ ossl_check_CMS_RevocationInfoChoice_freefunc_type(freefunc))} {Macro Return Type unknown at line no 142}
   {# define  sk_CMS_RevocationInfoChoice_insert(sk,ptr,idx) OPENSSL_sk_insert(ossl_check_CMS_RevocationInfoChoice_sk_type(sk), ossl_check_CMS_RevocationInfoChoice_type(ptr),
  (idx))} {Function argument out of range at line no 143}
   {# define  sk_CMS_RevocationInfoChoice_set(sk,idx,ptr) ((CMS_RevocationInfoChoice *)OPENSSL_sk_set(ossl_check_CMS_RevocationInfoChoice_sk_type(sk),
@@ -433,6 +437,7 @@ const
   CMS_RECIPINFO_KEK = 2;
   CMS_RECIPINFO_PASS = 3;
   CMS_RECIPINFO_OTHER = 4;
+  CMS_RECIPINFO_KEM = 5;
     { S/MIME related flags }
   CMS_TEXT = $1;
   CMS_NOCERTS = $2;
@@ -619,6 +624,11 @@ var
   function CMS_RecipientInfo_kari_get0_ctx(ri: PCMS_RecipientInfo): PEVP_CIPHER_CTX; cdecl; external CLibCrypto name 'CMS_RecipientInfo_kari_get0_ctx';
   function CMS_RecipientInfo_kari_decrypt(cms: PCMS_ContentInfo; ri: PCMS_RecipientInfo; rek: PCMS_RecipientEncryptedKey): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'CMS_RecipientInfo_kari_decrypt';
   function CMS_SharedInfo_encode(pder: PPbyte; kekalg: PX509_ALGOR; ukm: PASN1_OCTET_STRING; keylen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'CMS_SharedInfo_encode';
+  function CMS_RecipientInfo_kemri_cert_cmp(ri: PCMS_RecipientInfo; cert: PX509): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'CMS_RecipientInfo_kemri_cert_cmp';
+  function CMS_RecipientInfo_kemri_set0_pkey(ri: PCMS_RecipientInfo; pk: PEVP_PKEY): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'CMS_RecipientInfo_kemri_set0_pkey';
+  function CMS_RecipientInfo_kemri_get0_ctx(ri: PCMS_RecipientInfo): PEVP_CIPHER_CTX; cdecl; external CLibCrypto name 'CMS_RecipientInfo_kemri_get0_ctx';
+  function CMS_RecipientInfo_kemri_get0_kdf_alg(ri: PCMS_RecipientInfo): PX509_ALGOR; cdecl; external CLibCrypto name 'CMS_RecipientInfo_kemri_get0_kdf_alg';
+  function CMS_RecipientInfo_kemri_set_ukm(ri: PCMS_RecipientInfo; ukm: Pbyte; ukmLength: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'CMS_RecipientInfo_kemri_set_ukm';
   { Backward compatibility for spelling errors. }
     {$else}
   {$EXTERNALSYM CMS_stream}
@@ -743,6 +753,11 @@ var
   {$EXTERNALSYM CMS_RecipientInfo_kari_get0_ctx}
   {$EXTERNALSYM CMS_RecipientInfo_kari_decrypt}
   {$EXTERNALSYM CMS_SharedInfo_encode}
+  {$EXTERNALSYM CMS_RecipientInfo_kemri_cert_cmp}
+  {$EXTERNALSYM CMS_RecipientInfo_kemri_set0_pkey}
+  {$EXTERNALSYM CMS_RecipientInfo_kemri_get0_ctx}
+  {$EXTERNALSYM CMS_RecipientInfo_kemri_get0_kdf_alg}
+  {$EXTERNALSYM CMS_RecipientInfo_kemri_set_ukm}
   {Do not call Function LoadDeclarations. Internal use only}
   function Load_CMS_stream(boundary: PPPbyte; cms: PCMS_ContentInfo): TOpenSSL_C_INT; cdecl;
   function Load_d2i_CMS_bio(bp: PBIO; cms: PPCMS_ContentInfo): PCMS_ContentInfo; cdecl;
@@ -866,6 +881,11 @@ var
   function Load_CMS_RecipientInfo_kari_get0_ctx(ri: PCMS_RecipientInfo): PEVP_CIPHER_CTX; cdecl;
   function Load_CMS_RecipientInfo_kari_decrypt(cms: PCMS_ContentInfo; ri: PCMS_RecipientInfo; rek: PCMS_RecipientEncryptedKey): TOpenSSL_C_INT; cdecl;
   function Load_CMS_SharedInfo_encode(pder: PPbyte; kekalg: PX509_ALGOR; ukm: PASN1_OCTET_STRING; keylen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
+  function Load_CMS_RecipientInfo_kemri_cert_cmp(ri: PCMS_RecipientInfo; cert: PX509): TOpenSSL_C_INT; cdecl;
+  function Load_CMS_RecipientInfo_kemri_set0_pkey(ri: PCMS_RecipientInfo; pk: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
+  function Load_CMS_RecipientInfo_kemri_get0_ctx(ri: PCMS_RecipientInfo): PEVP_CIPHER_CTX; cdecl;
+  function Load_CMS_RecipientInfo_kemri_get0_kdf_alg(ri: PCMS_RecipientInfo): PX509_ALGOR; cdecl;
+  function Load_CMS_RecipientInfo_kemri_set_ukm(ri: PCMS_RecipientInfo; ukm: Pbyte; ukmLength: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
 
 var
   CMS_stream: function(boundary: PPPbyte; cms: PCMS_ContentInfo): TOpenSSL_C_INT; cdecl = Load_CMS_stream;
@@ -990,6 +1010,11 @@ var
   CMS_RecipientInfo_kari_get0_ctx: function(ri: PCMS_RecipientInfo): PEVP_CIPHER_CTX; cdecl = Load_CMS_RecipientInfo_kari_get0_ctx;
   CMS_RecipientInfo_kari_decrypt: function(cms: PCMS_ContentInfo; ri: PCMS_RecipientInfo; rek: PCMS_RecipientEncryptedKey): TOpenSSL_C_INT; cdecl = Load_CMS_RecipientInfo_kari_decrypt;
   CMS_SharedInfo_encode: function(pder: PPbyte; kekalg: PX509_ALGOR; ukm: PASN1_OCTET_STRING; keylen: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_CMS_SharedInfo_encode;
+  CMS_RecipientInfo_kemri_cert_cmp: function(ri: PCMS_RecipientInfo; cert: PX509): TOpenSSL_C_INT; cdecl = Load_CMS_RecipientInfo_kemri_cert_cmp;
+  CMS_RecipientInfo_kemri_set0_pkey: function(ri: PCMS_RecipientInfo; pk: PEVP_PKEY): TOpenSSL_C_INT; cdecl = Load_CMS_RecipientInfo_kemri_set0_pkey;
+  CMS_RecipientInfo_kemri_get0_ctx: function(ri: PCMS_RecipientInfo): PEVP_CIPHER_CTX; cdecl = Load_CMS_RecipientInfo_kemri_get0_ctx;
+  CMS_RecipientInfo_kemri_get0_kdf_alg: function(ri: PCMS_RecipientInfo): PX509_ALGOR; cdecl = Load_CMS_RecipientInfo_kemri_get0_kdf_alg;
+  CMS_RecipientInfo_kemri_set_ukm: function(ri: PCMS_RecipientInfo; ukm: Pbyte; ukmLength: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_CMS_RecipientInfo_kemri_set_ukm;
   { Backward compatibility for spelling errors. }
     {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
@@ -1038,6 +1063,16 @@ uses Sysutils, variants
   {$ifend}
 
 {$ifndef  OPENSSL_NO_CMS}
+procedure sk_CMS_SignerInfo_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_CMS_SignerInfo_freefunc_thunk"');
+
+{Error: Line 49: Syntax Error parsing " sk_CMS_SignerInfo_freefunc freefunc = (sk_CMS_SignerInfo_freefunc)freefunc_arg; freefunc((CMS_SignerInfo 
+*)ptr); "
+
+ sk_CMS_SignerInfo_freefunc freefunc = (sk_CMS_SignerInfo_freefunc)freefunc_arg; freefunc((CMS_SignerInfo *)ptr); }
+end;
+
 function ossl_check_CMS_SignerInfo_type(ptr: PCMS_SignerInfo): PCMS_SignerInfo{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -1098,6 +1133,17 @@ function sk_CMS_SignerInfo_set_cmp_func(sk:Pstack_st_CMS_SignerInfo; cmp:Tsk_CMS
 begin
   Result := Tsk_CMS_SignerInfo_compfunc(Tsk_CMS_SignerInfo_compfunc(OPENSSL_sk_set_cmp_func(ossl_check_CMS_SignerInfo_sk_type(sk),ossl_check_CMS_SignerInfo_compfunc_type(cmp))));
 end;
+procedure sk_CMS_RecipientEncryptedKey_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_CMS_RecipientEncryptedKey_freefunc_thunk"');
+
+{Error: Line 75: Syntax Error parsing " sk_CMS_RecipientEncryptedKey_freefunc freefunc = (sk_CMS_RecipientEncryptedKey_freefunc)freefunc_arg; 
+freefunc((CMS_RecipientEncryptedKey *)ptr); "
+
+ sk_CMS_RecipientEncryptedKey_freefunc freefunc = (sk_CMS_RecipientEncryptedKey_freefunc)freefunc_arg; freefunc((CMS_RecipientEncryptedKey 
+*)ptr); }
+end;
+
 function ossl_check_CMS_RecipientEncryptedKey_type(ptr: PCMS_RecipientEncryptedKey): PCMS_RecipientEncryptedKey{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -1158,6 +1204,16 @@ function sk_CMS_RecipientEncryptedKey_set_cmp_func(sk:Pstack_st_CMS_RecipientEnc
 begin
   Result := Tsk_CMS_RecipientEncryptedKey_compfunc(Tsk_CMS_RecipientEncryptedKey_compfunc(OPENSSL_sk_set_cmp_func(ossl_check_CMS_RecipientEncryptedKey_sk_type(sk),ossl_check_CMS_RecipientEncryptedKey_compfunc_type(cmp))));
 end;
+procedure sk_CMS_RecipientInfo_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_CMS_RecipientInfo_freefunc_thunk"');
+
+{Error: Line 101: Syntax Error parsing " sk_CMS_RecipientInfo_freefunc freefunc = (sk_CMS_RecipientInfo_freefunc)freefunc_arg; freefunc((CMS_RecipientInfo 
+*)ptr); "
+
+ sk_CMS_RecipientInfo_freefunc freefunc = (sk_CMS_RecipientInfo_freefunc)freefunc_arg; freefunc((CMS_RecipientInfo *)ptr); }
+end;
+
 function ossl_check_CMS_RecipientInfo_type(ptr: PCMS_RecipientInfo): PCMS_RecipientInfo{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -1218,6 +1274,17 @@ function sk_CMS_RecipientInfo_set_cmp_func(sk:Pstack_st_CMS_RecipientInfo; cmp:T
 begin
   Result := Tsk_CMS_RecipientInfo_compfunc(Tsk_CMS_RecipientInfo_compfunc(OPENSSL_sk_set_cmp_func(ossl_check_CMS_RecipientInfo_sk_type(sk),ossl_check_CMS_RecipientInfo_compfunc_type(cmp))));
 end;
+procedure sk_CMS_RevocationInfoChoice_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_CMS_RevocationInfoChoice_freefunc_thunk"');
+
+{Error: Line 127: Syntax Error parsing " sk_CMS_RevocationInfoChoice_freefunc freefunc = (sk_CMS_RevocationInfoChoice_freefunc)freefunc_arg; 
+freefunc((CMS_RevocationInfoChoice *)ptr); "
+
+ sk_CMS_RevocationInfoChoice_freefunc freefunc = (sk_CMS_RevocationInfoChoice_freefunc)freefunc_arg; freefunc((CMS_RevocationInfoChoice 
+*)ptr); }
+end;
+
 function ossl_check_CMS_RevocationInfoChoice_type(ptr: PCMS_RevocationInfoChoice): PCMS_RevocationInfoChoice{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -2433,6 +2500,46 @@ begin
   Result := CMS_SharedInfo_encode(pder, kekalg, ukm, keylen);
 end;
 
+function Load_CMS_RecipientInfo_kemri_cert_cmp(ri: PCMS_RecipientInfo; cert: PX509): TOpenSSL_C_INT; cdecl;
+begin
+  CMS_RecipientInfo_kemri_cert_cmp := LoadLibCryptoFunction('CMS_RecipientInfo_kemri_cert_cmp');
+  if not assigned(CMS_RecipientInfo_kemri_cert_cmp) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_RecipientInfo_kemri_cert_cmp');
+  Result := CMS_RecipientInfo_kemri_cert_cmp(ri, cert);
+end;
+
+function Load_CMS_RecipientInfo_kemri_set0_pkey(ri: PCMS_RecipientInfo; pk: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
+begin
+  CMS_RecipientInfo_kemri_set0_pkey := LoadLibCryptoFunction('CMS_RecipientInfo_kemri_set0_pkey');
+  if not assigned(CMS_RecipientInfo_kemri_set0_pkey) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_RecipientInfo_kemri_set0_pkey');
+  Result := CMS_RecipientInfo_kemri_set0_pkey(ri, pk);
+end;
+
+function Load_CMS_RecipientInfo_kemri_get0_ctx(ri: PCMS_RecipientInfo): PEVP_CIPHER_CTX; cdecl;
+begin
+  CMS_RecipientInfo_kemri_get0_ctx := LoadLibCryptoFunction('CMS_RecipientInfo_kemri_get0_ctx');
+  if not assigned(CMS_RecipientInfo_kemri_get0_ctx) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_RecipientInfo_kemri_get0_ctx');
+  Result := CMS_RecipientInfo_kemri_get0_ctx(ri);
+end;
+
+function Load_CMS_RecipientInfo_kemri_get0_kdf_alg(ri: PCMS_RecipientInfo): PX509_ALGOR; cdecl;
+begin
+  CMS_RecipientInfo_kemri_get0_kdf_alg := LoadLibCryptoFunction('CMS_RecipientInfo_kemri_get0_kdf_alg');
+  if not assigned(CMS_RecipientInfo_kemri_get0_kdf_alg) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_RecipientInfo_kemri_get0_kdf_alg');
+  Result := CMS_RecipientInfo_kemri_get0_kdf_alg(ri);
+end;
+
+function Load_CMS_RecipientInfo_kemri_set_ukm(ri: PCMS_RecipientInfo; ukm: Pbyte; ukmLength: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
+begin
+  CMS_RecipientInfo_kemri_set_ukm := LoadLibCryptoFunction('CMS_RecipientInfo_kemri_set_ukm');
+  if not assigned(CMS_RecipientInfo_kemri_set_ukm) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('CMS_RecipientInfo_kemri_set_ukm');
+  Result := CMS_RecipientInfo_kemri_set_ukm(ri, ukm, ukmLength);
+end;
+
 {$endif} { OPENSSL_NO_CMS}
 procedure Load;
 begin
@@ -2586,6 +2693,11 @@ begin
   CMS_RecipientInfo_kari_get0_ctx := Load_CMS_RecipientInfo_kari_get0_ctx;
   CMS_RecipientInfo_kari_decrypt := Load_CMS_RecipientInfo_kari_decrypt;
   CMS_SharedInfo_encode := Load_CMS_SharedInfo_encode;
+  CMS_RecipientInfo_kemri_cert_cmp := Load_CMS_RecipientInfo_kemri_cert_cmp;
+  CMS_RecipientInfo_kemri_set0_pkey := Load_CMS_RecipientInfo_kemri_set0_pkey;
+  CMS_RecipientInfo_kemri_get0_ctx := Load_CMS_RecipientInfo_kemri_get0_ctx;
+  CMS_RecipientInfo_kemri_get0_kdf_alg := Load_CMS_RecipientInfo_kemri_get0_kdf_alg;
+  CMS_RecipientInfo_kemri_set_ukm := Load_CMS_RecipientInfo_kemri_set_ukm;
 {$endif} { OPENSSL_NO_CMS}
 end;
 

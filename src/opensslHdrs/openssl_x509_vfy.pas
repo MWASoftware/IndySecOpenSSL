@@ -18,7 +18,7 @@
 unit openssl_x509_vfy;
 
 {
-  Generated from OpenSSL 3.5.6 Header File x509_vfy.h - Tue 19 May 14:29:08 BST 2026
+  Generated from OpenSSL 3.6.2 Header File x509_vfy.h - Tue 19 May 14:31:32 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -57,6 +57,52 @@ uses OpenSSLAPI,openssl_types,openssl_stack,openssl_asn1,openssl_x509v3,
   {$ifndef  OPENSSL_X509_H}
   {$endif}
   {$include openssl_opensslconf.inc}
+
+type
+  {Auto-generated forward references}
+  Pstack_st_OCSP_RESPONSE = ^Tstack_st_OCSP_RESPONSE;
+  PPstack_st_OCSP_RESPONSE = ^Pstack_st_OCSP_RESPONSE;
+  Psk_OCSP_RESPONSE_compfunc = ^Tsk_OCSP_RESPONSE_compfunc;
+  PPsk_OCSP_RESPONSE_compfunc = ^Psk_OCSP_RESPONSE_compfunc;
+  Psk_OCSP_RESPONSE_freefunc = ^Tsk_OCSP_RESPONSE_freefunc;
+  PPsk_OCSP_RESPONSE_freefunc = ^Psk_OCSP_RESPONSE_freefunc;
+  Psk_OCSP_RESPONSE_copyfunc = ^Tsk_OCSP_RESPONSE_copyfunc;
+  PPsk_OCSP_RESPONSE_copyfunc = ^Psk_OCSP_RESPONSE_copyfunc;
+  {end of auto-generated forward references}
+
+  Tstack_st_OCSP_RESPONSE = record 
+  end;
+  Tsk_OCSP_RESPONSE_compfunc = function(a: PPOCSP_RESPONSE; b: PPOCSP_RESPONSE): TOpenSSL_C_INT; cdecl;
+  Tsk_OCSP_RESPONSE_freefunc = procedure(a: POCSP_RESPONSE); cdecl;
+  Tsk_OCSP_RESPONSE_copyfunc = function(a: POCSP_RESPONSE): POCSP_RESPONSE; cdecl;
+
+
+  procedure sk_OCSP_RESPONSE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+  function sk_OCSP_RESPONSE_num(sk: Pstack_st_OCSP_RESPONSE): TOpenSSL_C_INT{Has C Attribute: unused}; inline;
+  function sk_OCSP_RESPONSE_value(sk: Pstack_st_OCSP_RESPONSE; idx: TOpenSSL_C_INT): POCSP_RESPONSE{Has C Attribute: unused}; inline;
+  function sk_OCSP_RESPONSE_new(compare: Tsk_OCSP_RESPONSE_compfunc): Pstack_st_OCSP_RESPONSE{Has C Attribute: unused}; inline;
+  function sk_OCSP_RESPONSE_new_null: Pstack_st_OCSP_RESPONSE{Has C Attribute: unused}; inline;
+  function sk_OCSP_RESPONSE_new_reserve(compare: Tsk_OCSP_RESPONSE_compfunc; n: TOpenSSL_C_INT): Pstack_st_OCSP_RESPONSE{Has C Attribute: unused}; inline;
+  function sk_OCSP_RESPONSE_reserve(sk: Pstack_st_OCSP_RESPONSE; n: TOpenSSL_C_INT): TOpenSSL_C_INT{Has C Attribute: unused}; inline;
+  procedure sk_OCSP_RESPONSE_free(sk: Pstack_st_OCSP_RESPONSE){Has C Attribute: unused}; inline;
+  procedure sk_OCSP_RESPONSE_zero(sk: Pstack_st_OCSP_RESPONSE){Has C Attribute: unused}; inline;
+  function sk_OCSP_RESPONSE_delete(sk: Pstack_st_OCSP_RESPONSE; i: TOpenSSL_C_INT): POCSP_RESPONSE{Has C Attribute: unused}; inline;
+  function sk_OCSP_RESPONSE_delete_ptr(sk: Pstack_st_OCSP_RESPONSE; ptr: POCSP_RESPONSE): POCSP_RESPONSE{Has C Attribute: unused}; inline;
+  function sk_OCSP_RESPONSE_push(sk: Pstack_st_OCSP_RESPONSE; ptr: POCSP_RESPONSE): TOpenSSL_C_INT{Has C Attribute: unused}; inline;
+  function sk_OCSP_RESPONSE_unshift(sk: Pstack_st_OCSP_RESPONSE; ptr: POCSP_RESPONSE): TOpenSSL_C_INT{Has C Attribute: unused}; inline;
+  function sk_OCSP_RESPONSE_pop(sk: Pstack_st_OCSP_RESPONSE): POCSP_RESPONSE{Has C Attribute: unused}; inline;
+  function sk_OCSP_RESPONSE_shift(sk: Pstack_st_OCSP_RESPONSE): POCSP_RESPONSE{Has C Attribute: unused}; inline;
+  procedure sk_OCSP_RESPONSE_pop_free(sk: Pstack_st_OCSP_RESPONSE; freefunc: Tsk_OCSP_RESPONSE_freefunc){Has C Attribute: unused}; inline;
+  function sk_OCSP_RESPONSE_insert(sk: Pstack_st_OCSP_RESPONSE; ptr: POCSP_RESPONSE; idx: TOpenSSL_C_INT): TOpenSSL_C_INT{Has C Attribute: unused}; inline;
+  function sk_OCSP_RESPONSE_set(sk: Pstack_st_OCSP_RESPONSE; idx: TOpenSSL_C_INT; ptr: POCSP_RESPONSE): POCSP_RESPONSE{Has C Attribute: unused}; inline;
+  function sk_OCSP_RESPONSE_find(sk: Pstack_st_OCSP_RESPONSE; ptr: POCSP_RESPONSE): TOpenSSL_C_INT{Has C Attribute: unused}; inline;
+  function sk_OCSP_RESPONSE_find_ex(sk: Pstack_st_OCSP_RESPONSE; ptr: POCSP_RESPONSE): TOpenSSL_C_INT{Has C Attribute: unused}; inline;
+  function sk_OCSP_RESPONSE_find_all(sk: Pstack_st_OCSP_RESPONSE; ptr: POCSP_RESPONSE; pnum: POpenSSL_C_INT): TOpenSSL_C_INT{Has C Attribute: unused}; inline;
+  procedure sk_OCSP_RESPONSE_sort(sk: Pstack_st_OCSP_RESPONSE){Has C Attribute: unused}; inline;
+  function sk_OCSP_RESPONSE_is_sorted(sk: Pstack_st_OCSP_RESPONSE): TOpenSSL_C_INT{Has C Attribute: unused}; inline;
+  function sk_OCSP_RESPONSE_dup(sk: Pstack_st_OCSP_RESPONSE): Pstack_st_OCSP_RESPONSE{Has C Attribute: unused}; inline;
+  function sk_OCSP_RESPONSE_deep_copy(sk: Pstack_st_OCSP_RESPONSE; copyfunc: Tsk_OCSP_RESPONSE_copyfunc; freefunc: Tsk_OCSP_RESPONSE_freefunc): Pstack_st_OCSP_RESPONSE{Has C Attribute: unused}; inline;
+  function sk_OCSP_RESPONSE_set_cmp_func(sk: Pstack_st_OCSP_RESPONSE; compare: Tsk_OCSP_RESPONSE_compfunc): Tsk_OCSP_RESPONSE_compfunc{Has C Attribute: unused}; inline;
 
 type
   {Auto-generated forward references}
@@ -112,6 +158,7 @@ type
   Tsk_X509_LOOKUP_copyfunc = function(a: PX509_LOOKUP): PX509_LOOKUP; cdecl;
 
 
+  procedure sk_X509_LOOKUP_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_X509_LOOKUP_type(ptr: PX509_LOOKUP): PX509_LOOKUP{Has C Attribute: unused}; inline;
   function ossl_check_const_X509_LOOKUP_sk_type(sk: Pstack_st_X509_LOOKUP): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_X509_LOOKUP_sk_type(sk: Pstack_st_X509_LOOKUP): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -248,6 +295,7 @@ type
   Tsk_X509_OBJECT_copyfunc = function(a: PX509_OBJECT): PX509_OBJECT; cdecl;
 
 
+  procedure sk_X509_OBJECT_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_X509_OBJECT_type(ptr: PX509_OBJECT): PX509_OBJECT{Has C Attribute: unused}; inline;
   function ossl_check_const_X509_OBJECT_sk_type(sk: Pstack_st_X509_OBJECT): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_X509_OBJECT_sk_type(sk: Pstack_st_X509_OBJECT): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -380,6 +428,7 @@ type
   Tsk_X509_VERIFY_PARAM_copyfunc = function(a: PX509_VERIFY_PARAM): PX509_VERIFY_PARAM; cdecl;
 
 
+  procedure sk_X509_VERIFY_PARAM_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_X509_VERIFY_PARAM_type(ptr: PX509_VERIFY_PARAM): PX509_VERIFY_PARAM{Has C Attribute: unused}; inline;
   function ossl_check_const_X509_VERIFY_PARAM_sk_type(sk: Pstack_st_X509_VERIFY_PARAM): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_X509_VERIFY_PARAM_sk_type(sk: Pstack_st_X509_VERIFY_PARAM): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -533,6 +582,7 @@ type
   Tsk_X509_TRUST_copyfunc = function(a: PX509_TRUST): PX509_TRUST; cdecl;
 
 
+  procedure sk_X509_TRUST_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_X509_TRUST_type(ptr: PX509_TRUST): PX509_TRUST{Has C Attribute: unused}; inline;
   function ossl_check_const_X509_TRUST_sk_type(sk: Pstack_st_X509_TRUST): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_X509_TRUST_sk_type(sk: Pstack_st_X509_TRUST): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -1006,6 +1056,13 @@ const
   X509_V_ERR_EXTENSIONS_REQUIRE_VERSION_3 = 93;
   X509_V_ERR_EC_KEY_EXPLICIT_PARAMS = 94;
   X509_V_ERR_RPK_UNTRUSTED = 95;
+  { additional OCSP status errors }
+  X509_V_ERR_OCSP_RESP_INVALID = 96;
+  X509_V_ERR_OCSP_SIGNATURE_FAILURE = 97;
+  X509_V_ERR_OCSP_NOT_YET_VALID = 98;
+  X509_V_ERR_OCSP_HAS_EXPIRED = 99;
+  X509_V_ERR_OCSP_NO_RESPONSE = 100;
+  X509_V_ERR_CRL_VERIFY_FAILED = 101;
   { Certificate verify flags }
   {$ifndef  OPENSSL_NO_DEPRECATED_1_1_0}
 
@@ -1060,6 +1117,10 @@ const
   X509_V_FLAG_NO_ALT_CHAINS = $100000;
   { Do not check certificate/CRL validity against current time }
   X509_V_FLAG_NO_CHECK_TIME = $200000;
+  { Verify OCSP stapling response for server certificate }
+  X509_V_FLAG_OCSP_RESP_CHECK = $400000;
+  { Verify OCSP stapling responses for whole chain }
+  X509_V_FLAG_OCSP_RESP_CHECK_ALL = $800000;
   X509_VP_FLAG_DEFAULT = $1;
   X509_VP_FLAG_OVERWRITE = $2;
   X509_VP_FLAG_RESET_FLAGS = $4;
@@ -1307,7 +1368,7 @@ var
   X509_STORE_get_cleanup: function(xs: PX509_STORE): TX509_STORE_CTX_cleanup_fn; cdecl = Load_X509_STORE_get_cleanup;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
   {# define  X509_STORE_get_ex_new_index(l,p,newf,dupf,freef) CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_X509_STORE, l, p, newf, dupf,
- freef)} {Macro Return Type unknown at line no 568}
+ freef)} {Macro Return Type unknown at line no 583}
 
 
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
@@ -1857,7 +1918,7 @@ var
   X509_STORE_set_default_paths_ex: function(xs: PX509_STORE; libctx: POSSL_LIB_CTX; propq: PAnsiChar): TOpenSSL_C_INT; cdecl = Load_X509_STORE_set_default_paths_ex;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
   {# define  X509_STORE_CTX_get_ex_new_index(l,p,newf,dupf,freef) CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_X509_STORE_CTX, l, p, newf,
- dupf, freef)} {Macro Return Type unknown at line no 762}
+ dupf, freef)} {Macro Return Type unknown at line no 777}
 
 
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
@@ -1878,23 +1939,6 @@ var
   procedure X509_STORE_CTX_set0_rpk(ctx: PX509_STORE_CTX; target: PEVP_PKEY); cdecl; external CLibCrypto name 'X509_STORE_CTX_set0_rpk';
   procedure X509_STORE_CTX_set0_verified_chain(c: PX509_STORE_CTX; sk: Pstack_st_X509); cdecl; external CLibCrypto name 'X509_STORE_CTX_set0_verified_chain';
   procedure X509_STORE_CTX_set0_crls(ctx: PX509_STORE_CTX; sk: Pstack_st_X509_CRL); cdecl; external CLibCrypto name 'X509_STORE_CTX_set0_crls';
-  function X509_STORE_CTX_set_purpose(ctx: PX509_STORE_CTX; purpose: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'X509_STORE_CTX_set_purpose';
-  function X509_STORE_CTX_set_trust(ctx: PX509_STORE_CTX; trust: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'X509_STORE_CTX_set_trust';
-  function X509_STORE_CTX_purpose_inherit(ctx: PX509_STORE_CTX; def_purpose: TOpenSSL_C_INT; purpose: TOpenSSL_C_INT; trust: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'X509_STORE_CTX_purpose_inherit';
-  procedure X509_STORE_CTX_set_flags(ctx: PX509_STORE_CTX; flags: TOpenSSL_C_UINT); cdecl; external CLibCrypto name 'X509_STORE_CTX_set_flags';
-  procedure X509_STORE_CTX_set_time(ctx: PX509_STORE_CTX; flags: TOpenSSL_C_UINT; t: TOpenSSL_C_TIMET); cdecl; external CLibCrypto name 'X509_STORE_CTX_set_time';
-  procedure X509_STORE_CTX_set_current_reasons(ctx: PX509_STORE_CTX; current_reasons: TOpenSSL_C_UINT); cdecl; external CLibCrypto name 'X509_STORE_CTX_set_current_reasons';
-  function X509_STORE_CTX_get0_policy_tree(ctx: PX509_STORE_CTX): PX509_POLICY_TREE; cdecl; external CLibCrypto name 'X509_STORE_CTX_get0_policy_tree';
-  function X509_STORE_CTX_get_explicit_policy(ctx: PX509_STORE_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'X509_STORE_CTX_get_explicit_policy';
-  function X509_STORE_CTX_get_num_untrusted(ctx: PX509_STORE_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'X509_STORE_CTX_get_num_untrusted';
-  function X509_STORE_CTX_get0_param(ctx: PX509_STORE_CTX): PX509_VERIFY_PARAM; cdecl; external CLibCrypto name 'X509_STORE_CTX_get0_param';
-  procedure X509_STORE_CTX_set0_param(ctx: PX509_STORE_CTX; param: PX509_VERIFY_PARAM); cdecl; external CLibCrypto name 'X509_STORE_CTX_set0_param';
-  function X509_STORE_CTX_set_default(ctx: PX509_STORE_CTX; name: PAnsiChar): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'X509_STORE_CTX_set_default';
-  
-  {* Bridge opacity barrier between libcrypt and libssl, also needed to support
-  * offline testing in test/danetest.c
-  }
-  procedure X509_STORE_CTX_set0_dane(ctx: PX509_STORE_CTX; dane: PSSL_DANE); cdecl; external CLibCrypto name 'X509_STORE_CTX_set0_dane';
   {$else}
   {$EXTERNALSYM X509_STORE_CTX_set_ex_data}
   {$EXTERNALSYM X509_STORE_CTX_get_ex_data}
@@ -1913,19 +1957,6 @@ var
   {$EXTERNALSYM X509_STORE_CTX_set0_rpk}
   {$EXTERNALSYM X509_STORE_CTX_set0_verified_chain}
   {$EXTERNALSYM X509_STORE_CTX_set0_crls}
-  {$EXTERNALSYM X509_STORE_CTX_set_purpose}
-  {$EXTERNALSYM X509_STORE_CTX_set_trust}
-  {$EXTERNALSYM X509_STORE_CTX_purpose_inherit}
-  {$EXTERNALSYM X509_STORE_CTX_set_flags}
-  {$EXTERNALSYM X509_STORE_CTX_set_time}
-  {$EXTERNALSYM X509_STORE_CTX_set_current_reasons}
-  {$EXTERNALSYM X509_STORE_CTX_get0_policy_tree}
-  {$EXTERNALSYM X509_STORE_CTX_get_explicit_policy}
-  {$EXTERNALSYM X509_STORE_CTX_get_num_untrusted}
-  {$EXTERNALSYM X509_STORE_CTX_get0_param}
-  {$EXTERNALSYM X509_STORE_CTX_set0_param}
-  {$EXTERNALSYM X509_STORE_CTX_set_default}
-  {$EXTERNALSYM X509_STORE_CTX_set0_dane}
   {Do not call Function LoadDeclarations. Internal use only}
   function Load_X509_STORE_CTX_set_ex_data(ctx: PX509_STORE_CTX; idx: TOpenSSL_C_INT; data: pointer): TOpenSSL_C_INT; cdecl;
   function Load_X509_STORE_CTX_get_ex_data(ctx: PX509_STORE_CTX; idx: TOpenSSL_C_INT): pointer; cdecl;
@@ -1944,19 +1975,6 @@ var
   procedure Load_X509_STORE_CTX_set0_rpk(ctx: PX509_STORE_CTX; target: PEVP_PKEY); cdecl;
   procedure Load_X509_STORE_CTX_set0_verified_chain(c: PX509_STORE_CTX; sk: Pstack_st_X509); cdecl;
   procedure Load_X509_STORE_CTX_set0_crls(ctx: PX509_STORE_CTX; sk: Pstack_st_X509_CRL); cdecl;
-  function Load_X509_STORE_CTX_set_purpose(ctx: PX509_STORE_CTX; purpose: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
-  function Load_X509_STORE_CTX_set_trust(ctx: PX509_STORE_CTX; trust: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
-  function Load_X509_STORE_CTX_purpose_inherit(ctx: PX509_STORE_CTX; def_purpose: TOpenSSL_C_INT; purpose: TOpenSSL_C_INT; trust: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
-  procedure Load_X509_STORE_CTX_set_flags(ctx: PX509_STORE_CTX; flags: TOpenSSL_C_UINT); cdecl;
-  procedure Load_X509_STORE_CTX_set_time(ctx: PX509_STORE_CTX; flags: TOpenSSL_C_UINT; t: TOpenSSL_C_TIMET); cdecl;
-  procedure Load_X509_STORE_CTX_set_current_reasons(ctx: PX509_STORE_CTX; current_reasons: TOpenSSL_C_UINT); cdecl;
-  function Load_X509_STORE_CTX_get0_policy_tree(ctx: PX509_STORE_CTX): PX509_POLICY_TREE; cdecl;
-  function Load_X509_STORE_CTX_get_explicit_policy(ctx: PX509_STORE_CTX): TOpenSSL_C_INT; cdecl;
-  function Load_X509_STORE_CTX_get_num_untrusted(ctx: PX509_STORE_CTX): TOpenSSL_C_INT; cdecl;
-  function Load_X509_STORE_CTX_get0_param(ctx: PX509_STORE_CTX): PX509_VERIFY_PARAM; cdecl;
-  procedure Load_X509_STORE_CTX_set0_param(ctx: PX509_STORE_CTX; param: PX509_VERIFY_PARAM); cdecl;
-  function Load_X509_STORE_CTX_set_default(ctx: PX509_STORE_CTX; name: PAnsiChar): TOpenSSL_C_INT; cdecl;
-  procedure Load_X509_STORE_CTX_set0_dane(ctx: PX509_STORE_CTX; dane: PSSL_DANE); cdecl;
 
 var
   X509_STORE_CTX_set_ex_data: function(ctx: PX509_STORE_CTX; idx: TOpenSSL_C_INT; data: pointer): TOpenSSL_C_INT; cdecl = Load_X509_STORE_CTX_set_ex_data;
@@ -1976,6 +1994,71 @@ var
   X509_STORE_CTX_set0_rpk: procedure(ctx: PX509_STORE_CTX; target: PEVP_PKEY); cdecl = Load_X509_STORE_CTX_set0_rpk;
   X509_STORE_CTX_set0_verified_chain: procedure(c: PX509_STORE_CTX; sk: Pstack_st_X509); cdecl = Load_X509_STORE_CTX_set0_verified_chain;
   X509_STORE_CTX_set0_crls: procedure(ctx: PX509_STORE_CTX; sk: Pstack_st_X509_CRL); cdecl = Load_X509_STORE_CTX_set0_crls;
+  {$endif} {OPENSSL_STATIC_LINK_MODEL}
+  {$ifndef  OPENSSL_NO_OCSP}
+
+
+    {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  procedure X509_STORE_CTX_set_ocsp_resp(ctx: PX509_STORE_CTX; sk: Pstack_st_OCSP_RESPONSE); cdecl; external CLibCrypto name 'X509_STORE_CTX_set_ocsp_resp';
+    {$else}
+  {$EXTERNALSYM X509_STORE_CTX_set_ocsp_resp}
+  {Do not call Function LoadDeclarations. Internal use only}
+  procedure Load_X509_STORE_CTX_set_ocsp_resp(ctx: PX509_STORE_CTX; sk: Pstack_st_OCSP_RESPONSE); cdecl;
+
+var
+  X509_STORE_CTX_set_ocsp_resp: procedure(ctx: PX509_STORE_CTX; sk: Pstack_st_OCSP_RESPONSE); cdecl = Load_X509_STORE_CTX_set_ocsp_resp;
+    {$endif} {OPENSSL_STATIC_LINK_MODEL}
+  {$endif}
+
+
+  {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  function X509_STORE_CTX_set_purpose(ctx: PX509_STORE_CTX; purpose: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'X509_STORE_CTX_set_purpose';
+  function X509_STORE_CTX_set_trust(ctx: PX509_STORE_CTX; trust: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'X509_STORE_CTX_set_trust';
+  function X509_STORE_CTX_purpose_inherit(ctx: PX509_STORE_CTX; def_purpose: TOpenSSL_C_INT; purpose: TOpenSSL_C_INT; trust: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'X509_STORE_CTX_purpose_inherit';
+  procedure X509_STORE_CTX_set_flags(ctx: PX509_STORE_CTX; flags: TOpenSSL_C_UINT); cdecl; external CLibCrypto name 'X509_STORE_CTX_set_flags';
+  procedure X509_STORE_CTX_set_time(ctx: PX509_STORE_CTX; flags: TOpenSSL_C_UINT; t: TOpenSSL_C_TIMET); cdecl; external CLibCrypto name 'X509_STORE_CTX_set_time';
+  procedure X509_STORE_CTX_set_current_reasons(ctx: PX509_STORE_CTX; current_reasons: TOpenSSL_C_UINT); cdecl; external CLibCrypto name 'X509_STORE_CTX_set_current_reasons';
+  function X509_STORE_CTX_get0_policy_tree(ctx: PX509_STORE_CTX): PX509_POLICY_TREE; cdecl; external CLibCrypto name 'X509_STORE_CTX_get0_policy_tree';
+  function X509_STORE_CTX_get_explicit_policy(ctx: PX509_STORE_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'X509_STORE_CTX_get_explicit_policy';
+  function X509_STORE_CTX_get_num_untrusted(ctx: PX509_STORE_CTX): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'X509_STORE_CTX_get_num_untrusted';
+  function X509_STORE_CTX_get0_param(ctx: PX509_STORE_CTX): PX509_VERIFY_PARAM; cdecl; external CLibCrypto name 'X509_STORE_CTX_get0_param';
+  procedure X509_STORE_CTX_set0_param(ctx: PX509_STORE_CTX; param: PX509_VERIFY_PARAM); cdecl; external CLibCrypto name 'X509_STORE_CTX_set0_param';
+  function X509_STORE_CTX_set_default(ctx: PX509_STORE_CTX; name: PAnsiChar): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'X509_STORE_CTX_set_default';
+  
+  {* Bridge opacity barrier between libcrypt and libssl, also needed to support
+  * offline testing in test/danetest.c
+  }
+  procedure X509_STORE_CTX_set0_dane(ctx: PX509_STORE_CTX; dane: PSSL_DANE); cdecl; external CLibCrypto name 'X509_STORE_CTX_set0_dane';
+  {$else}
+  {$EXTERNALSYM X509_STORE_CTX_set_purpose}
+  {$EXTERNALSYM X509_STORE_CTX_set_trust}
+  {$EXTERNALSYM X509_STORE_CTX_purpose_inherit}
+  {$EXTERNALSYM X509_STORE_CTX_set_flags}
+  {$EXTERNALSYM X509_STORE_CTX_set_time}
+  {$EXTERNALSYM X509_STORE_CTX_set_current_reasons}
+  {$EXTERNALSYM X509_STORE_CTX_get0_policy_tree}
+  {$EXTERNALSYM X509_STORE_CTX_get_explicit_policy}
+  {$EXTERNALSYM X509_STORE_CTX_get_num_untrusted}
+  {$EXTERNALSYM X509_STORE_CTX_get0_param}
+  {$EXTERNALSYM X509_STORE_CTX_set0_param}
+  {$EXTERNALSYM X509_STORE_CTX_set_default}
+  {$EXTERNALSYM X509_STORE_CTX_set0_dane}
+  {Do not call Function LoadDeclarations. Internal use only}
+  function Load_X509_STORE_CTX_set_purpose(ctx: PX509_STORE_CTX; purpose: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
+  function Load_X509_STORE_CTX_set_trust(ctx: PX509_STORE_CTX; trust: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
+  function Load_X509_STORE_CTX_purpose_inherit(ctx: PX509_STORE_CTX; def_purpose: TOpenSSL_C_INT; purpose: TOpenSSL_C_INT; trust: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
+  procedure Load_X509_STORE_CTX_set_flags(ctx: PX509_STORE_CTX; flags: TOpenSSL_C_UINT); cdecl;
+  procedure Load_X509_STORE_CTX_set_time(ctx: PX509_STORE_CTX; flags: TOpenSSL_C_UINT; t: TOpenSSL_C_TIMET); cdecl;
+  procedure Load_X509_STORE_CTX_set_current_reasons(ctx: PX509_STORE_CTX; current_reasons: TOpenSSL_C_UINT); cdecl;
+  function Load_X509_STORE_CTX_get0_policy_tree(ctx: PX509_STORE_CTX): PX509_POLICY_TREE; cdecl;
+  function Load_X509_STORE_CTX_get_explicit_policy(ctx: PX509_STORE_CTX): TOpenSSL_C_INT; cdecl;
+  function Load_X509_STORE_CTX_get_num_untrusted(ctx: PX509_STORE_CTX): TOpenSSL_C_INT; cdecl;
+  function Load_X509_STORE_CTX_get0_param(ctx: PX509_STORE_CTX): PX509_VERIFY_PARAM; cdecl;
+  procedure Load_X509_STORE_CTX_set0_param(ctx: PX509_STORE_CTX; param: PX509_VERIFY_PARAM); cdecl;
+  function Load_X509_STORE_CTX_set_default(ctx: PX509_STORE_CTX; name: PAnsiChar): TOpenSSL_C_INT; cdecl;
+  procedure Load_X509_STORE_CTX_set0_dane(ctx: PX509_STORE_CTX; dane: PSSL_DANE); cdecl;
+
+var
   X509_STORE_CTX_set_purpose: function(ctx: PX509_STORE_CTX; purpose: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_X509_STORE_CTX_set_purpose;
   X509_STORE_CTX_set_trust: function(ctx: PX509_STORE_CTX; trust: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_X509_STORE_CTX_set_trust;
   X509_STORE_CTX_purpose_inherit: function(ctx: PX509_STORE_CTX; def_purpose: TOpenSSL_C_INT; purpose: TOpenSSL_C_INT; trust: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_X509_STORE_CTX_purpose_inherit;
@@ -2268,6 +2351,173 @@ uses Sysutils, variants
     OPENSSL_LINE  = 0;
   {$ifend}
 
+procedure sk_OCSP_RESPONSE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OCSP_RESPONSE_freefunc_thunk"');
+
+{Error: Line 47: Syntax Error parsing " sk_OCSP_RESPONSE_freefunc freefunc = (sk_OCSP_RESPONSE_freefunc)freefunc_arg; freefunc((OCSP_RESPONSE 
+*)ptr); "
+
+ sk_OCSP_RESPONSE_freefunc freefunc = (sk_OCSP_RESPONSE_freefunc)freefunc_arg; freefunc((OCSP_RESPONSE *)ptr); }
+end;
+
+function sk_OCSP_RESPONSE_num(sk: Pstack_st_OCSP_RESPONSE): TOpenSSL_C_INT{Has C Attribute: unused}; inline;
+begin
+   Result := OPENSSL_sk_num(POPENSSL_STACK(sk));
+end;
+
+function sk_OCSP_RESPONSE_value(sk: Pstack_st_OCSP_RESPONSE; idx: TOpenSSL_C_INT): POCSP_RESPONSE{Has C Attribute: unused}; inline;
+begin
+   Result := POCSP_RESPONSE(OPENSSL_sk_value(POPENSSL_STACK(sk),idx));
+end;
+
+function sk_OCSP_RESPONSE_new(compare: Tsk_OCSP_RESPONSE_compfunc): Pstack_st_OCSP_RESPONSE{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OCSP_RESPONSE_new"');
+
+{Error: Line 47: Syntax Error parsing " OPENSSL_STACK *ret = OPENSSL_sk_new((OPENSSL_sk_compfunc)compare); OPENSSL_sk_freefunc_thunk 
+f_thunk; f_thunk = (OPENSSL_sk_freefunc_thunk)sk_OCSP_RESPONSE_freefunc_thunk; return (struct stack_st_OCSP_RESPONSE *)OPENSSL_sk_set_thunks(ret,
+ f_thunk); "
+
+ OPENSSL_STACK *ret = OPENSSL_sk_new((OPENSSL_sk_compfunc)compare); OPENSSL_sk_freefunc_thunk f_thunk; f_thunk = (OPENSSL_sk_freefunc_thunk)sk_OCSP_RESPONSE_freefunc_thunk; 
+return (struct stack_st_OCSP_RESPONSE *)OPENSSL_sk_set_thunks(ret, f_thunk); }
+end;
+
+function sk_OCSP_RESPONSE_new_null: Pstack_st_OCSP_RESPONSE{Has C Attribute: unused}; inline;
+begin
+   Result := Pstack_st_OCSP_RESPONSE(OPENSSL_sk_new_null);
+end;
+
+function sk_OCSP_RESPONSE_new_reserve(compare: Tsk_OCSP_RESPONSE_compfunc; n: TOpenSSL_C_INT): Pstack_st_OCSP_RESPONSE{Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OCSP_RESPONSE_new_reserve"');
+
+{Error: Line 47: Syntax Error parsing " OPENSSL_STACK *ret = OPENSSL_sk_new_reserve((OPENSSL_sk_compfunc)compare, n); OPENSSL_sk_freefunc_thunk 
+f_thunk; f_thunk = (OPENSSL_sk_freefunc_thunk)sk_OCSP_RESPONSE_freefunc_thunk; return (struct stack_st_OCSP_RESPONSE *)OPENSSL_sk_set_thunks(ret,
+ f_thunk); "
+
+ OPENSSL_STACK *ret = OPENSSL_sk_new_reserve((OPENSSL_sk_compfunc)compare, n); OPENSSL_sk_freefunc_thunk f_thunk; f_thunk = (OPENSSL_sk_freefunc_thunk)sk_OCSP_RESPONSE_freefunc_thunk; 
+return (struct stack_st_OCSP_RESPONSE *)OPENSSL_sk_set_thunks(ret, f_thunk); }
+end;
+
+function sk_OCSP_RESPONSE_reserve(sk: Pstack_st_OCSP_RESPONSE; n: TOpenSSL_C_INT): TOpenSSL_C_INT{Has C Attribute: unused}; inline;
+begin
+   Result := OPENSSL_sk_reserve(POPENSSL_STACK(sk),n);
+end;
+
+procedure sk_OCSP_RESPONSE_free(sk: Pstack_st_OCSP_RESPONSE){Has C Attribute: unused}; inline;
+begin
+    OPENSSL_sk_free(POPENSSL_STACK(sk));
+end;
+
+procedure sk_OCSP_RESPONSE_zero(sk: Pstack_st_OCSP_RESPONSE){Has C Attribute: unused}; inline;
+begin
+    OPENSSL_sk_zero(POPENSSL_STACK(sk));
+end;
+
+function sk_OCSP_RESPONSE_delete(sk: Pstack_st_OCSP_RESPONSE; i: TOpenSSL_C_INT): POCSP_RESPONSE{Has C Attribute: unused}; inline;
+begin
+   Result := POCSP_RESPONSE(OPENSSL_sk_delete(POPENSSL_STACK(sk),i));
+end;
+
+function sk_OCSP_RESPONSE_delete_ptr(sk: Pstack_st_OCSP_RESPONSE; ptr: POCSP_RESPONSE): POCSP_RESPONSE{Has C Attribute: unused}; inline;
+begin
+   Result := POCSP_RESPONSE(OPENSSL_sk_delete_ptr(POPENSSL_STACK(sk),pointer(ptr)));
+end;
+
+function sk_OCSP_RESPONSE_push(sk: Pstack_st_OCSP_RESPONSE; ptr: POCSP_RESPONSE): TOpenSSL_C_INT{Has C Attribute: unused}; inline;
+begin
+   Result := OPENSSL_sk_push(POPENSSL_STACK(sk),pointer(ptr));
+end;
+
+function sk_OCSP_RESPONSE_unshift(sk: Pstack_st_OCSP_RESPONSE; ptr: POCSP_RESPONSE): TOpenSSL_C_INT{Has C Attribute: unused}; inline;
+begin
+   Result := OPENSSL_sk_unshift(POPENSSL_STACK(sk),pointer(ptr));
+end;
+
+function sk_OCSP_RESPONSE_pop(sk: Pstack_st_OCSP_RESPONSE): POCSP_RESPONSE{Has C Attribute: unused}; inline;
+begin
+   Result := POCSP_RESPONSE(OPENSSL_sk_pop(POPENSSL_STACK(sk)));
+end;
+
+function sk_OCSP_RESPONSE_shift(sk: Pstack_st_OCSP_RESPONSE): POCSP_RESPONSE{Has C Attribute: unused}; inline;
+begin
+   Result := POCSP_RESPONSE(OPENSSL_sk_shift(POPENSSL_STACK(sk)));
+end;
+
+procedure sk_OCSP_RESPONSE_pop_free(sk: Pstack_st_OCSP_RESPONSE; freefunc: Tsk_OCSP_RESPONSE_freefunc){Has C Attribute: unused}; inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OCSP_RESPONSE_pop_free"');
+
+{Error: Line 47: Syntax Error parsing " OPENSSL_sk_freefunc_thunk f_thunk; f_thunk = (OPENSSL_sk_freefunc_thunk)sk_OCSP_RESPONSE_freefunc_thunk; 
+sk = (struct stack_st_OCSP_RESPONSE *)OPENSSL_sk_set_thunks((OPENSSL_STACK *)sk, f_thunk); OPENSSL_sk_pop_free((OPENSSL_STACK *)sk,
+ (OPENSSL_sk_freefunc)freefunc); "
+
+ OPENSSL_sk_freefunc_thunk f_thunk; f_thunk = (OPENSSL_sk_freefunc_thunk)sk_OCSP_RESPONSE_freefunc_thunk; sk = (struct stack_st_OCSP_RESPONSE 
+*)OPENSSL_sk_set_thunks((OPENSSL_STACK *)sk, f_thunk); OPENSSL_sk_pop_free((OPENSSL_STACK *)sk, (OPENSSL_sk_freefunc)freefunc); 
+}
+end;
+
+function sk_OCSP_RESPONSE_insert(sk: Pstack_st_OCSP_RESPONSE; ptr: POCSP_RESPONSE; idx: TOpenSSL_C_INT): TOpenSSL_C_INT{Has C Attribute: unused}; inline;
+begin
+   Result := OPENSSL_sk_insert(POPENSSL_STACK(sk),pointer(ptr),idx);
+end;
+
+function sk_OCSP_RESPONSE_set(sk: Pstack_st_OCSP_RESPONSE; idx: TOpenSSL_C_INT; ptr: POCSP_RESPONSE): POCSP_RESPONSE{Has C Attribute: unused}; inline;
+begin
+   Result := POCSP_RESPONSE(OPENSSL_sk_set(POPENSSL_STACK(sk),idx,pointer(ptr)));
+end;
+
+function sk_OCSP_RESPONSE_find(sk: Pstack_st_OCSP_RESPONSE; ptr: POCSP_RESPONSE): TOpenSSL_C_INT{Has C Attribute: unused}; inline;
+begin
+   Result := OPENSSL_sk_find(POPENSSL_STACK(sk),pointer(ptr));
+end;
+
+function sk_OCSP_RESPONSE_find_ex(sk: Pstack_st_OCSP_RESPONSE; ptr: POCSP_RESPONSE): TOpenSSL_C_INT{Has C Attribute: unused}; inline;
+begin
+   Result := OPENSSL_sk_find_ex(POPENSSL_STACK(sk),pointer(ptr));
+end;
+
+function sk_OCSP_RESPONSE_find_all(sk: Pstack_st_OCSP_RESPONSE; ptr: POCSP_RESPONSE; pnum: POpenSSL_C_INT): TOpenSSL_C_INT{Has C Attribute: unused}; inline;
+begin
+   Result := OPENSSL_sk_find_all(POPENSSL_STACK(sk),pointer(ptr),pnum);
+end;
+
+procedure sk_OCSP_RESPONSE_sort(sk: Pstack_st_OCSP_RESPONSE){Has C Attribute: unused}; inline;
+begin
+    OPENSSL_sk_sort(POPENSSL_STACK(sk));
+end;
+
+function sk_OCSP_RESPONSE_is_sorted(sk: Pstack_st_OCSP_RESPONSE): TOpenSSL_C_INT{Has C Attribute: unused}; inline;
+begin
+   Result := OPENSSL_sk_is_sorted(POPENSSL_STACK(sk));
+end;
+
+function sk_OCSP_RESPONSE_dup(sk: Pstack_st_OCSP_RESPONSE): Pstack_st_OCSP_RESPONSE{Has C Attribute: unused}; inline;
+begin
+   Result := Pstack_st_OCSP_RESPONSE(OPENSSL_sk_dup(POPENSSL_STACK(sk)));
+end;
+
+function sk_OCSP_RESPONSE_deep_copy(sk: Pstack_st_OCSP_RESPONSE; copyfunc: Tsk_OCSP_RESPONSE_copyfunc; freefunc: Tsk_OCSP_RESPONSE_freefunc): Pstack_st_OCSP_RESPONSE{Has C Attribute: unused}; inline;
+begin
+   Result := Pstack_st_OCSP_RESPONSE(OPENSSL_sk_deep_copy(POPENSSL_STACK(sk),TOPENSSL_sk_copyfunc(copyfunc),TOPENSSL_sk_freefunc(freefunc)));
+end;
+
+function sk_OCSP_RESPONSE_set_cmp_func(sk: Pstack_st_OCSP_RESPONSE; compare: Tsk_OCSP_RESPONSE_compfunc): Tsk_OCSP_RESPONSE_compfunc{Has C Attribute: unused}; inline;
+begin
+   Result := Tsk_OCSP_RESPONSE_compfunc(OPENSSL_sk_set_cmp_func(POPENSSL_STACK(sk),TOPENSSL_sk_compfunc(compare)));
+end;
+
+procedure sk_X509_LOOKUP_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_X509_LOOKUP_freefunc_thunk"');
+
+{Error: Line 78: Syntax Error parsing " sk_X509_LOOKUP_freefunc freefunc = (sk_X509_LOOKUP_freefunc)freefunc_arg; freefunc((X509_LOOKUP 
+*)ptr); "
+
+ sk_X509_LOOKUP_freefunc freefunc = (sk_X509_LOOKUP_freefunc)freefunc_arg; freefunc((X509_LOOKUP *)ptr); }
+end;
+
 function ossl_check_X509_LOOKUP_type(ptr: PX509_LOOKUP): PX509_LOOKUP{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -2296,6 +2546,16 @@ end;
 function ossl_check_X509_LOOKUP_freefunc_type(fr: Tsk_X509_LOOKUP_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
 begin
    Result := TOPENSSL_sk_freefunc(fr);
+end;
+
+procedure sk_X509_OBJECT_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_X509_OBJECT_freefunc_thunk"');
+
+{Error: Line 104: Syntax Error parsing " sk_X509_OBJECT_freefunc freefunc = (sk_X509_OBJECT_freefunc)freefunc_arg; freefunc((X509_OBJECT 
+*)ptr); "
+
+ sk_X509_OBJECT_freefunc freefunc = (sk_X509_OBJECT_freefunc)freefunc_arg; freefunc((X509_OBJECT *)ptr); }
 end;
 
 function ossl_check_X509_OBJECT_type(ptr: PX509_OBJECT): PX509_OBJECT{Has C Attribute: unused}; inline;
@@ -2328,6 +2588,16 @@ begin
    Result := TOPENSSL_sk_freefunc(fr);
 end;
 
+procedure sk_X509_VERIFY_PARAM_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_X509_VERIFY_PARAM_freefunc_thunk"');
+
+{Error: Line 130: Syntax Error parsing " sk_X509_VERIFY_PARAM_freefunc freefunc = (sk_X509_VERIFY_PARAM_freefunc)freefunc_arg; freefunc((X509_VERIFY_PARAM 
+*)ptr); "
+
+ sk_X509_VERIFY_PARAM_freefunc freefunc = (sk_X509_VERIFY_PARAM_freefunc)freefunc_arg; freefunc((X509_VERIFY_PARAM *)ptr); }
+end;
+
 function ossl_check_X509_VERIFY_PARAM_type(ptr: PX509_VERIFY_PARAM): PX509_VERIFY_PARAM{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -2356,6 +2626,16 @@ end;
 function ossl_check_X509_VERIFY_PARAM_freefunc_type(fr: Tsk_X509_VERIFY_PARAM_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
 begin
    Result := TOPENSSL_sk_freefunc(fr);
+end;
+
+procedure sk_X509_TRUST_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_X509_TRUST_freefunc_thunk"');
+
+{Error: Line 169: Syntax Error parsing " sk_X509_TRUST_freefunc freefunc = (sk_X509_TRUST_freefunc)freefunc_arg; freefunc((X509_TRUST 
+*)ptr); "
+
+ sk_X509_TRUST_freefunc freefunc = (sk_X509_TRUST_freefunc)freefunc_arg; freefunc((X509_TRUST *)ptr); }
 end;
 
 function ossl_check_X509_TRUST_type(ptr: PX509_TRUST): PX509_TRUST{Has C Attribute: unused}; inline;
@@ -4757,6 +5037,16 @@ begin
   X509_STORE_CTX_set0_crls(ctx, sk);
 end;
 
+{$ifndef  OPENSSL_NO_OCSP}
+procedure Load_X509_STORE_CTX_set_ocsp_resp(ctx: PX509_STORE_CTX; sk: Pstack_st_OCSP_RESPONSE); cdecl;
+begin
+  X509_STORE_CTX_set_ocsp_resp := LoadLibCryptoFunction('X509_STORE_CTX_set_ocsp_resp');
+  if not assigned(X509_STORE_CTX_set_ocsp_resp) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('X509_STORE_CTX_set_ocsp_resp');
+  X509_STORE_CTX_set_ocsp_resp(ctx, sk);
+end;
+
+{$endif} { OPENSSL_NO_OCSP}
 function Load_X509_STORE_CTX_set_purpose(ctx: PX509_STORE_CTX; purpose: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
 begin
   X509_STORE_CTX_set_purpose := LoadLibCryptoFunction('X509_STORE_CTX_set_purpose');
@@ -5555,6 +5845,9 @@ begin
   X509_STORE_CTX_set0_rpk := Load_X509_STORE_CTX_set0_rpk;
   X509_STORE_CTX_set0_verified_chain := Load_X509_STORE_CTX_set0_verified_chain;
   X509_STORE_CTX_set0_crls := Load_X509_STORE_CTX_set0_crls;
+{$ifndef  OPENSSL_NO_OCSP}
+  X509_STORE_CTX_set_ocsp_resp := Load_X509_STORE_CTX_set_ocsp_resp;
+{$endif} { OPENSSL_NO_OCSP}
   X509_STORE_CTX_set_purpose := Load_X509_STORE_CTX_set_purpose;
   X509_STORE_CTX_set_trust := Load_X509_STORE_CTX_set_trust;
   X509_STORE_CTX_purpose_inherit := Load_X509_STORE_CTX_purpose_inherit;

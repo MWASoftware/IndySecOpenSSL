@@ -18,7 +18,7 @@
 unit openssl_conf_api;
 
 {
-  Generated from OpenSSL 3.5.6 Header File conf_api.h - Tue 19 May 14:27:19 BST 2026
+  Generated from OpenSSL 3.6.2 Header File conf_api.h - Tue 19 May 14:29:39 BST 2026
 }
 
 {$IFNDEF FPC}

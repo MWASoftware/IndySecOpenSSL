@@ -18,7 +18,7 @@
 unit openssl_x509v3err;
 
 {
-  Generated from OpenSSL 3.5.6 Header File x509v3err.h - Tue 19 May 14:28:49 BST 2026
+  Generated from OpenSSL 3.6.2 Header File x509v3err.h - Tue 19 May 14:31:13 BST 2026
 }
 
 {$IFNDEF FPC}

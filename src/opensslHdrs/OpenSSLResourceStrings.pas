@@ -14,7 +14,7 @@
     This file includes software copied from the Indy (Internet Direct) project, and which is offered
     under the dual-licensing agreement described on the Indy website. (https://www.indyproject.org/license/)
     }
-    
+
 unit OpenSSLResourceStrings;
 
 interface

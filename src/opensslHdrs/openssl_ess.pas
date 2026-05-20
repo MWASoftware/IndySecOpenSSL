@@ -18,7 +18,7 @@
 unit openssl_ess;
 
 {
-  Generated from OpenSSL 3.5.6 Header File ess.h - Tue 19 May 14:27:44 BST 2026
+  Generated from OpenSSL 3.6.2 Header File ess.h - Tue 19 May 14:30:05 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -81,6 +81,7 @@ type
   Tsk_ESS_CERT_ID_copyfunc = function(a: PESS_CERT_ID): PESS_CERT_ID; cdecl;
 
 
+  procedure sk_ESS_CERT_ID_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_ESS_CERT_ID_type(ptr: PESS_CERT_ID): PESS_CERT_ID{Has C Attribute: unused}; inline;
   function ossl_check_const_ESS_CERT_ID_sk_type(sk: Pstack_st_ESS_CERT_ID): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_ESS_CERT_ID_sk_type(sk: Pstack_st_ESS_CERT_ID): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -232,6 +233,7 @@ type
   Tsk_ESS_CERT_ID_V2_copyfunc = function(a: PESS_CERT_ID_V2): PESS_CERT_ID_V2; cdecl;
 
 
+  procedure sk_ESS_CERT_ID_V2_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_ESS_CERT_ID_V2_type(ptr: PESS_CERT_ID_V2): PESS_CERT_ID_V2{Has C Attribute: unused}; inline;
   function ossl_check_const_ESS_CERT_ID_V2_sk_type(sk: Pstack_st_ESS_CERT_ID_V2): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_ESS_CERT_ID_V2_sk_type(sk: Pstack_st_ESS_CERT_ID_V2): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -506,6 +508,16 @@ uses Sysutils, variants
     OPENSSL_LINE  = 0;
   {$ifend}
 
+procedure sk_ESS_CERT_ID_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_ESS_CERT_ID_freefunc_thunk"');
+
+{Error: Line 35: Syntax Error parsing " sk_ESS_CERT_ID_freefunc freefunc = (sk_ESS_CERT_ID_freefunc)freefunc_arg; freefunc((ESS_CERT_ID 
+*)ptr); "
+
+ sk_ESS_CERT_ID_freefunc freefunc = (sk_ESS_CERT_ID_freefunc)freefunc_arg; freefunc((ESS_CERT_ID *)ptr); }
+end;
+
 function ossl_check_ESS_CERT_ID_type(ptr: PESS_CERT_ID): PESS_CERT_ID{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -534,6 +546,16 @@ end;
 function ossl_check_ESS_CERT_ID_freefunc_type(fr: Tsk_ESS_CERT_ID_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
 begin
    Result := TOPENSSL_sk_freefunc(fr);
+end;
+
+procedure sk_ESS_CERT_ID_V2_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_ESS_CERT_ID_V2_freefunc_thunk"');
+
+{Error: Line 68: Syntax Error parsing " sk_ESS_CERT_ID_V2_freefunc freefunc = (sk_ESS_CERT_ID_V2_freefunc)freefunc_arg; freefunc((ESS_CERT_ID_V2 
+*)ptr); "
+
+ sk_ESS_CERT_ID_V2_freefunc freefunc = (sk_ESS_CERT_ID_V2_freefunc)freefunc_arg; freefunc((ESS_CERT_ID_V2 *)ptr); }
 end;
 
 function ossl_check_ESS_CERT_ID_V2_type(ptr: PESS_CERT_ID_V2): PESS_CERT_ID_V2{Has C Attribute: unused}; inline;

@@ -18,7 +18,7 @@
 unit openssl_evp;
 
 {
-  Generated from OpenSSL 3.5.6 Header File evp.h - Tue 19 May 14:27:46 BST 2026
+  Generated from OpenSSL 3.6.2 Header File evp.h - Tue 19 May 14:30:07 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -843,6 +843,7 @@ const
   { For supplementary wrap cipher support }
   EVP_CIPH_FLAG_GET_WRAP_CIPHER = $4000000;
   EVP_CIPH_FLAG_INVERSE_CIPHER = $8000000;
+  EVP_CIPH_FLAG_ENC_THEN_MAC = $10000000;
   
   {* Cipher context flag to indicate we can handle wrap mode: if allowed in
   * older applications it could overflow buffers.
@@ -999,10 +1000,12 @@ type
 
   function EVP_PKEY_assign_RSA(pkey:PEVP_PKEY; rsa:pointer): TOpenSSL_C_INT; inline;
   {$endif}
-  {$ifndef  OPENSSL_NO_DSA}
+  {$ifndef  OPENSSL_NO_DEPRECATED_3_6}
+    {$ifndef  OPENSSL_NO_DSA}
 
 
   function EVP_PKEY_assign_DSA(pkey:PEVP_PKEY; dsa:pointer): TOpenSSL_C_INT; inline;
+    {$endif}
   {$endif}
   {$if  not defined(OPENSSL_NO_DH)  and  not defined(OPENSSL_NO_DEPRECATED_3_0)}
 
@@ -1016,15 +1019,17 @@ type
   function EVP_PKEY_assign_EC_KEY(pkey:PEVP_PKEY; eckey:pointer): TOpenSSL_C_INT; inline;
     {$endif}
   {$endif}
-  {$ifndef  OPENSSL_NO_SIPHASH}
+  {$ifndef  OPENSSL_NO_DEPRECATED_3_6}
+    {$ifndef  OPENSSL_NO_SIPHASH}
 
 
   function EVP_PKEY_assign_SIPHASH(pkey:PEVP_PKEY; shkey:pointer): TOpenSSL_C_INT; inline;
-  {$endif}
-  {$ifndef  OPENSSL_NO_POLY1305}
+    {$endif}
+    {$ifndef  OPENSSL_NO_POLY1305}
 
 
   function EVP_PKEY_assign_POLY1305(pkey:PEVP_PKEY; polykey:pointer): TOpenSSL_C_INT; inline;
+    {$endif}
   {$endif}
 
 
@@ -1575,15 +1580,15 @@ var
   BIO_set_md: procedure(_param1: PBIO; md: PEVP_MD); cdecl = Load_BIO_set_md;
     {$endif} {OPENSSL_STATIC_LINK_MODEL}
   {$else}
-{# define  BIO_set_md(b,md) BIO_ctrl(b, BIO_C_SET_MD, 0, (void *)(md))} {Macro Return Type unknown at line no 688}
+{# define  BIO_set_md(b,md) BIO_ctrl(b, BIO_C_SET_MD, 0, (void *)(md))} {Macro Return Type unknown at line no 696}
   {$endif}
-{# define  BIO_get_md(b,mdp) BIO_ctrl(b, BIO_C_GET_MD, 0, (mdp))} {Macro Return Type unknown at line no 690}
-{# define  BIO_get_md_ctx(b,mdcp) BIO_ctrl(b, BIO_C_GET_MD_CTX, 0, (mdcp))} {Macro Return Type unknown at line no 691}
-{# define  BIO_set_md_ctx(b,mdcp) BIO_ctrl(b, BIO_C_SET_MD_CTX, 0, (mdcp))} {Macro Return Type unknown at line no 692}
-{# define  BIO_get_cipher_status(b) BIO_ctrl(b, BIO_C_GET_CIPHER_STATUS, 0, NULL)} {Macro Return Type unknown at line no 693}
-{# define  BIO_get_cipher_ctx(b,c_pp) BIO_ctrl(b, BIO_C_GET_CIPHER_CTX, 0, (c_pp))} {Macro Return Type unknown at line no 694}
-{# define  EVP_add_cipher_alias(n,alias) OBJ_NAME_add((alias), OBJ_NAME_TYPE_CIPHER_METH | OBJ_NAME_ALIAS, (n))} {Macro Return Type unknown at line no 700}
-{# define  EVP_add_digest_alias(n,alias) OBJ_NAME_add((alias), OBJ_NAME_TYPE_MD_METH | OBJ_NAME_ALIAS, (n))} {Macro Return Type unknown at line no 702}
+{# define  BIO_get_md(b,mdp) BIO_ctrl(b, BIO_C_GET_MD, 0, (mdp))} {Macro Return Type unknown at line no 698}
+{# define  BIO_get_md_ctx(b,mdcp) BIO_ctrl(b, BIO_C_GET_MD_CTX, 0, (mdcp))} {Macro Return Type unknown at line no 699}
+{# define  BIO_set_md_ctx(b,mdcp) BIO_ctrl(b, BIO_C_SET_MD_CTX, 0, (mdcp))} {Macro Return Type unknown at line no 700}
+{# define  BIO_get_cipher_status(b) BIO_ctrl(b, BIO_C_GET_CIPHER_STATUS, 0, NULL)} {Macro Return Type unknown at line no 701}
+{# define  BIO_get_cipher_ctx(b,c_pp) BIO_ctrl(b, BIO_C_GET_CIPHER_CTX, 0, (c_pp))} {Macro Return Type unknown at line no 702}
+{# define  EVP_add_cipher_alias(n,alias) OBJ_NAME_add((alias), OBJ_NAME_TYPE_CIPHER_METH | OBJ_NAME_ALIAS, (n))} {Macro Return Type unknown at line no 708}
+{# define  EVP_add_digest_alias(n,alias) OBJ_NAME_add((alias), OBJ_NAME_TYPE_MD_METH | OBJ_NAME_ALIAS, (n))} {Macro Return Type unknown at line no 710}
 {# define  EVP_delete_cipher_alias(alias) OBJ_NAME_remove(alias, OBJ_NAME_TYPE_CIPHER_METH | OBJ_NAME_ALIAS);}
 {# define  EVP_delete_digest_alias(alias) OBJ_NAME_remove(alias, OBJ_NAME_TYPE_MD_METH | OBJ_NAME_ALIAS);}
 
@@ -3674,6 +3679,7 @@ type
   function EVP_PKEY_bits(pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_get_bits';
   function EVP_PKEY_get_security_bits(pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_get_security_bits';
   function EVP_PKEY_security_bits(pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_get_security_bits';
+  function EVP_PKEY_get_security_category(pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_get_security_category';
   function EVP_PKEY_get_size(pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_get_size';
   function EVP_PKEY_size(pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_get_size';
   function EVP_PKEY_can_sign(pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_can_sign';
@@ -3691,6 +3697,7 @@ type
   {$EXTERNALSYM EVP_PKEY_bits}
   {$EXTERNALSYM EVP_PKEY_get_security_bits}
   {$EXTERNALSYM EVP_PKEY_security_bits}
+  {$EXTERNALSYM EVP_PKEY_get_security_category}
   {$EXTERNALSYM EVP_PKEY_get_size}
   {$EXTERNALSYM EVP_PKEY_size}
   {$EXTERNALSYM EVP_PKEY_can_sign}
@@ -3708,6 +3715,7 @@ type
   function Load_EVP_PKEY_bits(pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
   function Load_EVP_PKEY_get_security_bits(pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
   function Load_EVP_PKEY_security_bits(pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
+  function Load_EVP_PKEY_get_security_category(pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
   function Load_EVP_PKEY_get_size(pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
   function Load_EVP_PKEY_size(pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
   function Load_EVP_PKEY_can_sign(pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
@@ -3726,6 +3734,7 @@ var
   EVP_PKEY_bits: function(pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_bits;
   EVP_PKEY_get_security_bits: function(pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_get_security_bits;
   EVP_PKEY_security_bits: function(pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_security_bits;
+  EVP_PKEY_get_security_category: function(pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_get_security_category;
   EVP_PKEY_get_size: function(pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_get_size;
   EVP_PKEY_size: function(pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_size;
   EVP_PKEY_can_sign: function(pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_can_sign;
@@ -3940,6 +3949,7 @@ var
   function d2i_AutoPrivateKey_ex(a: PPEVP_PKEY; pp: PPbyte; length: TOpenSSL_C_INT; libctx: POSSL_LIB_CTX; propq: PAnsiChar): PEVP_PKEY; cdecl; external CLibCrypto name 'd2i_AutoPrivateKey_ex';
   function d2i_AutoPrivateKey(a: PPEVP_PKEY; pp: PPbyte; length: TOpenSSL_C_INT): PEVP_PKEY; cdecl; external CLibCrypto name 'd2i_AutoPrivateKey';
   function i2d_PrivateKey(a: PEVP_PKEY; pp: PPbyte): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'i2d_PrivateKey';
+  function i2d_PKCS8PrivateKey(a: PEVP_PKEY; pp: PPbyte): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'i2d_PKCS8PrivateKey';
   function i2d_KeyParams(a: PEVP_PKEY; pp: PPbyte): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'i2d_KeyParams';
   function d2i_KeyParams(type_: TOpenSSL_C_INT; a: PPEVP_PKEY; pp: PPbyte; length: TOpenSSL_C_INT): PEVP_PKEY; cdecl; external CLibCrypto name 'd2i_KeyParams';
   function i2d_KeyParams_bio(bp: PBIO; pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'i2d_KeyParams_bio';
@@ -3963,6 +3973,7 @@ var
   {$EXTERNALSYM d2i_AutoPrivateKey_ex}
   {$EXTERNALSYM d2i_AutoPrivateKey}
   {$EXTERNALSYM i2d_PrivateKey}
+  {$EXTERNALSYM i2d_PKCS8PrivateKey}
   {$EXTERNALSYM i2d_KeyParams}
   {$EXTERNALSYM d2i_KeyParams}
   {$EXTERNALSYM i2d_KeyParams_bio}
@@ -3986,6 +3997,7 @@ var
   function Load_d2i_AutoPrivateKey_ex(a: PPEVP_PKEY; pp: PPbyte; length: TOpenSSL_C_INT; libctx: POSSL_LIB_CTX; propq: PAnsiChar): PEVP_PKEY; cdecl;
   function Load_d2i_AutoPrivateKey(a: PPEVP_PKEY; pp: PPbyte; length: TOpenSSL_C_INT): PEVP_PKEY; cdecl;
   function Load_i2d_PrivateKey(a: PEVP_PKEY; pp: PPbyte): TOpenSSL_C_INT; cdecl;
+  function Load_i2d_PKCS8PrivateKey(a: PEVP_PKEY; pp: PPbyte): TOpenSSL_C_INT; cdecl;
   function Load_i2d_KeyParams(a: PEVP_PKEY; pp: PPbyte): TOpenSSL_C_INT; cdecl;
   function Load_d2i_KeyParams(type_: TOpenSSL_C_INT; a: PPEVP_PKEY; pp: PPbyte; length: TOpenSSL_C_INT): PEVP_PKEY; cdecl;
   function Load_i2d_KeyParams_bio(bp: PBIO; pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
@@ -4010,6 +4022,7 @@ var
   d2i_AutoPrivateKey_ex: function(a: PPEVP_PKEY; pp: PPbyte; length: TOpenSSL_C_INT; libctx: POSSL_LIB_CTX; propq: PAnsiChar): PEVP_PKEY; cdecl = Load_d2i_AutoPrivateKey_ex;
   d2i_AutoPrivateKey: function(a: PPEVP_PKEY; pp: PPbyte; length: TOpenSSL_C_INT): PEVP_PKEY; cdecl = Load_d2i_AutoPrivateKey;
   i2d_PrivateKey: function(a: PEVP_PKEY; pp: PPbyte): TOpenSSL_C_INT; cdecl = Load_i2d_PrivateKey;
+  i2d_PKCS8PrivateKey: function(a: PEVP_PKEY; pp: PPbyte): TOpenSSL_C_INT; cdecl = Load_i2d_PKCS8PrivateKey;
   i2d_KeyParams: function(a: PEVP_PKEY; pp: PPbyte): TOpenSSL_C_INT; cdecl = Load_i2d_KeyParams;
   d2i_KeyParams: function(type_: TOpenSSL_C_INT; a: PPEVP_PKEY; pp: PPbyte; length: TOpenSSL_C_INT): PEVP_PKEY; cdecl = Load_d2i_KeyParams;
   i2d_KeyParams_bio: function(bp: PBIO; pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl = Load_i2d_KeyParams_bio;
@@ -4291,21 +4304,22 @@ const
   ASN1_PKEY_CTRL_SET1_TLS_ENCPT = $9;
   ASN1_PKEY_CTRL_GET1_TLS_ENCPT = $a;
   ASN1_PKEY_CTRL_CMS_IS_RI_TYPE_SUPPORTED = $b;
+  {$ifndef  OPENSSL_NO_DEPRECATED_3_6}
 
 
-  {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function EVP_PKEY_asn1_get_count: TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_asn1_get_count';
-  function EVP_PKEY_asn1_get0(idx: TOpenSSL_C_INT): PEVP_PKEY_ASN1_METHOD; cdecl; external CLibCrypto name 'EVP_PKEY_asn1_get0';
-  function EVP_PKEY_asn1_find(pe: PPENGINE; type_: TOpenSSL_C_INT): PEVP_PKEY_ASN1_METHOD; cdecl; external CLibCrypto name 'EVP_PKEY_asn1_find';
-  function EVP_PKEY_asn1_find_str(pe: PPENGINE; str: PAnsiChar; len: TOpenSSL_C_INT): PEVP_PKEY_ASN1_METHOD; cdecl; external CLibCrypto name 'EVP_PKEY_asn1_find_str';
-  function EVP_PKEY_asn1_add0(ameth: PEVP_PKEY_ASN1_METHOD): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_asn1_add0';
-  function EVP_PKEY_asn1_add_alias(to_: TOpenSSL_C_INT; from_: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_asn1_add_alias';
-  function EVP_PKEY_asn1_get0_info(ppkey_id: POpenSSL_C_INT; pkey_base_id: POpenSSL_C_INT; ppkey_flags: POpenSSL_C_INT; pinfo: PPAnsiChar; ppem_str: PPAnsiChar; ameth: PEVP_PKEY_ASN1_METHOD): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_asn1_get0_info';
-  function EVP_PKEY_get0_asn1(pkey: PEVP_PKEY): PEVP_PKEY_ASN1_METHOD; cdecl; external CLibCrypto name 'EVP_PKEY_get0_asn1';
-  function EVP_PKEY_asn1_new(id: TOpenSSL_C_INT; flags: TOpenSSL_C_INT; pem_str: PAnsiChar; info: PAnsiChar): PEVP_PKEY_ASN1_METHOD; cdecl; external CLibCrypto name 'EVP_PKEY_asn1_new';
-  procedure EVP_PKEY_asn1_copy(dst: PEVP_PKEY_ASN1_METHOD; src: PEVP_PKEY_ASN1_METHOD); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_copy';
-  procedure EVP_PKEY_asn1_free(ameth: PEVP_PKEY_ASN1_METHOD); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_free';
-  {$else}
+    {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  function EVP_PKEY_asn1_get_count: TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_asn1_get_count'; deprecated 'Since OpenSSL 3.6';
+  function EVP_PKEY_asn1_get0(idx: TOpenSSL_C_INT): PEVP_PKEY_ASN1_METHOD; cdecl; external CLibCrypto name 'EVP_PKEY_asn1_get0'; deprecated 'Since OpenSSL 3.6';
+  function EVP_PKEY_asn1_find(pe: PPENGINE; type_: TOpenSSL_C_INT): PEVP_PKEY_ASN1_METHOD; cdecl; external CLibCrypto name 'EVP_PKEY_asn1_find'; deprecated 'Since OpenSSL 3.6';
+  function EVP_PKEY_asn1_find_str(pe: PPENGINE; str: PAnsiChar; len: TOpenSSL_C_INT): PEVP_PKEY_ASN1_METHOD; cdecl; external CLibCrypto name 'EVP_PKEY_asn1_find_str'; deprecated 'Since OpenSSL 3.6';
+  function EVP_PKEY_asn1_add0(ameth: PEVP_PKEY_ASN1_METHOD): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_asn1_add0'; deprecated 'Since OpenSSL 3.6';
+  function EVP_PKEY_asn1_add_alias(to_: TOpenSSL_C_INT; from_: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_asn1_add_alias'; deprecated 'Since OpenSSL 3.6';
+  function EVP_PKEY_asn1_get0_info(ppkey_id: POpenSSL_C_INT; pkey_base_id: POpenSSL_C_INT; ppkey_flags: POpenSSL_C_INT; pinfo: PPAnsiChar; ppem_str: PPAnsiChar; ameth: PEVP_PKEY_ASN1_METHOD): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_asn1_get0_info'; deprecated 'Since OpenSSL 3.6';
+  function EVP_PKEY_get0_asn1(pkey: PEVP_PKEY): PEVP_PKEY_ASN1_METHOD; cdecl; external CLibCrypto name 'EVP_PKEY_get0_asn1'; deprecated 'Since OpenSSL 3.6';
+  function EVP_PKEY_asn1_new(id: TOpenSSL_C_INT; flags: TOpenSSL_C_INT; pem_str: PAnsiChar; info: PAnsiChar): PEVP_PKEY_ASN1_METHOD; cdecl; external CLibCrypto name 'EVP_PKEY_asn1_new'; deprecated 'Since OpenSSL 3.6';
+  procedure EVP_PKEY_asn1_copy(dst: PEVP_PKEY_ASN1_METHOD; src: PEVP_PKEY_ASN1_METHOD); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_copy'; deprecated 'Since OpenSSL 3.6';
+  procedure EVP_PKEY_asn1_free(ameth: PEVP_PKEY_ASN1_METHOD); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_free'; deprecated 'Since OpenSSL 3.6';
+    {$else}
   {$EXTERNALSYM EVP_PKEY_asn1_get_count}
   {$EXTERNALSYM EVP_PKEY_asn1_get0}
   {$EXTERNALSYM EVP_PKEY_asn1_find}
@@ -4342,7 +4356,7 @@ var
   EVP_PKEY_asn1_new: function(id: TOpenSSL_C_INT; flags: TOpenSSL_C_INT; pem_str: PAnsiChar; info: PAnsiChar): PEVP_PKEY_ASN1_METHOD; cdecl = Load_EVP_PKEY_asn1_new;
   EVP_PKEY_asn1_copy: procedure(dst: PEVP_PKEY_ASN1_METHOD; src: PEVP_PKEY_ASN1_METHOD); cdecl = Load_EVP_PKEY_asn1_copy;
   EVP_PKEY_asn1_free: procedure(ameth: PEVP_PKEY_ASN1_METHOD); cdecl = Load_EVP_PKEY_asn1_free;
-  {$endif} {OPENSSL_STATIC_LINK_MODEL}
+    {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
 type
   {Auto-generated forward references}
@@ -4368,16 +4382,16 @@ type
   TFuncType044 = function(pk: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
 
 
-  {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  procedure EVP_PKEY_asn1_set_public(ameth: PEVP_PKEY_ASN1_METHOD; pub_decode: TFuncType039; pub_encode: TFuncType040; pub_cmp: TFuncType041; pub_print: TFuncType042; pkey_size: TFuncType043; pkey_bits: TFuncType044); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_set_public';
-  {$else}
+    {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  procedure EVP_PKEY_asn1_set_public(ameth: PEVP_PKEY_ASN1_METHOD; pub_decode: TFuncType039; pub_encode: TFuncType040; pub_cmp: TFuncType041; pub_print: TFuncType042; pkey_size: TFuncType043; pkey_bits: TFuncType044); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_set_public'; deprecated 'Since OpenSSL 3.6';
+    {$else}
   {$EXTERNALSYM EVP_PKEY_asn1_set_public}
   {Do not call Function LoadDeclarations. Internal use only}
   procedure Load_EVP_PKEY_asn1_set_public(ameth: PEVP_PKEY_ASN1_METHOD; pub_decode: TFuncType039; pub_encode: TFuncType040; pub_cmp: TFuncType041; pub_print: TFuncType042; pkey_size: TFuncType043; pkey_bits: TFuncType044); cdecl;
 
 var
   EVP_PKEY_asn1_set_public: procedure(ameth: PEVP_PKEY_ASN1_METHOD; pub_decode: TFuncType039; pub_encode: TFuncType040; pub_cmp: TFuncType041; pub_print: TFuncType042; pkey_size: TFuncType043; pkey_bits: TFuncType044); cdecl = Load_EVP_PKEY_asn1_set_public;
-  {$endif} {OPENSSL_STATIC_LINK_MODEL}
+    {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
 type
   {Auto-generated forward references}
@@ -4394,16 +4408,16 @@ type
   TFuncType047 = function(out_: PBIO; pkey: PEVP_PKEY; indent: TOpenSSL_C_INT; pctx: PASN1_PCTX): TOpenSSL_C_INT; cdecl;
 
 
-  {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  procedure EVP_PKEY_asn1_set_private(ameth: PEVP_PKEY_ASN1_METHOD; priv_decode: TFuncType045; priv_encode: TFuncType046; priv_print: TFuncType047); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_set_private';
-  {$else}
+    {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  procedure EVP_PKEY_asn1_set_private(ameth: PEVP_PKEY_ASN1_METHOD; priv_decode: TFuncType045; priv_encode: TFuncType046; priv_print: TFuncType047); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_set_private'; deprecated 'Since OpenSSL 3.6';
+    {$else}
   {$EXTERNALSYM EVP_PKEY_asn1_set_private}
   {Do not call Function LoadDeclarations. Internal use only}
   procedure Load_EVP_PKEY_asn1_set_private(ameth: PEVP_PKEY_ASN1_METHOD; priv_decode: TFuncType045; priv_encode: TFuncType046; priv_print: TFuncType047); cdecl;
 
 var
   EVP_PKEY_asn1_set_private: procedure(ameth: PEVP_PKEY_ASN1_METHOD; priv_decode: TFuncType045; priv_encode: TFuncType046; priv_print: TFuncType047); cdecl = Load_EVP_PKEY_asn1_set_private;
-  {$endif} {OPENSSL_STATIC_LINK_MODEL}
+    {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
 type
   {Auto-generated forward references}
@@ -4429,16 +4443,16 @@ type
   TFuncType053 = function(out_: PBIO; pkey: PEVP_PKEY; indent: TOpenSSL_C_INT; pctx: PASN1_PCTX): TOpenSSL_C_INT; cdecl;
 
 
-  {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  procedure EVP_PKEY_asn1_set_param(ameth: PEVP_PKEY_ASN1_METHOD; param_decode: TFuncType048; param_encode: TFuncType049; param_missing: TFuncType050; param_copy: TFuncType051; param_cmp: TFuncType052; param_print: TFuncType053); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_set_param';
-  {$else}
+    {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  procedure EVP_PKEY_asn1_set_param(ameth: PEVP_PKEY_ASN1_METHOD; param_decode: TFuncType048; param_encode: TFuncType049; param_missing: TFuncType050; param_copy: TFuncType051; param_cmp: TFuncType052; param_print: TFuncType053); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_set_param'; deprecated 'Since OpenSSL 3.6';
+    {$else}
   {$EXTERNALSYM EVP_PKEY_asn1_set_param}
   {Do not call Function LoadDeclarations. Internal use only}
   procedure Load_EVP_PKEY_asn1_set_param(ameth: PEVP_PKEY_ASN1_METHOD; param_decode: TFuncType048; param_encode: TFuncType049; param_missing: TFuncType050; param_copy: TFuncType051; param_cmp: TFuncType052; param_print: TFuncType053); cdecl;
 
 var
   EVP_PKEY_asn1_set_param: procedure(ameth: PEVP_PKEY_ASN1_METHOD; param_decode: TFuncType048; param_encode: TFuncType049; param_missing: TFuncType050; param_copy: TFuncType051; param_cmp: TFuncType052; param_print: TFuncType053); cdecl = Load_EVP_PKEY_asn1_set_param;
-  {$endif} {OPENSSL_STATIC_LINK_MODEL}
+    {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
 type
   {Auto-generated forward references}
@@ -4449,16 +4463,16 @@ type
   TFuncType054 = procedure(pkey: PEVP_PKEY); cdecl;
 
 
-  {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  procedure EVP_PKEY_asn1_set_free(ameth: PEVP_PKEY_ASN1_METHOD; pkey_free: TFuncType054); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_set_free';
-  {$else}
+    {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  procedure EVP_PKEY_asn1_set_free(ameth: PEVP_PKEY_ASN1_METHOD; pkey_free: TFuncType054); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_set_free'; deprecated 'Since OpenSSL 3.6';
+    {$else}
   {$EXTERNALSYM EVP_PKEY_asn1_set_free}
   {Do not call Function LoadDeclarations. Internal use only}
   procedure Load_EVP_PKEY_asn1_set_free(ameth: PEVP_PKEY_ASN1_METHOD; pkey_free: TFuncType054); cdecl;
 
 var
   EVP_PKEY_asn1_set_free: procedure(ameth: PEVP_PKEY_ASN1_METHOD; pkey_free: TFuncType054); cdecl = Load_EVP_PKEY_asn1_set_free;
-  {$endif} {OPENSSL_STATIC_LINK_MODEL}
+    {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
 type
   {Auto-generated forward references}
@@ -4469,16 +4483,16 @@ type
   TFuncType055 = function(pkey: PEVP_PKEY; op: TOpenSSL_C_INT; arg1: TOpenSSL_C_INT; arg2: pointer): TOpenSSL_C_INT; cdecl;
 
 
-  {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  procedure EVP_PKEY_asn1_set_ctrl(ameth: PEVP_PKEY_ASN1_METHOD; pkey_ctrl: TFuncType055); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_set_ctrl';
-  {$else}
+    {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  procedure EVP_PKEY_asn1_set_ctrl(ameth: PEVP_PKEY_ASN1_METHOD; pkey_ctrl: TFuncType055); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_set_ctrl'; deprecated 'Since OpenSSL 3.6';
+    {$else}
   {$EXTERNALSYM EVP_PKEY_asn1_set_ctrl}
   {Do not call Function LoadDeclarations. Internal use only}
   procedure Load_EVP_PKEY_asn1_set_ctrl(ameth: PEVP_PKEY_ASN1_METHOD; pkey_ctrl: TFuncType055); cdecl;
 
 var
   EVP_PKEY_asn1_set_ctrl: procedure(ameth: PEVP_PKEY_ASN1_METHOD; pkey_ctrl: TFuncType055); cdecl = Load_EVP_PKEY_asn1_set_ctrl;
-  {$endif} {OPENSSL_STATIC_LINK_MODEL}
+    {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
 type
   {Auto-generated forward references}
@@ -4492,16 +4506,16 @@ type
   TFuncType057 = function(ctx: PEVP_MD_CTX; it: PASN1_ITEM; data: pointer; alg1: PX509_ALGOR; alg2: PX509_ALGOR; sig: PASN1_BIT_STRING): TOpenSSL_C_INT; cdecl;
 
 
-  {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  procedure EVP_PKEY_asn1_set_item(ameth: PEVP_PKEY_ASN1_METHOD; item_verify: TFuncType056; item_sign: TFuncType057); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_set_item';
-  {$else}
+    {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  procedure EVP_PKEY_asn1_set_item(ameth: PEVP_PKEY_ASN1_METHOD; item_verify: TFuncType056; item_sign: TFuncType057); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_set_item'; deprecated 'Since OpenSSL 3.6';
+    {$else}
   {$EXTERNALSYM EVP_PKEY_asn1_set_item}
   {Do not call Function LoadDeclarations. Internal use only}
   procedure Load_EVP_PKEY_asn1_set_item(ameth: PEVP_PKEY_ASN1_METHOD; item_verify: TFuncType056; item_sign: TFuncType057); cdecl;
 
 var
   EVP_PKEY_asn1_set_item: procedure(ameth: PEVP_PKEY_ASN1_METHOD; item_verify: TFuncType056; item_sign: TFuncType057); cdecl = Load_EVP_PKEY_asn1_set_item;
-  {$endif} {OPENSSL_STATIC_LINK_MODEL}
+    {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
 type
   {Auto-generated forward references}
@@ -4512,16 +4526,16 @@ type
   TFuncType058 = function(siginf: PX509_SIG_INFO; alg: PX509_ALGOR; sig: PASN1_STRING): TOpenSSL_C_INT; cdecl;
 
 
-  {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  procedure EVP_PKEY_asn1_set_siginf(ameth: PEVP_PKEY_ASN1_METHOD; siginf_set: TFuncType058); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_set_siginf';
-  {$else}
+    {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  procedure EVP_PKEY_asn1_set_siginf(ameth: PEVP_PKEY_ASN1_METHOD; siginf_set: TFuncType058); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_set_siginf'; deprecated 'Since OpenSSL 3.6';
+    {$else}
   {$EXTERNALSYM EVP_PKEY_asn1_set_siginf}
   {Do not call Function LoadDeclarations. Internal use only}
   procedure Load_EVP_PKEY_asn1_set_siginf(ameth: PEVP_PKEY_ASN1_METHOD; siginf_set: TFuncType058); cdecl;
 
 var
   EVP_PKEY_asn1_set_siginf: procedure(ameth: PEVP_PKEY_ASN1_METHOD; siginf_set: TFuncType058); cdecl = Load_EVP_PKEY_asn1_set_siginf;
-  {$endif} {OPENSSL_STATIC_LINK_MODEL}
+    {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
 type
   {Auto-generated forward references}
@@ -4532,16 +4546,16 @@ type
   TFuncType059 = function(pk: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
 
 
-  {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  procedure EVP_PKEY_asn1_set_check(ameth: PEVP_PKEY_ASN1_METHOD; pkey_check: TFuncType059); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_set_check';
-  {$else}
+    {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  procedure EVP_PKEY_asn1_set_check(ameth: PEVP_PKEY_ASN1_METHOD; pkey_check: TFuncType059); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_set_check'; deprecated 'Since OpenSSL 3.6';
+    {$else}
   {$EXTERNALSYM EVP_PKEY_asn1_set_check}
   {Do not call Function LoadDeclarations. Internal use only}
   procedure Load_EVP_PKEY_asn1_set_check(ameth: PEVP_PKEY_ASN1_METHOD; pkey_check: TFuncType059); cdecl;
 
 var
   EVP_PKEY_asn1_set_check: procedure(ameth: PEVP_PKEY_ASN1_METHOD; pkey_check: TFuncType059); cdecl = Load_EVP_PKEY_asn1_set_check;
-  {$endif} {OPENSSL_STATIC_LINK_MODEL}
+    {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
 type
   {Auto-generated forward references}
@@ -4552,16 +4566,16 @@ type
   TFuncType060 = function(pk: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
 
 
-  {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  procedure EVP_PKEY_asn1_set_public_check(ameth: PEVP_PKEY_ASN1_METHOD; pkey_pub_check: TFuncType060); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_set_public_check';
-  {$else}
+    {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  procedure EVP_PKEY_asn1_set_public_check(ameth: PEVP_PKEY_ASN1_METHOD; pkey_pub_check: TFuncType060); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_set_public_check'; deprecated 'Since OpenSSL 3.6';
+    {$else}
   {$EXTERNALSYM EVP_PKEY_asn1_set_public_check}
   {Do not call Function LoadDeclarations. Internal use only}
   procedure Load_EVP_PKEY_asn1_set_public_check(ameth: PEVP_PKEY_ASN1_METHOD; pkey_pub_check: TFuncType060); cdecl;
 
 var
   EVP_PKEY_asn1_set_public_check: procedure(ameth: PEVP_PKEY_ASN1_METHOD; pkey_pub_check: TFuncType060); cdecl = Load_EVP_PKEY_asn1_set_public_check;
-  {$endif} {OPENSSL_STATIC_LINK_MODEL}
+    {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
 type
   {Auto-generated forward references}
@@ -4572,16 +4586,16 @@ type
   TFuncType061 = function(pk: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
 
 
-  {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  procedure EVP_PKEY_asn1_set_param_check(ameth: PEVP_PKEY_ASN1_METHOD; pkey_param_check: TFuncType061); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_set_param_check';
-  {$else}
+    {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  procedure EVP_PKEY_asn1_set_param_check(ameth: PEVP_PKEY_ASN1_METHOD; pkey_param_check: TFuncType061); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_set_param_check'; deprecated 'Since OpenSSL 3.6';
+    {$else}
   {$EXTERNALSYM EVP_PKEY_asn1_set_param_check}
   {Do not call Function LoadDeclarations. Internal use only}
   procedure Load_EVP_PKEY_asn1_set_param_check(ameth: PEVP_PKEY_ASN1_METHOD; pkey_param_check: TFuncType061); cdecl;
 
 var
   EVP_PKEY_asn1_set_param_check: procedure(ameth: PEVP_PKEY_ASN1_METHOD; pkey_param_check: TFuncType061); cdecl = Load_EVP_PKEY_asn1_set_param_check;
-  {$endif} {OPENSSL_STATIC_LINK_MODEL}
+    {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
 type
   {Auto-generated forward references}
@@ -4592,16 +4606,16 @@ type
   TFuncType062 = function(pk: PEVP_PKEY; priv: Pbyte; len: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
 
 
-  {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  procedure EVP_PKEY_asn1_set_set_priv_key(ameth: PEVP_PKEY_ASN1_METHOD; set_priv_key: TFuncType062); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_set_set_priv_key';
-  {$else}
+    {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  procedure EVP_PKEY_asn1_set_set_priv_key(ameth: PEVP_PKEY_ASN1_METHOD; set_priv_key: TFuncType062); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_set_set_priv_key'; deprecated 'Since OpenSSL 3.6';
+    {$else}
   {$EXTERNALSYM EVP_PKEY_asn1_set_set_priv_key}
   {Do not call Function LoadDeclarations. Internal use only}
   procedure Load_EVP_PKEY_asn1_set_set_priv_key(ameth: PEVP_PKEY_ASN1_METHOD; set_priv_key: TFuncType062); cdecl;
 
 var
   EVP_PKEY_asn1_set_set_priv_key: procedure(ameth: PEVP_PKEY_ASN1_METHOD; set_priv_key: TFuncType062); cdecl = Load_EVP_PKEY_asn1_set_set_priv_key;
-  {$endif} {OPENSSL_STATIC_LINK_MODEL}
+    {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
 type
   {Auto-generated forward references}
@@ -4612,16 +4626,16 @@ type
   TFuncType063 = function(pk: PEVP_PKEY; pub: Pbyte; len: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
 
 
-  {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  procedure EVP_PKEY_asn1_set_set_pub_key(ameth: PEVP_PKEY_ASN1_METHOD; set_pub_key: TFuncType063); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_set_set_pub_key';
-  {$else}
+    {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  procedure EVP_PKEY_asn1_set_set_pub_key(ameth: PEVP_PKEY_ASN1_METHOD; set_pub_key: TFuncType063); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_set_set_pub_key'; deprecated 'Since OpenSSL 3.6';
+    {$else}
   {$EXTERNALSYM EVP_PKEY_asn1_set_set_pub_key}
   {Do not call Function LoadDeclarations. Internal use only}
   procedure Load_EVP_PKEY_asn1_set_set_pub_key(ameth: PEVP_PKEY_ASN1_METHOD; set_pub_key: TFuncType063); cdecl;
 
 var
   EVP_PKEY_asn1_set_set_pub_key: procedure(ameth: PEVP_PKEY_ASN1_METHOD; set_pub_key: TFuncType063); cdecl = Load_EVP_PKEY_asn1_set_set_pub_key;
-  {$endif} {OPENSSL_STATIC_LINK_MODEL}
+    {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
 type
   {Auto-generated forward references}
@@ -4632,16 +4646,16 @@ type
   TFuncType064 = function(pk: PEVP_PKEY; priv: Pbyte; len: POpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
 
 
-  {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  procedure EVP_PKEY_asn1_set_get_priv_key(ameth: PEVP_PKEY_ASN1_METHOD; get_priv_key: TFuncType064); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_set_get_priv_key';
-  {$else}
+    {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  procedure EVP_PKEY_asn1_set_get_priv_key(ameth: PEVP_PKEY_ASN1_METHOD; get_priv_key: TFuncType064); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_set_get_priv_key'; deprecated 'Since OpenSSL 3.6';
+    {$else}
   {$EXTERNALSYM EVP_PKEY_asn1_set_get_priv_key}
   {Do not call Function LoadDeclarations. Internal use only}
   procedure Load_EVP_PKEY_asn1_set_get_priv_key(ameth: PEVP_PKEY_ASN1_METHOD; get_priv_key: TFuncType064); cdecl;
 
 var
   EVP_PKEY_asn1_set_get_priv_key: procedure(ameth: PEVP_PKEY_ASN1_METHOD; get_priv_key: TFuncType064); cdecl = Load_EVP_PKEY_asn1_set_get_priv_key;
-  {$endif} {OPENSSL_STATIC_LINK_MODEL}
+    {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
 type
   {Auto-generated forward references}
@@ -4652,16 +4666,16 @@ type
   TFuncType065 = function(pk: PEVP_PKEY; pub: Pbyte; len: POpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
 
 
-  {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  procedure EVP_PKEY_asn1_set_get_pub_key(ameth: PEVP_PKEY_ASN1_METHOD; get_pub_key: TFuncType065); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_set_get_pub_key';
-  {$else}
+    {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  procedure EVP_PKEY_asn1_set_get_pub_key(ameth: PEVP_PKEY_ASN1_METHOD; get_pub_key: TFuncType065); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_set_get_pub_key'; deprecated 'Since OpenSSL 3.6';
+    {$else}
   {$EXTERNALSYM EVP_PKEY_asn1_set_get_pub_key}
   {Do not call Function LoadDeclarations. Internal use only}
   procedure Load_EVP_PKEY_asn1_set_get_pub_key(ameth: PEVP_PKEY_ASN1_METHOD; get_pub_key: TFuncType065); cdecl;
 
 var
   EVP_PKEY_asn1_set_get_pub_key: procedure(ameth: PEVP_PKEY_ASN1_METHOD; get_pub_key: TFuncType065); cdecl = Load_EVP_PKEY_asn1_set_get_pub_key;
-  {$endif} {OPENSSL_STATIC_LINK_MODEL}
+    {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
 type
   {Auto-generated forward references}
@@ -4672,8 +4686,21 @@ type
   TFuncType066 = function(pk: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
 
 
+    {$ifdef OPENSSL_STATIC_LINK_MODEL}
+  procedure EVP_PKEY_asn1_set_security_bits(ameth: PEVP_PKEY_ASN1_METHOD; pkey_security_bits: TFuncType066); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_set_security_bits'; deprecated 'Since OpenSSL 3.6';
+    {$else}
+  {$EXTERNALSYM EVP_PKEY_asn1_set_security_bits}
+  {Do not call Function LoadDeclarations. Internal use only}
+  procedure Load_EVP_PKEY_asn1_set_security_bits(ameth: PEVP_PKEY_ASN1_METHOD; pkey_security_bits: TFuncType066); cdecl;
+
+var
+  EVP_PKEY_asn1_set_security_bits: procedure(ameth: PEVP_PKEY_ASN1_METHOD; pkey_security_bits: TFuncType066); cdecl = Load_EVP_PKEY_asn1_set_security_bits;
+    {$endif} {OPENSSL_STATIC_LINK_MODEL}
+  {$endif}
+
+
+  { OPENSSL_NO_DEPRECATED_3_6 }
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  procedure EVP_PKEY_asn1_set_security_bits(ameth: PEVP_PKEY_ASN1_METHOD; pkey_security_bits: TFuncType066); cdecl; external CLibCrypto name 'EVP_PKEY_asn1_set_security_bits';
   function EVP_PKEY_CTX_get_signature_md(ctx: PEVP_PKEY_CTX; md: PPEVP_MD): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_CTX_get_signature_md';
   function EVP_PKEY_CTX_set_signature_md(ctx: PEVP_PKEY_CTX; md: PEVP_MD): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_CTX_set_signature_md';
   function EVP_PKEY_CTX_set1_id(ctx: PEVP_PKEY_CTX; id: pointer; len: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_CTX_set1_id';
@@ -4682,7 +4709,6 @@ type
   function EVP_PKEY_CTX_set_kem_op(ctx: PEVP_PKEY_CTX; op: PAnsiChar): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_CTX_set_kem_op';
   function EVP_PKEY_get0_type_name(key: PEVP_PKEY): PAnsiChar; cdecl; external CLibCrypto name 'EVP_PKEY_get0_type_name';
   {$else}
-  {$EXTERNALSYM EVP_PKEY_asn1_set_security_bits}
   {$EXTERNALSYM EVP_PKEY_CTX_get_signature_md}
   {$EXTERNALSYM EVP_PKEY_CTX_set_signature_md}
   {$EXTERNALSYM EVP_PKEY_CTX_set1_id}
@@ -4691,7 +4717,6 @@ type
   {$EXTERNALSYM EVP_PKEY_CTX_set_kem_op}
   {$EXTERNALSYM EVP_PKEY_get0_type_name}
   {Do not call Function LoadDeclarations. Internal use only}
-  procedure Load_EVP_PKEY_asn1_set_security_bits(ameth: PEVP_PKEY_ASN1_METHOD; pkey_security_bits: TFuncType066); cdecl;
   function Load_EVP_PKEY_CTX_get_signature_md(ctx: PEVP_PKEY_CTX; md: PPEVP_MD): TOpenSSL_C_INT; cdecl;
   function Load_EVP_PKEY_CTX_set_signature_md(ctx: PEVP_PKEY_CTX; md: PEVP_MD): TOpenSSL_C_INT; cdecl;
   function Load_EVP_PKEY_CTX_set1_id(ctx: PEVP_PKEY_CTX; id: pointer; len: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
@@ -4701,7 +4726,6 @@ type
   function Load_EVP_PKEY_get0_type_name(key: PEVP_PKEY): PAnsiChar; cdecl;
 
 var
-  EVP_PKEY_asn1_set_security_bits: procedure(ameth: PEVP_PKEY_ASN1_METHOD; pkey_security_bits: TFuncType066); cdecl = Load_EVP_PKEY_asn1_set_security_bits;
   EVP_PKEY_CTX_get_signature_md: function(ctx: PEVP_PKEY_CTX; md: PPEVP_MD): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_CTX_get_signature_md;
   EVP_PKEY_CTX_set_signature_md: function(ctx: PEVP_PKEY_CTX; md: PEVP_MD): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_CTX_set_signature_md;
   EVP_PKEY_CTX_set1_id: function(ctx: PEVP_PKEY_CTX; id: pointer; len: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_CTX_set1_id;
@@ -5404,6 +5428,7 @@ type
   function EVP_PKEY_derive_set_peer_ex(ctx: PEVP_PKEY_CTX; peer: PEVP_PKEY; validate_peer: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_derive_set_peer_ex';
   function EVP_PKEY_derive_set_peer(ctx: PEVP_PKEY_CTX; peer: PEVP_PKEY): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_derive_set_peer';
   function EVP_PKEY_derive(ctx: PEVP_PKEY_CTX; key: Pbyte; keylen: POpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_derive';
+  function EVP_PKEY_derive_SKEY(ctx: PEVP_PKEY_CTX; mgmt: PEVP_SKEYMGMT; key_type: PAnsiChar; propquery: PAnsiChar; keylen: TOpenSSL_C_SIZET; params: POSSL_PARAM): PEVP_SKEY; cdecl; external CLibCrypto name 'EVP_PKEY_derive_SKEY';
   function EVP_PKEY_encapsulate_init(ctx: PEVP_PKEY_CTX; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_encapsulate_init';
   function EVP_PKEY_auth_encapsulate_init(ctx: PEVP_PKEY_CTX; authpriv: PEVP_PKEY; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_auth_encapsulate_init';
   function EVP_PKEY_encapsulate(ctx: PEVP_PKEY_CTX; wrappedkey: Pbyte; wrappedkeylen: POpenSSL_C_SIZET; genkey: Pbyte; genkeylen: POpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_PKEY_encapsulate';
@@ -5443,6 +5468,7 @@ type
   {$EXTERNALSYM EVP_PKEY_derive_set_peer_ex}
   {$EXTERNALSYM EVP_PKEY_derive_set_peer}
   {$EXTERNALSYM EVP_PKEY_derive}
+  {$EXTERNALSYM EVP_PKEY_derive_SKEY}
   {$EXTERNALSYM EVP_PKEY_encapsulate_init}
   {$EXTERNALSYM EVP_PKEY_auth_encapsulate_init}
   {$EXTERNALSYM EVP_PKEY_encapsulate}
@@ -5482,6 +5508,7 @@ type
   function Load_EVP_PKEY_derive_set_peer_ex(ctx: PEVP_PKEY_CTX; peer: PEVP_PKEY; validate_peer: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl;
   function Load_EVP_PKEY_derive_set_peer(ctx: PEVP_PKEY_CTX; peer: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
   function Load_EVP_PKEY_derive(ctx: PEVP_PKEY_CTX; key: Pbyte; keylen: POpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
+  function Load_EVP_PKEY_derive_SKEY(ctx: PEVP_PKEY_CTX; mgmt: PEVP_SKEYMGMT; key_type: PAnsiChar; propquery: PAnsiChar; keylen: TOpenSSL_C_SIZET; params: POSSL_PARAM): PEVP_SKEY; cdecl;
   function Load_EVP_PKEY_encapsulate_init(ctx: PEVP_PKEY_CTX; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl;
   function Load_EVP_PKEY_auth_encapsulate_init(ctx: PEVP_PKEY_CTX; authpriv: PEVP_PKEY; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl;
   function Load_EVP_PKEY_encapsulate(ctx: PEVP_PKEY_CTX; wrappedkey: Pbyte; wrappedkeylen: POpenSSL_C_SIZET; genkey: Pbyte; genkeylen: POpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
@@ -5522,6 +5549,7 @@ var
   EVP_PKEY_derive_set_peer_ex: function(ctx: PEVP_PKEY_CTX; peer: PEVP_PKEY; validate_peer: TOpenSSL_C_INT): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_derive_set_peer_ex;
   EVP_PKEY_derive_set_peer: function(ctx: PEVP_PKEY_CTX; peer: PEVP_PKEY): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_derive_set_peer;
   EVP_PKEY_derive: function(ctx: PEVP_PKEY_CTX; key: Pbyte; keylen: POpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_derive;
+  EVP_PKEY_derive_SKEY: function(ctx: PEVP_PKEY_CTX; mgmt: PEVP_SKEYMGMT; key_type: PAnsiChar; propquery: PAnsiChar; keylen: TOpenSSL_C_SIZET; params: POSSL_PARAM): PEVP_SKEY; cdecl = Load_EVP_PKEY_derive_SKEY;
   EVP_PKEY_encapsulate_init: function(ctx: PEVP_PKEY_CTX; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_encapsulate_init;
   EVP_PKEY_auth_encapsulate_init: function(ctx: PEVP_PKEY_CTX; authpriv: PEVP_PKEY; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_auth_encapsulate_init;
   EVP_PKEY_encapsulate: function(ctx: PEVP_PKEY_CTX; wrappedkey: Pbyte; wrappedkeylen: POpenSSL_C_SIZET; genkey: Pbyte; genkeylen: POpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_encapsulate;
@@ -5680,7 +5708,7 @@ var
   EVP_PKEY_private_check: function(ctx: PEVP_PKEY_CTX): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_private_check;
   EVP_PKEY_pairwise_check: function(ctx: PEVP_PKEY_CTX): TOpenSSL_C_INT; cdecl = Load_EVP_PKEY_pairwise_check;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
-  {# define  EVP_PKEY_get_ex_new_index(l,p,newf,dupf,freef) CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_EVP_PKEY, l, p, newf, dupf, freef)} {Macro Return Type unknown at line no 2101}
+  {# define  EVP_PKEY_get_ex_new_index(l,p,newf,dupf,freef) CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_EVP_PKEY, l, p, newf, dupf, freef)} {Macro Return Type unknown at line no 2134}
 
 
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
@@ -6658,6 +6686,7 @@ type
   function EVP_SKEY_import(libctx: POSSL_LIB_CTX; skeymgmtname: PAnsiChar; propquery: PAnsiChar; selection: TOpenSSL_C_INT; params: POSSL_PARAM): PEVP_SKEY; cdecl; external CLibCrypto name 'EVP_SKEY_import';
   function EVP_SKEY_generate(libctx: POSSL_LIB_CTX; skeymgmtname: PAnsiChar; propquery: PAnsiChar; params: POSSL_PARAM): PEVP_SKEY; cdecl; external CLibCrypto name 'EVP_SKEY_generate';
   function EVP_SKEY_import_raw_key(libctx: POSSL_LIB_CTX; skeymgmtname: PAnsiChar; key: Pbyte; keylen: TOpenSSL_C_SIZET; propquery: PAnsiChar): PEVP_SKEY; cdecl; external CLibCrypto name 'EVP_SKEY_import_raw_key';
+  function EVP_SKEY_import_SKEYMGMT(libctx: POSSL_LIB_CTX; skeymgmt: PEVP_SKEYMGMT; selection: TOpenSSL_C_INT; params: POSSL_PARAM): PEVP_SKEY; cdecl; external CLibCrypto name 'EVP_SKEY_import_SKEYMGMT';
   function EVP_SKEY_get0_raw_key(skey: PEVP_SKEY; key: PPbyte; len: POpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_SKEY_get0_raw_key';
   function EVP_SKEY_get0_key_id(skey: PEVP_SKEY): PAnsiChar; cdecl; external CLibCrypto name 'EVP_SKEY_get0_key_id';
   function EVP_SKEY_export(skey: PEVP_SKEY; selection: TOpenSSL_C_INT; export_cb: POSSL_CALLBACK; export_cbarg: pointer): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_SKEY_export';
@@ -6681,6 +6710,7 @@ type
   {$EXTERNALSYM EVP_SKEY_import}
   {$EXTERNALSYM EVP_SKEY_generate}
   {$EXTERNALSYM EVP_SKEY_import_raw_key}
+  {$EXTERNALSYM EVP_SKEY_import_SKEYMGMT}
   {$EXTERNALSYM EVP_SKEY_get0_raw_key}
   {$EXTERNALSYM EVP_SKEY_get0_key_id}
   {$EXTERNALSYM EVP_SKEY_export}
@@ -6704,6 +6734,7 @@ type
   function Load_EVP_SKEY_import(libctx: POSSL_LIB_CTX; skeymgmtname: PAnsiChar; propquery: PAnsiChar; selection: TOpenSSL_C_INT; params: POSSL_PARAM): PEVP_SKEY; cdecl;
   function Load_EVP_SKEY_generate(libctx: POSSL_LIB_CTX; skeymgmtname: PAnsiChar; propquery: PAnsiChar; params: POSSL_PARAM): PEVP_SKEY; cdecl;
   function Load_EVP_SKEY_import_raw_key(libctx: POSSL_LIB_CTX; skeymgmtname: PAnsiChar; key: Pbyte; keylen: TOpenSSL_C_SIZET; propquery: PAnsiChar): PEVP_SKEY; cdecl;
+  function Load_EVP_SKEY_import_SKEYMGMT(libctx: POSSL_LIB_CTX; skeymgmt: PEVP_SKEYMGMT; selection: TOpenSSL_C_INT; params: POSSL_PARAM): PEVP_SKEY; cdecl;
   function Load_EVP_SKEY_get0_raw_key(skey: PEVP_SKEY; key: PPbyte; len: POpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
   function Load_EVP_SKEY_get0_key_id(skey: PEVP_SKEY): PAnsiChar; cdecl;
   function Load_EVP_SKEY_export(skey: PEVP_SKEY; selection: TOpenSSL_C_INT; export_cb: POSSL_CALLBACK; export_cbarg: pointer): TOpenSSL_C_INT; cdecl;
@@ -6728,6 +6759,7 @@ var
   EVP_SKEY_import: function(libctx: POSSL_LIB_CTX; skeymgmtname: PAnsiChar; propquery: PAnsiChar; selection: TOpenSSL_C_INT; params: POSSL_PARAM): PEVP_SKEY; cdecl = Load_EVP_SKEY_import;
   EVP_SKEY_generate: function(libctx: POSSL_LIB_CTX; skeymgmtname: PAnsiChar; propquery: PAnsiChar; params: POSSL_PARAM): PEVP_SKEY; cdecl = Load_EVP_SKEY_generate;
   EVP_SKEY_import_raw_key: function(libctx: POSSL_LIB_CTX; skeymgmtname: PAnsiChar; key: Pbyte; keylen: TOpenSSL_C_SIZET; propquery: PAnsiChar): PEVP_SKEY; cdecl = Load_EVP_SKEY_import_raw_key;
+  EVP_SKEY_import_SKEYMGMT: function(libctx: POSSL_LIB_CTX; skeymgmt: PEVP_SKEYMGMT; selection: TOpenSSL_C_INT; params: POSSL_PARAM): PEVP_SKEY; cdecl = Load_EVP_SKEY_import_SKEYMGMT;
   EVP_SKEY_get0_raw_key: function(skey: PEVP_SKEY; key: PPbyte; len: POpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl = Load_EVP_SKEY_get0_raw_key;
   EVP_SKEY_get0_key_id: function(skey: PEVP_SKEY): PAnsiChar; cdecl = Load_EVP_SKEY_get0_key_id;
   EVP_SKEY_export: function(skey: PEVP_SKEY; selection: TOpenSSL_C_INT; export_cb: POSSL_CALLBACK; export_cbarg: pointer): TOpenSSL_C_INT; cdecl = Load_EVP_SKEY_export;
@@ -6786,7 +6818,8 @@ begin
   Result := TOpenSSL_C_INT(EVP_PKEY_assign(pkey,EVP_PKEY_RSA,rsa));
 end;
 {$endif} { OPENSSL_NO_DEPRECATED_3_0}
-{$ifndef  OPENSSL_NO_DSA}
+{$ifndef  OPENSSL_NO_DEPRECATED_3_6}
+    {$ifndef  OPENSSL_NO_DSA}
 
 {# define  EVP_PKEY_assign_DSA(pkey,dsa) EVP_PKEY_assign((pkey), EVP_PKEY_DSA, (dsa))}
 
@@ -6794,7 +6827,8 @@ function EVP_PKEY_assign_DSA(pkey:PEVP_PKEY; dsa:pointer): TOpenSSL_C_INT;
 begin
   Result := TOpenSSL_C_INT(EVP_PKEY_assign(pkey,EVP_PKEY_DSA,dsa));
 end;
-{$endif} { OPENSSL_NO_DSA}
+    {$endif} { OPENSSL_NO_DSA}
+{$endif} { OPENSSL_NO_DEPRECATED_3_6}
 {$if  not defined(OPENSSL_NO_DH)  and  not defined(OPENSSL_NO_DEPRECATED_3_0)}
 
 {# define  EVP_PKEY_assign_DH(pkey,dh) EVP_PKEY_assign((pkey), EVP_PKEY_DH, (dh))}
@@ -6815,7 +6849,8 @@ begin
 end;
     {$endif} { OPENSSL_NO_EC}
 {$endif} { OPENSSL_NO_DEPRECATED_3_0}
-{$ifndef  OPENSSL_NO_SIPHASH}
+{$ifndef  OPENSSL_NO_DEPRECATED_3_6}
+    {$ifndef  OPENSSL_NO_SIPHASH}
 
 {# define  EVP_PKEY_assign_SIPHASH(pkey,shkey) EVP_PKEY_assign((pkey), EVP_PKEY_SIPHASH, (shkey))}
 
@@ -6823,8 +6858,8 @@ function EVP_PKEY_assign_SIPHASH(pkey:PEVP_PKEY; shkey:pointer): TOpenSSL_C_INT;
 begin
   Result := TOpenSSL_C_INT(EVP_PKEY_assign(pkey,EVP_PKEY_SIPHASH,shkey));
 end;
-{$endif} { OPENSSL_NO_SIPHASH}
-{$ifndef  OPENSSL_NO_POLY1305}
+    {$endif} { OPENSSL_NO_SIPHASH}
+    {$ifndef  OPENSSL_NO_POLY1305}
 
 {# define  EVP_PKEY_assign_POLY1305(pkey,polykey) EVP_PKEY_assign((pkey), EVP_PKEY_POLY1305, (polykey))}
 
@@ -6832,7 +6867,8 @@ function EVP_PKEY_assign_POLY1305(pkey:PEVP_PKEY; polykey:pointer): TOpenSSL_C_I
 begin
   Result := TOpenSSL_C_INT(EVP_PKEY_assign(pkey,EVP_PKEY_POLY1305,polykey));
 end;
-{$endif} { OPENSSL_NO_POLY1305}
+    {$endif} { OPENSSL_NO_POLY1305}
+{$endif} { OPENSSL_NO_DEPRECATED_3_6}
 
 {# define  EVP_get_digestbynid(a) EVP_get_digestbyname(OBJ_nid2sn(a))}
 
@@ -11342,6 +11378,14 @@ begin
   Result := EVP_PKEY_security_bits(pkey);
 end;
 
+function Load_EVP_PKEY_get_security_category(pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
+begin
+  EVP_PKEY_get_security_category := LoadLibCryptoFunction('EVP_PKEY_get_security_category');
+  if not assigned(EVP_PKEY_get_security_category) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_get_security_category');
+  Result := EVP_PKEY_get_security_category(pkey);
+end;
+
 function Load_EVP_PKEY_get_size(pkey: PEVP_PKEY): TOpenSSL_C_INT; cdecl;
 begin
   EVP_PKEY_get_size := LoadLibCryptoFunction('EVP_PKEY_get_size');
@@ -11658,6 +11702,14 @@ begin
   if not assigned(i2d_PrivateKey) then
     EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_PrivateKey');
   Result := i2d_PrivateKey(a, pp);
+end;
+
+function Load_i2d_PKCS8PrivateKey(a: PEVP_PKEY; pp: PPbyte): TOpenSSL_C_INT; cdecl;
+begin
+  i2d_PKCS8PrivateKey := LoadLibCryptoFunction('i2d_PKCS8PrivateKey');
+  if not assigned(i2d_PKCS8PrivateKey) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('i2d_PKCS8PrivateKey');
+  Result := i2d_PKCS8PrivateKey(a, pp);
 end;
 
 function Load_i2d_KeyParams(a: PEVP_PKEY; pp: PPbyte): TOpenSSL_C_INT; cdecl;
@@ -12026,6 +12078,7 @@ begin
   Result := EVP_PBE_get(ptype, ppbe_nid, num);
 end;
 
+{$ifndef  OPENSSL_NO_DEPRECATED_3_6}
 function Load_EVP_PKEY_asn1_get_count: TOpenSSL_C_INT; cdecl;
 begin
   EVP_PKEY_asn1_get_count := LoadLibCryptoFunction('EVP_PKEY_asn1_get_count');
@@ -12234,6 +12287,7 @@ begin
   EVP_PKEY_asn1_set_security_bits(ameth, pkey_security_bits);
 end;
 
+{$endif} { OPENSSL_NO_DEPRECATED_3_6}
 function Load_EVP_PKEY_CTX_get_signature_md(ctx: PEVP_PKEY_CTX; md: PPEVP_MD): TOpenSSL_C_INT; cdecl;
 begin
   EVP_PKEY_CTX_get_signature_md := LoadLibCryptoFunction('EVP_PKEY_CTX_get_signature_md');
@@ -13358,6 +13412,14 @@ begin
   Result := EVP_PKEY_derive(ctx, key, keylen);
 end;
 
+function Load_EVP_PKEY_derive_SKEY(ctx: PEVP_PKEY_CTX; mgmt: PEVP_SKEYMGMT; key_type: PAnsiChar; propquery: PAnsiChar; keylen: TOpenSSL_C_SIZET; params: POSSL_PARAM): PEVP_SKEY; cdecl;
+begin
+  EVP_PKEY_derive_SKEY := LoadLibCryptoFunction('EVP_PKEY_derive_SKEY');
+  if not assigned(EVP_PKEY_derive_SKEY) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_PKEY_derive_SKEY');
+  Result := EVP_PKEY_derive_SKEY(ctx, mgmt, key_type, propquery, keylen, params);
+end;
+
 function Load_EVP_PKEY_encapsulate_init(ctx: PEVP_PKEY_CTX; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl;
 begin
   EVP_PKEY_encapsulate_init := LoadLibCryptoFunction('EVP_PKEY_encapsulate_init');
@@ -14208,6 +14270,14 @@ begin
   Result := EVP_SKEY_import_raw_key(libctx, skeymgmtname, key, keylen, propquery);
 end;
 
+function Load_EVP_SKEY_import_SKEYMGMT(libctx: POSSL_LIB_CTX; skeymgmt: PEVP_SKEYMGMT; selection: TOpenSSL_C_INT; params: POSSL_PARAM): PEVP_SKEY; cdecl;
+begin
+  EVP_SKEY_import_SKEYMGMT := LoadLibCryptoFunction('EVP_SKEY_import_SKEYMGMT');
+  if not assigned(EVP_SKEY_import_SKEYMGMT) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_SKEY_import_SKEYMGMT');
+  Result := EVP_SKEY_import_SKEYMGMT(libctx, skeymgmt, selection, params);
+end;
+
 function Load_EVP_SKEY_get0_raw_key(skey: PEVP_SKEY; key: PPbyte; len: POpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl;
 begin
   EVP_SKEY_get0_raw_key := LoadLibCryptoFunction('EVP_SKEY_get0_raw_key');
@@ -14362,6 +14432,8 @@ begin
 {$endif} { OPENSSL_NO_STDIO}
 {$ifndef  OPENSSL_NO_SCRYPT}
 {$endif} { OPENSSL_NO_SCRYPT}
+{$ifndef  OPENSSL_NO_DEPRECATED_3_6}
+{$endif} { OPENSSL_NO_DEPRECATED_3_6}
 {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 {$endif} { OPENSSL_NO_DEPRECATED_3_0}
 {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
@@ -14960,6 +15032,7 @@ begin
   EVP_PKEY_bits := Load_EVP_PKEY_bits;
   EVP_PKEY_get_security_bits := Load_EVP_PKEY_get_security_bits;
   EVP_PKEY_security_bits := Load_EVP_PKEY_security_bits;
+  EVP_PKEY_get_security_category := Load_EVP_PKEY_get_security_category;
   EVP_PKEY_get_size := Load_EVP_PKEY_get_size;
   EVP_PKEY_size := Load_EVP_PKEY_size;
   EVP_PKEY_can_sign := Load_EVP_PKEY_can_sign;
@@ -15012,6 +15085,7 @@ begin
   d2i_AutoPrivateKey_ex := Load_d2i_AutoPrivateKey_ex;
   d2i_AutoPrivateKey := Load_d2i_AutoPrivateKey;
   i2d_PrivateKey := Load_i2d_PrivateKey;
+  i2d_PKCS8PrivateKey := Load_i2d_PKCS8PrivateKey;
   i2d_KeyParams := Load_i2d_KeyParams;
   d2i_KeyParams := Load_d2i_KeyParams;
   i2d_KeyParams_bio := Load_i2d_KeyParams_bio;
@@ -15063,6 +15137,7 @@ begin
   EVP_PBE_find_ex := Load_EVP_PBE_find_ex;
   EVP_PBE_cleanup := Load_EVP_PBE_cleanup;
   EVP_PBE_get := Load_EVP_PBE_get;
+{$ifndef  OPENSSL_NO_DEPRECATED_3_6}
   EVP_PKEY_asn1_get_count := Load_EVP_PKEY_asn1_get_count;
   EVP_PKEY_asn1_get0 := Load_EVP_PKEY_asn1_get0;
   EVP_PKEY_asn1_find := Load_EVP_PKEY_asn1_find;
@@ -15089,6 +15164,7 @@ begin
   EVP_PKEY_asn1_set_get_priv_key := Load_EVP_PKEY_asn1_set_get_priv_key;
   EVP_PKEY_asn1_set_get_pub_key := Load_EVP_PKEY_asn1_set_get_pub_key;
   EVP_PKEY_asn1_set_security_bits := Load_EVP_PKEY_asn1_set_security_bits;
+{$endif} { OPENSSL_NO_DEPRECATED_3_6}
   EVP_PKEY_CTX_get_signature_md := Load_EVP_PKEY_CTX_get_signature_md;
   EVP_PKEY_CTX_set_signature_md := Load_EVP_PKEY_CTX_set_signature_md;
   EVP_PKEY_CTX_set1_id := Load_EVP_PKEY_CTX_set1_id;
@@ -15233,6 +15309,7 @@ begin
   EVP_PKEY_derive_set_peer_ex := Load_EVP_PKEY_derive_set_peer_ex;
   EVP_PKEY_derive_set_peer := Load_EVP_PKEY_derive_set_peer;
   EVP_PKEY_derive := Load_EVP_PKEY_derive;
+  EVP_PKEY_derive_SKEY := Load_EVP_PKEY_derive_SKEY;
   EVP_PKEY_encapsulate_init := Load_EVP_PKEY_encapsulate_init;
   EVP_PKEY_auth_encapsulate_init := Load_EVP_PKEY_auth_encapsulate_init;
   EVP_PKEY_encapsulate := Load_EVP_PKEY_encapsulate;
@@ -15342,6 +15419,7 @@ begin
   EVP_SKEY_import := Load_EVP_SKEY_import;
   EVP_SKEY_generate := Load_EVP_SKEY_generate;
   EVP_SKEY_import_raw_key := Load_EVP_SKEY_import_raw_key;
+  EVP_SKEY_import_SKEYMGMT := Load_EVP_SKEY_import_SKEYMGMT;
   EVP_SKEY_get0_raw_key := Load_EVP_SKEY_get0_raw_key;
   EVP_SKEY_get0_key_id := Load_EVP_SKEY_get0_key_id;
   EVP_SKEY_export := Load_EVP_SKEY_export;

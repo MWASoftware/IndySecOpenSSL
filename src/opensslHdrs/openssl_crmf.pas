@@ -18,7 +18,7 @@
 unit openssl_crmf;
 
 {
-  Generated from OpenSSL 3.5.6 Header File crmf.h - Tue 19 May 14:27:25 BST 2026
+  Generated from OpenSSL 3.6.2 Header File crmf.h - Tue 19 May 14:29:46 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -212,6 +212,7 @@ type
   Tsk_OSSL_CRMF_MSG_copyfunc = function(a: POSSL_CRMF_MSG): POSSL_CRMF_MSG; cdecl;
 
 
+  procedure sk_OSSL_CRMF_MSG_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_OSSL_CRMF_MSG_type(ptr: POSSL_CRMF_MSG): POSSL_CRMF_MSG{Has C Attribute: unused}; inline;
   function ossl_check_const_OSSL_CRMF_MSG_sk_type(sk: Pstack_st_OSSL_CRMF_MSG): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_OSSL_CRMF_MSG_sk_type(sk: Pstack_st_OSSL_CRMF_MSG): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -375,6 +376,7 @@ type
   Tsk_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_copyfunc = function(a: POSSL_CRMF_ATTRIBUTETYPEANDVALUE): POSSL_CRMF_ATTRIBUTETYPEANDVALUE; cdecl;
 
 
+  procedure sk_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_type(ptr: POSSL_CRMF_ATTRIBUTETYPEANDVALUE): POSSL_CRMF_ATTRIBUTETYPEANDVALUE{Has C Attribute: unused}; inline;
   function ossl_check_const_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_sk_type(sk: Pstack_st_OSSL_CRMF_ATTRIBUTETYPEANDVALUE): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_sk_type(sk: Pstack_st_OSSL_CRMF_ATTRIBUTETYPEANDVALUE): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -605,6 +607,7 @@ type
   Tsk_OSSL_CRMF_CERTID_copyfunc = function(a: POSSL_CRMF_CERTID): POSSL_CRMF_CERTID; cdecl;
 
 
+  procedure sk_OSSL_CRMF_CERTID_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_OSSL_CRMF_CERTID_type(ptr: POSSL_CRMF_CERTID): POSSL_CRMF_CERTID{Has C Attribute: unused}; inline;
   function ossl_check_const_OSSL_CRMF_CERTID_sk_type(sk: Pstack_st_OSSL_CRMF_CERTID): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_OSSL_CRMF_CERTID_sk_type(sk: Pstack_st_OSSL_CRMF_CERTID): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -1186,6 +1189,16 @@ uses Sysutils, variants
   {$ifend}
 
 {$ifndef  OPENSSL_NO_CRMF}
+procedure sk_OSSL_CRMF_MSG_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OSSL_CRMF_MSG_freefunc_thunk"');
+
+{Error: Line 61: Syntax Error parsing " sk_OSSL_CRMF_MSG_freefunc freefunc = (sk_OSSL_CRMF_MSG_freefunc)freefunc_arg; freefunc((OSSL_CRMF_MSG 
+*)ptr); "
+
+ sk_OSSL_CRMF_MSG_freefunc freefunc = (sk_OSSL_CRMF_MSG_freefunc)freefunc_arg; freefunc((OSSL_CRMF_MSG *)ptr); }
+end;
+
 function ossl_check_OSSL_CRMF_MSG_type(ptr: POSSL_CRMF_MSG): POSSL_CRMF_MSG{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -1216,6 +1229,17 @@ begin
    Result := TOPENSSL_sk_freefunc(fr);
 end;
 
+procedure sk_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_freefunc_thunk"');
+
+{Error: Line 93: Syntax Error parsing " sk_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_freefunc freefunc = (sk_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_freefunc)freefunc_arg; 
+freefunc((OSSL_CRMF_ATTRIBUTETYPEANDVALUE *)ptr); "
+
+ sk_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_freefunc freefunc = (sk_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_freefunc)freefunc_arg; freefunc((OSSL_CRMF_ATTRIBUTETYPEANDVALUE 
+*)ptr); }
+end;
+
 function ossl_check_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_type(ptr: POSSL_CRMF_ATTRIBUTETYPEANDVALUE): POSSL_CRMF_ATTRIBUTETYPEANDVALUE{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -1244,6 +1268,16 @@ end;
 function ossl_check_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_freefunc_type(fr: Tsk_OSSL_CRMF_ATTRIBUTETYPEANDVALUE_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
 begin
    Result := TOPENSSL_sk_freefunc(fr);
+end;
+
+procedure sk_OSSL_CRMF_CERTID_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OSSL_CRMF_CERTID_freefunc_thunk"');
+
+{Error: Line 130: Syntax Error parsing " sk_OSSL_CRMF_CERTID_freefunc freefunc = (sk_OSSL_CRMF_CERTID_freefunc)freefunc_arg; freefunc((OSSL_CRMF_CERTID 
+*)ptr); "
+
+ sk_OSSL_CRMF_CERTID_freefunc freefunc = (sk_OSSL_CRMF_CERTID_freefunc)freefunc_arg; freefunc((OSSL_CRMF_CERTID *)ptr); }
 end;
 
 function ossl_check_OSSL_CRMF_CERTID_type(ptr: POSSL_CRMF_CERTID): POSSL_CRMF_CERTID{Has C Attribute: unused}; inline;

@@ -18,7 +18,7 @@
 unit openssl_store;
 
 {
-  Generated from OpenSSL 3.5.6 Header File store.h - Tue 19 May 14:28:30 BST 2026
+  Generated from OpenSSL 3.6.2 Header File store.h - Tue 19 May 14:30:53 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -32,7 +32,7 @@ interface
 uses OpenSSLAPI,openssl_types,openssl_pem,openssl_storeerr;
 
 
-{* Copyright 2016-2023 The OpenSSL Project Authors. All Rights Reserved.
+{* Copyright 2016-2025 The OpenSSL Project Authors. All Rights Reserved.
 *
 * Licensed under the Apache License 2.0 (the "License").  You may not use
 * this file except in compliance with the License.  You can obtain a copy
@@ -584,6 +584,7 @@ type
 
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
   function OSSL_STORE_LOADER_names_do_all(loader: POSSL_STORE_LOADER; fn: TFuncType001; data: pointer): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'OSSL_STORE_LOADER_names_do_all';
+  function OSSL_STORE_LOADER_settable_ctx_params(loader: POSSL_STORE_LOADER): POSSL_PARAM; cdecl; external CLibCrypto name 'OSSL_STORE_LOADER_settable_ctx_params';
   {-
   *  Function to register a loader for the given URI scheme.
   *  -------------------------------------------------------
@@ -593,11 +594,14 @@ type
   }
   {$else}
   {$EXTERNALSYM OSSL_STORE_LOADER_names_do_all}
+  {$EXTERNALSYM OSSL_STORE_LOADER_settable_ctx_params}
   {Do not call Function LoadDeclarations. Internal use only}
   function Load_OSSL_STORE_LOADER_names_do_all(loader: POSSL_STORE_LOADER; fn: TFuncType001; data: pointer): TOpenSSL_C_INT; cdecl;
+  function Load_OSSL_STORE_LOADER_settable_ctx_params(loader: POSSL_STORE_LOADER): POSSL_PARAM; cdecl;
 
 var
   OSSL_STORE_LOADER_names_do_all: function(loader: POSSL_STORE_LOADER; fn: TFuncType001; data: pointer): TOpenSSL_C_INT; cdecl = Load_OSSL_STORE_LOADER_names_do_all;
+  OSSL_STORE_LOADER_settable_ctx_params: function(loader: POSSL_STORE_LOADER): POSSL_PARAM; cdecl = Load_OSSL_STORE_LOADER_settable_ctx_params;
   {-
   *  Function to register a loader for the given URI scheme.
   *  -------------------------------------------------------
@@ -1245,6 +1249,14 @@ begin
   Result := OSSL_STORE_LOADER_names_do_all(loader, fn, data);
 end;
 
+function Load_OSSL_STORE_LOADER_settable_ctx_params(loader: POSSL_STORE_LOADER): POSSL_PARAM; cdecl;
+begin
+  OSSL_STORE_LOADER_settable_ctx_params := LoadLibCryptoFunction('OSSL_STORE_LOADER_settable_ctx_params');
+  if not assigned(OSSL_STORE_LOADER_settable_ctx_params) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('OSSL_STORE_LOADER_settable_ctx_params');
+  Result := OSSL_STORE_LOADER_settable_ctx_params(loader);
+end;
+
 {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
 function Load_OSSL_STORE_LOADER_new(e: PENGINE; scheme: PAnsiChar): POSSL_STORE_LOADER; cdecl;
 begin
@@ -1452,6 +1464,7 @@ begin
   OSSL_STORE_LOADER_is_a := Load_OSSL_STORE_LOADER_is_a;
   OSSL_STORE_LOADER_do_all_provided := Load_OSSL_STORE_LOADER_do_all_provided;
   OSSL_STORE_LOADER_names_do_all := Load_OSSL_STORE_LOADER_names_do_all;
+  OSSL_STORE_LOADER_settable_ctx_params := Load_OSSL_STORE_LOADER_settable_ctx_params;
 {$ifndef  OPENSSL_NO_DEPRECATED_3_0}
   OSSL_STORE_LOADER_new := Load_OSSL_STORE_LOADER_new;
   OSSL_STORE_LOADER_set_open := Load_OSSL_STORE_LOADER_set_open;

@@ -18,7 +18,7 @@
 unit openssl_ocsp;
 
 {
-  Generated from OpenSSL 3.5.6 Header File ocsp.h - Tue 19 May 14:28:00 BST 2026
+  Generated from OpenSSL 3.6.2 Header File ocsp.h - Tue 19 May 14:30:22 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -153,6 +153,7 @@ type
   Tsk_OCSP_CERTID_copyfunc = function(a: POCSP_CERTID): POCSP_CERTID; cdecl;
 
 
+  procedure sk_OCSP_CERTID_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_OCSP_CERTID_type(ptr: POCSP_CERTID): POCSP_CERTID{Has C Attribute: unused}; inline;
   function ossl_check_const_OCSP_CERTID_sk_type(sk: Pstack_st_OCSP_CERTID): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_OCSP_CERTID_sk_type(sk: Pstack_st_OCSP_CERTID): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -289,6 +290,7 @@ type
   Tsk_OCSP_ONEREQ_copyfunc = function(a: POCSP_ONEREQ): POCSP_ONEREQ; cdecl;
 
 
+  procedure sk_OCSP_ONEREQ_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_OCSP_ONEREQ_type(ptr: POCSP_ONEREQ): POCSP_ONEREQ{Has C Attribute: unused}; inline;
   function ossl_check_const_OCSP_ONEREQ_sk_type(sk: Pstack_st_OCSP_ONEREQ): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_OCSP_ONEREQ_sk_type(sk: Pstack_st_OCSP_ONEREQ): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -447,6 +449,7 @@ type
   Tsk_OCSP_RESPID_copyfunc = function(a: POCSP_RESPID): POCSP_RESPID; cdecl;
 
 
+  procedure sk_OCSP_RESPID_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_OCSP_RESPID_type(ptr: POCSP_RESPID): POCSP_RESPID{Has C Attribute: unused}; inline;
   function ossl_check_const_OCSP_RESPID_sk_type(sk: Pstack_st_OCSP_RESPID): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_OCSP_RESPID_sk_type(sk: Pstack_st_OCSP_RESPID): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -610,6 +613,7 @@ type
   Tsk_OCSP_SINGLERESP_copyfunc = function(a: POCSP_SINGLERESP): POCSP_SINGLERESP; cdecl;
 
 
+  procedure sk_OCSP_SINGLERESP_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_OCSP_SINGLERESP_type(ptr: POCSP_SINGLERESP): POCSP_SINGLERESP{Has C Attribute: unused}; inline;
   function ossl_check_const_OCSP_SINGLERESP_sk_type(sk: Pstack_st_OCSP_SINGLERESP): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_OCSP_SINGLERESP_sk_type(sk: Pstack_st_OCSP_SINGLERESP): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -1588,6 +1592,16 @@ uses Sysutils, variants
   {$ifend}
 
 {$ifndef  OPENSSL_NO_OCSP}
+procedure sk_OCSP_CERTID_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OCSP_CERTID_freefunc_thunk"');
+
+{Error: Line 99: Syntax Error parsing " sk_OCSP_CERTID_freefunc freefunc = (sk_OCSP_CERTID_freefunc)freefunc_arg; freefunc((OCSP_CERTID 
+*)ptr); "
+
+ sk_OCSP_CERTID_freefunc freefunc = (sk_OCSP_CERTID_freefunc)freefunc_arg; freefunc((OCSP_CERTID *)ptr); }
+end;
+
 function ossl_check_OCSP_CERTID_type(ptr: POCSP_CERTID): POCSP_CERTID{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -1616,6 +1630,16 @@ end;
 function ossl_check_OCSP_CERTID_freefunc_type(fr: Tsk_OCSP_CERTID_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
 begin
    Result := TOPENSSL_sk_freefunc(fr);
+end;
+
+procedure sk_OCSP_ONEREQ_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OCSP_ONEREQ_freefunc_thunk"');
+
+{Error: Line 125: Syntax Error parsing " sk_OCSP_ONEREQ_freefunc freefunc = (sk_OCSP_ONEREQ_freefunc)freefunc_arg; freefunc((OCSP_ONEREQ 
+*)ptr); "
+
+ sk_OCSP_ONEREQ_freefunc freefunc = (sk_OCSP_ONEREQ_freefunc)freefunc_arg; freefunc((OCSP_ONEREQ *)ptr); }
 end;
 
 function ossl_check_OCSP_ONEREQ_type(ptr: POCSP_ONEREQ): POCSP_ONEREQ{Has C Attribute: unused}; inline;
@@ -1648,6 +1672,16 @@ begin
    Result := TOPENSSL_sk_freefunc(fr);
 end;
 
+procedure sk_OCSP_RESPID_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OCSP_RESPID_freefunc_thunk"');
+
+{Error: Line 167: Syntax Error parsing " sk_OCSP_RESPID_freefunc freefunc = (sk_OCSP_RESPID_freefunc)freefunc_arg; freefunc((OCSP_RESPID 
+*)ptr); "
+
+ sk_OCSP_RESPID_freefunc freefunc = (sk_OCSP_RESPID_freefunc)freefunc_arg; freefunc((OCSP_RESPID *)ptr); }
+end;
+
 function ossl_check_OCSP_RESPID_type(ptr: POCSP_RESPID): POCSP_RESPID{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -1676,6 +1710,16 @@ end;
 function ossl_check_OCSP_RESPID_freefunc_type(fr: Tsk_OCSP_RESPID_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
 begin
    Result := TOPENSSL_sk_freefunc(fr);
+end;
+
+procedure sk_OCSP_SINGLERESP_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OCSP_SINGLERESP_freefunc_thunk"');
+
+{Error: Line 206: Syntax Error parsing " sk_OCSP_SINGLERESP_freefunc freefunc = (sk_OCSP_SINGLERESP_freefunc)freefunc_arg; freefunc((OCSP_SINGLERESP 
+*)ptr); "
+
+ sk_OCSP_SINGLERESP_freefunc freefunc = (sk_OCSP_SINGLERESP_freefunc)freefunc_arg; freefunc((OCSP_SINGLERESP *)ptr); }
 end;
 
 function ossl_check_OCSP_SINGLERESP_type(ptr: POCSP_SINGLERESP): POCSP_SINGLERESP{Has C Attribute: unused}; inline;

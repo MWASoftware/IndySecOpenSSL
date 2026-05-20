@@ -18,7 +18,7 @@
 unit openssl_ui;
 
 {
-  Generated from OpenSSL 3.5.6 Header File ui.h - Tue 19 May 14:28:43 BST 2026
+  Generated from OpenSSL 3.6.2 Header File ui.h - Tue 19 May 14:31:07 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -575,6 +575,7 @@ type
   Tsk_UI_STRING_copyfunc = function(a: PUI_STRING): PUI_STRING; cdecl;
 
 
+  procedure sk_UI_STRING_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_UI_STRING_type(ptr: PUI_STRING): PUI_STRING{Has C Attribute: unused}; inline;
   function ossl_check_const_UI_STRING_sk_type(sk: Pstack_st_UI_STRING): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_UI_STRING_sk_type(sk: Pstack_st_UI_STRING): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -1151,6 +1152,16 @@ function UI_get_app_data(s:PUI): pointer;
 begin
   Result := pointer(UI_get_ex_data(s,0));
 end;
+procedure sk_UI_STRING_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_UI_STRING_freefunc_thunk"');
+
+{Error: Line 297: Syntax Error parsing " sk_UI_STRING_freefunc freefunc = (sk_UI_STRING_freefunc)freefunc_arg; freefunc((UI_STRING 
+*)ptr); "
+
+ sk_UI_STRING_freefunc freefunc = (sk_UI_STRING_freefunc)freefunc_arg; freefunc((UI_STRING *)ptr); }
+end;
+
 function ossl_check_UI_STRING_type(ptr: PUI_STRING): PUI_STRING{Has C Attribute: unused}; inline;
 begin
    Result := ptr;

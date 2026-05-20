@@ -18,7 +18,7 @@
 unit openssl_ssl;
 
 {
-  Generated from OpenSSL 3.5.6 Header File ssl.h - Tue 19 May 14:28:26 BST 2026
+  Generated from OpenSSL 3.6.2 Header File ssl.h - Tue 19 May 14:30:48 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -275,6 +275,7 @@ type
   Tsk_SRTP_PROTECTION_PROFILE_copyfunc = function(a: PSRTP_PROTECTION_PROFILE): PSRTP_PROTECTION_PROFILE; cdecl;
 
 
+  procedure sk_SRTP_PROTECTION_PROFILE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_SRTP_PROTECTION_PROFILE_type(ptr: PSRTP_PROTECTION_PROFILE): PSRTP_PROTECTION_PROFILE{Has C Attribute: unused}; inline;
   function ossl_check_const_SRTP_PROTECTION_PROFILE_sk_type(sk: Pstack_st_SRTP_PROTECTION_PROFILE): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_SRTP_PROTECTION_PROFILE_sk_type(sk: Pstack_st_SRTP_PROTECTION_PROFILE): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -485,6 +486,7 @@ type
   Tsk_SSL_CIPHER_copyfunc = function(a: PSSL_CIPHER): PSSL_CIPHER; cdecl;
 
 
+  procedure sk_SSL_CIPHER_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_SSL_CIPHER_type(ptr: PSSL_CIPHER): PSSL_CIPHER{Has C Attribute: unused}; inline;
   function ossl_check_const_SSL_CIPHER_sk_type(sk: Pstack_st_SSL_CIPHER): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_SSL_CIPHER_sk_type(sk: Pstack_st_SSL_CIPHER): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -624,12 +626,15 @@ type
   function SSL_OP_ENABLE_MIDDLEBOX_COMPAT: int64; inline;
   
   {* Prioritize Chacha20Poly1305 when client does.
-  * Modifies SSL_OP_CIPHER_SERVER_PREFERENCE
+  * Modifies SSL_OP_SERVER_PREFERENCE
   }
   function SSL_OP_PRIORITIZE_CHACHA: int64; inline;
   
-  {* Set on servers to choose the cipher according to server's preferences.
+  {* Set on servers to choose cipher, curve or group according to server's
+  * preferences.
   }
+  function SSL_OP_SERVER_PREFERENCE: int64; inline;
+  { Equivalent definition for backwards compatibility: }
   function SSL_OP_CIPHER_SERVER_PREFERENCE: int64; inline;
   
   {* If set, a server will allow a client to issue an SSLv3.0 version
@@ -670,6 +675,7 @@ type
   { Enable KTLS TX zerocopy on Linux }
   function SSL_OP_ENABLE_KTLS_TX_ZEROCOPY_SENDFILE: int64; inline;
   function SSL_OP_PREFER_NO_DHE_KEX: int64; inline;
+  function SSL_OP_LEGACY_EC_POINT_FORMATS: int64; inline;
   
   {* Option "collections."
   }
@@ -1338,14 +1344,14 @@ var
 
 
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
-  function SSL_select_next_proto(out_: PPbyte; outlen: Pbyte; in_: Pbyte; inlen: TOpenSSL_C_UINT; client: Pbyte; client_len: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl; external CLibSSL name 'SSL_select_next_proto';
+  function SSL_select_next_proto(out_: PPbyte; outlen: Pbyte; server: Pbyte; server_len: TOpenSSL_C_UINT; client: Pbyte; client_len: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl; external CLibSSL name 'SSL_select_next_proto';
   {$else}
   {$EXTERNALSYM SSL_select_next_proto}
   {Do not call Function LoadDeclarations. Internal use only}
-  function Load_SSL_select_next_proto(out_: PPbyte; outlen: Pbyte; in_: Pbyte; inlen: TOpenSSL_C_UINT; client: Pbyte; client_len: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl;
+  function Load_SSL_select_next_proto(out_: PPbyte; outlen: Pbyte; server: Pbyte; server_len: TOpenSSL_C_UINT; client: Pbyte; client_len: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl;
 
 var
-  SSL_select_next_proto: function(out_: PPbyte; outlen: Pbyte; in_: Pbyte; inlen: TOpenSSL_C_UINT; client: Pbyte; client_len: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl = Load_SSL_select_next_proto;
+  SSL_select_next_proto: function(out_: PPbyte; outlen: Pbyte; server: Pbyte; server_len: TOpenSSL_C_UINT; client: Pbyte; client_len: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl = Load_SSL_select_next_proto;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
 
 const
@@ -1956,15 +1962,15 @@ const
 
   { More backward compatibility }
   function SSL_get_cipher(s:PSSL): PAnsiChar; inline;
-  {# define  SSL_get_cipher_bits(s,np) SSL_CIPHER_get_bits(SSL_get_current_cipher(s), np)} {Function argument out of range at line no 1191}
+  {# define  SSL_get_cipher_bits(s,np) SSL_CIPHER_get_bits(SSL_get_current_cipher(s), np)} {Function argument out of range at line no 1194}
   function SSL_get_cipher_version(s:PSSL): PAnsiChar; inline;
   function SSL_get_cipher_name(s:PSSL): PAnsiChar; inline;
   function SSL_get_time(a:PSSL_SESSION): TOpenSSL_C_INT; inline;
   function SSL_set_time(a:PSSL_SESSION; b:TOpenSSL_C_INT): TOpenSSL_C_INT; inline;
   function SSL_get_timeout(a:PSSL_SESSION): TOpenSSL_C_INT; inline;
   function SSL_set_timeout(a:PSSL_SESSION; b:TOpenSSL_C_INT): TOpenSSL_C_INT; inline;
-  {# define  d2i_SSL_SESSION_bio(bp,s_id) ASN1_d2i_bio_of(SSL_SESSION, SSL_SESSION_new, d2i_SSL_SESSION, bp, s_id)} {Function argument out of range at line no 1202}
-  {# define  i2d_SSL_SESSION_bio(bp,s_id) ASN1_i2d_bio_of(SSL_SESSION, i2d_SSL_SESSION, bp, s_id)} {Function argument out of range at line no 1203}
+  {# define  d2i_SSL_SESSION_bio(bp,s_id) ASN1_d2i_bio_of(SSL_SESSION, SSL_SESSION_new, d2i_SSL_SESSION, bp, s_id)} {Function argument out of range at line no 1205}
+  {# define  i2d_SSL_SESSION_bio(bp,s_id) ASN1_i2d_bio_of(SSL_SESSION, i2d_SSL_SESSION, bp, s_id)} {Function argument out of range at line no 1206}
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
   function PEM_read_bio_SSL_SESSION(out_: PBIO; x: PPSSL_SESSION; cb: Tpem_password_cb; u: pointer): PSSL_SESSION; cdecl; external CLibSSL name 'PEM_read_bio_SSL_SESSION';
   function PEM_read_SSL_SESSION(out_: PFILE; x: PPSSL_SESSION; cb: Tpem_password_cb; u: pointer): PSSL_SESSION; cdecl; external CLibSSL name 'PEM_read_SSL_SESSION';
@@ -2183,6 +2189,8 @@ const
   SSL_CTRL_GET0_IMPLEMENTED_GROUPS = 139;
   SSL_CTRL_GET_SIGNATURE_NAME = 140;
   SSL_CTRL_GET_PEER_SIGNATURE_NAME = 141;
+  SSL_CTRL_GET_TLSEXT_STATUS_REQ_OCSP_RESP_EX = 142;
+  SSL_CTRL_SET_TLSEXT_STATUS_REQ_OCSP_RESP_EX = 143;
   SSL_CERT_SET_FIRST = 1;
   SSL_CERT_SET_NEXT = 2;
   SSL_CERT_SET_SERVER = 3;
@@ -2352,8 +2360,8 @@ const
   function SSL_CTX_set_tmp_rsa(ctx:int64; rsa:int64): int64; inline;
   function SSL_need_tmp_RSA(ssl:int64): int64; inline;
   function SSL_set_tmp_rsa(ssl:int64; rsa:int64): int64; inline;
-  {# define  SSL_CTX_set_ecdh_auto(dummy,onoff) ((onoff) != 0)} {Macro Return Type unknown at line no 1605}
-  {# define  SSL_set_ecdh_auto(dummy,onoff) ((onoff) != 0)} {Macro Return Type unknown at line no 1606}
+  {# define  SSL_CTX_set_ecdh_auto(dummy,onoff) ((onoff) != 0)} {Macro Return Type unknown at line no 1610}
+  {# define  SSL_set_ecdh_auto(dummy,onoff) ((onoff) != 0)} {Macro Return Type unknown at line no 1611}
   {# define  SSL_CTX_set_tmp_rsa_callback(ctx,cb) while (0) (cb)(NULL, 0, 0)}
   {# define  SSL_set_tmp_rsa_callback(ssl,cb) while (0) (cb)(NULL, 0, 0)}
     
@@ -4350,7 +4358,7 @@ var
   SSL_SESSION_set1_master_key: function(sess: PSSL_SESSION; in_: Pbyte; len: TOpenSSL_C_SIZET): TOpenSSL_C_INT; cdecl = Load_SSL_SESSION_set1_master_key;
   SSL_SESSION_get_max_fragment_length: function(sess: PSSL_SESSION): byte; cdecl = Load_SSL_SESSION_get_max_fragment_length;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
-  {# define  SSL_get_ex_new_index(l,p,newf,dupf,freef) CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_SSL, l, p, newf, dupf, freef)} {Macro Return Type unknown at line no 2219}
+  {# define  SSL_get_ex_new_index(l,p,newf,dupf,freef) CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_SSL, l, p, newf, dupf, freef)} {Macro Return Type unknown at line no 2224}
 
 
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
@@ -4368,7 +4376,7 @@ var
   SSL_get_ex_data: function(ssl: PSSL; idx: TOpenSSL_C_INT): pointer; cdecl = Load_SSL_get_ex_data;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
   {# define  SSL_SESSION_get_ex_new_index(l,p,newf,dupf,freef) CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_SSL_SESSION, l, p, newf, dupf,
- freef)} {Macro Return Type unknown at line no 2223}
+ freef)} {Macro Return Type unknown at line no 2228}
 
 
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
@@ -4385,7 +4393,7 @@ var
   SSL_SESSION_set_ex_data: function(ss: PSSL_SESSION; idx: TOpenSSL_C_INT; data: pointer): TOpenSSL_C_INT; cdecl = Load_SSL_SESSION_set_ex_data;
   SSL_SESSION_get_ex_data: function(ss: PSSL_SESSION; idx: TOpenSSL_C_INT): pointer; cdecl = Load_SSL_SESSION_get_ex_data;
   {$endif} {OPENSSL_STATIC_LINK_MODEL}
-  {# define  SSL_CTX_get_ex_new_index(l,p,newf,dupf,freef) CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_SSL_CTX, l, p, newf, dupf, freef)} {Macro Return Type unknown at line no 2227}
+  {# define  SSL_CTX_get_ex_new_index(l,p,newf,dupf,freef) CRYPTO_get_ex_new_index(CRYPTO_EX_INDEX_SSL_CTX, l, p, newf, dupf, freef)} {Macro Return Type unknown at line no 2232}
 
 
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
@@ -4916,6 +4924,8 @@ var
 
 const
   SSL_ACCEPT_STREAM_NO_BLOCK = 1 shl 0;
+  SSL_ACCEPT_STREAM_UNI = 1 shl 1;
+  SSL_ACCEPT_STREAM_BIDI = 1 shl 2;
 
 
   {$ifdef OPENSSL_STATIC_LINK_MODEL}
@@ -5975,6 +5985,17 @@ uses Sysutils, variants
     OPENSSL_LINE  = 0;
   {$ifend}
 
+procedure sk_SRTP_PROTECTION_PROFILE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_SRTP_PROTECTION_PROFILE_freefunc_thunk"');
+
+{Error: Line 251: Syntax Error parsing " sk_SRTP_PROTECTION_PROFILE_freefunc freefunc = (sk_SRTP_PROTECTION_PROFILE_freefunc)freefunc_arg; 
+freefunc((SRTP_PROTECTION_PROFILE *)ptr); "
+
+ sk_SRTP_PROTECTION_PROFILE_freefunc freefunc = (sk_SRTP_PROTECTION_PROFILE_freefunc)freefunc_arg; freefunc((SRTP_PROTECTION_PROFILE 
+*)ptr); }
+end;
+
 function ossl_check_SRTP_PROTECTION_PROFILE_type(ptr: PSRTP_PROTECTION_PROFILE): PSRTP_PROTECTION_PROFILE{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -6135,6 +6156,16 @@ end;
 procedure lh_SSL_SESSION_stats_bio(lh: Plhash_st_SSL_SESSION; out_: PBIO){Has C Attribute: unused}; inline;
 begin
     OPENSSL_LH_stats_bio(POPENSSL_LHASH(lh), out_);
+end;
+
+procedure sk_SSL_CIPHER_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_SSL_CIPHER_freefunc_thunk"');
+
+{Error: Line 280: Syntax Error parsing " sk_SSL_CIPHER_freefunc freefunc = (sk_SSL_CIPHER_freefunc)freefunc_arg; freefunc((SSL_CIPHER 
+*)ptr); "
+
+ sk_SSL_CIPHER_freefunc freefunc = (sk_SSL_CIPHER_freefunc)freefunc_arg; freefunc((SSL_CIPHER *)ptr); }
 end;
 
 function ossl_check_SSL_CIPHER_type(ptr: PSSL_CIPHER): PSSL_CIPHER{Has C Attribute: unused}; inline;
@@ -6324,7 +6355,14 @@ begin
   Result := int64(SSL_OP_BIT(21));
 end;
 
-{# define  SSL_OP_CIPHER_SERVER_PREFERENCE SSL_OP_BIT(22)}
+{# define  SSL_OP_SERVER_PREFERENCE SSL_OP_BIT(22)}
+
+function SSL_OP_SERVER_PREFERENCE: int64;
+begin
+  Result := int64(SSL_OP_BIT(22));
+end;
+
+{# define  SSL_OP_CIPHER_SERVER_PREFERENCE SSL_OP_SERVER_PREFERENCE}
 
 function SSL_OP_CIPHER_SERVER_PREFERENCE: int64;
 begin
@@ -6434,6 +6472,13 @@ end;
 function SSL_OP_PREFER_NO_DHE_KEX: int64;
 begin
   Result := int64(SSL_OP_BIT(35));
+end;
+
+{# define  SSL_OP_LEGACY_EC_POINT_FORMATS SSL_OP_BIT(36)}
+
+function SSL_OP_LEGACY_EC_POINT_FORMATS: int64;
+begin
+  Result := int64(SSL_OP_BIT(36));
 end;
 
 {# define  SSL_OP_NO_SSL_MASK (SSL_OP_NO_SSLv3 | SSL_OP_NO_TLSv1 | SSL_OP_NO_TLSv1_1 | SSL_OP_NO_TLSv1_2 | SSL_OP_NO_TLSv1_3)}
@@ -7744,7 +7789,7 @@ function SSL_as_poll_descriptor(s: PSSL): TBIO_POLL_DESCRIPTOR{Has C Attribute: 
 begin
   raise Exception.Create('Unable to translate C Function "SSL_as_poll_descriptor"');
 
-{Error: Line 2595: Syntax Error parsing "
+{Error: Line 2602: Syntax Error parsing "
 BIO_POLL_DESCRIPTOR d;
 
 d.type = 2;
@@ -8283,12 +8328,12 @@ begin
 end;
 
 {$endif} { OPENSSL_NO_NEXTPROTONEG}
-function Load_SSL_select_next_proto(out_: PPbyte; outlen: Pbyte; in_: Pbyte; inlen: TOpenSSL_C_UINT; client: Pbyte; client_len: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl;
+function Load_SSL_select_next_proto(out_: PPbyte; outlen: Pbyte; server: Pbyte; server_len: TOpenSSL_C_UINT; client: Pbyte; client_len: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl;
 begin
   SSL_select_next_proto := LoadLibSSLFunction('SSL_select_next_proto');
   if not assigned(SSL_select_next_proto) then
     EOpenSSLAPIFunctionNotPresent.RaiseException('SSL_select_next_proto');
-  Result := SSL_select_next_proto(out_, outlen, in_, inlen, client, client_len);
+  Result := SSL_select_next_proto(out_, outlen, server, server_len, client, client_len);
 end;
 
 function Load_SSL_CTX_set_alpn_protos(ctx: PSSL_CTX; protos: Pbyte; protos_len: TOpenSSL_C_UINT): TOpenSSL_C_INT; cdecl;

@@ -15,7 +15,7 @@
 
 
 {
-  Generated from OpenSSL 3.5.6 Header File macros.h - Tue 19 May 14:27:53 BST 2026
+  Generated from OpenSSL 3.6.2 Header File macros.h - Tue 19 May 14:30:14 BST 2026
 }
 
   {$if not declared(__FILE__)}
@@ -200,6 +200,7 @@ const
   * deprecated up to that version, as an effect of the developer option
   * 'no-deprecated'.
   *)
+  {$undef  OPENSSL_NO_DEPRECATED_3_6}
   {$undef  OPENSSL_NO_DEPRECATED_3_5}
   {$undef  OPENSSL_NO_DEPRECATED_3_4}
   {$undef  OPENSSL_NO_DEPRECATED_3_1}
@@ -210,6 +211,17 @@ const
   {$undef  OPENSSL_NO_DEPRECATED_1_0_1}
   {$undef  OPENSSL_NO_DEPRECATED_1_0_0}
   {$undef  OPENSSL_NO_DEPRECATED_0_9_8}
+  {$if  OPENSSL_API_LEVEL >= 30600}
+    {$ifndef  OPENSSL_NO_DEPRECATED}
+{# define  OSSL_DEPRECATEDIN_3_6 OSSL_DEPRECATED(3.6)} {Macro Return Type unknown}
+{# define  OSSL_DEPRECATEDIN_3_6_FOR(msg) OSSL_DEPRECATED_FOR(3.6, msg)} { Blacklisted Macro}
+    {$else}
+      {$define OPENSSL_NO_DEPRECATED_3_6}
+    {$endif}
+  {$else}
+    {$define OSSL_DEPRECATEDIN_3_6}
+{# define  OSSL_DEPRECATEDIN_3_6_FOR(msg)}
+  {$endif}
   {$if  OPENSSL_API_LEVEL >= 30500}
     {$ifndef  OPENSSL_NO_DEPRECATED}
 {# define  OSSL_DEPRECATEDIN_3_5 OSSL_DEPRECATED(3.5)} {Macro Return Type unknown}

@@ -18,7 +18,7 @@
 unit openssl_self_test;
 
 {
-  Generated from OpenSSL 3.5.6 Header File self_test.h - Tue 19 May 14:28:17 BST 2026
+  Generated from OpenSSL 3.6.2 Header File self_test.h - Tue 19 May 14:30:39 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -92,7 +92,9 @@ const
   OSSL_SELF_TEST_DESC_SIGN_DSA = 'DSA';
   OSSL_SELF_TEST_DESC_SIGN_RSA = 'RSA';
   OSSL_SELF_TEST_DESC_SIGN_ECDSA = 'ECDSA';
+  OSSL_SELF_TEST_DESC_SIGN_DetECDSA = 'DetECDSA';
   OSSL_SELF_TEST_DESC_SIGN_EDDSA = 'EDDSA';
+  OSSL_SELF_TEST_DESC_SIGN_LMS = 'LMS';
   OSSL_SELF_TEST_DESC_SIGN_ML_DSA = 'ML-DSA';
   OSSL_SELF_TEST_DESC_SIGN_SLH_DSA = 'SLH-DSA';
   OSSL_SELF_TEST_DESC_KEM = 'KEM';

@@ -18,7 +18,7 @@
 unit openssl_conf;
 
 {
-  Generated from OpenSSL 3.5.6 Header File conf.h - Tue 19 May 14:27:20 BST 2026
+  Generated from OpenSSL 3.6.2 Header File conf.h - Tue 19 May 14:29:40 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -81,6 +81,7 @@ type
   Tsk_CONF_VALUE_copyfunc = function(a: PCONF_VALUE): PCONF_VALUE; cdecl;
 
 
+  procedure sk_CONF_VALUE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_CONF_VALUE_type(ptr: PCONF_VALUE): PCONF_VALUE{Has C Attribute: unused}; inline;
   function ossl_check_const_CONF_VALUE_sk_type(sk: Pstack_st_CONF_VALUE): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_CONF_VALUE_sk_type(sk: Pstack_st_CONF_VALUE): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -695,6 +696,16 @@ uses Sysutils, variants
   const
     OPENSSL_LINE  = 0;
   {$ifend}
+
+procedure sk_CONF_VALUE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_CONF_VALUE_freefunc_thunk"');
+
+{Error: Line 49: Syntax Error parsing " sk_CONF_VALUE_freefunc freefunc = (sk_CONF_VALUE_freefunc)freefunc_arg; freefunc((CONF_VALUE 
+*)ptr); "
+
+ sk_CONF_VALUE_freefunc freefunc = (sk_CONF_VALUE_freefunc)freefunc_arg; freefunc((CONF_VALUE *)ptr); }
+end;
 
 function ossl_check_CONF_VALUE_type(ptr: PCONF_VALUE): PCONF_VALUE{Has C Attribute: unused}; inline;
 begin

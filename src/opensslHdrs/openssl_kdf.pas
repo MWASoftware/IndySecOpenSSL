@@ -18,7 +18,7 @@
 unit openssl_kdf;
 
 {
-  Generated from OpenSSL 3.5.6 Header File kdf.h - Tue 19 May 14:27:52 BST 2026
+  Generated from OpenSSL 3.6.2 Header File kdf.h - Tue 19 May 14:30:13 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -32,7 +32,7 @@ interface
 uses OpenSSLAPI,openssl_evp,openssl_types,openssl_core;
 
 
-{* Copyright 2016-2021 The OpenSSL Project Authors. All Rights Reserved.
+{* Copyright 2016-2025 The OpenSSL Project Authors. All Rights Reserved.
 *
 * Licensed under the Apache License 2.0 (the "License").  You may not use
 * this file except in compliance with the License.  You can obtain a copy
@@ -62,6 +62,8 @@ uses OpenSSLAPI,openssl_evp,openssl_types,openssl_core;
   procedure EVP_KDF_CTX_reset(ctx: PEVP_KDF_CTX); cdecl; external CLibCrypto name 'EVP_KDF_CTX_reset';
   function EVP_KDF_CTX_get_kdf_size(ctx: PEVP_KDF_CTX): TOpenSSL_C_SIZET; cdecl; external CLibCrypto name 'EVP_KDF_CTX_get_kdf_size';
   function EVP_KDF_derive(ctx: PEVP_KDF_CTX; key: Pbyte; keylen: TOpenSSL_C_SIZET; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_KDF_derive';
+  function EVP_KDF_CTX_set_SKEY(ctx: PEVP_KDF_CTX; key: PEVP_SKEY; paramname: PAnsiChar): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_KDF_CTX_set_SKEY';
+  function EVP_KDF_derive_SKEY(ctx: PEVP_KDF_CTX; mgmt: PEVP_SKEYMGMT; key_type: PAnsiChar; propquery: PAnsiChar; keylen: TOpenSSL_C_SIZET; params: POSSL_PARAM): PEVP_SKEY; cdecl; external CLibCrypto name 'EVP_KDF_derive_SKEY';
   function EVP_KDF_get_params(kdf: PEVP_KDF; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_KDF_get_params';
   function EVP_KDF_CTX_get_params(ctx: PEVP_KDF_CTX; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_KDF_CTX_get_params';
   function EVP_KDF_CTX_set_params(ctx: PEVP_KDF_CTX; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl; external CLibCrypto name 'EVP_KDF_CTX_set_params';
@@ -89,6 +91,8 @@ uses OpenSSLAPI,openssl_evp,openssl_types,openssl_core;
   {$EXTERNALSYM EVP_KDF_CTX_reset}
   {$EXTERNALSYM EVP_KDF_CTX_get_kdf_size}
   {$EXTERNALSYM EVP_KDF_derive}
+  {$EXTERNALSYM EVP_KDF_CTX_set_SKEY}
+  {$EXTERNALSYM EVP_KDF_derive_SKEY}
   {$EXTERNALSYM EVP_KDF_get_params}
   {$EXTERNALSYM EVP_KDF_CTX_get_params}
   {$EXTERNALSYM EVP_KDF_CTX_set_params}
@@ -112,6 +116,8 @@ uses OpenSSLAPI,openssl_evp,openssl_types,openssl_core;
   procedure Load_EVP_KDF_CTX_reset(ctx: PEVP_KDF_CTX); cdecl;
   function Load_EVP_KDF_CTX_get_kdf_size(ctx: PEVP_KDF_CTX): TOpenSSL_C_SIZET; cdecl;
   function Load_EVP_KDF_derive(ctx: PEVP_KDF_CTX; key: Pbyte; keylen: TOpenSSL_C_SIZET; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl;
+  function Load_EVP_KDF_CTX_set_SKEY(ctx: PEVP_KDF_CTX; key: PEVP_SKEY; paramname: PAnsiChar): TOpenSSL_C_INT; cdecl;
+  function Load_EVP_KDF_derive_SKEY(ctx: PEVP_KDF_CTX; mgmt: PEVP_SKEYMGMT; key_type: PAnsiChar; propquery: PAnsiChar; keylen: TOpenSSL_C_SIZET; params: POSSL_PARAM): PEVP_SKEY; cdecl;
   function Load_EVP_KDF_get_params(kdf: PEVP_KDF; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl;
   function Load_EVP_KDF_CTX_get_params(ctx: PEVP_KDF_CTX; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl;
   function Load_EVP_KDF_CTX_set_params(ctx: PEVP_KDF_CTX; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl;
@@ -136,6 +142,8 @@ var
   EVP_KDF_CTX_reset: procedure(ctx: PEVP_KDF_CTX); cdecl = Load_EVP_KDF_CTX_reset;
   EVP_KDF_CTX_get_kdf_size: function(ctx: PEVP_KDF_CTX): TOpenSSL_C_SIZET; cdecl = Load_EVP_KDF_CTX_get_kdf_size;
   EVP_KDF_derive: function(ctx: PEVP_KDF_CTX; key: Pbyte; keylen: TOpenSSL_C_SIZET; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl = Load_EVP_KDF_derive;
+  EVP_KDF_CTX_set_SKEY: function(ctx: PEVP_KDF_CTX; key: PEVP_SKEY; paramname: PAnsiChar): TOpenSSL_C_INT; cdecl = Load_EVP_KDF_CTX_set_SKEY;
+  EVP_KDF_derive_SKEY: function(ctx: PEVP_KDF_CTX; mgmt: PEVP_SKEYMGMT; key_type: PAnsiChar; propquery: PAnsiChar; keylen: TOpenSSL_C_SIZET; params: POSSL_PARAM): PEVP_SKEY; cdecl = Load_EVP_KDF_derive_SKEY;
   EVP_KDF_get_params: function(kdf: PEVP_KDF; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl = Load_EVP_KDF_get_params;
   EVP_KDF_CTX_get_params: function(ctx: PEVP_KDF_CTX; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl = Load_EVP_KDF_CTX_get_params;
   EVP_KDF_CTX_set_params: function(ctx: PEVP_KDF_CTX; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl = Load_EVP_KDF_CTX_set_params;
@@ -435,6 +443,22 @@ begin
   Result := EVP_KDF_derive(ctx, key, keylen, params);
 end;
 
+function Load_EVP_KDF_CTX_set_SKEY(ctx: PEVP_KDF_CTX; key: PEVP_SKEY; paramname: PAnsiChar): TOpenSSL_C_INT; cdecl;
+begin
+  EVP_KDF_CTX_set_SKEY := LoadLibCryptoFunction('EVP_KDF_CTX_set_SKEY');
+  if not assigned(EVP_KDF_CTX_set_SKEY) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_KDF_CTX_set_SKEY');
+  Result := EVP_KDF_CTX_set_SKEY(ctx, key, paramname);
+end;
+
+function Load_EVP_KDF_derive_SKEY(ctx: PEVP_KDF_CTX; mgmt: PEVP_SKEYMGMT; key_type: PAnsiChar; propquery: PAnsiChar; keylen: TOpenSSL_C_SIZET; params: POSSL_PARAM): PEVP_SKEY; cdecl;
+begin
+  EVP_KDF_derive_SKEY := LoadLibCryptoFunction('EVP_KDF_derive_SKEY');
+  if not assigned(EVP_KDF_derive_SKEY) then
+    EOpenSSLAPIFunctionNotPresent.RaiseException('EVP_KDF_derive_SKEY');
+  Result := EVP_KDF_derive_SKEY(ctx, mgmt, key_type, propquery, keylen, params);
+end;
+
 function Load_EVP_KDF_get_params(kdf: PEVP_KDF; params: POSSL_PARAM): TOpenSSL_C_INT; cdecl;
 begin
   EVP_KDF_get_params := LoadLibCryptoFunction('EVP_KDF_get_params');
@@ -656,6 +680,8 @@ begin
   EVP_KDF_CTX_reset := Load_EVP_KDF_CTX_reset;
   EVP_KDF_CTX_get_kdf_size := Load_EVP_KDF_CTX_get_kdf_size;
   EVP_KDF_derive := Load_EVP_KDF_derive;
+  EVP_KDF_CTX_set_SKEY := Load_EVP_KDF_CTX_set_SKEY;
+  EVP_KDF_derive_SKEY := Load_EVP_KDF_derive_SKEY;
   EVP_KDF_get_params := Load_EVP_KDF_get_params;
   EVP_KDF_CTX_get_params := Load_EVP_KDF_CTX_get_params;
   EVP_KDF_CTX_set_params := Load_EVP_KDF_CTX_set_params;

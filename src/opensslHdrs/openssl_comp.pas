@@ -18,7 +18,7 @@
 unit openssl_comp;
 
 {
-  Generated from OpenSSL 3.5.6 Header File comp.h - Tue 19 May 14:27:18 BST 2026
+  Generated from OpenSSL 3.6.2 Header File comp.h - Tue 19 May 14:29:38 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -170,6 +170,7 @@ type
   Tsk_SSL_COMP_copyfunc = function(a: PSSL_COMP): PSSL_COMP; cdecl;
 
 
+  procedure sk_SSL_COMP_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_SSL_COMP_type(ptr: PSSL_COMP): PSSL_COMP{Has C Attribute: unused}; inline;
   function ossl_check_const_SSL_COMP_sk_type(sk: Pstack_st_SSL_COMP): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_SSL_COMP_sk_type(sk: Pstack_st_SSL_COMP): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -323,6 +324,16 @@ uses Sysutils, variants
   const
     OPENSSL_LINE  = 0;
   {$ifend}
+
+procedure sk_SSL_COMP_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_SSL_COMP_freefunc_thunk"');
+
+{Error: Line 69: Syntax Error parsing " sk_SSL_COMP_freefunc freefunc = (sk_SSL_COMP_freefunc)freefunc_arg; freefunc((SSL_COMP *)ptr); 
+"
+
+ sk_SSL_COMP_freefunc freefunc = (sk_SSL_COMP_freefunc)freefunc_arg; freefunc((SSL_COMP *)ptr); }
+end;
 
 function ossl_check_SSL_COMP_type(ptr: PSSL_COMP): PSSL_COMP{Has C Attribute: unused}; inline;
 begin

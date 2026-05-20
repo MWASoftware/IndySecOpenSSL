@@ -18,7 +18,7 @@
 unit openssl_proverr;
 
 {
-  Generated from OpenSSL 3.5.6 Header File proverr.h - Tue 19 May 14:28:09 BST 2026
+  Generated from OpenSSL 3.6.2 Header File proverr.h - Tue 19 May 14:30:31 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -161,6 +161,7 @@ const
   PROV_R_PATH_MUST_BE_ABSOLUTE = 219;
   PROV_R_PERSONALISATION_STRING_TOO_LONG = 195;
   PROV_R_PSS_SALTLEN_TOO_SMALL = 172;
+  PROV_R_REPEATED_PARAMETER = 252;
   PROV_R_REQUEST_TOO_LARGE_FOR_DRBG = 196;
   PROV_R_REQUIRE_CTR_MODE_CIPHER = 206;
   PROV_R_RESEED_ERROR = 197;

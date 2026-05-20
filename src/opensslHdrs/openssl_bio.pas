@@ -18,7 +18,7 @@
 unit openssl_bio;
 
 {
-  Generated from OpenSSL 3.5.6 Header File bio.h - Tue 19 May 14:27:05 BST 2026
+  Generated from OpenSSL 3.6.2 Header File bio.h - Tue 19 May 14:29:25 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -448,6 +448,7 @@ type
   Tsk_BIO_copyfunc = function(a: PBIO): PBIO; cdecl;
 
 
+  procedure sk_BIO_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_BIO_type(ptr: PBIO): PBIO{Has C Attribute: unused}; inline;
   function ossl_check_const_BIO_sk_type(sk: Pstack_st_BIO): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_BIO_sk_type(sk: Pstack_st_BIO): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -2476,6 +2477,15 @@ function BIO_should_retry(a:PBIO): TOpenSSL_C_INT;
 begin
   Result := TOpenSSL_C_INT(BIO_test_flags(a,BIO_FLAGS_SHOULD_RETRY));
 end;
+procedure sk_BIO_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_BIO_freefunc_thunk"');
+
+{Error: Line 341: Syntax Error parsing " sk_BIO_freefunc freefunc = (sk_BIO_freefunc)freefunc_arg; freefunc((BIO *)ptr); "
+
+ sk_BIO_freefunc freefunc = (sk_BIO_freefunc)freefunc_arg; freefunc((BIO *)ptr); }
+end;
+
 function ossl_check_BIO_type(ptr: PBIO): PBIO{Has C Attribute: unused}; inline;
 begin
    Result := ptr;

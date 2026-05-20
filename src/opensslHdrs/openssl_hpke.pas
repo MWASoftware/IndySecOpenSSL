@@ -18,7 +18,7 @@
 unit openssl_hpke;
 
 {
-  Generated from OpenSSL 3.5.6 Header File hpke.h - Tue 19 May 14:27:49 BST 2026
+  Generated from OpenSSL 3.6.2 Header File hpke.h - Tue 19 May 14:30:10 BST 2026
 }
 
 {$IFNDEF FPC}

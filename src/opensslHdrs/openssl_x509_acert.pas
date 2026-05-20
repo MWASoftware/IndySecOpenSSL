@@ -18,7 +18,7 @@
 unit openssl_x509_acert;
 
 {
-  Generated from OpenSSL 3.5.6 Header File x509_acert.h - Tue 19 May 14:28:45 BST 2026
+  Generated from OpenSSL 3.6.2 Header File x509_acert.h - Tue 19 May 14:31:09 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -450,6 +450,7 @@ type
   Tsk_OSSL_IETF_ATTR_SYNTAX_VALUE_copyfunc = function(a: POSSL_IETF_ATTR_SYNTAX_VALUE): POSSL_IETF_ATTR_SYNTAX_VALUE; cdecl;
 
 
+  procedure sk_OSSL_IETF_ATTR_SYNTAX_VALUE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_OSSL_IETF_ATTR_SYNTAX_VALUE_type(ptr: POSSL_IETF_ATTR_SYNTAX_VALUE): POSSL_IETF_ATTR_SYNTAX_VALUE{Has C Attribute: unused}; inline;
   function ossl_check_const_OSSL_IETF_ATTR_SYNTAX_VALUE_sk_type(sk: Pstack_st_OSSL_IETF_ATTR_SYNTAX_VALUE): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_OSSL_IETF_ATTR_SYNTAX_VALUE_sk_type(sk: Pstack_st_OSSL_IETF_ATTR_SYNTAX_VALUE): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -685,6 +686,7 @@ type
   Tsk_OSSL_TARGET_copyfunc = function(a: POSSL_TARGET): POSSL_TARGET; cdecl;
 
 
+  procedure sk_OSSL_TARGET_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_OSSL_TARGET_type(ptr: POSSL_TARGET): POSSL_TARGET{Has C Attribute: unused}; inline;
   function ossl_check_const_OSSL_TARGET_sk_type(sk: Pstack_st_OSSL_TARGET): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_OSSL_TARGET_sk_type(sk: Pstack_st_OSSL_TARGET): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -817,6 +819,7 @@ type
   Tsk_OSSL_TARGETS_copyfunc = function(a: POSSL_TARGETS): POSSL_TARGETS; cdecl;
 
 
+  procedure sk_OSSL_TARGETS_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_OSSL_TARGETS_type(ptr: POSSL_TARGETS): POSSL_TARGETS{Has C Attribute: unused}; inline;
   function ossl_check_const_OSSL_TARGETS_sk_type(sk: Pstack_st_OSSL_TARGETS): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_OSSL_TARGETS_sk_type(sk: Pstack_st_OSSL_TARGETS): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -1049,6 +1052,7 @@ type
   Tsk_OSSL_ISSUER_SERIAL_copyfunc = function(a: POSSL_ISSUER_SERIAL): POSSL_ISSUER_SERIAL; cdecl;
 
 
+  procedure sk_OSSL_ISSUER_SERIAL_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_OSSL_ISSUER_SERIAL_type(ptr: POSSL_ISSUER_SERIAL): POSSL_ISSUER_SERIAL{Has C Attribute: unused}; inline;
   function ossl_check_const_OSSL_ISSUER_SERIAL_sk_type(sk: Pstack_st_OSSL_ISSUER_SERIAL): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_OSSL_ISSUER_SERIAL_sk_type(sk: Pstack_st_OSSL_ISSUER_SERIAL): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -1203,6 +1207,17 @@ uses Sysutils, variants
     OPENSSL_LINE  = 0;
   {$ifend}
 
+procedure sk_OSSL_IETF_ATTR_SYNTAX_VALUE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OSSL_IETF_ATTR_SYNTAX_VALUE_freefunc_thunk"');
+
+{Error: Line 138: Syntax Error parsing " sk_OSSL_IETF_ATTR_SYNTAX_VALUE_freefunc freefunc = (sk_OSSL_IETF_ATTR_SYNTAX_VALUE_freefunc)freefunc_arg; 
+freefunc((OSSL_IETF_ATTR_SYNTAX_VALUE *)ptr); "
+
+ sk_OSSL_IETF_ATTR_SYNTAX_VALUE_freefunc freefunc = (sk_OSSL_IETF_ATTR_SYNTAX_VALUE_freefunc)freefunc_arg; freefunc((OSSL_IETF_ATTR_SYNTAX_VALUE 
+*)ptr); }
+end;
+
 function ossl_check_OSSL_IETF_ATTR_SYNTAX_VALUE_type(ptr: POSSL_IETF_ATTR_SYNTAX_VALUE): POSSL_IETF_ATTR_SYNTAX_VALUE{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -1231,6 +1246,16 @@ end;
 function ossl_check_OSSL_IETF_ATTR_SYNTAX_VALUE_freefunc_type(fr: Tsk_OSSL_IETF_ATTR_SYNTAX_VALUE_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
 begin
    Result := TOPENSSL_sk_freefunc(fr);
+end;
+
+procedure sk_OSSL_TARGET_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OSSL_TARGET_freefunc_thunk"');
+
+{Error: Line 208: Syntax Error parsing " sk_OSSL_TARGET_freefunc freefunc = (sk_OSSL_TARGET_freefunc)freefunc_arg; freefunc((OSSL_TARGET 
+*)ptr); "
+
+ sk_OSSL_TARGET_freefunc freefunc = (sk_OSSL_TARGET_freefunc)freefunc_arg; freefunc((OSSL_TARGET *)ptr); }
 end;
 
 function ossl_check_OSSL_TARGET_type(ptr: POSSL_TARGET): POSSL_TARGET{Has C Attribute: unused}; inline;
@@ -1263,6 +1288,16 @@ begin
    Result := TOPENSSL_sk_freefunc(fr);
 end;
 
+procedure sk_OSSL_TARGETS_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OSSL_TARGETS_freefunc_thunk"');
+
+{Error: Line 238: Syntax Error parsing " sk_OSSL_TARGETS_freefunc freefunc = (sk_OSSL_TARGETS_freefunc)freefunc_arg; freefunc((OSSL_TARGETS 
+*)ptr); "
+
+ sk_OSSL_TARGETS_freefunc freefunc = (sk_OSSL_TARGETS_freefunc)freefunc_arg; freefunc((OSSL_TARGETS *)ptr); }
+end;
+
 function ossl_check_OSSL_TARGETS_type(ptr: POSSL_TARGETS): POSSL_TARGETS{Has C Attribute: unused}; inline;
 begin
    Result := ptr;
@@ -1291,6 +1326,16 @@ end;
 function ossl_check_OSSL_TARGETS_freefunc_type(fr: Tsk_OSSL_TARGETS_freefunc): TOPENSSL_sk_freefunc{Has C Attribute: unused}; inline;
 begin
    Result := TOPENSSL_sk_freefunc(fr);
+end;
+
+procedure sk_OSSL_ISSUER_SERIAL_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OSSL_ISSUER_SERIAL_freefunc_thunk"');
+
+{Error: Line 275: Syntax Error parsing " sk_OSSL_ISSUER_SERIAL_freefunc freefunc = (sk_OSSL_ISSUER_SERIAL_freefunc)freefunc_arg; 
+freefunc((OSSL_ISSUER_SERIAL *)ptr); "
+
+ sk_OSSL_ISSUER_SERIAL_freefunc freefunc = (sk_OSSL_ISSUER_SERIAL_freefunc)freefunc_arg; freefunc((OSSL_ISSUER_SERIAL *)ptr); }
 end;
 
 function ossl_check_OSSL_ISSUER_SERIAL_type(ptr: POSSL_ISSUER_SERIAL): POSSL_ISSUER_SERIAL{Has C Attribute: unused}; inline;

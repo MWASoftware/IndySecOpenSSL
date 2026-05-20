@@ -18,7 +18,7 @@
 unit openssl_srtp;
 
 {
-  Generated from OpenSSL 3.5.6 Header File srtp.h - Tue 19 May 14:28:21 BST 2026
+  Generated from OpenSSL 3.6.2 Header File srtp.h - Tue 19 May 14:30:43 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -92,6 +92,7 @@ type
   Tsk_SRTP_PROTECTION_PROFILE_copyfunc = function(a: PSRTP_PROTECTION_PROFILE): PSRTP_PROTECTION_PROFILE; cdecl;
 
 
+  procedure sk_SRTP_PROTECTION_PROFILE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_SRTP_PROTECTION_PROFILE_type(ptr: PSRTP_PROTECTION_PROFILE): PSRTP_PROTECTION_PROFILE{Has C Attribute: unused}; inline;
   function ossl_check_const_SRTP_PROTECTION_PROFILE_sk_type(sk: Pstack_st_SRTP_PROTECTION_PROFILE): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_SRTP_PROTECTION_PROFILE_sk_type(sk: Pstack_st_SRTP_PROTECTION_PROFILE): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -179,6 +180,17 @@ uses Sysutils, variants
   const
     OPENSSL_LINE  = 0;
   {$ifend}
+
+procedure sk_SRTP_PROTECTION_PROFILE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_SRTP_PROTECTION_PROFILE_freefunc_thunk"');
+
+{Error: Line 47: Syntax Error parsing " sk_SRTP_PROTECTION_PROFILE_freefunc freefunc = (sk_SRTP_PROTECTION_PROFILE_freefunc)freefunc_arg; 
+freefunc((SRTP_PROTECTION_PROFILE *)ptr); "
+
+ sk_SRTP_PROTECTION_PROFILE_freefunc freefunc = (sk_SRTP_PROTECTION_PROFILE_freefunc)freefunc_arg; freefunc((SRTP_PROTECTION_PROFILE 
+*)ptr); }
+end;
 
 function ossl_check_SRTP_PROTECTION_PROFILE_type(ptr: PSRTP_PROTECTION_PROFILE): PSRTP_PROTECTION_PROFILE{Has C Attribute: unused}; inline;
 begin

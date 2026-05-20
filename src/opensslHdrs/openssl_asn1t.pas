@@ -18,7 +18,7 @@
 unit openssl_asn1t;
 
 {
-  Generated from OpenSSL 3.5.6 Header File asn1t.h - Tue 19 May 14:27:03 BST 2026
+  Generated from OpenSSL 3.6.2 Header File asn1t.h - Tue 19 May 14:29:22 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -704,6 +704,7 @@ type
   Tsk_ASN1_VALUE_copyfunc = function(a: PASN1_VALUE): PASN1_VALUE; cdecl;
 
 
+  procedure sk_ASN1_VALUE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function ossl_check_ASN1_VALUE_type(ptr: PASN1_VALUE): PASN1_VALUE{Has C Attribute: unused}; inline;
   function ossl_check_const_ASN1_VALUE_sk_type(sk: Pstack_st_ASN1_VALUE): POPENSSL_STACK{Has C Attribute: unused}; inline;
   function ossl_check_ASN1_VALUE_sk_type(sk: Pstack_st_ASN1_VALUE): POPENSSL_STACK{Has C Attribute: unused}; inline;
@@ -895,6 +896,16 @@ function ASN1_TEMPLATE_adb(t: PASN1_TEMPLATE_st): PASN1_ITEM_EXP;
 begin
   Result := PASN1_ITEM_EXP(t^.item);
 end;
+procedure sk_ASN1_VALUE_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_ASN1_VALUE_freefunc_thunk"');
+
+{Error: Line 709: Syntax Error parsing " sk_ASN1_VALUE_freefunc freefunc = (sk_ASN1_VALUE_freefunc)freefunc_arg; freefunc((ASN1_VALUE 
+*)ptr); "
+
+ sk_ASN1_VALUE_freefunc freefunc = (sk_ASN1_VALUE_freefunc)freefunc_arg; freefunc((ASN1_VALUE *)ptr); }
+end;
+
 function ossl_check_ASN1_VALUE_type(ptr: PASN1_VALUE): PASN1_VALUE{Has C Attribute: unused}; inline;
 begin
    Result := ptr;

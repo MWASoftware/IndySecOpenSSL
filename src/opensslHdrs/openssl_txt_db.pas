@@ -18,7 +18,7 @@
 unit openssl_txt_db;
 
 {
-  Generated from OpenSSL 3.5.6 Header File txt_db.h - Tue 19 May 14:28:40 BST 2026
+  Generated from OpenSSL 3.6.2 Header File txt_db.h - Tue 19 May 14:31:03 BST 2026
 }
 
 {$IFNDEF FPC}
@@ -79,6 +79,7 @@ type
   Tsk_OPENSSL_PSTRING_copyfunc = function(a: POPENSSL_STRING): POPENSSL_STRING; cdecl;
 
 
+  procedure sk_OPENSSL_PSTRING_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
   function sk_OPENSSL_PSTRING_num(sk: Pstack_st_OPENSSL_PSTRING): TOpenSSL_C_INT{Has C Attribute: unused}; inline;
   function sk_OPENSSL_PSTRING_value(sk: Pstack_st_OPENSSL_PSTRING; idx: TOpenSSL_C_INT): POPENSSL_STRING{Has C Attribute: unused}; inline;
   function sk_OPENSSL_PSTRING_new(compare: Tsk_OPENSSL_PSTRING_compfunc): Pstack_st_OPENSSL_PSTRING{Has C Attribute: unused}; inline;
@@ -219,6 +220,16 @@ uses Sysutils, variants
     OPENSSL_LINE  = 0;
   {$ifend}
 
+procedure sk_OPENSSL_PSTRING_freefunc_thunk(freefunc_arg: TOPENSSL_sk_freefunc; ptr: pointer); inline;
+begin
+  raise Exception.Create('Unable to translate C Function "sk_OPENSSL_PSTRING_freefunc_thunk"');
+
+{Error: Line 38: Syntax Error parsing " sk_OPENSSL_PSTRING_freefunc freefunc = (sk_OPENSSL_PSTRING_freefunc)freefunc_arg; freefunc((OPENSSL_STRING 
+*)ptr); "
+
+ sk_OPENSSL_PSTRING_freefunc freefunc = (sk_OPENSSL_PSTRING_freefunc)freefunc_arg; freefunc((OPENSSL_STRING *)ptr); }
+end;
+
 function sk_OPENSSL_PSTRING_num(sk: Pstack_st_OPENSSL_PSTRING): TOpenSSL_C_INT{Has C Attribute: unused}; inline;
 begin
    Result := OPENSSL_sk_num(POPENSSL_STACK(sk));
@@ -231,7 +242,14 @@ end;
 
 function sk_OPENSSL_PSTRING_new(compare: Tsk_OPENSSL_PSTRING_compfunc): Pstack_st_OPENSSL_PSTRING{Has C Attribute: unused}; inline;
 begin
-   Result := Pstack_st_OPENSSL_PSTRING(OPENSSL_sk_new(TOPENSSL_sk_compfunc(compare)));
+  raise Exception.Create('Unable to translate C Function "sk_OPENSSL_PSTRING_new"');
+
+{Error: Line 38: Syntax Error parsing " OPENSSL_STACK *ret = OPENSSL_sk_new((OPENSSL_sk_compfunc)compare); OPENSSL_sk_freefunc_thunk 
+f_thunk; f_thunk = (OPENSSL_sk_freefunc_thunk)sk_OPENSSL_PSTRING_freefunc_thunk; return (struct stack_st_OPENSSL_PSTRING *)OPENSSL_sk_set_thunks(ret,
+ f_thunk); "
+
+ OPENSSL_STACK *ret = OPENSSL_sk_new((OPENSSL_sk_compfunc)compare); OPENSSL_sk_freefunc_thunk f_thunk; f_thunk = (OPENSSL_sk_freefunc_thunk)sk_OPENSSL_PSTRING_freefunc_thunk; 
+return (struct stack_st_OPENSSL_PSTRING *)OPENSSL_sk_set_thunks(ret, f_thunk); }
 end;
 
 function sk_OPENSSL_PSTRING_new_null: Pstack_st_OPENSSL_PSTRING{Has C Attribute: unused}; inline;
@@ -241,7 +259,14 @@ end;
 
 function sk_OPENSSL_PSTRING_new_reserve(compare: Tsk_OPENSSL_PSTRING_compfunc; n: TOpenSSL_C_INT): Pstack_st_OPENSSL_PSTRING{Has C Attribute: unused}; inline;
 begin
-   Result := Pstack_st_OPENSSL_PSTRING(OPENSSL_sk_new_reserve(TOPENSSL_sk_compfunc(compare),n));
+  raise Exception.Create('Unable to translate C Function "sk_OPENSSL_PSTRING_new_reserve"');
+
+{Error: Line 38: Syntax Error parsing " OPENSSL_STACK *ret = OPENSSL_sk_new_reserve((OPENSSL_sk_compfunc)compare, n); OPENSSL_sk_freefunc_thunk 
+f_thunk; f_thunk = (OPENSSL_sk_freefunc_thunk)sk_OPENSSL_PSTRING_freefunc_thunk; return (struct stack_st_OPENSSL_PSTRING *)OPENSSL_sk_set_thunks(ret,
+ f_thunk); "
+
+ OPENSSL_STACK *ret = OPENSSL_sk_new_reserve((OPENSSL_sk_compfunc)compare, n); OPENSSL_sk_freefunc_thunk f_thunk; f_thunk = (OPENSSL_sk_freefunc_thunk)sk_OPENSSL_PSTRING_freefunc_thunk; 
+return (struct stack_st_OPENSSL_PSTRING *)OPENSSL_sk_set_thunks(ret, f_thunk); }
 end;
 
 function sk_OPENSSL_PSTRING_reserve(sk: Pstack_st_OPENSSL_PSTRING; n: TOpenSSL_C_INT): TOpenSSL_C_INT{Has C Attribute: unused}; inline;
@@ -291,7 +316,15 @@ end;
 
 procedure sk_OPENSSL_PSTRING_pop_free(sk: Pstack_st_OPENSSL_PSTRING; freefunc: Tsk_OPENSSL_PSTRING_freefunc){Has C Attribute: unused}; inline;
 begin
-    OPENSSL_sk_pop_free(POPENSSL_STACK(sk), TOPENSSL_sk_freefunc(freefunc));
+  raise Exception.Create('Unable to translate C Function "sk_OPENSSL_PSTRING_pop_free"');
+
+{Error: Line 38: Syntax Error parsing " OPENSSL_sk_freefunc_thunk f_thunk; f_thunk = (OPENSSL_sk_freefunc_thunk)sk_OPENSSL_PSTRING_freefunc_thunk; 
+sk = (struct stack_st_OPENSSL_PSTRING *)OPENSSL_sk_set_thunks((OPENSSL_STACK *)sk, f_thunk); OPENSSL_sk_pop_free((OPENSSL_STACK 
+*)sk, (OPENSSL_sk_freefunc)freefunc); "
+
+ OPENSSL_sk_freefunc_thunk f_thunk; f_thunk = (OPENSSL_sk_freefunc_thunk)sk_OPENSSL_PSTRING_freefunc_thunk; sk = (struct stack_st_OPENSSL_PSTRING 
+*)OPENSSL_sk_set_thunks((OPENSSL_STACK *)sk, f_thunk); OPENSSL_sk_pop_free((OPENSSL_STACK *)sk, (OPENSSL_sk_freefunc)freefunc); 
+}
 end;
 
 function sk_OPENSSL_PSTRING_insert(sk: Pstack_st_OPENSSL_PSTRING; ptr: POPENSSL_STRING; idx: TOpenSSL_C_INT): TOpenSSL_C_INT{Has C Attribute: unused}; inline;
