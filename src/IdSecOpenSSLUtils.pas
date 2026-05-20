@@ -48,8 +48,8 @@ uses
   SysUtils,
   IdCTypes,
   IdGlobal,
-  IdSecOpenSSLHeaders_evp,
-  IdSecOpenSSLHeaders_ossl_typ
+  Openssl_evp,
+  Openssl_types
   {$IFNDEF FPC}, System.DateUtils{$ENDIF}
 ;
 

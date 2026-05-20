@@ -44,19 +44,14 @@ uses
   IdGlobal,
   IdStackConsts,
   IdSecOpenSSLX509,
-  IdSecOpenSSLExceptionHandlers,
-  IdSecOpenSSLHeaders_ssl,
+  OpenSSLExceptionHandlers,
+  Openssl_ssl,
   IdSecOpenSSLOptions,
-  IdSecOpenSSLHeaders_ossl_typ
+  Openssl_types,
+  openssl_x509err
   ;
 
 {$I IdCompilerDefines.inc}
-
-{$IFDEF WINDOWS}
-{$IFNDEF OPENSSL_DONT_USE_WINDOWS_CERT_STORE}
-{$DEFINE USE_WINDOWS_CERT_STORE}
-{$ENDIF}
-{$ENDIF}
 
 {$IFNDEF USE_OPENSSL}
   {$message error Should not compile if USE_OPENSSL is not defined!!!}
@@ -107,9 +102,6 @@ type
   private
     {$IFDEF USE_OBJECT_ARC}[Weak]{$ENDIF} fParent: TObject;
     fUseSystemRootCertificateStore : boolean;
-    {$IFDEF USE_WINDOWS_CERT_STORE}
-    procedure LoadWindowsCertStore;
-    {$ENDIF}
   protected
     fMethod: TIdSecVersion;
     fSSLVersions : TIdSecVersions;
@@ -217,9 +209,6 @@ implementation
 
 uses
   IdStack,
-  {$IFDEF USE_WINDOWS_CERT_STORE}
-  IdSecwincrypt,
-  {$ENDIF}
   {$IFNDEF FPC}
   {$IF CompilerVersion >= 37}
   System.SyncObjs,
@@ -227,15 +216,17 @@ uses
   {$ENDIF}
   IdThreadSafe,
   IdSecOpenSSLUtils,
-  IdSecOpenSSLAPI,
+  OpenSSLAPI,
   IdSecOpenSSL,
   IdResourceStringsProtocols,
   IdSecResourceStringsOpenSSL,
-  IdSecOpenSSLHeaders_x509,
-  IdSecOpenSSLHeaders_ssl3,
-  IdSecOpenSSLHeaders_tls1,
-  IdSecOpenSSLHeaders_x509_vfy,
-  IdSecOpenSSLHeaders_err
+  Openssl_x509,
+  Openssl_ssl3,
+  Openssl_tls1,
+  Openssl_x509_vfy,
+  Openssl_err,
+  openssl_prov_ssl,
+  openssl_winx509
 ;
 
 var
@@ -290,7 +281,7 @@ begin
 end;
 
 
-procedure InfoCallback(const sslSocket: PSSL; where, ret: TIdC_INT); cdecl;
+procedure InfoCallback(sslSocket: PSSL; where, ret: TIdC_INT); cdecl;
 var
   IdSecSocket: TIdSecSocket;
   StatusStr : String;
@@ -499,7 +490,7 @@ end;
 
 function TIdSecCipher.GetBits:TIdC_INT;
 begin
-  SSL_CIPHER_get_bits(SSL_get_current_cipher(FSSLSocket.fSSL), Result);
+  SSL_CIPHER_get_bits(SSL_get_current_cipher(FSSLSocket.fSSL), @Result);
 end;
 
 function TIdSecCipher.GetVersion:String;
@@ -554,49 +545,6 @@ begin
   inherited Destroy;
 end;
 
-{$IFDEF USE_WINDOWS_CERT_STORE}
-{Copy Windows CA Certs to out cert store}
-procedure TIdSecContext.LoadWindowsCertStore;
-var WinCertStore: HCERTSTORE;
-    X509Cert: PX509;
-    cert_context: PCCERT_CONTEXT;
-    error: integer;
-    SSLCertStore: PX509_STORE;
-    CertEncoded: PByte;
-begin
-  cert_context := nil;
-  {$IFDEF STRING_IS_ANSI}
-  WinCertStore := CertOpenSystemStoreA(nil,RootStore);
-  {$ELSE}
-  WinCertStore := CertOpenSystemStoreW(nil,RootStore);
-  {$ENDIF}
-  if WinCertStore = 0 then
-    Exit;
-
-  SSLCertStore := SSL_CTX_get_cert_store(fContext);
-  try
-    cert_context := CertEnumCertificatesInStore(WinCertStore,cert_context);
-    while cert_context <> nil do
-    begin
-      CertEncoded := cert_context^.pbCertEncoded;
-      X509Cert := d2i_X509(nil,@CertEncoded, cert_context^.cbCertEncoded);
-      if X509Cert <> nil then
-      begin
-        error := X509_STORE_add_cert(SSLCertStore, X509Cert);
-//Ignore if cert already in store
-        if (error = 0) and
-           (ERR_GET_REASON(ERR_get_error()) <> X509_R_CERT_ALREADY_IN_HASH_TABLE) then
-          EOpenSSLAPICryptoError.RaiseException(ROSCertificateNotAddedToStore);
-        X509_free(X509Cert);
-      end;
-      cert_context := CertEnumCertificatesInStore(WinCertStore,cert_context);
-    end;
-  finally
-     CertCloseStore(WinCertStore, 0);
-  end;
-end;
-{$ENDIF}
-
 procedure TIdSecContext.DestroyContext;
 begin
   if fContext <> nil then begin
@@ -637,9 +585,11 @@ begin
     EIdOSSLCreatingContextError.RaiseException(RSSSLCreatingContextError);
   end;
 
-  //set min and max SSL Versions we will aloow
+  //set min and max SSL Versions we will allow
+  {$if declared(HasTLS_method)}
   if HasTLS_method then
   begin
+  {$ifend}
     if SSLVersions <> [] then
     begin
       for v := sslvSSLv3 to MAX_SSLVERSION do
@@ -664,6 +614,7 @@ begin
      SSL_CTX_set_min_proto_version(fContext,SSL3_VERSION);
      SSL_CTX_set_max_proto_version(fContext,SSLProtoVersion[high(TIdSecVersion)]);
    end;
+   {$if declared(HasTLS_method)}
   end
   else
   begin
@@ -716,6 +667,7 @@ begin
         end;
       end;
   end;
+  {$ifend}
 
 //  SSL_CTX_set_mode(fContext, SSL_MODE_AUTO_RETRY);
   SSL_CTX_ctrl(fContext, SSL_CTRL_CLEAR_MODE, SSL_MODE_AUTO_RETRY, nil);
@@ -725,12 +677,12 @@ begin
     SSL_CTX_set_default_passwd_cb_userdata(fContext, Self);
 //  end;
 
-  if fUseSystemRootCertificateStore then
-  {$IFDEF USE_WINDOWS_CERT_STORE}
-    LoadWindowsCertStore;
-  {$ELSE}
-    SSL_CTX_set_default_verify_paths(fContext);
-  {$ENDIF}
+{$IF declared(HasWindowsCertStore)}
+  if HasWindowsCertStore then
+    LoadWindowsCertStore(fcontext);
+{$ELSE}
+  SSL_CTX_set_default_verify_paths(fContext);
+{$IFEND}
   // load key and certificate files
   if (RootCertFile <> '') or (VerifyDirs <> '') then begin    {Do not Localize}
     if not LoadRootCert then begin
@@ -826,7 +778,7 @@ end;
 
 procedure TIdSecContext.SetVerifyMode(Mode: TIdSecVerifyModeSet; CheckRoutine: Boolean);
 var
-  Func: TSSL_CTX_set_verify_callback;
+  Func: TSSL_verify_cb;
 begin
   if fContext<>nil then begin
 //    SSL_CTX_set_default_verify_paths(fContext);
@@ -866,7 +818,9 @@ begin
     raise EIdOSSLModeNotSet.Create(RSOSSLModeNotSet);
   end;
 
+  {$if declared(OpenSSL_SetMethod)}
   OpenSSL_SetMethod(TOpenSSL_Version(fMethod));
+  {$ifend}
 
     {For OpenSSL 1.1.1 or later. OpenSSL will negotiate the best
      available SSL/TLS version and there is not much that we can do to influence this.

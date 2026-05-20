@@ -15,7 +15,7 @@ uses
   {$ENDIF}
   IdIOHandler, IdIOHandlerSocket,
   IdIOHandlerStack, IdSSL, IdSecOpenSSL, IdBaseComponent, IdComponent,
-  IdTCPConnection, IdTCPClient, IdHTTP,  IdSecOpenSSLX509, IdSecOpenSSLAPI;
+  IdTCPConnection, IdTCPClient, IdHTTP,  IdSecOpenSSLX509, OpenSSLAPI;
 
 {$IFNDEF FPC}
 const
@@ -165,6 +165,8 @@ begin
   lmStatic:
     Memo1.Lines.Add('Link Model: Statically linked to a static library at link time');
   end;
+
+  Memo1.Lines.Add('Header Version: ' + OPENSSL_VERSION_STR +' ' + openssl_lib_info);
 
   if GetIOpenSSLDDL <> nil then
     begin

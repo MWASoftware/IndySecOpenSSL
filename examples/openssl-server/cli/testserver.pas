@@ -24,7 +24,7 @@ uses
   Classes, SysUtils, {$IFDEF FPC}CustApp,{$ENDIF}IdIOHandler, IdHTTP,
   IdSSL, IdSecOpenSSL,  IdHeaderList, IdContext,
   IdCustomHTTPServer, IdHTTPServer, IdServerIOHandler, IdGlobal,
-  IdSecOpenSSLX509, IdSecOpenSSLAPI;
+  IdSecOpenSSLX509, OpenSSLAPI;
 
 const
   SSLServerPort = 8080;
@@ -327,6 +327,7 @@ procedure TOpenSSLServerTest.DoRun;
     FServer.Active := true;
     Sleep(1000); {let server get going}
     writeln('Using ',OpenSSLVersion);
+    writeln('Header Version: ',OPENSSL_VERSION_STR,' ',openssl_lib_info);
     case GetIOpenSSL.GetLinkModel of
     lmDynamic:
       writeln('Link Model: Dynamic linking at run time');
@@ -343,15 +344,6 @@ procedure TOpenSSLServerTest.DoRun;
     end;
     writeln('Working Directory = ' + GetCurrentDir);
     writeln;
-
-    if GetIOpenSSLDDL <> nil then
-    with GetIOpenSSLDDL.GetFailedToLoadList do
-    if Count > 0 then
-    begin
-      writeln('Note: The following functions failed to load and an exception will be raised if they are called:');
-      for i := 0 to Count - 1 do
-        writeln(Strings[i]);
-    end;
 
     writeln('Getting ',remoteSource,' with verification');
     writeln;

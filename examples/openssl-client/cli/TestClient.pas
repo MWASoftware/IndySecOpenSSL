@@ -29,7 +29,7 @@ interface
 
 uses
   Classes, SysUtils, {$IFDEF FPC}CustApp,{$ENDIF}IdIOHandler, IdHTTP,
-  IdSSL, IdSecOpenSSL, IdSecOpenSSLX509, IdSecOpenSSLAPI;
+  IdSSL, IdSecOpenSSL, IdSecOpenSSLX509, OpenSSLAPI;
 
 const
   remoteSource = 'https://test.mwasoftware.co.uk/openssltest.txt';
@@ -302,6 +302,7 @@ var i: integer;
     {$ENDIF}
 
     writeln('Using ',OpenSSLVersion, ', OpenSSLDir: ', OpenSSLDir);
+    writeln('Header Version: ',OPENSSL_VERSION_STR,' ',openssl_lib_info);
     case GetIOpenSSL.GetLinkModel of
     lmDynamic:
       writeln('Link Model: Dynamic linking at run time');
@@ -321,15 +322,6 @@ var i: integer;
 
     if not LoadOpenSSLLibrary then
       raise Exception.Create('OpenSSL Library Failed to load');
-
-    if GetIOpenSSLDDL <> nil then
-    with GetIOpenSSLDDL.GetFailedToLoadList do
-    if Count > 0 then
-    begin
-      writeln('Note: The following functions failed to load and an exception will be raised if they are called:');
-      for i := 0 to Count - 1 do
-        writeln(Strings[i]);
-    end;
 
     writeln('Getting ',remoteSource,' with no verification');
     writeln;

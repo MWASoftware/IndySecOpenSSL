@@ -10,7 +10,7 @@ interface
 uses
   IdSecNTLMOpenSSL, IdSecResourceStringsOpenSSL, IdSecOpenSSL, 
   IdSecOpenSSLFIPS, IdSecOpenSSLOptions, IdSecOpenSSLSocket, 
-  IdSecOpenSSLUtils, IdSecOpenSSLX509, IdSecwincrypt;
+  IdSecOpenSSLUtils, IdSecOpenSSLX509;
 
 implementation
 
