@@ -677,11 +677,14 @@ begin
     SSL_CTX_set_default_passwd_cb_userdata(fContext, Self);
 //  end;
 
+  if UseSystemRootCertificateStore then
+  begin
 {$IF declared(HasWindowsCertStore)}
   if HasWindowsCertStore then
     LoadWindowsCertStore(fcontext);
 {$ELSE}
   SSL_CTX_set_default_verify_paths(fContext);
+  end;
 {$IFEND}
   // load key and certificate files
   if (RootCertFile <> '') or (VerifyDirs <> '') then begin    {Do not Localize}
